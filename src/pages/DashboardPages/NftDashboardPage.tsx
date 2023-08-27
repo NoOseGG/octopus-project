@@ -19,37 +19,37 @@ const MedicalDashboardPage: React.FC = () => {
     <Row>
       <S.LeftSideCol xl={16} xxl={17} id="desktop-content">
         <Row gutter={[60, 60]}>
-          <Col span={24}>
-            <TrendingCreators />
-          </Col>
+          {/*<Col span={24}>*/}
+          {/*  <TrendingCreators />*/}
+          {/*</Col>*/}
 
-          <Col span={24}>
-            <RecentlyAddedNft />
-          </Col>
+          {/*<Col span={24}>*/}
+          {/*  <RecentlyAddedNft />*/}
+          {/*</Col>*/}
 
-          <Col span={24}>
-            <TrendingCollections />
-          </Col>
+          {/*<Col span={24}>*/}
+          {/*  <TrendingCollections />*/}
+          {/*</Col>*/}
 
-          <Col span={24}>
-            <RecentActivity />
-          </Col>
+          {/*<Col span={24}>*/}
+          {/*  <RecentActivity />*/}
+          {/*</Col>*/}
         </Row>
         <References />
       </S.LeftSideCol>
 
       <S.RightSideCol xl={8} xxl={7}>
-        <div id="balance">
-          <Balance />
-        </div>
-        <S.Space />
-        <div id="total-earning">
-          <TotalEarning />
-        </div>
-        <S.Space />
-        <S.ScrollWrapper id="activity-story">
-          <ActivityStory />
-        </S.ScrollWrapper>
+        {/*<div id="balance">*/}
+        {/*  <Balance />*/}
+        {/*</div>*/}
+        {/*<S.Space />*/}
+        {/*<div id="total-earning">*/}
+        {/*  <TotalEarning />*/}
+        {/*</div>*/}
+        {/*<S.Space />*/}
+        {/*<S.ScrollWrapper id="activity-story">*/}
+        {/*  <ActivityStory />*/}
+        {/*</S.ScrollWrapper>*/}
       </S.RightSideCol>
     </Row>
   );

@@ -3,31 +3,19 @@ const avatarImg = process.env.REACT_APP_ASSETS_BUCKET + '/avatars/avatar5.webp';
 
 const testUser = {
   id: 1,
-  firstName: 'Chris',
-  lastName: 'Johnson',
-  imgUrl: avatarImg,
-  userName: '@john1989',
-  email: {
-    name: 'chris.johnson@altence.com',
-    verified: true,
-  },
-  phone: {
-    number: '+18143519459',
-    verified: true,
-  },
-  sex: 'male',
-  birthday: '01/26/2022',
-  lang: 'en',
-  country: 'GB',
-  city: 'London',
-  address1: '14 London Road',
-  zipcode: 5211,
-  website: 'altence.com',
-  socials: {
-    twitter: '@altence_team',
-    facebook: 'https://facebook.com/groups/1076577369582221',
-    linkedin: 'https://linkedin.com/company/altence',
-  },
+  first_name: 'Yury',
+  last_name: 'Svirydzenka',
+  patronymic: '',
+  birthday: '04.01.1992',
+  phone_number: '+375257520246',
+  email: 'hoc751@gmail.com',
+  created: '28.08.2023',
+  updated: '29.08.2023',
+  last_day_subscription: '29.08.2023',
+  is_email_confirmed: true,
+  type_subscription: null,
+  avatar: 'https://ava-24.com/_ph/144/33740131.jpg',
+  is_email_subscription: true,
 };
 
 export const persistToken = (token: string): void => {

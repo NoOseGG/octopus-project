@@ -22,7 +22,7 @@ const initialState: AuthSlice = {
   token: readToken(),
 };
 
-export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
+export const doLogin = createAsyncThunk('login', async (loginPayload: LoginRequest, { dispatch }) =>
   login(loginPayload).then((res) => {
     dispatch(setUser(res.user));
     persistToken(res.token);
@@ -49,7 +49,7 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
   setNewPassword(newPasswordData),
 );
 
-export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }) => {
+export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   deleteToken();
   deleteUser();
   dispatch(setUser(null));

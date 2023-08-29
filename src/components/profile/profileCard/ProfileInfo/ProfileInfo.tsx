@@ -16,10 +16,10 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
   return profileData ? (
     <S.Wrapper>
       <S.ImgWrapper>
-        <Avatar shape="circle" src={profileData?.imgUrl} alt="Profile" />
+        <Avatar shape="circle" src={profileData?.avatar} alt="Profile" />
       </S.ImgWrapper>
-      <S.Title>{`${profileData?.firstName} ${profileData?.lastName}`}</S.Title>
-      <S.Subtitle>{profileData?.userName}</S.Subtitle>
+      <S.Title>{`${profileData?.first_name} ${profileData?.last_name}`}</S.Title>
+      <S.Subtitle>{profileData?.email}</S.Subtitle>
       <S.FullnessWrapper>
         <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>
       </S.FullnessWrapper>

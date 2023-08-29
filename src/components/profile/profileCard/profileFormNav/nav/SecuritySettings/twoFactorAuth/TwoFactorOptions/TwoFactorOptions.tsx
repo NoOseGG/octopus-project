@@ -15,10 +15,9 @@ interface TwoFactorOptionsProps {
 export const TwoFactorOptions: React.FC<TwoFactorOptionsProps> = ({ selectedOption, setSelectedOption }) => {
   const user = useAppSelector((state) => state.user.user);
 
-  const { isEmailActive, isPhoneActive } = useMemo(
+  const { isEmailActive } = useMemo(
     () => ({
-      isPhoneActive: selectedOption === 'phone',
-      isEmailActive: selectedOption === 'email',
+      isEmailActive: selectedOption === 'is_email_confirmed',
     }),
     [selectedOption],
   );
@@ -31,19 +30,23 @@ export const TwoFactorOptions: React.FC<TwoFactorOptionsProps> = ({ selectedOpti
   );
 
   useEffect(() => {
-    if (user?.email.verified && user?.phone.verified) {
+    if (user?.is_email_confirmed) {
       setSelectedOption(null);
     }
-  }, [setSelectedOption, user?.email.verified, user?.phone.verified]);
+  }, [setSelectedOption, user?.is_email_confirmed]);
 
   return (
     <>
       <RadioGroup value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-        <S.RadioBtn value="phone" $isActive={isPhoneActive} disabled={user?.phone.verified}>
-          <PhoneItem required={isPhoneActive} onClick={onClickInput('phone')} verified={user?.phone.verified} />
-        </S.RadioBtn>
-        <S.RadioBtn value="email" $isActive={isEmailActive} disabled={user?.email.verified}>
-          <EmailItem required={isEmailActive} onClick={onClickInput('email')} verified={user?.email.verified} />
+        {/*<S.RadioBtn value="phone" $isActive={isPhoneActive} disabled={user?.phone.verified}>*/}
+        {/*  <PhoneItem required={isPhoneActive} onClick={onClickInput('phone')} verified={user?.phone.verified} />*/}
+        {/*</S.RadioBtn>*/}
+        <S.RadioBtn value="email" $isActive={isEmailActive} disabled={user?.is_email_confirmed}>
+          <EmailItem
+            required={isEmailActive}
+            onClick={onClickInput('is_email_confirmed')}
+            verified={user?.is_email_confirmed}
+          />
         </S.RadioBtn>
       </RadioGroup>
     </>

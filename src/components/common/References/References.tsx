@@ -13,11 +13,11 @@ export const References: React.FC = () => {
       <S.Text>
         Made by{' '}
         <a href="https://altence.com" target="_blank" rel="noreferrer">
-          Octopus{' '}
+          Analytix{' '}
         </a>
         in 2023 &copy;. Based on{' '}
         <a href="https://ant.design/" target="_blank" rel="noreferrer">
-          Octopus-design.
+          Analytix-design.
         </a>
       </S.Text>
       <S.Icons>

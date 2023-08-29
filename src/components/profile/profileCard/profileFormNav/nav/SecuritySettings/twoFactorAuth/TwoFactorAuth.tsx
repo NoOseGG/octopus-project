@@ -13,7 +13,7 @@ import { TwoFactorAuthOption } from '@app/interfaces/interfaces';
 import * as S from './TwoFactorAuth.styles';
 
 export interface CurrentOption {
-  value: 'phone' | 'email';
+  value: 'is_email_confirmed';
   isVerified: boolean;
 }
 
@@ -23,15 +23,15 @@ export const TwoFactorAuth: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
 
   const isNeedToShowVerifyBtn = useMemo(
-    () => (user?.email.name && !user?.email.verified) || (user?.phone.number && !user?.phone.verified),
+    () => (user?.email && !user?.is_email_confirmed) || (user?.email && !user?.is_email_confirmed),
     [user],
   );
 
   const [isFieldsChanged, setFieldsChanged] = useState(Boolean(isNeedToShowVerifyBtn));
   const [isLoading, setLoading] = useState(false);
 
-  const [isEnabled, setEnabled] = useState(Boolean(user?.email.verified || user?.phone.verified));
-  const [selectedOption, setSelectedOption] = useState<TwoFactorAuthOptionState>('email');
+  const [isEnabled, setEnabled] = useState(Boolean(user?.is_email_confirmed || user?.is_email_confirmed));
+  const [selectedOption, setSelectedOption] = useState<TwoFactorAuthOptionState>('is_email_confirmed');
   const [isClickedVerify, setClickedVerify] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ export const TwoFactorAuth: React.FC = () => {
       setClickedVerify(false);
       notificationController.success({ message: t('common.success') });
 
-      const newUser = { ...user, [selectedOption]: { ...user[selectedOption], verified: true } };
+      const newUser = { ...user, is_email_confirmed: true };
 
       dispatch(setUser(newUser));
     }
@@ -63,8 +63,8 @@ export const TwoFactorAuth: React.FC = () => {
         isFieldsChanged={isFieldsChanged}
         onFieldsChange={() => setFieldsChanged(true)}
         initialValues={{
-          email: user?.email.name,
-          phone: user?.phone.number,
+          email: user?.email,
+          phone: user?.phone_number,
         }}
         footer={
           (isEnabled && (

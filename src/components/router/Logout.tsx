@@ -7,6 +7,7 @@ const Logout: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    debugger;
     dispatch(doLogout());
   }, [dispatch]);
 

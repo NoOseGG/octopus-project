@@ -22,12 +22,6 @@ export const LanguagePicker: React.FC = () => {
             <ReactCountryFlag svg countryCode="GB" />
           </Space>
         </RadioBtn>
-        <RadioBtn value="de">
-          <Space align="center">
-            Deutsch
-            <ReactCountryFlag svg countryCode="DE" />
-          </Space>
-        </RadioBtn>
       </Space>
     </Radio.Group>
   );

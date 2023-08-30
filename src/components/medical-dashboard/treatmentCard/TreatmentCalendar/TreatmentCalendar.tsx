@@ -7,6 +7,7 @@ import { useLanguage } from '@app/hooks/useLanguage';
 import { CalendarEvent } from '@app/api/calendar.api';
 import { AppDate, Dates } from '@app/constants/Dates';
 import * as S from './TreatmentCalendar.styles';
+import ruRu from "antd/lib/locale/ru_RU";
 
 interface TreatmentCalendarProps {
   date: AppDate;
@@ -28,7 +29,7 @@ export const TreatmentCalendar: React.FC<TreatmentCalendarProps> = ({
   onToday,
 }) => {
   const { language } = useLanguage();
-  const locale = useMemo(() => (language === 'de' ? deDe : enUS), [language]);
+  const locale = useMemo(() => (language === 'ru' ? ruRu : enUS), [language]);
 
   const handleSelect = (value: AppDate) => {
     setDate(value);

@@ -2,6 +2,7 @@ import React from 'react';
 import { ConfigProvider } from 'antd';
 import deDe from 'antd/lib/locale/de_DE';
 import enUS from 'antd/lib/locale/en_US';
+import ruRu from 'antd/lib/locale/ru_RU';
 import GlobalStyle from './styles/GlobalStyle';
 import 'typeface-montserrat';
 import 'typeface-lato';
@@ -27,7 +28,7 @@ const App: React.FC = () => {
     <>
       <meta name="theme-color" content={themeObject[theme].primary} />
       <GlobalStyle />
-      <ConfigProvider locale={language === 'en' ? enUS : deDe}>
+      <ConfigProvider locale={language === 'ru' ? ruRu : enUS}>
         <AppRouter />
       </ConfigProvider>
     </>

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { ApiError } from '@app/api/ApiError';
 import { readToken } from '@app/services/localStorage.service';
 
-const BASE_URL = 'http://93.125.0.140:1338/api/v1/auth/';
+const BASE_URL = 'http://93.125.0.140:1338/api/v1/';
 
 export const httpApi = axios.create({
   baseURL: BASE_URL,

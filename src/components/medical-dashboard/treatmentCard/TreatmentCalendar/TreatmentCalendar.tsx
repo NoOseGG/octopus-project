@@ -7,7 +7,7 @@ import { useLanguage } from '@app/hooks/useLanguage';
 import { CalendarEvent } from '@app/api/calendar.api';
 import { AppDate, Dates } from '@app/constants/Dates';
 import * as S from './TreatmentCalendar.styles';
-import ruRu from "antd/lib/locale/ru_RU";
+import ruRu from 'antd/lib/locale/ru_RU';
 
 interface TreatmentCalendarProps {
   date: AppDate;
@@ -50,35 +50,35 @@ export const TreatmentCalendar: React.FC<TreatmentCalendarProps> = ({
           />
         </Col>
 
-        <Col span={24}>
-          <S.Calendar
-            locale={locale}
-            dateCellRender={(value) => {
-              const today = Dates.getToday();
+        {/*<Col span={24}>*/}
+        {/*  <S.Calendar*/}
+        {/*    locale={locale}*/}
+        {/*    dateCellRender={(value) => {*/}
+        {/*      const today = Dates.getToday();*/}
 
-              return calendar.map((event) => {
-                const calendarDate = Dates.getDate(event.date);
+        {/*      return calendar.map((event) => {*/}
+        {/*        const calendarDate = Dates.getDate(event.date);*/}
 
-                if (
-                  calendarDate.isSame(value, 'date') &&
-                  calendarDate.isSame(value, 'month') &&
-                  calendarDate.isSame(value, 'year')
-                ) {
-                  const isPast = today.isAfter(calendarDate);
+        {/*        if (*/}
+        {/*          calendarDate.isSame(value, 'date') &&*/}
+        {/*          calendarDate.isSame(value, 'month') &&*/}
+        {/*          calendarDate.isSame(value, 'year')*/}
+        {/*        ) {*/}
+        {/*          const isPast = today.isAfter(calendarDate);*/}
 
-                  return (
-                    <S.Event key={event.date} $isPast={isPast}>
-                      {calendarDate.format('DD')}
-                    </S.Event>
-                  );
-                }
-              });
-            }}
-            value={date}
-            fullscreen={false}
-            onSelect={handleSelect}
-          />
-        </Col>
+        {/*          return (*/}
+        {/*            <S.Event key={event.date} $isPast={isPast}>*/}
+        {/*              {calendarDate.format('DD')}*/}
+        {/*            </S.Event>*/}
+        {/*          );*/}
+        {/*        }*/}
+        {/*      });*/}
+        {/*    }}*/}
+        {/*    value={date}*/}
+        {/*    fullscreen={false}*/}
+        {/*    onSelect={handleSelect}*/}
+        {/*  />*/}
+        {/*</Col>*/}
       </Row>
     </>
   );

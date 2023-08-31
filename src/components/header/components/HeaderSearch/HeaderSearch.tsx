@@ -40,6 +40,10 @@ export const HeaderSearch: React.FC = () => {
     setOverlayVisible(false);
   }, [pathname]);
 
+  useEffect(() => {
+    console.log(query);
+  }, [query]);
+
   return (
     <>
       {mobileOnly && (

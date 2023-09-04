@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 interface SearchState {
   data: {
@@ -28,7 +28,7 @@ export const searchSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doSearch.fulfilled, (state, action) => {
-      state.data = action.payload;
+      // state.data = action.payload;
     });
   },
 });

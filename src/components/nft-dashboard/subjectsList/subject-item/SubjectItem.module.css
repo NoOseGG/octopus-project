@@ -1,0 +1,35 @@
+.container {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    grid-area: title;
+    font-weight: 700;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.unn {
+    grid-area: unn;
+}
+
+.date_reg {
+
+}
+
+.full_address {
+
+}
+
+.status_code {
+
+}
+
+.status_name {
+
+}

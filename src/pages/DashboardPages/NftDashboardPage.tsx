@@ -11,6 +11,7 @@ import { TotalEarning } from '@app/components/nft-dashboard/totalEarning/TotalEa
 import { ActivityStory } from '@app/components/nft-dashboard/activityStory/ActivityStory';
 import { RecentActivity } from '@app/components/nft-dashboard/recentActivity/RecentActivity';
 import * as S from './DashboardPage.styles';
+import SubjectsList from '@app/components/nft-dashboard/subjectsList/SubjectsList';
 
 const MedicalDashboardPage: React.FC = () => {
   const { isDesktop } = useResponsive();
@@ -19,6 +20,10 @@ const MedicalDashboardPage: React.FC = () => {
     <Row>
       <S.LeftSideCol xl={16} xxl={17} id="desktop-content">
         <Row gutter={[60, 60]}>
+          <Col span={24}>
+            <SubjectsList />
+          </Col>
+
           {/*<Col span={24}>*/}
           {/*  <TrendingCreators />*/}
           {/*</Col>*/}

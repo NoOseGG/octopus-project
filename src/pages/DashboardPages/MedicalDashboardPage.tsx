@@ -16,6 +16,7 @@ import { NewsCard } from '@app/components/medical-dashboard/NewsCard/NewsCard';
 import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
+import SubjectInfo from '@app/components/medical-dashboard/SubjectInfo/SubjectInfo';
 
 const MedicalDashboardPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
@@ -26,6 +27,8 @@ const MedicalDashboardPage: React.FC = () => {
     <Row>
       <S.LeftSideCol xl={16} xxl={17}>
         <Row gutter={[30, 30]}>
+          <SubjectInfo />
+
           {/*<Col span={24}>*/}
           {/*  <Row gutter={[30, 30]}>*/}
           {/*    <StatisticsCards />*/}

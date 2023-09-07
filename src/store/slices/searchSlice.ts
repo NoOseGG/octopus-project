@@ -16,6 +16,7 @@ interface SearchState {
     previous: string | null;
     results: Organization[];
   };
+  unn: string;
   loading: boolean;
   error: string | null;
 }
@@ -27,6 +28,7 @@ const initialState: SearchState = {
     previous: null,
     results: [],
   },
+  unn: '',
   loading: false,
   error: null,
 };
@@ -36,15 +38,18 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     setData: (state, action) => {
-      console.log(`SETDATA ${action.payload}`);
       state.data = action.payload;
     },
     setError: (state, action) => {
       state.data = initialState.data;
       state.error = action.payload;
     },
+    setSubjectUnn: (state, action) => {
+      console.log(`SET UNN = ${action.payload}`);
+      state.unn = action.payload;
+    },
   },
 });
 
-export const { setData, setError } = searchSlice.actions;
+export const { setData, setError, setSubjectUnn } = searchSlice.actions;
 export default searchSlice.reducer;

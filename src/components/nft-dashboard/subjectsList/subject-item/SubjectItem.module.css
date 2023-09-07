@@ -1,13 +1,46 @@
+.link {
+    color: inherit;
+}
+
+.status_code {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.green_status {
+    background-color: green;
+}
+
+.red_status {
+    background-color: red;
+}
+
 .container {
     margin-top: 10px;
     padding: 10px;
-    border: 1px solid #000;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.green_border {
+    border: 1px solid green;
+}
+
+.red_border {
+    border: 1px solid red;
 }
 
 .title {
+
+}
+
+.name {
     grid-area: title;
     font-weight: 700;
     align-self: center;
@@ -26,7 +59,7 @@
 
 }
 
-.status_code {
+.status_code_name {
 
 }
 

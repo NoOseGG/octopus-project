@@ -1,3 +1,28 @@
 .title {
     text-align: center;
 }
+
+.navigation {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.previous {
+    align-self: start;
+    cursor: pointer;
+}
+
+.previous:hover {
+    color: #1d39c4;
+}
+
+.next {
+    align-self: end;
+    cursor: pointer;
+}
+
+.next:hover {
+    color: #1d39c4;
+}

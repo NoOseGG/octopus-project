@@ -17,7 +17,7 @@ export const References: React.FC = () => {
         </a>
         in 2023 &copy;. Based on{' '}
         <a href="https://ant.design/" target="_blank" rel="noreferrer">
-          Analytix-design.
+          Ant-design.
         </a>
       </S.Text>
       <S.Icons>

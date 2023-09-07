@@ -6,6 +6,9 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
+import axios from 'axios';
+import { setData, setError } from '@app/store/slices/searchSlice';
+import { useAppDispatch } from '@app/hooks/reduxHooks';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -14,6 +17,7 @@ export interface CategoryComponents {
 
 export const HeaderSearch: React.FC = () => {
   const { mobileOnly, isTablet } = useResponsive();
+  const dispatch = useAppDispatch();
 
   const { pathname } = useLocation();
 
@@ -41,7 +45,20 @@ export const HeaderSearch: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    console.log(query);
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`);
+        console.log(response.data);
+        dispatch(setData(response.data));
+      } catch (error) {
+        console.log('error');
+        console.log(error);
+        dispatch(setError(error));
+      }
+    }
+
+    if (query.length >= 3) fetchData();
+    else dispatch(setError('Запрос меньше 3-х символов'));
   }, [query]);
 
   return (
@@ -50,7 +67,7 @@ export const HeaderSearch: React.FC = () => {
         <>
           <Button
             type={isModalVisible ? 'ghost' : 'text'}
-            icon={<S.SearchIcon onClick={() => setModalVisible(true)} />}
+            icon={<S.SearchIcon onClick={() => setModalVisible(false)} />}
           />
           <S.SearchModal
             visible={isModalVisible}

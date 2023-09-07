@@ -39,8 +39,12 @@ export const searchSlice = createSlice({
       console.log(`SETDATA ${action.payload}`);
       state.data = action.payload;
     },
+    setError: (state, action) => {
+      state.data = initialState.data;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { setData } = searchSlice.actions;
+export const { setData, setError } = searchSlice.actions;
 export default searchSlice.reducer;

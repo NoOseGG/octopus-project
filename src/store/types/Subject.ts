@@ -12,7 +12,7 @@ export interface SubjectType {
   names: Name[];
   phones: Phone[];
   web_sites: WebSite[];
-  descriptions: Descriptions[];
+  descriptions: Description[];
   tax_offices: TaxOffice[];
   tax_offices_arrears: TaxOfficeArrea[];
   legal_forms: LegalForm[];
@@ -59,7 +59,7 @@ export interface WebSite {
   to_dttm: string | null;
 }
 
-export interface Descriptions {
+export interface Description {
   description: string | null;
   from_dttm: string | null;
 }

@@ -1,13 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  Address,
-  Emails,
-  Name,
-  Phone,
   SubjectType,
-  TaxOffice,
-  TaxOfficeArrea,
-  WebSite,
 } from '@app/store/types/Subject';
 
 interface SubjectState {
@@ -33,6 +26,15 @@ const initialState: SubjectState = {
     descriptions: [],
     tax_offices: [],
     tax_offices_arrears: [],
+    legal_forms: [],
+    types_activities: [],
+    statuses: [],
+    countries: [],
+    statuses_types: [],
+    states_bodies: [],
+    licenses: [],
+    vacancy: [],
+    commercial_register: [],
   },
   error: '',
 };

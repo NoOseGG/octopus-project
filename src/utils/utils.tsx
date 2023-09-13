@@ -191,3 +191,16 @@ export const hexToHSL = (hex: string): { h: number; s: number; l: number } => {
 export const formatNumberWithCommas = (value: number): string => {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
+
+// My Function
+
+export const dateTransformate = (date: string) => {
+  const parts = date.split('-');
+  if (parts.length !== 3) {
+    console.log('Неверный формат даты');
+    return;
+  }
+  const [year, month, day] = parts;
+  const formattedDate = `${day}.${month}.${year}`;
+  return formattedDate;
+};

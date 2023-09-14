@@ -17,7 +17,7 @@ type MyComponentProps = {
 const SubjectMainContent: React.FC<MyComponentProps> = (props) => {
   return (
     <div>
-      {props.subject.names.length > 0 ? <SubjectNames names={props.subject.names[0]} /> : <div></div>}
+      {props.subject.names.length > 0 ? <SubjectNames name={props.subject.names[0]} /> : <div></div>}
       <div className={styles.unn}>
         УНП: <Content>{props.subject.unn}</Content>
       </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { WebSite } from '@app/store/types/Subject';
 import styled from 'styled-components';
-import { Phone } from '@app/store/types/Subject';
 
-const Phones = styled.span`
+const WebSites = styled.span`
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -23,10 +23,10 @@ const TableLine = styled.th`
 `;
 
 type MyComponentProps = {
-  phones: Phone[];
+  webSites: WebSite[];
 };
 
-const SubjectPhones: React.FC<MyComponentProps> = (props) => {
+const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
@@ -35,20 +35,20 @@ const SubjectPhones: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      <Phones onClick={handleClick}>Телефоны</Phones>
+      <WebSites onClick={handleClick}>Вэб сайты</WebSites>
 
       {isExpanded && (
         <Table>
           <TableTitle>
-            <TableLine>Номер телефона</TableLine>
+            <TableLine>Адрес Вэб сайта</TableLine>
             <TableLine>Дата начала действия</TableLine>
             <TableLine>Дата окончания действия</TableLine>
           </TableTitle>
-          {props.phones.map((phone) => (
+          {props.webSites.map((webSite) => (
             <tr>
-              <TableLine>{phone.phone_number}</TableLine>
-              <TableLine>{phone.from_dttm}</TableLine>
-              <TableLine>{phone.to_dttm}</TableLine>
+              <TableLine>{webSite.url}</TableLine>
+              <TableLine>{webSite.from_dttm}</TableLine>
+              <TableLine>{webSite.to_dttm}</TableLine>
             </tr>
           ))}
         </Table>
@@ -57,4 +57,4 @@ const SubjectPhones: React.FC<MyComponentProps> = (props) => {
   );
 };
 
-export default SubjectPhones;
+export default SubjectWebSites;

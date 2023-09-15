@@ -4,12 +4,10 @@ import axios from 'axios';
 import { setSubject, setSubjectError } from '@app/store/slices/subjectSlice';
 import styles from './SubjectInfo.module.css';
 import SubjectEmails from '@app/components/medical-dashboard/SubjectInfo/components/SubjectEmails/SubjectEmails';
-import SubjectNames from '@app/components/medical-dashboard/SubjectInfo/components/SubjectNames/SubjectNames';
-import { dateTransformate } from '@app/utils/utils';
-import MainContent from '@app/components/layouts/main/MainContent/MainContent';
 import SubjectMainContent from '@app/components/medical-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
 import SubjectAddresses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectAddresses/SubjectAddresses';
-import SubjectPhones from "@app/components/medical-dashboard/SubjectInfo/components/SubjectPhones/SubjectPhones";
+import SubjectPhones from '@app/components/medical-dashboard/SubjectInfo/components/SubjectPhones/SubjectPhones';
+import SubjectWebSites from '@app/components/medical-dashboard/SubjectInfo/components/SubjectWebSites/SubjectWebSites';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -39,6 +37,7 @@ const SubjectInfo: React.FC = () => {
       <SubjectEmails emails={subject.emails} />
       <SubjectAddresses addresses={subject.addresses} />
       <SubjectPhones phones={subject.phones} />
+      <SubjectWebSites webSites={subject.web_sites} />
     </div>
   );
 };

@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Address } from '@app/store/types/Subject';
 
+const Addresses = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 const Table = styled.table`
   border: 2px solid #000;
   padding: 5px;
@@ -14,11 +19,6 @@ const TableTitle = styled.tr`
 
 const TableLine = styled.th`
   border: 1px solid #000c17;
-`;
-
-const Addresses = styled.div`
-  text-decoration: underline;
-  cursor: pointer;
 `;
 
 type MyComponentProps = {

@@ -6,9 +6,9 @@ import styles from './SubjectInfo.module.css';
 import SubjectEmails from '@app/components/medical-dashboard/SubjectInfo/components/SubjectEmails/SubjectEmails';
 import SubjectNames from '@app/components/medical-dashboard/SubjectInfo/components/SubjectNames/SubjectNames';
 import { dateTransformate } from '@app/utils/utils';
-import MainContent from "@app/components/layouts/main/MainContent/MainContent";
-import SubjectMainContent
-  from "@app/components/medical-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent";
+import MainContent from '@app/components/layouts/main/MainContent/MainContent';
+import SubjectMainContent from '@app/components/medical-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
+import SubjectAddresses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectAddresses/SubjectAddresses';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -36,6 +36,7 @@ const SubjectInfo: React.FC = () => {
     <div className={styles.container}>
       <SubjectMainContent subject={subject} />
       <SubjectEmails emails={subject.emails} />
+      <SubjectAddresses addresses={subject.addresses} />
     </div>
   );
 };

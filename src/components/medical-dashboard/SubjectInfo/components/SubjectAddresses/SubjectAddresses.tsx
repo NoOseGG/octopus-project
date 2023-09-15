@@ -18,6 +18,7 @@ const TableLine = styled.th`
 
 const Addresses = styled.div`
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 type MyComponentProps = {

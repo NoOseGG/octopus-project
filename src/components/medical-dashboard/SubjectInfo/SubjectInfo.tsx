@@ -9,6 +9,7 @@ import { dateTransformate } from '@app/utils/utils';
 import MainContent from '@app/components/layouts/main/MainContent/MainContent';
 import SubjectMainContent from '@app/components/medical-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
 import SubjectAddresses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectAddresses/SubjectAddresses';
+import SubjectPhones from "@app/components/medical-dashboard/SubjectInfo/components/SubjectPhones/SubjectPhones";
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -37,6 +38,7 @@ const SubjectInfo: React.FC = () => {
       <SubjectMainContent subject={subject} />
       <SubjectEmails emails={subject.emails} />
       <SubjectAddresses addresses={subject.addresses} />
+      <SubjectPhones phones={subject.phones} />
     </div>
   );
 };

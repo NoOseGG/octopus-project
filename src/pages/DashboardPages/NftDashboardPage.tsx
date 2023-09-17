@@ -16,27 +16,28 @@ const MedicalDashboardPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol xl={16} xxl={17} id="desktop-content">
-        <Row gutter={[60, 60]}>
-          <Col span={24}>
-            <SubjectsList />
-          </Col>
+        <SubjectsList />
+        {/*<Row gutter={[60, 60]}>*/}
+        {/*  <Col span={24}>*/}
+        {/*    */}
+        {/*  </Col>*/}
 
-          {/*<Col span={24}>*/}
-          {/*  <TrendingCreators />*/}
-          {/*</Col>*/}
+        {/*<Col span={24}>*/}
+        {/*  <TrendingCreators />*/}
+        {/*</Col>*/}
 
-          {/*<Col span={24}>*/}
-          {/*  <RecentlyAddedNft />*/}
-          {/*</Col>*/}
+        {/*<Col span={24}>*/}
+        {/*  <RecentlyAddedNft />*/}
+        {/*</Col>*/}
 
-          {/*<Col span={24}>*/}
-          {/*  <TrendingCollections />*/}
-          {/*</Col>*/}
+        {/*<Col span={24}>*/}
+        {/*  <TrendingCollections />*/}
+        {/*</Col>*/}
 
-          {/*<Col span={24}>*/}
-          {/*  <RecentActivity />*/}
-          {/*</Col>*/}
-        </Row>
+        {/*<Col span={24}>*/}
+        {/*  <RecentActivity />*/}
+        {/*</Col>*/}
+        {/*</Row>*/}
         <References />
       </S.LeftSideCol>
 

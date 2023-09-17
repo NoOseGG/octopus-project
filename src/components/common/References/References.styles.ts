@@ -9,7 +9,6 @@ export const ReferencesWrapper = styled.div`
   align-items: start;
   flex-wrap: nowrap;
   margin-top: 2rem;
-  align-self: end;
 
   @media only screen and ${media.sm} {
     align-items: center;

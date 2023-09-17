@@ -19,6 +19,8 @@ export const LeftSideCol = styled(Col)`
     height: calc(100vh - ${LAYOUT.desktop.headerHeight});
     overflow: auto;
     // My style
+    display: flex;
+    flex-direction: column;
   }
 `;
 

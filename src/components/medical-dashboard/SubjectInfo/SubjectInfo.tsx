@@ -15,6 +15,10 @@ import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfo/com
 import SubjectTypesActivities from '@app/components/medical-dashboard/SubjectInfo/components/SubjectTypesActivities/SubjectTypesActivities';
 import SubjectStatuses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectStatuses/SubjectStatuses';
 import SubjectCountries from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCountries/SubjectCountries';
+import SubjectStatusesType from '@app/components/medical-dashboard/SubjectInfo/components/SubjectStatusesType/SubjectStatusesType';
+import SubjectStatesBodies from '@app/components/medical-dashboard/SubjectInfo/components/SubjectStatesBodies/SubjectStatesBodies';
+import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
+import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -52,6 +56,10 @@ const SubjectInfo: React.FC = () => {
       <SubjectTypesActivities typesActivities={subject.types_activities} />
       <SubjectStatuses statuses={subject.statuses} />
       <SubjectCountries countries={subject.countries} />
+      <SubjectStatusesType statusesType={subject.statuses_types} />
+      <SubjectStatesBodies statesBodies={subject.states_bodies} />
+      <SubjectLicenses licenses={subject.licenses} />
+      <SubjectVacancy vacancies={subject.vacancy} />
     </div>
   );
 };

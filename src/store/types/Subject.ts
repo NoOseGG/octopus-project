@@ -22,7 +22,7 @@ export interface SubjectType {
   statuses_types: StatusType[];
   states_bodies: StateBody[];
   licenses: License[];
-  vacancy: Vacansy[];
+  vacancy: Vacancy[];
   commercial_register: CommercialRegister[];
 }
 
@@ -140,7 +140,7 @@ export interface License {
   from_dttm: string | null;
 }
 
-export interface Vacansy {
+export interface Vacancy {
   from_dttm: string | null;
   vacancy_url: string | null;
   vacancy_name: string | null;

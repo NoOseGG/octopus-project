@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Phone } from '@app/store/types/Subject';
+import {Status, TypeActivity} from '@app/store/types/Subject';
 
-const Phones = styled.span`
+const Statuses = styled.span`
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -23,7 +23,7 @@ const TableLine = styled.th`
 `;
 
 type MyComponentProps = {
-  phones: Phone[];
+  statuses: Status[];
 };
 
 const SubjectPhones: React.FC<MyComponentProps> = (props) => {
@@ -35,24 +35,29 @@ const SubjectPhones: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      {props.phones[0] && (
+      {props.statuses[0] && (
         <div>
-          <Phones onClick={handleClick}>Телефоны:</Phones> {props.phones[0].phone_number}
+          <Statuses onClick={handleClick}>Данные о статусе:</Statuses>{' '}
+          {props.statuses[0].name}
         </div>
       )}
 
       {isExpanded && (
         <Table>
           <TableTitle>
-            <TableLine>Номер телефона</TableLine>
+            <TableLine>Код</TableLine>
+            <TableLine>Наименование</TableLine>
+            <TableLine>Описание</TableLine>
             <TableLine>Дата начала действия</TableLine>
             <TableLine>Дата окончания действия</TableLine>
           </TableTitle>
-          {props.phones.map((phone) => (
+          {props.statuses.map((status) => (
             <tr>
-              <TableLine>{phone.phone_number}</TableLine>
-              <TableLine>{phone.from_dttm}</TableLine>
-              <TableLine>{phone.to_dttm}</TableLine>
+              <TableLine>{status.code}</TableLine>
+              <TableLine>{status.name}</TableLine>
+              <TableLine>{status.description}</TableLine>
+              <TableLine>{status.from_dttm}</TableLine>
+              <TableLine>{status.to_dttm}</TableLine>
             </tr>
           ))}
         </Table>

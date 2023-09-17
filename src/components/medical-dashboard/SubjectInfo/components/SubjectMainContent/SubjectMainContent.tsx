@@ -18,60 +18,51 @@ const SubjectMainContent: React.FC<MyComponentProps> = (props) => {
   return (
     <div>
       {props.subject.names.length > 0 ? <SubjectNames name={props.subject.names[0]} /> : <div></div>}
-      <div className={styles.unn}>
-        УНП: <Content>{props.subject.unn}</Content>
-      </div>
-      {props.subject.date_reg_mns !== null ? (
+      {props.subject.unn && (
+        <div className={styles.unn}>
+          УНП: <Content>{props.subject.unn}</Content>
+        </div>
+      )}
+      {props.subject.date_reg_mns && (
         <div>
           Дата постановки на учет в ИМНС: <Content>{dateTransformate(props.subject.date_reg_mns)}</Content>
         </div>
-      ) : (
-        <div></div>
       )}
-      {props.subject.date_reg_egr !== null ? (
+      {props.subject.date_reg_egr && (
         <div>
           Дата регистрации в ЕГР: <Content>{dateTransformate(props.subject.date_reg_egr)}</Content>
         </div>
-      ) : (
-        <div></div>
       )}
 
-      <div>
-        <span>Номер решения о создании: </span>
-        {props.subject.decision_create_number ? (
-          <Content>{props.subject.decision_create_number}</Content>
-        ) : (
-          <Content>отсутствует</Content>
-        )}
-      </div>
+      {props.subject.decision_create_number && (
+        <div>
+          Номер решения о создании: <Content>{props.subject.decision_create_number}</Content>
+        </div>
+      )}
 
-      <div>
-        <span>Номер решения о ликвидации: </span>
-        {props.subject.decision_liquidation_number ? (
-          <Content>{props.subject.decision_liquidation_number}</Content>
-        ) : (
-          <Content>отсутствует</Content>
-        )}
-      </div>
+      {props.subject.decision_liquidation_number && (
+        <div>
+          Номер решения о ликвидации: <Content>{props.subject.decision_liquidation_number}</Content>
+        </div>
+      )}
 
-      <div>
-        <span>Период деятельности: </span>
-        {props.subject.period_activity ? (
-          <Content>{props.subject.period_activity}</Content>
-        ) : (
-          <Content>отсутствует</Content>
-        )}
-      </div>
+      {props.subject.period_activity && (
+        <div>
+          Период деятельности: <Content>{props.subject.period_activity}</Content>
+        </div>
+      )}
 
-      <div>
-        <span>Количество дней деятельности: </span>
-        {props.subject.age_full ? <Content>{props.subject.age_full}</Content> : <Content>отсутствует</Content>}
-      </div>
+      {props.subject.age_full && (
+        <div>
+          Количество дней деятельсности: <Content>{props.subject.age_full}</Content>
+        </div>
+      )}
 
-      <div>
-        <span>Количество лет деятельности: </span>
-        {props.subject.age_short ? <Content>{props.subject.age_short}</Content> : <Content>отсутствует</Content>}
-      </div>
+      {props.subject.age_short && (
+        <div>
+          Количество лет деятельсности: <Content>{props.subject.age_short}</Content>
+        </div>
+      )}
     </div>
   );
 };

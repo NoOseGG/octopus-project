@@ -1,39 +1,62 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Emails } from '@app/store/types/Subject';
+
+const Email = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const Table = styled.table`
+  border: 2px solid #000;
+  padding: 5px;
+`;
+
+const TableTitle = styled.tr`
+  border: 1px solid #000;
+  background-color: #d48806;
+`;
+
+const TableLine = styled.th`
+  padding: 5px;
+  border: 1px solid #000c17;
+`;
 
 type MyComponentProps = {
   emails: Emails[];
 };
 
-const SubjectEmails: React.FC<MyComponentProps> = (props) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+const SubjectPhones: React.FC<MyComponentProps> = (props) => {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleExpansion = () => {
+  const handleClick = () => {
     setIsExpanded(!isExpanded);
   };
 
-  console.log(props.emails);
-
   return (
     <div>
-      {/*<button onClick={toggleExpansion}>{isExpanded ? 'Свернуть emails' : 'Развернуть emails'}</button>*/}
+      {props.emails[0] && (
+        <div>
+          <Email onClick={handleClick}>Емэйл:</Email> {props.emails[0].email}
+        </div>
+      )}
 
       {isExpanded && (
-        <div>
-          {props.emails.length > 0 ? (
-            <div>
-              <span>Емэйл: </span>
-              {props.emails.map((email) => (
-                <span key={email.email}>{email.email} </span>
-              ))}
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
+        <Table>
+          <TableTitle>
+            <TableLine>Электронная почта</TableLine>
+            <TableLine>Дата начала действия</TableLine>
+          </TableTitle>
+          {props.emails.map((email) => (
+            <tr>
+              <TableLine>{email.email}</TableLine>
+              <TableLine>{email.from_dttm}</TableLine>
+            </tr>
+          ))}
+        </Table>
       )}
     </div>
   );
 };
 
-export default SubjectEmails;
+export default SubjectPhones;

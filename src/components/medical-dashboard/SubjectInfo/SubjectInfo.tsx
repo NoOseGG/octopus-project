@@ -8,6 +8,13 @@ import SubjectMainContent from '@app/components/medical-dashboard/SubjectInfo/co
 import SubjectAddresses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectAddresses/SubjectAddresses';
 import SubjectPhones from '@app/components/medical-dashboard/SubjectInfo/components/SubjectPhones/SubjectPhones';
 import SubjectWebSites from '@app/components/medical-dashboard/SubjectInfo/components/SubjectWebSites/SubjectWebSites';
+import SubjectDescriptions from '@app/components/medical-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
+import SubjectTaxOfficesArea from '@app/components/medical-dashboard/SubjectInfo/components/SubjectTaxOfficesArea/SubjectTaxOfficesArea';
+import SubjectLegalForms from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
+import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfo/components/SubjectTaxOffices/SubjectTaxOffices';
+import SubjectTypesActivities from '@app/components/medical-dashboard/SubjectInfo/components/SubjectTypesActivities/SubjectTypesActivities';
+import SubjectStatuses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectStatuses/SubjectStatuses';
+import SubjectCountries from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCountries/SubjectCountries';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -38,6 +45,13 @@ const SubjectInfo: React.FC = () => {
       <SubjectAddresses addresses={subject.addresses} />
       <SubjectPhones phones={subject.phones} />
       <SubjectWebSites webSites={subject.web_sites} />
+      <SubjectDescriptions descriptions={subject.descriptions} />
+      <SubjectTaxOffices taxOffices={subject.tax_offices} />
+      <SubjectTaxOfficesArea taxOfficesArea={subject.tax_offices} />
+      <SubjectLegalForms legalForms={subject.legal_forms} />
+      <SubjectTypesActivities typesActivities={subject.types_activities} />
+      <SubjectStatuses statuses={subject.statuses} />
+      <SubjectCountries countries={subject.countries} />
     </div>
   );
 };

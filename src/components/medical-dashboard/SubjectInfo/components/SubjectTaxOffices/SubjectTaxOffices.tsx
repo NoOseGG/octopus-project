@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { WebSite } from '@app/store/types/Subject';
+import { TaxOffice } from '@app/store/types/Subject';
 import styled from 'styled-components';
 
-const WebSites = styled.span`
+const TaxOffices = styled.span`
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -23,7 +23,7 @@ const TableLine = styled.th`
 `;
 
 type MyComponentProps = {
-  webSites: WebSite[];
+  taxOffices: TaxOffice[];
 };
 
 const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
@@ -35,24 +35,30 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      {props.webSites[0] && (
+      {props.taxOffices[0] && (
         <div>
-          <WebSites onClick={handleClick}>Веб сайты:</WebSites> {props.webSites[0].url}
+          <TaxOffices onClick={handleClick}>Данные о ИМНС:</TaxOffices> {props.taxOffices[0].name}
         </div>
       )}
 
       {isExpanded && (
         <Table>
           <TableTitle>
-            <TableLine>Адрес Веб сайта</TableLine>
+            <TableLine>Код</TableLine>
+            <TableLine>Наименование </TableLine>
+            <TableLine>Код региона</TableLine>
+            <TableLine>Название региона</TableLine>
             <TableLine>Дата начала действия</TableLine>
             <TableLine>Дата окончания действия</TableLine>
           </TableTitle>
-          {props.webSites.map((webSite) => (
+          {props.taxOffices.map((taxOffice) => (
             <tr>
-              <TableLine>{webSite.url}</TableLine>
-              <TableLine>{webSite.from_dttm}</TableLine>
-              <TableLine>{webSite.to_dttm}</TableLine>
+              <TableLine>{taxOffice.code}</TableLine>
+              <TableLine>{taxOffice.name}</TableLine>
+              <TableLine>{taxOffice.region_code}</TableLine>
+              <TableLine>{taxOffice.region_name}</TableLine>
+              <TableLine>{taxOffice.from_dttm}</TableLine>
+              <TableLine>{taxOffice.to_dttm}</TableLine>
             </tr>
           ))}
         </Table>

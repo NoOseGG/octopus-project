@@ -34,7 +34,11 @@ const SubjectAddresses: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      <Addresses onClick={handleClick}>Адреса</Addresses>
+      {props.addresses[0] && (
+        <div>
+          <Addresses onClick={handleClick}>Адреса:</Addresses> {props.addresses[0].full_address}
+        </div>
+      )}
 
       {isExpanded && (
         <Table>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Phone } from '@app/store/types/Subject';
+import { TypeActivity } from '@app/store/types/Subject';
 
-const Phones = styled.span`
+const TypesActivities = styled.span`
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -23,7 +23,7 @@ const TableLine = styled.th`
 `;
 
 type MyComponentProps = {
-  phones: Phone[];
+  typesActivities: TypeActivity[];
 };
 
 const SubjectPhones: React.FC<MyComponentProps> = (props) => {
@@ -35,24 +35,27 @@ const SubjectPhones: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      {props.phones[0] && (
+      {props.typesActivities[0] && (
         <div>
-          <Phones onClick={handleClick}>Телефоны:</Phones> {props.phones[0].phone_number}
+          <TypesActivities onClick={handleClick}>Данные о виде деятельности:</TypesActivities>{' '}
+          {props.typesActivities[0].name}
         </div>
       )}
 
       {isExpanded && (
         <Table>
           <TableTitle>
-            <TableLine>Номер телефона</TableLine>
+            <TableLine>Код</TableLine>
+            <TableLine>Наименование</TableLine>
             <TableLine>Дата начала действия</TableLine>
             <TableLine>Дата окончания действия</TableLine>
           </TableTitle>
-          {props.phones.map((phone) => (
+          {props.typesActivities.map((typeActivity) => (
             <tr>
-              <TableLine>{phone.phone_number}</TableLine>
-              <TableLine>{phone.from_dttm}</TableLine>
-              <TableLine>{phone.to_dttm}</TableLine>
+              <TableLine>{typeActivity.code}</TableLine>
+              <TableLine>{typeActivity.name}</TableLine>
+              <TableLine>{typeActivity.from_dttm}</TableLine>
+              <TableLine>{typeActivity.to_dttm}</TableLine>
             </tr>
           ))}
         </Table>

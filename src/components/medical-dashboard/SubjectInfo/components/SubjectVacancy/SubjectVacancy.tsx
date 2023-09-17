@@ -18,6 +18,14 @@ const Line = styled.div`
   border: 1px solid #000c17;
 `;
 
+const Title = styled.div`
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 5px;
+  text-align: center;
+`;
+
 type MyComponentProps = {
   vacancies: Vacancy[];
 };
@@ -33,13 +41,15 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
     <div>
       {props.vacancies[0] && (
         <div>
-          <Vacancies onClick={handleClick}>Данные о вакансиях:</Vacancies> {props.vacancies[0].vacancy_name}
+          <Vacancies onClick={handleClick}>Данные о вакансиях:</Vacancies> Количество вакансий - {props.vacancies.length}
         </div>
       )}
       {isExpanded && (
         <div>
           {props.vacancies.map((vacancy) => (
+
             <Container>
+              <Title>{vacancy.vacancy_name}</Title>
               {vacancy.from_dttm && <Line>Дата публикации вакансии: {vacancy.from_dttm}</Line>}
               {vacancy.vacancy_url && (
                 <Line>

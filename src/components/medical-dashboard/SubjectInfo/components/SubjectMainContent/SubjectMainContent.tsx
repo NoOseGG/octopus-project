@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 const Content = styled.span`
   font-weight: 600;
-  color: #fffbe6;
 `;
 
 type MyComponentProps = {

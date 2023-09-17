@@ -18,6 +18,7 @@ export const LeftSideCol = styled(Col)`
     padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
     height: calc(100vh - ${LAYOUT.desktop.headerHeight});
     overflow: auto;
+    // My style
   }
 `;
 

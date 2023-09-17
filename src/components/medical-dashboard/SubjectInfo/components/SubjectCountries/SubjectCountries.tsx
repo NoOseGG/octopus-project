@@ -37,7 +37,7 @@ const SubjectPhones: React.FC<MyComponentProps> = (props) => {
     <div>
       {props.countries[0] && (
         <div>
-          <Countries onClick={handleClick}>данные о стране регистрации:</Countries> {props.countries[0].name}
+          <Countries onClick={handleClick}>Данные о стране регистрации:</Countries> {props.countries[0].name}
         </div>
       )}
 

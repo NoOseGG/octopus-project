@@ -19,6 +19,7 @@ import SubjectStatusesType from '@app/components/medical-dashboard/SubjectInfo/c
 import SubjectStatesBodies from '@app/components/medical-dashboard/SubjectInfo/components/SubjectStatesBodies/SubjectStatesBodies';
 import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
 import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
+import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -56,6 +57,7 @@ const SubjectInfo: React.FC = () => {
       <SubjectStatesBodies statesBodies={subject.states_bodies} />
       <SubjectLicenses licenses={subject.licenses} />
       <SubjectVacancy vacancies={subject.vacancy} />
+      <SubjectCommercialRegister commercialsRegister={subject.commercial_register} />
     </div>
   );
 };

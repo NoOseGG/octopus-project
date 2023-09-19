@@ -25,8 +25,6 @@ const SubjectInfo: React.FC = () => {
   const subject = useAppSelector((state) => state.subject.subject);
   const dispatch = useAppDispatch();
 
-  console.log(`UNN = ${unn}`);
-
   useEffect(() => {
     async function fetchSubject() {
       try {
@@ -39,8 +37,6 @@ const SubjectInfo: React.FC = () => {
 
     fetchSubject();
   }, [unn]);
-
-  console.log(JSON.stringify(subject));
 
   return (
     <div className={styles.container}>

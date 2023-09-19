@@ -10,9 +10,12 @@ import {
   SecurityCodePayload,
   NewPasswordData,
   setNewPassword,
+  LoginResponse,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
+import axios, { AxiosResponse } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export interface AuthSlice {
   token: string | null;
@@ -22,14 +25,25 @@ const initialState: AuthSlice = {
   token: readToken(),
 };
 
-export const doLogin = createAsyncThunk('login', async (loginPayload: LoginRequest, { dispatch }) =>
-  login(loginPayload).then((res) => {
-    dispatch(setUser(res.user));
-    persistToken(res.token);
+export const doLogin = createAsyncThunk('login', async (loginPayload: LoginRequest, { dispatch }) => {
+  // Отправьте POST-запрос на сервер для авторизации и получения токена
+  const navigate = useNavigate();
 
-    return res.token;
-  }),
-);
+  console.log('LOGINNNNN');
+  try {
+    const response = await axios
+      .post<LoginRequest, AxiosResponse<LoginResponse>>('http://93.125.0.140:1338/api/v1/auth/login/', loginPayload)
+      .then((response) => {
+        console.log('SUCCES');
+        dispatch(setUser(response.data.user));
+        persistToken(response.data.token);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {}
+});
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) =>
   signUp(signUpPayload),
@@ -49,7 +63,28 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
   setNewPassword(newPasswordData),
 );
 
-export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
+export const doLogout = createAsyncThunk('logout', async (_, { dispatch }) => {
+  try {
+    // Отправьте POST-запрос на сервер для авторизации и получения токена
+    console.log('TOKEN');
+    const token = readToken();
+    const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/logout/', null, {
+      headers: {
+        Authorization: `Welcome ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      // Обработайте ошибку, если запрос завершился неуспешно
+      console.log('LOGOUT SUCCESS');
+    } else {
+      console.log('LOGOUT ERROR');
+    }
+  } catch (error) {
+    // Обработайте другие ошибки, которые могли возникнуть
+    throw error;
+  }
+  console.log('logout');
   deleteToken();
   deleteUser();
   dispatch(setUser(null));

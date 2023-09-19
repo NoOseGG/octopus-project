@@ -41,13 +41,13 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
     <div>
       {props.vacancies[0] && (
         <div>
-          <Vacancies onClick={handleClick}>Данные о вакансиях:</Vacancies> Количество вакансий - {props.vacancies.length}
+          <Vacancies onClick={handleClick}>Данные о вакансиях:</Vacancies> Количество вакансий -{' '}
+          {props.vacancies.length}
         </div>
       )}
       {isExpanded && (
         <div>
           {props.vacancies.map((vacancy) => (
-
             <Container>
               <Title>{vacancy.vacancy_name}</Title>
               {vacancy.from_dttm && <Line>Дата публикации вакансии: {vacancy.from_dttm}</Line>}

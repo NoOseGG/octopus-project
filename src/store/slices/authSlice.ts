@@ -11,11 +11,14 @@ import {
   NewPasswordData,
   setNewPassword,
   LoginResponse,
+  logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
-import axios, { AxiosResponse } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
+const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
 
 export interface AuthSlice {
   token: string | null;
@@ -25,25 +28,19 @@ const initialState: AuthSlice = {
   token: readToken(),
 };
 
-export const doLogin = createAsyncThunk('login', async (loginPayload: LoginRequest, { dispatch }) => {
-  // Отправьте POST-запрос на сервер для авторизации и получения токена
-  const navigate = useNavigate();
-
-  console.log('LOGINNNNN');
-  try {
-    const response = await axios
-      .post<LoginRequest, AxiosResponse<LoginResponse>>('http://93.125.0.140:1338/api/v1/auth/login/', loginPayload)
-      .then((response) => {
-        console.log('SUCCES');
-        dispatch(setUser(response.data.user));
-        persistToken(response.data.token);
-        navigate('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } catch (error) {}
-});
+export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
+  'auth/login',
+  async (credentials, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post(LOGIN_URL, credentials);
+      dispatch(setUser(response.data.user));
+      persistToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue('Произошла ошибка');
+    }
+  },
+);
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) =>
   signUp(signUpPayload),
@@ -63,31 +60,20 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
   setNewPassword(newPasswordData),
 );
 
-export const doLogout = createAsyncThunk('logout', async (_, { dispatch }) => {
-  try {
-    // Отправьте POST-запрос на сервер для авторизации и получения токена
-    console.log('TOKEN');
-    const token = readToken();
-    const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/logout/', null, {
-      headers: {
-        Authorization: `Welcome ${token}`,
-      },
-    });
+export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
+  const headers = {
+    Authorization: `Welcome ${readToken()}`,
+  };
 
-    if (response.status === 200) {
-      // Обработайте ошибку, если запрос завершился неуспешно
-      console.log('LOGOUT SUCCESS');
-    } else {
-      console.log('LOGOUT ERROR');
-    }
-  } catch (error) {
-    // Обработайте другие ошибки, которые могли возникнуть
-    throw error;
-  }
-  console.log('logout');
+  const response = axios
+    .post(LOGOUT_URL, null, { headers: headers })
+    .then((res) => {})
+    .catch((error) => {});
+
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
+  return response;
 });
 
 const authSlice = createSlice({

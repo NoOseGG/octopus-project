@@ -2,6 +2,8 @@ import { httpApi } from '@app/api/http.api';
 import './mocks/auth.api.mock';
 import { UserModel } from '@app/domain/UserModel';
 
+const BASE_URL = 'http://93.125.0.140:1338/api/v1/auth/';
+
 export interface AuthData {
   email: string;
   password: string;
@@ -37,7 +39,10 @@ export interface LoginResponse {
 }
 
 export const login = (loginPayload: LoginRequest): Promise<LoginResponse> =>
-  httpApi.post<LoginResponse>('login', { ...loginPayload }).then(({ data }) => data);
+  httpApi.post<LoginResponse>(`${BASE_URL}login`, { ...loginPayload }).then(({ data }) => {
+    console.log(`${JSON.stringify(data)}`);
+    return data;
+  });
 
 export const signUp = (signUpData: SignUpRequest): Promise<undefined> =>
   httpApi.post<undefined>('signUp', { ...signUpData }).then(({ data }) => data);
@@ -50,3 +55,4 @@ export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Pr
 
 export const setNewPassword = (newPasswordData: NewPasswordData): Promise<undefined> =>
   httpApi.post<undefined>('setNewPassword', { ...newPasswordData }).then(({ data }) => data);
+

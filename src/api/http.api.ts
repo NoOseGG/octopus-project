@@ -10,10 +10,25 @@ export const httpApi = axios.create({
 });
 
 httpApi.interceptors.request.use((config) => {
-  config.headers = {
-    ...config.headers,
-    Authorization: `Welcome 3fe7e9ba75258e696211278683603066d853a9637274cc0a996e65cce1bdaa0e`,
-  };
+  if (config.url === 'http://93.125.0.140:1338/api/v1/auth/login') {
+    const requestData = config.data;
+    console.log('Переданные данные в запросе:', requestData);
+    config.data = {
+      ...config.data,
+      additionalField1: 'value1',
+      additionalField2: 'value2',
+    };
+  }
+
+  if (config.url === 'logout') {
+    console.log('LOGOUT ->!');
+    const token = readToken();
+    config.headers = {
+      ...config.headers,
+      Authorization: `Welcome ${token}`,
+    };
+  }
+  console.log(`Url -> ${config.url}`);
 
   return config;
 });

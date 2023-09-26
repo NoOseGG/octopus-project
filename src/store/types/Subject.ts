@@ -192,4 +192,5 @@ export interface CommercialRegister {
   product_subgroups: string | null;
   type_retail_trade: string | null;
   type_wholesale_trade: string | null;
+  to_dttm: string | null;
 }

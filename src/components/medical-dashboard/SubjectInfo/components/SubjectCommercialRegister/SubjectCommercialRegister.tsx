@@ -51,6 +51,7 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
             <Container>
               <Title>{commercialRegister.type_retail_format}</Title>
               {commercialRegister.from_dttm && <Line>Дата включения в реестр: {commercialRegister.from_dttm}</Line>}
+              {commercialRegister.to_dttm && <Line>Дата исключения из реестра: {commercialRegister.to_dttm}</Line>}
               {commercialRegister.reg_num && (
                 <Line>Регистрационный номер в Торговом реестре: {commercialRegister.reg_num}</Line>
               )}

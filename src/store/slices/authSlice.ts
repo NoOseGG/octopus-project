@@ -11,7 +11,6 @@ import {
   NewPasswordData,
   setNewPassword,
   LoginResponse,
-  logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
@@ -30,15 +29,11 @@ const initialState: AuthSlice = {
 
 export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   'auth/login',
-  async (credentials, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await axios.post(LOGIN_URL, credentials);
-      dispatch(setUser(response.data.user));
-      persistToken(response.data.token);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue('Произошла ошибка');
-    }
+  async (credentials, { dispatch }) => {
+    const response = await axios.post(LOGIN_URL, credentials);
+    dispatch(setUser(response.data.user));
+    persistToken(response.data.token);
+    return response.data;
   },
 );
 
@@ -61,15 +56,7 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
 );
 
 export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
-  const headers = {
-    Authorization: `Welcome ${readToken()}`,
-  };
-
-  const response = axios
-    .post(LOGOUT_URL, null, { headers: headers })
-    .then((res) => {})
-    .catch((error) => {});
-
+  const response = axios.post(LOGOUT_URL, null, { headers: { Authorization: `Welcome ${readToken()}` } });
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
@@ -82,7 +69,7 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.token;
     });
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = '';

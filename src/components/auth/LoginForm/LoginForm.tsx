@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
@@ -16,8 +16,8 @@ interface LoginFormData {
 }
 
 export const initValues: LoginFormData = {
-  email: 'hello@altence.com',
-  password: 'some-test-pass',
+  email: 'hoc751@gmail.com',
+  password: 'privet1992poka',
 };
 
 export const LoginForm: React.FC = () => {

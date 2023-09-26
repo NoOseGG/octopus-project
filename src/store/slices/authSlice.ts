@@ -10,9 +10,15 @@ import {
   SecurityCodePayload,
   NewPasswordData,
   setNewPassword,
+  LoginResponse,
+  logout,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
+import axios from 'axios';
+
+const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
+const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
 
 export interface AuthSlice {
   token: string | null;
@@ -22,13 +28,18 @@ const initialState: AuthSlice = {
   token: readToken(),
 };
 
-export const doLogin = createAsyncThunk('login', async (loginPayload: LoginRequest, { dispatch }) =>
-  login(loginPayload).then((res) => {
-    dispatch(setUser(res.user));
-    persistToken(res.token);
-
-    return res.token;
-  }),
+export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
+  'auth/login',
+  async (credentials, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post(LOGIN_URL, credentials);
+      dispatch(setUser(response.data.user));
+      persistToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue('Произошла ошибка');
+    }
+  },
 );
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) =>
@@ -50,9 +61,19 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
 );
 
 export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
+  const headers = {
+    Authorization: `Welcome ${readToken()}`,
+  };
+
+  const response = axios
+    .post(LOGOUT_URL, null, { headers: headers })
+    .then((res) => {})
+    .catch((error) => {});
+
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
+  return response;
 });
 
 const authSlice = createSlice({

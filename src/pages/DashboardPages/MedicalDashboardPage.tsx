@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
@@ -6,11 +6,27 @@ import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
 import SubjectInfo from '@app/components/medical-dashboard/SubjectInfo/SubjectInfo';
+import axios from 'axios';
+import { readToken } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
+import { useNavigate } from 'react-router-dom';
+import { doCheckAuth } from '@app/store/slices/authSlice';
+import { useAppDispatch } from '@app/hooks/reduxHooks';
 
 const MedicalDashboardPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
-
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(doCheckAuth())
+        .catch((err) => {
+          console.log(err);
+          navigate('/auth/login');
+          notificationController.error({ message: err.message });
+        });
+  }, []);
 
   const desktopLayout = (
     <Row>

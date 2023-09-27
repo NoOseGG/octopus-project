@@ -14,17 +14,23 @@ import * as S from './SignUpForm.styles';
 interface SignUpFormData {
   firstName: string;
   lastName: string;
+  patronymic: string;
+  birthdate: string | null;
+  phone_number: string;
   email: string;
   password: string;
 }
 
 const initValues = {
-  firstName: 'Chris',
-  lastName: 'Johnson',
-  email: 'chris.johnson@altence.com',
-  password: 'test-pass',
-  confirmPassword: 'test-pass',
-  termOfUse: true,
+  firstName: '',
+  lastName: '',
+  patronymic: '',
+  birthdate: '',
+  phone_number: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  termOfUse: false,
 };
 
 export const SignUpForm: React.FC = () => {
@@ -36,6 +42,8 @@ export const SignUpForm: React.FC = () => {
 
   const handleSubmit = (values: SignUpFormData) => {
     setLoading(true);
+    console.log(`VALUES AFTER -> ${values}`);
+    console.log(`VALUES -> ${values}`);
     dispatch(doSignUp(values))
       .unwrap()
       .then(() => {
@@ -68,6 +76,20 @@ export const SignUpForm: React.FC = () => {
           rules={[{ required: true, message: t('common.requiredField') }]}
         >
           <Auth.FormInput placeholder={t('common.lastName')} />
+        </Auth.FormItem>
+        <Auth.FormItem
+          name="patronymic"
+          label={t('common.patronymic')}
+          rules={[{ required: true, message: t('common.requiredField') }]}
+        >
+          <Auth.FormInput placeholder={t('common.patronymic')} />
+        </Auth.FormItem>
+        <Auth.FormItem
+          name="phone"
+          label={t('common.phone')}
+          rules={[{ required: true, message: t('common.requiredField') }]}
+        >
+          <Auth.FormInput placeholder={t('common.phone')} />
         </Auth.FormItem>
         <Auth.FormItem
           name="email"
@@ -128,22 +150,22 @@ export const SignUpForm: React.FC = () => {
             {t('common.signUp')}
           </Auth.SubmitButton>
         </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <GoogleIcon />
-            </Auth.SocialIconWrapper>
-            {t('signup.googleLink')}
-          </Auth.SocialButton>
-        </BaseForm.Item>
-        <BaseForm.Item noStyle>
-          <Auth.SocialButton type="default" htmlType="submit">
-            <Auth.SocialIconWrapper>
-              <FacebookIcon />
-            </Auth.SocialIconWrapper>
-            {t('signup.facebookLink')}
-          </Auth.SocialButton>
-        </BaseForm.Item>
+        {/*<BaseForm.Item noStyle>*/}
+        {/*  <Auth.SocialButton type="default" htmlType="submit">*/}
+        {/*    <Auth.SocialIconWrapper>*/}
+        {/*      <GoogleIcon />*/}
+        {/*    </Auth.SocialIconWrapper>*/}
+        {/*    {t('signup.googleLink')}*/}
+        {/*  </Auth.SocialButton>*/}
+        {/*</BaseForm.Item>*/}
+        {/*<BaseForm.Item noStyle>*/}
+        {/*  <Auth.SocialButton type="default" htmlType="submit">*/}
+        {/*    <Auth.SocialIconWrapper>*/}
+        {/*      <FacebookIcon />*/}
+        {/*    </Auth.SocialIconWrapper>*/}
+        {/*    {t('signup.facebookLink')}*/}
+        {/*  </Auth.SocialButton>*/}
+        {/*</BaseForm.Item>*/}
         <Auth.FooterWrapper>
           <Auth.Text>
             {t('signup.alreadyHaveAccount')}{' '}

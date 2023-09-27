@@ -18,6 +18,7 @@ import axios from 'axios';
 
 const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
 const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
+const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
 
 export interface AuthSlice {
   token: string | null;
@@ -60,6 +61,11 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
+  return response;
+});
+
+export const doCheckAuth = createAsyncThunk('auth/checkAuth', (payload, { dispatch }) => {
+  const response = axios.get(CHECK_AUTH_URL, { headers: { Authorization: `Welcome ${readToken()}` } });
   return response;
 });
 

@@ -48,6 +48,7 @@ export const HeaderSearch: React.FC = () => {
     async function fetchData() {
       try {
         const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`);
+        console.log(`RESPONSE -> ${JSON.stringify(response.data)}`);
         dispatch(setData(response.data));
       } catch (error) {
         console.log(error);

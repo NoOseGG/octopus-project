@@ -20,30 +20,29 @@ const MedicalDashboardPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doCheckAuth())
-        .catch((err) => {
-          console.log(err);
-          navigate('/auth/login');
-          notificationController.error({ message: err.message });
-        });
+    dispatch(doCheckAuth()).catch((err) => {
+      console.log(err);
+      navigate('/auth/login');
+      notificationController.error({ message: err.message });
+    });
   }, []);
 
   const desktopLayout = (
     <Row>
-      <S.LeftSideCol xl={16} xxl={17}>
+      <S.LeftSideCol>
         <SubjectInfo />
         <References />
       </S.LeftSideCol>
 
-      <S.RightSideCol xl={8} xxl={7}>
-        {/*<div id="blood-screening">*/}
-        {/*  <BloodScreeningCard />*/}
-        {/*</div>*/}
-        {/*<S.Space />*/}
-        {/*<S.ScrollWrapper id="patient-timeline">*/}
-        {/*  <PatientResultsCard />*/}
-        {/*</S.ScrollWrapper>*/}
-      </S.RightSideCol>
+      {/*<S.RightSideCol xl={8} xxl={7}>*/}
+      {/*  /!*<div id="blood-screening">*!/*/}
+      {/*  /!*  <BloodScreeningCard />*!/*/}
+      {/*  /!*</div>*!/*/}
+      {/*  /!*<S.Space />*!/*/}
+      {/*  /!*<S.ScrollWrapper id="patient-timeline">*!/*/}
+      {/*  /!*  <PatientResultsCard />*!/*/}
+      {/*  /!*</S.ScrollWrapper>*!/*/}
+      {/*</S.RightSideCol>*/}
     </Row>
   );
 

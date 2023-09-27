@@ -32,12 +32,12 @@ const MedicalDashboardPage: React.FC = () => {
 
   const desktopLayout = (
     <Row>
-      <S.LeftSideCol xl={16} xxl={17} id="desktop-content">
+      <S.LeftSideCol id="desktop-content">
         <SubjectsList />
         <References />
       </S.LeftSideCol>
 
-      <S.RightSideCol xl={8} xxl={7}></S.RightSideCol>
+      {/*<S.RightSideCol xl={8} xxl={7}></S.RightSideCol>*/}
     </Row>
   );
 

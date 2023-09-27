@@ -10,6 +10,7 @@ import axios from 'axios';
 import { setData, setError } from '@app/store/slices/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { readToken } from '@app/services/localStorage.service';
+import { useNavigate } from 'react-router-dom';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -19,7 +20,7 @@ export interface CategoryComponents {
 export const HeaderSearch: React.FC = () => {
   const { mobileOnly, isTablet } = useResponsive();
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState('');
@@ -51,7 +52,6 @@ export const HeaderSearch: React.FC = () => {
         const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`, {
           headers: { Authorization: `Welcome ${readToken()}` },
         });
-        console.log(`RESPONSE -> ${JSON.stringify(response.data)}`);
         dispatch(setData(response.data));
       } catch (error) {
         console.log(error);

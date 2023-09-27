@@ -24,6 +24,12 @@ export interface SubjectType {
   licenses: License[];
   vacancy: Vacancy[];
   commercial_register: CommercialRegister[];
+  giasAccreditedCustomers: GiasAccreditedCustomer[];
+  giasAccreditedParticipants: GiasAccreditedParticipant[];
+  giasBlackLists: GiasBlackList[];
+  giasPlans: GiasPlan[];
+  giasComplaintSubmits: GiasComplaintSubmit[];
+  giasComplaintReceives: GiasComplaintReceive[];
 }
 
 export interface Emails {
@@ -193,4 +199,103 @@ export interface CommercialRegister {
   type_retail_trade: string | null;
   type_wholesale_trade: string | null;
   to_dttm: string | null;
+}
+
+// ------------ GIAS -------------
+
+export interface GiasAccreditedCustomer {
+  from_dttm: string | null;
+  to_dttm: string | null;
+  is_customer: string | null;
+  is_organizer: string | null;
+  departmental_affiliation: string | null;
+}
+export interface GiasAccreditedParticipant {
+  from_dttm: string | null;
+  to_dttm: string | null;
+}
+
+export interface GiasBlackList {
+  from_dttm: string | null;
+  basis_inclusion: string | null;
+  to_dttm: string | null;
+  basis_exclusion: string | null;
+}
+
+export interface GiasPlan {
+  from_dttm: string | null;
+  plan_version: string | null;
+  identification_number: string | null;
+  plan_year: string | null;
+  public_number: string | null;
+  goods_name: string | null;
+  okrb_0072012_code: string | null;
+  okrb_0072012_name: string | null;
+  okrb_0081995_code: string | null;
+  okrb_0081995_name: string | null;
+  subject_purchase: string | null;
+  approximate_value: string | null;
+  is_organizer: string | null;
+  legal_entity_id_budget: string | null;
+  procedure_months: string | null;
+  budget_cost: string | null;
+  budget_cost_usd: string | null;
+  fund_cost: string | null;
+  fund_cost_usd: string | null;
+  inner_cost: string | null;
+  inner_cost_usd: string | null;
+  fin_year: string | null;
+  dsct: string | null;
+  dssct: string | null;
+  dknd: string | null;
+  dprgr: string | null;
+  chp: string | null;
+  dpro: string | null;
+  dspro: string | null;
+  dctg: string | null;
+  dart: string | null;
+  dsart: string | null;
+  ditm: string | null;
+  finid: string | null;
+  unk: string | null;
+  tkid: string | null;
+  name_state_organization: string | null;
+}
+
+export interface GiasComplaintSubmit {
+  from_dttm: string | null;
+  reg_number: string | null;
+  status_code: string | null;
+  status_name: string | null;
+  from_dttm_gias: string | null;
+  purchase_hash_diff: string | null;
+  tender_form: string | null;
+  suspend_from_dttm: string | null;
+  suspend_to_dttm: string | null;
+  review_dttm: string | null;
+  redeployment_dttm: string | null;
+  complaint_file_url: string | null;
+  withdrawal_complaint_descr: string | null;
+  withdrawal_complaint_dttm: string | null;
+  complaint_refuse_url: string | null;
+}
+
+export interface GiasComplaintReceive {
+  from_dttm: string | null;
+  reg_number: string | null;
+  status_code: string | null;
+  status_name: string | null;
+  from_dttm_gias: string | null;
+  purchase_hash_diff: string | null;
+  tender_form: string | null;
+  suspend_from_dttm: string | null;
+  suspend_to_dttm: string | null;
+  review_dttm: string | null;
+  redeployment_dttm: string | null;
+  complaint_file_url: string | null;
+  withdrawal_complaint_descr: string | null;
+  withdrawal_complaint_dttm: string | null;
+  complaint_refuse_url: string | null;
+  legal_entity_id_name: string | null;
+  legal_entity_id: string | null;
 }

@@ -20,6 +20,7 @@ import SubjectStatesBodies from '@app/components/medical-dashboard/SubjectInfo/c
 import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
 import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
 import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
+import SubjectGiasAccreditedCustomer from '@app/components/medical-dashboard/SubjectInfo/components/SubjectGiasAccreditedCustomer/SubjectGiasAccreditedCustomer';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);

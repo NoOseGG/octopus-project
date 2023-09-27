@@ -9,6 +9,7 @@ import * as S from './HeaderSearch.styles';
 import axios from 'axios';
 import { setData, setError } from '@app/store/slices/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
+import { readToken } from '@app/services/localStorage.service';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -47,7 +48,9 @@ export const HeaderSearch: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`);
+        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`, {
+          headers: { Authorization: `Welcome ${readToken()}` },
+        });
         console.log(`RESPONSE -> ${JSON.stringify(response.data)}`);
         dispatch(setData(response.data));
       } catch (error) {

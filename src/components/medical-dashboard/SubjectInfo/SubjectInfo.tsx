@@ -21,6 +21,7 @@ import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/compo
 import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
 import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
 import SubjectGiasAccreditedCustomer from '@app/components/medical-dashboard/SubjectInfo/components/SubjectGiasAccreditedCustomer/SubjectGiasAccreditedCustomer';
+import { readToken } from '@app/services/localStorage.service';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -30,7 +31,9 @@ const SubjectInfo: React.FC = () => {
   useEffect(() => {
     async function fetchSubject() {
       try {
-        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile/?unn=${unn}`);
+        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile/?unn=${unn}`, {
+          headers: { Authorization: `Welcome ${readToken()}` },
+        });
         dispatch(setSubject(response.data));
       } catch (error) {
         dispatch(setSubjectError(error));

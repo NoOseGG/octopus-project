@@ -14,7 +14,8 @@ import {
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { UserInfo } from '@app/store/types/UserInfo';
 
 const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
 const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
@@ -64,9 +65,8 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   return response;
 });
 
-export const doCheckAuth = createAsyncThunk('auth/checkAuth', (payload, { dispatch }) => {
-  const response = axios.get(CHECK_AUTH_URL, { headers: { Authorization: `Welcome ${readToken()}` } });
-  return response;
+export const doCheckAuth = createAsyncThunk('auth/checkAuth', async () => {
+  await axios.get(CHECK_AUTH_URL, { headers: { Authorization: `Welcome ${readToken()}` } });
 });
 
 const authSlice = createSlice({
@@ -79,6 +79,9 @@ const authSlice = createSlice({
     });
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = '';
+    });
+    builder.addCase(doCheckAuth.rejected, (state) => {
+      state.token = 'free';
     });
   },
 });

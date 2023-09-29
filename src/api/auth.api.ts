@@ -55,4 +55,3 @@ export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Pr
 
 export const setNewPassword = (newPasswordData: NewPasswordData): Promise<undefined> =>
   httpApi.post<undefined>('setNewPassword', { ...newPasswordData }).then(({ data }) => data);
-

@@ -16,6 +16,7 @@ import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
+import ChangeLogPage from "@app/pages/DashboardPages/ChangeLogPage";
 
 const NewsFeedPage = React.lazy(() => import('@app/pages/NewsFeedPage'));
 const KanbanPage = React.lazy(() => import('@app/pages/KanbanPage'));
@@ -63,9 +64,11 @@ const Logout = React.lazy(() => import('./Logout'));
 
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/medical-dashboard';
+export const CHANGE_LOG_PATH = '/change-log';
 
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const NftDashboard = withLoading(NftDashboardPage);
+const ChangeLog = withLoading(ChangeLogPage);
 const NewsFeed = withLoading(NewsFeedPage);
 const Kanban = withLoading(KanbanPage);
 const AdvancedForm = withLoading(AdvancedFormsPage);
@@ -133,6 +136,7 @@ export const AppRouter: React.FC = () => {
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
           <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
+          <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
           <Route path="apps">
             <Route path="feed" element={<NewsFeed />} />
             <Route path="kanban" element={<Kanban />} />

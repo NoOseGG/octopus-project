@@ -5,8 +5,6 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { doLogin } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
-import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
-import { ReactComponent as GoogleIcon } from '@app/assets/icons/google.svg';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 
@@ -16,7 +14,7 @@ interface LoginFormData {
 }
 
 export const initValues: LoginFormData = {
-  email: 'hoc751@gmail.com',
+  email: 'noose92@yandex.ru',
   password: 'privet1992poka',
 };
 
@@ -31,7 +29,10 @@ export const LoginForm: React.FC = () => {
     setLoading(true);
     dispatch(doLogin(values))
       .unwrap()
-      .then(() => navigate('/'))
+      .then((response) => {
+        navigate('/');
+        notificationController.success({ message: `${response.user.email} Добро пожаловать!` });
+      })
       .catch((err) => {
         notificationController.error({ message: err.message });
         setLoading(false);

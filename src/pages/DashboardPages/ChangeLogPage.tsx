@@ -5,17 +5,16 @@ import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
-import SubjectInfo from '@app/components/medical-dashboard/SubjectInfo/SubjectInfo';
-import { notificationController } from '@app/controllers/notificationController';
-import { useNavigate } from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '@app/hooks/reduxHooks';
 import axios from 'axios';
 import { readToken } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 
 const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
 
-const MedicalDashboardPage: React.FC = () => {
+const ChangeLogPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -36,7 +35,7 @@ const MedicalDashboardPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <SubjectInfo />
+        <h1>CHANGE LOG</h1>
         <References />
       </S.LeftSideCol>
 
@@ -102,10 +101,10 @@ const MedicalDashboardPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{t('common.change-log')}</PageTitle>
+      <PageTitle>{t('common.medical-dashboard')}</PageTitle>
       {isDesktop ? desktopLayout : mobileAndTabletLayout}
     </>
   );
 };
 
-export default MedicalDashboardPage;
+export default ChangeLogPage;

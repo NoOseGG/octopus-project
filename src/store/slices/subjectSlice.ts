@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  SubjectType,
-} from '@app/store/types/Subject';
+import { SubjectType } from '@app/store/types/Subject';
 
 interface SubjectState {
   subject: SubjectType;
@@ -35,6 +33,12 @@ const initialState: SubjectState = {
     licenses: [],
     vacancy: [],
     commercial_register: [],
+    giasAccreditedCustomers: [],
+    giasAccreditedParticipants: [],
+    giasBlackLists: [],
+    giasPlans: [],
+    giasComplaintSubmits: [],
+    giasComplaintReceives: [],
   },
   error: '',
 };

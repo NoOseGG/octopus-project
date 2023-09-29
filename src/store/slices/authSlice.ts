@@ -15,7 +15,6 @@ import {
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
 import axios, { AxiosResponse } from 'axios';
-import { UserInfo } from '@app/store/types/UserInfo';
 
 const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
 const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
@@ -78,10 +77,10 @@ const authSlice = createSlice({
       state.token = action.payload.token;
     });
     builder.addCase(doLogout.fulfilled, (state) => {
-      state.token = '';
+      state.token = null;
     });
     builder.addCase(doCheckAuth.rejected, (state) => {
-      state.token = 'free';
+      state.token = null;
     });
   },
 });

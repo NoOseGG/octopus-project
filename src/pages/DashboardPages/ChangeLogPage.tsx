@@ -5,14 +5,10 @@ import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
-import axios from 'axios';
-import { readToken } from '@app/services/localStorage.service';
 import { notificationController } from '@app/controllers/notificationController';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-
-const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
 
 const ChangeLogPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
@@ -26,7 +22,7 @@ const ChangeLogPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (token === 'free') {
+    if (token === null) {
       navigate('/auth/login');
       notificationController.error({ message: <span>Авторизируйтесь снова.</span> });
     }

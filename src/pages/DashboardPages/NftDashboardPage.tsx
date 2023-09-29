@@ -29,7 +29,7 @@ const MedicalDashboardPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (token === 'free') {
+    if (token === null) {
       navigate('/auth/login');
       notificationController.error({ message: <span>Авторизируйтесь снова.</span> });
     }

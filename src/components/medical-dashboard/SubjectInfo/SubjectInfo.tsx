@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import axios from 'axios';
 import { setSubject, setSubjectError } from '@app/store/slices/subjectSlice';
@@ -20,21 +20,33 @@ import SubjectStatesBodies from '@app/components/medical-dashboard/SubjectInfo/c
 import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
 import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
 import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
-import SubjectGiasAccreditedCustomer from '@app/components/medical-dashboard/SubjectInfo/components/SubjectGiasAccreditedCustomer/SubjectGiasAccreditedCustomer';
 import { readToken } from '@app/services/localStorage.service';
+import { Spin } from 'antd';
+import styled from 'styled-components';
+
+const SpinerSpace = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const SubjectInfo: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const unn = useAppSelector((state) => state.search.unn);
   const subject = useAppSelector((state) => state.subject.subject);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     async function fetchSubject() {
+      setLoading(true);
       try {
         const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile/?unn=${unn}`, {
           headers: { Authorization: `Welcome ${readToken()}` },
         });
         dispatch(setSubject(response.data));
+        setLoading(false);
       } catch (error) {
         dispatch(setSubjectError(error));
       }
@@ -45,23 +57,32 @@ const SubjectInfo: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <SubjectMainContent subject={subject} />
-      <SubjectEmails emails={subject.emails} />
-      <SubjectAddresses addresses={subject.addresses} />
-      <SubjectPhones phones={subject.phones} />
-      <SubjectWebSites webSites={subject.web_sites} />
-      <SubjectDescriptions descriptions={subject.descriptions} />
-      <SubjectTaxOffices taxOffices={subject.tax_offices} />
-      <SubjectTaxOfficesArea taxOfficesArea={subject.tax_offices} />
-      <SubjectLegalForms legalForms={subject.legal_forms} />
-      <SubjectTypesActivities typesActivities={subject.types_activities} />
-      <SubjectStatuses statuses={subject.statuses} />
-      <SubjectCountries countries={subject.countries} />
-      <SubjectStatusesType statusesType={subject.statuses_types} />
-      <SubjectStatesBodies statesBodies={subject.states_bodies} />
-      <SubjectLicenses licenses={subject.licenses} />
-      <SubjectVacancy vacancies={subject.vacancy} />
-      <SubjectCommercialRegister commercialsRegister={subject.commercial_register} />
+      {loading && (
+        <SpinerSpace>
+          <Spin size="large" tip="Загрузка данных . . ." />
+        </SpinerSpace>
+      )}
+      {!loading && (
+        <div>
+          <SubjectMainContent subject={subject} />
+          <SubjectEmails emails={subject.emails} />
+          <SubjectAddresses addresses={subject.addresses} />
+          <SubjectPhones phones={subject.phones} />
+          <SubjectWebSites webSites={subject.web_sites} />
+          <SubjectDescriptions descriptions={subject.descriptions} />
+          <SubjectTaxOffices taxOffices={subject.tax_offices} />
+          <SubjectTaxOfficesArea taxOfficesArea={subject.tax_offices} />
+          <SubjectLegalForms legalForms={subject.legal_forms} />
+          <SubjectTypesActivities typesActivities={subject.types_activities} />
+          <SubjectStatuses statuses={subject.statuses} />
+          <SubjectCountries countries={subject.countries} />
+          <SubjectStatusesType statusesType={subject.statuses_types} />
+          <SubjectStatesBodies statesBodies={subject.states_bodies} />
+          <SubjectLicenses licenses={subject.licenses} />
+          <SubjectVacancy vacancies={subject.vacancy} />
+          <SubjectCommercialRegister commercialsRegister={subject.commercial_register} />
+        </div>
+      )}
     </div>
   );
 };

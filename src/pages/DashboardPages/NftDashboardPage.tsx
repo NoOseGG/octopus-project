@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
@@ -9,14 +9,10 @@ import { TrendingCollections } from '@app/components/nft-dashboard/trending-coll
 import { RecentActivity } from '@app/components/nft-dashboard/recentActivity/RecentActivity';
 import * as S from './DashboardPage.styles';
 import SubjectsList from '@app/components/nft-dashboard/subjectsList/SubjectsList';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { notificationController } from '@app/controllers/notificationController';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { readToken } from '@app/services/localStorage.service';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-
-const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
 
 const MedicalDashboardPage: React.FC = () => {
   const { isDesktop } = useResponsive();

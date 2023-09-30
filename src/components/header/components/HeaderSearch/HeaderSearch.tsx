@@ -59,8 +59,10 @@ export const HeaderSearch: React.FC = () => {
       }
     }
 
-    if (query.length >= 3) fetchData();
-    else dispatch(setError('Запрос меньше 3-х символов'));
+    if (query.length >= 3) {
+      fetchData();
+      navigate('/');
+    } else dispatch(setError('Запрос меньше 3-х символов'));
   }, [query]);
 
   return (

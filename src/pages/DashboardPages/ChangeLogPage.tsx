@@ -30,8 +30,8 @@ const ChangeLogPage: React.FC = () => {
 
   const desktopLayout = (
     <Row>
-      <S.LeftSideCol>
-        <h1>CHANGE LOG</h1>
+      <S.LeftSideCol id="desktop-content">
+        <S.ChangeLog>ChangeLog</S.ChangeLog>
         <References />
       </S.LeftSideCol>
 

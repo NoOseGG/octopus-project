@@ -58,3 +58,7 @@ export const Item = styled.div`
   height: 150px;
   flex-shrink: 0;
 `;
+
+export const ChangeLog = styled.h1`
+  flex-grow: 1;
+`;

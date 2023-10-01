@@ -6,11 +6,8 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { doSignUp } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
-import { ReactComponent as GoogleIcon } from '@app/assets/icons/google.svg';
-import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './SignUpForm.styles';
-import { DatePicker } from 'antd';
 import { dateTransformForRegistration } from '@app/utils/utils';
 
 interface SignUpFormData {
@@ -24,23 +21,14 @@ interface SignUpFormData {
 }
 
 const initValues = {
-  // firstName: '',
-  // lastName: '',
-  // patronymic: '',
-  // birthdate: null,
-  // phone_number: '',
-  // email: '',
-  // password: '',
-  // confirmPassword: '',
-  // termOfUse: false,
-  first_name: 'Юрий',
-  last_name: 'Свириденко',
-  patronymic: 'Юрьевич',
+  first_name: '',
+  last_name: '',
+  patronymic: '',
   birthdate: '',
-  phone_number: '80257520249',
-  email: 'hoc751@gmail.ru',
-  password: 'privet1992poka',
-  confirmPassword: 'privet1992poka',
+  phone_number: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
   termOfUse: false,
 };
 
@@ -169,7 +157,7 @@ export const SignUpForm: React.FC = () => {
                 <Link to="/" target={'_blank'}>
                   <Auth.LinkText>{t('signup.termOfUse')}</Auth.LinkText>
                 </Link>{' '}
-                and{' '}
+                {t('signup.and')}{' '}
                 <Link to="/" target={'_blank'}>
                   <Auth.LinkText>{t('signup.privacyOPolicy')}</Auth.LinkText>
                 </Link>

@@ -47,6 +47,26 @@ export const FormWrapper = styled.div`
 
   @media only screen and ${media.md} {
     padding: 2.5rem;
+    width: 32.75rem;
+    max-height: calc(100vh - 3rem);
+  }
+`;
+
+export const RegisterFormWrapper = styled.div`
+  padding: 2.5rem;
+  width: 31.75rem;
+  overflow: auto;
+  background-color: rgba(var(--background-rgb-color), 0.93);
+  border-radius: ${BORDER_RADIUS};
+
+  @media only screen and ${media.xs} {
+    padding: 2.5rem 1.25rem;
+    width: 20.75rem;
+    max-height: calc(100vh - 3rem);
+  }
+
+  @media only screen and ${media.md} {
+    padding: 2.5rem;
     width: 42.75rem;
     max-height: calc(100vh - 3rem);
   }

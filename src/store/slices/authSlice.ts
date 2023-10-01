@@ -40,6 +40,7 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
 );
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) => {
+  console.log(`DOSIGNUP ${JSON.stringify(signUpPayload)}`);
   const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/users/', signUpPayload);
   return response.data;
 });

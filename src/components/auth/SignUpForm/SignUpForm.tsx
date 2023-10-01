@@ -11,36 +11,37 @@ import { ReactComponent as FacebookIcon } from '@app/assets/icons/facebook.svg';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './SignUpForm.styles';
 import { DatePicker } from 'antd';
+import { dateTransformForRegistration } from '@app/utils/utils';
 
 interface SignUpFormData {
   firstName: string;
   lastName: string;
   patronymic: string;
-  birthdate: Date;
+  birthdate: string;
   phone_number: string;
   email: string;
   password: string;
 }
 
 const initValues = {
-  firstName: '',
-  lastName: '',
-  patronymic: '',
-  birthdate: null,
-  phone_number: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  termOfUse: false,
-  // firstName: 'Юрий',
-  // lastName: 'Свириденко',
-  // patronymic: 'Юрьевич',
-  // birthdate: '',
-  // phone_number: '+375257520246',
-  // email: 'noose92@yandex.ru',
-  // password: 'privet1992poka',
-  // confirmPassword: 'privet1992poka',
+  // firstName: '',
+  // lastName: '',
+  // patronymic: '',
+  // birthdate: null,
+  // phone_number: '',
+  // email: '',
+  // password: '',
+  // confirmPassword: '',
   // termOfUse: false,
+  first_name: 'Юрий',
+  last_name: 'Свириденко',
+  patronymic: 'Юрьевич',
+  birthdate: '',
+  phone_number: '80257520249',
+  email: 'hoc751@gmail.ru',
+  password: 'privet1992poka',
+  confirmPassword: 'privet1992poka',
+  termOfUse: false,
 };
 
 export const SignUpForm: React.FC = () => {
@@ -54,7 +55,13 @@ export const SignUpForm: React.FC = () => {
     setLoading(true);
     console.log(`VEDL => ${JSON.stringify(values)}`);
 
-    dispatch(doSignUp(values))
+    const newValues = JSON.parse(JSON.stringify(values));
+    newValues.birthdate = dateTransformForRegistration(values.birthdate);
+    delete newValues.confirmPassword;
+    delete newValues.termOfUse;
+    console.log(`VEDL => ${JSON.stringify(newValues)}`);
+
+    dispatch(doSignUp(newValues))
       .unwrap()
       .then(() => {
         notificationController.success({
@@ -70,21 +77,21 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <Auth.FormWrapper>
+    <Auth.RegisterFormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <S.Title>{t('common.signUp')}</S.Title>
 
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
           <div style={{ flex: 1, marginRight: '20px' }}>
             <Auth.FormItem
-              name="lastName"
+              name="last_name"
               label={t('common.lastName')}
               rules={[{ required: true, message: t('common.requiredField') }]}
             >
               <Auth.FormInput placeholder={t('common.lastName')} />
             </Auth.FormItem>
             <Auth.FormItem
-              name="firstName"
+              name="first_name"
               label={t('common.firstName')}
               rules={[{ required: true, message: t('common.requiredField') }]}
             >
@@ -184,6 +191,6 @@ export const SignUpForm: React.FC = () => {
           </Auth.Text>
         </Auth.FooterWrapper>
       </BaseForm>
-    </Auth.FormWrapper>
+    </Auth.RegisterFormWrapper>
   );
 };

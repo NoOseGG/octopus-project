@@ -19,6 +19,7 @@ import axios, { AxiosResponse } from 'axios';
 const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
 const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
 const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
+const REGIGRATION_URL = 'http://93.125.0.140:1338/api/v1/auth/users/';
 
 export interface AuthSlice {
   token: string | null;
@@ -38,9 +39,10 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   },
 );
 
-export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) =>
-  signUp(signUpPayload),
-);
+export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) => {
+  const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/users/', signUpPayload);
+  return response.data;
+});
 
 export const doResetPassword = createAsyncThunk(
   'auth/doResetPassword',

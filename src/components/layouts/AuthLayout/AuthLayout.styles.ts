@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { Checkbox, Button } from 'antd';
+import {Checkbox, Button, DatePicker} from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { Input as CommonInput } from '@app/components/common/inputs/Input/Input';
 import { InputPassword as CommonInputPassword } from '@app/components/common/inputs/InputPassword/InputPassword';
 import loginBackground from '@app/assets/images/login-bg.webp';
 import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, media } from '@app/styles/themes/constants';
+import { DateLabel } from '@app/components/apps/newsFeed/NewsFilter/NewsFilter.styles';
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -46,7 +47,7 @@ export const FormWrapper = styled.div`
 
   @media only screen and ${media.md} {
     padding: 2.5rem;
-    width: 31.75rem;
+    width: 42.75rem;
     max-height: calc(100vh - 3rem);
   }
 `;
@@ -108,6 +109,16 @@ export const FormItem = styled(BaseForm.Item)`
 
   &.ant-form-item-has-feedback .ant-input-affix-wrapper .ant-input-suffix {
     padding-right: 1.5rem;
+  }
+`;
+
+export const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  color: var(--text-main-color);
+  background: transparent;
+
+  & input.ant-input {
+    background: transparent;
   }
 `;
 

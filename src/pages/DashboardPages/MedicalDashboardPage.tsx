@@ -10,7 +10,6 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-import SubjectInfoTest from "@app/components/medical-dashboard/SubjectInfoTest/SubjectInfoTest";
 
 const MedicalDashboardPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();

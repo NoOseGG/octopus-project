@@ -10,7 +10,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 
-const MedicalDashboardPage: React.FC = () => {
+const NFTDashboardPage: React.FC = () => {
   const { isDesktop } = useResponsive();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -66,4 +66,4 @@ const MedicalDashboardPage: React.FC = () => {
   );
 };
 
-export default MedicalDashboardPage;
+export default NFTDashboardPage;

@@ -1,4 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { TOKEN_NAME, URLS } from '@app/constants/Constants';
+import { readToken } from '@app/services/localStorage.service';
 
 export interface Organization {
   unn: string;
@@ -9,16 +12,18 @@ export interface Organization {
   status_name: string;
 }
 
+interface Data {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Organization[];
+}
+
 interface SearchState {
-  data: {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: Organization[];
-  };
+  data: Data;
   unn: string;
   loading: boolean;
-  error: string | null;
+  error: boolean;
 }
 
 const initialState: SearchState = {
@@ -30,8 +35,21 @@ const initialState: SearchState = {
   },
   unn: '',
   loading: false,
-  error: null,
+  error: false,
 };
+
+export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query: string, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(URLS.SEARCH, {
+      headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+      params: { val: query },
+    });
+
+    return response.data;
+  } catch (error) {
+    return rejectWithValue('ошибка');
+  }
+});
 
 export const searchSlice = createSlice({
   name: 'search',
@@ -45,9 +63,23 @@ export const searchSlice = createSlice({
       state.error = action.payload;
     },
     setSubjectUnn: (state, action) => {
-      console.log(`SET UNN = ${action.payload}`);
       state.unn = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(doSearch.pending, (state) => {
+      state.loading = true;
+      state.error = false;
+    });
+    builder.addCase(doSearch.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.loading = false;
+      state.error = false;
+    });
+    builder.addCase(doSearch.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
+    });
   },
 });
 

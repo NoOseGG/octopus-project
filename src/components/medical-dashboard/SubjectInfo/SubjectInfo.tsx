@@ -25,14 +25,6 @@ import { Spin } from 'antd';
 import styled from 'styled-components';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
-const SpinerSpace = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const SubjectInfo: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const unn = useAppSelector((state) => state.search.unn);
@@ -60,9 +52,9 @@ const SubjectInfo: React.FC = () => {
   return (
     <div className={styles.container}>
       {loading && (
-        <SpinerSpace>
+        <SpinnerSpace>
           <Spin size="large" tip="Загрузка данных . . ." />
-        </SpinerSpace>
+        </SpinnerSpace>
       )}
       {!loading && (
         <div>
@@ -90,3 +82,12 @@ const SubjectInfo: React.FC = () => {
 };
 
 export default SubjectInfo;
+
+
+const SpinnerSpace = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

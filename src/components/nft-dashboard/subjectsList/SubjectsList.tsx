@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import SubjectItem from '@app/components/nft-dashboard/subjectsList/subject-item/SubjectItem';
 import styles from './SubjectList.module.css';
 import { setData, setError } from '@app/store/slices/searchSlice';
 import axios from 'axios';
+import styled from 'styled-components';
+import { Spin } from 'antd';
 
 const SubjectsList: React.FC = () => {
-  const subjectList = useAppSelector((state) => state.search.data.results);
-  const previousPage = useAppSelector((state) => state.search.data.previous);
-  const nextPage = useAppSelector((state) => state.search.data.next);
+  const { results, previous, next } = useAppSelector((state) => state.search.data);
+  const { error, loading } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
 
   const handleClickPage = (newPage: string) => {
@@ -22,41 +23,53 @@ const SubjectsList: React.FC = () => {
       }
     }
 
-    scrollToTop();
     fetchNewPage();
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth', // Добавляет плавную анимацию
-    });
   };
 
   return (
     <div className={styles.container}>
-      {subjectList.length > 0 ? <h1 className={styles.title}>Список субъектов:</h1> : <div></div>}
-      {subjectList.map((sub) => (
-        <SubjectItem subject={sub} key={sub.unn} />
-      ))}
-      <div className={styles.navigation}>
-        {previousPage !== null ? (
-          <div className={styles.previous} onClick={() => handleClickPage(previousPage)}>
-            Предыдущая страница
+      {loading && (
+        <SpinnerSpace>
+          <Spin size="large" tip="Загрузка данных . . ." />
+        </SpinnerSpace>
+      )}
+
+      {error && <h1>ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ</h1>}
+
+      {!error && (
+        <>
+          {results.length > 0 ? <h1 className={styles.title}>Список субъектов:</h1> : <div></div>}
+          {results.map((sub) => (
+            <SubjectItem subject={sub} key={sub.unn} />
+          ))}
+          <div className={styles.navigation}>
+            {previous !== null ? (
+              <div className={styles.previous} onClick={() => handleClickPage(previous)}>
+                Предыдущая страница
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {next !== null ? (
+              <div className={styles.next} onClick={() => handleClickPage(next)}>
+                Следующая страница
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
-        ) : (
-          <div></div>
-        )}
-        {nextPage !== null ? (
-          <div className={styles.next} onClick={() => handleClickPage(nextPage)}>
-            Следующая страница
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };
 
 export default SubjectsList;
+
+const SpinnerSpace = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

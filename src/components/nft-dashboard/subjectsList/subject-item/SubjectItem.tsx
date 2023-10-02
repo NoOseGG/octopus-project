@@ -15,10 +15,7 @@ const SubjectItem: React.FC<MyComponentProps> = (props) => {
     dispatch(setSubjectUnn(subUnn));
   };
 
-  const backgroundStatusCode = props.subject.status_code === 'AT' ? styles.green_status : styles.red_status;
   const borderColor = props.subject.status_code === 'AT' ? styles.green_border : styles.red_border;
-
-  console.log(backgroundStatusCode);
 
   return (
     <Link className={styles.link} to={'/medical-dashboard'} onClick={() => handleClick(props.subject.unn)}>
@@ -31,7 +28,6 @@ const SubjectItem: React.FC<MyComponentProps> = (props) => {
           <div className={styles.status_name}>Статусное имя: {props.subject.status_name}</div>
           <div className={styles.status_code_name}>Статус код: {props.subject.status_code}</div>
         </div>
-        {/*<div className={`${styles.status_code} ${backgroundStatusCode}`}></div>*/}
       </div>
     </Link>
   );

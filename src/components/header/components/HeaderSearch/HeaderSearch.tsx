@@ -6,12 +6,9 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import axios from 'axios';
-import { setData, setError } from '@app/store/slices/searchSlice';
+import { doSearch } from '@app/store/slices/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { readToken } from '@app/services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
-import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -48,23 +45,10 @@ export const HeaderSearch: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(URLS.SEARCH, {
-          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
-          params: { val: query },
-        });
-        dispatch(setData(response.data));
-      } catch (error) {
-        console.log(error);
-        dispatch(setError(error));
-      }
-    }
-
     if (query.length >= 3) {
-      fetchData();
+      dispatch(doSearch(query));
       navigate('/');
-    } else dispatch(setError('Запрос меньше 3-х символов'));
+    }
   }, [query]);
 
   return (

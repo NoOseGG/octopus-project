@@ -23,6 +23,7 @@ import SubjectCommercialRegister from '@app/components/medical-dashboard/Subject
 import { readToken } from '@app/services/localStorage.service';
 import { Spin } from 'antd';
 import styled from 'styled-components';
+import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
 const SpinerSpace = styled.div`
   width: 100%;
@@ -42,8 +43,9 @@ const SubjectInfo: React.FC = () => {
     async function fetchSubject() {
       setLoading(true);
       try {
-        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile/?unn=${unn}`, {
-          headers: { Authorization: `Welcome ${readToken()}` },
+        const response = await axios.get(URLS.SEARCH_SUBJECT, {
+          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+          params: { unn: unn },
         });
         dispatch(setSubject(response.data));
         setLoading(false);

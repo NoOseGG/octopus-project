@@ -7,13 +7,13 @@ interface UrlConfig {
   BASE: string;
   LOGIN: string;
   LOGOUT: string;
-  REGISTRATION: string;
+  SIGNUP: string;
   CHECK_USER: string;
   SEARCH: string;
   SEARCH_SUBJECT: string;
 }
 
-export const URL: UrlConfig = {
+export const URLS: UrlConfig = {
   ADDRESS: 'http://93.125.0.140:',
   PORT: '1338/',
   API: 'api/',
@@ -21,16 +21,18 @@ export const URL: UrlConfig = {
   BASE: '',
   LOGIN: '',
   LOGOUT: '',
-  REGISTRATION: '',
+  SIGNUP: '',
   CHECK_USER: '',
   SEARCH: '',
   SEARCH_SUBJECT: '',
 };
 
-URL.BASE = `${URL.ADDRESS}${URL.PORT}${URL.API}${URL.VERSION}`;
-URL.LOGIN = `${URL.BASE}auth/login/`;
-URL.LOGOUT = `${URL.BASE}auth/logout/`;
-URL.REGISTRATION = `${URL.BASE}auth/users/`;
-URL.CHECK_USER = `${URL.BASE}auth/users/me/`;
-URL.SEARCH = `${URL.BASE}profile_search/`;
-URL.SEARCH_SUBJECT = `${URL.BASE}profile/`;
+URLS.BASE = `${URLS.ADDRESS}${URLS.PORT}${URLS.API}${URLS.VERSION}`;
+URLS.LOGIN = `${URLS.BASE}auth/login/`;
+URLS.LOGOUT = `${URLS.BASE}auth/logout/`;
+URLS.SIGNUP = `${URLS.BASE}auth/users/`;
+URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;
+URLS.SEARCH = `${URLS.BASE}profile_search/`;
+URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
+
+export const TOKEN_NAME = 'Welcome';

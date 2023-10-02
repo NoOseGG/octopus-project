@@ -11,6 +11,7 @@ import { setData, setError } from '@app/store/slices/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { readToken } from '@app/services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
+import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -49,8 +50,9 @@ export const HeaderSearch: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://93.125.0.140:1338/api/v1/profile_search/?val=${query}`, {
-          headers: { Authorization: `Welcome ${readToken()}` },
+        const response = await axios.get(URLS.SEARCH, {
+          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+          params: { val: query },
         });
         dispatch(setData(response.data));
       } catch (error) {

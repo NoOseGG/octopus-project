@@ -14,13 +14,8 @@ import {
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
-import axios, { AxiosResponse } from 'axios';
-
-const BASE_URL = 'http://93.125.0.140:1338/api/';
-const LOGIN_URL = BASE_URL + 'v1/auth/login/';
-const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
-const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
-const REGIGRATION_URL = 'http://93.125.0.140:1338/api/v1/auth/users/';
+import axios from 'axios';
+import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
 export interface AuthSlice {
   token: string | null;
@@ -33,7 +28,7 @@ const initialState: AuthSlice = {
 export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   'auth/login',
   async (credentials, { dispatch }) => {
-    const response = await axios.post(LOGIN_URL, credentials);
+    const response = await axios.post(URLS.LOGIN, credentials);
     dispatch(setUser(response.data.user));
     persistToken(response.data.token);
     return response.data;
@@ -41,8 +36,7 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
 );
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) => {
-  const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/users/', signUpPayload);
-  console.log(`SIGNIN ${JSON.stringify(response)}`);
+  const response = await axios.post(URLS.SIGNUP, signUpPayload);
   return response.data;
 });
 
@@ -61,7 +55,7 @@ export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async 
 );
 
 export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
-  const response = axios.post(LOGOUT_URL, null, { headers: { Authorization: `Welcome ${readToken()}` } });
+  const response = axios.post(URLS.LOGOUT, null, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
@@ -69,7 +63,7 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
 });
 
 export const doCheckAuth = createAsyncThunk('auth/checkAuth', async () => {
-  await axios.get(CHECK_AUTH_URL, { headers: { Authorization: `Welcome ${readToken()}` } });
+  await axios.get(URLS.CHECK_USER, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
 });
 
 const authSlice = createSlice({

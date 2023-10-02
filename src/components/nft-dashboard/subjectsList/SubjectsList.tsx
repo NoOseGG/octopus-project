@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, {useState} from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import SubjectItem from '@app/components/nft-dashboard/subjectsList/subject-item/SubjectItem';
 import styles from './SubjectList.module.css';

@@ -21,15 +21,15 @@ interface SignUpFormData {
 }
 
 const initValues = {
-  first_name: '',
-  last_name: '',
-  patronymic: '',
+  first_name: 'Иван',
+  last_name: 'Ивавнов',
+  patronymic: 'Иванович',
   birthdate: '',
-  phone_number: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  termOfUse: false,
+  phone_number: '+375258754488',
+  email: 'noose92@yandex.ru',
+  password: 'privet1992',
+  confirmPassword: 'privet1992',
+  termOfUse: true,
 };
 
 export const SignUpForm: React.FC = () => {
@@ -41,13 +41,10 @@ export const SignUpForm: React.FC = () => {
 
   const handleSubmit = (values: SignUpFormData) => {
     setLoading(true);
-    console.log(`VEDL => ${JSON.stringify(values)}`);
-
     const newValues = JSON.parse(JSON.stringify(values));
     newValues.birthdate = dateTransformForRegistration(values.birthdate);
     delete newValues.confirmPassword;
     delete newValues.termOfUse;
-    console.log(`VEDL => ${JSON.stringify(newValues)}`);
 
     dispatch(doSignUp(newValues))
       .unwrap()
@@ -59,6 +56,7 @@ export const SignUpForm: React.FC = () => {
         navigate('/auth/login');
       })
       .catch((err) => {
+        console.log(`ERRRRRR => ${JSON.stringify(err.error)}`);
         notificationController.error({ message: err.message });
         setLoading(false);
       });

@@ -48,7 +48,7 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
       {isExpanded && (
         <div>
           {props.commercialsRegister.map((commercialRegister) => (
-            <Container>
+            <Container key={commercialRegister.reg_num}>
               <Title>{commercialRegister.type_retail_format}</Title>
               {commercialRegister.from_dttm && <Line>Дата включения в реестр: {commercialRegister.from_dttm}</Line>}
               {commercialRegister.to_dttm && <Line>Дата исключения из реестра: {commercialRegister.to_dttm}</Line>}

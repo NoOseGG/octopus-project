@@ -16,7 +16,8 @@ import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
 import axios, { AxiosResponse } from 'axios';
 
-const LOGIN_URL = 'http://93.125.0.140:1338/api/v1/auth/login/';
+const BASE_URL = 'http://93.125.0.140:1338/api/';
+const LOGIN_URL = BASE_URL + 'v1/auth/login/';
 const LOGOUT_URL = 'http://93.125.0.140:1338/api/v1/auth/logout/';
 const CHECK_AUTH_URL = 'http://93.125.0.140:1338/api/v1/auth/users/me/';
 const REGIGRATION_URL = 'http://93.125.0.140:1338/api/v1/auth/users/';
@@ -40,8 +41,8 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
 );
 
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) => {
-  console.log(`DOSIGNUP ${JSON.stringify(signUpPayload)}`);
   const response = await axios.post('http://93.125.0.140:1338/api/v1/auth/users/', signUpPayload);
+  console.log(`SIGNIN ${JSON.stringify(response)}`);
   return response.data;
 });
 

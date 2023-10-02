@@ -38,7 +38,7 @@ export const LoginForm: React.FC = () => {
       .unwrap()
       .then((response) => {
         navigate('/');
-        notificationController.success({ message: `${response.user.email} Добро пожаловать!` });
+        notificationController.success({ message: ` Добро пожаловать, ${response.user.first_name}!` });
       })
       .catch((err) => {
         notificationController.error({ message: err.message });

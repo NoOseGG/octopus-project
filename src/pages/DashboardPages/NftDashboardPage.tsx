@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import { Col, Row } from 'antd';
+import { Row } from 'antd';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
-import { TrendingCreators } from '@app/components/nft-dashboard/trending-creators/TrendingCreators';
-import { RecentlyAddedNft } from '@app/components/nft-dashboard/recently-added/RecentlyAddedNft';
-import { TrendingCollections } from '@app/components/nft-dashboard/trending-collections/TrendingCollections';
-import { RecentActivity } from '@app/components/nft-dashboard/recentActivity/RecentActivity';
 import * as S from './DashboardPage.styles';
 import SubjectsList from '@app/components/nft-dashboard/subjectsList/SubjectsList';
 import { useNavigate } from 'react-router-dom';

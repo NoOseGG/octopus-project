@@ -32,6 +32,7 @@ type MyComponentProps = {
 
 const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  let count = 0;
 
   const handleClick = () => {
     setIsExpanded(!isExpanded);
@@ -48,17 +49,9 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
       {isExpanded && (
         <div>
           {props.vacancies.map((vacancy) => (
-            <Container>
+            <Container key={count++}>
               <Title>{vacancy.vacancy_name}</Title>
               {vacancy.from_dttm && <Line>Дата публикации вакансии: {vacancy.from_dttm}</Line>}
-              {vacancy.vacancy_url && (
-                <Line>
-                  url адрес вакансии:{' '}
-                  <a href={vacancy.vacancy_url} target="_blank" rel="noopener noreferrer">
-                    {vacancy.vacancy_url}
-                  </a>
-                </Line>
-              )}
               {vacancy.vacancy_name && <Line>Название вакансии: {vacancy.vacancy_name}</Line>}
               {vacancy.class_group && <Line>Группа занятий: {vacancy.class_group}</Line>}
               {vacancy.work_rate && <Line>Характер работы: {vacancy.work_rate}</Line>}

@@ -47,7 +47,7 @@ export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (q
 
     return response.data;
   } catch (error) {
-    return rejectWithValue('ошибка');
+    return rejectWithValue('');
   }
 });
 
@@ -77,6 +77,7 @@ export const searchSlice = createSlice({
       state.error = false;
     });
     builder.addCase(doSearch.rejected, (state) => {
+      state.data = initialState.data;
       state.error = true;
       state.loading = false;
     });

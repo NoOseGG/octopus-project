@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import axios from 'axios';
-import { setSubject, setSubjectError } from '@app/store/slices/subjectSlice';
+import { setSubject, setSubjectError } from '@app/store/slices/searchProfileSlice';
 import styles from './SubjectInfoTest.module.css';
 import { readToken } from '@app/services/localStorage.service';
 import { Card, Spin } from 'antd';
@@ -22,7 +22,6 @@ const gridStyle: React.CSSProperties = {
 const SubjectInfoTest: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const unn = useAppSelector((state) => state.search.unn);
-  const subject = useAppSelector((state) => state.subject.subject);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

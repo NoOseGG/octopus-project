@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import axios from 'axios';
-import { setSubject, setSubjectError } from '@app/store/slices/subjectSlice';
+import { doSearchProfile } from '@app/store/slices/searchProfileSlice';
 import styles from './SubjectInfo.module.css';
 import SubjectEmails from '@app/components/medical-dashboard/SubjectInfo/components/SubjectEmails/SubjectEmails';
 import SubjectMainContent from '@app/components/medical-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
@@ -20,33 +19,16 @@ import SubjectStatesBodies from '@app/components/medical-dashboard/SubjectInfo/c
 import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
 import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/components/SubjectVacancy/SubjectVacancy';
 import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
-import { readToken } from '@app/services/localStorage.service';
 import { Spin } from 'antd';
 import styled from 'styled-components';
-import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 
 const SubjectInfo: React.FC = () => {
-  const [loading, setLoading] = useState(false);
   const unn = useAppSelector((state) => state.search.unn);
-  const subject = useAppSelector((state) => state.subject.subject);
+  const { profile, loading, error } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    async function fetchSubject() {
-      setLoading(true);
-      try {
-        const response = await axios.get(URLS.SEARCH_SUBJECT, {
-          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
-          params: { unn: unn },
-        });
-        dispatch(setSubject(response.data));
-        setLoading(false);
-      } catch (error) {
-        dispatch(setSubjectError(error));
-      }
-    }
-
-    fetchSubject();
+    dispatch(doSearchProfile(unn));
   }, [unn]);
 
   return (
@@ -58,23 +40,23 @@ const SubjectInfo: React.FC = () => {
       )}
       {!loading && (
         <div>
-          <SubjectMainContent subject={subject} />
-          <SubjectEmails emails={subject.emails} />
-          <SubjectAddresses addresses={subject.addresses} />
-          <SubjectPhones phones={subject.phones} />
-          <SubjectWebSites webSites={subject.web_sites} />
-          <SubjectDescriptions descriptions={subject.descriptions} />
-          <SubjectTaxOffices taxOffices={subject.tax_offices} />
-          <SubjectTaxOfficesArea taxOfficesArea={subject.tax_offices} />
-          <SubjectLegalForms legalForms={subject.legal_forms} />
-          <SubjectTypesActivities typesActivities={subject.types_activities} />
-          <SubjectStatuses statuses={subject.statuses} />
-          <SubjectCountries countries={subject.countries} />
-          <SubjectStatusesType statusesType={subject.statuses_types} />
-          <SubjectStatesBodies statesBodies={subject.states_bodies} />
-          <SubjectLicenses licenses={subject.licenses} />
-          <SubjectVacancy vacancies={subject.vacancy} />
-          <SubjectCommercialRegister commercialsRegister={subject.commercial_register} />
+          <SubjectMainContent subject={profile} />
+          <SubjectEmails emails={profile.emails} />
+          <SubjectAddresses addresses={profile.addresses} />
+          <SubjectPhones phones={profile.phones} />
+          <SubjectWebSites webSites={profile.web_sites} />
+          <SubjectDescriptions descriptions={profile.descriptions} />
+          <SubjectTaxOffices taxOffices={profile.tax_offices} />
+          <SubjectTaxOfficesArea taxOfficesArea={profile.tax_offices} />
+          <SubjectLegalForms legalForms={profile.legal_forms} />
+          <SubjectTypesActivities typesActivities={profile.types_activities} />
+          <SubjectStatuses statuses={profile.statuses} />
+          <SubjectCountries countries={profile.countries} />
+          <SubjectStatusesType statusesType={profile.statuses_types} />
+          <SubjectStatesBodies statesBodies={profile.states_bodies} />
+          <SubjectLicenses licenses={profile.licenses} />
+          <SubjectVacancy vacancies={profile.vacancy} />
+          <SubjectCommercialRegister commercialsRegister={profile.commercial_register} />
         </div>
       )}
     </div>
@@ -82,7 +64,6 @@ const SubjectInfo: React.FC = () => {
 };
 
 export default SubjectInfo;
-
 
 const SpinnerSpace = styled.div`
   width: 100%;

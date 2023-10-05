@@ -145,11 +145,11 @@ export const PersonalInfo: React.FC = () => {
           </Col>
 
           <Col xs={24} md={12}>
-            <PhoneItem verified={false} />
+            <PhoneItem verified={true} />
           </Col>
 
           <Col xs={24} md={12}>
-            <EmailItem verified={false} />
+            <EmailItem verified={true} />
           </Col>
         </Row>
       </BaseButtonsForm>

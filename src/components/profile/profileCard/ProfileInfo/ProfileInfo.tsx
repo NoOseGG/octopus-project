@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { Avatar } from 'antd';
 import { UserModel } from '@app/domain/UserModel';
 import * as S from './ProfileInfo.styles';
@@ -9,10 +8,6 @@ interface ProfileInfoProps {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
-  const [fullness] = useState(90);
-
-  const { t } = useTranslation();
-
   return profileData ? (
     <S.Wrapper>
       <S.ImgWrapper>

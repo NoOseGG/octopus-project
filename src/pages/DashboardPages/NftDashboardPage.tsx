@@ -18,14 +18,14 @@ const NFTDashboardPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(doCheckAuth());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (token === null) {
       navigate('/auth/login');
       notificationController.error({ message: <span>Авторизируйтесь снова.</span> });
     }
-  }, [token]);
+  }, [token, navigate]);
 
   const desktopLayout = (
     <Row>

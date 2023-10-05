@@ -37,12 +37,13 @@ const initialState: SubjectState = {
     licenses: [],
     vacancy: [],
     commercial_register: [],
-    giasAccreditedCustomers: [],
-    giasAccreditedParticipants: [],
-    giasBlackLists: [],
-    giasPlans: [],
-    giasComplaintSubmits: [],
-    giasComplaintReceives: [],
+    gias_accredited_customer: [],
+    gias_accredited_participant: [],
+    gias_black_list: [],
+    gias_plan: [],
+    gias_complaint_submit: [],
+    gias_complaint_receive: [],
+    icetrade_customer: [],
   },
   loading: false,
   error: '',
@@ -73,6 +74,7 @@ export const searchProfileSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doSearchProfile.fulfilled, (state, action) => {
+      console.log(`DATA => ${JSON.stringify(action.payload)}`);
       state.profile = action.payload;
       state.loading = false;
     });

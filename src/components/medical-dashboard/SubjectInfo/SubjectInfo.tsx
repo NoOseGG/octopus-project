@@ -21,15 +21,16 @@ import SubjectVacancy from '@app/components/medical-dashboard/SubjectInfo/compon
 import SubjectCommercialRegister from '@app/components/medical-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
 import { Spin } from 'antd';
 import styled from 'styled-components';
+import SubjectIceTradeCustomer from '@app/components/medical-dashboard/SubjectInfo/components/SubjectIceTradeCustomer/SubjectIceTradeCustomer';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
-  const { profile, loading, error } = useAppSelector((state) => state.searchProfile);
+  const { profile, loading } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(doSearchProfile(unn));
-  }, [unn]);
+  }, [unn, dispatch]);
 
   return (
     <div className={styles.container}>
@@ -57,6 +58,7 @@ const SubjectInfo: React.FC = () => {
           <SubjectLicenses licenses={profile.licenses} />
           <SubjectVacancy vacancies={profile.vacancy} />
           <SubjectCommercialRegister commercialsRegister={profile.commercial_register} />
+          <SubjectIceTradeCustomer iceTradeCustomers={profile.icetrade_customer} />
         </div>
       )}
     </div>

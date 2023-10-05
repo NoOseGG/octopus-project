@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Vacancy } from '@app/store/types/Subject';
-import { Link } from 'react-router-dom';
+
 const Vacancies = styled.span`
   text-decoration: underline;
   cursor: pointer;

@@ -24,12 +24,17 @@ export interface SubjectType {
   licenses: License[];
   vacancy: Vacancy[];
   commercial_register: CommercialRegister[];
-  giasAccreditedCustomers: GiasAccreditedCustomer[];
-  giasAccreditedParticipants: GiasAccreditedParticipant[];
-  giasBlackLists: GiasBlackList[];
-  giasPlans: GiasPlan[];
-  giasComplaintSubmits: GiasComplaintSubmit[];
-  giasComplaintReceives: GiasComplaintReceive[];
+  gias_accredited_customer: GiasAccreditedCustomer[];
+  gias_accredited_participant: GiasAccreditedParticipant[];
+  gias_black_list: GiasBlackList[];
+  gias_plan: GiasPlan[];
+  gias_complaint_submit: GiasComplaintSubmit[];
+  gias_complaint_receive: GiasComplaintReceive[];
+  icetrade_customer: IceTradeCustomer[];
+  // iceTradeParticipant: IceTradeParticipant[];
+  // iceTradeOtherParticipant: IceTradeOtherParticipant[];
+  // iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
+  // iceTradeOrganizer: IceTradeOrganizer[];
 }
 
 export interface Emails {
@@ -299,3 +304,56 @@ export interface GiasComplaintReceive {
   legal_entity_id_name: string | null;
   legal_entity_id: string | null;
 }
+
+export interface IceTradeCustomer {
+  purchase_number: string | null;
+  lot_number: number | null;
+  contract_date: string | null;
+  purchase_url: string | null;
+  title: string | null;
+  description: string | null;
+  volume: string | null;
+  participants: string | null;
+  price_byn: number | null;
+  price_usd: number | null;
+  price: number | null;
+  currency: string | null;
+  purchase_status: string | null;
+  locations_participants: string | null;
+  participants_identifier: string | null;
+  other_participants: string | null;
+  contest_url: string | null;
+  industry: string | null;
+  subindustry: string | null;
+  request_start: string | null;
+  request_end: string | null;
+  currency_purchase: string | null;
+  total_price_purchase: number | null;
+  total_price_purchase_byn: number | null;
+  total_price_purchase_usd: number | null;
+  lot_price: number | null;
+  lot_currency: string | null;
+  lot_price_byn: number | null;
+  lot_price_usd: number | null;
+  purchase_subject: string | null;
+  volume_lot: string | null;
+  lot_status: string | null;
+  source_financing: string | null;
+  okrb_code: string | null;
+}
+
+// export interface IceTradeParticipant extends IceTradeCustomer {
+//   test: string | null;
+// }
+//
+// export interface IceTradeOtherParticipant extends IceTradeCustomer {
+//   test: string | null;
+// }
+//
+// export interface IceTradeOrganizerNegotiations extends IceTradeCustomer {
+//   test: string | null;
+// }
+//
+// export interface IceTradeOrganizer extends IceTradeCustomer {
+//   test: string | null;
+// }

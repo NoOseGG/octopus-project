@@ -1,14 +1,14 @@
 import React from 'react';
+import { Input } from '@app/components/common/inputs/Input/Input';
 import { useTranslation } from 'react-i18next';
 import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
-import * as S from './BirthdayItem.styles';
 
-export const BirthdayItem: React.FC = () => {
+export const PatronymicItem: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <BaseButtonsForm.Item name="birthdate" label={t('profile.nav.personalInfo.birthday')}>
-      <S.BirthdayPicker format="L" />
+    <BaseButtonsForm.Item name="patronymic" label={t('common.patronymic')}>
+      <Input />
     </BaseButtonsForm.Item>
   );
 };

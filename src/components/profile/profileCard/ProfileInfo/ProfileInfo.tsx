@@ -20,10 +20,10 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
       </S.ImgWrapper>
       <S.Title>{`${profileData?.first_name} ${profileData?.last_name}`}</S.Title>
       <S.Subtitle>{profileData?.email}</S.Subtitle>
-      <S.FullnessWrapper>
-        <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>
-      </S.FullnessWrapper>
-      <S.Text>{t('profile.fullness')}</S.Text>
+      {/*<S.FullnessWrapper>*/}
+      {/*  <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>*/}
+      {/*</S.FullnessWrapper>*/}
+      {/*<S.Text>{t('profile.fullness')}</S.Text>*/}
     </S.Wrapper>
   ) : null;
 };

@@ -4,23 +4,14 @@ import { Col, Row } from 'antd';
 import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
 import { Card } from '@app/components/common/Card/Card';
 import { FirstNameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/FirstNameItem/FirstNameItem';
-import { LastNameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LastNameItem/LastNameItem';
-import { NicknameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/NicknameItem/NicknameItem';
-import { SexItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SexItem/SexItem';
+import { PatronymicItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LastNameItem/PatronymicItem';
 import { BirthdayItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/BirthdayItem/BirthdayItem';
-import { LanguageItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/LanguageItem/LanguageItem';
 import { PhoneItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/PhoneItem/PhoneItem';
 import { EmailItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem';
-import { CountriesItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CountriesItem/CountriesItem';
-import { CitiesItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/CitiesItem/CitiesItem';
-import { ZipcodeItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/ZipcodeItem/ZipcodeItem';
-import { AddressItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/AddressItem/AddressItem';
-import { WebsiteItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/WebsiteItem/WebsiteItem';
-import { SocialLinksItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/SocialLinksItem/SocialLinksItem';
 import { CreditCard } from '@app/components/profile/profileCard/profileFormNav/nav/payments/paymentMethod/paymentForm/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Dates } from '@app/constants/Dates';
 import { notificationController } from '@app/controllers/notificationController';
+import { LastNameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/PatronymicItem/LastNameItem';
 
 interface PersonalInfoFormValues {
   birthday?: string;
@@ -77,9 +68,9 @@ export const PersonalInfo: React.FC = () => {
             email: user.email,
             phone: user.phone_number,
             nickname: user.email,
-            // sex: user.sex,
-            // birthday: Dates.getDate(user.birthday),
-            // language: user.lang,
+            patronymic: user.patronymic,
+            birthdate: user.birthday,
+            is_email_confirmed: user.is_email_confirmed,
             // country: user.country,
             // city: user.city,
             // address1: user.address1,
@@ -132,82 +123,34 @@ export const PersonalInfo: React.FC = () => {
           </Col>
 
           <Col xs={24} md={12}>
-            <FirstNameItem />
-          </Col>
-
-          <Col xs={24} md={12}>
             <LastNameItem />
           </Col>
 
           <Col xs={24} md={12}>
-            <NicknameItem />
+            <FirstNameItem />
           </Col>
 
           <Col xs={24} md={12}>
-            <SexItem />
+            <PatronymicItem />
           </Col>
 
           <Col xs={24} md={12}>
             <BirthdayItem />
           </Col>
 
-          <Col xs={24} md={12}>
-            <LanguageItem />
+          <Col span={24}>
+            <BaseButtonsForm.Item>
+              <BaseButtonsForm.Title>{t('profile.nav.personalInfo.contactInfo')}</BaseButtonsForm.Title>
+            </BaseButtonsForm.Item>
           </Col>
 
-          {/*<Col span={24}>*/}
-          {/*  <BaseButtonsForm.Item>*/}
-          {/*    <BaseButtonsForm.Title>{t('profile.nav.personalInfo.contactInfo')}</BaseButtonsForm.Title>*/}
-          {/*  </BaseButtonsForm.Item>*/}
-          {/*</Col>*/}
+          <Col xs={24} md={12}>
+            <PhoneItem verified={false} />
+          </Col>
 
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <PhoneItem verified={user?.phone.verified} />*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <EmailItem verified={user?.email.verified} />*/}
-          {/*</Col>*/}
-
-          {/*<Col span={24}>*/}
-          {/*  <BaseButtonsForm.Item>*/}
-          {/*    <BaseButtonsForm.Title>{t('common.address')}</BaseButtonsForm.Title>*/}
-          {/*  </BaseButtonsForm.Item>*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <CountriesItem />*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <CitiesItem />*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <AddressItem number={1} />*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <AddressItem number={2} />*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <ZipcodeItem />*/}
-          {/*</Col>*/}
-
-          {/*<Col span={24}>*/}
-          {/*  <BaseButtonsForm.Item>*/}
-          {/*    <BaseButtonsForm.Title>{t('profile.nav.personalInfo.otherInfo')}</BaseButtonsForm.Title>*/}
-          {/*  </BaseButtonsForm.Item>*/}
-          {/*</Col>*/}
-
-          {/*<Col xs={24} md={12}>*/}
-          {/*  <WebsiteItem />*/}
-          {/*</Col>*/}
-
-          {/*<Col span={24}>*/}
-          {/*  <SocialLinksItem />*/}
-          {/*</Col>*/}
+          <Col xs={24} md={12}>
+            <EmailItem verified={false} />
+          </Col>
         </Row>
       </BaseButtonsForm>
     </Card>

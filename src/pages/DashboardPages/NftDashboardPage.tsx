@@ -38,25 +38,7 @@ const NFTDashboardPage: React.FC = () => {
     </Row>
   );
 
-  const mobileAndTabletLayout = (
-    <Row gutter={[20, 24]}>
-      {/*<Col span={24}>*/}
-      {/*  <TrendingCreators />*/}
-      {/*</Col>*/}
-
-      {/*<Col span={24}>*/}
-      {/*  <RecentlyAddedNft />*/}
-      {/*</Col>*/}
-
-      {/*<Col span={24}>*/}
-      {/*  <TrendingCollections />*/}
-      {/*</Col>*/}
-
-      {/*<Col span={24}>*/}
-      {/*  <RecentActivity />*/}
-      {/*</Col>*/}
-    </Row>
-  );
+  const mobileAndTabletLayout = <Row gutter={[20, 24]}></Row>;
 
   return (
     <>

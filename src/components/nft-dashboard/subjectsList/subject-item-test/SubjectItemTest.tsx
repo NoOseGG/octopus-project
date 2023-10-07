@@ -21,7 +21,7 @@ const SubjectItemTest: React.FC<MyComponentProps> = ({ subject }) => {
   return (
     <Link className={styles.link} to={'/medical-dashboard'} onClick={() => handleClick(subject.unn)}>
       <Container>
-        <Descriptions title={<Title> {subject.full_address} </Title>} size={'small'} bordered>
+        <Descriptions title={<Title> {subject.full_address} </Title>} column={4} size={'small'} bordered>
           <Descriptions.Item label="УНП" span={2}>
             {subject.unn}
           </Descriptions.Item>
@@ -34,7 +34,7 @@ const SubjectItemTest: React.FC<MyComponentProps> = ({ subject }) => {
           <Descriptions.Item label="Статус код" span={2}>
             {subject.status_code}
           </Descriptions.Item>
-          <Descriptions.Item label="Полный адрес" span={3}>
+          <Descriptions.Item label="Полный адрес" span={4}>
             {subject.full_address}
           </Descriptions.Item>
         </Descriptions>

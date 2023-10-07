@@ -2,7 +2,6 @@ import userReducer from '@app/store/slices/userSlice';
 import authReducer from '@app/store/slices/authSlice';
 import nightModeReducer from '@app/store/slices/nightModeSlice';
 import themeReducer from '@app/store/slices/themeSlice';
-import pwaReducer from '@app/store/slices/pwaSlice';
 import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 
@@ -11,7 +10,7 @@ export default {
   auth: authReducer,
   nightMode: nightModeReducer,
   theme: themeReducer,
-  pwa: pwaReducer,
+  // pwa: pwaReducer,
   search: searchReducer,
   searchProfile: searchProfileReducer,
 };

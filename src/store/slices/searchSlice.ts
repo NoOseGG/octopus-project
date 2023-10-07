@@ -51,6 +51,21 @@ export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (q
   }
 });
 
+export const doNewPage = createAsyncThunk<Data, string>(
+  'auth/doNewPage',
+  async (newPage: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(newPage, {
+        headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue('');
+    }
+  },
+);
+
 export const searchSlice = createSlice({
   name: 'search',
   initialState,
@@ -77,6 +92,21 @@ export const searchSlice = createSlice({
       state.error = false;
     });
     builder.addCase(doSearch.rejected, (state) => {
+      state.data = initialState.data;
+      state.error = true;
+      state.loading = false;
+    });
+    builder.addCase(doNewPage.pending, (state) => {
+      state.data = initialState.data;
+      state.loading = true;
+      state.error = false;
+    });
+    builder.addCase(doNewPage.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.error = false;
+      state.loading = false;
+    });
+    builder.addCase(doNewPage.rejected, (state) => {
       state.data = initialState.data;
       state.error = true;
       state.loading = false;

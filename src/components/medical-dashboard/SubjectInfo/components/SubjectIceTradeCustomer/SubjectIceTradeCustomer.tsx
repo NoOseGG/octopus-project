@@ -39,15 +39,13 @@ const SubjectWebSites: React.FC<MyComponentProps> = (props) => {
 
   return (
     <div>
-      {props.iceTradeCustomers.length > 0 ? (
+      {props.iceTradeCustomers.length > 0 && (
         <div>
           <IceTradeCustomerTitle onClick={handleClick}>
             Субъект является заказчиком процедуры закупки:
           </IceTradeCustomerTitle>{' '}
           {props.iceTradeCustomers.length > 0 && `- ${props.iceTradeCustomers.length}`}
         </div>
-      ) : (
-        <div>NULL</div>
       )}
 
       {isExpanded && (

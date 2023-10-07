@@ -1,11 +1,10 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import SubjectItem from '@app/components/nft-dashboard/subjectsList/subject-item/SubjectItem';
 import styles from './SubjectList.module.css';
-import { setData, setError } from '@app/store/slices/searchSlice';
-import axios from 'axios';
+import { doNewPage } from '@app/store/slices/searchSlice';
 import styled from 'styled-components';
 import { Spin } from 'antd';
+import SubjectItemTest from '@app/components/nft-dashboard/subjectsList/subject-item-test/SubjectItemTest';
 
 const SubjectsList: React.FC = () => {
   const { results, previous, next } = useAppSelector((state) => state.search.data);
@@ -13,17 +12,7 @@ const SubjectsList: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const handleClickPage = (newPage: string) => {
-    async function fetchNewPage() {
-      try {
-        const response = await axios.get(newPage);
-        dispatch(setData(response.data));
-      } catch (error) {
-        console.log(error);
-        dispatch(setError(error));
-      }
-    }
-
-    fetchNewPage();
+    dispatch(doNewPage(newPage));
   };
 
   return (
@@ -40,7 +29,7 @@ const SubjectsList: React.FC = () => {
         <>
           {results.length > 0 ? <h1 className={styles.title}>Список субъектов:</h1> : <div></div>}
           {results.map((sub) => (
-            <SubjectItem subject={sub} key={sub.unn} />
+            <SubjectItemTest subject={sub} key={sub.unn} />
           ))}
           <div className={styles.navigation}>
             {previous !== null ? (

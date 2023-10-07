@@ -5,11 +5,11 @@ import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
-import SubjectInfo from '@app/components/medical-dashboard/SubjectInfo/SubjectInfo';
 import { notificationController } from '@app/controllers/notificationController';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
+import SubjectInfoTest from '@app/components/medical-dashboard/SubjectInfoTest/SubjectInfoTest';
 
 const MedicalDashboardPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
@@ -20,20 +20,20 @@ const MedicalDashboardPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(doCheckAuth());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (token === null) {
       navigate('/auth/login');
       notificationController.error({ message: <span>Авторизируйтесь снова.</span> });
     }
-  }, [token]);
+  }, [token, navigate]);
 
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <SubjectInfo />
-        {/*<SubjectInfoTest />*/}
+        {/*<SubjectInfo />*/}
+        <SubjectInfoTest />
         <References />
       </S.LeftSideCol>
 

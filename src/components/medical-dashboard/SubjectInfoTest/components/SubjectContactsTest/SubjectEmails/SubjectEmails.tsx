@@ -24,7 +24,7 @@ const SubjectEmails: React.FC<MyComponentProps> = ({ emails }) => {
     <>
       {Boolean(emails.length) && (
         <>
-          <Text strong={true}>Емайл: </Text> <Text copyable={true}>{emails[0].email}</Text>
+          <Text strong={true}>Емайл: </Text> <Text copyable={{ tooltips: false }}>{emails[0].email}</Text>
           {emails.length > 1 && (
             <Link to="#" onClick={success}>
               {' '}

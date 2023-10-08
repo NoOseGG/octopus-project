@@ -2,7 +2,6 @@ import React from 'react';
 import { dateTransformate } from '@app/utils/utils';
 import { SubjectType } from '@app/store/types/Subject';
 import { Card, Typography } from 'antd';
-import styled from 'styled-components';
 
 type MyComponentProps = {
   subject: SubjectType;
@@ -15,7 +14,7 @@ const SubjectMainContent: React.FC<MyComponentProps> = ({ subject }) => {
     <Card title="Информация" extra={<a href="#">More</a>} style={{ width: '100%' }}>
       {subject.unn && (
         <>
-          <Text strong={true}>УНП: </Text> <Text copyable={true}>{subject.unn}</Text>
+          <Text strong={true}>УНП: </Text> <Text copyable={{ tooltips: false }}>{subject.unn}</Text>
           <br />
         </>
       )}

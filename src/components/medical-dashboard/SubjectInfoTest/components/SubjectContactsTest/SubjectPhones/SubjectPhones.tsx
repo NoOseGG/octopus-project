@@ -24,7 +24,7 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
     <>
       {Boolean(phones.length) && (
         <>
-          <Text strong={true}>Телефон: </Text> <Text copyable={true}>{phones[0].phone_number}</Text>
+          <Text strong={true}>Телефон: </Text> <Text copyable={{ tooltips: false }}>{phones[0].phone_number}</Text>
           {phones.length > 1 && (
             <Link to="#" onClick={success}>
               {' '}

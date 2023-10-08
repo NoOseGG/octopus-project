@@ -24,7 +24,7 @@ const SubjectAddresses: React.FC<MyComponentProps> = ({ addresses }) => {
     <>
       {Boolean(addresses.length) && (
         <>
-          <Text strong={true}>Адрес: </Text> <Text copyable={true}>{addresses[0].full_address}</Text>
+          <Text strong={true}>Адрес: </Text> <Text copyable={{ tooltips: false }}>{addresses[0].full_address}</Text>
           {addresses.length > 1 && (
             <Link to="#" onClick={success}>
               {' '}

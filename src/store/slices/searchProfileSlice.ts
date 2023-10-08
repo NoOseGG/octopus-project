@@ -7,7 +7,7 @@ import { readToken } from '@app/services/localStorage.service';
 interface SubjectState {
   profile: SubjectType;
   loading: boolean;
-  error: string | null;
+  error: boolean;
 }
 
 const initialState: SubjectState = {
@@ -46,7 +46,7 @@ const initialState: SubjectState = {
     icetrade_customer: [],
   },
   loading: false,
-  error: '',
+  error: false,
 };
 
 export const doSearchProfile = createAsyncThunk<SubjectType, string>(
@@ -72,14 +72,16 @@ export const searchProfileSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(doSearchProfile.pending, (state) => {
       state.loading = true;
+      state.error = false;
     });
     builder.addCase(doSearchProfile.fulfilled, (state, action) => {
       console.log(`DATA => ${JSON.stringify(action.payload)}`);
       state.profile = action.payload;
       state.loading = false;
+      state.error = false;
     });
     builder.addCase(doSearchProfile.rejected, (state) => {
-      state.error = 'ошибка загрузки профиля';
+      state.error = true;
     });
   },
 });

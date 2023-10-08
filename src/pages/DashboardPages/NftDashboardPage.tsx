@@ -44,6 +44,7 @@ const NFTDashboardPage: React.FC = () => {
     <>
       <PageTitle>NFT Dashboard</PageTitle>
       {isDesktop ? desktopLayout : mobileAndTabletLayout}
+      {desktopLayout}
     </>
   );
 };

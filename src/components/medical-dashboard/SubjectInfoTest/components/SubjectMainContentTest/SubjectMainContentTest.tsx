@@ -1,23 +1,70 @@
 import React from 'react';
 import { dateTransformate } from '@app/utils/utils';
 import { SubjectType } from '@app/store/types/Subject';
-import { Card } from 'antd';
+import { Card, Typography } from 'antd';
+import styled from 'styled-components';
 
 type MyComponentProps = {
   subject: SubjectType;
 };
 
+const { Text } = Typography;
+
 const SubjectMainContent: React.FC<MyComponentProps> = ({ subject }) => {
   return (
     <Card title="Информация" extra={<a href="#">More</a>} style={{ width: '100%' }}>
-      {subject.unn && <p>УНП: {subject.unn}</p>}
-      {subject.date_reg_mns && <p>Дата постановки на учет в ИМНС: {dateTransformate(subject.date_reg_mns)}</p>}
-      {subject.date_reg_egr && <p>Дата регистрации в ЕГР: {subject.date_reg_egr}</p>}
-      {subject.decision_create_number && <p>Номер решения о создании: {subject.decision_create_number}</p>}
-      {subject.decision_liquidation_number && <p>Номер решения о ликвидации: {subject.decision_liquidation_number}</p>}
-      {subject.period_activity && <p>Период деятельности: {subject.period_activity}</p>}
-      {subject.age_full && <p>Количество дней деятельсности: {subject.age_full}</p>}
-      {subject.age_short && <p>Количество лет деятельсности: {subject.age_short}</p>}
+      {subject.unn && (
+        <>
+          <Text strong={true}>УНП: </Text> <Text copyable={true}>{subject.unn}</Text>
+          <br />
+        </>
+      )}
+      {subject.date_reg_mns && (
+        <>
+          <Text strong={true}>Дата постановки на учет в ИМНС: </Text>{' '}
+          <Text>{dateTransformate(subject.date_reg_mns)}</Text>
+          <br />
+        </>
+      )}
+      {subject.date_reg_egr && (
+        <>
+          <Text strong={true}>Дата регистрации в ЕГР: </Text>
+          <Text>{subject.date_reg_egr}</Text>
+          <br />
+        </>
+      )}
+      {subject.decision_create_number && (
+        <>
+          <Text strong={true}>Номер решения о создании: </Text> <Text>{subject.decision_create_number}</Text>
+          <br />
+        </>
+      )}
+      {subject.decision_liquidation_number && (
+        <>
+          <Text strong={true}>Номер решения о ликвидации: </Text> <Text>{subject.decision_liquidation_number}</Text>
+          <br />
+        </>
+      )}
+      {subject.period_activity && (
+        <>
+          <Text strong={true}>Период деятельности: </Text>
+          <Text>{subject.period_activity}</Text>
+          <br />
+        </>
+      )}
+      {subject.age_full && (
+        <>
+          <Text strong={true}>Количество дней деятельсности: </Text>
+          <Text>{subject.age_full}</Text>
+          <br />
+        </>
+      )}
+      {subject.age_short && (
+        <>
+          <Text strong={true}>Количество лет деятельсности: </Text>
+          <Text>{subject.age_short}</Text>
+        </>
+      )}
     </Card>
   );
 };

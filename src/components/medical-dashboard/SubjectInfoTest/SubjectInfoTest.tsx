@@ -6,10 +6,11 @@ import { Spin } from 'antd';
 import styled from 'styled-components';
 import SubjectMainContentTest from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectMainContentTest/SubjectMainContentTest';
 import SubjectEmailsTest from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectContactsTest/SubjectContactsTest';
+import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectTaxOffices/SubjectTaxOffices';
 
 const SubjectInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
-  const { profile, loading } = useAppSelector((state) => state.searchProfile);
+  const { profile, loading, error } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -23,10 +24,12 @@ const SubjectInfoTest: React.FC = () => {
           <Spin size="large" tip="Загрузка данных . . ." />
         </SpinnerSpace>
       )}
-      {!loading && (
+      {error && <h1>Ошибка получения данных</h1>}
+      {!loading && !error && (
         <div style={{ display: 'flex', gap: 20 }}>
           <SubjectMainContentTest subject={profile} />
-          <SubjectEmailsTest emails={profile.emails} phones={profile.phones} />
+          <SubjectEmailsTest emails={profile.emails} phones={profile.phones} addresses={profile.addresses} />
+          <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
         </div>
       )}
     </div>

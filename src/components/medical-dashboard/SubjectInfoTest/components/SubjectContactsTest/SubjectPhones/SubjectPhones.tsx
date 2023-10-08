@@ -39,7 +39,7 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
           <div>
             {phones.map((phone, index) => (
               <>
-                <Text key={index} copyable={true}>{`${phone.phone_number}`}</Text>
+                <Text key={index} copyable={{ tooltips: false }}>{`${phone.phone_number}`}</Text>
                 <br />
               </>
             ))}

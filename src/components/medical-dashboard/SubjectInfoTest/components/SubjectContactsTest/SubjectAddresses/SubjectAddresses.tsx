@@ -38,7 +38,7 @@ const SubjectAddresses: React.FC<MyComponentProps> = ({ addresses }) => {
           <div>
             {addresses.map((address, index) => (
               <>
-                <Text key={index} copyable={true}>{`${address.full_address}`}</Text>
+                <Text key={index} copyable={{ tooltips: false }}>{`${address.full_address}`}</Text>
                 <br />
               </>
             ))}

@@ -39,7 +39,7 @@ const SubjectEmails: React.FC<MyComponentProps> = ({ emails }) => {
           <div>
             {emails.map((email, index) => (
               <>
-                <Text key={index} copyable={true}>{`${email.email}`}</Text>
+                <Text key={index} copyable={{ tooltips: false }}>{`${email.email}`}</Text>
                 <br />
               </>
             ))}

@@ -8,6 +8,7 @@ import SubjectMainContentTest from '@app/components/medical-dashboard/SubjectInf
 import SubjectEmailsTest from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectContactsTest/SubjectContactsTest';
 import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectTaxOffices/SubjectTaxOffices';
 import SubjectVacancies from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectVacancies/SubjectVacancies';
+import SubjectLegalForms from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectLegalForms/SubjectLegalForms';
 
 const SubjectInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -40,6 +41,10 @@ const SubjectInfoTest: React.FC = () => {
             <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
           </div>
           <SubjectVacancies vacancies={profile.vacancy} />
+          <div style={{ display: 'flex', gap: 20 }}>
+            <SubjectLegalForms legalForms={profile.legal_forms} />
+            <SubjectLegalForms legalForms={profile.legal_forms} />
+          </div>
         </>
       )}
     </div>

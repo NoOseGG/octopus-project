@@ -89,27 +89,27 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
               {selectedVacancy.max_salary_usd}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Полное наименование адреса рабочего места" span={6}>
+            <Descriptions.Item label="Полное наименование адреса рабочего места" span={3}>
               {selectedVacancy.workplace_address_full}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Уровень образования" span={2}>
+            <Descriptions.Item label="Уровень образования" span={3}>
               {selectedVacancy.education_level}
             </Descriptions.Item>
-            <Descriptions.Item label="Подразделение службы занятости" span={2}>
+            <Descriptions.Item label="Подразделение службы занятости" span={3}>
               {selectedVacancy.employment_service_division}
             </Descriptions.Item>
-            <Descriptions.Item label="Тарифный разряд, категория" span={2}>
+            <Descriptions.Item label="Тарифный разряд, категория" span={3}>
               {selectedVacancy.tariff_category}
             </Descriptions.Item>
 
-            <Descriptions.Item label="Требуемый опыт работы" span={2}>
+            <Descriptions.Item label="Требуемый опыт работы" span={3}>
               {selectedVacancy.work_experience}
             </Descriptions.Item>
-            <Descriptions.Item label="Доступно соискателю с инвалидностью" span={2}>
+            <Descriptions.Item label="Доступно соискателю с инвалидностью" span={3}>
               {selectedVacancy.accept_handicapped}
             </Descriptions.Item>
-            <Descriptions.Item label="Дополнительная информация" span={2}>
+            <Descriptions.Item label="Дополнительная информация" span={6}>
               {selectedVacancy.addition}
             </Descriptions.Item>
           </Descriptions>

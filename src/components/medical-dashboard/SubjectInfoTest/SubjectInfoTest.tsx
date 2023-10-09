@@ -31,7 +31,12 @@ const SubjectInfoTest: React.FC = () => {
           {profile.names.length > 0 && <Title>{profile.names[0].full_name}</Title>}
           <div style={{ display: 'flex', gap: 20 }}>
             <SubjectMainContentTest subject={profile} />
-            <SubjectEmailsTest emails={profile.emails} phones={profile.phones} addresses={profile.addresses} />
+            <SubjectEmailsTest
+              emails={profile.emails}
+              phones={profile.phones}
+              addresses={profile.addresses}
+              webSites={profile.web_sites}
+            />
             <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
           </div>
           <SubjectVacancies vacancies={profile.vacancy} />

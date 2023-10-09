@@ -10,6 +10,7 @@ import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfoTest
 import SubjectVacancies from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectVacancies/SubjectVacancies';
 import SubjectLegalForms from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectDescriptions/SubjectDescriptions';
+import SubjectLicenses from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectLicenses/SubjectLicenses';
 
 const SubjectInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -32,7 +33,7 @@ const SubjectInfoTest: React.FC = () => {
         <>
           {Boolean(profile.names.length > 0) && <Title>{profile.names[0].full_name}</Title>}
           {Boolean(profile.descriptions.length > 0) && <SubjectDescriptions descriptions={profile.descriptions} />}
-          <div style={{ display: 'flex', gap: 20 }}>
+          <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             <SubjectMainContentTest subject={profile} />
             <SubjectEmailsTest
               emails={profile.emails}
@@ -45,7 +46,7 @@ const SubjectInfoTest: React.FC = () => {
           <SubjectVacancies vacancies={profile.vacancy} />
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             <SubjectLegalForms legalForms={profile.legal_forms} />
-            <SubjectLegalForms legalForms={profile.legal_forms} />
+            <SubjectLicenses licenses={profile.licenses} />
           </div>
         </>
       )}

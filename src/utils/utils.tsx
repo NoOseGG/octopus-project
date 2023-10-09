@@ -214,3 +214,20 @@ export const dateTransformForRegistration = (dateString: string) => {
 
   return `${year}-${month}-${day}`;
 };
+
+export function formatDate(dateString: string | null): string | null {
+  if (dateString === null) {
+    return null; // Если дата равна null, вернем тоже null
+  }
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return null; // Если дата некорректная, вернем null
+  }
+
+  const day = date.getDate().toString().padStart(2, '0'); // Преобразуем день
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Преобразуем месяц (с учетом того, что месяцы в JavaScript начинаются с 0)
+  const year = date.getFullYear().toString(); // Преобразуем год
+
+  return `${day}.${month}.${year}`;
+}

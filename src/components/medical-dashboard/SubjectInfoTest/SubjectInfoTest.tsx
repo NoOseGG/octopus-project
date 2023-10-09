@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import SubjectMainContentTest from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectMainContentTest/SubjectMainContentTest';
 import SubjectEmailsTest from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectContactsTest/SubjectContactsTest';
 import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectTaxOffices/SubjectTaxOffices';
+import SubjectVacancies from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectVacancies/SubjectVacancies';
 
 const SubjectInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -26,11 +27,14 @@ const SubjectInfoTest: React.FC = () => {
       )}
       {error && <h1>Ошибка получения данных</h1>}
       {!loading && !error && (
-        <div style={{ display: 'flex', gap: 20 }}>
-          <SubjectMainContentTest subject={profile} />
-          <SubjectEmailsTest emails={profile.emails} phones={profile.phones} addresses={profile.addresses} />
-          <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
-        </div>
+        <>
+          <div style={{ display: 'flex', gap: 20 }}>
+            <SubjectMainContentTest subject={profile} />
+            <SubjectEmailsTest emails={profile.emails} phones={profile.phones} addresses={profile.addresses} />
+            <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
+          </div>
+          <SubjectVacancies vacancies={profile.vacancy} />
+        </>
       )}
     </div>
   );

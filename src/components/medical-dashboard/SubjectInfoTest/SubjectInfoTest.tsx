@@ -28,6 +28,7 @@ const SubjectInfoTest: React.FC = () => {
       {error && <h1>Ошибка получения данных</h1>}
       {!loading && !error && (
         <>
+          {profile.names.length > 0 && <Title>{profile.names[0].full_name}</Title>}
           <div style={{ display: 'flex', gap: 20 }}>
             <SubjectMainContentTest subject={profile} />
             <SubjectEmailsTest emails={profile.emails} phones={profile.phones} addresses={profile.addresses} />
@@ -48,4 +49,12 @@ const SpinnerSpace = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
 `;

@@ -231,3 +231,8 @@ export function formatDate(dateString: string | null): string | null {
 
   return `${day}.${month}.${year}`;
 }
+
+export function parseSalaryForSort(amountString: string): number {
+  const amount = parseFloat(amountString);
+  return amount;
+}

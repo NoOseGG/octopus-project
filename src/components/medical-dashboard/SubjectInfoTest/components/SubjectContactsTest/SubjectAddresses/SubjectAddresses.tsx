@@ -37,10 +37,10 @@ const SubjectAddresses: React.FC<MyComponentProps> = ({ addresses }) => {
         <Modal title="Адреса" visible={modalVisible} onCancel={handleCancel} footer={null}>
           <div>
             {addresses.map((address, index) => (
-              <>
+              <React.Fragment key={index}>
                 <Text key={index} copyable={{ tooltips: false }}>{`${address.full_address}`}</Text>
                 <br />
-              </>
+              </React.Fragment>
             ))}
           </div>
         </Modal>

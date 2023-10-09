@@ -75,7 +75,6 @@ export const searchProfileSlice = createSlice({
       state.error = false;
     });
     builder.addCase(doSearchProfile.fulfilled, (state, action) => {
-      console.log(`DATA => ${JSON.stringify(action.payload)}`);
       state.profile = action.payload;
       state.loading = false;
       state.error = false;

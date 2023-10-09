@@ -38,10 +38,10 @@ const SubjectEmails: React.FC<MyComponentProps> = ({ emails }) => {
         <Modal title="Емейлы" visible={modalVisible} onCancel={handleCancel} footer={null}>
           <div>
             {emails.map((email, index) => (
-              <>
-                <Text key={index} copyable={{ tooltips: false }}>{`${email.email}`}</Text>
+              <React.Fragment key={index}>
+                <Text copyable={{ tooltips: false }}>{`${email.email}`}</Text>
                 <br />
-              </>
+              </React.Fragment>
             ))}
           </div>
         </Modal>

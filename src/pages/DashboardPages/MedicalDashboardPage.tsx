@@ -39,16 +39,11 @@ const MedicalDashboardPage: React.FC = () => {
     </Row>
   );
 
-  const mobileAndTabletLayout = (
-    <Row gutter={[20, 20]}>
-
-    </Row>
-  );
+  const mobileAndTabletLayout = <Row gutter={[20, 20]}></Row>;
 
   return (
     <>
-      <PageTitle>{t('common.change-log')}</PageTitle>
-      {/*{isDesktop ? desktopLayout : mobileAndTabletLayout}*/}
+      <PageTitle>{t('common.subject-info')}</PageTitle>
       {desktopLayout}
     </>
   );

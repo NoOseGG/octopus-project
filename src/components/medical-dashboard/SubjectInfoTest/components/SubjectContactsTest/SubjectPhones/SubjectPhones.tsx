@@ -38,10 +38,10 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
         <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null}>
           <div>
             {phones.map((phone, index) => (
-              <>
+              <React.Fragment key={index}>
                 <Text key={index} copyable={{ tooltips: false }}>{`${phone.phone_number}`}</Text>
                 <br />
-              </>
+              </React.Fragment>
             ))}
           </div>
         </Modal>

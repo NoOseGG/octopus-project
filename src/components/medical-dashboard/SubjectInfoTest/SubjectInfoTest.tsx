@@ -9,6 +9,7 @@ import SubjectEmailsTest from '@app/components/medical-dashboard/SubjectInfoTest
 import SubjectTaxOffices from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectTaxOffices/SubjectTaxOffices';
 import SubjectVacancies from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectVacancies/SubjectVacancies';
 import SubjectLegalForms from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectLegalForms/SubjectLegalForms';
+import SubjectDescriptions from '@app/components/medical-dashboard/SubjectInfoTest/components/SubjectDescriptions/SubjectDescriptions';
 
 const SubjectInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -29,7 +30,8 @@ const SubjectInfoTest: React.FC = () => {
       {error && <h1>Ошибка получения данных</h1>}
       {!loading && !error && (
         <>
-          {profile.names.length > 0 && <Title>{profile.names[0].full_name}</Title>}
+          {Boolean(profile.names.length > 0) && <Title>{profile.names[0].full_name}</Title>}
+          {Boolean(profile.descriptions.length > 0) && <SubjectDescriptions descriptions={profile.descriptions} />}
           <div style={{ display: 'flex', gap: 20 }}>
             <SubjectMainContentTest subject={profile} />
             <SubjectEmailsTest
@@ -41,7 +43,7 @@ const SubjectInfoTest: React.FC = () => {
             <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
           </div>
           <SubjectVacancies vacancies={profile.vacancy} />
-          <div style={{ display: 'flex', gap: 20 }}>
+          <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             <SubjectLegalForms legalForms={profile.legal_forms} />
             <SubjectLegalForms legalForms={profile.legal_forms} />
           </div>

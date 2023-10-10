@@ -21,15 +21,15 @@ interface SignUpFormData {
 }
 
 const initValues = {
-  first_name: 'Иван',
-  last_name: 'Ивавнов',
-  patronymic: 'Иванович',
+  first_name: '',
+  last_name: '',
+  patronymic: '',
   birthdate: '',
-  phone_number: '+375258754488',
-  email: 'noose92@yandex.ru',
-  password: 'privet1992',
-  confirmPassword: 'privet1992',
-  termOfUse: true,
+  phone_number: '+',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  termOfUse: false,
 };
 
 export const SignUpForm: React.FC = () => {

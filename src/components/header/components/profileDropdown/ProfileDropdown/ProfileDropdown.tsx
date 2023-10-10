@@ -1,7 +1,6 @@
 import React from 'react';
 import { Avatar, Col, Row } from 'antd';
 import { Dropdown } from '@app/components/common/Dropdown/Dropdown';
-import { H6 } from '@app/components/common/typography/H6/H6';
 import { ProfileOverlay } from '../ProfileOverlay/ProfileOverlay';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { useResponsive } from '@app/hooks/useResponsive';
@@ -18,11 +17,6 @@ export const ProfileDropdown: React.FC = () => {
         <Col>
           <Avatar src={user.avatar} alt="User" shape="circle" size={40} />
         </Col>
-        {isTablet && (
-          <Col>
-            {/*<H6>{`${user.first_name} ${user.last_name[0]}`}</H6>*/}
-          </Col>
-        )}
       </S.ProfileDropdownHeader>
     </Dropdown>
   ) : null;

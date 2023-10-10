@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
@@ -14,8 +14,8 @@ interface LoginFormData {
 }
 
 export const initValues: LoginFormData = {
-  email: 'noose92@yandex.ru',
-  password: 'privet1992poka',
+  email: '',
+  password: '',
 };
 
 export const LoginForm: React.FC = () => {
@@ -30,7 +30,7 @@ export const LoginForm: React.FC = () => {
     if (token !== null) {
       navigate('/');
     }
-  }, []);
+  }, [token, navigate]);
 
   const handleSubmit = (values: LoginFormData) => {
     setLoading(true);

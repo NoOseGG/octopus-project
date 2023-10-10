@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import {Checkbox, Button, DatePicker} from 'antd';
+import { Checkbox, Button, DatePicker } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { Input as CommonInput } from '@app/components/common/inputs/Input/Input';
 import { InputPassword as CommonInputPassword } from '@app/components/common/inputs/InputPassword/InputPassword';
 import loginBackground from '@app/assets/images/login-bg.webp';
 import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, media } from '@app/styles/themes/constants';
-import { DateLabel } from '@app/components/apps/newsFeed/NewsFilter/NewsFilter.styles';
 
 export const Wrapper = styled.div`
   height: 100vh;

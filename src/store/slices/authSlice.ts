@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   ResetPasswordRequest,
-  login,
   LoginRequest,
-  signUp,
   SignUpRequest,
   resetPassword,
   verifySecurityCode,
@@ -16,7 +14,6 @@ import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
-import {UserInfo} from "@app/store/types/UserInfo";
 
 export interface AuthSlice {
   token: string | null;

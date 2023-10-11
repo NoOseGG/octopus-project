@@ -6,7 +6,7 @@ import styles from '@app/components/dashboards/analytix-dashboard/subjectsList/s
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { SUBJECT_INFO_DASHBOARD_PATH } from '@app/components/router/AppRouter';
-import {useResponsive} from "@app/hooks/useResponsive";
+import { useResponsive } from '@app/hooks/useResponsive';
 
 type MyComponentProps = {
   subject: Organization;
@@ -23,35 +23,35 @@ const SubjectItem: React.FC<MyComponentProps> = ({ subject }) => {
 
   return (
     <>
-      { isTablet && (
-          <Link className={styles.link} to={SUBJECT_INFO_DASHBOARD_PATH} onClick={() => handleClick(subject.unn)}>
-            <Container>
-              <Descriptions title={<Title>{subject.full_name}</Title>} column={4} size={'middle'} bordered>
-                <Descriptions.Item label="УНП" span={2}>
-                  {subject.unn}
-                </Descriptions.Item>
-                <Descriptions.Item label="Дата регистрации" span={2}>
-                  {subject.date_reg}
-                </Descriptions.Item>
-                <Descriptions.Item label="Статусное имя" span={2}>
-                  <Badge status={status} text={subject.status_name} />
-                </Descriptions.Item>
-                <Descriptions.Item label="Статус код" span={2}>
-                  {subject.status_code}
-                </Descriptions.Item>
-                <Descriptions.Item label="Полный адрес" span={4}>
-                  {subject.full_address}
-                </Descriptions.Item>
-              </Descriptions>
-            </Container>
-          </Link>
+      {isTablet && (
+        <Link className={styles.link} to={SUBJECT_INFO_DASHBOARD_PATH} onClick={() => handleClick(subject.unn)}>
+          <Container>
+            <Descriptions title={<Title>{subject.full_name}</Title>} column={4} size={'middle'} bordered>
+              <Descriptions.Item label="УНП" span={2}>
+                {subject.unn}
+              </Descriptions.Item>
+              <Descriptions.Item label="Дата регистрации" span={2}>
+                {subject.date_reg}
+              </Descriptions.Item>
+              <Descriptions.Item label="Статусное имя" span={2}>
+                <Badge status={status} text={subject.status_name} />
+              </Descriptions.Item>
+              <Descriptions.Item label="Статус код" span={2}>
+                {subject.status_code}
+              </Descriptions.Item>
+              <Descriptions.Item label="Полный адрес" span={4}>
+                {subject.full_address}
+              </Descriptions.Item>
+            </Descriptions>
+          </Container>
+        </Link>
       )}
 
       {mobileOnly && (
-          <Container>
-            <Title>{subject.full_name}</Title>
-            <div>УНП: ${subject.unn}</div>
-          </Container>
+        <Container>
+          <Title>{subject.full_name}</Title>
+          <div>УНП: ${subject.unn}</div>
+        </Container>
       )}
     </>
   );

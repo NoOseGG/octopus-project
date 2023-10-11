@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TaxOffice, TaxOfficeArrea } from '@app/store/types/Subject';
 import { Card, Typography } from 'antd';
 
@@ -10,7 +10,6 @@ type MyComponentProps = {
 const { Text } = Typography;
 
 const SubjectTaxOffices: React.FC<MyComponentProps> = ({ taxOffices, taxOfficesArea }) => {
-
   return (
     <Card title="ИМНС" style={{ width: '100%' }}>
       {Boolean(taxOffices.length) && (

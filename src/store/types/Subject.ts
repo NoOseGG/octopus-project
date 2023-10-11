@@ -35,6 +35,7 @@ export interface SubjectType {
   // iceTradeOtherParticipant: IceTradeOtherParticipant[];
   // iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
   // iceTradeOrganizer: IceTradeOrganizer[];
+  government_inspection: GovernmentInspection[];
 }
 
 export interface Emails {
@@ -357,3 +358,13 @@ export interface IceTradeCustomer {
 // export interface IceTradeOrganizer extends IceTradeCustomer {
 //   test: string | null;
 // }
+
+export interface GovernmentInspection {
+  legal_entity_id_gov: string;
+  legal_entity_id_gov_name: string;
+  plan_type: string;
+  state_body: string;
+  plan_name: string;
+  reason: string;
+  from_dttm: string;
+}

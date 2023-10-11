@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  DashboardOutlined,
-} from '@ant-design/icons';
+import { DashboardOutlined } from '@ant-design/icons';
 import { ReactComponent as NftIcon } from '@app/assets/icons/nft-icon.svg';
 
 export interface SidebarNavigationItem {

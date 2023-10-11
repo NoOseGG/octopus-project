@@ -44,6 +44,7 @@ const initialState: SubjectState = {
     gias_complaint_submit: [],
     gias_complaint_receive: [],
     icetrade_customer: [],
+    government_inspection: [],
   },
   loading: false,
   error: false,

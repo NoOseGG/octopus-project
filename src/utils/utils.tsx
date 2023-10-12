@@ -194,7 +194,7 @@ export const formatNumberWithCommas = (value: number): string => {
 
 // My Function
 
-export const dateTransformate = (date: string) => {
+export const dateTransformate = (date: string): string | undefined => {
   const parts = date.split('-');
   if (parts.length !== 3) {
     console.log('Неверный формат даты');
@@ -205,7 +205,7 @@ export const dateTransformate = (date: string) => {
   return formattedDate;
 };
 
-export const dateTransformForRegistration = (dateString: string) => {
+export const dateTransformForRegistration = (dateString: string): string => {
   const date = new Date(dateString);
 
   const year = date.getFullYear();

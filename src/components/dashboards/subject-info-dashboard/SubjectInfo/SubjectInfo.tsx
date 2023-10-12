@@ -17,6 +17,7 @@ import SubjectStatus from '@app/components/dashboards/subject-info-dashboard/Sub
 import SubjectStatusType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStatusType/SubjectStatusType';
 import SubjectCountry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCountry/SubjectCountry';
 import SubjectTypeActivity from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTypeActivity/SubjectTypeActivity';
+import SubjectCommercialRegister from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -68,6 +69,11 @@ const SubjectInfo: React.FC = () => {
             {Boolean(profile.countries.length) && <SubjectCountry countries={profile.countries} />}
             {Boolean(profile.types_activities.length) && (
               <SubjectTypeActivity typeActivities={profile.types_activities} />
+            )}
+          </div>
+          <div>
+            {Boolean(profile.commercial_register.length) && (
+              <SubjectCommercialRegister commercialRegisters={profile.commercial_register} />
             )}
           </div>
         </>

@@ -12923,7 +12923,7 @@ __metadata:
     pigeon-maps: ^0.19.7
     postinstall-postinstall: ^2.1.0
     prettier: ^2.3.1
-    react: 18.0.0
+    react: ^17.0.2
     react-country-flag: ^3.0.2
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
@@ -17731,16 +17731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.0.0":
-  version: 18.0.0
-  resolution: "react@npm:18.0.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: 293020b96536b3c7113ee57ca5c990a3f25649d1751b1c7a3aabd16dff0691fe9f1eed1206616d0906d05933536052037340a0c8d0941ff870b0eb469a2f975b
-  languageName: node
-  linkType: hard
-
-"react@npm:>= 16.3":
+"react@npm:>= 16.3, react@npm:^17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:

@@ -52,10 +52,10 @@ const SubjectInfo: React.FC = () => {
           </div>
           <SubjectVacancies vacancies={profile.vacancy} />
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
-            <SubjectLegalForms legalForms={profile.legal_forms} />
-            <SubjectLicenses licenses={profile.licenses} />
+            {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
+            {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.icetrade_customer.length) && (
               <SubjectIceTradeLiquidPlot icetrade_customer={profile.icetrade_customer} />
             )}

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { RadioGroup } from '@app/components/common/Radio/Radio';
 import { EmailItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/EmailItem/EmailItem';
-import { PhoneItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/PhoneItem/PhoneItem';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { TwoFactorAuthOption } from '@app/interfaces/interfaces';
 import { TwoFactorAuthOptionState } from '../TwoFactorAuth';

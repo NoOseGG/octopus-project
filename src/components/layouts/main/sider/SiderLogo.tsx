@@ -5,7 +5,6 @@ import { useResponsive } from 'hooks/useResponsive';
 import logo from 'assets/logo.png';
 import logoDark from 'assets/logo-dark.png';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { setData } from '@app/store/slices/searchSlice';
 
 interface SiderLogoProps {
   isSiderCollapsed: boolean;

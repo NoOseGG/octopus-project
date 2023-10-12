@@ -11,6 +11,8 @@ import SubjectVacancies from '@app/components/dashboards/subject-info-dashboard/
 import SubjectLegalForms from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
 import SubjectLicenses from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
+import SubjectIceTradeLiquidPlot from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIcaTradeCustomer/SubjectIceTradeLiquidPlot';
+import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIcaTradeCustomer/SubjectIceTradeCustomer';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -47,6 +49,14 @@ const SubjectInfo: React.FC = () => {
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             <SubjectLegalForms legalForms={profile.legal_forms} />
             <SubjectLicenses licenses={profile.licenses} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+            {Boolean(profile.icetrade_customer.length) && (
+              <SubjectIceTradeLiquidPlot icetrade_customer={profile.icetrade_customer} />
+            )}
+            {Boolean(profile.icetrade_customer.length) && (
+              <SubjectIceTradeCustomer icetrade_customer={profile.icetrade_customer} />
+            )}
           </div>
         </>
       )}

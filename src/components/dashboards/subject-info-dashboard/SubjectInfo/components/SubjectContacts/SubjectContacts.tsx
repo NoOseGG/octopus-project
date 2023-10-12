@@ -1,10 +1,10 @@
 import React from 'react';
 import { Address, Emails, Phone, WebSite } from '@app/store/types/Subject';
 import { Card } from 'antd';
-import SubjectEmails from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContactsTest/SubjectEmails/SubjectEmails';
-import SubjectPhones from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContactsTest/SubjectPhones/SubjectPhones';
-import SubjectAddresses from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContactsTest/SubjectAddresses/SubjectAddresses';
-import SubjectWebSites from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContactsTest/SubjectWebSites/SubjectWebSites';
+import SubjectPhones from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectPhones/SubjectPhones';
+import SubjectAddresses from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectAddresses/SubjectAddresses';
+import SubjectWebSites from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectWebSites/SubjectWebSites';
+import SubjectEmails from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectEmails/SubjectEmails';
 
 type MyComponentProps = {
   emails: Emails[];

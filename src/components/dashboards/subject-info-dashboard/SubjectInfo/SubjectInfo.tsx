@@ -4,15 +4,19 @@ import { doSearchProfile } from '@app/store/slices/searchProfileSlice';
 import styles from './SubjectInfo.module.css';
 import { Spin } from 'antd';
 import styled from 'styled-components';
-import SubjectMainContentTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectMainContentTest/SubjectMainContentTest';
-import SubjectEmailsTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContactsTest/SubjectContactsTest';
+import SubjectMainContentTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
+import SubjectEmailsTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectContacts';
 import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxOffices/SubjectTaxOffices';
 import SubjectVacancies from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectVacancies/SubjectVacancies';
 import SubjectLegalForms from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
 import SubjectLicenses from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
-import SubjectIceTradeLiquidPlot from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIcaTradeCustomer/SubjectIceTradeLiquidPlot';
-import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIcaTradeCustomer/SubjectIceTradeCustomer';
+import SubjectIceTradeLiquidPlot from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTradeCustomer/SubjectIceTradeLiquidPlot';
+import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTradeCustomer/SubjectIceTradeCustomer';
+import SubjectStatus from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStatus/SubjectStatus';
+import SubjectStatusType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStatusType/SubjectStatusType';
+import SubjectCountry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCountry/SubjectCountry';
+import SubjectTypeActivity from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTypeActivity/SubjectTypeActivity';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -56,6 +60,14 @@ const SubjectInfo: React.FC = () => {
             )}
             {Boolean(profile.icetrade_customer.length) && (
               <SubjectIceTradeCustomer icetrade_customer={profile.icetrade_customer} />
+            )}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+            {Boolean(profile.statuses.length) && <SubjectStatus statuses={profile.statuses} />}
+            {Boolean(profile.statuses_types.length) && <SubjectStatusType statusesType={profile.statuses_types} />}
+            {Boolean(profile.countries.length) && <SubjectCountry countries={profile.countries} />}
+            {Boolean(profile.types_activities.length) && (
+              <SubjectTypeActivity typeActivities={profile.types_activities} />
             )}
           </div>
         </>

@@ -343,19 +343,19 @@ export interface IceTradeCustomer {
   okrb_code: string | null;
 }
 
-// export interface IceTradeParticipant extends IceTradeCustomer {
+// export interface IceTradeParticipant extends SubjectIceTradeCustomer {
 //   test: string | null;
 // }
 //
-// export interface IceTradeOtherParticipant extends IceTradeCustomer {
+// export interface IceTradeOtherParticipant extends SubjectIceTradeCustomer {
 //   test: string | null;
 // }
 //
-// export interface IceTradeOrganizerNegotiations extends IceTradeCustomer {
+// export interface IceTradeOrganizerNegotiations extends SubjectIceTradeCustomer {
 //   test: string | null;
 // }
 //
-// export interface IceTradeOrganizer extends IceTradeCustomer {
+// export interface IceTradeOrganizer extends SubjectIceTradeCustomer {
 //   test: string | null;
 // }
 

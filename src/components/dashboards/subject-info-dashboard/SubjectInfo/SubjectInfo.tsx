@@ -94,7 +94,10 @@ const SubjectInfo: React.FC = () => {
               <SubjectGiasBlackList giasBlackList={profile.gias_black_list} />
             )}
           </div>
-          <div>{Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlan={profile.gias_plan} />}</div>
+          <div>
+            style={{ marginTop: 10 }}
+            {Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlan={profile.gias_plan} />}
+          </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.gias_complaint_submit.length) && (
               <SubjectGiasCompaintSubmit giasComplaintSubmit={profile.gias_complaint_submit} />
@@ -103,7 +106,7 @@ const SubjectInfo: React.FC = () => {
               <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 10 }}>
             {Boolean(profile.government_inspection.length) && (
               <SubjectGovernmentInspection governmentInspection={profile.government_inspection} />
             )}

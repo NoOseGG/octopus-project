@@ -24,6 +24,7 @@ import SubjectGiasBlackList from '@app/components/dashboards/subject-info-dashbo
 import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan';
 import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintSubmit';
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
+import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -100,6 +101,11 @@ const SubjectInfo: React.FC = () => {
             )}
             {Boolean(profile.gias_complaint_receive.length) && (
               <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
+            )}
+          </div>
+          <div>
+            {Boolean(profile.government_inspection.length) && (
+              <SubjectGovernmentInspection governmentInspection={profile.government_inspection} />
             )}
           </div>
         </>

@@ -9,6 +9,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
+import ChangeLog from '@app/components/dashboards/changelog-dashboard/ChangeLog/ChangeLog';
 
 const ChangeLogPage: React.FC = () => {
   const { isTablet, isDesktop } = useResponsive();
@@ -31,7 +32,7 @@ const ChangeLogPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol id="desktop-content">
-        <S.ChangeLog>ChangeLog</S.ChangeLog>
+        <ChangeLog />
         <References />
       </S.LeftSideCol>
     </Row>

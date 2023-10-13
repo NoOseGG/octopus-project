@@ -57,7 +57,7 @@ const SubjectInfo: React.FC = () => {
             />
             <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
           </div>
-          <SubjectVacancies vacancies={profile.vacancy} />
+          {Boolean(profile.vacancy.length) && <SubjectVacancies vacancies={profile.vacancy} />}
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}

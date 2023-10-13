@@ -18,6 +18,8 @@ const ChangeLog: React.FC = () => {
             <li>о способах создания/ликвидации</li>
             <li>о виде деятельности</li>
             <li>о стране</li>
+            <li>о ГИАС</li>
+            <li>о проверках субъектов государственными органами</li>
           </ul>
         </li>
         <li>В форме регистрации изменено описание.</li>
@@ -30,9 +32,10 @@ export default ChangeLog;
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: start;
 `;
 
 const Title = styled.div`

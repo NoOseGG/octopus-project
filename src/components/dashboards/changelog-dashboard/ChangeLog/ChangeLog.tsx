@@ -4,13 +4,13 @@ import styled from 'styled-components';
 const ChangeLog: React.FC = () => {
   return (
     <Container>
-      <Title>Список изменений</Title>
+      <Title>Журнал изменений</Title>
 
       <Version>1.0.1</Version>
       <VersionDate>13.10.2023</VersionDate>
       <ul>
         <li>Добавлена таблица с закупками IceTrade, с диагромой процентов успешных закупок.</li>
-        <li>Удалено поле "Помни меня" в форме авторизации.</li>
+        <li>Удалено поле &quot;Помни меня&quot; в форме авторизации.</li>
         <li>
           Добавленны данные:
           <ul style={{ paddingLeft: 20 }}>
@@ -22,15 +22,6 @@ const ChangeLog: React.FC = () => {
         </li>
         <li>В форме регистрации изменено описание.</li>
       </ul>
-      {/*<Timeline>*/}
-      {/*  <Timeline.Item>Добавлена таблица с закупками IceTrade, с диагромой процентов успешных закупок.</Timeline.Item>*/}
-      {/*  <Timeline.Item>Удалено поле "Помни меня" в форме авторизации.</Timeline.Item>*/}
-      {/*  <Timeline.Item>В форме регистрации изменено описание.</Timeline.Item>*/}
-      {/*  <Timeline.Item>*/}
-      {/*    Добавленны данные: данные о статусе, о способах создания/ликвидации, о виде деятельности, о стране*/}
-      {/*    регистрации, из торгового реестра.*/}
-      {/*  </Timeline.Item>*/}
-      {/*</Timeline>*/}
     </Container>
   );
 };

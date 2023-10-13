@@ -18,6 +18,12 @@ import SubjectStatusType from '@app/components/dashboards/subject-info-dashboard
 import SubjectCountry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCountry/SubjectCountry';
 import SubjectTypeActivity from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTypeActivity/SubjectTypeActivity';
 import SubjectCommercialRegister from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCommercialRegister/SubjectCommercialRegister';
+import SubjectGiasAccreditedCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasAccreditedCustomer';
+import SubjectGiasAccreditedParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasAccreditedParticipant';
+import SubjectGiasBlackList from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasBlackList';
+import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan';
+import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintSubmit';
+import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 
 const SubjectInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.search.unn);
@@ -74,6 +80,26 @@ const SubjectInfo: React.FC = () => {
           <div>
             {Boolean(profile.commercial_register.length) && (
               <SubjectCommercialRegister commercialRegisters={profile.commercial_register} />
+            )}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+            {Boolean(profile.gias_accredited_customer.length) && (
+              <SubjectGiasAccreditedCustomer giasAccreditedCustomer={profile.gias_accredited_customer} />
+            )}
+            {Boolean(profile.gias_accredited_participant.length) && (
+              <SubjectGiasAccreditedParticipant giasAccreditedPaticipant={profile.gias_accredited_participant} />
+            )}
+            {Boolean(profile.gias_black_list.length) && (
+              <SubjectGiasBlackList giasBlackList={profile.gias_black_list} />
+            )}
+          </div>
+          <div>{Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlan={profile.gias_plan} />}</div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+            {Boolean(profile.gias_complaint_submit.length) && (
+              <SubjectGiasCompaintSubmit giasComplaintSubmit={profile.gias_complaint_submit} />
+            )}
+            {Boolean(profile.gias_complaint_receive.length) && (
+              <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
             )}
           </div>
         </>

@@ -94,8 +94,7 @@ const SubjectInfo: React.FC = () => {
               <SubjectGiasBlackList giasBlackList={profile.gias_black_list} />
             )}
           </div>
-          <div>
-            style={{ marginTop: 10 }}
+          <div style={{ marginTop: 10 }}>
             {Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlan={profile.gias_plan} />}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>

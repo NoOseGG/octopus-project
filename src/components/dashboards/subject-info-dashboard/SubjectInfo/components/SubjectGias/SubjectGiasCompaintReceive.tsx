@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { GiasComplaintReceive } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   giasComplaintReceive: GiasComplaintReceive[];
@@ -11,7 +12,10 @@ const SubjectGiasCompaintReceive: React.FC<MyComponentProps> = ({ giasComplaintR
   return (
     <Card title="Реестр жалоб ГИАС которые отправлял субъект" style={{ width: '100%' }}>
       {giasComplaintReceive[0].from_dttm && (
-        <DataField name="Дата и время размещения жалобы на ЭТП" content={giasComplaintReceive[0].from_dttm} />
+        <DataField
+          name="Дата и время размещения жалобы на ЭТП"
+          content={formatDate(giasComplaintReceive[0].from_dttm)}
+        />
       )}
       {giasComplaintReceive[0].reg_number && (
         <DataField name="Реестровый номер жалобы" content={giasComplaintReceive[0].reg_number} />
@@ -32,16 +36,22 @@ const SubjectGiasCompaintReceive: React.FC<MyComponentProps> = ({ giasComplaintR
         <DataField name="Форма тендера" content={giasComplaintReceive[0].tender_form} />
       )}
       {giasComplaintReceive[0].suspend_from_dttm && (
-        <DataField name="Начала срока приостановления закупки" content={giasComplaintReceive[0].suspend_to_dttm} />
+        <DataField
+          name="Начала срока приостановления закупки"
+          content={formatDate(giasComplaintReceive[0].suspend_to_dttm)}
+        />
       )}
       {giasComplaintReceive[0].suspend_to_dttm && (
-        <DataField name="Окончание срока приостановления закупки" content={giasComplaintReceive[0].suspend_to_dttm} />
+        <DataField
+          name="Окончание срока приостановления закупки"
+          content={formatDate(giasComplaintReceive[0].suspend_to_dttm)}
+        />
       )}
       {giasComplaintReceive[0].review_dttm && (
-        <DataField name="Дата и время рассмотрения жалобы" content={giasComplaintReceive[0].review_dttm} />
+        <DataField name="Дата и время рассмотрения жалобы" content={formatDate(giasComplaintReceive[0].review_dttm)} />
       )}
       {giasComplaintReceive[0].redeployment_dttm && (
-        <DataField name="Дата и время начала торгов" content={giasComplaintReceive[0].redeployment_dttm} />
+        <DataField name="Дата и время начала торгов" content={formatDate(giasComplaintReceive[0].redeployment_dttm)} />
       )}
       {giasComplaintReceive[0].complaint_file_url && (
         <DataField name="Ссылка на документ жалобы" content={giasComplaintReceive[0].complaint_file_url} />
@@ -50,7 +60,10 @@ const SubjectGiasCompaintReceive: React.FC<MyComponentProps> = ({ giasComplaintR
         <DataField name="Описание отмены жалобы" content={giasComplaintReceive[0].withdrawal_complaint_descr} />
       )}
       {giasComplaintReceive[0].withdrawal_complaint_dttm && (
-        <DataField name="Дата и время отмены жалобы" content={giasComplaintReceive[0].withdrawal_complaint_dttm} />
+        <DataField
+          name="Дата и время отмены жалобы"
+          content={formatDate(giasComplaintReceive[0].withdrawal_complaint_dttm)}
+        />
       )}
       {giasComplaintReceive[0].complaint_refuse_url && (
         <DataField

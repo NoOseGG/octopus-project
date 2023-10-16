@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateTransformate } from '@app/utils/utils';
+import { dateTransformate, formatDate } from '@app/utils/utils';
 import { SubjectType } from '@app/store/types/Subject';
 import { Card, Typography } from 'antd';
 
@@ -28,7 +28,7 @@ const SubjectMainContent: React.FC<MyComponentProps> = ({ subject }) => {
       {subject.date_reg_egr && (
         <>
           <Text strong={true}>Дата регистрации в ЕГР: </Text>
-          <Text>{subject.date_reg_egr}</Text>
+          <Text>{formatDate(subject.date_reg_egr)}</Text>
           <br />
         </>
       )}

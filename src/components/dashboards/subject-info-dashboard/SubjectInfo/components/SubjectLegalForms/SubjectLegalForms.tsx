@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
 import { LegalForm } from '@app/store/types/Subject';
+import { formatDate } from '@app/utils/utils';
 
 const { Text } = Typography;
 
@@ -59,13 +60,15 @@ const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
           {Boolean(legalForms[0].from_dttm) && (
             <>
               {' '}
-              <Text strong={true}>Дата начала действия: </Text> <Text>{legalForms[0].from_dttm}</Text> <br />{' '}
+              <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(legalForms[0].from_dttm)}</Text>{' '}
+              <br />{' '}
             </>
           )}
           {Boolean(legalForms[0].to_dttm) && (
             <>
               {' '}
-              <Text strong={true}>Дата окончания действия: </Text> <Text>{legalForms[0].to_dttm}</Text> <br />{' '}
+              <Text strong={true}>Дата окончания действия: </Text> <Text>{formatDate(legalForms[0].to_dttm)}</Text>{' '}
+              <br />{' '}
             </>
           )}
         </>

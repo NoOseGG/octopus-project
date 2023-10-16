@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
 import { GiasAccreditedParticipant } from '@app/store/types/Subject';
+import { formatDate } from '@app/utils/utils';
 
 const { Text } = Typography;
 
@@ -13,13 +14,15 @@ const SubjectGiasAccreditedParticipant: React.FC<MyComponentProps> = ({ giasAccr
     <Card title="Реестр ГИАС аккредитованных участников" style={{ width: '100%' }}>
       {giasAccreditedPaticipant[0].from_dttm && (
         <>
-          <Text strong={true}>Дата включения в реестр: </Text> <Text>{giasAccreditedPaticipant[0].from_dttm}</Text>
+          <Text strong={true}>Дата включения в реестр: </Text>{' '}
+          <Text>{formatDate(giasAccreditedPaticipant[0].from_dttm)}</Text>
           <br />
         </>
       )}
       {giasAccreditedPaticipant[0].to_dttm && (
         <>
-          <Text strong={true}>Дата исключения из реестра: </Text> <Text>{giasAccreditedPaticipant[0].to_dttm}</Text>
+          <Text strong={true}>Дата исключения из реестра: </Text>{' '}
+          <Text>{formatDate(giasAccreditedPaticipant[0].to_dttm)}</Text>
           <br />
         </>
       )}

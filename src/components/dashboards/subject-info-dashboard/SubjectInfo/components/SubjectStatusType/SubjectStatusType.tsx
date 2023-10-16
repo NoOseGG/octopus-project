@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
 import { StatusType } from '@app/store/types/Subject';
+import { formatDate } from '@app/utils/utils';
 
 const { Text } = Typography;
 
@@ -31,13 +32,13 @@ const SubjectStatusType: React.FC<MyComponentProps> = ({ statusesType }) => {
       )}
       {statusesType[0].from_dttm && (
         <>
-          <Text strong={true}>Дата начала действия: </Text> <Text>{statusesType[0].from_dttm}</Text>
+          <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(statusesType[0].from_dttm)}</Text>
           <br />
         </>
       )}
       {statusesType[0].to_dttm && (
         <>
-          <Text strong={true}>Дата окончания действия: </Text> <Text>{statusesType[0].to_dttm}</Text>
+          <Text strong={true}>Дата окончания действия: </Text> <Text>{formatDate(statusesType[0].to_dttm)}</Text>
           <br />
         </>
       )}

@@ -2,6 +2,7 @@ import React from 'react';
 import { GovernmentInspection } from '@app/store/types/Subject';
 import { Card } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   governmentInspection: GovernmentInspection[];
@@ -36,7 +37,7 @@ const SubjectGovernmentInspection: React.FC<MyComponentProps> = ({ governmentIns
         <DataField name="Основание для назначения проверки" content={governmentInspection[0].reason} />
       )}
       {governmentInspection[0].from_dttm && (
-        <DataField name="Дата начала проверки" content={governmentInspection[0].from_dttm} />
+        <DataField name="Дата начала проверки" content={formatDate(governmentInspection[0].from_dttm)} />
       )}
     </Card>
   );

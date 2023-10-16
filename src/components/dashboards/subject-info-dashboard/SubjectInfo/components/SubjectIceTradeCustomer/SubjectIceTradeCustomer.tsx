@@ -4,16 +4,22 @@ import ColumnGroup from 'antd/es/table/ColumnGroup';
 import Column from 'antd/es/table/Column';
 import styled from 'styled-components';
 import { Table } from 'antd';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   icetrade_customer: IceTradeCustomer[];
 };
 
 const SubjectIceTradeCustomer: React.FC<MyComponentProps> = ({ icetrade_customer }) => {
+  const newIceTradeCustomer = icetrade_customer.map((vacancy) => ({
+    ...vacancy,
+    request_end: `${formatDate(vacancy.request_end)}`,
+  }));
+
   return (
     <>
       <TableStyle
-        dataSource={icetrade_customer}
+        dataSource={newIceTradeCustomer}
         bordered={true}
         size={'small'}
         tableLayout={'fixed'}

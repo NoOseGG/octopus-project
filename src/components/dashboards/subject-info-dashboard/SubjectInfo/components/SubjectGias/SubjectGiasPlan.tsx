@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { GiasPlan } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   giasPlan: GiasPlan[];
@@ -10,7 +11,9 @@ type MyComponentProps = {
 const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasPlan }) => {
   return (
     <Card title="Реестр ГИАС планы закупок" style={{ width: '100%' }}>
-      {giasPlan[0].from_dttm && <DataField name="Дата и время размещения в ГИАС" content={giasPlan[0].from_dttm} />}
+      {giasPlan[0].from_dttm && (
+        <DataField name="Дата и время размещения в ГИАС" content={formatDate(giasPlan[0].from_dttm)} />
+      )}
       {giasPlan[0].plan_version && <DataField name="Версия плана" content={giasPlan[0].plan_version} />}
       {giasPlan[0].identification_number && (
         <DataField

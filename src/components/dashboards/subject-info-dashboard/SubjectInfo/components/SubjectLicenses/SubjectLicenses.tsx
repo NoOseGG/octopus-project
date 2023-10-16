@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
 import { License } from '@app/store/types/Subject';
+import { formatDate } from '@app/utils/utils';
 
 const { Text } = Typography;
 
@@ -46,7 +47,7 @@ const SubjectLicenses: React.FC<MyComponentProps> = ({ licenses }) => {
           {Boolean(licenses[0].from_dttm) && (
             <>
               {' '}
-              <Text strong={true}>Дата начала действия: </Text> <Text>{licenses[0].from_dttm}</Text> <br />{' '}
+              <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(licenses[0].from_dttm)}</Text> <br />{' '}
             </>
           )}
         </>

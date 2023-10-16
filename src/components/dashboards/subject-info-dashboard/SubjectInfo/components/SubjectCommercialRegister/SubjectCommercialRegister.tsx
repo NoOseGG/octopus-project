@@ -3,6 +3,7 @@ import { Card } from 'antd';
 import { CommercialRegister } from '@app/store/types/Subject';
 import CommercialField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCommercialRegister/CommercialField';
 import styled from 'styled-components';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   commercialRegisters: CommercialRegister[];
@@ -12,7 +13,7 @@ const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegis
   return (
     <Card title={<Title>Данные из торгового реестра</Title>} style={{ display: 'grid', marginTop: 10 }}>
       {Boolean(commercialRegisters[0].from_dttm) && (
-        <CommercialField name={'Дата включения в реестр'} content={commercialRegisters[0].from_dttm} />
+        <CommercialField name={'Дата включения в реестр'} content={formatDate(commercialRegisters[0].from_dttm)} />
       )}
       {Boolean(commercialRegisters[0].reg_num) && (
         <CommercialField name={'Регистрационный номер в Торговом реестре'} content={commercialRegisters[0].reg_num} />
@@ -117,7 +118,7 @@ const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegis
         />
       )}
       {Boolean(commercialRegisters[0].to_dttm) && (
-        <CommercialField name={'Дата исключения из реестра'} content={commercialRegisters[0].to_dttm} />
+        <CommercialField name={'Дата исключения из реестра'} content={formatDate(commercialRegisters[0].to_dttm)} />
       )}
     </Card>
   );

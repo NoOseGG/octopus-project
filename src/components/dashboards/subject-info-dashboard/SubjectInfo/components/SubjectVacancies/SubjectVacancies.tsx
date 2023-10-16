@@ -74,7 +74,7 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
         {selectedVacancy && (
           <Descriptions title={<Title>{selectedVacancy.vacancy_name}</Title>} column={6} size={'middle'} bordered>
             <Descriptions.Item label="Дата публикации" span={2}>
-              {selectedVacancy.from_dttm}
+              {formatDate(selectedVacancy.from_dttm)}
             </Descriptions.Item>
             <Descriptions.Item label="Группа занятий" span={2}>
               {selectedVacancy.class_group}

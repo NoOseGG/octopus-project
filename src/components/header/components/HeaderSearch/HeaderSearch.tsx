@@ -49,7 +49,7 @@ export const HeaderSearch: React.FC = () => {
       dispatch(doSearch(query));
       navigate('/');
     }
-  }, [query]);
+  }, [query, dispatch]);
 
   return (
     <>

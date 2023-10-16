@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FilterIcon } from 'components/common/icons/FilterIcon';
 import { SearchOverlay } from './searchOverlay/SearchOverlay/SearchOverlay';
 import { HeaderActionWrapper } from '@app/components/header/Header.styles';
@@ -6,7 +6,6 @@ import { CategoryComponents } from '@app/components/header/components/HeaderSear
 import { Btn, InputSearch } from '../HeaderSearch/HeaderSearch.styles';
 import { useTranslation } from 'react-i18next';
 import { Dropdown } from '@app/components/common/Dropdown/Dropdown';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
 
 interface SearchOverlayProps {
   query: string;

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as S from './ProfileOverlay.styles';
 import { DropdownMenu } from '@app/components/header/Header.styles';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { doLogout } from '@app/store/slices/authSlice';
 
 export const ProfileOverlay: React.FC = ({ ...props }) => {
   const { t } = useTranslation();

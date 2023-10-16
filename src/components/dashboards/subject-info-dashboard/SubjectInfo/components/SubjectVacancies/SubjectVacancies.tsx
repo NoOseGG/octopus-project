@@ -28,9 +28,23 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
     <>
       <TableStyle dataSource={newVacancies} bordered={true} size={'small'} tableLayout={'fixed'}>
         <ColumnGroup title="Вакансии">
-          <Column title="Название вакансии" dataIndex="vacancy_name" key="vacancy_name" />
+          <Column
+            title="Название вакансии"
+            dataIndex="vacancy_name"
+            key="vacancy_name"
+            sorter={(a: { vacancy_name: string }, b: { vacancy_name: string }) =>
+              a.vacancy_name.localeCompare(b.vacancy_name)
+            }
+          />
           <Column title="Дата публикации вакансии" dataIndex="from_dttm" key="from_dttm" />
-          <Column title="Режим работы" dataIndex="working_hours" key="working_hours" />
+          <Column
+            title="Режим работы"
+            dataIndex="working_hours"
+            key="working_hours"
+            sorter={(a: { working_hours: string }, b: { working_hours: string }) =>
+              a.working_hours.localeCompare(b.working_hours)
+            }
+          />
           <Column
             title="Заработная плата"
             dataIndex="min_salary_byn"

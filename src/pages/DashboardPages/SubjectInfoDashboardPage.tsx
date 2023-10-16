@@ -3,7 +3,6 @@ import { Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
-import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
 import { notificationController } from '@app/controllers/notificationController';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,6 @@ import SubjectInfo from '@app/components/dashboards/subject-info-dashboard/Subje
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 
 const SubjectInfoDashboardPage: React.FC = () => {
-  const { isTablet, isDesktop } = useResponsive();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -39,7 +37,7 @@ const SubjectInfoDashboardPage: React.FC = () => {
     </Row>
   );
 
-  const mobileAndTabletLayout = <Row gutter={[20, 20]}></Row>;
+  // const mobileAndTabletLayout = <Row gutter={[20, 20]}></Row>;
 
   return (
     <>

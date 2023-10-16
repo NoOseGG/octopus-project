@@ -1,10 +1,9 @@
 import React from 'react';
-import { Organization, setSubjectUnn } from '@app/store/slices/searchSlice';
+import { Organization } from '@app/store/slices/searchSlice';
 import { Badge, Descriptions } from 'antd';
 import styled from 'styled-components';
 import styles from '@app/components/dashboards/analytix-dashboard/subjectsList/subject-item/SubjectItem.module.css';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { SUBJECT_INFO_DASHBOARD_PATH } from '@app/components/router/AppRouter';
 import { useResponsive } from '@app/hooks/useResponsive';
 
@@ -14,17 +13,12 @@ type MyComponentProps = {
 
 const SubjectItem: React.FC<MyComponentProps> = ({ subject }) => {
   const { isTablet, mobileOnly } = useResponsive();
-  const dispatch = useAppDispatch();
   const status = subject.status_code === 'AT' ? 'success' : 'error';
-
-  const handleClick = (subUnn: string) => {
-    dispatch(setSubjectUnn(subUnn));
-  };
 
   return (
     <>
       {isTablet && (
-        <Link className={styles.link} to={SUBJECT_INFO_DASHBOARD_PATH} onClick={() => handleClick(subject.unn)}>
+        <Link className={styles.link} to={`${SUBJECT_INFO_DASHBOARD_PATH}/${subject.unn}`}>
           <Container>
             <Descriptions title={<Title>{subject.full_name}</Title>} column={4} size={'middle'} bordered>
               <Descriptions.Item label="УНП" span={2}>

@@ -4,6 +4,7 @@ import { doSearchProfile } from '@app/store/slices/searchProfileSlice';
 import styles from './SubjectInfo.module.css';
 import { Spin } from 'antd';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import SubjectMainContentTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
 import SubjectEmailsTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectContacts';
 import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxOffices/SubjectTaxOffices';
@@ -27,12 +28,18 @@ import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 
 const SubjectInfo: React.FC = () => {
-  const unn = useAppSelector((state) => state.search.unn);
+  const { unn } = useParams();
   const { profile, loading, error } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doSearchProfile(unn));
+    try {
+      if (typeof unn === 'string') {
+        dispatch(doSearchProfile(unn));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }, [unn, dispatch]);
 
   return (

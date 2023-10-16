@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Row } from 'antd';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
-import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './DashboardPage.styles';
 import SubjectsList from '@app/components/dashboards/analytix-dashboard/subjectsList/SubjectsList';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,6 @@ import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 import { useTranslation } from 'react-i18next';
 
 const AnalytixDashboardPage: React.FC = () => {
-  const { isDesktop } = useResponsive();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -41,7 +39,7 @@ const AnalytixDashboardPage: React.FC = () => {
     </Row>
   );
 
-  const mobileAndTabletLayout = <Row gutter={[20, 24]}></Row>;
+  // const mobileAndTabletLayout = <Row gutter={[20, 24]}></Row>;
 
   return (
     <>

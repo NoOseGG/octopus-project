@@ -14,9 +14,9 @@ import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
 import ProfileLayout from '@app/components/profile/ProfileLayout';
 import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
-import NftDashboardPage from '@app/pages/DashboardPages/AnalytixDashboardPage';
 import SubjectInfoDashboardPage from '@app/pages/DashboardPages/SubjectInfoDashboardPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
+import AnalytixDashboardPage from '@app/pages/DashboardPages/AnalytixDashboardPage';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -31,8 +31,8 @@ export const ANALYTIC_DASHBOARD_PATH = '/';
 export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
 export const CHANGE_LOG_PATH = '/change-log';
 
-const MedicalDashboard = withLoading(SubjectInfoDashboardPage);
-const NftDashboard = withLoading(NftDashboardPage);
+const SubjectInfoDashboard = withLoading(SubjectInfoDashboardPage);
+const AnalytixDashboard = withLoading(AnalytixDashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
 
 const ServerError = withLoading(ServerErrorPage);
@@ -58,8 +58,8 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ANALYTIC_DASHBOARD_PATH} element={protectedLayout}>
-          <Route index element={<NftDashboard />} />
-          <Route path={SUBJECT_INFO_DASHBOARD_PATH} element={<MedicalDashboard />} />
+          <Route index element={<AnalytixDashboard />} />
+          <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfoDashboard />} />
           <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />

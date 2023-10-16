@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Modal, Table, Typography } from 'antd';
 import { formatDate, formatPhoneNumber } from '@app/utils/utils';
 import { ColumnsType } from 'antd/es/table';
-import { MODAL_WIDTH } from '@app/constants/Constants';
+import { MODAL_WIDTH_SMALL } from '@app/constants/Constants';
 
 type MyComponentProps = {
   phones: Phone[];
@@ -44,7 +44,7 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
         </>
       )}
       {Boolean(newPhones.length) && (
-        <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null} width={MODAL_WIDTH}>
+        <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null} width={MODAL_WIDTH_SMALL}>
           <div>
             <Table columns={columns} dataSource={newPhones}></Table>
           </div>

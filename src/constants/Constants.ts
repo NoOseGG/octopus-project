@@ -39,4 +39,6 @@ export const TOKEN_NAME = 'Welcome';
 
 // SubjectInfo
 
-export const MODAL_WIDTH = 700;
+export const MODAL_WIDTH_SMALL = 700;
+export const MODAL_WIDTH_MIDDLE = 1000;
+export const MODAL_WIDTH_BIG = 1400;

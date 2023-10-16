@@ -6,7 +6,7 @@ const ChangeLog: React.FC = () => {
     <Container>
       <Title>Журнал изменений</Title>
 
-      <Version>1.0.2</Version>
+      <Version>0.1.1</Version>
       <VersionDate>16.10.2023</VersionDate>
       <ul>
         <li>Исправлена ошибка, когда приложение получало ошибку при обновлении страницы информации о субъекте.</li>
@@ -21,7 +21,7 @@ const ChangeLog: React.FC = () => {
         <li>Переработано окно отображения всех телефонов.</li>
       </ul>
 
-      <Version>1.0.1</Version>
+      <Version>0.1.0</Version>
       <VersionDate>13.10.2023</VersionDate>
       <ul>
         <li>Добавлена таблица с закупками IceTrade, с диагромой процентов успешных закупок.</li>

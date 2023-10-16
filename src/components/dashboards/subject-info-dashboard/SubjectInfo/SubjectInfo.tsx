@@ -26,6 +26,7 @@ import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/S
 import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintSubmit';
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
+import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -112,9 +113,12 @@ const SubjectInfo: React.FC = () => {
               <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
             )}
           </div>
-          <div style={{ marginTop: 10 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.government_inspection.length) && (
               <SubjectGovernmentInspection governmentInspection={profile.government_inspection} />
+            )}
+            {Boolean(profile.constituent_doc.length) && (
+              <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
             )}
           </div>
         </>

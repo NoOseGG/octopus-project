@@ -36,6 +36,7 @@ export interface SubjectType {
   iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
   iceTradeOrganizer: IceTradeOrganizer[];
   government_inspection: GovernmentInspection[];
+  constituent_doc: ConstituentDoc[];
 }
 
 export interface Emails {
@@ -494,11 +495,25 @@ export interface IceTradeOrganizer {
 }
 
 export interface GovernmentInspection {
-  legal_entity_id_gov: string;
-  legal_entity_id_gov_name: string;
-  plan_type: string;
-  state_body: string;
-  plan_name: string;
-  reason: string;
-  from_dttm: string;
+  legal_entity_id_gov: string | null;
+  legal_entity_id_gov_name: string | null;
+  plan_type: string | null;
+  state_body: string | null;
+  plan_name: string | null;
+  reason: string | null;
+  from_dttm: string | null;
+}
+
+export interface ConstituentDoc {
+  event_name: string | null;
+  from_dttm: string | null;
+  to_dttm: string | null;
+  doc_dttm: string | null;
+  doc_num: string | null;
+  state_body_decision: string | null;
+  state_body: string | null;
+  reason: string | null;
+  addition: string | null;
+  term_decision: string | null;
+  decision_num: string | null;
 }

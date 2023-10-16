@@ -49,6 +49,7 @@ const initialState: SubjectState = {
     iceTradeOrganizer: [],
     iceTradeOrganizerNegotiations: [],
     government_inspection: [],
+    constituent_doc: [],
   },
   loading: false,
   error: false,

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Phone } from '@app/store/types/Subject';
 import { Link } from 'react-router-dom';
-import { Modal, Typography } from 'antd';
+import { Modal, Table, Typography } from 'antd';
+import { formatDate, formatPhoneNumber } from '@app/utils/utils';
+import { ColumnsType } from 'antd/es/table';
+import { MODAL_WIDTH } from '@app/constants/Constants';
 
 type MyComponentProps = {
   phones: Phone[];
@@ -11,6 +14,12 @@ const { Text } = Typography;
 
 const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const newPhones = phones.map((phone) => ({
+    ...phone,
+    from_dttm: `${formatDate(phone.from_dttm)}`,
+    to_dttm: `${formatDate(phone.to_dttm)}`,
+  }));
 
   const success = () => {
     setModalVisible(true);
@@ -22,10 +31,10 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
 
   return (
     <>
-      {Boolean(phones.length) && (
+      {Boolean(newPhones.length) && (
         <>
           <Text strong={true}>Телефон: </Text> <Text copyable={{ tooltips: false }}>{phones[0].phone_number}</Text>
-          {phones.length > 1 && (
+          {newPhones.length > 1 && (
             <Link to="#" onClick={success}>
               {' '}
               ({phones.length})
@@ -34,15 +43,10 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
           <br />
         </>
       )}
-      {Boolean(phones.length) && (
-        <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null}>
+      {Boolean(newPhones.length) && (
+        <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null} width={MODAL_WIDTH}>
           <div>
-            {phones.map((phone, index) => (
-              <React.Fragment key={index}>
-                <Text key={index} copyable={{ tooltips: false }}>{`${phone.phone_number}`}</Text>
-                <br />
-              </React.Fragment>
-            ))}
+            <Table columns={columns} dataSource={newPhones}></Table>
           </div>
         </Modal>
       )}
@@ -51,3 +55,26 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
 };
 
 export default SubjectPhones;
+
+const columns: ColumnsType<Phone> = [
+  {
+    title: 'Телефон',
+    dataIndex: 'phone_number',
+    key: 'phone_number',
+    render: (text) => (
+      <Text strong={true} copyable={{ tooltips: false }}>
+        {formatPhoneNumber(text)}
+      </Text>
+    ),
+  },
+  {
+    title: 'Дата начала действия',
+    dataIndex: 'from_dttm',
+    key: 'from_dttm',
+  },
+  {
+    title: 'Дата окончания действия',
+    dataIndex: 'to_dttm',
+    key: 'to_dttm',
+  },
+];

@@ -36,3 +36,7 @@ URLS.SEARCH = `${URLS.BASE}profile_search/`;
 URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
 
 export const TOKEN_NAME = 'Welcome';
+
+// SubjectInfo
+
+export const MODAL_WIDTH = 700;

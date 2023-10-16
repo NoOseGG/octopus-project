@@ -217,7 +217,7 @@ export const dateTransformForRegistration = (dateString: string): string => {
 
 export function formatDate(dateString: string | null): string | null {
   if (dateString === null) {
-    return null; // Если дата равна null, вернем тоже null
+    return ''; // Если дата равна null, вернем тоже null
   }
 
   const date = new Date(dateString);
@@ -230,4 +230,13 @@ export function formatDate(dateString: string | null): string | null {
   const year = date.getFullYear().toString(); // Преобразуем год
 
   return `${day}.${month}.${year}`;
+}
+
+export function formatPhoneNumber(phoneNumber: string): string {
+  if (!phoneNumber.match(/^\d{12}$/)) {
+    return phoneNumber;
+  }
+
+  const formattedNumber = phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
+  return formattedNumber;
 }

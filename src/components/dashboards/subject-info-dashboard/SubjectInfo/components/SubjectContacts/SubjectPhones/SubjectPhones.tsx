@@ -46,7 +46,7 @@ const SubjectPhones: React.FC<MyComponentProps> = ({ phones }) => {
       {Boolean(newPhones.length) && (
         <Modal title="Телефоны" visible={modalVisible} onCancel={handleCancel} footer={null} width={MODAL_WIDTH_SMALL}>
           <div>
-            <Table columns={columns} dataSource={newPhones}></Table>
+            <Table columns={columns} dataSource={newPhones} pagination={{ size: 'small' }}></Table>
           </div>
         </Modal>
       )}

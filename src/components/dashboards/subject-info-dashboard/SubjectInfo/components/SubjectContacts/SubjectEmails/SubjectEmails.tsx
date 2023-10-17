@@ -51,7 +51,7 @@ const SubjectEmails: React.FC<MyComponentProps> = ({ emails }) => {
           width={MODAL_WIDTH_SMALL}
         >
           <div>
-            <Table columns={columns} dataSource={newEmails}></Table>
+            <Table columns={columns} dataSource={newEmails} pagination={{ size: 'small' }}></Table>
           </div>
         </Modal>
       )}

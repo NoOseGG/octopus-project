@@ -43,7 +43,7 @@ const SubjectAddresses: React.FC<MyComponentProps> = ({ addresses }) => {
       {Boolean(newAddresses.length) && (
         <Modal title="Адреса" visible={modalVisible} onCancel={handleCancel} footer={null} width={'auto'}>
           <div>
-            <Table columns={columns} dataSource={newAddresses}></Table>
+            <Table columns={columns} dataSource={newAddresses} pagination={{ size: 'small' }}></Table>
           </div>
         </Modal>
       )}

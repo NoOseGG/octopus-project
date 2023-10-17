@@ -72,7 +72,11 @@ const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegis
       title={<Title>Данные из торгового реестра</Title>}
       style={{ display: 'grid', marginTop: 10 }}
       extra={
-        !isTable && <ShowAll onClick={handleClick}>Показать все данные - {newCommercialRegister.length} шт.</ShowAll>
+        !isTable ? (
+          <ShowAll onClick={handleClick}>Показать все данные - {newCommercialRegister.length} шт.</ShowAll>
+        ) : (
+          <ShowAll onClick={handleClick}>Назад</ShowAll>
+        )
       }
     >
       {!isTable && selectedCommercial !== null && <SingleCommercialRegister commercialRegister={selectedCommercial} />}

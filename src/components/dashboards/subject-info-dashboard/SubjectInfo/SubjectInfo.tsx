@@ -115,7 +115,7 @@ const SubjectInfo: React.FC = () => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.government_inspection.length) && (
-              <SubjectGovernmentInspection governmentInspection={profile.government_inspection} />
+              <SubjectGovernmentInspection governmentInspections={profile.government_inspection} />
             )}
             {Boolean(profile.constituent_doc.length) && (
               <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />

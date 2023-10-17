@@ -26,7 +26,7 @@ const SubjectStatus: React.FC<MyComponentProps> = ({ statuses }) => {
       )}
       {statuses[0].description && (
         <>
-          <Text strong={true}>statuses[0]: </Text> <Text>{statuses[0].description}</Text>
+          <Text strong={true}>Описание: </Text> <Text>{statuses[0].description}</Text>
           <br />
         </>
       )}

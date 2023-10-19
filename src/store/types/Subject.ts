@@ -213,8 +213,8 @@ export interface CommercialRegister {
 export interface GiasAccreditedCustomer {
   from_dttm: string | null;
   to_dttm: string | null;
-  is_customer: string | null;
-  is_organizer: string | null;
+  is_customer: boolean | null;
+  is_organizer: boolean | null;
   departmental_affiliation: string | null;
 }
 export interface GiasAccreditedParticipant {

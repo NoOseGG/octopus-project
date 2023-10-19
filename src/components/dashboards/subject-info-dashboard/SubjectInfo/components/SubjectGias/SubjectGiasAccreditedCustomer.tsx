@@ -26,15 +26,18 @@ const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasAccredi
           <br />
         </>
       )}
-      {giasAccreditedCustomer[0].is_customer && (
+      {Boolean(giasAccreditedCustomer[0].is_customer) && (
         <>
-          <Text strong={true}>Является или нет поставщиком: </Text> <Text>{giasAccreditedCustomer[0].is_customer}</Text>
+          <Text strong={true}>Является или нет поставщиком: </Text>{' '}
+          {giasAccreditedCustomer[0].is_customer ? <Text>Да</Text> : <Text>Нет</Text>}
+          <Text>{giasAccreditedCustomer[0].is_customer}</Text>
           <br />
         </>
       )}
-      {giasAccreditedCustomer[0].is_organizer && (
+      {Boolean(giasAccreditedCustomer[0].is_organizer) && (
         <>
           <Text strong={true}>Является или нет заказчиком: </Text> <Text>{giasAccreditedCustomer[0].is_organizer}</Text>
+          {giasAccreditedCustomer[0].is_organizer ? <Text>Да</Text> : <Text>Нет</Text>}
           <br />
         </>
       )}

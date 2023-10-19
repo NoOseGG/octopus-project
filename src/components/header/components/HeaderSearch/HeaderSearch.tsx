@@ -46,7 +46,7 @@ export const HeaderSearch: React.FC = () => {
 
   useEffect(() => {
     if (query.length >= 3) {
-      dispatch(doSearch(query));
+      dispatch(doSearch(query.trim()));
       navigate('/');
     }
   }, [query, dispatch]);

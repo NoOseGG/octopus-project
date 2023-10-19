@@ -35,6 +35,7 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
             sorter={(a: { vacancy_name: string }, b: { vacancy_name: string }) =>
               a.vacancy_name.localeCompare(b.vacancy_name)
             }
+            showSorterTooltip={false}
           />
           <Column title="Дата публикации вакансии" dataIndex="from_dttm" key="from_dttm" />
           <Column
@@ -44,6 +45,7 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
             sorter={(a: { working_hours: string }, b: { working_hours: string }) =>
               a.working_hours.localeCompare(b.working_hours)
             }
+            showSorterTooltip={false}
           />
           <Column
             title="Заработная плата"
@@ -52,6 +54,7 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
             sorter={(a: { min_salary_byn: string }, b: { min_salary_byn: string }) =>
               parseSalaryForSort(a.min_salary_byn) - parseSalaryForSort(b.min_salary_byn)
             }
+            showSorterTooltip={false}
           />
           <Column
             title="Действия"

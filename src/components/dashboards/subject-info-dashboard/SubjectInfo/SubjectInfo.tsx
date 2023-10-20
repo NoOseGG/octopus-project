@@ -113,10 +113,12 @@ const SubjectInfo: React.FC = () => {
               <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
             )}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
             {Boolean(profile.government_inspection.length) && (
               <SubjectGovernmentInspection governmentInspections={profile.government_inspection} />
             )}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
             {Boolean(profile.constituent_doc.length) && (
               <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
             )}

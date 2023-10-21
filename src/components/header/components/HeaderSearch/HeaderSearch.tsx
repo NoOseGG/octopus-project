@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { SearchDropdown } from '../searchDropdown/SearchDropdown';
 import { Button } from '@app/components/common/buttons/Button/Button';
@@ -9,6 +9,7 @@ import * as S from './HeaderSearch.styles';
 import { doSearch } from '@app/store/slices/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
+import _ from 'lodash';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -44,12 +45,19 @@ export const HeaderSearch: React.FC = () => {
     setOverlayVisible(false);
   }, [pathname]);
 
+  const delaySearch = useCallback(
+    _.debounce((query: string) => {
+      dispatch(doSearch(query));
+    }, 500),
+    [dispatch],
+  );
+
   useEffect(() => {
-    if (query.length >= 3) {
-      dispatch(doSearch(query.trim()));
+    if (query.trim().length >= 3) {
+      delaySearch(query);
       navigate('/');
     }
-  }, [query, dispatch]);
+  }, [query]);
 
   return (
     <>

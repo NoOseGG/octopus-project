@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, Typography } from 'antd';
+import { Card } from 'antd';
 import { GiasAccreditedCustomer } from '@app/store/types/Subject';
 import { formatDate } from '@app/utils/utils';
-
-const { Text } = Typography;
+import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 
 type MyComponentProps = {
   giasAccreditedCustomer: GiasAccreditedCustomer[];
@@ -12,42 +11,22 @@ type MyComponentProps = {
 const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasAccreditedCustomer }) => {
   return (
     <Card title="Реестр ГИАС аккредитованных заказчиков" style={{ width: '100%' }}>
-      {giasAccreditedCustomer[0].from_dttm && (
-        <>
-          <Text strong={true}>Дата включения в реестр: </Text>{' '}
-          <Text>{formatDate(giasAccreditedCustomer[0].from_dttm)}</Text>
-          <br />
-        </>
+      <DataField name={'Дата включения в реестр'} content={formatDate(giasAccreditedCustomer[0].from_dttm)} />
+      <DataField name={'Дата исключения из реестра'} content={formatDate(giasAccreditedCustomer[0].to_dttm)} />
+      {giasAccreditedCustomer[0].is_customer ? (
+        <DataField name={'Является или нет поставщиком'} content={'Да'} />
+      ) : (
+        <DataField name={'Является или нет поставщиком'} content={'Нет'} />
       )}
-      {giasAccreditedCustomer[0].to_dttm && (
-        <>
-          <Text strong={true}>Дата исключения из реестра: </Text>{' '}
-          <Text>{formatDate(giasAccreditedCustomer[0].to_dttm)}</Text>
-          <br />
-        </>
+      {giasAccreditedCustomer[0].is_organizer ? (
+        <DataField name={'Является или нет заказчиком'} content={'Да'} />
+      ) : (
+        <DataField name={'Является или нет заказчиком'} content={'Нет'} />
       )}
-      {Boolean(giasAccreditedCustomer[0].is_customer) && (
-        <>
-          <Text strong={true}>Является или нет поставщиком: </Text>{' '}
-          {giasAccreditedCustomer[0].is_customer ? <Text>Да</Text> : <Text>Нет</Text>}
-          <Text>{giasAccreditedCustomer[0].is_customer}</Text>
-          <br />
-        </>
-      )}
-      {Boolean(giasAccreditedCustomer[0].is_organizer) && (
-        <>
-          <Text strong={true}>Является или нет заказчиком: </Text> <Text>{giasAccreditedCustomer[0].is_organizer}</Text>
-          {giasAccreditedCustomer[0].is_organizer ? <Text>Да</Text> : <Text>Нет</Text>}
-          <br />
-        </>
-      )}
-      {giasAccreditedCustomer[0].departmental_affiliation && (
-        <>
-          <Text strong={true}>Ведомственная принадлежность: </Text>
-          <Text>{giasAccreditedCustomer[0].departmental_affiliation}</Text>
-          <br />
-        </>
-      )}
+      <DataField
+        name={'Ведомственная принадлежность'}
+        content={formatDate(giasAccreditedCustomer[0].departmental_affiliation)}
+      />
     </Card>
   );
 };

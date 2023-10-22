@@ -26,7 +26,7 @@ import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-d
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
-import SubjectTaxes from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/SubjectTaxes/SubjectTaxes';
+import SubjectTaxes from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxes';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();

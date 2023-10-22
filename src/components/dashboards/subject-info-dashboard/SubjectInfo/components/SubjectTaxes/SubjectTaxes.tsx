@@ -1,8 +1,8 @@
 import React from 'react';
 import { TaxOffice, TaxOfficeArrea } from '@app/store/types/Subject';
 import { Tabs } from 'antd';
-import SubjectTaxOfficesArrears from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxOfficesArrears/SubjectTaxOfficesArrears';
-import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxOffices/SubjectTaxOffices';
+import SubjectTaxOfficesArrears from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxOfficesArrears/SubjectTaxOfficesArrears';
+import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxOffices/SubjectTaxOffices';
 
 type MyComponentProps = {
   taxOffices: TaxOffice[];

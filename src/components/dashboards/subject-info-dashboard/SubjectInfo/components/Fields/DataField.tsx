@@ -13,7 +13,8 @@ const DataField: React.FC<MyComponentProps> = ({ name, content }) => {
     <>
       {content && (
         <>
-          <Text strong={true}>{name}</Text> <Text>{content}</Text>
+          <Text strong={true}>{`${name}: `}</Text>
+          <Text>{content}</Text>
           <br />
         </>
       )}

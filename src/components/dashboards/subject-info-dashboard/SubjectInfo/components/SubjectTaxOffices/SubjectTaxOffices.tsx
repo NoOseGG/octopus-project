@@ -1,26 +1,30 @@
 import React from 'react';
-import { TaxOffice, TaxOfficeArrea } from '@app/store/types/Subject';
-import { Card, Typography } from 'antd';
+import { TaxOffice } from '@app/store/types/Subject';
+import { Card } from 'antd';
+import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   taxOffices: TaxOffice[];
-  taxOfficesArea: TaxOfficeArrea[];
 };
 
-const { Text } = Typography;
+const SubjectTaxOffices: React.FC<MyComponentProps> = ({ taxOffices }) => {
+  const newTaxOffices = taxOffices.map((taxOffice) => ({
+    ...taxOffice,
+    from_dttm: `${formatDate(taxOffice.from_dttm)}`,
+    to_dttm: `${formatDate(taxOffice.to_dttm)}`,
+  }));
 
-const SubjectTaxOffices: React.FC<MyComponentProps> = ({ taxOffices, taxOfficesArea }) => {
   return (
-    <Card title="ИМНС" style={{ width: '100%' }}>
-      {Boolean(taxOffices.length) && (
+    <Card style={{ width: '100%' }}>
+      {Boolean(newTaxOffices.length) && (
         <>
-          <Text strong={true}>Данные о ИМНС: </Text> <Text>{taxOffices[0].name}</Text>
-        </>
-      )}
-      <br />
-      {Boolean(taxOfficesArea.length) && (
-        <>
-          <Text strong={true}>Данные о задолженностях ИМНС: </Text> <Text>{taxOfficesArea[0].name}</Text>
+          <DataField name="Код" content={newTaxOffices[0].code} />
+          <DataField name="Наимменвание" content={newTaxOffices[0].name} />
+          <DataField name="Код региона" content={newTaxOffices[0].region_code} />
+          <DataField name="Название региона" content={newTaxOffices[0].region_name} />
+          <DataField name="Дата начала действия" content={newTaxOffices[0].from_dttm} />
+          <DataField name="Дата окончания действия" content={newTaxOffices[0].to_dttm} />
         </>
       )}
     </Card>

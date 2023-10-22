@@ -11,8 +11,12 @@ type MyComponentProps = {
 const DataField: React.FC<MyComponentProps> = ({ name, content }) => {
   return (
     <>
-      <Text strong={true}>{name}</Text> <Text>{content}</Text>
-      <br />
+      {content && (
+        <>
+          <Text strong={true}>{name}</Text> <Text>{content}</Text>
+          <br />
+        </>
+      )}
     </>
   );
 };

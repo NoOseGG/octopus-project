@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import SubjectMainContentTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
 import SubjectEmailsTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectContacts';
-import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxOffices/SubjectTaxOffices';
 import SubjectVacancies from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectVacancies/SubjectVacancies';
 import SubjectLegalForms from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
@@ -27,6 +26,7 @@ import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-d
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
+import SubjectTaxes from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/SubjectTaxes/SubjectTaxes';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -63,7 +63,7 @@ const SubjectInfo: React.FC = () => {
               addresses={profile.addresses}
               webSites={profile.web_sites}
             />
-            <SubjectTaxOffices taxOffices={profile.tax_offices} taxOfficesArea={profile.tax_offices_arrears} />
+            <SubjectTaxes taxOffices={profile.tax_offices} taxOfficesArrears={profile.tax_offices_arrears} />
           </div>
           {Boolean(profile.vacancy.length) && <SubjectVacancies vacancies={profile.vacancy} />}
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>

@@ -21,7 +21,6 @@ const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegis
   }));
 
   const handleClick = () => {
-    console.log(isTable);
     setIsTable(!isTable);
   };
 

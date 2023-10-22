@@ -8,13 +8,17 @@ type MyComponentProps = {
   content: string | number | null;
 };
 
-const DataField: React.FC<MyComponentProps> = ({ name, content }) => {
+const DataFieldUrl: React.FC<MyComponentProps> = ({ name, content }) => {
   return (
     <>
       {Boolean(content) && (
         <>
           <Text strong={true}>{`${name}: `}</Text>
-          <Text>{content}</Text>
+          {typeof content === 'string' && (
+            <a href={content} target="_blank" rel="noreferrer">
+              {content}
+            </a>
+          )}
           <br />
         </>
       )}
@@ -22,4 +26,4 @@ const DataField: React.FC<MyComponentProps> = ({ name, content }) => {
   );
 };
 
-export default DataField;
+export default DataFieldUrl;

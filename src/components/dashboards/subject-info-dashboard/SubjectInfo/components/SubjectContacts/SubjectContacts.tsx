@@ -15,12 +15,16 @@ type MyComponentProps = {
 
 const SubjectContacts: React.FC<MyComponentProps> = ({ emails, phones, addresses, webSites }) => {
   return (
-    <Card title="Контакты" style={{ width: '100%' }}>
-      <SubjectEmails emails={emails} />
-      <SubjectPhones phones={phones} />
-      <SubjectAddresses addresses={addresses} />
-      <SubjectWebSites webSites={webSites} />
-    </Card>
+    <>
+      {Boolean(emails.length) && Boolean(phones.length) && Boolean(addresses.length) && Boolean(webSites.length) && (
+        <Card title="Контакты" style={{ width: '100%' }}>
+          <SubjectEmails emails={emails} />
+          <SubjectPhones phones={phones} />
+          <SubjectAddresses addresses={addresses} />
+          <SubjectWebSites webSites={webSites} />
+        </Card>
+      )}
+    </>
   );
 };
 

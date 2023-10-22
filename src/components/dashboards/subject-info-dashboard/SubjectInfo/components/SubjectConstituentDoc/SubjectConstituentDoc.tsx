@@ -34,14 +34,16 @@ const SubjectConstituentDoc: React.FC<MyComponentProps> = ({ constituent_doc }) 
         />
         <DataField name={'Номер решения'} content={constituent_doc[index].decision_num} />
       </Card>
-      <Pagination
-        style={{ alignSelf: 'center' }}
-        defaultCurrent={1}
-        total={constituent_doc.length}
-        defaultPageSize={1}
-        size={'small'}
-        onChange={(page) => handleClick(page)}
-      />
+      {Boolean(constituent_doc.length > 1) && (
+        <Pagination
+          style={{ alignSelf: 'center' }}
+          defaultCurrent={1}
+          total={constituent_doc.length}
+          defaultPageSize={1}
+          size={'small'}
+          onChange={(page) => handleClick(page)}
+        />
+      )}
     </Container>
   );
 };

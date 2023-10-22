@@ -1,80 +1,57 @@
-import React from 'react';
-import { Card, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Card, Pagination } from 'antd';
 import { LegalForm } from '@app/store/types/Subject';
 import { formatDate } from '@app/utils/utils';
-
-const { Text } = Typography;
+import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import styled from 'styled-components';
 
 type MyComponentProps = {
   legalForms: LegalForm[];
 };
 
 const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
+  const [index, setIndex] = useState(0);
+
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
+
   return (
-    <Card title="Данные о орг.правовой форме" style={{ width: '100%' }}>
+    <Container>
       {Boolean(legalForms.length) && (
         <>
-          {Boolean(legalForms[0].form_type) && (
-            <>
-              {' '}
-              <Text strong={true}>Код: </Text> <Text>{legalForms[0].form_type}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].form_code) && (
-            <>
-              {' '}
-              <Text strong={true}>Тип:</Text> <Text>{legalForms[0].form_code}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].name) && (
-            <>
-              {' '}
-              <Text strong={true}>Наименование: </Text> <Text>{legalForms[0].name}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].description) && (
-            <>
-              {' '}
-              <Text strong={true}>Описание: </Text> <Text>{legalForms[0].description}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].exclusion_date) && (
-            <>
-              {' '}
-              <Text strong={true}>Дата исключения из ОКРБ 019-2013: </Text> <Text>{legalForms[0].exclusion_date}</Text>{' '}
-              <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].exception_description) && (
-            <>
-              {' '}
-              <Text strong={true}>Описание исключения: </Text> <Text>{legalForms[0].exception_description}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].entity_type) && (
-            <>
-              {' '}
-              <Text strong={true}>Тип субъекта: </Text> <Text>{legalForms[0].entity_type}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].from_dttm) && (
-            <>
-              {' '}
-              <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(legalForms[0].from_dttm)}</Text>{' '}
-              <br />{' '}
-            </>
-          )}
-          {Boolean(legalForms[0].to_dttm) && (
-            <>
-              {' '}
-              <Text strong={true}>Дата окончания действия: </Text> <Text>{formatDate(legalForms[0].to_dttm)}</Text>{' '}
-              <br />{' '}
-            </>
+          <Card title="Данные о орг.правовой форме" style={{ width: '100%' }}>
+            <DataField name={'Код'} content={legalForms[index].form_type} />
+            <DataField name={'Тип'} content={legalForms[index].form_code} />
+            <DataField name={'Наименование'} content={legalForms[index].name} />
+            <DataField name={'Описание'} content={legalForms[index].description} />
+            <DataField name={'Дата исключения из ОКРБ 019-2013'} content={legalForms[index].exclusion_date} />
+            <DataField name={'Описание исключения'} content={legalForms[index].exception_description} />
+            <DataField name={'Тип субъекта'} content={legalForms[index].entity_type} />
+            <DataField name={'Дата начала действия'} content={formatDate(legalForms[index].from_dttm)} />
+            <DataField name={'legalForms[index].from_dttm'} content={formatDate(legalForms[index].to_dttm)} />
+          </Card>
+          {Boolean(legalForms.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={legalForms.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
           )}
         </>
       )}
-    </Card>
+    </Container>
   );
 };
 
 export default SubjectLegalForms;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

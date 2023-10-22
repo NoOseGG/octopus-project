@@ -3,7 +3,7 @@ import { WebSite } from '@app/store/types/Subject';
 import { Link } from 'react-router-dom';
 import { Modal, Table, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { formatDate, formatPhoneNumber } from '@app/utils/utils';
+import { formatDate } from '@app/utils/utils';
 
 type MyComponentProps = {
   webSites: WebSite[];
@@ -30,17 +30,13 @@ const SubjectWebSites: React.FC<MyComponentProps> = ({ webSites }) => {
 
   return (
     <>
-      {Boolean(webSites.length) && (
+      {Boolean(newWebSites.length) && (
         <>
-          <Text strong={true}>Электронная почта: </Text>{' '}
-          {webSites[0].url ? (
-            <Link to={webSites[0].url} target="_blank">
-              {webSites[0].url}
-            </Link>
-          ) : (
-            <Link to="#" target="_blank">
-              {webSites[0].url}
-            </Link>
+          <Text strong={true}>Веб-сайт: </Text>{' '}
+          {newWebSites[0].url && (
+            <a href={`http://${webSites[0].url}`} target="_blank" rel="noreferrer">
+              {newWebSites[0].url}
+            </a>
           )}
           {newWebSites.length > 1 && (
             <Link to="#" onClick={success}>
@@ -70,9 +66,9 @@ const columns: ColumnsType<WebSite> = [
     dataIndex: 'url',
     key: 'url',
     render: (webSite) => (
-      <Link to={webSite.url} target="_blank">
-        {formatPhoneNumber(webSite)}
-      </Link>
+      <a href={`http://${webSite[0].url}`} target="_blank" rel="noreferrer">
+        {webSite}
+      </a>
     ),
   },
   {

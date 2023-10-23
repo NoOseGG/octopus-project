@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TaxOffice } from '@app/store/types/Subject';
-import { Card } from 'antd';
+import { Card, Pagination } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
-import { formatDate } from '@app/utils/utils';
+import styled from 'styled-components';
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 
 type MyComponentProps = {
   taxOffices: TaxOffice[];
 };
 
 const SubjectTaxOffices: React.FC<MyComponentProps> = ({ taxOffices }) => {
-  const newTaxOffices = taxOffices.map((taxOffice) => ({
-    ...taxOffice,
-    from_dttm: `${formatDate(taxOffice.from_dttm)}`,
-    to_dttm: `${formatDate(taxOffice.to_dttm)}`,
-  }));
+  const [index, setIndex] = useState(0);
+
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
 
   return (
-    <Card style={{ width: '100%' }}>
-      {Boolean(newTaxOffices.length) && (
+    <Container>
+      {Boolean(taxOffices.length) && (
         <>
-          <DataField name="Код" content={newTaxOffices[0].code} />
-          <DataField name="Наимменвание" content={newTaxOffices[0].name} />
-          <DataField name="Код региона" content={newTaxOffices[0].region_code} />
-          <DataField name="Название региона" content={newTaxOffices[0].region_name} />
-          <DataField name="Дата начала действия" content={newTaxOffices[0].from_dttm} />
-          <DataField name="Дата окончания действия" content={newTaxOffices[0].to_dttm} />
+          <Card style={{ width: '100%' }}>
+            <DataField name="Код" content={taxOffices[index].code} />
+            <DataField name="Наимменвание" content={taxOffices[index].name} />
+            <DataField name="Код региона" content={taxOffices[index].region_code} />
+            <DataField name="Название региона" content={taxOffices[index].region_name} />
+            <DataFieldDate name="Дата начала действия" content={taxOffices[index].from_dttm} />
+            <DataFieldDate name="Дата окончания действия" content={taxOffices[index].to_dttm} />
+          </Card>
+          {Boolean(taxOffices.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={taxOffices.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
+          )}
         </>
       )}
-    </Card>
+    </Container>
   );
 };
 
 export default SubjectTaxOffices;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

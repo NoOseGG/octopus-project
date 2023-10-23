@@ -16,7 +16,7 @@ type MyComponentProps = {
 const SubjectContacts: React.FC<MyComponentProps> = ({ emails, phones, addresses, webSites }) => {
   return (
     <>
-      {Boolean(emails.length) && Boolean(phones.length) && Boolean(addresses.length) && Boolean(webSites.length) && (
+      {(Boolean(emails.length) || Boolean(phones.length) || Boolean(addresses.length) || Boolean(webSites.length)) && (
         <Card title="Контакты" style={{ width: '100%' }}>
           <SubjectEmails emails={emails} />
           <SubjectPhones phones={phones} />

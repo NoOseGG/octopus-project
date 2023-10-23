@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TaxOfficeArrea } from '@app/store/types/Subject';
-import { Card } from 'antd';
+import { Card, Pagination } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
-import { formatDate } from '@app/utils/utils';
+import styled from 'styled-components';
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 
 type MyComponentProps = {
   taxOfficesArrears: TaxOfficeArrea[];
 };
 
 const SubjectTaxOfficesArrears: React.FC<MyComponentProps> = ({ taxOfficesArrears }) => {
-  const newTaxOfficesArrears = taxOfficesArrears.map((taxOfficeArrea) => ({
-    ...taxOfficeArrea,
-    from_dttm: `${formatDate(taxOfficeArrea.from_dttm)}`,
-    to_dttm: `${formatDate(taxOfficeArrea.to_dttm)}`,
-  }));
+  const [index, setIndex] = useState(0);
+
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
 
   return (
-    <Card style={{ width: '100%' }}>
-      {Boolean(newTaxOfficesArrears.length) && (
+    <Container>
+      {Boolean(taxOfficesArrears.length) && (
         <>
-          <DataField name="Код" content={newTaxOfficesArrears[0].code} />
-          <DataField name="Наимменвание" content={newTaxOfficesArrears[0].name} />
-          <DataField name="Код региона" content={newTaxOfficesArrears[0].region_code} />
-          <DataField name="Название региона" content={newTaxOfficesArrears[0].region_name} />
-          <DataField name="Дата начала действия" content={newTaxOfficesArrears[0].from_dttm} />
-          <DataField name="Дата окончания действия" content={newTaxOfficesArrears[0].to_dttm} />
+          <Card style={{ width: '100%' }}>
+            <DataField name="Код" content={taxOfficesArrears[index].code} />
+            <DataField name="Наимменвание" content={taxOfficesArrears[index].name} />
+            <DataField name="Код региона" content={taxOfficesArrears[index].region_code} />
+            <DataField name="Название региона" content={taxOfficesArrears[index].region_name} />
+            <DataFieldDate name="Дата начала действия" content={taxOfficesArrears[index].from_dttm} />
+            <DataFieldDate name="Дата окончания действия" content={taxOfficesArrears[index].to_dttm} />
+          </Card>
+          {Boolean(taxOfficesArrears.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={taxOfficesArrears.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
+          )}
         </>
       )}
-    </Card>
+    </Container>
   );
 };
 
 export default SubjectTaxOfficesArrears;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
 import { LegalForm } from '@app/store/types/Subject';
-import { formatDate } from '@app/utils/utils';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import styled from 'styled-components';
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 
 type MyComponentProps = {
   legalForms: LegalForm[];
@@ -28,8 +28,8 @@ const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
             <DataField name={'Дата исключения из ОКРБ 019-2013'} content={legalForms[index].exclusion_date} />
             <DataField name={'Описание исключения'} content={legalForms[index].exception_description} />
             <DataField name={'Тип субъекта'} content={legalForms[index].entity_type} />
-            <DataField name={'Дата начала действия'} content={formatDate(legalForms[index].from_dttm)} />
-            <DataField name={'Дата окончания действия'} content={formatDate(legalForms[index].to_dttm)} />
+            <DataFieldDate name={'Дата начала действия'} content={legalForms[index].from_dttm} />
+            <DataFieldDate name={'Дата окончания действия'} content={legalForms[index].to_dttm} />
           </Card>
           {Boolean(legalForms.length > 1) && (
             <Pagination

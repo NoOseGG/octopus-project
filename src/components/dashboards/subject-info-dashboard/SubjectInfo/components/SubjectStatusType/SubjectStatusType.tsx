@@ -1,49 +1,53 @@
-import React from 'react';
-import { Card, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Card, Pagination } from 'antd';
 import { StatusType } from '@app/store/types/Subject';
-import { formatDate } from '@app/utils/utils';
-
-const { Text } = Typography;
+import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
+import styled from 'styled-components';
 
 type MyComponentProps = {
   statusesType: StatusType[];
 };
 
 const SubjectStatusType: React.FC<MyComponentProps> = ({ statusesType }) => {
+  const [index, setIndex] = useState(0);
+
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
+
   return (
-    <Card title="Данные о способах создания/ликвидации" style={{ width: '100%' }}>
-      {statusesType[0].status_code && (
+    <Container>
+      {Boolean(statusesType.length) && (
         <>
-          <Text strong={true}>Код: </Text> <Text>{statusesType[0].status_code}</Text>
-          <br />
+          <Card title="Данные о способах создания/ликвидации" style={{ width: '100%' }}>
+            <DataField name="Код" content={statusesType[index].status_code} />
+            <DataField name="Наименование" content={statusesType[index].name} />
+            <DataField name="Код типа" content={statusesType[index].type_code} />
+            <DataFieldDate name="Дата начала действия" content={statusesType[index].from_dttm} />
+            <DataFieldDate name="Дата окончания действия" content={statusesType[index].to_dttm} />
+          </Card>
+          {Boolean(statusesType.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={statusesType.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
+          )}
         </>
       )}
-      {statusesType[0].name && (
-        <>
-          <Text strong={true}>Наименование: </Text> <Text>{statusesType[0].name}</Text>
-          <br />
-        </>
-      )}
-      {statusesType[0].type_code && (
-        <>
-          <Text strong={true}>Код типа: </Text> <Text>{statusesType[0].type_code}</Text>
-          <br />
-        </>
-      )}
-      {statusesType[0].from_dttm && (
-        <>
-          <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(statusesType[0].from_dttm)}</Text>
-          <br />
-        </>
-      )}
-      {statusesType[0].to_dttm && (
-        <>
-          <Text strong={true}>Дата окончания действия: </Text> <Text>{formatDate(statusesType[0].to_dttm)}</Text>
-          <br />
-        </>
-      )}
-    </Card>
+    </Container>
   );
 };
 
 export default SubjectStatusType;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

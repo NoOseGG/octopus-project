@@ -29,7 +29,7 @@ const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
             <DataField name={'Описание исключения'} content={legalForms[index].exception_description} />
             <DataField name={'Тип субъекта'} content={legalForms[index].entity_type} />
             <DataField name={'Дата начала действия'} content={formatDate(legalForms[index].from_dttm)} />
-            <DataField name={'legalForms[index].from_dttm'} content={formatDate(legalForms[index].to_dttm)} />
+            <DataField name={'Дата окончания действия'} content={formatDate(legalForms[index].to_dttm)} />
           </Card>
           {Boolean(legalForms.length > 1) && (
             <Pagination

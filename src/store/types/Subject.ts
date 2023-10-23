@@ -176,6 +176,7 @@ export interface Vacancy {
   addition: string | null;
   work_experience: string | null;
   accept_handicapped: string | null;
+  key_skill: string | null;
 }
 
 export interface CommercialRegister {

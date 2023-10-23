@@ -129,6 +129,9 @@ const SubjectVacancies: React.FC<MyComponentProps> = ({ vacancies }) => {
             <Descriptions.Item label="Дополнительная информация" span={6}>
               {selectedVacancy.addition}
             </Descriptions.Item>
+            <Descriptions.Item label="Ключевые навыки" span={6}>
+              {selectedVacancy.key_skill}
+            </Descriptions.Item>
           </Descriptions>
         )}
       </Modal>

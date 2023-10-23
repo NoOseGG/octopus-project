@@ -33,7 +33,7 @@ const SubjectIceTradeCustomer: React.FC<MyComponentProps> = ({ icetrade_customer
 
   return (
     <Card
-      title={<Title>Данные из торгового реестра</Title>}
+      title={<Title>Закупки IceTrade</Title>}
       style={{ display: 'grid', marginTop: 10, width: '100%' }}
       extra={
         !isTable ? (

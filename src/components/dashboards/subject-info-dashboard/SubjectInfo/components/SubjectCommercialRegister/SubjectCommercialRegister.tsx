@@ -11,14 +11,14 @@ type MyComponentProps = {
 };
 
 const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegisters }) => {
-  const [isTable, setIsTable] = useState(false);
-  const [selectedCommercial, setSelectedCommercial] = useState<CommercialRegister | null>(commercialRegisters[0]);
-
   const newCommercialRegister = commercialRegisters.map((commercialRegister) => ({
     ...commercialRegister,
     from_dttm: formatDate(commercialRegister.from_dttm),
     to_dttm: formatDate(commercialRegister.to_dttm),
   }));
+
+  const [isTable, setIsTable] = useState(false);
+  const [selectedCommercial, setSelectedCommercial] = useState<CommercialRegister | null>(newCommercialRegister[0]);
 
   const handleClick = () => {
     setIsTable(!isTable);

@@ -1,18 +1,18 @@
 import React from 'react';
 import { Liquid } from '@ant-design/charts';
-import { IceTradeCustomer } from '@app/store/types/Subject';
+import { IceTradeCustomer, IceTradeParticipant } from '@app/store/types/Subject';
 import { Typography } from 'antd';
 import styled from 'styled-components';
 
 const { Text } = Typography;
 
 type MyComponentProps = {
-  icetrade_customer: IceTradeCustomer[];
+  icetrade: IceTradeCustomer[] | IceTradeParticipant[];
 };
 
-const SubjectIceTradeLiquidPlot: React.FC<MyComponentProps> = ({ icetrade_customer }) => {
-  const countTrade = icetrade_customer.length;
-  const countSuccessTrade = icetrade_customer.filter((item) => item.lot_status === 'Закупка завершена').length;
+const SubjectIceTradeLiquidPlot: React.FC<MyComponentProps> = ({ icetrade }) => {
+  const countTrade = icetrade.length;
+  const countSuccessTrade = icetrade.filter((item) => item.lot_status === 'Закупка завершена').length;
   const percentTrade = countSuccessTrade / countTrade;
 
   const config = {

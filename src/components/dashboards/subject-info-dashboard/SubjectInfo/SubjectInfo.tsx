@@ -11,8 +11,6 @@ import SubjectVacancies from '@app/components/dashboards/subject-info-dashboard/
 import SubjectLegalForms from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
 import SubjectLicenses from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLicenses/SubjectLicenses';
-import SubjectIceTradeLiquidPlot from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTradeCustomer/SubjectIceTradeLiquidPlot';
-import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTradeCustomer/SubjectIceTradeCustomer';
 import SubjectStatus from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStatus/SubjectStatus';
 import SubjectStatusType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStatusType/SubjectStatusType';
 import SubjectCountry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCountry/SubjectCountry';
@@ -27,6 +25,7 @@ import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
 import SubjectTaxes from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxes';
+import SubjectIceTrade from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTrade';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -71,11 +70,17 @@ const SubjectInfo: React.FC = () => {
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20, marginTop: 10 }}>
+            {/*{Boolean(profile.icetrade_customer.length) && (*/}
+            {/*  <SubjectIceTradeLiquidPlot icetrade_customer={profile.icetrade_customer} />*/}
+            {/*)}*/}
             {Boolean(profile.icetrade_customer.length) && (
-              <SubjectIceTradeLiquidPlot icetrade_customer={profile.icetrade_customer} />
-            )}
-            {Boolean(profile.icetrade_customer.length) && (
-              <SubjectIceTradeCustomer icetrade_customer={profile.icetrade_customer} />
+              <SubjectIceTrade
+                icetrade_customer={profile.icetrade_customer}
+                icetrade_participant={profile.icetrade_participant}
+                icetrade_other_participant={profile.icetrade_participant}
+                icetrade_organizer_negotiations={profile.icetrade_organizer_negotiations}
+                icetrade_organizer={profile.icetrade_organizer}
+              />
             )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
@@ -119,9 +124,7 @@ const SubjectInfo: React.FC = () => {
             )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-            {Boolean(profile.constituent_doc.length) && (
-              <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
-            )}
+            <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
           </div>
         </>
       )}

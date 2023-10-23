@@ -31,10 +31,10 @@ export interface SubjectType {
   gias_complaint_submit: GiasComplaintSubmit[];
   gias_complaint_receive: GiasComplaintReceive[];
   icetrade_customer: IceTradeCustomer[];
-  iceTradeParticipant: IceTradeParticipant[];
-  iceTradeOtherParticipant: IceTradeOtherParticipant[];
-  iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
-  iceTradeOrganizer: IceTradeOrganizer[];
+  icetrade_participant: IceTradeParticipant[];
+  icetrade_other_participant: IceTradeOtherParticipant[];
+  icetrade_organizer_negotiations: IceTradeOrganizerNegotiations[];
+  icetrade_organizer: IceTradeOrganizer[];
   government_inspection: GovernmentInspection[];
   constituent_doc: ConstituentDoc[];
 }

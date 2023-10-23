@@ -1,14 +1,14 @@
 import React from 'react';
-import { IceTradeCustomer } from '@app/store/types/Subject';
+import { IceTradeCustomer, IceTradeParticipant } from '@app/store/types/Subject';
 import { formatDate } from '@app/utils/utils';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldUrl from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldUrl';
 
 type MyComponentProps = {
-  iceTradeCustomer: IceTradeCustomer;
+  iceTradeCustomer: IceTradeCustomer | IceTradeParticipant;
 };
 
-const SingleIceTradeCustomer: React.FC<MyComponentProps> = ({ iceTradeCustomer }) => {
+const SingleIceIceTrade: React.FC<MyComponentProps> = ({ iceTradeCustomer }) => {
   return (
     <>
       <DataField name={'Регистрационный номер приглашения'} content={formatDate(iceTradeCustomer.purchase_number)} />
@@ -68,4 +68,4 @@ const SingleIceTradeCustomer: React.FC<MyComponentProps> = ({ iceTradeCustomer }
   );
 };
 
-export default SingleIceTradeCustomer;
+export default SingleIceIceTrade;

@@ -42,10 +42,12 @@ const SubjectItem: React.FC<MyComponentProps> = ({ subject }) => {
       )}
 
       {mobileOnly && (
-        <Container>
-          <Title>{subject.full_name}</Title>
-          <div>УНП: ${subject.unn}</div>
-        </Container>
+        <Link className={styles.link} to={`${SUBJECT_INFO_DASHBOARD_PATH}/${subject.unn}`}>
+          <Container>
+            <Title>{subject.full_name}</Title>
+            <div>УНП: {subject.unn}</div>
+          </Container>
+        </Link>
       )}
     </>
   );

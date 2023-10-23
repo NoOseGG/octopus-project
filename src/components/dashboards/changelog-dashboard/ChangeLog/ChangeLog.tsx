@@ -1,69 +1,113 @@
 import React from 'react';
 import styled from 'styled-components';
+import MarkerList, {
+  MarkerType,
+} from '@app/components/dashboards/changelog-dashboard/ChangeLog/components/MarkerList/MarkerList';
 
 const ChangeLog: React.FC = () => {
   return (
     <Container>
       <Title>Журнал изменений</Title>
 
+      <Version>0.1.3</Version>
+      <VersionDate>__.10.2023</VersionDate>
+      <ul>
+        <MarkerList marker={MarkerType.ADD}>Добавлено поле &quot;ключевые навыки&quot; в вакансии.</MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлен баг, когда в каких-то случаях не отображались контакты.
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Исправлены ошибки в журнале изменений.</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена пагинация и отображение данных:
+          <ul style={{ paddingLeft: 20 }}>
+            <li>о налоговой инспекции;</li>
+            <li>о способах создания / ликвидации;</li>
+            <li>о статусе;</li>
+            <li>о видах деятельности.</li>
+          </ul>
+        </MarkerList>
+      </ul>
+
       <Version>0.1.2</Version>
       <VersionDate>22.10.2023</VersionDate>
       <ul>
-        <li>Переработано окно отображения всех адресов электронной почты, веб-сайтов и адресов.</li>
-        <li>Добавлена функция перехода на веб-сайт в новой вкладке при нажатии.</li>
-        <li>Добавлена возможность отображения всех данных из торгового реестра по нажатию кнопки.</li>
-        <li>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Изменено окно отображения всех адресов электронной почты, веб-сайтов и адресов.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена функция перехода на веб-сайт в новой вкладке при нажатии.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена возможность отображения всех данных из торгового реестра по нажатию кнопки.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавлена возможность отображения всех данных о проверках субъектов государственными органами по нажатию
           кнопки.
-        </li>
-        <li>Изменен размер меню навигации при отображении всех телефонов, адресов электронной почты и веб-сайтов.</li>
-        <li>Исправлена некорректная отрисовка поля в &quot;Данных о статусе&quot;.</li>
-        <li>Исправлена ошибка, когда пустое поле не отображалось.</li>
-        <li>Исправлена ошибка, которая препятствовала поиску при наличии лишних пробелов в начале или конце строки.</li>
-        <li>Удалены подсказки (тултипы) в таблице вакансий.</li>
-        <li>Изменена фоновая картинка на странице регистрации и авторизации.</li>
-        <li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Изменен размер меню навигации при отображении всех телефонов, адресов электронной почты и веб-сайтов.
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлена некорректная отрисовка поля в &quot;Данных о статусе&quot;.
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Исправлена ошибка, когда пустое поле не отображалось.</MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлена ошибка, которая препятствовала поиску при наличии лишних пробелов в начале или конце строки.
+        </MarkerList>
+        <MarkerList marker={MarkerType.DELETE}>Удалены подсказки (тултипы) в таблице вакансий.</MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Изменена фоновая картинка на странице регистрации и авторизации.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавлена задержка (debounce) для предотвращения дублирующих запросов на сервер при вводе в строку поиска.
-        </li>
-        <li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавлена пагинация и возможность отображения всех данных об изменениях, внесенных в учредительный документ.
-        </li>
-        <li>Добавлена пагинация и возможность отображения всех данных об организационно-правовой форме.</li>
-        <li>Переработано отображение данных о закупках (IceTrade).</li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена пагинация и возможность отображения всех данных об организационно-правовой форме.
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Изменено отображение данных о закупках (IceTrade).</MarkerList>
       </ul>
 
       <Version>0.1.1</Version>
       <VersionDate>16.10.2023</VersionDate>
       <ul>
-        <li>Исправлена ошибка, когда приложение получало ошибку при обновлении страницы информации о субъекте.</li>
-        <li>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлена ошибка, когда приложение получало ошибку при обновлении страницы информации о субъекте.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавлена в профиль о субъекте информация о &quot;Сведениях об изменениях, внесенных в учредительный
           документ&quot;.
-        </li>
-        <li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавлена сортировка в информацию по вакансиям по &quot;Названию вакансии&quot; и &quot;Режиму работы&quot;.
-        </li>
-        <li>Исправлен вывод данных, связанных с датой, в читабельный вид.</li>
-        <li>Переработано окно отображения всех телефонов.</li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлен вывод данных, связанных с датой, в читабельный вид.
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Изменено окно отображения всех телефонов.</MarkerList>
       </ul>
 
       <Version>0.1.0</Version>
       <VersionDate>13.10.2023</VersionDate>
       <ul>
-        <li>Добавлена таблица с закупками IceTrade, с диагромой процентов успешных закупок.</li>
-        <li>Удалено поле &quot;Помни меня&quot; в форме авторизации.</li>
-        <li>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена таблица с закупками IceTrade, с диагромой процентов успешных закупок.
+        </MarkerList>
+        <MarkerList marker={MarkerType.DELETE}>Удалено поле &quot;Помни меня&quot; в форме авторизации.</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
           Добавленны данные:
           <ul style={{ paddingLeft: 20 }}>
-            <li>о статусе</li>
-            <li>о способах создания/ликвидации</li>
-            <li>о виде деятельности</li>
-            <li>о стране</li>
-            <li>о ГИАС</li>
-            <li>о проверках субъектов государственными органами</li>
+            <li>о статусе;</li>
+            <li>о способах создания / ликвидации;</li>
+            <li>о виде деятельности;</li>
+            <li>о стране;</li>
+            <li>о ГИАС;</li>
+            <li>о проверках субъектов государственными органами;</li>
           </ul>
-        </li>
-        <li>В форме регистрации изменено описание.</li>
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Изменено описание в форме регистрации.</MarkerList>
       </ul>
     </Container>
   );

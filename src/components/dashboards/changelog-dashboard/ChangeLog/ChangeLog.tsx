@@ -38,6 +38,12 @@ const ChangeLog: React.FC = () => {
             <li>о включении в перечень повышенного риска правонарушений в экономической сфере.</li>
           </ul>
         </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлена ошибка неправильного отображения списка субъектов на тёмной теме.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлены все полные и сокращенные названия при наведении на иконку.
+        </MarkerList>
       </ul>
 
       <Version>0.1.2</Version>

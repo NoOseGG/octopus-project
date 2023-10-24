@@ -26,14 +26,16 @@ const SubjectCountry: React.FC<MyComponentProps> = ({ countries }) => {
             <DataFieldDate name="Дата начала действия" content={countries[index].from_dttm} />
             <DataFieldDate name="Дата окончания действия" content={countries[index].to_dttm} />
           </Card>
-          <Pagination
-            style={{ alignSelf: 'center' }}
-            defaultCurrent={1}
-            total={countries.length}
-            defaultPageSize={1}
-            size={'small'}
-            onChange={(page) => handleClick(page)}
-          />
+          {Boolean(countries.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={countries.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
+          )}
         </>
       )}
     </Container>

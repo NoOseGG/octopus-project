@@ -21,19 +21,19 @@ const SubjectItem: React.FC<MyComponentProps> = ({ subject }) => {
         <Link className={styles.link} to={`${SUBJECT_INFO_DASHBOARD_PATH}/${subject.unn}`}>
           <Container>
             <Descriptions title={<Title>{subject.full_name}</Title>} column={4} size={'middle'} bordered>
-              <Descriptions.Item label="УНП" span={2}>
+              <Descriptions.Item style={styleDescription} label="УНП" span={2}>
                 {subject.unn}
               </Descriptions.Item>
-              <Descriptions.Item label="Дата регистрации" span={2}>
+              <Descriptions.Item style={styleDescription} label="Дата регистрации" span={2}>
                 {subject.date_reg}
               </Descriptions.Item>
-              <Descriptions.Item label="Статусное имя" span={2}>
+              <Descriptions.Item style={styleDescription} label="Статусное имя" span={2}>
                 <Badge status={status} text={subject.status_name} />
               </Descriptions.Item>
-              <Descriptions.Item label="Статус код" span={2}>
+              <Descriptions.Item style={styleDescription} label="Статус код" span={2}>
                 {subject.status_code}
               </Descriptions.Item>
-              <Descriptions.Item label="Полный адрес" span={4}>
+              <Descriptions.Item style={styleDescription} label="Полный адрес" span={4}>
                 {subject.full_address}
               </Descriptions.Item>
             </Descriptions>
@@ -68,3 +68,7 @@ const Title = styled.h1`
   width: 100%;
   text-align: center;
 `;
+
+const styleDescription = {
+  backgroundColor: 'var(--main-secondary-color)',
+};

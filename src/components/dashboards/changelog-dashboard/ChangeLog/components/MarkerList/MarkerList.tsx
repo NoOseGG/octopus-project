@@ -27,7 +27,7 @@ const getColor = (marker: MarkerType): string => {
     case MarkerType.ADD:
       return 'green';
     case MarkerType.CHANGE:
-      return 'yellow';
+      return 'blue';
     default:
       return 'red';
   }

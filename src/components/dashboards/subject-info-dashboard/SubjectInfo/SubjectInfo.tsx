@@ -54,7 +54,13 @@ const SubjectInfo: React.FC = () => {
       {error && <h1>Ошибка получения данных</h1>}
       {!loading && !error && (
         <>
-          {Boolean(profile.names.length > 0) && <Title>{profile.names[0].full_name}</Title>}
+          {Boolean(profile.names.length > 0) && (
+            <>
+              <Title>{profile.names[0].full_name}</Title>
+              <SubTitle>({profile.names[0].short_name})</SubTitle>
+            </>
+          )}
+
           {Boolean(profile.descriptions.length > 0) && <SubjectDescriptions descriptions={profile.descriptions} />}
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             <SubjectMainContentTest subject={profile} />
@@ -82,7 +88,7 @@ const SubjectInfo: React.FC = () => {
               />
             )}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'stretch', gap: 20, marginTop: 10 }}>
             {Boolean(profile.statuses.length) && <SubjectStatus statuses={profile.statuses} />}
             {Boolean(profile.statuses_types.length) && <SubjectStatusType statusesType={profile.statuses_types} />}
             {Boolean(profile.countries.length) && <SubjectCountry countries={profile.countries} />}
@@ -155,6 +161,14 @@ const Title = styled.div`
   width: 100%;
   font-size: 28px;
   font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const SubTitle = styled.div`
+  width: 100%;
+  font-size: 22px;
+  font-weight: 500;
   text-align: center;
   margin-bottom: 20px;
 `;

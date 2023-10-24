@@ -10,20 +10,32 @@ const ChangeLog: React.FC = () => {
       <Title>Журнал изменений</Title>
 
       <Version>0.1.3</Version>
-      <VersionDate>__.10.2023</VersionDate>
+      <VersionDate>24.10.2023</VersionDate>
       <ul>
         <MarkerList marker={MarkerType.ADD}>Добавлено поле &quot;ключевые навыки&quot; в вакансии.</MarkerList>
         <MarkerList marker={MarkerType.CHANGE}>
-          Исправлен баг, когда в каких-то случаях не отображались контакты.
+          Исправлен баг, когда в некоторых случаях не отображались контакты.
         </MarkerList>
         <MarkerList marker={MarkerType.CHANGE}>Исправлены ошибки в журнале изменений.</MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>
+          Исправлено визуальное отображение маркеров в журнале изменений.
+        </MarkerList>
         <MarkerList marker={MarkerType.ADD}>
           Добавлена пагинация и отображение данных:
           <ul style={{ paddingLeft: 20 }}>
             <li>о налоговой инспекции;</li>
             <li>о способах создания / ликвидации;</li>
             <li>о статусе;</li>
-            <li>о видах деятельности.</li>
+            <li>о видах деятельности;</li>
+            <li>о стране регистрации.</li>
+          </ul>
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлены данные:
+          <ul style={{ paddingLeft: 20 }}>
+            <li>по закупкам (IceTrade);</li>
+            <li>о государственных органах;</li>
+            <li>о включении в перечень повышенного риска правонарушений в экономической сфере.</li>
           </ul>
         </MarkerList>
       </ul>

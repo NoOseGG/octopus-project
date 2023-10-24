@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { Status } from '@app/store/types/Subject';
+import { StateBody } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 import styled from 'styled-components';
 
 type MyComponentProps = {
-  statuses: Status[];
+  state_bodies: StateBody[];
 };
 
-const SubjectStatus: React.FC<MyComponentProps> = ({ statuses }) => {
+const SubjectStateBodies: React.FC<MyComponentProps> = ({ state_bodies }) => {
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -18,20 +18,22 @@ const SubjectStatus: React.FC<MyComponentProps> = ({ statuses }) => {
 
   return (
     <Container>
-      {Boolean(statuses.length) && (
+      {Boolean(state_bodies.length) && (
         <>
           <Card title="Данные о статусе" style={{ width: '100%' }}>
-            <DataField name="Код" content={statuses[index].code} />
-            <DataField name="Наименование" content={statuses[index].name} />
-            <DataField name="Описание" content={statuses[index].description} />
-            <DataFieldDate name="Дата начала действия" content={statuses[index].from_dttm} />
-            <DataFieldDate name="Дата окончания действия" content={statuses[index].from_dttm} />
+            <DataField name="Код" content={state_bodies[index].state_body_code} />
+            <DataField name="Полное наименование" content={state_bodies[index].full_name} />
+            <DataField
+              name="Код статуса. STATUS может принимать значения LKV - орган принявший решение о ликвидации; CUR - текущий орган учета; CRT - орган принявший решение о создании"
+              content={state_bodies[index].status}
+            />
+            <DataFieldDate name="Дата начала действия" content={state_bodies[index].from_dttm} />
           </Card>
-          {Boolean(statuses.length > 1) && (
+          {Boolean(state_bodies.length > 1) && (
             <Pagination
               style={{ alignSelf: 'center' }}
               defaultCurrent={1}
-              total={statuses.length}
+              total={state_bodies.length}
               defaultPageSize={1}
               size={'small'}
               onChange={(page) => handleClick(page)}
@@ -43,7 +45,7 @@ const SubjectStatus: React.FC<MyComponentProps> = ({ statuses }) => {
   );
 };
 
-export default SubjectStatus;
+export default SubjectStateBodies;
 
 const Container = styled.div`
   display: flex;

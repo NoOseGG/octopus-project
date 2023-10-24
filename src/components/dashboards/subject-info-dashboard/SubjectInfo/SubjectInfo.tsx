@@ -72,9 +72,6 @@ const SubjectInfo: React.FC = () => {
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20, marginTop: 10 }}>
-            {/*{Boolean(profile.icetrade_customer.length) && (*/}
-            {/*  <SubjectIceTradeLiquidPlot icetrade_customer={profile.icetrade_customer} />*/}
-            {/*)}*/}
             {Boolean(profile.icetrade_customer.length) && (
               <SubjectIceTrade
                 icetrade_customer={profile.icetrade_customer}
@@ -126,11 +123,17 @@ const SubjectInfo: React.FC = () => {
             )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-            <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
+            {Boolean(profile.constituent_doc.length) && (
+              <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
+            )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
-            <SubjectStateBodies state_bodies={profile.states_bodies} />
-            <SubjectEconomicHighRiskRegistry economic_high_risk_registry={profile.economic_high_risk_registry} />
+            {Boolean(profile.economic_high_risk_registry.length) && (
+              <SubjectStateBodies state_bodies={profile.states_bodies} />
+            )}
+            {Boolean(profile.economic_high_risk_registry.length) && (
+              <SubjectEconomicHighRiskRegistry economic_high_risk_registry={profile.economic_high_risk_registry} />
+            )}
           </div>
         </>
       )}

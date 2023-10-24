@@ -26,6 +26,8 @@ import SubjectGovernmentInspection from '@app/components/dashboards/subject-info
 import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
 import SubjectTaxes from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxes';
 import SubjectIceTrade from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTrade';
+import SubjectStateBodies from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStateBodies/SubjectStateBodies';
+import SubjectEconomicHighRiskRegistry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectEconomicHighRiskRegistry/SubjectEconomicHighRiskRegistry';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -125,6 +127,10 @@ const SubjectInfo: React.FC = () => {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
             <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
+            <SubjectStateBodies state_bodies={profile.states_bodies} />
+            <SubjectEconomicHighRiskRegistry economic_high_risk_registry={profile.economic_high_risk_registry} />
           </div>
         </>
       )}

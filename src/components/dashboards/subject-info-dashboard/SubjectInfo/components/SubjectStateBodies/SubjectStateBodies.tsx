@@ -9,6 +9,18 @@ type MyComponentProps = {
   state_bodies: StateBody[];
 };
 
+interface BodyStatusCode {
+  LKV: string;
+  CUR: string;
+  CRT: string;
+}
+
+const StateBodyStatusCode: BodyStatusCode = {
+  LKV: 'LVK',
+  CUR: 'CUR',
+  CRT: 'CRT',
+} as const;
+
 const SubjectStateBodies: React.FC<MyComponentProps> = ({ state_bodies }) => {
   const [index, setIndex] = useState(0);
 
@@ -20,13 +32,10 @@ const SubjectStateBodies: React.FC<MyComponentProps> = ({ state_bodies }) => {
     <Container>
       {Boolean(state_bodies.length) && (
         <>
-          <Card title="Данные о статусе" style={{ width: '100%' }}>
+          <Card title="Данные о государственных органах" style={{ width: '100%' }}>
             <DataField name="Код" content={state_bodies[index].state_body_code} />
             <DataField name="Полное наименование" content={state_bodies[index].full_name} />
-            <DataField
-              name="Код статуса. STATUS может принимать значения LKV - орган принявший решение о ликвидации; CUR - текущий орган учета; CRT - орган принявший решение о создании"
-              content={state_bodies[index].status}
-            />
+            <DataField name="Код статуса" content={getStatus(state_bodies[index].status)} />
             <DataFieldDate name="Дата начала действия" content={state_bodies[index].from_dttm} />
           </Card>
           {Boolean(state_bodies.length > 1) && (
@@ -46,6 +55,23 @@ const SubjectStateBodies: React.FC<MyComponentProps> = ({ state_bodies }) => {
 };
 
 export default SubjectStateBodies;
+
+const getStatus = (status: string | null) => {
+  if (status !== null) {
+    switch (status) {
+      case StateBodyStatusCode.CRT:
+        return 'орган принявший решение о создании';
+      case StateBodyStatusCode.CUR:
+        return 'текущий орган учета';
+      case StateBodyStatusCode.LKV:
+        return 'орган принявший решение о ликвидации';
+      default:
+        return '';
+    }
+  } else {
+    return '';
+  }
+};
 
 const Container = styled.div`
   display: flex;

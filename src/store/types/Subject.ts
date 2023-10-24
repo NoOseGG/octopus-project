@@ -37,6 +37,7 @@ export interface SubjectType {
   icetrade_organizer: IceTradeOrganizer[];
   government_inspection: GovernmentInspection[];
   constituent_doc: ConstituentDoc[];
+  economic_high_risk_registry: EconomicHighRiskRegistry[];
 }
 
 export interface Emails {
@@ -517,4 +518,11 @@ export interface ConstituentDoc {
   addition: string | null;
   term_decision: string | null;
   decision_num: string | null;
+}
+
+export interface EconomicHighRiskRegistry {
+  reason: string | null;
+  from_dttm: string | null;
+  date_fiu: string | null;
+  period_no_legal_force: string | null;
 }

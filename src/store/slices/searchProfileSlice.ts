@@ -50,6 +50,7 @@ const initialState: SubjectState = {
     icetrade_organizer_negotiations: [],
     government_inspection: [],
     constituent_doc: [],
+    economic_high_risk_registry: [],
   },
   loading: false,
   error: false,

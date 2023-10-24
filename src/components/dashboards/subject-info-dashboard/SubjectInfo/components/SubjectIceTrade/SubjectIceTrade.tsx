@@ -8,7 +8,9 @@ import {
   IceTradeParticipant,
 } from '@app/store/types/Subject';
 import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeCustomer/SubjectIceTradeCustomer';
+import SubjectIceTradeOtherParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeOtherParticipant/SubjectIceTradeOtherParticipant';
 import SubjectIceTradeParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeParticipant/SubjectIceTradeParticipant';
+import SubjectIceTradeOrganizer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeOrganizer/SubjectIceTradeOrganizer';
 
 type MyComponentProps = {
   icetrade_customer: IceTradeCustomer[];
@@ -36,6 +38,24 @@ const SubjectIceTrade: React.FC<MyComponentProps> = ({
       {Boolean(icetrade_participant.length) && (
         <Tabs.TabPane tab={'Участник'} key={'2'}>
           <SubjectIceTradeParticipant icetrade_participant={icetrade_participant} />
+        </Tabs.TabPane>
+      )}
+
+      {Boolean(icetrade_other_participant.length) && (
+        <Tabs.TabPane tab={'Другой участник'} key={'3'}>
+          <SubjectIceTradeOtherParticipant icetrade_other_participant={icetrade_other_participant} />
+        </Tabs.TabPane>
+      )}
+
+      {Boolean(icetrade_organizer.length) && (
+        <Tabs.TabPane tab={'Организатор'} key={'4'}>
+          <SubjectIceTradeOrganizer icetrade_organizer={icetrade_organizer} />
+        </Tabs.TabPane>
+      )}
+
+      {Boolean(icetrade_organizer_negotiations.length) && (
+        <Tabs.TabPane tab={'Переговоры с организатором'} key={'4'}>
+          <SubjectIceTradeOrganizer icetrade_organizer={icetrade_organizer} />
         </Tabs.TabPane>
       )}
     </Tabs>

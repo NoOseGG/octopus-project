@@ -47,9 +47,7 @@ const SubjectIceTradeCustomer: React.FC<MyComponentProps> = ({ icetrade_customer
           )
         }
       >
-        {!isTable && selectedIceTradeCustomer !== null && (
-          <SingleIceIceTrade iceTradeCustomer={selectedIceTradeCustomer} />
-        )}
+        {!isTable && selectedIceTradeCustomer !== null && <SingleIceIceTrade iceTrade={selectedIceTradeCustomer} />}
 
         {isTable && Boolean(newIceTradeCustomer.length) && (
           <TableStyle

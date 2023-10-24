@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IceTradeParticipant } from '@app/store/types/Subject';
+import { IceTradeOtherParticipant, IceTradeParticipant } from '@app/store/types/Subject';
 import ColumnGroup from 'antd/es/table/ColumnGroup';
 import Column from 'antd/es/table/Column';
 import styled from 'styled-components';
@@ -9,57 +9,56 @@ import SingleIceIceTrade from '@app/components/dashboards/subject-info-dashboard
 import SubjectIceTradeLiquidPlot from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeLiquidPlot';
 
 type MyComponentProps = {
-  icetrade_participant: IceTradeParticipant[];
+  icetrade_other_participant: IceTradeOtherParticipant[];
 };
 
-const SubjectIceTradeParticipant: React.FC<MyComponentProps> = ({ icetrade_participant }) => {
-  const newIceTradeParticipant = icetrade_participant.map((participant) => ({
-    ...participant,
-    request_end: `${formatDate(participant.request_end)}`,
+const SubjectIceTradeOtherParticipant: React.FC<MyComponentProps> = ({ icetrade_other_participant }) => {
+  const newIceTradeOtherParticipant = icetrade_other_participant.map((other_participant) => ({
+    ...other_participant,
+    request_end: `${formatDate(other_participant.request_end)}`,
   }));
 
   const [isTable, setIsTable] = useState(false);
-  const [selectedIceTradeParticipant, setSelectedIceTradeParticipant] = useState<IceTradeParticipant | null>(
-    newIceTradeParticipant[0],
-  );
+  const [selectedIceTradeOtherParticipant, setSelectedIceTradeOtherParticipant] =
+    useState<IceTradeOtherParticipant | null>(newIceTradeOtherParticipant[0]);
 
   const handleClick = () => {
     setIsTable(!isTable);
   };
 
   const handleRowClick = (record: IceTradeParticipant) => {
-    setSelectedIceTradeParticipant(record);
+    setSelectedIceTradeOtherParticipant(record);
     setIsTable(!isTable);
   };
 
   return (
     <Container>
-      <SubjectIceTradeLiquidPlot icetrade={icetrade_participant} />
+      <SubjectIceTradeLiquidPlot icetrade={icetrade_other_participant} />
 
       <Card
-        title={<Title>Участник</Title>}
+        title={<Title>Другой участник</Title>}
         style={{ display: 'grid', marginTop: 10, width: '100%' }}
         extra={
           !isTable ? (
-            <ShowAll onClick={handleClick}>Показать все данные - {newIceTradeParticipant.length} шт.</ShowAll>
+            <ShowAll onClick={handleClick}>Показать все данные - {newIceTradeOtherParticipant.length} шт.</ShowAll>
           ) : (
             <ShowAll onClick={handleClick}>Назад</ShowAll>
           )
         }
       >
-        {!isTable && selectedIceTradeParticipant !== null && (
-          <SingleIceIceTrade iceTrade={selectedIceTradeParticipant} />
+        {!isTable && selectedIceTradeOtherParticipant !== null && (
+          <SingleIceIceTrade iceTrade={selectedIceTradeOtherParticipant} />
         )}
 
-        {isTable && Boolean(newIceTradeParticipant.length) && (
+        {isTable && Boolean(newIceTradeOtherParticipant.length) && (
           <TableStyle
-            dataSource={newIceTradeParticipant}
+            dataSource={newIceTradeOtherParticipant}
             bordered={true}
             size={'small'}
             tableLayout={'fixed'}
             pagination={{ pageSize: 5, pageSizeOptions: [] }}
           >
-            <ColumnGroup title="Закупки IceTrade (Покупатель)">
+            <ColumnGroup title="Закупки IceTrade (Другой участник)">
               <Column title="Название" dataIndex="title" key="title" />
               <Column title="Сумма BYN" dataIndex="lot_price_byn" key="lot_price_byn" />
               <Column title="Дата завершения" dataIndex="request_end" key="request_end" />
@@ -80,7 +79,7 @@ const SubjectIceTradeParticipant: React.FC<MyComponentProps> = ({ icetrade_parti
   );
 };
 
-export default SubjectIceTradeParticipant;
+export default SubjectIceTradeOtherParticipant;
 
 const Container = styled.div`
   display: flex;

@@ -62,7 +62,7 @@ const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasPlans }
 
   return (
     <Card
-      title={<Title>Данные из торгового реестра</Title>}
+      title={<Title>Реестр ГИАС планы закупок</Title>}
       style={{ display: 'grid', marginTop: 10 }}
       extra={
         !isTable ? (

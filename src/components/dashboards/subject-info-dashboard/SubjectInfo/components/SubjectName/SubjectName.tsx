@@ -29,7 +29,7 @@ const SubjectName: React.FC<MyComponentProps> = ({ names }) => {
       </Title>
       <SubTitle>
         ({names[0].short_name})
-        <Popover placement={'bottomLeft'} title="Список сокращенных названийcha" content={contentShortName()}>
+        <Popover placement={'bottomLeft'} title="Список сокращенных названий" content={contentShortName()}>
           <CaretDownOutlined />
         </Popover>
       </SubTitle>

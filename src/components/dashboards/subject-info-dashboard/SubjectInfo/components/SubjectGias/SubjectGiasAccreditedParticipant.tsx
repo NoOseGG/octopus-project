@@ -1,33 +1,49 @@
-import React from 'react';
-import { Card, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Card, Pagination } from 'antd';
 import { GiasAccreditedParticipant } from '@app/store/types/Subject';
-import { formatDate } from '@app/utils/utils';
-
-const { Text } = Typography;
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
+import styled from 'styled-components';
 
 type MyComponentProps = {
   giasAccreditedPaticipant: GiasAccreditedParticipant[];
 };
 
 const SubjectGiasAccreditedParticipant: React.FC<MyComponentProps> = ({ giasAccreditedPaticipant }) => {
+  const [index, setIndex] = useState(0);
+
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
+
   return (
-    <Card title="Реестр ГИАС аккредитованных участников" style={{ width: '100%' }}>
-      {giasAccreditedPaticipant[0].from_dttm && (
+    <Container>
+      {Boolean(giasAccreditedPaticipant.length) && (
         <>
-          <Text strong={true}>Дата включения в реестр: </Text>{' '}
-          <Text>{formatDate(giasAccreditedPaticipant[0].from_dttm)}</Text>
-          <br />
+          <Card title="Реестр ГИАС аккредитованных участников" style={{ width: '100%' }}>
+            <DataFieldDate name="Дата включения в реестр" content={giasAccreditedPaticipant[index].from_dttm} />
+            <DataFieldDate name="Дата исключения из реестра" content={giasAccreditedPaticipant[index].to_dttm} />
+          </Card>
+          {Boolean(giasAccreditedPaticipant.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={giasAccreditedPaticipant.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
+          )}
         </>
       )}
-      {giasAccreditedPaticipant[0].to_dttm && (
-        <>
-          <Text strong={true}>Дата исключения из реестра: </Text>{' '}
-          <Text>{formatDate(giasAccreditedPaticipant[0].to_dttm)}</Text>
-          <br />
-        </>
-      )}
-    </Card>
+    </Container>
   );
 };
 
 export default SubjectGiasAccreditedParticipant;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

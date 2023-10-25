@@ -19,7 +19,7 @@ import SubjectCommercialRegister from '@app/components/dashboards/subject-info-d
 import SubjectGiasAccreditedCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasAccreditedCustomer';
 import SubjectGiasAccreditedParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasAccreditedParticipant';
 import SubjectGiasBlackList from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasBlackList';
-import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan';
+import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan/SubjectGiasPlan';
 import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintSubmit';
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
@@ -108,7 +108,7 @@ const SubjectInfo: React.FC = () => {
             )}
           </div>
           <div style={{ marginTop: 10 }}>
-            {Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlan={profile.gias_plan} />}
+            {Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlans={profile.gias_plan} />}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.gias_complaint_submit.length) && (

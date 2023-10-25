@@ -2,21 +2,32 @@ import React from 'react';
 import { Name } from '@app/store/types/Subject';
 import styled from 'styled-components';
 import { CaretDownOutlined } from '@ant-design/icons';
-import { Popover } from 'antd';
+import { Popover, Table } from 'antd';
+import Column from 'antd/es/table/Column';
 
 type MyComponentProps = {
   names: Name[];
 };
 
 const SubjectName: React.FC<MyComponentProps> = ({ names }) => {
-  let count = 0;
-
   const contentFullName = () => {
-    return names.map((name) => <div key={count++}>{name.full_name}</div>);
+    return (
+      <Table style={{ width: 'auto' }} dataSource={names} bordered={true} size={'small'} tableLayout={'auto'}>
+        <Column title="Полное название" dataIndex="full_name" key="full_name" showSorterTooltip={false} width={500} />
+        <Column title="Дата начала действия" dataIndex="from_dttm" key="from_dttm" showSorterTooltip={false} />
+        <Column title="Дата окончания действия" dataIndex="to_dttm" key="to_dttm" showSorterTooltip={false} />
+      </Table>
+    );
   };
 
   const contentShortName = () => {
-    return names.map((name) => <div key={count++}>{name.short_name}</div>);
+    return (
+      <Table dataSource={names} bordered={true} size={'small'} tableLayout={'auto'}>
+        <Column title="Краткое наименование" dataIndex="short_name" key="short_name" showSorterTooltip={false} />
+        <Column title="Дата начала действия" dataIndex="from_dttm" key="from_dttm" showSorterTooltip={false} />
+        <Column title="Дата окончания действия" dataIndex="to_dttm" key="to_dttm" showSorterTooltip={false} />
+      </Table>
+    );
   };
 
   return (

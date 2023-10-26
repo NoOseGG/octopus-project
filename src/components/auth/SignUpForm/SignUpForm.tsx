@@ -55,9 +55,8 @@ export const SignUpForm: React.FC = () => {
         });
         navigate('/auth/login');
       })
-      .catch((err) => {
-        console.log(`ERRRRRR => ${JSON.stringify(err.error)}`);
-        notificationController.error({ message: err.message });
+      .catch(() => {
+        // notificationController.error({ message: err.message });
         setLoading(false);
       });
   };

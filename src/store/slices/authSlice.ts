@@ -23,6 +23,11 @@ interface LoginError {
   non_field_errors: string[];
 }
 
+interface RegistrationError {
+  phone_number: string[];
+  email: string[];
+}
+
 const initialState: AuthSlice = {
   token: readToken(),
 };
@@ -49,9 +54,21 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   },
 );
 
-export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest) => {
-  const response = await axios.post(URLS.SIGNUP, signUpPayload);
-  return response.data;
+export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(URLS.SIGNUP, signUpPayload);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const responseError: RegistrationError | undefined = error.response?.data;
+      if (responseError) {
+        const errorMessage: string | null = responseError.email[0];
+        return rejectWithValue(errorMessage);
+      } else {
+        return rejectWithValue('Ошибка');
+      }
+    }
+  }
 });
 
 export const doResetPassword = createAsyncThunk(

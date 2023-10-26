@@ -19,17 +19,33 @@ export interface AuthSlice {
   token: string | null;
 }
 
+interface LoginError {
+  non_field_errors: string[];
+}
+
 const initialState: AuthSlice = {
   token: readToken(),
 };
 
 export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   'auth/login',
-  async (credentials, { dispatch }) => {
-    const response = await axios.post(URLS.LOGIN, credentials);
-    dispatch(setUser(response.data.user));
-    persistToken(response.data.token);
-    return response.data;
+  async (credentials, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.LOGIN, credentials);
+      dispatch(setUser(response.data.user));
+      persistToken(response.data.token);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
   },
 );
 

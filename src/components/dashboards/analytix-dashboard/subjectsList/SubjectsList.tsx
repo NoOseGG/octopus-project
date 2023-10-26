@@ -27,9 +27,9 @@ const SubjectsList: React.FC = () => {
             </SpinnerSpace>
           )}
 
-          {error && <h1>ОШИБКА ПОЛУЧЕНИЯ ДАННЫХ</h1>}
+          {error !== null && <h1>{error}</h1>}
 
-          {!error && (
+          {error === null && (
             <>
               {results.length > 0 ? <h1 className={styles.title}>Список субъектов:</h1> : <div></div>}
               {results.map((sub) => (

@@ -23,7 +23,11 @@ interface SearchState {
   data: Data;
   unn: string;
   loading: boolean;
-  error: boolean;
+  error: string | null;
+}
+
+interface SearchError {
+  detail: string;
 }
 
 const initialState: SearchState = {
@@ -35,7 +39,7 @@ const initialState: SearchState = {
   },
   unn: '',
   loading: false,
-  error: false,
+  error: null,
 };
 
 export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query: string, { rejectWithValue }) => {
@@ -47,7 +51,17 @@ export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (q
 
     return response.data;
   } catch (error) {
-    return rejectWithValue('');
+    if (axios.isAxiosError(error)) {
+      const responseError: SearchError | undefined = error.response?.data;
+      if (responseError) {
+        const errorMessage: string | null = responseError.detail;
+        console.log(errorMessage);
+        return rejectWithValue(errorMessage);
+      } else {
+        console.log('Ошибка запрос', error.message);
+        return rejectWithValue('');
+      }
+    }
   }
 });
 
@@ -84,31 +98,39 @@ export const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(doSearch.pending, (state) => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     });
     builder.addCase(doSearch.fulfilled, (state, action) => {
       state.data = action.payload;
       state.loading = false;
-      state.error = false;
+      state.error = null;
     });
-    builder.addCase(doSearch.rejected, (state) => {
+    builder.addCase(doSearch.rejected, (state, action) => {
       state.data = initialState.data;
-      state.error = true;
+      if (typeof action.payload === 'string') {
+        state.error = action.payload;
+      } else {
+        state.error = null;
+      }
       state.loading = false;
     });
     builder.addCase(doNewPage.pending, (state) => {
       state.data = initialState.data;
       state.loading = true;
-      state.error = false;
+      state.error = null;
     });
     builder.addCase(doNewPage.fulfilled, (state, action) => {
       state.data = action.payload;
-      state.error = false;
+      state.error = null;
       state.loading = false;
     });
-    builder.addCase(doNewPage.rejected, (state) => {
+    builder.addCase(doNewPage.rejected, (state, action) => {
       state.data = initialState.data;
-      state.error = true;
+      if (typeof action.payload === 'string') {
+        state.error = action.payload;
+      } else {
+        state.error = null;
+      }
       state.loading = false;
     });
   },

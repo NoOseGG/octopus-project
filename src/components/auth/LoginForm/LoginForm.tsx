@@ -40,8 +40,8 @@ export const LoginForm: React.FC = () => {
         navigate('/');
         notificationController.success({ message: ` Добро пожаловать, ${response.user.first_name}!` });
       })
-      .catch((err) => {
-        notificationController.error({ message: err.message });
+      .catch(() => {
+        // notificationController.error({ message: err.message });
         setLoading(false);
       });
   };

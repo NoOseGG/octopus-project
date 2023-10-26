@@ -37,8 +37,12 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
   async (credentials, { dispatch, rejectWithValue }) => {
     try {
       const response = await axios.post(URLS.LOGIN, credentials);
-      dispatch(setUser(response.data.user));
-      persistToken(response.data.token);
+      if (response.data.user !== undefined) {
+        dispatch(setUser(response.data.user));
+        persistToken(response.data.token);
+      } else {
+        return rejectWithValue('Вы авторизированны на другом устройстве');
+      }
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -103,7 +107,9 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.token = action.payload.token;
+      if (action.payload.user !== undefined) {
+        state.token = action.payload.token;
+      }
     });
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = null;

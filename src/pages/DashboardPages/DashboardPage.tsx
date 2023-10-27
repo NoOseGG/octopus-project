@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
+import Dashboard from '@app/components/dashboards/dashboard/Dashboard';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const DashboardPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <h1>DASHBOARD</h1>
+        <Dashboard />
         <References />
       </S.LeftSideCol>
     </Row>

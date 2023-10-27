@@ -14,9 +14,10 @@ import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
 import ProfileLayout from '@app/components/profile/ProfileLayout';
 import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
-import SubjectInfoDashboardPage from '@app/pages/DashboardPages/SubjectInfoDashboardPage';
+import SubjectInfoPage from '@app/pages/DashboardPages/SubjectInfoPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
-import AnalytixDashboardPage from '@app/pages/DashboardPages/AnalytixDashboardPage';
+import AnalytixPage from '@app/pages/DashboardPages/AnalytixPage';
+import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -30,9 +31,11 @@ export const LOGIN_PAGE_PATH = '/auth/login';
 export const ANALYTIC_DASHBOARD_PATH = '/';
 export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
 export const CHANGE_LOG_PATH = '/change-log';
+export const DASHBOARD_PAGE = '/dashboard';
 
-const SubjectInfoDashboard = withLoading(SubjectInfoDashboardPage);
-const AnalytixDashboard = withLoading(AnalytixDashboardPage);
+const SubjectInfo = withLoading(SubjectInfoPage);
+const Analytix = withLoading(AnalytixPage);
+const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
 
 const ServerError = withLoading(ServerErrorPage);
@@ -58,9 +61,10 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ANALYTIC_DASHBOARD_PATH} element={protectedLayout}>
-          <Route index element={<AnalytixDashboard />} />
-          <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfoDashboard />} />
+          <Route index element={<Analytix />} />
+          <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
           <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
+          <Route path={DASHBOARD_PAGE} element={<Dashboard />} />
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
           <Route path="profile" element={<ProfileLayout />}>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { DashboardOutlined } from '@ant-design/icons';
-import { ReactComponent as NftIcon } from '@app/assets/icons/nft-icon.svg';
+import { DashboardOutlined, SearchOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -12,17 +11,24 @@ export interface SidebarNavigationItem {
 
 export const sidebarNavigation: SidebarNavigationItem[] = [
   {
-    title: 'common.analytix',
-    key: 'analytix-dashboard',
+    title: 'common.searchSubject',
+    key: 'searchSubject',
     // TODO use path variable
     url: '/',
-    icon: <NftIcon />,
+    icon: <SearchOutlined />,
+  },
+  {
+    title: 'common.dashboards',
+    key: 'dashboards',
+    // TODO use path variable
+    url: '/dashboard',
+    icon: <DashboardOutlined />,
   },
   {
     title: 'common.change-log',
     key: 'change-log',
     url: '/change-log',
-    icon: <DashboardOutlined />,
+    icon: <UnorderedListOutlined />,
   },
   // {
   //   title: 'common.apps',

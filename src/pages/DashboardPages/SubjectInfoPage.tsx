@@ -11,7 +11,7 @@ import { doCheckAuth } from '@app/store/slices/authSlice';
 import SubjectInfo from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/SubjectInfo';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 
-const SubjectInfoDashboardPage: React.FC = () => {
+const SubjectInfoPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -47,4 +47,4 @@ const SubjectInfoDashboardPage: React.FC = () => {
   );
 };
 
-export default SubjectInfoDashboardPage;
+export default SubjectInfoPage;

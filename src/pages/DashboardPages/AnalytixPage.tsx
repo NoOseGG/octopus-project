@@ -11,7 +11,7 @@ import { doCheckAuth } from '@app/store/slices/authSlice';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 import { useTranslation } from 'react-i18next';
 
-const AnalytixDashboardPage: React.FC = () => {
+const AnalytixPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -49,4 +49,4 @@ const AnalytixDashboardPage: React.FC = () => {
   );
 };
 
-export default AnalytixDashboardPage;
+export default AnalytixPage;

@@ -240,3 +240,46 @@ export function formatPhoneNumber(phoneNumber: string): string {
   const formattedNumber = phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
   return formattedNumber;
 }
+
+export const getLastYear = (): string => {
+  const currentDate = new Date();
+  currentDate.setFullYear(currentDate.getFullYear() - 1);
+  const year = currentDate.getFullYear();
+
+  return year.toString();
+};
+
+export const getCurrentDate = (): string => {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // +1, так как месяцы начинаются с 0
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};
+
+export const getDateLastYear = (): string => {
+  const currentDate = new Date();
+  currentDate.setFullYear(currentDate.getFullYear() - 1);
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};
+
+export const getDateLastQuarter = (): string => {
+  const currentDate = new Date();
+  currentDate.setMonth(currentDate.getMonth() - 3);
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};

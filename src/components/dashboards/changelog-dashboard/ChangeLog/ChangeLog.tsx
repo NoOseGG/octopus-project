@@ -17,8 +17,17 @@ const ChangeLog: React.FC = () => {
         <MarkerList marker={MarkerType.ADD}>
           Добавлены уведомления при ошибках поиска, регистрации и авторизации.
         </MarkerList>
-        <MarkerList marker={MarkerType.ADD}>Добавлена новая страница с дашбордами.</MarkerList>
-        <MarkerList marker={MarkerType.CHANGE}>Исправлено отображения названия таблицы все веб сайтов.</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлена новая страница с дашбордами с данными о количестве всех юридических организаций:
+          <ul style={{ paddingLeft: 20 }}>
+            <li>за все время;</li>
+            <li>за последний год;</li>
+            <li>за последний квартал;</li>
+            <li>о видах деятельности;</li>
+            <li>действующих организаций;</li>
+          </ul>
+        </MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Исправлено отображения названия таблицы всех веб сайтов.</MarkerList>
       </ul>
 
       <Version>0.1.3</Version>

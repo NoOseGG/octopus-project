@@ -286,3 +286,44 @@ export const getDateLastQuarter = (): string => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const getPastMonth = (count: number): string => {
+  const currentDate = new Date();
+  currentDate.setMonth(currentDate.getMonth() - count);
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+
+  return `${year}-${month}`;
+};
+
+export const getNameMonthByNumber = (number: number): string => {
+  switch (number) {
+    case 1:
+      return 'Январь';
+    case 2:
+      return 'Февраль';
+    case 3:
+      return 'Март';
+    case 4:
+      return 'Апрель';
+    case 5:
+      return 'Май';
+    case 6:
+      return 'Июнь';
+    case 7:
+      return 'Июль';
+    case 8:
+      return 'Август';
+    case 9:
+      return 'Сентябрь';
+    case 10:
+      return 'Октябрь';
+    case 11:
+      return 'Ноябрь';
+    case 12:
+      return 'Декабрь';
+    default:
+      return 'Неизвестно';
+  }
+};

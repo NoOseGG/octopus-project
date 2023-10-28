@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCurrentDate, getCurrentYear, getDateLastQuarter, getLastYear } from '@app/utils/utils';
+import { getCurrentDate, getCurrentYear, getDateLastQuarter, getLastYear, getPastMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 
 interface TotalCountCreated {
@@ -34,9 +34,23 @@ interface ResponseForLineChart {
   results: LineChartObject[];
 }
 
+interface ResponseForColumnChart {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ColumnChartObject[];
+}
+
 interface LineChartObject {
   group_fields: {
     company_date_registration__year: number;
+  };
+  Count: number;
+}
+
+interface ColumnChartObject {
+  group_fields: {
+    company_date_registration__month: number;
   };
   Count: number;
 }
@@ -50,6 +64,7 @@ interface DashBoardSlice {
     percent: number;
   };
   lineChart: ResponseForLineChart;
+  columnChart: ResponseForColumnChart;
 }
 
 const initialState: DashBoardSlice = {
@@ -61,6 +76,12 @@ const initialState: DashBoardSlice = {
     percent: 0,
   },
   lineChart: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
+  columnChart: {
     count: 0,
     next: null,
     previous: null,
@@ -154,6 +175,25 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart>('doG
   }
 });
 
+export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart>('doGetDataForColumnChart', async () => {
+  try {
+    const month = getPastMonth(6);
+
+    const response = await axios.get(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('company_date_registration__month') +
+        DASH.LEGAL_ENTITY +
+        DASH.DATE_AFTER(`${month}-01`) +
+        DASH.ORDERING_AGG('company_date_registration__month'),
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
@@ -181,6 +221,9 @@ const dashboardSlice = createSlice({
     });
     builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
       state.lineChart = action.payload;
+    });
+    builder.addCase(doGetDataForColumnChart.fulfilled, (state, action) => {
+      state.columnChart = action.payload;
     });
   },
 });

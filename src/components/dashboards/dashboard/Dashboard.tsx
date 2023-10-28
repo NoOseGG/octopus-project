@@ -10,6 +10,7 @@ import {
 } from '@app/store/slices/dashboardSlice';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
+import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 
 const Dashboard: React.FC = () => {
   const {
@@ -39,7 +40,10 @@ const Dashboard: React.FC = () => {
         totalCountOperatingCompany={totalCountOperatingCompany}
         percent={percent}
       />
-      <LineChartYears />
+      <ChartsContainer>
+        <LineChartYears />
+        <ColumnChartMonth />
+      </ChartsContainer>
     </Container>
   );
 };
@@ -48,6 +52,17 @@ export default Dashboard;
 
 const Container = styled.div`
   flex-grow: 1;
+`;
+
+const ChartsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+
+  @media (max-width: 1800px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.div`

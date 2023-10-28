@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Line } from '@ant-design/charts';
+import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doGetDataForLineChart } from '@app/store/slices/dashboardSlice';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ const LineChartYears: React.FC = () => {
     };
   });
 
-  const config = {
+  const config: LineConfig = {
     data,
     xField: 'year',
     yField: 'value',
@@ -64,6 +64,8 @@ const LineChartYears: React.FC = () => {
 export default LineChartYears;
 
 const Container = styled.div`
+  width: auto;
+  flex-grow: 1;
   margin-top: 30px;
 `;
 

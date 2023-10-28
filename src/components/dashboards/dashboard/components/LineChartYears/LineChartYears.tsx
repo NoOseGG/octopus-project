@@ -27,11 +27,12 @@ const LineChartYears: React.FC = () => {
     label: {},
     point: {
       size: 5,
-      shape: 'diamond',
+      shape: 'dot',
       style: {
         fill: 'white',
         stroke: '#5B8FF9',
         lineWidth: 2,
+        cursor: 'pointer',
       },
     },
     tooltip: {

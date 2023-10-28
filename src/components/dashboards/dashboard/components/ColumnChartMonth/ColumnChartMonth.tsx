@@ -33,6 +33,9 @@ const ColumnChartMonth: React.FC = () => {
         opacity: 0.6,
       },
     },
+    columnStyle: {
+      cursor: 'pointer',
+    },
     xAxis: {
       label: {
         autoHide: true,

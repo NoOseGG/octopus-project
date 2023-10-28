@@ -68,6 +68,8 @@ export const BREAKPOINTS = {
 
 const getMedia = <T extends number>(breakpoint: T): `(min-width: ${T}px)` => `(min-width: ${breakpoint}px)`;
 
+const getMediaMax = <T extends number>(breakpoint: T): `(max-width: ${T}px)` => `(max-width: ${breakpoint}px)`;
+
 export const media = {
   xs: getMedia(BREAKPOINTS.xs),
   sm: getMedia(BREAKPOINTS.sm),
@@ -75,4 +77,13 @@ export const media = {
   lg: getMedia(BREAKPOINTS.lg),
   xl: getMedia(BREAKPOINTS.xl),
   xxl: getMedia(BREAKPOINTS.xxl),
+};
+
+export const mediaMax = {
+  xs: getMediaMax(BREAKPOINTS.xs),
+  sm: getMediaMax(BREAKPOINTS.sm),
+  md: getMediaMax(BREAKPOINTS.md),
+  lg: getMediaMax(BREAKPOINTS.lg),
+  xl: getMediaMax(BREAKPOINTS.xl),
+  xxl: getMediaMax(BREAKPOINTS.xxl),
 };

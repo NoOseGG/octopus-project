@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
+import {
+  doCalculatePercentYear,
+  doGetTotalCountCreated,
+  doGetTotalCountCreatedLastQuarter,
+  doGetTotalCountCreatedLastYear,
+  doGetTotalCountOperatingCompany,
+} from '@app/store/slices/dashboardSlice';
+import { mediaMax } from '@app/styles/themes/constants';
 
-type MyComponentProps = {
-  totalCountCreated: number;
-  totalCountCreatedLastYear: number;
-  totalCountCreatedLastQuarter: number;
-  totalCountOperatingCompany: number;
-  percent: number;
-};
+const MainInfo: React.FC = () => {
+  const {
+    totalCountCreated,
+    totalCountCreatedLastYear,
+    totalCountCreatedLastQuarter,
+    totalCountOperatingCompany,
+    percent,
+  } = useAppSelector((state) => state.dashboard.mainInfo);
+  const dispatch = useAppDispatch();
 
-const MainInfo: React.FC<MyComponentProps> = ({
-  totalCountCreated,
-  totalCountCreatedLastYear,
-  totalCountCreatedLastQuarter,
-  totalCountOperatingCompany,
-  percent,
-}) => {
+  useEffect(() => {
+    dispatch(doGetTotalCountCreated());
+    dispatch(doGetTotalCountCreatedLastYear());
+    dispatch(doGetTotalCountCreatedLastQuarter());
+    dispatch(doGetTotalCountOperatingCompany());
+    dispatch(doCalculatePercentYear());
+  }, [dispatch]);
+
   return (
     <Container>
       <Block>
@@ -77,9 +89,17 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
   text-align: center;
+
+  @media only screen and ${mediaMax.xl} {
+    font-size: 16px;
+  }
 `;
 
 const Content = styled.div`
   font-size: 42px;
   font-weight: 700;
+
+  @media only screen and ${mediaMax.xl} {
+    font-size: 36px;
+  }
 `;

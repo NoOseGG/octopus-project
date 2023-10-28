@@ -9,6 +9,18 @@ const ChangeLog: React.FC = () => {
     <Container>
       <Title>Журнал изменений</Title>
 
+      <Version>0.1.4</Version>
+      <VersionDate>28.10.2023</VersionDate>
+      <ul>
+        <MarkerList marker={MarkerType.ADD}>Добавлен вывод всех данных по закупкам (Gias).</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>Добавлено отображние дат при выводе все названий.</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлены уведомления при ошибках поиска, регистрации и авторизации.
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>Добавлена новая страница с дашбордами.</MarkerList>
+        <MarkerList marker={MarkerType.CHANGE}>Исправлено отображения названия таблицы все веб сайтов.</MarkerList>
+      </ul>
+
       <Version>0.1.3</Version>
       <VersionDate>24.10.2023</VersionDate>
       <ul>

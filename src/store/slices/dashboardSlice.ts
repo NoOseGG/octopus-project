@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCurrentDate, getDateLastQuarter, getDateLastYear, getLastYear } from '@app/utils/utils';
+import { getCurrentDate, getCurrentYear, getDateLastQuarter, getLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 
 interface TotalCountCreated {
@@ -27,6 +27,20 @@ interface CalculatePercent {
   ];
 }
 
+interface ResponseForLineChart {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: LineChartObject[];
+}
+
+interface LineChartObject {
+  group_fields: {
+    company_date_registration__year: number;
+  };
+  Count: number;
+}
+
 interface DashBoardSlice {
   mainInfo: {
     totalCountCreated: number;
@@ -35,6 +49,7 @@ interface DashBoardSlice {
     totalCountOperatingCompany: number;
     percent: number;
   };
+  lineChart: ResponseForLineChart;
 }
 
 const initialState: DashBoardSlice = {
@@ -44,6 +59,12 @@ const initialState: DashBoardSlice = {
     totalCountCreatedLastQuarter: 0,
     totalCountOperatingCompany: 0,
     percent: 0,
+  },
+  lineChart: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
   },
 };
 
@@ -60,8 +81,8 @@ export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated
   'getTotalCountCreatedLastYear',
   async () => {
     try {
-      const date = getDateLastYear();
-      const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date) + DASH.COUNT);
+      const year = getCurrentYear();
+      const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`) + DASH.COUNT);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -114,6 +135,25 @@ export const doCalculatePercentYear = createAsyncThunk<CalculatePercent>('doCalc
   }
 });
 
+export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart>('doGetDataForLineChart', async () => {
+  try {
+    const currentDate = getCurrentDate();
+    const response = await axios.get(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('company_date_registration__year') +
+        DASH.LEGAL_ENTITY +
+        DASH.DATE_BEFORE(currentDate) +
+        DASH.DATE_AFTER('2000-01-01') +
+        DASH.ORDERING_AGG('company_date_registration__year'),
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
@@ -138,6 +178,9 @@ const dashboardSlice = createSlice({
 
       const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
       state.mainInfo.percent = parseInt(percent, 10);
+    });
+    builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
+      state.lineChart = action.payload;
     });
   },
 });

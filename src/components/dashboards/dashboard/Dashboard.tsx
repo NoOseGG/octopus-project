@@ -9,6 +9,7 @@ import {
   doGetTotalCountOperatingCompany,
 } from '@app/store/slices/dashboardSlice';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
+import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 
 const Dashboard: React.FC = () => {
   const {
@@ -38,6 +39,7 @@ const Dashboard: React.FC = () => {
         totalCountOperatingCompany={totalCountOperatingCompany}
         percent={percent}
       />
+      <LineChartYears />
     </Container>
   );
 };

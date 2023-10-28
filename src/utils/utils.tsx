@@ -201,8 +201,7 @@ export const dateTransformate = (date: string): string | undefined => {
     return;
   }
   const [year, month, day] = parts;
-  const formattedDate = `${day}.${month}.${year}`;
-  return formattedDate;
+  return `${day}.${month}.${year}`;
 };
 
 export const dateTransformForRegistration = (dateString: string): string => {
@@ -237,13 +236,20 @@ export function formatPhoneNumber(phoneNumber: string): string {
     return phoneNumber;
   }
 
-  const formattedNumber = phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
-  return formattedNumber;
+  return phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
 }
 
 export const getLastYear = (): string => {
   const currentDate = new Date();
   currentDate.setFullYear(currentDate.getFullYear() - 1);
+  const year = currentDate.getFullYear();
+
+  return year.toString();
+};
+
+export const getCurrentYear = (): string => {
+  const currentDate = new Date();
+  currentDate.setFullYear(currentDate.getFullYear());
   const year = currentDate.getFullYear();
 
   return year.toString();
@@ -256,8 +262,7 @@ export const getCurrentDate = (): string => {
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // +1, так как месяцы начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
-  const formattedDate = `${year}-${month}-${day}`;
-  return formattedDate;
+  return `${year}-${month}-${day}`;
 };
 
 export const getDateLastYear = (): string => {
@@ -268,8 +273,7 @@ export const getDateLastYear = (): string => {
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
-  const formattedDate = `${year}-${month}-${day}`;
-  return formattedDate;
+  return `${year}-${month}-${day}`;
 };
 
 export const getDateLastQuarter = (): string => {
@@ -280,6 +284,5 @@ export const getDateLastQuarter = (): string => {
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
-  const formattedDate = `${year}-${month}-${day}`;
-  return formattedDate;
+  return `${year}-${month}-${day}`;
 };

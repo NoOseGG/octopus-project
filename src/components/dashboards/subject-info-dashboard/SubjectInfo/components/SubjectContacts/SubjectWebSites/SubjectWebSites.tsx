@@ -48,7 +48,7 @@ const SubjectWebSites: React.FC<MyComponentProps> = ({ webSites }) => {
         </>
       )}
       {Boolean(newWebSites.length) && (
-        <Modal title="Электроная почта" visible={modalVisible} onCancel={handleCancel} footer={null}>
+        <Modal title="Веб адреса" visible={modalVisible} onCancel={handleCancel} footer={null}>
           <div>
             <Table columns={columns} dataSource={newWebSites} pagination={{ size: 'small' }}></Table>
           </div>
@@ -62,7 +62,7 @@ export default SubjectWebSites;
 
 const columns: ColumnsType<WebSite> = [
   {
-    title: 'Электронная почта',
+    title: 'Веб адрес',
     dataIndex: 'url',
     key: 'url',
     render: (webSite) => (

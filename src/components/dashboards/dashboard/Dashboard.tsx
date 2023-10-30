@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
+import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 
 const Dashboard: React.FC = () => {
   return (
     <Container>
+      <SearchFilters />
       <Title>Юридические лица</Title>
       <MainInfo />
       <ChartsContainer>

@@ -13,7 +13,6 @@ const ColumnChartMonth: React.FC = () => {
   useEffect(() => {
     dispatch(doGetDataForColumnChart());
   }, [dispatch]);
-  console.log(JSON.stringify(columnChart));
 
   const data = columnChart.results.map((item) => {
     return {

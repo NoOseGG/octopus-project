@@ -13,7 +13,7 @@ interface TypeActivitiesType {
   type_activity_name: string;
 }
 
-interface SettlementType {
+export interface SettlementType {
   address_settlement: string;
 }
 
@@ -25,18 +25,36 @@ interface RegionType {
   address_region: string;
 }
 
+export interface FiltersType {
+  type_activities: string;
+  settlements: string;
+  districts: string;
+  regions: string;
+}
+
 interface SearchFiltersSlice {
-  type_activities: TypeActivitiesType[];
-  settlements: SettlementType[];
-  districts: DistrictType[];
-  regions: RegionType[];
+  data_filters: {
+    type_activities: TypeActivitiesType[];
+    settlements: SettlementType[];
+    districts: DistrictType[];
+    regions: RegionType[];
+  };
+  filters: FiltersType;
 }
 
 const initialState: SearchFiltersSlice = {
-  type_activities: [],
-  settlements: [],
-  districts: [],
-  regions: [],
+  data_filters: {
+    type_activities: [],
+    settlements: [],
+    districts: [],
+    regions: [],
+  },
+  filters: {
+    type_activities: '',
+    settlements: '',
+    districts: '',
+    regions: '',
+  },
 };
 
 export const doGetTypeActivities = createAsyncThunk<TypeActivitiesType[]>('doGetTypeActivities', async () => {
@@ -82,21 +100,27 @@ export const doGetRegions = createAsyncThunk<RegionType[]>('doGetRegions', async
 const searchFiltersSlice = createSlice({
   name: 'searchFilters',
   initialState,
-  reducers: {},
+  reducers: {
+    setSettlement: (state, action) => {
+      console.log(`ACTION => ${action.payload}`);
+      state.filters.settlements = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(doGetTypeActivities.fulfilled, (state, action) => {
-      state.type_activities = action.payload;
+      state.data_filters.type_activities = action.payload;
     });
     builder.addCase(doGetSettlements.fulfilled, (state, action) => {
-      state.settlements = action.payload;
+      state.data_filters.settlements = action.payload;
     });
     builder.addCase(doGetDistricts.fulfilled, (state, action) => {
-      state.districts = action.payload;
+      state.data_filters.districts = action.payload;
     });
     builder.addCase(doGetRegions.fulfilled, (state, action) => {
-      state.regions = action.payload;
+      state.data_filters.regions = action.payload;
     });
   },
 });
 
+export const { setSettlement } = searchFiltersSlice.actions;
 export default searchFiltersSlice.reducer;

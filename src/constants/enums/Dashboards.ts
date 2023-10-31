@@ -18,4 +18,8 @@ export const DASH = {
   ORDERING_AGG: (field: string): string => {
     return `ordering_agg=${field}&`;
   },
+
+  ADDRESS_FULL_ICONTAINS: (field: string): string => {
+    return `address_full__icontains=${field}&`;
+  },
 };

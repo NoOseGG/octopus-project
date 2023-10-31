@@ -11,6 +11,8 @@ import {
 import { mediaMax } from '@app/styles/themes/constants';
 
 const MainInfo: React.FC = () => {
+  const filters = useAppSelector((state) => state.searchFilters.filters);
+
   const {
     totalCountCreated,
     totalCountCreatedLastYear,
@@ -21,12 +23,12 @@ const MainInfo: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetTotalCountCreated());
-    dispatch(doGetTotalCountCreatedLastYear());
-    dispatch(doGetTotalCountCreatedLastQuarter());
-    dispatch(doGetTotalCountOperatingCompany());
+    dispatch(doGetTotalCountCreated(filters));
+    dispatch(doGetTotalCountCreatedLastYear(filters));
+    dispatch(doGetTotalCountCreatedLastQuarter(filters));
+    dispatch(doGetTotalCountOperatingCompany(filters));
     dispatch(doCalculatePercentYear());
-  }, [dispatch]);
+  }, [dispatch, filters]);
 
   return (
     <Container>

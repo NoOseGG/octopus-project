@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getCurrentDate, getCurrentYear, getDateLastQuarter, getLastYear, getPastMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
+import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 
 interface TotalCountCreated {
   count: number;
@@ -89,21 +90,36 @@ const initialState: DashBoardSlice = {
   },
 };
 
-export const doGetTotalCountCreated = createAsyncThunk<TotalCountCreated>('getTotalCountCreated', async () => {
-  try {
-    const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.COUNT);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+export const doGetTotalCountCreated = createAsyncThunk<TotalCountCreated, FiltersType>(
+  'getTotalCountCreated',
+  async (filters: FiltersType) => {
+    try {
+      let url = DASH.BASE + DASH.LEGAL_ENTITY;
+      if (filters.settlements.length > 0) {
+        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+      }
+      url += DASH.COUNT;
 
-export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated>(
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
+export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated, FiltersType>(
   'getTotalCountCreatedLastYear',
-  async () => {
+  async (filters) => {
     try {
       const year = getCurrentYear();
-      const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`) + DASH.COUNT);
+      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`);
+      if (filters.settlements.length > 0) {
+        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+      }
+      url += DASH.COUNT;
+
+      const response = await axios.get(url);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -111,12 +127,19 @@ export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated
   },
 );
 
-export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<TotalCountCreated>(
+export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<TotalCountCreated, FiltersType>(
   'getTotalCountCreatedLastQuarter',
-  async () => {
+  async (filters) => {
     try {
       const date = getDateLastQuarter();
-      const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date) + DASH.COUNT);
+
+      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date);
+      if (filters.settlements.length > 0) {
+        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+      }
+      url += DASH.COUNT;
+
+      const response = await axios.get(url);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -124,11 +147,17 @@ export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<TotalCountCrea
   },
 );
 
-export const doGetTotalCountOperatingCompany = createAsyncThunk<TotalCountCreated>(
+export const doGetTotalCountOperatingCompany = createAsyncThunk<TotalCountCreated, FiltersType>(
   'getTotalCountOperatingCompany',
-  async () => {
+  async (filters) => {
     try {
-      const response = await axios.get(DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.COUNT);
+      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT;
+      if (filters.settlements.length > 0) {
+        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+      }
+      url += DASH.COUNT;
+
+      const response = await axios.get(url);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -178,15 +207,15 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart>('doG
 export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart>('doGetDataForColumnChart', async () => {
   try {
     const month = getPastMonth(6);
-
-    const response = await axios.get(
+    const URL =
       DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('company_date_registration__month') +
-        DASH.LEGAL_ENTITY +
-        DASH.DATE_AFTER(`${month}-01`) +
-        DASH.ORDERING_AGG('company_date_registration__month'),
-    );
+      DASH.AGR_COUNT +
+      DASH.GROUP_BY('company_date_registration__month') +
+      DASH.LEGAL_ENTITY +
+      DASH.DATE_AFTER(`${month}-01`) +
+      DASH.ORDERING_AGG('company_date_registration__month');
+
+    const response = await axios.get(URL);
 
     return response.data;
   } catch (error) {
@@ -214,7 +243,6 @@ const dashboardSlice = createSlice({
     builder.addCase(doCalculatePercentYear.fulfilled, (state, action) => {
       const lastYear = action.payload.results[0].Count;
       const lastTwoYear = action.payload.results[1].Count;
-      console.log(`${lastYear} ${lastTwoYear}`);
 
       const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
       state.mainInfo.percent = parseInt(percent, 10);

@@ -11,7 +11,6 @@ const LineChartYears: React.FC = () => {
   useEffect(() => {
     dispatch(doGetDataForLineChart());
   }, [dispatch]);
-  console.log(JSON.stringify(lineChart));
 
   const data = lineChart.results.map((item) => {
     return {

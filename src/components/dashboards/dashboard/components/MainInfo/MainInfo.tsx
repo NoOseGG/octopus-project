@@ -28,6 +28,7 @@ const MainInfo: React.FC = () => {
     dispatch(doGetTotalCountCreatedLastQuarter(filters));
     dispatch(doGetTotalCountOperatingCompany(filters));
     dispatch(doCalculatePercentYear());
+    console.log(filters);
   }, [dispatch, filters]);
 
   return (

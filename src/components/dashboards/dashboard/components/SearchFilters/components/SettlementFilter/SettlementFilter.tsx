@@ -5,6 +5,7 @@ import { doGetSettlements, setSettlement } from '@app/store/slices/searchFilters
 
 const SettlementFilter: React.FC = () => {
   const settlements = useAppSelector((state) => state.searchFilters.data_filters.settlements);
+  const settlement = useAppSelector((state) => state.searchFilters.filters.settlements);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,17 +25,15 @@ const SettlementFilter: React.FC = () => {
     dispatch(setSettlement(settlement[1]));
   };
 
-  const onSearch = (value: string) => {};
-
   return (
     <Select
       size="middle"
       showSearch
       style={{ minWidth: 200 }}
       placeholder="Населенный пункт"
+      value={settlement}
       optionFilterProp="children"
       onChange={onChange}
-      onSearch={onSearch}
       filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
       options={data}
     />

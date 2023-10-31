@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCurrentDate, getCurrentYear, getDateLastQuarter, getLastYear, getPastMonth } from '@app/utils/utils';
+import {
+  constructorUrlForDashboard,
+  getCurrentDate,
+  getCurrentYear,
+  getDateLastQuarter,
+  getLastYear,
+  getPastMonth,
+} from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 
@@ -94,11 +101,8 @@ export const doGetTotalCountCreated = createAsyncThunk<TotalCountCreated, Filter
   'getTotalCountCreated',
   async (filters: FiltersType) => {
     try {
-      let url = DASH.BASE + DASH.LEGAL_ENTITY;
-      if (filters.settlements.length > 0) {
-        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
-      }
-      url += DASH.COUNT;
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true);
+      console.log(`URL => ${url}`);
 
       const response = await axios.get(url);
       return response.data;
@@ -113,12 +117,11 @@ export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated
   async (filters) => {
     try {
       const year = getCurrentYear();
-      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`);
-      if (filters.settlements.length > 0) {
-        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
-      }
-      url += DASH.COUNT;
-
+      const url = constructorUrlForDashboard(
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`),
+        filters,
+        true,
+      );
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -132,13 +135,7 @@ export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<TotalCountCrea
   async (filters) => {
     try {
       const date = getDateLastQuarter();
-
-      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date);
-      if (filters.settlements.length > 0) {
-        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
-      }
-      url += DASH.COUNT;
-
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date), filters, true);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -151,11 +148,7 @@ export const doGetTotalCountOperatingCompany = createAsyncThunk<TotalCountCreate
   'getTotalCountOperatingCompany',
   async (filters) => {
     try {
-      let url = DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT;
-      if (filters.settlements.length > 0) {
-        url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
-      }
-      url += DASH.COUNT;
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT, filters, true);
 
       const response = await axios.get(url);
       return response.data;
@@ -185,43 +178,55 @@ export const doCalculatePercentYear = createAsyncThunk<CalculatePercent>('doCalc
   }
 });
 
-export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart>('doGetDataForLineChart', async () => {
-  try {
-    const currentDate = getCurrentDate();
-    const response = await axios.get(
-      DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('company_date_registration__year') +
-        DASH.LEGAL_ENTITY +
-        DASH.DATE_BEFORE(currentDate) +
-        DASH.DATE_AFTER('2000-01-01') +
-        DASH.ORDERING_AGG('company_date_registration__year'),
-    );
+export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart, FiltersType>(
+  'doGetDataForLineChart',
+  async (filters) => {
+    try {
+      const currentDate = getCurrentDate();
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+      const url = constructorUrlForDashboard(
+        DASH.BASE +
+          DASH.AGR_COUNT +
+          DASH.GROUP_BY('company_date_registration__year') +
+          DASH.LEGAL_ENTITY +
+          DASH.DATE_BEFORE(currentDate) +
+          DASH.DATE_AFTER('2000-01-01'),
+        filters,
+        false,
+      );
 
-export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart>('doGetDataForColumnChart', async () => {
-  try {
-    const month = getPastMonth(6);
-    const URL =
-      DASH.BASE +
-      DASH.AGR_COUNT +
-      DASH.GROUP_BY('company_date_registration__month') +
-      DASH.LEGAL_ENTITY +
-      DASH.DATE_AFTER(`${month}-01`) +
-      DASH.ORDERING_AGG('company_date_registration__month');
+      const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
 
-    const response = await axios.get(URL);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart, FiltersType>(
+  'doGetDataForColumnChart',
+  async (filters) => {
+    try {
+      const month = getPastMonth(6);
+      const url = constructorUrlForDashboard(
+        DASH.BASE +
+          DASH.AGR_COUNT +
+          DASH.GROUP_BY('company_date_registration__month') +
+          DASH.LEGAL_ENTITY +
+          DASH.DATE_AFTER(`${month}-01`),
+        filters,
+        false,
+      );
+
+      const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
 
 const dashboardSlice = createSlice({
   name: 'dashboard',

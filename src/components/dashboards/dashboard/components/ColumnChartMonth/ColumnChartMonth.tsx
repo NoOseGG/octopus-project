@@ -8,11 +8,12 @@ import { ColumnConfig } from '@ant-design/charts';
 
 const ColumnChartMonth: React.FC = () => {
   const { columnChart } = useAppSelector((state) => state.dashboard);
+  const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForColumnChart());
-  }, [dispatch]);
+    dispatch(doGetDataForColumnChart(filters));
+  }, [dispatch, filters]);
 
   const data = columnChart.results.map((item) => {
     return {

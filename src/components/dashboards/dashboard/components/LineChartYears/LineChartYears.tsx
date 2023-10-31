@@ -6,11 +6,12 @@ import styled from 'styled-components';
 
 const LineChartYears: React.FC = () => {
   const { lineChart } = useAppSelector((state) => state.dashboard);
+  const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChart());
-  }, [dispatch]);
+    dispatch(doGetDataForLineChart(filters));
+  }, [dispatch, filters]);
 
   const data = lineChart.results.map((item) => {
     return {

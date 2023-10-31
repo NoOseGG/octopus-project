@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
-import { doGetDistricts } from '@app/store/slices/searchFiltersSlice';
+import { doGetDistricts, setDistrict } from '@app/store/slices/searchFiltersSlice';
 
 const DistrictFilter: React.FC = () => {
   const districts = useAppSelector((state) => state.searchFilters.data_filters.districts);
+  const district = useAppSelector((state) => state.searchFilters.filters.districts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,10 +20,9 @@ const DistrictFilter: React.FC = () => {
   });
 
   const onChange = (value: string) => {
-    console.log(`selected ${value}`);
+    console.log(`district => ${value}`);
+    dispatch(setDistrict(value));
   };
-
-  const onSearch = (value: string) => {};
 
   return (
     <Select
@@ -30,9 +30,9 @@ const DistrictFilter: React.FC = () => {
       showSearch
       style={{ minWidth: 200 }}
       placeholder="Район"
+      value={district}
       optionFilterProp="children"
       onChange={onChange}
-      onSearch={onSearch}
       filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
       options={data}
     />

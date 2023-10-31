@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
-import { doGetRegions } from '@app/store/slices/searchFiltersSlice';
+import { doGetRegions, setRegion } from '@app/store/slices/searchFiltersSlice';
 
 const RegionFilter: React.FC = () => {
   const regions = useAppSelector((state) => state.searchFilters.data_filters.regions);
+  const region = useAppSelector((state) => state.searchFilters.filters.regions);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,9 +21,8 @@ const RegionFilter: React.FC = () => {
 
   const onChange = (value: string) => {
     console.log(`selected ${value}`);
+    dispatch(setRegion(value));
   };
-
-  const onSearch = (value: string) => {};
 
   return (
     <Select
@@ -31,8 +31,8 @@ const RegionFilter: React.FC = () => {
       style={{ minWidth: 200 }}
       placeholder="Область"
       optionFilterProp="children"
+      value={region}
       onChange={onChange}
-      onSearch={onSearch}
       filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
       options={data}
     />

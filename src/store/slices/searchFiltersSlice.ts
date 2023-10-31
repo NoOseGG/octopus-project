@@ -26,10 +26,10 @@ interface RegionType {
 }
 
 export interface FiltersType {
-  type_activities: string;
-  settlements: string;
-  districts: string;
-  regions: string;
+  type_activities: string | null;
+  settlements: string | null;
+  districts: string | null;
+  regions: string | null;
 }
 
 interface SearchFiltersSlice {
@@ -50,10 +50,10 @@ const initialState: SearchFiltersSlice = {
     regions: [],
   },
   filters: {
-    type_activities: '',
-    settlements: '',
-    districts: '',
-    regions: '',
+    type_activities: null,
+    settlements: null,
+    districts: null,
+    regions: null,
   },
 };
 
@@ -102,8 +102,13 @@ const searchFiltersSlice = createSlice({
   initialState,
   reducers: {
     setSettlement: (state, action) => {
-      console.log(`ACTION => ${action.payload}`);
-      state.filters.settlements = action.payload;
+      state.filters = { ...state.filters, settlements: action.payload, districts: null, regions: null };
+    },
+    setDistrict: (state, action) => {
+      state.filters = { ...state.filters, districts: action.payload, settlements: null, regions: null };
+    },
+    setRegion: (state, action) => {
+      state.filters = { ...state.filters, regions: action.payload, settlements: null, districts: null };
     },
   },
   extraReducers: (builder) => {
@@ -122,5 +127,5 @@ const searchFiltersSlice = createSlice({
   },
 });
 
-export const { setSettlement } = searchFiltersSlice.actions;
+export const { setSettlement, setDistrict, setRegion } = searchFiltersSlice.actions;
 export default searchFiltersSlice.reducer;

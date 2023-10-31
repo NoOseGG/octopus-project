@@ -4,6 +4,8 @@ import { CurrencyType } from '@app/interfaces/interfaces';
 import { Priority } from '@app//constants/enums/priorities';
 import { ReactComponent as ETHIcon } from '@app/assets/icons/eth.svg';
 import { ReactComponent as BTCIcon } from '@app/assets/icons/btc.svg';
+import { FiltersType } from '@app/store/slices/searchFiltersSlice';
+import { DASH } from '@app/constants/enums/Dashboards';
 
 export const camelize = (string: string): string => {
   return string
@@ -327,3 +329,15 @@ export const getNameMonthByNumber = (number: number): string => {
       return 'Неизвестно';
   }
 };
+
+export const constructorUrlForDashboard = (base: string, filters: FiltersType, count: boolean) => {
+  let url = base;
+  if (filters.settlements !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+  if (filters.districts !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.districts);
+  if (filters.regions !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.regions);
+  if (count) url += DASH.COUNT;
+
+  return url;
+};
+
+// DASH.ORDERING_AGG('company_date_registration__year')

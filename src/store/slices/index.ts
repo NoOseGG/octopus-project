@@ -5,6 +5,7 @@ import themeReducer from '@app/store/slices/themeSlice';
 import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import dashboardReducer from '@app/store/slices/dashboardSlice';
+import searchFiltersReducer from '@app/store/slices/searchProfileSlice';
 
 export default {
   user: userReducer,
@@ -15,4 +16,5 @@ export default {
   search: searchReducer,
   searchProfile: searchProfileReducer,
   dashboard: dashboardReducer,
+  searchFilters: searchFiltersReducer,
 };

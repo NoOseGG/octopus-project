@@ -20,7 +20,6 @@ const SettlementFilter: React.FC = () => {
   });
 
   const onChange = (value: string) => {
-    console.log(`selected ${value}`);
     const settlement = value.split(' ');
     dispatch(setSettlement(settlement[1]));
   };

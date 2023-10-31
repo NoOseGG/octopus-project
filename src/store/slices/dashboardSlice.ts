@@ -102,7 +102,6 @@ export const doGetTotalCountCreated = createAsyncThunk<TotalCountCreated, Filter
   async (filters: FiltersType) => {
     try {
       const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true);
-      console.log(`URL => ${url}`);
 
       const response = await axios.get(url);
       return response.data;

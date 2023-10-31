@@ -20,7 +20,6 @@ const DistrictFilter: React.FC = () => {
   });
 
   const onChange = (value: string) => {
-    console.log(`district => ${value}`);
     dispatch(setDistrict(value));
   };
 

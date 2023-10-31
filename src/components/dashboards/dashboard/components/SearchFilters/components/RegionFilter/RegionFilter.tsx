@@ -20,7 +20,6 @@ const RegionFilter: React.FC = () => {
   });
 
   const onChange = (value: string) => {
-    console.log(`selected ${value}`);
     dispatch(setRegion(value));
   };
 

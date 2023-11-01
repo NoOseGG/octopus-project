@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetTypeActivitiesLastYear } from '@app/store/slices/typeActivitiesSlice';
+import { doGetTypeActivitiesLastQuarter } from '@app/store/slices/typeActivitiesSlice';
 import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
 
-const TypeActivitiesYear: React.FC = () => {
-  const typeActivitiesYear = useAppSelector((state) => state.typeActivities.typeActivitiesYear);
+const TypeActivitiesQuarter: React.FC = () => {
+  const typeActivitiesQuarter = useAppSelector((state) => state.typeActivities.typeActivitiesQuarter);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
   useEffect(() => {
-    dispatch(doGetTypeActivitiesLastYear(filters));
+    dispatch(doGetTypeActivitiesLastQuarter(filters));
   }, [dispatch, filters]);
 
   return (
     <Container>
-      <Title>Виды деятельности (Год)</Title>
+      <Title>Виды деятельности (Квартал)</Title>
       <Content>
-        {typeActivitiesYear.results.slice(0, 30).map((typeActivity, index) => (
+        {typeActivitiesQuarter.results.slice(0, 30).map((typeActivity, index) => (
           <Line key={index} value={index}>
             <span>{typeActivity.group_fields.type_activity_name}</span>
             <span>{typeActivity.Count}</span>
@@ -27,4 +27,4 @@ const TypeActivitiesYear: React.FC = () => {
   );
 };
 
-export default TypeActivitiesYear;
+export default TypeActivitiesQuarter;

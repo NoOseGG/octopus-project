@@ -11,8 +11,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   overflow: auto;
-  height: 500px;
-  width: 800px;
+  height: 300px;
 `;
 
 export const Title = styled.div`
@@ -25,5 +24,5 @@ export const Line = styled.div<LineProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) => (props.value % 2 === 1 ? '#D7D7D7' : 'transparent')};
+  background-color: ${(props) => (props.value % 2 === 1 ? '#F3F3F3' : 'transparent')};
 `;

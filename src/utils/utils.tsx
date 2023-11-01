@@ -289,6 +289,17 @@ export const getDateLastQuarter = (): string => {
   return `${year}-${month}-${day}`;
 };
 
+export const getDateLastMonth = (): string => {
+  const currentDate = new Date();
+  currentDate.setMonth(currentDate.getMonth() - 1);
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
 export const getPastMonth = (count: number): string => {
   const currentDate = new Date();
   currentDate.setMonth(currentDate.getMonth() - count);

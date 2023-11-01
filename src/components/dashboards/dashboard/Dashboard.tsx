@@ -4,6 +4,7 @@ import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/M
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
+import TypeActivitiesYear from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesYear/TypeActivitiesYear';
 
 const Dashboard: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Dashboard: React.FC = () => {
         <LineChartYears />
         <ColumnChartMonth />
       </ChartsContainer>
+      <TypeActivitiesYear />
     </Container>
   );
 };

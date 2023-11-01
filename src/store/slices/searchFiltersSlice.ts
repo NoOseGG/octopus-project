@@ -57,7 +57,7 @@ const initialState: SearchFiltersSlice = {
   },
 };
 
-export const doGetTypeActivities = createAsyncThunk<TypeActivitiesType[]>('doGetTypeActivities', async () => {
+export const doGetTypeActivitiesList = createAsyncThunk<TypeActivitiesType[]>('doGetTypeActivities', async () => {
   try {
     const response = await axios.get(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
 
@@ -67,7 +67,7 @@ export const doGetTypeActivities = createAsyncThunk<TypeActivitiesType[]>('doGet
   }
 });
 
-export const doGetSettlements = createAsyncThunk<SettlementType[]>('doGetSettlements', async () => {
+export const doGetSettlementsList = createAsyncThunk<SettlementType[]>('doGetSettlements', async () => {
   try {
     const response = await axios.get(SEARCH_FILTERS_URL.SETTLEMENT);
 
@@ -77,7 +77,7 @@ export const doGetSettlements = createAsyncThunk<SettlementType[]>('doGetSettlem
   }
 });
 
-export const doGetDistricts = createAsyncThunk<DistrictType[]>('doGetDistricts', async () => {
+export const doGetDistrictsList = createAsyncThunk<DistrictType[]>('doGetDistricts', async () => {
   try {
     const response = await axios.get(SEARCH_FILTERS_URL.DISTRICTS);
 
@@ -112,13 +112,13 @@ const searchFiltersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeActivities.fulfilled, (state, action) => {
+    builder.addCase(doGetTypeActivitiesList.fulfilled, (state, action) => {
       state.data_filters.type_activities = action.payload;
     });
-    builder.addCase(doGetSettlements.fulfilled, (state, action) => {
+    builder.addCase(doGetSettlementsList.fulfilled, (state, action) => {
       state.data_filters.settlements = action.payload;
     });
-    builder.addCase(doGetDistricts.fulfilled, (state, action) => {
+    builder.addCase(doGetDistrictsList.fulfilled, (state, action) => {
       state.data_filters.districts = action.payload;
     });
     builder.addCase(doGetRegions.fulfilled, (state, action) => {

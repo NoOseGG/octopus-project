@@ -333,8 +333,8 @@ export const getNameMonthByNumber = (number: number): string => {
 export const constructorUrlForDashboard = (base: string, filters: FiltersType, count: boolean) => {
   let url = base;
   if (filters.settlements !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
-  if (filters.districts !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.districts);
-  if (filters.regions !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.regions);
+  if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
+  if (filters.regions !== null) url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
   if (count) url += DASH.COUNT;
 
   return url;

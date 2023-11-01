@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
-import { doGetDistricts, setDistrict } from '@app/store/slices/searchFiltersSlice';
+import { doGetDistrictsList, setDistrict } from '@app/store/slices/searchFiltersSlice';
 
 const DistrictFilter: React.FC = () => {
   const districts = useAppSelector((state) => state.searchFilters.data_filters.districts);
@@ -9,7 +9,7 @@ const DistrictFilter: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDistricts());
+    dispatch(doGetDistrictsList());
   }, [dispatch]);
 
   const data = districts.map((district) => {

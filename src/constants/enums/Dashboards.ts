@@ -22,4 +22,20 @@ export const DASH = {
   ADDRESS_FULL_ICONTAINS: (field: string): string => {
     return `address_full__icontains=${field}&`;
   },
+
+  ADDRESS_SETTLEMENT_ICONTAINS: (field: string): string => {
+    return `address_settlement__icontains=${field}&`;
+  },
+
+  ADDRESS_DISTRICT_ICONTAINS: (field: string): string => {
+    return `address_district__icontains=${field}&`;
+  },
+
+  ADDRESS_REGION_ICONTAINS: (field: string): string => {
+    return `address_region__icontains=${field}&`;
+  },
+
+  PAGE_SIZE: (field: number): string => {
+    return `page_size=${field}&`;
+  },
 };

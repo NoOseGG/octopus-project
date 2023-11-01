@@ -6,6 +6,7 @@ import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import dashboardReducer from '@app/store/slices/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
+import typeActivitiesReducer from '@app/store/slices/typeActivitiesSlice';
 
 export default {
   user: userReducer,
@@ -17,4 +18,5 @@ export default {
   searchProfile: searchProfileReducer,
   dashboard: dashboardReducer,
   searchFilters: searchFiltersReducer,
+  typeActivities: typeActivitiesReducer,
 };

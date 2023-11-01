@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
-import { doGetSettlements, setSettlement } from '@app/store/slices/searchFiltersSlice';
+import { doGetSettlementsList, setSettlement } from '@app/store/slices/searchFiltersSlice';
 
 const SettlementFilter: React.FC = () => {
   const settlements = useAppSelector((state) => state.searchFilters.data_filters.settlements);
@@ -9,7 +9,7 @@ const SettlementFilter: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetSettlements());
+    dispatch(doGetSettlementsList());
   }, [dispatch]);
 
   const data = settlements.map((settlement) => {

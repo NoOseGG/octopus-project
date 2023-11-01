@@ -18,7 +18,7 @@ const TypeActivitiesYear: React.FC = () => {
     <Container>
       <Title>Виды деятельности (Год)</Title>
       <Content>
-        {typeActivities.results.slice(1, 31).map((typeActivity, index) => (
+        {typeActivities.results.slice(0, 30).map((typeActivity, index) => (
           <Line key={index} value={index}>
             <span>{typeActivity.group_fields.type_activity_name}</span>
             <span>{typeActivity.Count}</span>

@@ -43,6 +43,7 @@ export const doGetTypeActivities = createAsyncThunk<TypeActivityType, FiltersTyp
           DASH.LEGAL_ENTITY +
           DASH.STATUS_AT +
           DASH.DATE_AFTER(date) +
+          DASH.IS_NULL_FALSE('type_activity_name') +
           DASH.PAGE_SIZE(10000),
         filters,
         false,

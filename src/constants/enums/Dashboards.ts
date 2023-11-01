@@ -38,4 +38,8 @@ export const DASH = {
   PAGE_SIZE: (field: number): string => {
     return `page_size=${field}&`;
   },
+
+  IS_NULL_FALSE: (field: string): string => {
+    return `${field}__isnull=False&`;
+  },
 };

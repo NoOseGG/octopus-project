@@ -4,15 +4,19 @@ import SettlementFilter from '@app/components/dashboards/dashboard/components/Se
 import DistrictFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/DistrictFilter/DistrictFilter';
 import RegionFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/RegionFilter/RegionFilter';
 import ResetFilters from '@app/components/dashboards/dashboard/components/SearchFilters/components/ResetFilters/ResetFilters';
+import DateFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/DateFilter/DateFilter';
 
 const SearchFilters: React.FC = () => {
   return (
-    <Container>
-      <SettlementFilter />
-      <RegionFilter />
-      <DistrictFilter />
-      <ResetFilters />
-    </Container>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container>
+        <SettlementFilter />
+        <RegionFilter />
+        <DistrictFilter />
+        <ResetFilters />
+      </Container>
+      <DateFilter />
+    </div>
   );
 };
 

@@ -101,8 +101,7 @@ export const doGetTotalCountCreated = createAsyncThunk<TotalCountCreated, Filter
   'getTotalCountCreated',
   async (filters: FiltersType) => {
     try {
-      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true);
-
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true, true);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -120,6 +119,7 @@ export const doGetTotalCountCreatedLastYear = createAsyncThunk<TotalCountCreated
         DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`),
         filters,
         true,
+        false,
       );
       const response = await axios.get(url);
       return response.data;
@@ -134,7 +134,12 @@ export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<TotalCountCrea
   async (filters) => {
     try {
       const date = getDateLastQuarter();
-      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date), filters, true);
+      const url = constructorUrlForDashboard(
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date),
+        filters,
+        true,
+        false,
+      );
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -147,7 +152,7 @@ export const doGetTotalCountOperatingCompany = createAsyncThunk<TotalCountCreate
   'getTotalCountOperatingCompany',
   async (filters) => {
     try {
-      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT, filters, true);
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT, filters, true, true);
 
       const response = await axios.get(url);
       return response.data;
@@ -192,6 +197,7 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart, Filt
           DASH.DATE_AFTER('2000-01-01'),
         filters,
         false,
+        false,
       );
 
       const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
@@ -215,6 +221,7 @@ export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart, 
           DASH.LEGAL_ENTITY +
           DASH.DATE_AFTER(`${month}-01`),
         filters,
+        false,
         false,
       );
 

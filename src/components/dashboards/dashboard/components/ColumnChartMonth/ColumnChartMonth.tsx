@@ -55,7 +55,7 @@ const ColumnChartMonth: React.FC = () => {
   return (
     <Container>
       <Title>Динамика регистрации компаний по месяцам</Title>
-      <Column {...config}></Column>
+      <Column {...config} />
     </Container>
   );
 };

@@ -341,11 +341,15 @@ export const getNameMonthByNumber = (number: number): string => {
   }
 };
 
-export const constructorUrlForDashboard = (base: string, filters: FiltersType, count: boolean) => {
+export const constructorUrlForDashboard = (base: string, filters: FiltersType, count: boolean, date: boolean) => {
   let url = base;
   if (filters.settlements !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
   if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
   if (filters.regions !== null) url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
+  if (date) {
+    if (filters.fromDate !== null) url += DASH.DATE_AFTER(filters.fromDate);
+    if (filters.toDate !== null) url += DASH.DATE_BEFORE(filters.toDate);
+  }
   if (count) url += DASH.COUNT;
 
   return url;

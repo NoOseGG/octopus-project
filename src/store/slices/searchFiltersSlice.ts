@@ -30,6 +30,9 @@ export interface FiltersType {
   settlements: string | null;
   districts: string | null;
   regions: string | null;
+  fromDate: string | null;
+  toDate: string | null;
+  isDate: boolean;
 }
 
 interface SearchFiltersSlice {
@@ -54,6 +57,9 @@ const initialState: SearchFiltersSlice = {
     settlements: null,
     districts: null,
     regions: null,
+    fromDate: null,
+    toDate: null,
+    isDate: false,
   },
 };
 
@@ -110,6 +116,12 @@ const searchFiltersSlice = createSlice({
     setRegion: (state, action) => {
       state.filters = { ...state.filters, regions: action.payload, settlements: null, districts: null };
     },
+    setDate: (state, action) => {
+      state.filters = { ...state.filters, fromDate: action.payload[0], toDate: action.payload[1], isDate: true };
+    },
+    deleteDate: (state) => {
+      state.filters = { ...state.filters, fromDate: null, toDate: null, isDate: false };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(doGetTypeActivitiesList.fulfilled, (state, action) => {
@@ -127,5 +139,5 @@ const searchFiltersSlice = createSlice({
   },
 });
 
-export const { setSettlement, setDistrict, setRegion } = searchFiltersSlice.actions;
+export const { setSettlement, setDistrict, setRegion, setDate, deleteDate } = searchFiltersSlice.actions;
 export default searchFiltersSlice.reducer;

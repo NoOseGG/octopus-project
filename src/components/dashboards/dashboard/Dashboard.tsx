@@ -58,6 +58,7 @@ const TypeActivitiesContainer = styled.div`
 const Title = styled.div`
   font-size: 30px;
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 20px;
   font-weight: 700;
 `;

@@ -12,6 +12,7 @@ import { mediaMax } from '@app/styles/themes/constants';
 
 const MainInfo: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
+  const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
   const {
     totalCountCreated,
@@ -31,21 +32,25 @@ const MainInfo: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <Container>
+    <Container value={isDate}>
       <Block>
         <Title>Общее количество созданных компаний</Title>
         <Content>{totalCountCreated}</Content>
       </Block>
-      <Block>
-        <Title>Количество созданных компаний (год)</Title>
-        <Content>
-          {totalCountCreatedLastYear} <Percent number={percent}>({percent}%)</Percent>
-        </Content>
-      </Block>
-      <Block>
-        <Title>Количество созданных компаний (квартал)</Title>
-        <Content>{totalCountCreatedLastQuarter}</Content>
-      </Block>
+      {!filters.isDate && (
+        <Block>
+          <Title>Количество созданных компаний (год)</Title>
+          <Content>
+            {totalCountCreatedLastYear} <Percent number={percent}>({percent}%)</Percent>
+          </Content>
+        </Block>
+      )}
+      {!filters.isDate && (
+        <Block>
+          <Title>Количество созданных компаний (квартал)</Title>
+          <Content>{totalCountCreatedLastQuarter}</Content>
+        </Block>
+      )}
       <Block>
         <Title>Действующие компании</Title>
         <Content>{totalCountOperatingCompany}</Content>
@@ -56,12 +61,18 @@ const MainInfo: React.FC = () => {
 
 export default MainInfo;
 
-const Container = styled.div`
+export interface GridProps {
+  value: boolean;
+}
+
+const Container = styled.div<GridProps>`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: ${(props) => (props.value ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)')};
+  align-items: center;
 `;
 
 const Block = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

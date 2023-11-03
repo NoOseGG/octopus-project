@@ -52,6 +52,8 @@ export interface Address {
   settlement: string | null;
   full_address: string | null;
   from_dttm: string | null;
+  building_type: string | null;
+  building_kind: string | null;
 }
 
 export interface Name {

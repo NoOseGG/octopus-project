@@ -81,6 +81,16 @@ const columns: ColumnsType<Address> = [
     key: 'full_address',
   },
   {
+    title: 'Тип здания',
+    dataIndex: 'building_type',
+    key: 'building_type',
+  },
+  {
+    title: 'Вид здания',
+    dataIndex: 'building_kind',
+    key: 'building_kind',
+  },
+  {
     title: 'Дата начала действия',
     dataIndex: 'from_dttm',
     key: 'from_dttm',

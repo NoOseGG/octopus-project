@@ -310,6 +310,16 @@ export const getPastMonth = (count: number): string => {
   return `${year}-${month}`;
 };
 
+export const getPastMonthFromDate = (count: number, date: Date): string => {
+  date.setMonth(date.getMonth() - count);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
 export const getNameMonthByNumber = (number: number): string => {
   switch (number) {
     case 1:
@@ -341,9 +351,14 @@ export const getNameMonthByNumber = (number: number): string => {
   }
 };
 
-export const constructorUrlForDashboard = (base: string, filters: FiltersType, count: boolean, date: boolean) => {
+export const constructorUrlForDashboard = (
+  base: string,
+  filters: FiltersType,
+  count: boolean,
+  date: boolean,
+): string => {
   let url = base;
-  if (filters.settlements !== null) url += DASH.ADDRESS_FULL_ICONTAINS(filters.settlements);
+  if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
   if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
   if (filters.regions !== null) url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
   if (date) {

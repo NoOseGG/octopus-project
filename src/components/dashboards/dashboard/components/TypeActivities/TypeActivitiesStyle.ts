@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   overflow: auto;
-  height: 300px;
+  max-height: 300px;
 `;
 
 export const Title = styled.div`

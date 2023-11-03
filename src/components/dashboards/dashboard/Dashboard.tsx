@@ -4,10 +4,7 @@ import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/M
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
-import TypeActivitiesYear from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesYear/TypeActivitiesYear';
-import TypeActivitiesQuarter from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesQurter/TypeActivitiesQuarter';
-import TypeActivitiesMonth from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesMonth/TypeActivitiesMonth';
-import { mediaMax } from '@app/styles/themes/constants';
+import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
 
 const Dashboard: React.FC = () => {
   return (
@@ -19,11 +16,7 @@ const Dashboard: React.FC = () => {
         <LineChartYears />
         <ColumnChartMonth />
       </ChartsContainer>
-      <TypeActivitiesContainer>
-        <TypeActivitiesYear />
-        <TypeActivitiesQuarter />
-        <TypeActivitiesMonth />
-      </TypeActivitiesContainer>
+      <TypeActivities />
     </Container>
   );
 };
@@ -41,16 +34,6 @@ const ChartsContainer = styled.div`
   gap: 30px;
 
   @media only screen and (max-width: 1800px) {
-    flex-direction: column;
-  }
-`;
-
-const TypeActivitiesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  @media only screen and ${mediaMax.lg} {
-    display: flex;
     flex-direction: column;
   }
 `;

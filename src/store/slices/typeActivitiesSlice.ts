@@ -2,7 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
-import { constructorUrlForDashboard, getCurrentYear, getDateLastMonth, getDateLastQuarter } from '@app/utils/utils';
+import {
+  constructorUrlForDashboard,
+  getCurrentDate,
+  getCurrentYear,
+  getDateLastMonth,
+  getDateLastQuarter,
+} from '@app/utils/utils';
 
 export interface TypeActivityObject {
   group_fields: {
@@ -52,6 +58,35 @@ const initialState: TypeActivitySlice = {
   },
 };
 
+export const doGetTypeActivities = createAsyncThunk<TypeActivityType, FiltersType>(
+  'doGetTypeActivities',
+  async (filters) => {
+    try {
+      let baseUrl =
+        DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('type_activity_name') +
+        DASH.LEGAL_ENTITY +
+        DASH.STATUS_AT +
+        DASH.IS_NULL_FALSE('type_activity_name') +
+        DASH.PAGE_SIZE(10000);
+      let url;
+      if (!filters.isDate) {
+        const currentDate = getCurrentDate();
+        baseUrl += DASH.DATE_BEFORE(currentDate);
+        url = constructorUrlForDashboard(baseUrl, filters, false, false);
+      } else {
+        url = constructorUrlForDashboard(baseUrl, filters, false, true);
+      }
+
+      const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
 export const doGetTypeActivitiesLastYear = createAsyncThunk<TypeActivityType, FiltersType>(
   'doGetTypeActivitiesLastYear',
   async (filters) => {
@@ -67,6 +102,7 @@ export const doGetTypeActivitiesLastYear = createAsyncThunk<TypeActivityType, Fi
           DASH.IS_NULL_FALSE('type_activity_name') +
           DASH.PAGE_SIZE(10000),
         filters,
+        false,
         false,
       );
       const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
@@ -93,6 +129,7 @@ export const doGetTypeActivitiesLastQuarter = createAsyncThunk<TypeActivityType,
           DASH.PAGE_SIZE(10000),
         filters,
         false,
+        false,
       );
       const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
       return response.data;
@@ -118,6 +155,7 @@ export const doGetTypeActivitiesLastMonth = createAsyncThunk<TypeActivityType, F
           DASH.PAGE_SIZE(10000),
         filters,
         false,
+        false,
       );
       const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
       return response.data;
@@ -132,6 +170,9 @@ const typeActivitiesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(doGetTypeActivities.fulfilled, (state, action) => {
+      state.typeActivities = action.payload;
+    });
     builder.addCase(doGetTypeActivitiesLastYear.fulfilled, (state, action) => {
       state.typeActivitiesYear = action.payload;
     });

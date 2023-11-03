@@ -7,6 +7,7 @@ import {
   getDateLastQuarter,
   getLastYear,
   getPastMonth,
+  getPastMonthFromDate,
 } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { FiltersType } from '@app/store/slices/searchFiltersSlice';
@@ -162,31 +163,12 @@ export const doGetTotalCountOperatingCompany = createAsyncThunk<TotalCountCreate
   },
 );
 
-export const doCalculatePercentYear = createAsyncThunk<CalculatePercent>('doCalculatePercentYear', async () => {
-  try {
-    const currentDate = getCurrentDate();
-    const lastYear = getLastYear();
-
-    const response = await axios.get(
-      DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('company_date_registration__year') +
-        DASH.LEGAL_ENTITY +
-        DASH.DATE_BEFORE(currentDate) +
-        DASH.DATE_AFTER(`${lastYear}-01-01`) +
-        DASH.ORDERING_AGG('-company_date_registration__year'),
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart, FiltersType>(
-  'doGetDataForLineChart',
+export const doCalculatePercentYear = createAsyncThunk<CalculatePercent, FiltersType>(
+  'doCalculatePercentYear',
   async (filters) => {
     try {
       const currentDate = getCurrentDate();
+      const lastYear = getLastYear();
 
       const url = constructorUrlForDashboard(
         DASH.BASE +
@@ -194,11 +176,32 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart, Filt
           DASH.GROUP_BY('company_date_registration__year') +
           DASH.LEGAL_ENTITY +
           DASH.DATE_BEFORE(currentDate) +
-          DASH.DATE_AFTER('2000-01-01'),
+          DASH.DATE_AFTER(`${lastYear}-01-01`) +
+          DASH.ORDERING_AGG('-company_date_registration__year'),
         filters,
         false,
         false,
       );
+
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
+export const doGetDataForLineChart = createAsyncThunk<ResponseForLineChart, FiltersType>(
+  'doGetDataForLineChart',
+  async (filters) => {
+    try {
+      const currentDate = getCurrentDate();
+      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.LEGAL_ENTITY;
+      if (!filters.isDate) {
+        baseUrl += DASH.DATE_BEFORE(currentDate);
+        baseUrl += DASH.DATE_AFTER('2000-01-01');
+      }
+      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
       const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
 
@@ -213,18 +216,17 @@ export const doGetDataForColumnChart = createAsyncThunk<ResponseForColumnChart, 
   'doGetDataForColumnChart',
   async (filters) => {
     try {
-      const month = getPastMonth(6);
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_COUNT +
-          DASH.GROUP_BY('company_date_registration__month') +
-          DASH.LEGAL_ENTITY +
-          DASH.DATE_AFTER(`${month}-01`),
-        filters,
-        false,
-        false,
-      );
+      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__month') + DASH.LEGAL_ENTITY;
 
+      if (filters.isDate && filters.toDate !== null) {
+        const month = getPastMonthFromDate(6, new Date(filters.toDate));
+        baseUrl += DASH.DATE_AFTER(month);
+        baseUrl += DASH.DATE_BEFORE(filters.toDate);
+      } else {
+        const month = getPastMonth(6);
+        baseUrl += DASH.DATE_AFTER(`${month}-01`);
+      }
+      const url = constructorUrlForDashboard(baseUrl, filters, false, false);
       const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
 
       return response.data;

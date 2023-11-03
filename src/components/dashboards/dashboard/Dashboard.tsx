@@ -5,6 +5,7 @@ import LineChartYears from '@app/components/dashboards/dashboard/components/Line
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
+import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAge';
 
 const Dashboard: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Dashboard: React.FC = () => {
         <ColumnChartMonth />
       </ChartsContainer>
       <TypeActivities />
+      <CurrentSubjectsByAge />
     </Container>
   );
 };

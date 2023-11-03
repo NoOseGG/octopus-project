@@ -7,6 +7,7 @@ import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import dashboardReducer from '@app/store/slices/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/typeActivitiesSlice';
+import currentSubjectsByAgeReducer from '@app/store/slices/currentSubjectsByAgeSlice';
 
 export default {
   user: userReducer,
@@ -19,4 +20,5 @@ export default {
   dashboard: dashboardReducer,
   searchFilters: searchFiltersReducer,
   typeActivities: typeActivitiesReducer,
+  currentSubjectsByAge: currentSubjectsByAgeReducer,
 };

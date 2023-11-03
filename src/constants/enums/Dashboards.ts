@@ -10,9 +10,14 @@ export const DASH = {
   },
   STATUS_AT: 'company_status_code=AT&',
   AGR_COUNT: 'aggregate_by=Count&',
+  AGR_AVERAGE: 'aggregate_by=Avg&',
 
   GROUP_BY: (field: string): string => {
     return `group_by=${field}&`;
+  },
+
+  AVG_FIELD: (field: string): string => {
+    return `avg_field=${field}&`;
   },
 
   ORDERING_AGG: (field: string): string => {
@@ -41,5 +46,9 @@ export const DASH = {
 
   IS_NULL_FALSE: (field: string): string => {
     return `${field}__isnull=False&`;
+  },
+
+  AGE_RANGE: (start: number, end: number): string => {
+    return `age_short__gte=${start}&age_short__lt=${end}&`;
   },
 };

@@ -24,6 +24,7 @@ const SubjectMetricAddressMain: React.FC<MyComponentProps> = ({ metric_address_m
             <DataField name="Полный адрес" content={metric_address_main[index].full_address} />
             <DataFieldDate name="Дата включения" content={metric_address_main[index].from_dttm} />
             <DataField name="Количество зарегистрированных компаний" content={metric_address_main[index].count_lei} />
+            <DataField name="Плотность компаний на адресе" content={metric_address_main[index].density} />
             <DataField name="Количество действующих компаний" content={metric_address_main[index].count_active} />
             <DataField name="Показатель выживаемости" content={metric_address_main[index].survival_rate} />
             <DataField name="Тип здания" content={metric_address_main[index].building_type} />

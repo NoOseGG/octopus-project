@@ -38,6 +38,7 @@ export interface SubjectType {
   government_inspection: GovernmentInspection[];
   constituent_doc: ConstituentDoc[];
   economic_high_risk_registry: EconomicHighRiskRegistry[];
+  legal_entity_type: LegalEntityType[];
 }
 
 export interface Emails {
@@ -527,4 +528,10 @@ export interface EconomicHighRiskRegistry {
   from_dttm: string | null;
   date_fiu: string | null;
   period_no_legal_force: string | null;
+}
+
+export interface LegalEntityType {
+  entity_type_name: string | null;
+  entity_type_code: string | null;
+  from_dttm: string | null;
 }

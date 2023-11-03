@@ -51,6 +51,7 @@ const initialState: SubjectState = {
     government_inspection: [],
     constituent_doc: [],
     economic_high_risk_registry: [],
+    legal_entity_type: [],
   },
   loading: false,
   error: false,

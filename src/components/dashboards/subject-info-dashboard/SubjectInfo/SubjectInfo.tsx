@@ -29,6 +29,7 @@ import SubjectIceTrade from '@app/components/dashboards/subject-info-dashboard/S
 import SubjectStateBodies from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectStateBodies/SubjectStateBodies';
 import SubjectEconomicHighRiskRegistry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectEconomicHighRiskRegistry/SubjectEconomicHighRiskRegistry';
 import SubjectName from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectName/SubjectName';
+import SubjectLegalEntityType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalEntityType/SubjectLegalEntityType';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -44,6 +45,8 @@ const SubjectInfo: React.FC = () => {
       console.log(error);
     }
   }, [unn, dispatch]);
+
+  console.log(JSON.stringify(profile));
 
   return (
     <div className={styles.container}>
@@ -129,11 +132,12 @@ const SubjectInfo: React.FC = () => {
             )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
-            {Boolean(profile.economic_high_risk_registry.length) && (
-              <SubjectStateBodies state_bodies={profile.states_bodies} />
-            )}
+            {Boolean(profile.states_bodies.length) && <SubjectStateBodies state_bodies={profile.states_bodies} />}
             {Boolean(profile.economic_high_risk_registry.length) && (
               <SubjectEconomicHighRiskRegistry economic_high_risk_registry={profile.economic_high_risk_registry} />
+            )}
+            {Boolean(profile.legal_entity_type.length) && (
+              <SubjectLegalEntityType legal_entity_type={profile.legal_entity_type} />
             )}
           </div>
         </>

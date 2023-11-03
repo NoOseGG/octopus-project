@@ -39,6 +39,7 @@ export interface SubjectType {
   constituent_doc: ConstituentDoc[];
   economic_high_risk_registry: EconomicHighRiskRegistry[];
   legal_entity_type: LegalEntityType[];
+  metric_address_main: MetricAddressMain[];
 }
 
 export interface Emails {
@@ -534,4 +535,17 @@ export interface LegalEntityType {
   entity_type_name: string | null;
   entity_type_code: string | null;
   from_dttm: string | null;
+}
+
+// ------------ Indicators -------------
+
+export interface MetricAddressMain {
+  full_address: string | null;
+  from_dttm: string | null;
+  count_lei: number | null;
+  density: string | null;
+  count_active: number | null;
+  survival_rate: number | null;
+  building_type: string | null;
+  building_kind: string | null;
 }

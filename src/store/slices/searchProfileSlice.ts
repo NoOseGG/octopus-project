@@ -52,6 +52,7 @@ const initialState: SubjectState = {
     constituent_doc: [],
     economic_high_risk_registry: [],
     legal_entity_type: [],
+    metric_address_main: [],
   },
   loading: false,
   error: false,

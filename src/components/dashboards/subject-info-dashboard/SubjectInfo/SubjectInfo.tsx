@@ -30,6 +30,7 @@ import SubjectStateBodies from '@app/components/dashboards/subject-info-dashboar
 import SubjectEconomicHighRiskRegistry from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectEconomicHighRiskRegistry/SubjectEconomicHighRiskRegistry';
 import SubjectName from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectName/SubjectName';
 import SubjectLegalEntityType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalEntityType/SubjectLegalEntityType';
+import SubjectIndicators from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectIndicators';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -71,6 +72,9 @@ const SubjectInfo: React.FC = () => {
             <SubjectTaxes taxOffices={profile.tax_offices} taxOfficesArrears={profile.tax_offices_arrears} />
           </div>
           {Boolean(profile.vacancy.length) && <SubjectVacancies vacancies={profile.vacancy} />}
+          {Boolean(profile.metric_address_main.length) && (
+            <SubjectIndicators metric_address_main={profile.metric_address_main} />
+          )}
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}

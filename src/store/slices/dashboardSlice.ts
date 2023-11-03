@@ -254,11 +254,16 @@ const dashboardSlice = createSlice({
       state.mainInfo.totalCountOperatingCompany = action.payload.count;
     });
     builder.addCase(doCalculatePercentYear.fulfilled, (state, action) => {
-      const lastYear = action.payload.results[0].Count;
-      const lastTwoYear = action.payload.results[1].Count;
+      if (action.payload.results.length > 0) {
+        console.log(action.payload);
+        const lastYear = action.payload.results[0].Count;
+        const lastTwoYear = action.payload.results[1].Count;
 
-      const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
-      state.mainInfo.percent = parseInt(percent, 10);
+        const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
+        state.mainInfo.percent = parseInt(percent, 10);
+      } else {
+        state.mainInfo.percent = 0;
+      }
     });
     builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
       state.lineChart = action.payload;

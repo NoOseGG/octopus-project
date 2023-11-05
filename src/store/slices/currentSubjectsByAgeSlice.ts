@@ -83,6 +83,7 @@ export const doGetCurrentSubjectsFrom5To10 = createAsyncThunk<ResponseType, Filt
         true,
         false,
       );
+      console.log(url);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

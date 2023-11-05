@@ -39,7 +39,11 @@ export interface SubjectType {
   constituent_doc: ConstituentDoc[];
   economic_high_risk_registry: EconomicHighRiskRegistry[];
   legal_entity_type: LegalEntityType[];
+  resume: Resume[];
   metric_address_main: MetricAddressMain[];
+  metric_address_2: MetricAddress2[];
+  metric_change_constituent_doc: MetricChangeConstituentDoc[];
+  metric_change_director: MetricChangeDirector[];
 }
 
 export interface Emails {
@@ -537,6 +541,25 @@ export interface LegalEntityType {
   from_dttm: string | null;
 }
 
+export interface Resume {
+  from_dttm: string | null;
+  to_dttm: string | null;
+  work_position: string | null;
+  responsibilities: string | null;
+  birth_date: string | null;
+  gender: string | null;
+  settlement: string | null;
+  desired_position: string | null;
+  salary_byn: number | null;
+  salary_usd: number | null;
+  education_level: string | null;
+  addition: string | null;
+  resume_from_dttm: string | null;
+  education: string | null;
+  language_name: string | null;
+  skill_name: string | null;
+}
+
 // ------------ Indicators -------------
 
 export interface MetricAddressMain {
@@ -548,4 +571,19 @@ export interface MetricAddressMain {
   survival_rate: number | null;
   building_type: string | null;
   building_kind: string | null;
+}
+
+export interface MetricAddress2 {
+  count_changes: number | null;
+  risk_level: string | null;
+}
+
+export interface MetricChangeConstituentDoc {
+  count_activity: number | null;
+  risk_level: string | null;
+}
+
+export interface MetricChangeDirector {
+  count_changes: number | null;
+  risk_level: string | null;
 }

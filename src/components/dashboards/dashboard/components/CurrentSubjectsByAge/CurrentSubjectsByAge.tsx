@@ -81,15 +81,15 @@ const CurrentSubjectsByAge: React.FC = () => {
           <Content>{count20More}</Content>
         </Block>
         <Block>
-          <Title>10-20</Title>
+          <Title>от 10 до 20 лет</Title>
           <Content>{countFrom10To20}</Content>
         </Block>
         <Block>
-          <Title>5-10</Title>
+          <Title>от 5 до 10 лет</Title>
           <Content>{countFrom5To10}</Content>
         </Block>
         <Block>
-          <Title>от 1-5 лет</Title>
+          <Title>от 1 до 5 лет</Title>
           <Content>{countFrom1To5}</Content>
         </Block>
         <Block>
@@ -157,6 +157,9 @@ const AverageAgeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 `;
 
-const PieContainer = styled.div``;
+const PieContainer = styled.div`
+  flex-grow: 2;
+`;

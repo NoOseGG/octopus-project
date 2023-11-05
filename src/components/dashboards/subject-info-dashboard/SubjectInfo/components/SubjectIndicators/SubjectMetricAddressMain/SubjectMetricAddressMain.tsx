@@ -20,7 +20,7 @@ const SubjectMetricAddressMain: React.FC<MyComponentProps> = ({ metric_address_m
     <Container>
       {Boolean(metric_address_main.length) && (
         <>
-          <Card title="Индикатор 1. Адрес" style={{ width: '100%' }}>
+          <Card title="Адрес" style={{ width: '100%' }}>
             <DataField name="Полный адрес" content={metric_address_main[index].full_address} />
             <DataFieldDate name="Дата включения" content={metric_address_main[index].from_dttm} />
             <DataField name="Количество зарегистрированных компаний" content={metric_address_main[index].count_lei} />

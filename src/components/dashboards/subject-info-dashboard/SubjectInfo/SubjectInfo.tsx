@@ -72,9 +72,12 @@ const SubjectInfo: React.FC = () => {
             <SubjectTaxes taxOffices={profile.tax_offices} taxOfficesArrears={profile.tax_offices_arrears} />
           </div>
           {Boolean(profile.vacancy.length) && <SubjectVacancies vacancies={profile.vacancy} />}
-          {Boolean(profile.metric_address_main.length) && (
-            <SubjectIndicators metric_address_main={profile.metric_address_main} />
-          )}
+          <SubjectIndicators
+            metric_address_main={profile.metric_address_main}
+            metric_address_2={profile.metric_address_2}
+            metric_change_constituent_doc={profile.metric_change_constituent_doc}
+            metric_change_director={profile.metric_change_director}
+          />
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}

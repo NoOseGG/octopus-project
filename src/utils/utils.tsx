@@ -6,6 +6,7 @@ import { ReactComponent as ETHIcon } from '@app/assets/icons/eth.svg';
 import { ReactComponent as BTCIcon } from '@app/assets/icons/btc.svg';
 import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
+import React from 'react';
 
 export const camelize = (string: string): string => {
   return string
@@ -368,6 +369,19 @@ export const constructorUrlForDashboard = (
   if (count) url += DASH.COUNT;
 
   return url;
+};
+
+export const getColorForBadge = (risk: string | null): string => {
+  switch (risk) {
+    case 'Высокий риск':
+      return 'red';
+    case 'Средний риск':
+      return 'yellow';
+    case 'Низкий риск':
+      return 'green';
+    default:
+      return 'white';
+  }
 };
 
 // DASH.ORDERING_AGG('company_date_registration__year')

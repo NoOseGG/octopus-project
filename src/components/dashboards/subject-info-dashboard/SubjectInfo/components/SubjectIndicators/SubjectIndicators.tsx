@@ -28,12 +28,14 @@ const SubjectIndicators: React.FC<MyComponentProps> = ({
     <Container>
       <Title>Индикаторы</Title>
       <IndicatorsContainer>
-        {Boolean(metric_address_main) && <SubjectMetricAddressMain metric_address_main={metric_address_main} />}
-        {Boolean(metric_address_2) && <SubjectMetricAddressTwo metric_address_2={metric_address_2} />}
-        {Boolean(metric_address_2) && (
+        {Boolean(metric_address_main.length) && <SubjectMetricAddressMain metric_address_main={metric_address_main} />}
+        {Boolean(metric_address_2.length) && <SubjectMetricAddressTwo metric_address_2={metric_address_2} />}
+        {Boolean(metric_address_2.length) && (
           <SubjectMetricChangeConstituentDoc metric_change_constituent_doc={metric_change_constituent_doc} />
         )}
-        {Boolean(metric_address_2) && <SubjectMetricChangeDirector metric_change_director={metric_change_director} />}
+        {Boolean(metric_address_2.length) && (
+          <SubjectMetricChangeDirector metric_change_director={metric_change_director} />
+        )}
       </IndicatorsContainer>
     </Container>
   );

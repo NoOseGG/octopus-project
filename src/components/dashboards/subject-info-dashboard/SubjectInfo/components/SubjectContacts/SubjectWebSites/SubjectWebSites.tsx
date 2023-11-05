@@ -34,7 +34,7 @@ const SubjectWebSites: React.FC<MyComponentProps> = ({ webSites }) => {
         <>
           <Text strong={true}>Веб-сайт: </Text>{' '}
           {newWebSites[0].url && (
-            <a href={`http://${webSites[0].url}`} target="_blank" rel="noreferrer">
+            <a href={`https://${webSites[0].url}`} target="_blank" rel="noreferrer">
               {newWebSites[0].url}
             </a>
           )}
@@ -66,7 +66,7 @@ const columns: ColumnsType<WebSite> = [
     dataIndex: 'url',
     key: 'url',
     render: (webSite) => (
-      <a href={`http://${webSite[0].url}`} target="_blank" rel="noreferrer">
+      <a href={`https://${webSite[0].url}`} target="_blank" rel="noreferrer">
         {webSite}
       </a>
     ),

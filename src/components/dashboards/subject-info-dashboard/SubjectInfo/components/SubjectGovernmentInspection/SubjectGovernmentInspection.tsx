@@ -14,9 +14,10 @@ const SubjectGovernmentInspection: React.FC<MyComponentProps> = ({ governmentIns
   const [isTable, setIsTable] = useState(true);
   const [selectedGovernment, setSelectedGovernment] = useState<GovernmentInspection | null>(governmentInspections[0]);
 
-  const newGovernmentInspection = governmentInspections.map((governmentInspection) => ({
+  const newGovernmentInspection = governmentInspections.map((governmentInspection, index) => ({
     ...governmentInspection,
     from_dttm: formatDate(governmentInspection.from_dttm),
+    key: index,
   }));
 
   const handleClick = () => {

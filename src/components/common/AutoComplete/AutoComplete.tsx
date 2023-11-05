@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import React, { ComponentProps } from 'react';
 import { AutoComplete as AntAutoComplete } from 'antd';
 import * as S from './AutoComplete.styles';
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MetricChangeConstituentDoc } from '@app/store/types/Subject';
 import { Badge, Card, Pagination } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import { getColorForBadge } from '@app/utils/utils';
 
 type MyComponentProps = {
   metric_change_constituent_doc: MetricChangeConstituentDoc[];
@@ -21,10 +22,10 @@ const SubjectMetricChangeConstituentDoc: React.FC<MyComponentProps> = ({ metric_
         <>
           <Card title="Частота юридически значимых действий" style={{ width: '100%' }}>
             <DataField name="Количество изменений" content={metric_change_constituent_doc[index].count_activity} />
-            <span>
+            <RiskContainer>
               <DataField name="Уровень риска" content={metric_change_constituent_doc[index].risk_level} />
-              <Badge />
-            </span>
+              <Badge color={getColorForBadge(metric_change_constituent_doc[index].risk_level)} />
+            </RiskContainer>
           </Card>
           {Boolean(metric_change_constituent_doc.length > 1) && (
             <Pagination
@@ -49,4 +50,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 10px;
+`;
+
+const RiskContainer = styled.div`
+  display: flex;
+  gap: 2px;
 `;

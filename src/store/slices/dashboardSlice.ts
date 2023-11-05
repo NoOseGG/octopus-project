@@ -255,7 +255,6 @@ const dashboardSlice = createSlice({
     });
     builder.addCase(doCalculatePercentYear.fulfilled, (state, action) => {
       if (action.payload.results.length > 0) {
-        console.log(action.payload);
         const lastYear = action.payload.results[0].Count;
         const lastTwoYear = action.payload.results[1].Count;
 

@@ -9,17 +9,31 @@ type MyComponentProps = {
 };
 
 const DataField: React.FC<MyComponentProps> = ({ name, content }) => {
-  return (
-    <>
-      {Boolean(content) && (
-        <>
-          <Text strong={true}>{`${name}: `}</Text>
-          <Text>{content}</Text>
-          <br />
-        </>
-      )}
-    </>
-  );
+  if (content === 0) {
+    return (
+      <>
+        {content === 0 && (
+          <>
+            <Text strong={true}>{`${name}: `}</Text>
+            <Text>0</Text>
+            <br />
+          </>
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {Boolean(content) && (
+          <>
+            <Text strong={true}>{`${name}: `}</Text>
+            <Text>{content}</Text>
+            <br />
+          </>
+        )}
+      </>
+    );
+  }
 };
 
 export default DataField;

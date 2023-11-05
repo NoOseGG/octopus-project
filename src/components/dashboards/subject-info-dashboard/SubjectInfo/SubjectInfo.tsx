@@ -31,6 +31,7 @@ import SubjectEconomicHighRiskRegistry from '@app/components/dashboards/subject-
 import SubjectName from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectName/SubjectName';
 import SubjectLegalEntityType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalEntityType/SubjectLegalEntityType';
 import SubjectIndicators from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectIndicators';
+import SubjectResume from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectResume/SubjectResume';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -46,8 +47,6 @@ const SubjectInfo: React.FC = () => {
       console.log(error);
     }
   }, [unn, dispatch]);
-
-  console.log(JSON.stringify(profile));
 
   return (
     <div className={styles.container}>
@@ -78,6 +77,7 @@ const SubjectInfo: React.FC = () => {
             metric_change_constituent_doc={profile.metric_change_constituent_doc}
             metric_change_director={profile.metric_change_director}
           />
+          {Boolean(profile.resume.length) && <SubjectResume resumes={profile.resume} />}
           <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
             {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}

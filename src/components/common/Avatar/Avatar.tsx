@@ -1,5 +1,6 @@
 import { AvatarProps, Avatar as AntdAvatar } from 'antd';
 import * as S from './Avatar.styles';
+import React from 'react';
 
 export const { Group } = AntdAvatar;
 

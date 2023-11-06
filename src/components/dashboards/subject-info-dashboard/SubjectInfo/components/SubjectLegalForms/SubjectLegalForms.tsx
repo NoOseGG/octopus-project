@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { LegalForm } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import styled from 'styled-components';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  legalForms: LegalForm[];
-};
-
-const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
+const SubjectLegalForms: React.FC = () => {
+  const legalForms = useAppSelector((state) => state.searchProfile.profile.legal_forms);
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -17,9 +14,9 @@ const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
   };
 
   return (
-    <Container>
+    <>
       {Boolean(legalForms.length) && (
-        <>
+        <Container>
           <Card title="Данные о орг.правовой форме" style={{ width: '100%' }}>
             <DataField name={'Код'} content={legalForms[index].form_type} />
             <DataField name={'Тип'} content={legalForms[index].form_code} />
@@ -41,9 +38,9 @@ const SubjectLegalForms: React.FC<MyComponentProps> = ({ legalForms }) => {
               onChange={(page) => handleClick(page)}
             />
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

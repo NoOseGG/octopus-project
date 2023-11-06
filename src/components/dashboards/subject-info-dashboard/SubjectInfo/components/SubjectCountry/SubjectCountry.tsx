@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { Country } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  countries: Country[];
-};
+const SubjectCountry: React.FC = () => {
+  const countries = useAppSelector((state) => state.searchProfile.profile.countries);
 
-const SubjectCountry: React.FC<MyComponentProps> = ({ countries }) => {
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -17,9 +15,9 @@ const SubjectCountry: React.FC<MyComponentProps> = ({ countries }) => {
   };
 
   return (
-    <Container>
+    <>
       {Boolean(countries.length) && (
-        <>
+        <Container>
           <Card title="Данные о стране регистрации" style={{ width: '100%' }}>
             <DataField name="Код" content={countries[index].code} />
             <DataField name="Наименование" content={countries[index].name} />
@@ -36,9 +34,9 @@ const SubjectCountry: React.FC<MyComponentProps> = ({ countries }) => {
               onChange={(page) => handleClick(page)}
             />
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

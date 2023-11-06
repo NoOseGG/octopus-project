@@ -5,12 +5,10 @@ import styled from 'styled-components';
 import SingleCommercialRegister from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectCommercialRegister/components/SingleCommercialRegister';
 import { ColumnsType } from 'antd/es/table';
 import { formatDate } from '@app/utils/utils';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  commercialRegisters: CommercialRegister[];
-};
-
-const SubjectCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegisters }) => {
+const SubjectCommercialRegister: React.FC = () => {
+  const commercialRegisters = useAppSelector((state) => state.searchProfile.profile.commercial_register);
   const newCommercialRegister = commercialRegisters.map((commercialRegister) => ({
     ...commercialRegister,
     from_dttm: formatDate(commercialRegister.from_dttm),

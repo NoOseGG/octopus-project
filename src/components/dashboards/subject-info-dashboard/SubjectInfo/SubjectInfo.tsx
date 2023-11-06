@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import SubjectMainContentTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectMainContent/SubjectMainContent';
-import SubjectEmailsTest from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectContacts';
+import SubjectContacts from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectContacts/SubjectContacts';
 import SubjectVacancies from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectVacancies/SubjectVacancies';
 import SubjectLegalForms from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalForms/SubjectLegalForms';
 import SubjectDescriptions from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectDescriptions/SubjectDescriptions';
@@ -32,6 +32,7 @@ import SubjectName from '@app/components/dashboards/subject-info-dashboard/Subje
 import SubjectLegalEntityType from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectLegalEntityType/SubjectLegalEntityType';
 import SubjectIndicators from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectIndicators';
 import SubjectResume from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectResume/SubjectResume';
+import { Container } from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/SubjectInfoStyle';
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
@@ -60,31 +61,20 @@ const SubjectInfo: React.FC = () => {
       {error && <h1>Ошибка получения данных</h1>}
       {!loading && !error && (
         <>
-          {Boolean(profile.names.length > 0) && <SubjectName names={profile.names} />}
-          {Boolean(profile.descriptions.length > 0) && <SubjectDescriptions descriptions={profile.descriptions} />}
-          <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
-            <SubjectMainContentTest subject={profile} />
-            <SubjectEmailsTest
-              emails={profile.emails}
-              phones={profile.phones}
-              addresses={profile.addresses}
-              webSites={profile.web_sites}
-            />
-            <SubjectTaxes taxOffices={profile.tax_offices} taxOfficesArrears={profile.tax_offices_arrears} />
-          </div>
-          {Boolean(profile.vacancy.length) && <SubjectVacancies vacancies={profile.vacancy} />}
-          <SubjectIndicators
-            metric_address_main={profile.metric_address_main}
-            metric_address_2={profile.metric_address_2}
-            metric_change_constituent_doc={profile.metric_change_constituent_doc}
-            metric_change_director={profile.metric_change_director}
-            metric_entity_contact={profile.metric_entity_contact}
-          />
-          {Boolean(profile.resume.length) && <SubjectResume resumes={profile.resume} />}
-          <div style={{ display: 'flex', gap: 20, marginTop: 20 }}>
-            {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
-            {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}
-          </div>
+          <SubjectName />
+          <SubjectDescriptions />
+          <Container>
+            <SubjectMainContentTest />
+            <SubjectContacts />
+            <SubjectTaxes />
+          </Container>
+          <SubjectVacancies />
+          <SubjectIndicators />
+          <SubjectResume />
+          <Container>
+            <SubjectLegalForms />
+            <SubjectLicenses />
+          </Container>
           <div style={{ marginTop: 20 }}>
             {Boolean(profile.icetrade_customer.length) && (
               <SubjectIceTrade
@@ -96,19 +86,13 @@ const SubjectInfo: React.FC = () => {
               />
             )}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'stretch', gap: 20, marginTop: 10 }}>
-            {Boolean(profile.statuses.length) && <SubjectStatus statuses={profile.statuses} />}
-            {Boolean(profile.statuses_types.length) && <SubjectStatusType statusesType={profile.statuses_types} />}
-            {Boolean(profile.countries.length) && <SubjectCountry countries={profile.countries} />}
-            {Boolean(profile.types_activities.length) && (
-              <SubjectTypeActivity typeActivities={profile.types_activities} />
-            )}
-          </div>
-          <div>
-            {Boolean(profile.commercial_register.length) && (
-              <SubjectCommercialRegister commercialRegisters={profile.commercial_register} />
-            )}
-          </div>
+          <Container>
+            <SubjectStatus />
+            <SubjectStatusType />
+            <SubjectCountry />
+            <SubjectTypeActivity />
+          </Container>
+          <SubjectCommercialRegister />
           <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
             {Boolean(profile.gias_accredited_customer.length) && (
               <SubjectGiasAccreditedCustomer giasAccreditedCustomer={profile.gias_accredited_customer} />

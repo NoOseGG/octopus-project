@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { StatusType } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  statusesType: StatusType[];
-};
+const SubjectStatusType: React.FC = () => {
+  const statusesType = useAppSelector((state) => state.searchProfile.profile.statuses_types);
 
-const SubjectStatusType: React.FC<MyComponentProps> = ({ statusesType }) => {
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -17,9 +15,9 @@ const SubjectStatusType: React.FC<MyComponentProps> = ({ statusesType }) => {
   };
 
   return (
-    <Container>
+    <>
       {Boolean(statusesType.length) && (
-        <>
+        <Container>
           <Card title="Данные о способах создания/ликвидации" style={{ width: '100%' }}>
             <DataField name="Код" content={statusesType[index].status_code} />
             <DataField name="Наименование" content={statusesType[index].name} />
@@ -37,9 +35,9 @@ const SubjectStatusType: React.FC<MyComponentProps> = ({ statusesType }) => {
               onChange={(page) => handleClick(page)}
             />
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

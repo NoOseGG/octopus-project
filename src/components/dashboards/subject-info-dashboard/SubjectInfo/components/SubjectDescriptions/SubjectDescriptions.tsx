@@ -1,22 +1,24 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
-import { Description } from '@app/store/types/Subject';
-
-type MyComponentProps = {
-  descriptions: Description[];
-};
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const { Text } = Typography;
 
-const SubjectDescriptions: React.FC<MyComponentProps> = ({ descriptions }) => {
+const SubjectDescriptions: React.FC = () => {
+  const descriptions = useAppSelector((state) => state.searchProfile.profile.descriptions);
+
   return (
-    <Card title="Описание организации" style={{ width: '100%' }}>
-      {Boolean(descriptions.length > 0) && (
-        <>
-          <Text>{descriptions[0].description}</Text>
-        </>
+    <>
+      {Boolean(descriptions.length) && (
+        <Card title="Описание организации" style={{ width: '100%' }}>
+          {Boolean(descriptions.length > 0) && (
+            <>
+              <Text>{descriptions[0].description}</Text>
+            </>
+          )}
+        </Card>
       )}
-    </Card>
+    </>
   );
 };
 

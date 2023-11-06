@@ -1,15 +1,13 @@
 import React from 'react';
-import { Name } from '@app/store/types/Subject';
 import styled from 'styled-components';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Popover, Table } from 'antd';
 import Column from 'antd/es/table/Column';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  names: Name[];
-};
+const SubjectName: React.FC = () => {
+  const names = useAppSelector((state) => state.searchProfile.profile.names);
 
-const SubjectName: React.FC<MyComponentProps> = ({ names }) => {
   const contentFullName = () => {
     return (
       <Table style={{ width: 'auto' }} dataSource={names} bordered={true} size={'small'} tableLayout={'auto'}>
@@ -32,18 +30,22 @@ const SubjectName: React.FC<MyComponentProps> = ({ names }) => {
 
   return (
     <>
-      <Title>
-        {names[0].full_name}
-        <Popover placement={'bottomLeft'} title="Список полных названий" content={contentFullName()}>
-          <CaretDownOutlined />
-        </Popover>
-      </Title>
-      <SubTitle>
-        ({names[0].short_name})
-        <Popover placement={'bottomLeft'} title="Список сокращенных названий" content={contentShortName()}>
-          <CaretDownOutlined />
-        </Popover>
-      </SubTitle>
+      {Boolean(names.length) && (
+        <>
+          <Title>
+            {names[0].full_name}
+            <Popover placement={'bottomLeft'} title="Список полных названий" content={contentFullName()}>
+              <CaretDownOutlined />
+            </Popover>
+          </Title>
+          <SubTitle>
+            ({names[0].short_name})
+            <Popover placement={'bottomLeft'} title="Список сокращенных названий" content={contentShortName()}>
+              <CaretDownOutlined />
+            </Popover>
+          </SubTitle>
+        </>
+      )}
     </>
   );
 };

@@ -1,59 +1,51 @@
-import React from 'react';
-import { Card, Typography } from 'antd';
-import { License } from '@app/store/types/Subject';
-import { formatDate } from '@app/utils/utils';
+import React, { useState } from 'react';
+import { Card, Pagination } from 'antd';
+import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
+import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
+import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-const { Text } = Typography;
+const SubjectLicenses: React.FC = () => {
+  const licenses = useAppSelector((state) => state.searchProfile.profile.licenses);
+  const [index, setIndex] = useState(0);
 
-type MyComponentProps = {
-  licenses: License[];
-};
+  const handleClick = (page: number) => {
+    setIndex(page - 1);
+  };
 
-const SubjectLicenses: React.FC<MyComponentProps> = ({ licenses }) => {
   return (
-    <Card title="Данные о лицензиях" style={{ width: '100%' }}>
+    <>
       {Boolean(licenses.length) && (
-        <>
-          {Boolean(licenses[0].license_number) && (
-            <>
-              {' '}
-              <Text strong={true}>Номер лицензии: </Text> <Text>{licenses[0].license_number}</Text> <br />{' '}
-            </>
+        <Container>
+          <Card title="Данные о лицензиях" style={{ width: '100%' }}>
+            <DataField name={'Номер лицензии'} content={licenses[index].license_number} />
+            <DataField name={'Орган выдавший'} content={licenses[index].state_body_name} />
+            <DataField name={'Название'} content={licenses[index].license_name} />
+            <DataField name={'Название статуса'} content={licenses[index].status_name} />
+            <DataField name={'Код'} content={licenses[index].status_code} />
+            <DataFieldDate name={'Дата начала действия'} content={licenses[index].from_dttm} />
+          </Card>
+          {Boolean(licenses.length > 1) && (
+            <Pagination
+              style={{ alignSelf: 'center' }}
+              defaultCurrent={1}
+              total={licenses.length}
+              defaultPageSize={1}
+              size={'small'}
+              onChange={(page) => handleClick(page)}
+            />
           )}
-          {Boolean(licenses[0].state_body_name) && (
-            <>
-              {' '}
-              <Text strong={true}>Орган выдавший:</Text> <Text>{licenses[0].state_body_name}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(licenses[0].license_name) && (
-            <>
-              {' '}
-              <Text strong={true}>Название: </Text> <Text>{licenses[0].license_name}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(licenses[0].status_name) && (
-            <>
-              {' '}
-              <Text strong={true}>Название статуса: </Text> <Text>{licenses[0].status_name}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(licenses[0].status_code) && (
-            <>
-              {' '}
-              <Text strong={true}>Код: </Text> <Text>{licenses[0].status_code}</Text> <br />{' '}
-            </>
-          )}
-          {Boolean(licenses[0].from_dttm) && (
-            <>
-              {' '}
-              <Text strong={true}>Дата начала действия: </Text> <Text>{formatDate(licenses[0].from_dttm)}</Text> <br />{' '}
-            </>
-          )}
-        </>
+        </Container>
       )}
-    </Card>
+    </>
   );
 };
 
 export default SubjectLicenses;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;

@@ -1,67 +1,73 @@
 import React from 'react';
 import { dateTransformate, formatDate } from '@app/utils/utils';
-import { SubjectType } from '@app/store/types/Subject';
 import { Card, Typography } from 'antd';
-
-type MyComponentProps = {
-  subject: SubjectType;
-};
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const { Text } = Typography;
 
-const SubjectMainContent: React.FC<MyComponentProps> = ({ subject }) => {
+const SubjectMainContent: React.FC = () => {
+  const {
+    unn,
+    date_reg_mns,
+    date_reg_egr,
+    decision_create_number,
+    decision_liquidation_number,
+    period_activity,
+    age_full,
+    age_short,
+  } = useAppSelector((state) => state.searchProfile.profile);
+
   return (
     <Card title="Информация" style={{ width: '100%' }}>
-      {subject.unn && (
+      {unn && (
         <>
-          <Text strong={true}>УНП: </Text> <Text copyable={{ tooltips: false }}>{subject.unn}</Text>
+          <Text strong={true}>УНП: </Text> <Text copyable={{ tooltips: false }}>{unn}</Text>
           <br />
         </>
       )}
-      {subject.date_reg_mns && (
+      {date_reg_mns && (
         <>
-          <Text strong={true}>Дата постановки на учет в ИМНС: </Text>{' '}
-          <Text>{dateTransformate(subject.date_reg_mns)}</Text>
+          <Text strong={true}>Дата постановки на учет в ИМНС: </Text> <Text>{dateTransformate(date_reg_mns)}</Text>
           <br />
         </>
       )}
-      {subject.date_reg_egr && (
+      {date_reg_egr && (
         <>
           <Text strong={true}>Дата регистрации в ЕГР: </Text>
-          <Text>{formatDate(subject.date_reg_egr)}</Text>
+          <Text>{formatDate(date_reg_egr)}</Text>
           <br />
         </>
       )}
-      {subject.decision_create_number && (
+      {decision_create_number && (
         <>
-          <Text strong={true}>Номер решения о создании: </Text> <Text>{subject.decision_create_number}</Text>
+          <Text strong={true}>Номер решения о создании: </Text> <Text>{decision_create_number}</Text>
           <br />
         </>
       )}
-      {subject.decision_liquidation_number && (
+      {decision_liquidation_number && (
         <>
-          <Text strong={true}>Номер решения о ликвидации: </Text> <Text>{subject.decision_liquidation_number}</Text>
+          <Text strong={true}>Номер решения о ликвидации: </Text> <Text>{decision_liquidation_number}</Text>
           <br />
         </>
       )}
-      {subject.period_activity && (
+      {period_activity && (
         <>
           <Text strong={true}>Период деятельности: </Text>
-          <Text>{subject.period_activity}</Text>
+          <Text>{period_activity}</Text>
           <br />
         </>
       )}
-      {subject.age_full && (
+      {age_full && (
         <>
           <Text strong={true}>Количество дней деятельсности: </Text>
-          <Text>{subject.age_full}</Text>
+          <Text>{age_full}</Text>
           <br />
         </>
       )}
-      {subject.age_short && (
+      {age_short && (
         <>
           <Text strong={true}>Количество лет деятельсности: </Text>
-          <Text>{subject.age_short}</Text>
+          <Text>{age_short}</Text>
         </>
       )}
     </Card>

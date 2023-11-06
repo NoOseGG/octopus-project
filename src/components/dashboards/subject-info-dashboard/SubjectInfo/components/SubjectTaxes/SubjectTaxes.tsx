@@ -1,15 +1,13 @@
 import React from 'react';
-import { TaxOffice, TaxOfficeArrea } from '@app/store/types/Subject';
 import { Tabs } from 'antd';
 import SubjectTaxOfficesArrears from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxOfficesArrears/SubjectTaxOfficesArrears';
 import SubjectTaxOffices from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectTaxes/SubjectTaxOffices/SubjectTaxOffices';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  taxOffices: TaxOffice[];
-  taxOfficesArrears: TaxOfficeArrea[];
-};
+const SubjectTaxes: React.FC = () => {
+  const taxOffices = useAppSelector((state) => state.searchProfile.profile.tax_offices);
+  const taxOfficesArrears = useAppSelector((state) => state.searchProfile.profile.tax_offices_arrears);
 
-const SubjectTaxes: React.FC<MyComponentProps> = ({ taxOffices, taxOfficesArrears }) => {
   return (
     <Tabs defaultActiveKey={'1'} style={{ width: '100%' }}>
       {Boolean(taxOffices.length) && (

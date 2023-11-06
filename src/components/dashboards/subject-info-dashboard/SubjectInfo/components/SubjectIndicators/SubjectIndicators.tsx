@@ -1,34 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import SubjectMetricAddressMain from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricAddressMain/SubjectMetricAddressMain';
-import {
-  MetricAddress2,
-  MetricAddressMain,
-  MetricChangeConstituentDoc,
-  MetricChangeDirector,
-  MetricEntityContact,
-} from '@app/store/types/Subject';
 import SubjectMetricAddressTwo from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricAddressTwo/SubjectMetricAddressTwo';
 import SubjectMetricChangeConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricChangeConstituentDoc/SubjectMetricChangeConstituentDoc';
 import SubjectMetricChangeDirector from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricChangeDirector/SubjectMetricChangeDirector';
 import { mediaMax } from '@app/styles/themes/constants';
 import SubjectMetricEntityContact from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricEntityContact/SubjectMetricEntityContact';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  metric_address_main: MetricAddressMain[];
-  metric_address_2: MetricAddress2[];
-  metric_change_constituent_doc: MetricChangeConstituentDoc[];
-  metric_change_director: MetricChangeDirector[];
-  metric_entity_contact: MetricEntityContact[];
-};
+const SubjectIndicators: React.FC = () => {
+  const metric_address_main = useAppSelector((state) => state.searchProfile.profile.metric_address_main);
+  const metric_address_2 = useAppSelector((state) => state.searchProfile.profile.metric_address_2);
+  const metric_change_constituent_doc = useAppSelector(
+    (state) => state.searchProfile.profile.metric_change_constituent_doc,
+  );
+  const metric_change_director = useAppSelector((state) => state.searchProfile.profile.metric_change_director);
+  const metric_entity_contact = useAppSelector((state) => state.searchProfile.profile.metric_entity_contact);
 
-const SubjectIndicators: React.FC<MyComponentProps> = ({
-  metric_address_main,
-  metric_address_2,
-  metric_change_constituent_doc,
-  metric_change_director,
-  metric_entity_contact,
-}) => {
   return (
     <Container>
       <Title>Индикаторы</Title>

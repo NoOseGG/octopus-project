@@ -28,7 +28,7 @@ const SubjectResume: React.FC<MyComponentProps> = ({ resumes }) => {
   };
 
   return (
-    <>
+    <Container>
       <TableStyle dataSource={newVacancies} bordered={true} size={'small'} tableLayout={'fixed'}>
         <ColumnGroup title="Резюме">
           <Column
@@ -120,11 +120,15 @@ const SubjectResume: React.FC<MyComponentProps> = ({ resumes }) => {
           </Descriptions>
         )}
       </Modal>
-    </>
+    </Container>
   );
 };
 
 export default SubjectResume;
+
+const Container = styled.div`
+  margin-top: 20px;
+`;
 
 const TableStyle = styled(Table)`
   margin-top: 10px;

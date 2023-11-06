@@ -44,6 +44,7 @@ export interface SubjectType {
   metric_address_2: MetricAddress2[];
   metric_change_constituent_doc: MetricChangeConstituentDoc[];
   metric_change_director: MetricChangeDirector[];
+  metric_entity_contact: MetricEntityContact[];
 }
 
 export interface Emails {
@@ -585,5 +586,10 @@ export interface MetricChangeConstituentDoc {
 
 export interface MetricChangeDirector {
   count_changes: number | null;
+  risk_level: string | null;
+}
+
+export interface MetricEntityContact {
+  sum_count: number | null;
   risk_level: string | null;
 }

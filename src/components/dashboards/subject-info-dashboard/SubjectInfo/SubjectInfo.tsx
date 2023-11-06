@@ -48,6 +48,8 @@ const SubjectInfo: React.FC = () => {
     }
   }, [unn, dispatch]);
 
+  console.log(JSON.stringify(profile));
+
   return (
     <div className={styles.container}>
       {loading && (
@@ -76,9 +78,10 @@ const SubjectInfo: React.FC = () => {
             metric_address_2={profile.metric_address_2}
             metric_change_constituent_doc={profile.metric_change_constituent_doc}
             metric_change_director={profile.metric_change_director}
+            metric_entity_contact={profile.metric_entity_contact}
           />
           {Boolean(profile.resume.length) && <SubjectResume resumes={profile.resume} />}
-          <div style={{ display: 'flex', gap: 20, marginTop: 10 }}>
+          <div style={{ display: 'flex', gap: 20, marginTop: 20 }}>
             {Boolean(profile.legal_forms.length) && <SubjectLegalForms legalForms={profile.legal_forms} />}
             {Boolean(profile.licenses.length) && <SubjectLicenses licenses={profile.licenses} />}
           </div>

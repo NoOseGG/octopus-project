@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { MetricChangeDirector } from '@app/store/types/Subject';
 import { Badge, Card, Pagination } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import { getColorForBadge } from '@app/utils/utils';
+import { Container, GRID_AREA, RiskContainer } from '../SubjectIndicatorStyle';
 
 type MyComponentProps = {
   metric_change_director: MetricChangeDirector[];
@@ -17,7 +17,7 @@ const SubjectMetricChangeChangeDirector: React.FC<MyComponentProps> = ({ metric_
   };
 
   return (
-    <Container>
+    <Container gridArea={GRID_AREA.D}>
       {Boolean(metric_change_director.length) && (
         <>
           <Card title="Частота смены руководителя" style={{ width: '100%' }}>
@@ -44,15 +44,3 @@ const SubjectMetricChangeChangeDirector: React.FC<MyComponentProps> = ({ metric_
 };
 
 export default SubjectMetricChangeChangeDirector;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-`;
-
-const RiskContainer = styled.div`
-  display: flex;
-  gap: 2px;
-`;

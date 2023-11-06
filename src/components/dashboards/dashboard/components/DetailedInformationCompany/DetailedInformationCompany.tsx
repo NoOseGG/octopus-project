@@ -37,12 +37,16 @@ const DetailedInformationCompany: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <Container>
-      <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
-      <TableContainer>
-        <Table dataSource={results} columns={columns} size={'small'} bordered={true}></Table>
-      </TableContainer>
-    </Container>
+    <>
+      {Boolean(results.length) && (
+        <Container>
+          <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
+          <TableContainer>
+            <Table dataSource={results} columns={columns} size={'small'} bordered={true}></Table>
+          </TableContainer>
+        </Container>
+      )}
+    </>
   );
 };
 

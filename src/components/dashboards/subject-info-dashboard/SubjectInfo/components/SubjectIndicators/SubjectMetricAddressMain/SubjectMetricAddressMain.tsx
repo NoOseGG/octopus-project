@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { MetricAddressMain } from '@app/store/types/Subject';
 import { Card, Pagination } from 'antd';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
+import {
+  Container,
+  GRID_AREA,
+} from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectIndicatorStyle';
 
 type MyComponentProps = {
   metric_address_main: MetricAddressMain[];
@@ -17,7 +20,7 @@ const SubjectMetricAddressMain: React.FC<MyComponentProps> = ({ metric_address_m
   };
 
   return (
-    <Container>
+    <Container gridArea={GRID_AREA.A}>
       {Boolean(metric_address_main.length) && (
         <>
           <Card title="Адрес" style={{ width: '100%' }}>
@@ -47,10 +50,3 @@ const SubjectMetricAddressMain: React.FC<MyComponentProps> = ({ metric_address_m
 };
 
 export default SubjectMetricAddressMain;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-`;

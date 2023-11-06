@@ -57,6 +57,7 @@ const initialState: SubjectState = {
     metric_address_2: [],
     metric_change_constituent_doc: [],
     metric_change_director: [],
+    metric_entity_contact: [],
   },
   loading: false,
   error: false,

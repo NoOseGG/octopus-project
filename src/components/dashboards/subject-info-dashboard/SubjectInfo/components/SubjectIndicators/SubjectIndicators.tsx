@@ -10,6 +10,7 @@ import {
 import SubjectMetricAddressTwo from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricAddressTwo/SubjectMetricAddressTwo';
 import SubjectMetricChangeConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricChangeConstituentDoc/SubjectMetricChangeConstituentDoc';
 import SubjectMetricChangeDirector from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIndicators/SubjectMetricChangeDirector/SubjectMetricChangeDirector';
+import { mediaMax } from '@app/styles/themes/constants';
 
 type MyComponentProps = {
   metric_address_main: MetricAddressMain[];
@@ -51,6 +52,12 @@ const IndicatorsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  margin-top: 20px;
+
+  @media only screen and ${mediaMax.xl} {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 const Title = styled.div`

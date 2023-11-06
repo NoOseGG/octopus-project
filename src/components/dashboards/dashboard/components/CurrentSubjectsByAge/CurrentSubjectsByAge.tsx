@@ -106,6 +106,7 @@ const CurrentSubjectsByAge: React.FC = () => {
           <Pie {...config} />
         </PieContainer>
       </ChartContainer>
+      <Divider />
     </Container>
   );
 };
@@ -132,6 +133,7 @@ const AgeContainer = styled.div`
 const Block = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Title = styled.div`

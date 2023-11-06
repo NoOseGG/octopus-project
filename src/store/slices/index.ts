@@ -8,6 +8,7 @@ import dashboardReducer from '@app/store/slices/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/typeActivitiesSlice';
 import currentSubjectsByAgeReducer from '@app/store/slices/currentSubjectsByAgeSlice';
+import detailedInformationCompanyReducer from '@app/store/slices/detailedInformationCompanySlice';
 
 export default {
   user: userReducer,
@@ -21,4 +22,5 @@ export default {
   searchFilters: searchFiltersReducer,
   typeActivities: typeActivitiesReducer,
   currentSubjectsByAge: currentSubjectsByAgeReducer,
+  detailedInformationCompany: detailedInformationCompanyReducer,
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForColumnChart } from '@app/store/slices/dashboardSlice';
+import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import styled from 'styled-components';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';

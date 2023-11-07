@@ -1,6 +1,7 @@
 export const DASH = {
   BASE: 'http://93.125.0.140:1338/api/v1/dashboard/main/?',
   LEGAL_ENTITY: 'legal_form_entity_type__iexact=Юридическое+лицо&',
+  LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,BP,PL,RG,SA,LC&',
   COUNT: 'count=1&',
   DATE_BEFORE: (date: string): string => {
     return `company_date_registration__lte=${date}&`;
@@ -8,6 +9,15 @@ export const DASH = {
   DATE_AFTER: (date: string): string => {
     return `company_date_registration__gte=${date}&`;
   },
+
+  DATE_BEFORE_LIQUIDATED: (date: string): string => {
+    return `company_status_from_dttm__lte=${date}&`;
+  },
+
+  DATE_AFTER_LIQUIDATED: (date: string): string => {
+    return `company_status_from_dttm__gte=${date}&`;
+  },
+
   STATUS_AT: 'company_status_code=AT&',
   AGR_COUNT: 'aggregate_by=Count&',
   AGR_AVERAGE: 'aggregate_by=Avg&',

@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import styled from 'styled-components';
+import { doGetDataForLineChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 
-const LineChartYears: React.FC = () => {
-  const { lineChart } = useAppSelector((state) => state.dashboard);
+const LineChartLiquidatedYears: React.FC = () => {
+  const lineChart = useAppSelector((state) => state.liquidatedMainInfo.lineChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChart(filters));
+    dispatch(doGetDataForLineChartLiquidated(filters));
   }, [dispatch, filters]);
 
   const data = lineChart.results.map((item) => {
     return {
-      year: item.group_fields.company_date_registration__year,
+      year: item.group_fields.company_status_from_dttm__year,
       value: item.Count,
     };
   });
@@ -62,7 +62,7 @@ const LineChartYears: React.FC = () => {
   );
 };
 
-export default LineChartYears;
+export default LineChartLiquidatedYears;
 
 const Container = styled.div`
   width: auto;

@@ -4,11 +4,12 @@ import nightModeReducer from '@app/store/slices/nightModeSlice';
 import themeReducer from '@app/store/slices/themeSlice';
 import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
-import dashboardReducer from '@app/store/slices/dashboardSlice';
+import dashboardReducer from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
-import typeActivitiesReducer from '@app/store/slices/typeActivitiesSlice';
-import currentSubjectsByAgeReducer from '@app/store/slices/currentSubjectsByAgeSlice';
-import detailedInformationCompanyReducer from '@app/store/slices/detailedInformationCompanySlice';
+import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
+import currentSubjectsByAgeReducer from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
+import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
+import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 
 export default {
   user: userReducer,
@@ -23,4 +24,5 @@ export default {
   typeActivities: typeActivitiesReducer,
   currentSubjectsByAge: currentSubjectsByAgeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
+  liquidatedMainInfo: liquidatedMainInfoReducer,
 };

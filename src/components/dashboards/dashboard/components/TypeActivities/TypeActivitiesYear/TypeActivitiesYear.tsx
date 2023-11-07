@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetTypeActivitiesLastYear } from '@app/store/slices/typeActivitiesSlice';
+import { doGetTypeActivitiesLastYear } from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
 import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
 
 const TypeActivitiesYear: React.FC = () => {

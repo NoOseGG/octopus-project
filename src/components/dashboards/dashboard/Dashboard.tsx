@@ -7,6 +7,8 @@ import SearchFilters from '@app/components/dashboards/dashboard/components/Searc
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
 import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAge';
 import DetailedInformationCompany from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompany';
+import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
+import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 
 const Dashboard: React.FC = () => {
   return (
@@ -21,6 +23,8 @@ const Dashboard: React.FC = () => {
       <TypeActivities />
       <CurrentSubjectsByAge />
       <DetailedInformationCompany />
+      <LiquidatedMainInfo />
+      <LineChartLiquidatedYears />
     </Container>
   );
 };

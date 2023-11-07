@@ -7,7 +7,7 @@ import {
   doGetCurrentSubjectsFrom5To10,
   doGetCurrentSubjectsLessThen1,
   doGetCurrentSubjectsMoreThen20,
-} from '@app/store/slices/currentSubjectsByAgeSlice';
+} from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
 import styled from 'styled-components';
 import { Divider } from 'antd';
 import { Pie } from '@ant-design/charts';

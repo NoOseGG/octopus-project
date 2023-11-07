@@ -1,65 +1,56 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import {
-  doCalculatePercentYear,
-  doGetTotalCountCreated,
-  doGetTotalCountCreatedLastQuarter,
-  doGetTotalCountCreatedLastYear,
-  doGetTotalCountOperatingCompany,
-} from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import { mediaMax } from '@app/styles/themes/constants';
+import {
+  doCalculatePercentLiquidatedYear,
+  doGetDataForLineChartLiquidated,
+  doGetTotalCountLiquidated,
+  doGetTotalCountLiquidatedLastQuarter,
+  doGetTotalCountLiquidatedLastYear,
+} from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 
-const MainInfo: React.FC = () => {
+const LiquidatedMainInfo: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
-  const {
-    totalCountCreated,
-    totalCountCreatedLastYear,
-    totalCountCreatedLastQuarter,
-    totalCountOperatingCompany,
-    percent,
-  } = useAppSelector((state) => state.dashboard.mainInfo);
+  const { totalCountLiquidated, totalCountLiquidatedLastYear, totalCountLiquidatedLastQuarter, percent } =
+    useAppSelector((state) => state.liquidatedMainInfo.liquidatedMainInfo);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetTotalCountCreated(filters));
-    dispatch(doGetTotalCountCreatedLastYear(filters));
-    dispatch(doGetTotalCountCreatedLastQuarter(filters));
-    dispatch(doGetTotalCountOperatingCompany(filters));
-    dispatch(doCalculatePercentYear(filters));
+    dispatch(doGetTotalCountLiquidated(filters));
+    dispatch(doGetTotalCountLiquidatedLastYear(filters));
+    dispatch(doGetTotalCountLiquidatedLastQuarter(filters));
+    dispatch(doCalculatePercentLiquidatedYear(filters));
+    dispatch(doGetDataForLineChartLiquidated(filters));
   }, [dispatch, filters]);
 
   return (
     <Container value={isDate}>
       <Block>
-        <Title>Общее количество созданных компаний</Title>
-        <Content>{totalCountCreated}</Content>
+        <Title>Общее количество ликвидированных компаний</Title>
+        <Content>{totalCountLiquidated}</Content>
       </Block>
       {!filters.isDate && (
         <Block>
-          <Title>Количество созданных компаний (год)</Title>
+          <Title>Количество ликвидированных компаний (год)</Title>
           <Content>
-            {totalCountCreatedLastYear} <Percent number={percent}>({percent}%)</Percent>
+            {totalCountLiquidatedLastYear} <Percent number={percent}>({percent}%)</Percent>
           </Content>
         </Block>
       )}
       {!filters.isDate && (
         <Block>
-          <Title>Количество созданных компаний (квартал)</Title>
-          <Content>{totalCountCreatedLastQuarter}</Content>
+          <Title>Количество ликвидированных компаний (квартал)</Title>
+          <Content>{totalCountLiquidatedLastQuarter}</Content>
         </Block>
       )}
-      <Block>
-        <Title>Действующие компании</Title>
-        <Content>{totalCountOperatingCompany}</Content>
-      </Block>
     </Container>
   );
 };
 
-export default MainInfo;
+export default LiquidatedMainInfo;
 
 export interface GridProps {
   value: boolean;
@@ -67,7 +58,7 @@ export interface GridProps {
 
 const Container = styled.div<GridProps>`
   display: grid;
-  grid-template-columns: ${(props) => (props.value ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)')};
+  grid-template-columns: ${(props) => (props.value ? 'repeat(1, 1fr)' : 'repeat(3, 1fr)')};
   align-items: center;
 `;
 

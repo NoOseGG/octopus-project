@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Table } from 'antd';
-import { doGetDetailedInformationCompany } from '@app/store/slices/detailedInformationCompanySlice';
+import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
 import styled from 'styled-components';
 
 const getColumn = (title: string, field: string) => {
@@ -42,7 +42,12 @@ const DetailedInformationCompany: React.FC = () => {
         <Container>
           <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
           <TableContainer>
-            <Table dataSource={results} columns={columns} size={'small'} bordered={true}></Table>
+            <Table
+              dataSource={results.map((item, index) => ({ ...item, key: index }))}
+              columns={columns}
+              size={'small'}
+              bordered={true}
+            ></Table>
           </TableContainer>
         </Container>
       )}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetTypeActivities } from '@app/store/slices/typeActivitiesSlice';
+import { doGetTypeActivities } from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
 import {
   Container,
   Content,

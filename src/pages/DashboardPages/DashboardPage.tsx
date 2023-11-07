@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row } from 'antd';
+import { Row, Tabs } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
@@ -10,6 +10,13 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 import Dashboard from '@app/components/dashboards/dashboard/Dashboard';
+import DashboardSoleTrader from '@app/components/dashboards/dashboard-sole-trader/DashboardSoleTrader';
+import { deleteLegalEntity, setLegalEntity } from '@app/store/slices/searchFiltersSlice';
+
+enum TABS_KEY {
+  LEGAL_ENTITY = 'LEGAL_ENTITY',
+  SOLE_TRADE = 'SOLE_TRADE',
+}
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -28,10 +35,28 @@ const DashboardPage: React.FC = () => {
     }
   }, [token, navigate]);
 
+  const handleChangeLegalEntity = (key: string) => {
+    switch (key) {
+      case TABS_KEY.LEGAL_ENTITY:
+        dispatch(setLegalEntity());
+        break;
+      case TABS_KEY.SOLE_TRADE:
+        dispatch(deleteLegalEntity());
+        break;
+    }
+  };
+
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <Dashboard />
+        <Tabs defaultActiveKey={'1'} style={{ width: '100%' }} centered onChange={handleChangeLegalEntity}>
+          <Tabs.TabPane tab={'Юридические лица'} key={TABS_KEY.LEGAL_ENTITY}>
+            <Dashboard />
+          </Tabs.TabPane>
+          <Tabs.TabPane tab={'Индивидуальные предприниматели'} key={TABS_KEY.SOLE_TRADE}>
+            <DashboardSoleTrader />
+          </Tabs.TabPane>
+        </Tabs>
         <References />
       </S.LeftSideCol>
     </Row>

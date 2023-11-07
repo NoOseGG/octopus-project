@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetTypeActivities } from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
 import {
   Container,
   Content,
   Line,
   Title,
 } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
+import { doGetTypeActivitiesSoleTrade } from '@app/store/slices/dashboardSoleTrader/typeActivitiesSoleTradeSlice';
 
-const TypeActivitiesAll: React.FC = () => {
-  const typeActivities = useAppSelector((state) => state.typeActivities.typeActivities.results);
+const TypeActivitiesAllSoleTrade: React.FC = () => {
+  const typeActivities = useAppSelector((state) => state.typeActivitiesSoleTrade.typeActivities.results);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
   useEffect(() => {
-    dispatch(doGetTypeActivities(filters));
+    dispatch(doGetTypeActivitiesSoleTrade(filters));
   }, [dispatch, filters]);
 
   return (
@@ -36,4 +36,4 @@ const TypeActivitiesAll: React.FC = () => {
   );
 };
 
-export default TypeActivitiesAll;
+export default TypeActivitiesAllSoleTrade;

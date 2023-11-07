@@ -36,7 +36,7 @@ import { Container } from '@app/components/dashboards/subject-info-dashboard/Sub
 
 const SubjectInfo: React.FC = () => {
   const { unn } = useParams();
-  const { profile, loading, error } = useAppSelector((state) => state.searchProfile);
+  const { loading, error } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -48,8 +48,6 @@ const SubjectInfo: React.FC = () => {
       console.log(error);
     }
   }, [unn, dispatch]);
-
-  console.log(JSON.stringify(profile));
 
   return (
     <div className={styles.container}>

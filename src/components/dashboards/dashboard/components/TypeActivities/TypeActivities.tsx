@@ -8,11 +8,11 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import TypeActivitiesAll from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesAll/TypeActivitiesAll';
 
 const TypeActivities: React.FC = () => {
-  const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
+  const { isDate, isLegalEntity } = useAppSelector((state) => state.searchFilters.filters);
 
   return (
     <div>
-      {isDate ? (
+      {isDate && isLegalEntity ? (
         <TypeActivitiesAll />
       ) : (
         <>

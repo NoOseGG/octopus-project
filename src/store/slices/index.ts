@@ -7,9 +7,11 @@ import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import dashboardReducer from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
+import typeActivitiesSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/typeActivitiesSoleTradeSlice';
 import currentSubjectsByAgeReducer from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import mainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/mainInfoSoleTraderSlice';
 
 export default {
   user: userReducer,
@@ -22,7 +24,9 @@ export default {
   dashboard: dashboardReducer,
   searchFilters: searchFiltersReducer,
   typeActivities: typeActivitiesReducer,
+  typeActivitiesSoleTrade: typeActivitiesSoleTradeReducer,
   currentSubjectsByAge: currentSubjectsByAgeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
   liquidatedMainInfo: liquidatedMainInfoReducer,
+  mainInfoSoleTrade: mainInfoSoleTradeReducer,
 };

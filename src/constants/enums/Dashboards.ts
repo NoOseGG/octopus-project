@@ -1,6 +1,7 @@
 export const DASH = {
   BASE: 'http://93.125.0.140:1338/api/v1/dashboard/main/?',
   LEGAL_ENTITY: 'legal_form_entity_type__iexact=Юридическое+лицо&',
+  SOLE_TRADE: 'legal_form_entity_type__iexact=Индивидуальный+предприниматель&',
   LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,BP,PL,RG,SA,LC&',
   COUNT: 'count=1&',
   DATE_BEFORE: (date: string): string => {

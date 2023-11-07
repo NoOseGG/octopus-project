@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { GiasAccreditedParticipant } from '@app/store/types/Subject';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  giasAccreditedPaticipant: GiasAccreditedParticipant[];
-};
+const SubjectGiasAccreditedParticipant: React.FC = () => {
+  const gias_accredited_participant = useAppSelector(
+    (state) => state.searchProfile.profile.gias_accredited_participant,
+  );
 
-const SubjectGiasAccreditedParticipant: React.FC<MyComponentProps> = ({ giasAccreditedPaticipant }) => {
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -16,26 +16,26 @@ const SubjectGiasAccreditedParticipant: React.FC<MyComponentProps> = ({ giasAccr
   };
 
   return (
-    <Container>
-      {Boolean(giasAccreditedPaticipant.length) && (
-        <>
+    <>
+      {Boolean(gias_accredited_participant.length) && (
+        <Container>
           <Card title="Реестр ГИАС аккредитованных участников" style={{ width: '100%' }}>
-            <DataFieldDate name="Дата включения в реестр" content={giasAccreditedPaticipant[index].from_dttm} />
-            <DataFieldDate name="Дата исключения из реестра" content={giasAccreditedPaticipant[index].to_dttm} />
+            <DataFieldDate name="Дата включения в реестр" content={gias_accredited_participant[index].from_dttm} />
+            <DataFieldDate name="Дата исключения из реестра" content={gias_accredited_participant[index].to_dttm} />
           </Card>
-          {Boolean(giasAccreditedPaticipant.length > 1) && (
+          {Boolean(gias_accredited_participant.length > 1) && (
             <Pagination
               style={{ alignSelf: 'center' }}
               defaultCurrent={1}
-              total={giasAccreditedPaticipant.length}
+              total={gias_accredited_participant.length}
               defaultPageSize={1}
               size={'small'}
               onChange={(page) => handleClick(page)}
             />
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

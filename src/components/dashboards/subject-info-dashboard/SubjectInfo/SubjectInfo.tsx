@@ -20,7 +20,7 @@ import SubjectGiasAccreditedCustomer from '@app/components/dashboards/subject-in
 import SubjectGiasAccreditedParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasAccreditedParticipant';
 import SubjectGiasBlackList from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasBlackList';
 import SubjectGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan/SubjectGiasPlan';
-import SubjectGiasCompaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintSubmit';
+import SubjectGiasComplaintSubmit from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasComplaintSubmit';
 import SubjectGiasCompaintReceive from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasCompaintReceive';
 import SubjectGovernmentInspection from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/SubjectGovernmentInspection';
 import SubjectConstituentDoc from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectConstituentDoc/SubjectConstituentDoc';
@@ -75,17 +75,9 @@ const SubjectInfo: React.FC = () => {
             <SubjectLegalForms />
             <SubjectLicenses />
           </Container>
-          <div style={{ marginTop: 20 }}>
-            {Boolean(profile.icetrade_customer.length) && (
-              <SubjectIceTrade
-                icetrade_customer={profile.icetrade_customer}
-                icetrade_participant={profile.icetrade_participant}
-                icetrade_other_participant={profile.icetrade_participant}
-                icetrade_organizer_negotiations={profile.icetrade_organizer_negotiations}
-                icetrade_organizer={profile.icetrade_organizer}
-              />
-            )}
-          </div>
+          <Container>
+            <SubjectIceTrade />
+          </Container>
           <Container>
             <SubjectStatus />
             <SubjectStatusType />
@@ -93,47 +85,29 @@ const SubjectInfo: React.FC = () => {
             <SubjectTypeActivity />
           </Container>
           <SubjectCommercialRegister />
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
-            {Boolean(profile.gias_accredited_customer.length) && (
-              <SubjectGiasAccreditedCustomer giasAccreditedCustomer={profile.gias_accredited_customer} />
-            )}
-            {Boolean(profile.gias_accredited_participant.length) && (
-              <SubjectGiasAccreditedParticipant giasAccreditedPaticipant={profile.gias_accredited_participant} />
-            )}
-            {Boolean(profile.gias_black_list.length) && (
-              <SubjectGiasBlackList giasBlackList={profile.gias_black_list} />
-            )}
-          </div>
-          <div style={{ marginTop: 10 }}>
-            {Boolean(profile.gias_plan.length) && <SubjectGiasPlan giasPlans={profile.gias_plan} />}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
-            {Boolean(profile.gias_complaint_submit.length) && (
-              <SubjectGiasCompaintSubmit giasComplaintSubmit={profile.gias_complaint_submit} />
-            )}
-            {Boolean(profile.gias_complaint_receive.length) && (
-              <SubjectGiasCompaintReceive giasComplaintReceive={profile.gias_complaint_receive} />
-            )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-            {Boolean(profile.government_inspection.length) && (
-              <SubjectGovernmentInspection governmentInspections={profile.government_inspection} />
-            )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-            {Boolean(profile.constituent_doc.length) && (
-              <SubjectConstituentDoc constituent_doc={profile.constituent_doc} />
-            )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 10 }}>
-            {Boolean(profile.states_bodies.length) && <SubjectStateBodies state_bodies={profile.states_bodies} />}
-            {Boolean(profile.economic_high_risk_registry.length) && (
-              <SubjectEconomicHighRiskRegistry economic_high_risk_registry={profile.economic_high_risk_registry} />
-            )}
-            {Boolean(profile.legal_entity_type.length) && (
-              <SubjectLegalEntityType legal_entity_type={profile.legal_entity_type} />
-            )}
-          </div>
+          <Container>
+            <SubjectGiasAccreditedCustomer />
+            <SubjectGiasAccreditedParticipant />
+            <SubjectGiasBlackList />
+          </Container>
+          <Container>
+            <SubjectGiasPlan />
+          </Container>
+          <Container>
+            <SubjectGiasComplaintSubmit />
+            <SubjectGiasCompaintReceive />
+          </Container>
+          <Container>
+            <SubjectGovernmentInspection />
+          </Container>
+          <Container>
+            <SubjectConstituentDoc />
+          </Container>
+          <Container>
+            <SubjectStateBodies />
+            <SubjectEconomicHighRiskRegistry />
+            <SubjectLegalEntityType />
+          </Container>
         </>
       )}
     </div>

@@ -5,16 +5,15 @@ import { formatDate } from '@app/utils/utils';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/es/table';
 import SingleGovernment from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGovernmentInspection/components/SingleGovernment';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  governmentInspections: GovernmentInspection[];
-};
+const SubjectGovernmentInspection: React.FC = () => {
+  const government_inspections = useAppSelector((state) => state.searchProfile.profile.government_inspection);
 
-const SubjectGovernmentInspection: React.FC<MyComponentProps> = ({ governmentInspections }) => {
   const [isTable, setIsTable] = useState(true);
-  const [selectedGovernment, setSelectedGovernment] = useState<GovernmentInspection | null>(governmentInspections[0]);
+  const [selectedGovernment, setSelectedGovernment] = useState<GovernmentInspection | null>(government_inspections[0]);
 
-  const newGovernmentInspection = governmentInspections.map((governmentInspection, index) => ({
+  const newGovernmentInspection = government_inspections.map((governmentInspection, index) => ({
     ...governmentInspection,
     from_dttm: formatDate(governmentInspection.from_dttm),
     key: index,
@@ -63,28 +62,32 @@ const SubjectGovernmentInspection: React.FC<MyComponentProps> = ({ governmentIns
   ];
 
   return (
-    <Card
-      title={<Title>Сведения о проверках субъектов государственными органами</Title>}
-      style={{ marginTop: 10, width: '100%' }}
-      extra={
-        !isTable ? (
-          <ShowAll onClick={handleClick}>Показать все данные - {newGovernmentInspection.length} шт.</ShowAll>
-        ) : (
-          <ShowAll onClick={handleClick}>Назад</ShowAll>
-        )
-      }
-    >
-      {!isTable && selectedGovernment !== null && <SingleGovernment governmentInspections={selectedGovernment} />}
+    <>
+      {Boolean(newGovernmentInspection.length) && (
+        <Card
+          title={<Title>Сведения о проверках субъектов государственными органами</Title>}
+          style={{ marginTop: 10, width: '100%' }}
+          extra={
+            !isTable ? (
+              <ShowAll onClick={handleClick}>Показать все данные - {newGovernmentInspection.length} шт.</ShowAll>
+            ) : (
+              <ShowAll onClick={handleClick}>Назад</ShowAll>
+            )
+          }
+        >
+          {!isTable && selectedGovernment !== null && <SingleGovernment governmentInspections={selectedGovernment} />}
 
-      {isTable && Boolean(governmentInspections.length) && (
-        <Table
-          size={'middle'}
-          columns={columns}
-          dataSource={newGovernmentInspection}
-          pagination={{ size: 'small', pageSize: 5 }}
-        ></Table>
+          {isTable && Boolean(newGovernmentInspection.length) && (
+            <Table
+              size={'middle'}
+              columns={columns}
+              dataSource={newGovernmentInspection}
+              pagination={{ size: 'small', pageSize: 5 }}
+            ></Table>
+          )}
+        </Card>
       )}
-    </Card>
+    </>
   );
 };
 

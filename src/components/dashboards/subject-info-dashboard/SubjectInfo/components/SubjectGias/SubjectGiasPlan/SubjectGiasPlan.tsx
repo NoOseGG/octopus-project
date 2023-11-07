@@ -5,19 +5,17 @@ import { formatDate } from '@app/utils/utils';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/es/table';
 import SingleGiasPlan from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan/SingleGiasPlan/SingleGiasPlan';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  giasPlans: GiasPlan[];
-};
-
-const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasPlans }) => {
-  const newGiasPlans = giasPlans.map((giasPlan) => ({
-    ...giasPlan,
-    from_dttm: formatDate(giasPlan.from_dttm),
+const SubjectGiasAccreditedCustomer: React.FC = () => {
+  const gias_plans = useAppSelector((state) => state.searchProfile.profile.gias_plan);
+  const new_gias_plan = gias_plans.map((gias_plan) => ({
+    ...gias_plan,
+    from_dttm: formatDate(gias_plan.from_dttm),
   }));
 
   const [isTable, setIsTable] = useState(false);
-  const [selectedGiasPlan, setSelectedGiasPlan] = useState<GiasPlan | null>(newGiasPlans[0]);
+  const [selectedGiasPlan, setSelectedGiasPlan] = useState<GiasPlan | null>(new_gias_plan[0]);
 
   const handleClick = () => {
     setIsTable(!isTable);
@@ -61,23 +59,27 @@ const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasPlans }
   ];
 
   return (
-    <Card
-      title={<Title>Реестр ГИАС планы закупок</Title>}
-      style={{ display: 'grid', marginTop: 10 }}
-      extra={
-        !isTable ? (
-          <ShowAll onClick={handleClick}>Показать все данные - {newGiasPlans.length} шт.</ShowAll>
-        ) : (
-          <ShowAll onClick={handleClick}>Назад</ShowAll>
-        )
-      }
-    >
-      {!isTable && selectedGiasPlan !== null && <SingleGiasPlan giasPlan={selectedGiasPlan} />}
+    <>
+      {Boolean(gias_plans.length) && (
+        <Card
+          title={<Title>Реестр ГИАС планы закупок</Title>}
+          style={{ display: 'grid', marginTop: 10 }}
+          extra={
+            !isTable ? (
+              <ShowAll onClick={handleClick}>Показать все данные - {new_gias_plan.length} шт.</ShowAll>
+            ) : (
+              <ShowAll onClick={handleClick}>Назад</ShowAll>
+            )
+          }
+        >
+          {!isTable && selectedGiasPlan !== null && <SingleGiasPlan giasPlan={selectedGiasPlan} />}
 
-      {isTable && Boolean(newGiasPlans.length) && (
-        <Table size={'middle'} columns={columns} dataSource={newGiasPlans} pagination={{ size: 'small' }}></Table>
+          {isTable && Boolean(new_gias_plan.length) && (
+            <Table size={'middle'} columns={columns} dataSource={new_gias_plan} pagination={{ size: 'small' }}></Table>
+          )}
+        </Card>
       )}
-    </Card>
+    </>
   );
 };
 

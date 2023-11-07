@@ -65,28 +65,34 @@ const SubjectCommercialRegister: React.FC = () => {
   ];
 
   return (
-    <Card
-      title={<Title>Данные из торгового реестра</Title>}
-      style={{ display: 'grid', marginTop: 10 }}
-      extra={
-        !isTable ? (
-          <ShowAll onClick={handleClick}>Показать все данные - {newCommercialRegister.length} шт.</ShowAll>
-        ) : (
-          <ShowAll onClick={handleClick}>Назад</ShowAll>
-        )
-      }
-    >
-      {!isTable && selectedCommercial !== null && <SingleCommercialRegister commercialRegister={selectedCommercial} />}
+    <>
+      {Boolean(newCommercialRegister.length) && (
+        <Card
+          title={<Title>Данные из торгового реестра</Title>}
+          style={{ display: 'grid', marginTop: 10 }}
+          extra={
+            !isTable ? (
+              <ShowAll onClick={handleClick}>Показать все данные - {newCommercialRegister.length} шт.</ShowAll>
+            ) : (
+              <ShowAll onClick={handleClick}>Назад</ShowAll>
+            )
+          }
+        >
+          {!isTable && selectedCommercial !== null && (
+            <SingleCommercialRegister commercialRegister={selectedCommercial} />
+          )}
 
-      {isTable && Boolean(commercialRegisters.length) && (
-        <Table
-          size={'middle'}
-          columns={columns}
-          dataSource={newCommercialRegister}
-          pagination={{ size: 'small' }}
-        ></Table>
+          {isTable && Boolean(commercialRegisters.length) && (
+            <Table
+              size={'middle'}
+              columns={columns}
+              dataSource={newCommercialRegister}
+              pagination={{ size: 'small' }}
+            ></Table>
+          )}
+        </Card>
       )}
-    </Card>
+    </>
   );
 };
 

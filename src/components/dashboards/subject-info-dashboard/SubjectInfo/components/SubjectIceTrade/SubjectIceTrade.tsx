@@ -1,35 +1,23 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import {
-  IceTradeCustomer,
-  IceTradeOrganizer,
-  IceTradeOrganizerNegotiations,
-  IceTradeOtherParticipant,
-  IceTradeParticipant,
-} from '@app/store/types/Subject';
 import SubjectIceTradeCustomer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeCustomer/SubjectIceTradeCustomer';
 import SubjectIceTradeOtherParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeOtherParticipant/SubjectIceTradeOtherParticipant';
 import SubjectIceTradeParticipant from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeParticipant/SubjectIceTradeParticipant';
 import SubjectIceTradeOrganizer from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/SubjectIceTrade/SubjectIceTradeOrganizer/SubjectIceTradeOrganizer';
 import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  icetrade_customer: IceTradeCustomer[];
-  icetrade_participant: IceTradeParticipant[];
-  icetrade_other_participant: IceTradeOtherParticipant[];
-  icetrade_organizer_negotiations: IceTradeOrganizerNegotiations[];
-  icetrade_organizer: IceTradeOrganizer[];
-};
+const SubjectIceTrade: React.FC = () => {
+  const icetrade_customer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
+  const icetrade_participant = useAppSelector((state) => state.searchProfile.profile.icetrade_participant);
+  const icetrade_other_participant = useAppSelector((state) => state.searchProfile.profile.icetrade_other_participant);
+  const icetrade_organizer_negotiations = useAppSelector(
+    (state) => state.searchProfile.profile.icetrade_organizer_negotiations,
+  );
+  const icetrade_organizer = useAppSelector((state) => state.searchProfile.profile.icetrade_organizer);
 
-const SubjectIceTrade: React.FC<MyComponentProps> = ({
-  icetrade_customer,
-  icetrade_participant,
-  icetrade_other_participant,
-  icetrade_organizer_negotiations,
-  icetrade_organizer,
-}) => {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Title>Закупки IceTrade</Title>
       <Container>
         <Tabs defaultActiveKey={'1'} style={{ width: '100%' }} centered>
@@ -64,7 +52,7 @@ const SubjectIceTrade: React.FC<MyComponentProps> = ({
           )}
         </Tabs>
       </Container>
-    </>
+    </div>
   );
 };
 

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Pagination } from 'antd';
-import { GiasAccreditedCustomer } from '@app/store/types/Subject';
 import DataField from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataField';
 import DataFieldDate from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/components/Fields/DataFieldDate';
 import styled from 'styled-components';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
-type MyComponentProps = {
-  giasAccreditedCustomer: GiasAccreditedCustomer[];
-};
+const SubjectGiasAccreditedCustomer: React.FC = () => {
+  const gias_accredited_customer = useAppSelector((state) => state.searchProfile.profile.gias_accredited_customer);
 
-const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasAccreditedCustomer }) => {
   const [index, setIndex] = useState(0);
 
   const handleClick = (page: number) => {
@@ -17,40 +15,40 @@ const SubjectGiasAccreditedCustomer: React.FC<MyComponentProps> = ({ giasAccredi
   };
 
   return (
-    <Container>
-      {Boolean(giasAccreditedCustomer.length) && (
-        <>
+    <>
+      {Boolean(gias_accredited_customer.length) && (
+        <Container>
           <Card title="Реестр ГИАС аккредитованных заказчиков" style={{ width: '100%' }}>
-            <DataFieldDate name={'Дата включения в реестр'} content={giasAccreditedCustomer[index].from_dttm} />
-            <DataFieldDate name={'Дата исключения из реестра'} content={giasAccreditedCustomer[index].to_dttm} />
-            {giasAccreditedCustomer[index].is_customer ? (
+            <DataFieldDate name={'Дата включения в реестр'} content={gias_accredited_customer[index].from_dttm} />
+            <DataFieldDate name={'Дата исключения из реестра'} content={gias_accredited_customer[index].to_dttm} />
+            {gias_accredited_customer[index].is_customer ? (
               <DataField name={'Является или нет поставщиком'} content={'Да'} />
             ) : (
               <DataField name={'Является или нет поставщиком'} content={'Нет'} />
             )}
-            {giasAccreditedCustomer[index].is_organizer ? (
+            {gias_accredited_customer[index].is_organizer ? (
               <DataField name={'Является или нет заказчиком'} content={'Да'} />
             ) : (
               <DataField name={'Является или нет заказчиком'} content={'Нет'} />
             )}
             <DataFieldDate
               name={'Ведомственная принадлежность'}
-              content={giasAccreditedCustomer[index].departmental_affiliation}
+              content={gias_accredited_customer[index].departmental_affiliation}
             />
           </Card>
-          {Boolean(giasAccreditedCustomer.length > 1) && (
+          {Boolean(gias_accredited_customer.length > 1) && (
             <Pagination
               style={{ alignSelf: 'center' }}
               defaultCurrent={1}
-              total={giasAccreditedCustomer.length}
+              total={gias_accredited_customer.length}
               defaultPageSize={1}
               size={'small'}
               onChange={(page) => handleClick(page)}
             />
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

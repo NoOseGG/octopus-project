@@ -34,12 +34,12 @@ const MainInfoSoleTrader: React.FC = () => {
   return (
     <Container value={isDate}>
       <Block>
-        <Title>Общее количество созданных компаний</Title>
+        <Title>Общее количество созданных ИП</Title>
         <Content>{totalCountCreated}</Content>
       </Block>
       {!filters.isDate && (
         <Block>
-          <Title>Количество созданных компаний (год)</Title>
+          <Title>Количество созданных ИП (год)</Title>
           <Content>
             {totalCountCreatedLastYear} <Percent number={percent}>({percent}%)</Percent>
           </Content>
@@ -47,12 +47,12 @@ const MainInfoSoleTrader: React.FC = () => {
       )}
       {!filters.isDate && (
         <Block>
-          <Title>Количество созданных компаний (квартал)</Title>
+          <Title>Количество созданных ИП (квартал)</Title>
           <Content>{totalCountCreatedLastQuarter}</Content>
         </Block>
       )}
       <Block>
-        <Title>Действующие компании</Title>
+        <Title>Действующие ИП</Title>
         <Content>{totalCountOperatingCompany}</Content>
       </Block>
     </Container>

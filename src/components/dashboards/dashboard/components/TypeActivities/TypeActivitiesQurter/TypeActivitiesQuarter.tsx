@@ -4,7 +4,7 @@ import { doGetTypeActivitiesLastQuarter } from '@app/store/slices/legalEntityDas
 import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
 
 const TypeActivitiesQuarter: React.FC = () => {
-  const typeActivitiesQuarter = useAppSelector((state) => state.typeActivities.typeActivitiesQuarter);
+  const typeActivitiesQuarter = useAppSelector((state) => state.typeActivities.typeActivitiesQuarter.results);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
@@ -13,17 +13,21 @@ const TypeActivitiesQuarter: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <Container>
-      <Title>Виды деятельности (Квартал)</Title>
-      <Content>
-        {typeActivitiesQuarter.results.slice(0, 30).map((typeActivity, index) => (
-          <Line key={index} value={index}>
-            <span>{typeActivity.group_fields.type_activity_name}</span>
-            <span>{typeActivity.Count}</span>
-          </Line>
-        ))}
-      </Content>
-    </Container>
+    <>
+      {Boolean(typeActivitiesQuarter.length) && (
+        <Container>
+          <Title>Виды деятельности (Квартал)</Title>
+          <Content>
+            {typeActivitiesQuarter.slice(0, 30).map((typeActivity, index) => (
+              <Line key={index} value={index}>
+                <span>{typeActivity.group_fields.type_activity_name}</span>
+                <span>{typeActivity.Count}</span>
+              </Line>
+            ))}
+          </Content>
+        </Container>
+      )}
+    </>
   );
 };
 

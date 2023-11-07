@@ -54,7 +54,7 @@ const ColumnChartMonthSoleTrade: React.FC = () => {
 
   return (
     <Container>
-      <Title>Динамика регистрации компаний по месяцам</Title>
+      <Title>Динамика регистрации ИП по месяцам</Title>
       <Column {...config} />
     </Container>
   );

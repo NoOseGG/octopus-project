@@ -4,7 +4,7 @@ import { doGetTypeActivitiesLastYear } from '@app/store/slices/legalEntityDashbo
 import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
 
 const TypeActivitiesYear: React.FC = () => {
-  const typeActivitiesYear = useAppSelector((state) => state.typeActivities.typeActivitiesYear);
+  const typeActivitiesYear = useAppSelector((state) => state.typeActivities.typeActivitiesYear.results);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
@@ -13,17 +13,21 @@ const TypeActivitiesYear: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <Container>
-      <Title>Виды деятельности (Год)</Title>
-      <Content>
-        {typeActivitiesYear.results.slice(0, 30).map((typeActivity, index) => (
-          <Line key={index} value={index}>
-            <span>{typeActivity.group_fields.type_activity_name}</span>
-            <span>{typeActivity.Count}</span>
-          </Line>
-        ))}
-      </Content>
-    </Container>
+    <>
+      {Boolean(typeActivitiesYear.length) && (
+        <Container>
+          <Title>Виды деятельности (Год)</Title>
+          <Content>
+            {typeActivitiesYear.slice(0, 30).map((typeActivity, index) => (
+              <Line key={index} value={index}>
+                <span>{typeActivity.group_fields.type_activity_name}</span>
+                <span>{typeActivity.Count}</span>
+              </Line>
+            ))}
+          </Content>
+        </Container>
+      )}
+    </>
   );
 };
 

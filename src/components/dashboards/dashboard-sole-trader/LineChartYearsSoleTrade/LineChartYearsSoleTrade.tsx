@@ -56,7 +56,7 @@ const LineChartYearsSoleTrade: React.FC = () => {
 
   return (
     <Container>
-      <Title>Динамика регистрации компаний</Title>
+      <Title>Динамика регистрации ИП</Title>
       <Line {...config}></Line>
     </Container>
   );

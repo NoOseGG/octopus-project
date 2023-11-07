@@ -4,7 +4,7 @@ import { doGetTypeActivitiesLastMonth } from '@app/store/slices/legalEntityDashb
 import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
 
 const TypeActivitiesMonth: React.FC = () => {
-  const typeActivitiesMonth = useAppSelector((state) => state.typeActivities.typeActivitiesMonth);
+  const typeActivitiesMonth = useAppSelector((state) => state.typeActivities.typeActivitiesMonth.results);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
@@ -13,17 +13,21 @@ const TypeActivitiesMonth: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <Container>
-      <Title>Виды деятельности (Месяц)</Title>
-      <Content>
-        {typeActivitiesMonth.results.slice(0, 30).map((typeActivity, index) => (
-          <Line key={index} value={index}>
-            <span>{typeActivity.group_fields.type_activity_name}</span>
-            <span>{typeActivity.Count}</span>
-          </Line>
-        ))}
-      </Content>
-    </Container>
+    <>
+      {Boolean(typeActivitiesMonth.length) && (
+        <Container>
+          <Title>Виды деятельности (Месяц)</Title>
+          <Content>
+            {typeActivitiesMonth.slice(0, 30).map((typeActivity, index) => (
+              <Line key={index} value={index}>
+                <span>{typeActivity.group_fields.type_activity_name}</span>
+                <span>{typeActivity.Count}</span>
+              </Line>
+            ))}
+          </Content>
+        </Container>
+      )}
+    </>
   );
 };
 

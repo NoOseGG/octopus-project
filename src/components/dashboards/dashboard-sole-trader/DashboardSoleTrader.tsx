@@ -10,7 +10,7 @@ const DashboardSoleTrader: React.FC = () => {
   return (
     <Container>
       <SearchFilters />
-      <Title>Индивидуальные предпрениматели</Title>
+      <Title>Индивидуальные предпрениматели (ИП)</Title>
       <MainInfoSoleTrader />
       <ChartsContainer>
         <LineChartYearsSoleTrade />

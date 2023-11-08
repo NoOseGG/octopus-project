@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetTypeActivitiesLastMonth } from '@app/store/slices/legalEntityDashboard/typeActivitiesSlice';
-import { Container, Content, Title, Line } from '../TypeActivitiesStyle';
+import { Container, Content, Title, Line, SpinnerSpace } from '../TypeActivitiesStyle';
+import { doGetTypeActivitiesLastMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesMonth';
+import { Spin } from 'antd';
 
 const TypeActivitiesMonth: React.FC = () => {
-  const typeActivitiesMonth = useAppSelector((state) => state.typeActivities.typeActivitiesMonth.results);
+  const { typeActivities, loading } = useAppSelector((state) => state.typeActivities.typeActivitiesMonth);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
@@ -13,21 +14,25 @@ const TypeActivitiesMonth: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <>
-      {Boolean(typeActivitiesMonth.length) && (
-        <Container>
+    <Container>
+      {loading ? (
+        <SpinnerSpace>
+          <Spin size="large" />
+        </SpinnerSpace>
+      ) : (
+        <>
           <Title>Виды деятельности (Месяц)</Title>
           <Content>
-            {typeActivitiesMonth.slice(0, 30).map((typeActivity, index) => (
+            {typeActivities.results?.slice(0, 30)?.map((typeActivity, index) => (
               <Line key={index} value={index}>
                 <span>{typeActivity.group_fields.type_activity_name}</span>
                 <span>{typeActivity.Count}</span>
               </Line>
             ))}
           </Content>
-        </Container>
+        </>
       )}
-    </>
+    </Container>
   );
 };
 

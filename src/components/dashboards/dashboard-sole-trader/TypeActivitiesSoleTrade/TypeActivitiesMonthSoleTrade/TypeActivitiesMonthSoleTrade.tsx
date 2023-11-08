@@ -5,11 +5,13 @@ import {
   Content,
   Title,
   Line,
+  SpinnerSpace,
 } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
-import { doGetTypeActivitiesLastMonthSoleTrade } from '@app/store/slices/dashboardSoleTrader/typeActivitiesSoleTradeSlice';
+import { Spin } from 'antd';
+import { doGetTypeActivitiesLastMonthSoleTrade } from '@app/store/slices/dashboardSoleTrader/typeActivities/typeActivitiesMonthSoleTrade';
 
 const TypeActivitiesMonthSoleTrade: React.FC = () => {
-  const typeActivitiesMonth = useAppSelector((state) => state.typeActivitiesSoleTrade.typeActivitiesMonth.results);
+  const { typeActivities, loading } = useAppSelector((state) => state.typeActivitiesSoleTrade.typeActivitiesMonth);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
@@ -18,21 +20,25 @@ const TypeActivitiesMonthSoleTrade: React.FC = () => {
   }, [dispatch, filters]);
 
   return (
-    <>
-      {Boolean(typeActivitiesMonth.length) && (
-        <Container>
+    <Container>
+      {loading ? (
+        <SpinnerSpace>
+          <Spin size="large" />
+        </SpinnerSpace>
+      ) : (
+        <>
           <Title>Виды деятельности (Месяц)</Title>
           <Content>
-            {typeActivitiesMonth.slice(0, 30).map((typeActivity, index) => (
+            {typeActivities.results?.slice(0, 30)?.map((typeActivity, index) => (
               <Line key={index} value={index}>
                 <span>{typeActivity.group_fields.type_activity_name}</span>
                 <span>{typeActivity.Count}</span>
               </Line>
             ))}
           </Content>
-        </Container>
+        </>
       )}
-    </>
+    </Container>
   );
 };
 

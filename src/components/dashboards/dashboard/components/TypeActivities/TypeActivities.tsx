@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { mediaMax } from '@app/styles/themes/constants';
 import TypeActivitiesYear from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesYear/TypeActivitiesYear';
-import TypeActivitiesQuarter from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesQurter/TypeActivitiesQuarter';
+import TypeActivitiesQuarter from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesQuarter/TypeActivitiesQuarter';
 import TypeActivitiesMonth from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesMonth/TypeActivitiesMonth';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TypeActivitiesAll from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesAll/TypeActivitiesAll';

@@ -12,7 +12,7 @@ const RegionFilter: React.FC = () => {
     dispatch(doGetRegions());
   }, [dispatch]);
 
-  const data = regions.map((region) => {
+  const data = regions?.map((region) => {
     return {
       value: region.address_region,
       label: region.address_region,

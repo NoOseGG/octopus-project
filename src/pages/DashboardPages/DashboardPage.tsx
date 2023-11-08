@@ -36,6 +36,7 @@ const DashboardPage: React.FC = () => {
   }, [token, navigate]);
 
   const handleChangeLegalEntity = (key: string) => {
+    console.log(`${key}`);
     switch (key) {
       case TABS_KEY.LEGAL_ENTITY:
         dispatch(setLegalEntity());

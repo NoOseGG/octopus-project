@@ -5,9 +5,6 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 
 export interface IInitialState {
-  count: number | null;
-  next: string | null;
-  previous: string | null;
   results: ResponseDate[];
 }
 
@@ -30,9 +27,6 @@ interface RequestData {
 }
 
 const initialState: IInitialState = {
-  count: 0,
-  next: null,
-  previous: null,
   results: [],
 };
 
@@ -65,9 +59,6 @@ const detailedInformationCompanySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doGetDetailedInformationCompany.fulfilled, (state, action) => {
-      state.count = action.payload.count;
-      state.previous = action.payload.previous;
-      state.next = action.payload.next;
       state.results = action.payload.results;
     });
   },

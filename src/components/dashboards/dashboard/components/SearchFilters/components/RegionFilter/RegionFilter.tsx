@@ -27,7 +27,7 @@ const RegionFilter: React.FC = () => {
     <Select
       size="middle"
       showSearch
-      style={{ minWidth: 200 }}
+      style={{ width: 200 }}
       placeholder="Область"
       optionFilterProp="children"
       value={region}

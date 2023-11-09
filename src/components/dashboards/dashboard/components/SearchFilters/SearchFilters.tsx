@@ -5,6 +5,8 @@ import DistrictFilter from '@app/components/dashboards/dashboard/components/Sear
 import RegionFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/RegionFilter/RegionFilter';
 import ResetFilters from '@app/components/dashboards/dashboard/components/SearchFilters/components/ResetFilters/ResetFilters';
 import DateFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/DateFilter/DateFilter';
+import TypeActivityFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/TypeActivityFilter/TypeActivityFilter';
+import CodeActivityFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/CodeActivityFilter/CodeActivityFilter';
 
 const SearchFilters: React.FC = () => {
   return (
@@ -13,6 +15,8 @@ const SearchFilters: React.FC = () => {
         <SettlementFilter />
         <RegionFilter />
         <DistrictFilter />
+        <TypeActivityFilter />
+        <CodeActivityFilter />
         <ResetFilters />
       </Container>
       <DateFilter />

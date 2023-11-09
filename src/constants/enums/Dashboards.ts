@@ -52,7 +52,15 @@ export const DASH = {
   },
 
   ADDRESS_REGION_ICONTAINS: (field: string): string => {
-    return `address_region__icontains=${field}&`;
+    return `type_activity_name__icontains=${field}&`;
+  },
+
+  TYPE_ACTIVITY: (field: string): string => {
+    return `type_activity_name__iexact=${field}&`;
+  },
+
+  CODE_ACTIVITY: (field: string): string => {
+    return `type_activity_code__iexact=${field}&`;
   },
 
   PAGE_SIZE: (field: number): string => {

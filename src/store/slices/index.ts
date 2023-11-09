@@ -14,7 +14,7 @@ import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDash
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/dashboardSoleTrader/detailedInformationCompanySliceSoleTrade';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import mainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/mainInfoSoleTraderSlice';
-import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTrade';
+import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTradeSlice';
 
 export default {
   user: userReducer,

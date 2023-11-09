@@ -26,10 +26,11 @@ interface RegionType {
 }
 
 export interface FiltersType {
-  type_activities: string | null;
   settlements: string | null;
   districts: string | null;
   regions: string | null;
+  typeActivities: string | null;
+  codeActivities: string | null;
   fromDate: string | null;
   toDate: string | null;
   isDate: boolean;
@@ -54,10 +55,11 @@ const initialState: SearchFiltersSlice = {
     regions: [],
   },
   filters: {
-    type_activities: null,
     settlements: null,
     districts: null,
     regions: null,
+    typeActivities: null,
+    codeActivities: null,
     fromDate: null,
     toDate: null,
     isDate: false,
@@ -118,6 +120,12 @@ const searchFiltersSlice = createSlice({
     setRegion: (state, action) => {
       state.filters = { ...state.filters, regions: action.payload, settlements: null, districts: null };
     },
+    setTypeActivity: (state, action) => {
+      state.filters = { ...state.filters, typeActivities: action.payload, codeActivities: null };
+    },
+    setCodeActivity: (state, action) => {
+      state.filters = { ...state.filters, codeActivities: action.payload, typeActivities: null };
+    },
     setDate: (state, action) => {
       state.filters = { ...state.filters, fromDate: action.payload[0], toDate: action.payload[1], isDate: true };
     },
@@ -147,6 +155,15 @@ const searchFiltersSlice = createSlice({
   },
 });
 
-export const { setSettlement, setDistrict, setRegion, setDate, deleteDate, setLegalEntity, deleteLegalEntity } =
-  searchFiltersSlice.actions;
+export const {
+  setSettlement,
+  setDistrict,
+  setRegion,
+  setDate,
+  deleteDate,
+  setLegalEntity,
+  deleteLegalEntity,
+  setTypeActivity,
+  setCodeActivity,
+} = searchFiltersSlice.actions;
 export default searchFiltersSlice.reducer;

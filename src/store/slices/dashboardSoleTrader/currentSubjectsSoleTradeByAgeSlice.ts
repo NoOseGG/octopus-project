@@ -172,7 +172,7 @@ const currentSubjectSoleTradeByAgeSlice = createSlice({
       state.count1Less = action.payload.count;
     });
     builder.addCase(doGetCurrentSubjectsSoleTradeAvgAge.fulfilled, (state, action) => {
-      state.avgAge = action.payload.results[0].Avg;
+      state.avgAge = action.payload?.results[0]?.Avg;
     });
   },
 });

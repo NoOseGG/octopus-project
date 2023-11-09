@@ -8,7 +8,7 @@ import {
   doGetTotalCountLiquidatedLastQuarterSoleTrade,
   doGetTotalCountLiquidatedLastYearSoleTrade,
   doGetTotalCountLiquidatedSoleTrade,
-} from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTrade';
+} from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTradeSlice';
 
 const LiquidatedMainInfoSoleTrade: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);

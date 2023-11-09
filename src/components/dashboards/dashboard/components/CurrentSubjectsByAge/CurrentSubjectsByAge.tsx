@@ -100,7 +100,7 @@ const CurrentSubjectsByAge: React.FC = () => {
       <ChartContainer>
         <AverageAgeContainer>
           <Title>Средний возраст компаний</Title>
-          <Content>{avgAge.toFixed(1)}</Content>
+          <Content>{avgAge?.toFixed(1)}</Content>
         </AverageAgeContainer>
         <PieContainer>
           <Pie {...config} />

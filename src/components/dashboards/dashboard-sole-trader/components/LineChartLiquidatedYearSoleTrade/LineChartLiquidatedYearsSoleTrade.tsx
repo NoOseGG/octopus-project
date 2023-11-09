@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { doGetDataForLineChartLiquidatedSoleTrade } from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTrade';
+import { doGetDataForLineChartLiquidatedSoleTrade } from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTradeSlice';
 
 const LineChartLiquidatedYearsSoleTrade: React.FC = () => {
   const lineChart = useAppSelector((state) => state.liquidatedMainInfoSoleTrade.lineChart);

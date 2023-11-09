@@ -27,7 +27,7 @@ const DistrictFilter: React.FC = () => {
     <Select
       size="middle"
       showSearch
-      style={{ minWidth: 200 }}
+      style={{ width: 200 }}
       placeholder="Район"
       value={district}
       optionFilterProp="children"

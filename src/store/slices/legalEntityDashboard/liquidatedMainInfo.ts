@@ -255,10 +255,10 @@ const liquidateMainInfoSlice = createSlice({
     });
     builder.addCase(doCalculatePercentLiquidatedYear.fulfilled, (state, action) => {
       if (action.payload.results.length > 0) {
-        const lastYear = action.payload.results[0].Count;
-        const lastTwoYear = action.payload.results[1].Count;
+        const lastYear = action.payload?.results[0]?.Count;
+        const lastTwoYear = action.payload?.results[1]?.Count;
 
-        const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
+        const percent = (((lastYear - lastTwoYear) / lastYear) * 100)?.toFixed(2);
         state.liquidatedMainInfo.percent = parseInt(percent, 10);
       } else {
         state.liquidatedMainInfo.percent = 0;

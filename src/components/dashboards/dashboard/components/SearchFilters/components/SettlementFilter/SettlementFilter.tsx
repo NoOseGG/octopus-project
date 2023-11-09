@@ -28,7 +28,7 @@ const SettlementFilter: React.FC = () => {
     <Select
       size="middle"
       showSearch
-      style={{ minWidth: 200 }}
+      style={{ width: 200 }}
       placeholder="Населенный пункт"
       value={settlement}
       optionFilterProp="children"

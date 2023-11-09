@@ -18,7 +18,7 @@ const SubjectIceTrade: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Title>Закупки IceTrade</Title>
+      {Boolean(icetrade_customer.length) && <Title>Закупки IceTrade</Title>}
       <Container>
         <Tabs defaultActiveKey={'1'} style={{ width: '100%' }} centered>
           {Boolean(icetrade_customer.length) && (

@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
-import MainInfoSoleTrader from '@app/components/dashboards/dashboard-sole-trader/MainInfoSoleTrader/MainInfoSoleTrader';
-import LineChartYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trader/LineChartYearsSoleTrade/LineChartYearsSoleTrade';
-import ColumnChartMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trader/ColumnChartMonthSoleTrade/ColumnChartMonthSoleTrade';
-import TypeActivitiesSoleTrade from '@app/components/dashboards/dashboard-sole-trader/TypeActivitiesSoleTrade/TypeActivitiesSoleTrade';
+import MainInfoSoleTrader from '@app/components/dashboards/dashboard-sole-trader/components/MainInfoSoleTrader/MainInfoSoleTrader';
+import ColumnChartMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/ColumnChartMonthSoleTrade/ColumnChartMonthSoleTrade';
+import LineChartYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/LineChartYearsSoleTrade/LineChartYearsSoleTrade';
+import TypeActivitiesSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/TypeActivitiesSoleTrade/TypeActivitiesSoleTrade';
+import CurrentSubjectsSoleTradeByAge from '@app/components/dashboards/dashboard-sole-trader/components/CurrentSubjectSoleTradeByAge/CurrentSubjectsSoleTradeByAge';
+import DetailedInformationCompanySoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/DetailedInformationCompanySoleTrade/DetailedInformationCompanySoleTrade';
+import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
+import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -17,6 +21,10 @@ const DashboardSoleTrader: React.FC = () => {
         <ColumnChartMonthSoleTrade />
       </ChartsContainer>
       <TypeActivitiesSoleTrade />
+      <CurrentSubjectsSoleTradeByAge />
+      <DetailedInformationCompanySoleTrade />
+      <LiquidatedMainInfoSoleTrade />
+      <LineChartLiquidatedYearsSoleTrade />
     </Container>
   );
 };

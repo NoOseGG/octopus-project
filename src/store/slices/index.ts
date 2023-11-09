@@ -8,10 +8,13 @@ import dashboardReducer from '@app/store/slices/legalEntityDashboard/dashboardSl
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import { typeActivitiesReducer } from '@app/store/slices/legalEntityDashboard/typeActivities';
 import { typeActivitiesSoleTradeReducer } from '@app/store/slices/dashboardSoleTrader/typeActivities';
+import currentSubjectsSoleTradeByAgeReducer from '@app/store/slices/dashboardSoleTrader/currentSubjectsSoleTradeByAgeSlice';
 import currentSubjectsByAgeReducer from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
+import detailedInformationCompanySoleTradeReducer from '@app/store/slices/dashboardSoleTrader/detailedInformationCompanySliceSoleTrade';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import mainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/mainInfoSoleTraderSlice';
+import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTrade';
 
 export default {
   user: userReducer,
@@ -26,7 +29,10 @@ export default {
   typeActivities: typeActivitiesReducer,
   typeActivitiesSoleTrade: typeActivitiesSoleTradeReducer,
   currentSubjectsByAge: currentSubjectsByAgeReducer,
+  currentSubjectsSoleTradeByAge: currentSubjectsSoleTradeByAgeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
+  detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
   liquidatedMainInfo: liquidatedMainInfoReducer,
   mainInfoSoleTrade: mainInfoSoleTradeReducer,
+  liquidatedMainInfoSoleTrade: liquidatedMainInfoSoleTradeReducer,
 };

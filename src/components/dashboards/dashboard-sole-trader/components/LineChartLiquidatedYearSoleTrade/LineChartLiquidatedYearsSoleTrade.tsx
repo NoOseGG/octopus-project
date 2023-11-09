@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { doGetDataForLineChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import { doGetDataForLineChartLiquidatedSoleTrade } from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTrade';
 
-const LineChartLiquidatedYears: React.FC = () => {
-  const lineChart = useAppSelector((state) => state.liquidatedMainInfo.lineChart);
+const LineChartLiquidatedYearsSoleTrade: React.FC = () => {
+  const lineChart = useAppSelector((state) => state.liquidatedMainInfoSoleTrade.lineChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChartLiquidated(filters));
+    dispatch(doGetDataForLineChartLiquidatedSoleTrade(filters));
   }, [dispatch, filters]);
 
   const data = lineChart.results.map((item) => {
@@ -56,13 +56,13 @@ const LineChartLiquidatedYears: React.FC = () => {
 
   return (
     <Container>
-      <Title>Динамика ликвидаций компаний</Title>
+      <Title>Динамика ликвидаций ИП</Title>
       <Line {...config}></Line>
     </Container>
   );
 };
 
-export default LineChartLiquidatedYears;
+export default LineChartLiquidatedYearsSoleTrade;
 
 const Container = styled.div`
   width: auto;

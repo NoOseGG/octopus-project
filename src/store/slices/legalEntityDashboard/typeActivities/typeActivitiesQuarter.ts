@@ -34,7 +34,6 @@ export const doGetTypeActivitiesLastQuarter = createAsyncThunk<TypeActivityType,
         false,
         false,
       );
-      console.log(url);
       const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
       return response.data;
     } catch (error) {

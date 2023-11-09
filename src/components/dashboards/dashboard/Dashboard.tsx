@@ -9,6 +9,7 @@ import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/component
 import DetailedInformationCompany from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompany';
 import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
+import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
 
 const Dashboard: React.FC = () => {
   return (
@@ -24,7 +25,10 @@ const Dashboard: React.FC = () => {
       <CurrentSubjectsByAge />
       <DetailedInformationCompany />
       <LiquidatedMainInfo />
-      <LineChartLiquidatedYears />
+      <ChartsContainer>
+        <LineChartLiquidatedYears />
+        <ColumnChartLiquidatedMonth />
+      </ChartsContainer>
     </Container>
   );
 };

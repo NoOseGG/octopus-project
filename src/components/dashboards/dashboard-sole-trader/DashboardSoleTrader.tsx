@@ -9,6 +9,7 @@ import CurrentSubjectsSoleTradeByAge from '@app/components/dashboards/dashboard-
 import DetailedInformationCompanySoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/DetailedInformationCompanySoleTrade/DetailedInformationCompanySoleTrade';
 import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
 import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
+import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trader/components/ColumnChartLiquidationMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -24,7 +25,10 @@ const DashboardSoleTrader: React.FC = () => {
       <CurrentSubjectsSoleTradeByAge />
       <DetailedInformationCompanySoleTrade />
       <LiquidatedMainInfoSoleTrade />
-      <LineChartLiquidatedYearsSoleTrade />
+      <ChartsContainer>
+        <LineChartLiquidatedYearsSoleTrade />
+        <ColumnChartLiquidatedMonthSoleTrade />
+      </ChartsContainer>
     </Container>
   );
 };

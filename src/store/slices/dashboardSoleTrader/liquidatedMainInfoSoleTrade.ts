@@ -6,9 +6,12 @@ import {
   getCurrentYear,
   getDateLastQuarter,
   getLastYear,
+  getPastMonth,
+  getPastMonthFromDate,
 } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
+import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 
 export interface TotalCountCreated {
   count: number;
@@ -203,6 +206,35 @@ export const doGetDataForLineChartLiquidatedSoleTrade = createAsyncThunk<Respons
   },
 );
 
+export const doGetDataForColumnChartLiquidatedSoleTrade = createAsyncThunk<ResponseForColumnChart, FiltersType>(
+  'doGetDataForColumnChartLiquidatedSoleTrade',
+  async (filters) => {
+    try {
+      let baseUrl =
+        DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('company_status_from_dttm__month') +
+        DASH.SOLE_TRADE +
+        DASH.LIQUIDATED_ENTITY;
+
+      if (filters.isDate && filters.toDate !== null) {
+        const month = getPastMonthFromDate(6, new Date(filters.toDate));
+        baseUrl += DASH.DATE_AFTER(month);
+        baseUrl += DASH.DATE_BEFORE(filters.toDate);
+      } else {
+        const month = getPastMonth(6);
+        baseUrl += DASH.DATE_AFTER(`${month}-01`);
+      }
+      const url = constructorUrlForDashboard(baseUrl, filters, false, false);
+      const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
 const liquidateMainInfoSoleTradeSlice = createSlice({
   name: 'liquidateMainInfoSoleTrade',
   initialState,
@@ -230,6 +262,9 @@ const liquidateMainInfoSoleTradeSlice = createSlice({
     });
     builder.addCase(doGetDataForLineChartLiquidatedSoleTrade.fulfilled, (state, action) => {
       state.lineChart = action.payload;
+    });
+    builder.addCase(doGetDataForColumnChart.fulfilled, (state, action) => {
+      state.columnChart = action.payload;
     });
   },
 });

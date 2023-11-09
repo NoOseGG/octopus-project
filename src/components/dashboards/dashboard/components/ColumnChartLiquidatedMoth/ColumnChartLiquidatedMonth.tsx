@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import styled from 'styled-components';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
+import { doGetDataForColumnChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 
-const ColumnChartMonth: React.FC = () => {
-  const columnChart = useAppSelector((state) => state.dashboard.columnChart);
+const ColumnChartLiquidatedMonth: React.FC = () => {
+  const columnChart = useAppSelector((state) => state.liquidatedMainInfo.columnChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForColumnChart(filters));
+    dispatch(doGetDataForColumnChartLiquidated(filters));
   }, [dispatch, filters]);
 
   const data = columnChart.results.map((item) => {
@@ -54,13 +54,13 @@ const ColumnChartMonth: React.FC = () => {
 
   return (
     <Container>
-      <Title>Динамика регистрации компаний по месяцам</Title>
+      <Title>Динамика ликвидаций компаний по месяцам</Title>
       <Column {...config} />
     </Container>
   );
 };
 
-export default ColumnChartMonth;
+export default ColumnChartLiquidatedMonth;
 
 const Container = styled.div`
   width: auto;

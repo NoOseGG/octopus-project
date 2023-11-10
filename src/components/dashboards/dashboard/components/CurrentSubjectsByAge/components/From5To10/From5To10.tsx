@@ -9,7 +9,7 @@ import {
 import { doGetCurrentByAgeFrom5To10 } from '@app/store/slices/legalEntityDashboard/currentByAge/from5To10Slice';
 
 const From5To10: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const { age, loading } = useAppSelector((state) => state.currentByAge.from5To10);
+  const { age } = useAppSelector((state) => state.currentByAge.from5To10);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 

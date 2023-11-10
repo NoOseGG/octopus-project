@@ -8,7 +8,7 @@ import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTy
 import { doGetDataForLiquidatedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedColumnChart';
 
 const ColumnChartLiquidatedMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const { results, loading } = useAppSelector((state) => state.charts.liquidatedColumnChart);
+  const { results } = useAppSelector((state) => state.charts.liquidatedColumnChart);
   const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();

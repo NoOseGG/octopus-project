@@ -12,9 +12,8 @@ import { doGetTotalCountLiquidatedLastQuarter } from '@app/store/slices/legalEnt
 const LiquidatedQuarter: React.FC<DashboardProps> = ({ legal_entity }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const entity = getEntityName(legal_entity);
-  const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
-  const { count, loading } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedQuarter);
+  const { count } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedQuarter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

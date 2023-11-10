@@ -7,7 +7,7 @@ import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDa
 import { getEntityName } from '@app/utils/utils';
 
 const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const { results, loading } = useAppSelector((state) => state.charts.liquidatedLineChart);
+  const { results } = useAppSelector((state) => state.charts.liquidatedLineChart);
   const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();

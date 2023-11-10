@@ -11,9 +11,8 @@ import { doGetTotalCountLiquidatedLastYear } from '@app/store/slices/legalEntity
 
 const LiquidatedYear: React.FC<DashboardProps> = ({ legal_entity }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
-  const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
-  const { count, loading } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedYear);
+  const { count } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedYear);
   const { percent } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedPercent);
   const dispatch = useAppDispatch();
 

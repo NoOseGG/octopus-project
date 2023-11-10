@@ -12,9 +12,8 @@ import { doGetTotalCountLiquidated } from '@app/store/slices/legalEntityDashboar
 const LiquidatedAll: React.FC<DashboardProps> = ({ legal_entity }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const entity = getEntityName(legal_entity);
-  const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
-  const { count, loading } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedAll);
+  const { count } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedAll);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

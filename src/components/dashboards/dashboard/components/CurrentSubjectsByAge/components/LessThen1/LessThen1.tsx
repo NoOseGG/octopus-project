@@ -9,7 +9,7 @@ import {
 import { doGetCurrentByAgeLessThen1 } from '@app/store/slices/legalEntityDashboard/currentByAge/lessThen1Slice';
 
 const LessThen1: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const { age, loading } = useAppSelector((state) => state.currentByAge.lessThen1);
+  const { age } = useAppSelector((state) => state.currentByAge.lessThen1);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 

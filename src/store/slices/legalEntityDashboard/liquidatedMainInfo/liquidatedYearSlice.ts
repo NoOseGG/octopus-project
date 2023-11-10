@@ -1,9 +1,9 @@
-import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
 
 const initialState: MainInfoState = {
   count: 0,
@@ -11,13 +11,13 @@ const initialState: MainInfoState = {
   error: null,
 };
 
-export const doGetTotalCountCreatedLastYear = createAsyncThunk<ResponseMainInfo, RequestData>(
-  'getTotalCountCreatedLastYear',
+export const doGetTotalCountLiquidatedLastYear = createAsyncThunk<ResponseMainInfo, RequestData>(
+  'doGetTotalCountLiquidatedLastYear',
   async ({ filters, legal_entity }) => {
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + legal_entity + DASH.DATE_AFTER(`${year}-01-01`),
+        DASH.BASE + legal_entity + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
         filters,
         true,
         false,
@@ -30,19 +30,19 @@ export const doGetTotalCountCreatedLastYear = createAsyncThunk<ResponseMainInfo,
   },
 );
 
-const createdYearSlice = createSlice({
-  name: 'createdYear',
+const liquidatedYearSlice = createSlice({
+  name: 'liquidatedYear',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTotalCountCreatedLastYear.pending, (state) => {
+    builder.addCase(doGetTotalCountLiquidatedLastYear.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTotalCountCreatedLastYear.fulfilled, (state, action) => {
+    builder.addCase(doGetTotalCountLiquidatedLastYear.fulfilled, (state, action) => {
       state.count = action.payload.count;
       state.loading = false;
     });
   },
 });
 
-export default createdYearSlice.reducer;
+export default liquidatedYearSlice.reducer;

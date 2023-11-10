@@ -2,8 +2,13 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Table } from 'antd';
 import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
-import styled from 'styled-components';
 import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
+import {
+  Content,
+  Container,
+  NameComponent,
+  TableContainer,
+} from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompanyStyle';
 
 const getColumn = (title: string, field: string) => {
   return {
@@ -57,21 +62,3 @@ const DetailedInformationCompany: React.FC<DashboardProps> = ({ legal_entity }) 
 };
 
 export default DetailedInformationCompany;
-
-const Container = styled.div`
-  margin-top: 20px;
-`;
-
-const TableContainer = styled.div`
-  margin-top: 20px;
-`;
-
-const NameComponent = styled.div`
-  font-size: 30px;
-  text-align: center;
-  font-weight: 700;
-`;
-
-const Content = styled.span`
-  font-size: 12px;
-`;

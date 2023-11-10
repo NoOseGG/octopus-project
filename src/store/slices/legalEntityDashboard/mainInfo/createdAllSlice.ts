@@ -1,17 +1,17 @@
-import { CreatedState, ResponseCreated } from '@app/store/types/dashboard/DashboardSlicesType';
+import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const initialState: CreatedState = {
+const initialState: MainInfoState = {
   count: 0,
   loading: false,
   error: null,
 };
 
-export const doGetTotalCountCreated = createAsyncThunk<ResponseCreated, RequestData>(
+export const doGetTotalCountCreated = createAsyncThunk<ResponseMainInfo, RequestData>(
   'getTotalCountCreated',
   async ({ filters, legal_entity }) => {
     try {

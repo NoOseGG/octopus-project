@@ -1,4 +1,4 @@
-export interface CreatedState {
+export interface MainInfoState {
   count: number;
   loading: boolean;
   error: string | null;
@@ -27,7 +27,7 @@ export interface ResponsePercent {
   ];
 }
 
-export interface ResponseCreated {
+export interface ResponseMainInfo {
   count: number;
 }
 

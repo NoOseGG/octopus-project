@@ -2,21 +2,22 @@ import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { getNameMonthByNumber } from '@app/utils/utils';
+import { getEntityName, getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
-import { doGetDataForColumnChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { doGetDataForLiquidatedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedColumnChart';
 
 const ColumnChartLiquidatedMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const columnChart = useAppSelector((state) => state.liquidatedMainInfo.columnChart);
+  const { results, loading } = useAppSelector((state) => state.charts.liquidatedColumnChart);
+  const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForColumnChartLiquidated({ filters, legal_entity }));
+    dispatch(doGetDataForLiquidatedColumnChart({ filters, legal_entity }));
   }, [dispatch, filters, legal_entity]);
 
-  const data = columnChart.results.map((item) => {
+  const data = results.map((item) => {
     return {
       type: getNameMonthByNumber(item.group_fields.company_date_registration__month),
       sales: item.Count,
@@ -55,7 +56,7 @@ const ColumnChartLiquidatedMonth: React.FC<DashboardProps> = ({ legal_entity }) 
 
   return (
     <Container>
-      <Title>Динамика ликвидаций компаний по месяцам</Title>
+      <Title>Динамика ликвидаций {entity} по месяцам</Title>
       <Column {...config} />
     </Container>
   );

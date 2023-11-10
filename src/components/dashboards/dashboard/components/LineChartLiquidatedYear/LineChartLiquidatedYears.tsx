@@ -2,21 +2,23 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { doGetDataForLineChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedLineChart';
+import { getEntityName } from '@app/utils/utils';
 
 const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const lineChart = useAppSelector((state) => state.liquidatedMainInfo.lineChart);
+  const { results, loading } = useAppSelector((state) => state.charts.liquidatedLineChart);
+  const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChartLiquidated({ filters, legal_entity }));
+    dispatch(doGetDataForLiquidatedLineChart({ filters, legal_entity }));
   }, [dispatch, filters, legal_entity]);
 
-  const data = lineChart.results.map((item) => {
+  const data = results.map((item) => {
     return {
-      year: item.group_fields.company_status_from_dttm__year,
+      year: item.group_fields.company_date_registration__year,
       value: item.Count,
     };
   });
@@ -57,7 +59,7 @@ const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) =>
 
   return (
     <Container>
-      <Title>Динамика ликвидаций компаний</Title>
+      <Title>Динамика ликвидаций {entity}</Title>
       <Line {...config}></Line>
     </Container>
   );

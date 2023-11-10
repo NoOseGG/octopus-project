@@ -3,29 +3,18 @@ import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import {
+  DetailedInformationState,
+  ResponseDetailedInformation,
+} from '@app/store/types/dashboard/DetailedInformationType';
 
-export interface IInitialState {
-  results: ResponseDate[];
-}
-
-interface ResponseDate {
-  legal_entity_id: string | null;
-  company_short_name: string | null;
-  type_activity_name: string | null;
-  company_date_registration: string | null;
-  company_status_name: string | null;
-  address_full: string | null;
-  contact_web_site: string | null;
-  contact_email: string | null;
-  contact_phone_number: string | null;
-  tax_office_name: string | null;
-}
-
-const initialState: IInitialState = {
+const initialState: DetailedInformationState = {
   results: [],
+  loading: false,
+  error: null,
 };
 
-export const doGetDetailedInformationCompany = createAsyncThunk<IInitialState, RequestData>(
+export const doGetDetailedInformationCompany = createAsyncThunk<ResponseDetailedInformation, RequestData>(
   'doGetInDetailedInformationCompany',
   async ({ filters }) => {
     try {
@@ -48,15 +37,19 @@ export const doGetDetailedInformationCompany = createAsyncThunk<IInitialState, R
   },
 );
 
-const detailedInformationCompanySlice = createSlice({
+const detailedInformationSlice = createSlice({
   name: 'detailedInformationCompanySlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(doGetDetailedInformationCompany.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(doGetDetailedInformationCompany.fulfilled, (state, action) => {
       state.results = action.payload.results;
+      state.loading = false;
     });
   },
 });
 
-export default detailedInformationCompanySlice.reducer;
+export default detailedInformationSlice.reducer;

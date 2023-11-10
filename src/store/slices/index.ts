@@ -7,7 +7,7 @@ import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities';
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/currentByAge/index';
-import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
+import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/index';
 import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';

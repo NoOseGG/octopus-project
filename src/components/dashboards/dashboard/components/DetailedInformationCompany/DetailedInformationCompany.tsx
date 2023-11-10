@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Table } from 'antd';
-import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
+import { Skeleton, Table } from 'antd';
+import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
 import {
   Content,
   Container,
@@ -33,7 +33,7 @@ const columns = [
 ];
 
 const DetailedInformationCompany: React.FC = () => {
-  const { results } = useAppSelector((state) => state.detailedInformationCompany);
+  const { results, loading } = useAppSelector((state) => state.detailedInformationCompany);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
@@ -43,18 +43,24 @@ const DetailedInformationCompany: React.FC = () => {
 
   return (
     <>
-      {Boolean(results.length) && (
-        <Container>
-          <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
-          <TableContainer>
-            <Table
-              dataSource={results.map((item, index) => ({ ...item, key: index }))}
-              columns={columns}
-              size={'small'}
-              bordered={true}
-            ></Table>
-          </TableContainer>
-        </Container>
+      {loading ? (
+        <Skeleton active paragraph={{ rows: 20 }} />
+      ) : (
+        <>
+          {Boolean(results.length) && (
+            <Container>
+              <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
+              <TableContainer>
+                <Table
+                  dataSource={results.map((item, index) => ({ ...item, key: index }))}
+                  columns={columns}
+                  size={'small'}
+                  bordered={true}
+                ></Table>
+              </TableContainer>
+            </Container>
+          )}
+        </>
       )}
     </>
   );

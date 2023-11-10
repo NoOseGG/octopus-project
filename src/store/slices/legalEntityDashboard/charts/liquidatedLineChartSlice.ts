@@ -1,17 +1,20 @@
-import { LineChartState, ResponseLineChart } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import {
+  LiquidatedLineChartState,
+  LiquidatedResponseLineChart,
+} from '@app/store/types/dashboard/LiquidatedChartsTypes';
 
-const initialState: LineChartState = {
+const initialState: LiquidatedLineChartState = {
   results: [],
   loading: false,
   error: null,
 };
 
-export const doGetDataForLiquidatedLineChart = createAsyncThunk<ResponseLineChart, RequestData>(
+export const doGetDataForLiquidatedLineChart = createAsyncThunk<LiquidatedResponseLineChart, RequestData>(
   'doGetDataForLiquidatedLineChart',
   async ({ filters }) => {
     try {

@@ -1,17 +1,20 @@
-import { ColumnChartState, ResponseColumnChart } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import {
+  LiquidatedColumnChartState,
+  LiquidatedResponseColumnChart,
+} from '@app/store/types/dashboard/LiquidatedChartsTypes';
 
-const initialState: ColumnChartState = {
+const initialState: LiquidatedColumnChartState = {
   results: [],
   loading: false,
   error: null,
 };
 
-export const doGetDataForLiquidatedColumnChart = createAsyncThunk<ResponseColumnChart, RequestData>(
+export const doGetDataForLiquidatedColumnChart = createAsyncThunk<LiquidatedResponseColumnChart, RequestData>(
   'doGetDataForLiquidatedColumnChart',
   async ({ filters }) => {
     try {
@@ -32,7 +35,7 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<ResponseColumn
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
       const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
-
+      console.log(`LINE => ${JSON.stringify(response.data)}`);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -49,6 +52,7 @@ const liquidatedColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedColumnChart.fulfilled, (state, action) => {
+      console.log(`state ${JSON.stringify(action.payload)}`);
       state.results = action.payload.results;
       state.loading = false;
     });

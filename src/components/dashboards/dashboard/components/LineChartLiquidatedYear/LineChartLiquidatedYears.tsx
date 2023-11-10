@@ -15,7 +15,7 @@ const LineChartLiquidatedYears: React.FC = () => {
 
   const data = results.map((item) => {
     return {
-      year: item.group_fields.company_date_registration__year,
+      year: item.group_fields.company_status_from_dttm__year,
       value: item.Count,
     };
   });

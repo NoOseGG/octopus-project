@@ -4,9 +4,13 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChart';
+import { getEntityName } from '@app/utils/utils';
+import { Spin } from 'antd';
+import { SpinnerSpace } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
 
 const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const lineChart = useAppSelector((state) => state.charts.createdLineChart.results);
+  const { results, loading } = useAppSelector((state) => state.charts.createdLineChart);
+  const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
@@ -14,7 +18,7 @@ const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
     dispatch(doGetDataForLineChart({ filters, legal_entity }));
   }, [dispatch, filters, legal_entity]);
 
-  const data = lineChart.map((item) => {
+  const data = results.map((item) => {
     return {
       year: item.group_fields.company_date_registration__year,
       value: item.Count,
@@ -56,10 +60,18 @@ const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
   };
 
   return (
-    <Container>
-      <Title>Динамика регистрации компаний</Title>
-      <Line {...config}></Line>
-    </Container>
+    <>
+      {loading ? (
+        <SpinnerSpace style={{ marginTop: 100 }}>
+          <Spin size="large" />
+        </SpinnerSpace>
+      ) : (
+        <Container>
+          <Title>Динамика регистрации {entity}</Title>
+          <Line {...config}></Line>
+        </Container>
+      )}
+    </>
   );
 };
 

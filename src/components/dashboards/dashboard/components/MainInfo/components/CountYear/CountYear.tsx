@@ -20,7 +20,7 @@ const CountYear: React.FC<DashboardProps> = ({ legal_entity }) => {
   return (
     <>
       {loading ? (
-        <Skeleton style={{ padding: 5 }} />
+        <Skeleton style={{ padding: 5 }} active />
       ) : (
         <>
           {!filters.isDate && (

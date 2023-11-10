@@ -19,7 +19,7 @@ const CountOperating: React.FC<DashboardProps> = ({ legal_entity }) => {
   return (
     <>
       {loading ? (
-        <Skeleton style={{ padding: 5 }} />
+        <Skeleton style={{ padding: 5 }} active />
       ) : (
         <Block>
           <Title>Действующие {entity}</Title>

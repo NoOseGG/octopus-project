@@ -6,7 +6,7 @@ import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities';
-import currentSubjectsByAgeReducer from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
+import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/currentByAge/index';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
 import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/index';
@@ -24,7 +24,7 @@ export default {
   charts: chartsReducer,
   searchFilters: searchFiltersReducer,
   typeActivities: typeActivitiesReducer,
-  currentSubjectsByAge: currentSubjectsByAgeReducer,
+  currentByAge: currentByAgeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
   liquidatedMainInfo: liquidatedMainInfoReducer,
 };

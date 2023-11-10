@@ -21,7 +21,7 @@ const CountQuarter: React.FC<DashboardProps> = ({ legal_entity }) => {
       {!filters.isDate && (
         <>
           {loading ? (
-            <Skeleton style={{ padding: 5 }} />
+            <Skeleton style={{ padding: 5 }} active />
           ) : (
             <Block>
               <Title>Общее количество созданных {entity}</Title>

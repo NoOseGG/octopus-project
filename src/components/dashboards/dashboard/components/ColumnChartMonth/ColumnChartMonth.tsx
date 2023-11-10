@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { getNameMonthByNumber } from '@app/utils/utils';
+import { getEntityName, getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
 import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/charts/createdColumnChart';
+import { Spin } from 'antd';
+import { SpinnerSpace } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
 
 const ColumnChartMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const columnChart = useAppSelector((state) => state.charts.createdColumnChart.results);
+  const { results, loading } = useAppSelector((state) => state.charts.createdColumnChart);
+  const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
@@ -16,7 +19,7 @@ const ColumnChartMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
     dispatch(doGetDataForColumnChart({ filters, legal_entity }));
   }, [dispatch, filters, legal_entity]);
 
-  const data = columnChart.map((item) => {
+  const data = results.map((item) => {
     return {
       type: getNameMonthByNumber(item.group_fields.company_date_registration__month),
       sales: item.Count,
@@ -54,10 +57,18 @@ const ColumnChartMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
   };
 
   return (
-    <Container>
-      <Title>Динамика регистрации компаний по месяцам</Title>
-      <Column {...config} />
-    </Container>
+    <>
+      {loading ? (
+        <SpinnerSpace style={{ marginTop: 100 }}>
+          <Spin size="large" />
+        </SpinnerSpace>
+      ) : (
+        <Container>
+          <Title>Динамика регистрации {entity} по месяцам</Title>
+          <Column {...config} />
+        </Container>
+      )}
+    </>
   );
 };
 

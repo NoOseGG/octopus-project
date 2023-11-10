@@ -13,10 +13,15 @@ const initialState: MainInfoState = {
 
 export const doGetTotalCountCreatedLastQuarter = createAsyncThunk<ResponseMainInfo, RequestData>(
   'getTotalCountCreatedLastQuarter',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const date = getDateLastQuarter();
-      const url = constructorUrlForDashboard(DASH.BASE + legal_entity + DASH.DATE_AFTER(date), filters, true, false);
+      const url = constructorUrlForDashboard(
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date),
+        filters,
+        true,
+        false,
+      );
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

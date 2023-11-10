@@ -1,6 +1,5 @@
 import React from 'react';
 import { Divider } from 'antd';
-import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 import {
   Container,
   NameComponent,
@@ -15,20 +14,20 @@ import From5To10 from '@app/components/dashboards/dashboard/components/CurrentSu
 import From1To5 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/From1To5/From1To5';
 import LessThen1 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/LessThen1/LessThen1';
 
-const CurrentSubjectsByAge: React.FC<DashboardProps> = ({ legal_entity }) => {
+const CurrentSubjectsByAge: React.FC = () => {
   return (
     <Container>
       <NameComponent>Срез действующих компаний по возрасту:</NameComponent>
       <Divider />
       <AgeContainer>
-        <MoreThen20 legal_entity={legal_entity} />
-        <From10To20 legal_entity={legal_entity} />
-        <From5To10 legal_entity={legal_entity} />
-        <From1To5 legal_entity={legal_entity} />
-        <LessThen1 legal_entity={legal_entity} />
+        <MoreThen20 />
+        <From10To20 />
+        <From5To10 />
+        <From1To5 />
+        <LessThen1 />
       </AgeContainer>
       <ChartContainer>
-        <AvgAge legal_entity={legal_entity} />
+        <AvgAge />
         <AgeDiagram />
       </ChartContainer>
       <Divider />

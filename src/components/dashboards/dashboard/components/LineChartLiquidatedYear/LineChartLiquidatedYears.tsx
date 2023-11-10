@@ -2,19 +2,16 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
-import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedLineChart';
-import { getEntityName } from '@app/utils/utils';
+import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedLineChartSlice';
 
-const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) => {
+const LineChartLiquidatedYears: React.FC = () => {
   const { results } = useAppSelector((state) => state.charts.liquidatedLineChart);
-  const entity = getEntityName(legal_entity);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLiquidatedLineChart({ filters, legal_entity }));
-  }, [dispatch, filters, legal_entity]);
+    dispatch(doGetDataForLiquidatedLineChart({ filters }));
+  }, [dispatch, filters]);
 
   const data = results.map((item) => {
     return {
@@ -59,7 +56,7 @@ const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) =>
 
   return (
     <Container>
-      <Title>Динамика ликвидаций {entity}</Title>
+      <Title>Динамика ликвидаций компаний</Title>
       <Line {...config}></Line>
     </Container>
   );

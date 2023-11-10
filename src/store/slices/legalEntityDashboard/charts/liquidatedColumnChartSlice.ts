@@ -12,14 +12,14 @@ const initialState: ColumnChartState = {
 };
 
 export const doGetDataForLiquidatedColumnChart = createAsyncThunk<ResponseColumnChart, RequestData>(
-  'doGetDataForColumnChart',
-  async ({ filters, legal_entity }) => {
+  'doGetDataForLiquidatedColumnChart',
+  async ({ filters }) => {
     try {
       let baseUrl =
         DASH.BASE +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('company_status_from_dttm__month') +
-        legal_entity +
+        DASH.LEGAL_ENTITY +
         DASH.LIQUIDATED_ENTITY;
 
       if (filters.isDate && filters.toDate !== null) {
@@ -40,8 +40,8 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<ResponseColumn
   },
 );
 
-const createdLiquidatedColumnChartSlice = createSlice({
-  name: 'createdLiquidatedColumnChart',
+const liquidatedColumnChartSlice = createSlice({
+  name: 'liquidatedColumnChart',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -55,4 +55,4 @@ const createdLiquidatedColumnChartSlice = createSlice({
   },
 });
 
-export default createdLiquidatedColumnChartSlice.reducer;
+export default liquidatedColumnChartSlice.reducer;

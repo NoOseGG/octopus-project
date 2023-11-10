@@ -10,25 +10,24 @@ import DetailedInformationCompany from '@app/components/dashboards/dashboard/com
 import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
-import { EntityType } from '@app/constants/Constants';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
     <Container>
       <SearchFilters />
       <Title>Юридические лица</Title>
-      <MainInfo legal_entity={EntityType.LEGAl_ENTITY} />
+      <MainInfo />
       <ChartsContainer>
-        <LineChartYears legal_entity={EntityType.LEGAl_ENTITY} />
-        <ColumnChartMonth legal_entity={EntityType.LEGAl_ENTITY} />
+        <LineChartYears />
+        <ColumnChartMonth />
       </ChartsContainer>
-      <TypeActivities legal_entity={EntityType.LEGAl_ENTITY} />
-      <CurrentSubjectsByAge legal_entity={EntityType.LEGAl_ENTITY} />
-      <DetailedInformationCompany legal_entity={EntityType.LEGAl_ENTITY} />
-      <LiquidatedMainInfo legal_entity={EntityType.LEGAl_ENTITY} />
+      <TypeActivities />
+      <CurrentSubjectsByAge />
+      <DetailedInformationCompany />
+      <LiquidatedMainInfo />
       <ChartsContainer>
-        <LineChartLiquidatedYears legal_entity={EntityType.LEGAl_ENTITY} />
-        <ColumnChartLiquidatedMonth legal_entity={EntityType.LEGAl_ENTITY} />
+        <LineChartLiquidatedYears />
+        <ColumnChartLiquidatedMonth />
       </ChartsContainer>
     </Container>
   );

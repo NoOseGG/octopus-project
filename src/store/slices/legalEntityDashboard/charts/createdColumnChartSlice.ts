@@ -13,9 +13,9 @@ const initialState: ColumnChartState = {
 
 export const doGetDataForColumnChart = createAsyncThunk<ResponseColumnChart, RequestData>(
   'doGetDataForColumnChart',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
-      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__month') + legal_entity;
+      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__month') + DASH.LEGAL_ENTITY;
 
       if (filters.isDate && filters.toDate !== null) {
         const month = getPastMonthFromDate(6, new Date(filters.toDate));

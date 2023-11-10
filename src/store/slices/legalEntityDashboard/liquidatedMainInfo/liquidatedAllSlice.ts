@@ -13,9 +13,14 @@ const initialState: MainInfoState = {
 
 export const doGetTotalCountLiquidated = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetTotalCountLiquidated',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
-      const url = constructorUrlForDashboard(DASH.BASE + legal_entity + DASH.LIQUIDATED_ENTITY, filters, true, true);
+      const url = constructorUrlForDashboard(
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY,
+        filters,
+        true,
+        true,
+      );
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

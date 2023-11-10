@@ -1,7 +1,4 @@
-import {
-  TypeActivityState,
-  TypeActivityType,
-} from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesType';
+import { TypeActivityState, TypeActivityType } from '@app/store/types/dashboard/TypeActivitiesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard, getDateLastQuarter } from '@app/utils/utils';
@@ -18,14 +15,14 @@ const initialState: TypeActivityState = {
 
 export const doGetTypeActivitiesLastQuarter = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetTypeActivitiesLastQuarter',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const date = getDateLastQuarter();
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.AGR_COUNT +
           DASH.GROUP_BY('type_activity_name') +
-          legal_entity +
+          DASH.LEGAL_ENTITY +
           DASH.STATUS_AT +
           DASH.DATE_AFTER(date) +
           DASH.IS_NULL_FALSE('type_activity_name') +

@@ -9,16 +9,15 @@ import {
 } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
 import { doGetTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesAll';
 import { Spin } from 'antd';
-import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const TypeActivitiesAll: React.FC<DashboardProps> = ({ legal_entity }) => {
+const TypeActivitiesAll: React.FC = () => {
   const { typeActivities, loading } = useAppSelector((state) => state.typeActivities.typeActivitiesAll);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
   useEffect(() => {
-    dispatch(doGetTypeActivitiesAll({ filters, legal_entity }));
-  }, [dispatch, filters, legal_entity]);
+    dispatch(doGetTypeActivitiesAll({ filters }));
+  }, [dispatch, filters]);
 
   return (
     <Container>

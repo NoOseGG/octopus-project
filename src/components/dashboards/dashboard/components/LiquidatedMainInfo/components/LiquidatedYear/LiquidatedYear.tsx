@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 import {
   Block,
   Title,
@@ -9,7 +8,7 @@ import {
 } from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfoStyle';
 import { doGetTotalCountLiquidatedLastYear } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo/liquidatedYearSlice';
 
-const LiquidatedYear: React.FC<DashboardProps> = ({ legal_entity }) => {
+const LiquidatedYear: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
   const { count } = useAppSelector((state) => state.liquidatedMainInfo.liquidatedYear);
@@ -17,8 +16,8 @@ const LiquidatedYear: React.FC<DashboardProps> = ({ legal_entity }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetTotalCountLiquidatedLastYear({ filters, legal_entity }));
-  }, [dispatch, filters, legal_entity]);
+    dispatch(doGetTotalCountLiquidatedLastYear({ filters }));
+  }, [dispatch, filters]);
 
   return (
     <>

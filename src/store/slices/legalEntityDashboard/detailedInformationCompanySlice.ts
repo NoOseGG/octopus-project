@@ -27,12 +27,12 @@ const initialState: IInitialState = {
 
 export const doGetDetailedInformationCompany = createAsyncThunk<IInitialState, RequestData>(
   'doGetInDetailedInformationCompany',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.PAGE_SIZE(30) +
-          legal_entity +
+          DASH.LEGAL_ENTITY +
           DASH.ORDERING('-company_date_registration') +
           DASH.IS_NULL_FALSE('company_date_registration'),
         filters,

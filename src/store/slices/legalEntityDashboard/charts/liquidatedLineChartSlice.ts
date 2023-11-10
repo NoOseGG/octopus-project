@@ -12,15 +12,15 @@ const initialState: LineChartState = {
 };
 
 export const doGetDataForLiquidatedLineChart = createAsyncThunk<ResponseLineChart, RequestData>(
-  'doGetDataForLineChart',
-  async ({ filters, legal_entity }) => {
+  'doGetDataForLiquidatedLineChart',
+  async ({ filters }) => {
     try {
       const currentDate = getCurrentDate();
       let baseUrl =
         DASH.BASE +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('company_status_from_dttm__year') +
-        legal_entity +
+        DASH.LEGAL_ENTITY +
         DASH.LIQUIDATED_ENTITY;
       if (!filters.isDate) {
         baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
@@ -37,8 +37,8 @@ export const doGetDataForLiquidatedLineChart = createAsyncThunk<ResponseLineChar
   },
 );
 
-const createdLiquidatedLineChartSlice = createSlice({
-  name: 'createdLiquidatedLineChart',
+const liquidatedLineChartSlice = createSlice({
+  name: 'LiquidatedLineChart',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -52,4 +52,4 @@ const createdLiquidatedLineChartSlice = createSlice({
   },
 });
 
-export default createdLiquidatedLineChartSlice.reducer;
+export default liquidatedLineChartSlice.reducer;

@@ -13,7 +13,7 @@ const initialState: PercentState = {
 
 export const doCalculatePercentYear = createAsyncThunk<ResponsePercent, RequestData>(
   'doCalculatePercentYear',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const currentDate = getCurrentDate();
       const lastYear = getLastYear();
@@ -22,7 +22,7 @@ export const doCalculatePercentYear = createAsyncThunk<ResponsePercent, RequestD
         DASH.BASE +
           DASH.AGR_COUNT +
           DASH.GROUP_BY('company_date_registration__year') +
-          legal_entity +
+          DASH.LEGAL_ENTITY +
           DASH.DATE_BEFORE(currentDate) +
           DASH.DATE_AFTER(`${lastYear}-01-01`) +
           DASH.ORDERING_AGG('-company_date_registration__year'),

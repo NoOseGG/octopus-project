@@ -13,9 +13,9 @@ const initialState: MainInfoState = {
 
 export const doGetTotalCountCreated = createAsyncThunk<ResponseMainInfo, RequestData>(
   'getTotalCountCreated',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
-      const url = constructorUrlForDashboard(DASH.BASE + legal_entity, filters, true, true);
+      const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true, true);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

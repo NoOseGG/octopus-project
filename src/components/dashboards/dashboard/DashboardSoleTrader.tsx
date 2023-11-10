@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
-import { EntityType } from '@app/constants/Constants';
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
@@ -17,19 +16,19 @@ const DashboardSoleTrader: React.FC = () => {
     <Container>
       <SearchFilters />
       <Title>Индивидуальные предприниматели (ИП)</Title>
-      <MainInfo legal_entity={EntityType.SOLE_TRADE} />
-      <ChartsContainer>
-        <LineChartYears legal_entity={EntityType.SOLE_TRADE} />
-        <ColumnChartMonth legal_entity={EntityType.SOLE_TRADE} />
-      </ChartsContainer>
-      <TypeActivities legal_entity={EntityType.SOLE_TRADE} />
-      <CurrentSubjectsByAge legal_entity={EntityType.SOLE_TRADE} />
-      <DetailedInformationCompany legal_entity={EntityType.SOLE_TRADE} />
-      <LiquidatedMainInfo legal_entity={EntityType.SOLE_TRADE} />
-      <ChartsContainer>
-        <LineChartLiquidatedYears legal_entity={EntityType.SOLE_TRADE} />
-        <ColumnChartLiquidatedMonth legal_entity={EntityType.SOLE_TRADE} />
-      </ChartsContainer>
+      {/*<MainInfo />*/}
+      {/*<ChartsContainer>*/}
+      {/*  <LineChartYears />*/}
+      {/*  <ColumnChartMonth />*/}
+      {/*</ChartsContainer>*/}
+      {/*<TypeActivities />*/}
+      {/*<CurrentSubjectsByAge />*/}
+      {/*<DetailedInformationCompany />*/}
+      {/*<LiquidatedMainInfo />*/}
+      {/*<ChartsContainer>*/}
+      {/*  <LineChartLiquidatedYears />*/}
+      {/*  <ColumnChartLiquidatedMonth />*/}
+      {/*</ChartsContainer>*/}
     </Container>
   );
 };

@@ -13,10 +13,10 @@ const initialState: CurrentByAgeState = {
 
 export const doGetCurrentByAgeFrom5To10 = createAsyncThunk<ResponseCurrentByAge, RequestData>(
   'doGetCurrentByAgeFrom5To10',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(5, 10),
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(5, 10),
         filters,
         true,
         false,

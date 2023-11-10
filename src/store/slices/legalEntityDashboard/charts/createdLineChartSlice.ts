@@ -13,10 +13,10 @@ const initialState: LineChartState = {
 
 export const doGetDataForLineChart = createAsyncThunk<ResponseLineChart, RequestData>(
   'doGetDataForLineChart',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const currentDate = getCurrentDate();
-      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + legal_entity;
+      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.LEGAL_ENTITY;
       if (!filters.isDate) {
         baseUrl += DASH.DATE_BEFORE(currentDate);
         baseUrl += DASH.DATE_AFTER('2000-01-01');
@@ -24,7 +24,7 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseLineChart, Request
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
       const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
-
+      console.log('CREATED LINE CHART');
       return response.data;
     } catch (error) {
       console.log(error);

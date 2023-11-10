@@ -13,11 +13,11 @@ const initialState: MainInfoState = {
 
 export const doGetTotalCountCreatedLastYear = createAsyncThunk<ResponseMainInfo, RequestData>(
   'getTotalCountCreatedLastYear',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + legal_entity + DASH.DATE_AFTER(`${year}-01-01`),
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(`${year}-01-01`),
         filters,
         true,
         false,

@@ -2,21 +2,16 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
-import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChart';
-import { getEntityName } from '@app/utils/utils';
-import { Spin } from 'antd';
-import { SpinnerSpace } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
+import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChartSlice';
 
-const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
-  const { results, loading } = useAppSelector((state) => state.charts.createdLineChart);
-  const entity = getEntityName(legal_entity);
+const LineChartYears: React.FC = () => {
+  const { results } = useAppSelector((state) => state.charts.createdLineChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChart({ filters, legal_entity }));
-  }, [dispatch, filters, legal_entity]);
+    dispatch(doGetDataForLineChart({ filters }));
+  }, [dispatch, filters]);
 
   const data = results.map((item) => {
     return {
@@ -60,18 +55,10 @@ const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
   };
 
   return (
-    <>
-      {loading ? (
-        <SpinnerSpace style={{ marginTop: 100 }}>
-          <Spin size="large" />
-        </SpinnerSpace>
-      ) : (
-        <Container>
-          <Title>Динамика регистрации {entity}</Title>
-          <Line {...config}></Line>
-        </Container>
-      )}
-    </>
+    <Container>
+      <Title>Динамика регистрации компаний</Title>
+      <Line {...config}></Line>
+    </Container>
   );
 };
 

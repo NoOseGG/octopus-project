@@ -13,13 +13,13 @@ const initialState: CurrentByAvgAgeState = {
 
 export const doGetCurrentByAgeAvgAge = createAsyncThunk<ResponseCurrentByAvgAge, RequestData>(
   'doGetCurrentByAgeAvgAge',
-  async ({ filters, legal_entity }) => {
+  async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.AGR_AVERAGE +
           DASH.AVG_FIELD('age_short') +
-          legal_entity +
+          DASH.LEGAL_ENTITY +
           DASH.STATUS_AT +
           DASH.ORDERING_AGG('-avg') +
           DASH.GROUP_BY('company_status_code'),

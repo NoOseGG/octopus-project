@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import styled from 'styled-components';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/charts/createdColumnChart';
 
-const ColumnChartMonth: React.FC = () => {
-  const columnChart = useAppSelector((state) => state.dashboard.columnChart);
+const ColumnChartMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
+  const columnChart = useAppSelector((state) => state.charts.createdColumnChart.results);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForColumnChart(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetDataForColumnChart({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
-  const data = columnChart.results.map((item) => {
+  const data = columnChart.map((item) => {
     return {
       type: getNameMonthByNumber(item.group_fields.company_date_registration__month),
       sales: item.Count,

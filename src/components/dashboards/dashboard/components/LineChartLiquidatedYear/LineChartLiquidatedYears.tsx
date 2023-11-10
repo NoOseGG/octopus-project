@@ -3,15 +3,16 @@ import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import { doGetDataForLineChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const LineChartLiquidatedYears: React.FC = () => {
+const LineChartLiquidatedYears: React.FC<DashboardProps> = ({ legal_entity }) => {
   const lineChart = useAppSelector((state) => state.liquidatedMainInfo.lineChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChartLiquidated(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetDataForLineChartLiquidated({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   const data = lineChart.results.map((item) => {
     return {

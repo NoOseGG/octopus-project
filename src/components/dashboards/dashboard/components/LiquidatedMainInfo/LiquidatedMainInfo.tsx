@@ -9,8 +9,9 @@ import {
   doGetTotalCountLiquidatedLastQuarter,
   doGetTotalCountLiquidatedLastYear,
 } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const LiquidatedMainInfo: React.FC = () => {
+const LiquidatedMainInfo: React.FC<DashboardProps> = ({ legal_entity }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
@@ -19,12 +20,12 @@ const LiquidatedMainInfo: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetTotalCountLiquidated(filters));
-    dispatch(doGetTotalCountLiquidatedLastYear(filters));
-    dispatch(doGetTotalCountLiquidatedLastQuarter(filters));
-    dispatch(doCalculatePercentLiquidatedYear(filters));
-    dispatch(doGetDataForLineChartLiquidated(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetTotalCountLiquidated({ filters, legal_entity }));
+    dispatch(doGetTotalCountLiquidatedLastYear({ filters, legal_entity }));
+    dispatch(doGetTotalCountLiquidatedLastQuarter({ filters, legal_entity }));
+    dispatch(doCalculatePercentLiquidatedYear({ filters, legal_entity }));
+    dispatch(doGetDataForLineChartLiquidated({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   return (
     <Container value={isDate}>

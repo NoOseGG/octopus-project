@@ -11,8 +11,9 @@ import {
 import styled from 'styled-components';
 import { Divider } from 'antd';
 import { Pie } from '@ant-design/charts';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const CurrentSubjectsByAge: React.FC = () => {
+const CurrentSubjectsByAge: React.FC<DashboardProps> = ({ legal_entity }) => {
   const { count20More, countFrom10To20, countFrom5To10, countFrom1To5, count1Less, avgAge } = useAppSelector(
     (state) => state.currentSubjectsByAge,
   );
@@ -20,13 +21,13 @@ const CurrentSubjectsByAge: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetCurrentSubjectsMoreThen20(filters));
-    dispatch(doGetCurrentSubjectsFrom10To20(filters));
-    dispatch(doGetCurrentSubjectsFrom5To10(filters));
-    dispatch(doGetCurrentSubjectsFrom1To5(filters));
-    dispatch(doGetCurrentSubjectsLessThen1(filters));
-    dispatch(doGetCurrentSubjectsAvgAge(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetCurrentSubjectsMoreThen20({ filters, legal_entity }));
+    dispatch(doGetCurrentSubjectsFrom10To20({ filters, legal_entity }));
+    dispatch(doGetCurrentSubjectsFrom5To10({ filters, legal_entity }));
+    dispatch(doGetCurrentSubjectsFrom1To5({ filters, legal_entity }));
+    dispatch(doGetCurrentSubjectsLessThen1({ filters, legal_entity }));
+    dispatch(doGetCurrentSubjectsAvgAge({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   const data = [
     {

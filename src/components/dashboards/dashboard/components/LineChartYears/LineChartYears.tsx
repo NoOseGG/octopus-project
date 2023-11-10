@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import styled from 'styled-components';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChart';
 
-const LineChartYears: React.FC = () => {
-  const { lineChart } = useAppSelector((state) => state.dashboard);
+const LineChartYears: React.FC<DashboardProps> = ({ legal_entity }) => {
+  const lineChart = useAppSelector((state) => state.charts.createdLineChart.results);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChart(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetDataForLineChart({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
-  const data = lineChart.results.map((item) => {
+  const data = lineChart.map((item) => {
     return {
       year: item.group_fields.company_date_registration__year,
       value: item.Count,

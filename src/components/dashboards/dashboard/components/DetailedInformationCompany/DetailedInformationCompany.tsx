@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Table } from 'antd';
 import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
 import styled from 'styled-components';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 const getColumn = (title: string, field: string) => {
   return {
@@ -27,14 +28,14 @@ const columns = [
   getColumn('Наимменование инспецкции НМС', 'tax_office_name'),
 ];
 
-const DetailedInformationCompany: React.FC = () => {
+const DetailedInformationCompany: React.FC<DashboardProps> = ({ legal_entity }) => {
   const { results } = useAppSelector((state) => state.detailedInformationCompany);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDetailedInformationCompany({ page_size: 30, filters }));
-  }, [dispatch, filters]);
+    dispatch(doGetDetailedInformationCompany({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   return (
     <>

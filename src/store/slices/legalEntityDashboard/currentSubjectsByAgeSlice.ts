@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
+import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 export interface CurrentSubjectsByAgeType {
   count20More: number;
@@ -37,12 +37,12 @@ const initialState: CurrentSubjectsByAgeType = {
   avgAge: 0,
 };
 
-export const doGetCurrentSubjectsMoreThen20 = createAsyncThunk<ResponseType, FiltersType>(
+export const doGetCurrentSubjectsMoreThen20 = createAsyncThunk<ResponseType, RequestData>(
   'doGetCurrentSubjectsMoreThen20',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(20, 100),
+        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(20, 100),
         filters,
         true,
         false,
@@ -55,12 +55,12 @@ export const doGetCurrentSubjectsMoreThen20 = createAsyncThunk<ResponseType, Fil
   },
 );
 
-export const doGetCurrentSubjectsFrom10To20 = createAsyncThunk<ResponseType, FiltersType>(
+export const doGetCurrentSubjectsFrom10To20 = createAsyncThunk<ResponseType, RequestData>(
   'doGetCurrentSubjectsFrom10To20',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(10, 20),
+        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(10, 20),
         filters,
         true,
         false,
@@ -73,12 +73,12 @@ export const doGetCurrentSubjectsFrom10To20 = createAsyncThunk<ResponseType, Fil
   },
 );
 
-export const doGetCurrentSubjectsFrom5To10 = createAsyncThunk<ResponseType, FiltersType>(
+export const doGetCurrentSubjectsFrom5To10 = createAsyncThunk<ResponseType, RequestData>(
   'doGetCurrentSubjectsFrom5To10',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(5, 10),
+        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(5, 10),
         filters,
         true,
         false,
@@ -91,12 +91,12 @@ export const doGetCurrentSubjectsFrom5To10 = createAsyncThunk<ResponseType, Filt
   },
 );
 
-export const doGetCurrentSubjectsFrom1To5 = createAsyncThunk<ResponseType, FiltersType>(
+export const doGetCurrentSubjectsFrom1To5 = createAsyncThunk<ResponseType, RequestData>(
   'doGetCurrentSubjectsFrom1To5',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(1, 5),
+        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(1, 5),
         filters,
         true,
         false,
@@ -109,12 +109,12 @@ export const doGetCurrentSubjectsFrom1To5 = createAsyncThunk<ResponseType, Filte
   },
 );
 
-export const doGetCurrentSubjectsLessThen1 = createAsyncThunk<ResponseType, FiltersType>(
+export const doGetCurrentSubjectsLessThen1 = createAsyncThunk<ResponseType, RequestData>(
   'doGetCurrentSubjectsLessThen1',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(0, 1),
+        DASH.BASE + legal_entity + DASH.STATUS_AT + DASH.AGE_RANGE(0, 1),
         filters,
         true,
         false,
@@ -127,15 +127,15 @@ export const doGetCurrentSubjectsLessThen1 = createAsyncThunk<ResponseType, Filt
   },
 );
 
-export const doGetCurrentSubjectsAvgAge = createAsyncThunk<AvgAgeType, FiltersType>(
+export const doGetCurrentSubjectsAvgAge = createAsyncThunk<AvgAgeType, RequestData>(
   'doGetCurrentSubjectsAvgAge',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.AGR_AVERAGE +
           DASH.AVG_FIELD('age_short') +
-          DASH.LEGAL_ENTITY +
+          legal_entity +
           DASH.STATUS_AT +
           DASH.ORDERING_AGG('-avg') +
           DASH.GROUP_BY('company_status_code'),

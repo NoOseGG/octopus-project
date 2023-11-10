@@ -3,15 +3,16 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Container, Content, Title, Line, SpinnerSpace } from '../TypeActivitiesStyle';
 import { doGetTypeActivitiesLastQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesQuarter';
 import { Spin } from 'antd';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const TypeActivitiesQuarter: React.FC = () => {
+const TypeActivitiesQuarter: React.FC<DashboardProps> = ({ legal_entity }) => {
   const { typeActivities, loading } = useAppSelector((state) => state.typeActivities.typeActivitiesQuarter);
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
 
   useEffect(() => {
-    dispatch(doGetTypeActivitiesLastQuarter(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetTypeActivitiesLastQuarter({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   return (
     <Container>

@@ -5,15 +5,16 @@ import styled from 'styled-components';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
 import { doGetDataForColumnChartLiquidated } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const ColumnChartLiquidatedMonth: React.FC = () => {
+const ColumnChartLiquidatedMonth: React.FC<DashboardProps> = ({ legal_entity }) => {
   const columnChart = useAppSelector((state) => state.liquidatedMainInfo.columnChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForColumnChartLiquidated(filters));
-  }, [dispatch, filters]);
+    dispatch(doGetDataForColumnChartLiquidated({ filters, legal_entity }));
+  }, [dispatch, filters, legal_entity]);
 
   const data = columnChart.results.map((item) => {
     return {

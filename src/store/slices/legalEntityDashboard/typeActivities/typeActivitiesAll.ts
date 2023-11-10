@@ -3,10 +3,10 @@ import {
   TypeActivityType,
 } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import axios from 'axios';
+import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 const initialState: TypeActivityState = {
   typeActivities: {
@@ -16,15 +16,15 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesAll = createAsyncThunk<TypeActivityType, FiltersType>(
+export const doGetTypeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetTypeActivitiesAll',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       let baseUrl =
         DASH.BASE +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('type_activity_name') +
-        DASH.LEGAL_ENTITY +
+        legal_entity +
         DASH.STATUS_AT +
         DASH.IS_NULL_FALSE('type_activity_name') +
         DASH.PAGE_SIZE(10000);

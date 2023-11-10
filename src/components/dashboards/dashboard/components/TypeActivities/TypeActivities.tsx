@@ -6,22 +6,23 @@ import TypeActivitiesQuarter from '@app/components/dashboards/dashboard/componen
 import TypeActivitiesMonth from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesMonth/TypeActivitiesMonth';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TypeActivitiesAll from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesAll/TypeActivitiesAll';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-const TypeActivities: React.FC = () => {
+const TypeActivities: React.FC<DashboardProps> = ({ legal_entity }) => {
   const { isDate, isLegalEntity } = useAppSelector((state) => state.searchFilters.filters);
 
   return (
     <div>
       {isDate && isLegalEntity ? (
-        <TypeActivitiesAll />
+        <TypeActivitiesAll legal_entity={legal_entity} />
       ) : (
         <>
           <ContainerTypeActivities>
-            <TypeActivitiesYear />
-            <TypeActivitiesQuarter />
-            <TypeActivitiesMonth />
+            <TypeActivitiesYear legal_entity={legal_entity} />
+            <TypeActivitiesQuarter legal_entity={legal_entity} />
+            <TypeActivitiesMonth legal_entity={legal_entity} />
           </ContainerTypeActivities>
-          <TypeActivitiesAll />
+          <TypeActivitiesAll legal_entity={legal_entity} />
         </>
       )}
     </div>

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import {
   constructorUrlForDashboard,
   getCurrentDate,
@@ -11,7 +10,7 @@ import {
 } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
-import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
+import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 export interface TotalCountCreated {
   count: number;
@@ -99,16 +98,11 @@ const initialState: IInitialState = {
   },
 };
 
-export const doGetTotalCountLiquidated = createAsyncThunk<TotalCountCreated, FiltersType>(
+export const doGetTotalCountLiquidated = createAsyncThunk<TotalCountCreated, RequestData>(
   'doGetTotalCountLiquidated',
-  async (filters: FiltersType) => {
+  async ({ filters, legal_entity }) => {
     try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY,
-        filters,
-        true,
-        true,
-      );
+      const url = constructorUrlForDashboard(DASH.BASE + legal_entity + DASH.LIQUIDATED_ENTITY, filters, true, true);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -117,13 +111,13 @@ export const doGetTotalCountLiquidated = createAsyncThunk<TotalCountCreated, Fil
   },
 );
 
-export const doGetTotalCountLiquidatedLastYear = createAsyncThunk<TotalCountCreated, FiltersType>(
+export const doGetTotalCountLiquidatedLastYear = createAsyncThunk<TotalCountCreated, RequestData>(
   'doGetTotalCountLiquidatedLastYear',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
+        DASH.BASE + legal_entity + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
         filters,
         true,
         false,
@@ -136,13 +130,13 @@ export const doGetTotalCountLiquidatedLastYear = createAsyncThunk<TotalCountCrea
   },
 );
 
-export const doGetTotalCountLiquidatedLastQuarter = createAsyncThunk<TotalCountCreated, FiltersType>(
+export const doGetTotalCountLiquidatedLastQuarter = createAsyncThunk<TotalCountCreated, RequestData>(
   'doGetTotalCountLiquidatedLastQuarter',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const date = getDateLastQuarter();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(date),
+        DASH.BASE + legal_entity + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(date),
         filters,
         true,
         false,
@@ -155,9 +149,9 @@ export const doGetTotalCountLiquidatedLastQuarter = createAsyncThunk<TotalCountC
   },
 );
 
-export const doCalculatePercentLiquidatedYear = createAsyncThunk<CalculatePercent, FiltersType>(
+export const doCalculatePercentLiquidatedYear = createAsyncThunk<CalculatePercent, RequestData>(
   'doCalculatePercentLiquidatedYear',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const currentDate = getCurrentDate();
       const lastYear = getLastYear();
@@ -166,7 +160,7 @@ export const doCalculatePercentLiquidatedYear = createAsyncThunk<CalculatePercen
         DASH.BASE +
           DASH.AGR_COUNT +
           DASH.GROUP_BY('company_status_from_dttm__year') +
-          DASH.LEGAL_ENTITY +
+          legal_entity +
           DASH.LIQUIDATED_ENTITY +
           DASH.DATE_BEFORE_LIQUIDATED(currentDate) +
           DASH.DATE_AFTER_LIQUIDATED(`${lastYear}-01-01`) +
@@ -184,16 +178,16 @@ export const doCalculatePercentLiquidatedYear = createAsyncThunk<CalculatePercen
   },
 );
 
-export const doGetDataForLineChartLiquidated = createAsyncThunk<ResponseForLineChart, FiltersType>(
+export const doGetDataForLineChartLiquidated = createAsyncThunk<ResponseForLineChart, RequestData>(
   'doGetDataForLineChartLiquidated',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       const currentDate = getCurrentDate();
       let baseUrl =
         DASH.BASE +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('company_status_from_dttm__year') +
-        DASH.LEGAL_ENTITY +
+        legal_entity +
         DASH.LIQUIDATED_ENTITY;
       if (!filters.isDate) {
         baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
@@ -210,15 +204,15 @@ export const doGetDataForLineChartLiquidated = createAsyncThunk<ResponseForLineC
   },
 );
 
-export const doGetDataForColumnChartLiquidated = createAsyncThunk<ResponseForColumnChart, FiltersType>(
+export const doGetDataForColumnChartLiquidated = createAsyncThunk<ResponseForColumnChart, RequestData>(
   'doGetDataForColumnChartLiquidated',
-  async (filters) => {
+  async ({ filters, legal_entity }) => {
     try {
       let baseUrl =
         DASH.BASE +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('company_status_from_dttm__month') +
-        DASH.LEGAL_ENTITY +
+        legal_entity +
         DASH.LIQUIDATED_ENTITY;
 
       if (filters.isDate && filters.toDate !== null) {
@@ -267,7 +261,7 @@ const liquidateMainInfoSlice = createSlice({
     builder.addCase(doGetDataForLineChartLiquidated.fulfilled, (state, action) => {
       state.lineChart = action.payload;
     });
-    builder.addCase(doGetDataForColumnChart.fulfilled, (state, action) => {
+    builder.addCase(doGetDataForColumnChartLiquidated.fulfilled, (state, action) => {
       state.columnChart = action.payload;
     });
   },

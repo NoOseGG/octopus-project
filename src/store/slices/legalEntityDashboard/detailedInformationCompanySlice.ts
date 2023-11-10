@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
+import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 export interface IInitialState {
   results: ResponseDate[];
@@ -21,23 +21,18 @@ interface ResponseDate {
   tax_office_name: string | null;
 }
 
-interface RequestData {
-  filters: FiltersType;
-  page_size: number;
-}
-
 const initialState: IInitialState = {
   results: [],
 };
 
 export const doGetDetailedInformationCompany = createAsyncThunk<IInitialState, RequestData>(
   'doGetInDetailedInformationCompany',
-  async ({ filters, page_size }) => {
+  async ({ filters, legal_entity }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
-          DASH.PAGE_SIZE(page_size) +
-          DASH.LEGAL_ENTITY +
+          DASH.PAGE_SIZE(30) +
+          legal_entity +
           DASH.ORDERING('-company_date_registration') +
           DASH.IS_NULL_FALSE('company_date_registration'),
         filters,

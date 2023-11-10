@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
-import Dashboard from '@app/components/dashboards/dashboard/Dashboard';
-import DashboardSoleTrader from '@app/components/dashboards/dashboard-sole-trader/DashboardSoleTrader';
+import DashboardLegalEntity from '@app/components/dashboards/dashboard/DashboardLegalEntity';
+import DashboardSoleTrader from '@app/components/dashboards/dashboard/DashboardSoleTrader';
 import { deleteLegalEntity, setLegalEntity } from '@app/store/slices/searchFiltersSlice';
 
 enum TABS_KEY {
@@ -51,7 +51,7 @@ const DashboardPage: React.FC = () => {
       <S.LeftSideCol>
         <Tabs defaultActiveKey={'1'} style={{ width: '100%' }} centered onChange={handleChangeLegalEntity}>
           <Tabs.TabPane tab={'Юридические лица'} key={TABS_KEY.LEGAL_ENTITY}>
-            <Dashboard />
+            <DashboardLegalEntity />
           </Tabs.TabPane>
           <Tabs.TabPane tab={'Индивидуальные предприниматели'} key={TABS_KEY.SOLE_TRADE}>
             <DashboardSoleTrader />

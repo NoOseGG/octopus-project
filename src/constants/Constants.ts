@@ -42,3 +42,10 @@ export const TOKEN_NAME = 'Welcome';
 export const MODAL_WIDTH_SMALL = 700;
 export const MODAL_WIDTH_MIDDLE = 1000;
 export const MODAL_WIDTH_BIG = 1400;
+
+// Entity Type
+
+export enum EntityType {
+  LEGAl_ENTITY = 'legal_form_entity_type__iexact=Юридическое+лицо&',
+  SOLE_TRADE = 'legal_form_entity_type__iexact=Индивидуальный+предприниматель&',
+}

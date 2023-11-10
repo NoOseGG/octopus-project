@@ -7,6 +7,7 @@ import { ReactComponent as BTCIcon } from '@app/assets/icons/btc.svg';
 import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import React from 'react';
+import { EntityType } from '@app/constants/Constants';
 
 export const camelize = (string: string): string => {
   return string
@@ -383,6 +384,17 @@ export const getColorForBadge = (risk: string | null): string => {
       return 'green';
     default:
       return 'white';
+  }
+};
+
+// Dashboard
+
+export const getEntityName = (entityType: EntityType): string => {
+  switch (entityType) {
+    case EntityType.LEGAl_ENTITY:
+      return 'компании';
+    case EntityType.SOLE_TRADE:
+      return 'ИП';
   }
 };
 

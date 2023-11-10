@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { EntityType } from '@app/constants/Constants';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoStyle';
 import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/createdAllSlice';
 import { Skeleton } from 'antd';
+import { getEntityName } from '@app/utils/utils';
+import { DashboardProps } from '@app/components/dashboards/dashboard/DashboardTypes';
 
-type MyComponentProps = {
-  legal_entity: EntityType;
-};
-
-const CountAll: React.FC<MyComponentProps> = ({ legal_entity }) => {
+const CountAll: React.FC<DashboardProps> = ({ legal_entity }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
-
+  const entity = getEntityName(legal_entity);
   const { count, loading } = useAppSelector((state) => state.mainInfo.createdAll);
   const dispatch = useAppDispatch();
 
@@ -25,7 +22,7 @@ const CountAll: React.FC<MyComponentProps> = ({ legal_entity }) => {
         <Skeleton style={{ padding: 5 }} />
       ) : (
         <Block>
-          <Title>Общее количество созданных компаний</Title>
+          <Title>Общее количество созданных {entity}</Title>
           <Content>{count}</Content>
         </Block>
       )}

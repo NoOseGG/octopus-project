@@ -17,7 +17,7 @@ const ColumnChartLiquidatedMonth: React.FC = () => {
 
   const data = results.map((item) => {
     return {
-      type: getNameMonthByNumber(item.group_fields.company_date_registration__month),
+      type: getNameMonthByNumber(item.group_fields.company_status_from_dttm__month),
       sales: item.Count,
     };
   });

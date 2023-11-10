@@ -27,15 +27,16 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<LiquidatedResp
 
       if (filters.isDate && filters.toDate !== null) {
         const month = getPastMonthFromDate(6, new Date(filters.toDate));
-        baseUrl += DASH.DATE_AFTER(month);
-        baseUrl += DASH.DATE_BEFORE(filters.toDate);
+        baseUrl += DASH.DATE_AFTER_LIQUIDATED(month);
+        baseUrl += DASH.DATE_BEFORE_LIQUIDATED(filters.toDate);
       } else {
         const month = getPastMonth(6);
-        baseUrl += DASH.DATE_AFTER(`${month}-01`);
+        console.log(month);
+        baseUrl += DASH.DATE_AFTER_LIQUIDATED(`${month}-01`);
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
+      console.log(url);
       const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
-      console.log(`LINE => ${JSON.stringify(response.data)}`);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -52,7 +53,6 @@ const liquidatedColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedColumnChart.fulfilled, (state, action) => {
-      console.log(`state ${JSON.stringify(action.payload)}`);
       state.results = action.payload.results;
       state.loading = false;
     });

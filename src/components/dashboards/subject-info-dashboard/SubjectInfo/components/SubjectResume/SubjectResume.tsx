@@ -14,7 +14,8 @@ const SubjectResume: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const newResumes = resumes.map((resume) => ({
     ...resume,
-    salary_byn: `${formatDate(resume.to_dttm)} BYN`,
+    salary_byn: resume.salary_byn ? `${resume.salary_byn} BYN` : '',
+    salary_usd: resume.salary_usd ? `${resume.salary_usd} USD` : '',
     from_dttm: `${formatDate(resume.from_dttm)}`,
     to_dttm: `${formatDate(resume.to_dttm)}`,
     birth_date: `${formatDate(resume.birth_date)}`,
@@ -108,7 +109,7 @@ const SubjectResume: React.FC = () => {
                   {formatDate(selectedResume.resume_from_dttm)}
                 </Descriptions.Item>
                 <Descriptions.Item label="Сведения об образовании" span={3}>
-                  {formatDate(selectedResume.education)}
+                  {selectedResume.education}
                 </Descriptions.Item>
 
                 <Descriptions.Item label="Владение языками" span={6}>

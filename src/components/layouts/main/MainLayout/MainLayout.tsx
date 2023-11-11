@@ -30,7 +30,9 @@ const MainLayout: React.FC = () => {
         </MainHeader>
         <MainContent id="main-content" $isTwoColumnsLayout={isTwoColumnsLayout}>
           <div style={{ display: 'flex' }}>
-            <Outlet />
+            <div style={{ width: '100%' }}>
+              <Outlet />
+            </div>
             <SearchFilters />
           </div>
           {!isTwoColumnsLayout && <References />}

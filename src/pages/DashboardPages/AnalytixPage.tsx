@@ -31,8 +31,10 @@ const AnalytixPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol id="desktop-content">
-        <SubjectsList />
-        <References />
+        <div style={{ width: '100%' }}>
+          <SubjectsList />
+          <References />
+        </div>
       </S.LeftSideCol>
 
       {/*<S.RightSideCol xl={8} xxl={7}></S.RightSideCol>*/}

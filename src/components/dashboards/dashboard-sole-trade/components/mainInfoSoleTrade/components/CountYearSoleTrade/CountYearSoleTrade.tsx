@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { Skeleton } from 'antd';
 import { doGetTotalCountCreatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeYearSlice';
+import { doCalculatePercentYearSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/calculateSoleTradePercentSlice';
 
 const CountYearSoleTrade: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -12,6 +13,7 @@ const CountYearSoleTrade: React.FC = () => {
 
   useEffect(() => {
     dispatch(doGetTotalCountCreatedSoleTradeLastYear({ filters }));
+    dispatch(doCalculatePercentYearSoleTrade({ filters }));
   }, [dispatch, filters]);
 
   return (

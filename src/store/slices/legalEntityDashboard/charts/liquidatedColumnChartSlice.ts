@@ -31,11 +31,9 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<LiquidatedResp
         baseUrl += DASH.DATE_BEFORE_LIQUIDATED(filters.toDate);
       } else {
         const month = getPastMonth(6);
-        console.log(month);
         baseUrl += DASH.DATE_AFTER_LIQUIDATED(`${month}-01`);
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
-      console.log(url);
       const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
       return response.data;
     } catch (error) {

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/createdYearSlice';
 import { Skeleton } from 'antd';
+import { doCalculatePercentYear } from '@app/store/slices/legalEntityDashboard/mainInfo/calculatePercentSlice';
 
 const CountYear: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -12,6 +13,7 @@ const CountYear: React.FC = () => {
 
   useEffect(() => {
     dispatch(doGetTotalCountCreatedLastYear({ filters }));
+    dispatch(doCalculatePercentYear({ filters }));
   }, [dispatch, filters]);
 
   return (

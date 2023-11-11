@@ -22,9 +22,6 @@ const TypeActivitiesLiquidatedAll: React.FC = () => {
     dispatch(doGetTypeActivitiesLiquidatedAll({ filters }));
   }, [dispatch, filters]);
 
-  const sum = typeActivities.results.reduce((acumulator, value) => acumulator + value.Count, 0);
-  console.log(sum);
-
   return (
     <Container>
       {loading ? (

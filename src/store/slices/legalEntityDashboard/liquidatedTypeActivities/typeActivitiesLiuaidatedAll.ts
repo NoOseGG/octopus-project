@@ -35,7 +35,6 @@ export const doGetTypeActivitiesLiquidatedAll = createAsyncThunk<TypeActivityTyp
       }
 
       const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
-      console.log(url);
       return response.data;
     } catch (error) {
       console.log(error);

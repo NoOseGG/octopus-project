@@ -22,6 +22,7 @@ export const LeftSideCol = styled(Col)`
     // My style
     display: flex;
     flex-direction: column;
+    border: 1px solid #e8e4e4;
   }
 `;
 

@@ -5,6 +5,8 @@ export interface LineProps {
 }
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 400px;
   font-size: 16px;
   margin-top: 40px;
@@ -15,13 +17,17 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   overflow: auto;
-  max-height: calc(100% - 50px);
+  flex: 1;
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+
+export const TextLine = styled.span`
+  font-size: 12px;
 `;
 
 export const Line = styled.div<LineProps>`

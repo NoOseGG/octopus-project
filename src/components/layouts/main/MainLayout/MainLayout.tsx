@@ -7,6 +7,7 @@ import * as S from './MainLayout.styles';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useResponsive } from '@app/hooks/useResponsive';
 import { References } from '@app/components/common/References/References';
+import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 
 const MainLayout: React.FC = () => {
   const [isTwoColumnsLayout, setIsTwoColumnsLayout] = useState(true);
@@ -28,8 +29,9 @@ const MainLayout: React.FC = () => {
           <Header toggleSider={toggleSider} isSiderOpened={!siderCollapsed} isTwoColumnsLayout={isTwoColumnsLayout} />
         </MainHeader>
         <MainContent id="main-content" $isTwoColumnsLayout={isTwoColumnsLayout}>
-          <div>
+          <div style={{ display: 'flex' }}>
             <Outlet />
+            <SearchFilters />
           </div>
           {!isTwoColumnsLayout && <References />}
         </MainContent>

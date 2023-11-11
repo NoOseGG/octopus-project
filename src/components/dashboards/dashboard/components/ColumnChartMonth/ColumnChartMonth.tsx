@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Column } from '@ant-design/plots';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import styled from 'styled-components';
+import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
 import { doGetDataForColumnChart } from '@app/store/slices/legalEntityDashboard/charts/createdColumnChartSlice';
@@ -61,15 +61,3 @@ const ColumnChartMonth: React.FC = () => {
 };
 
 export default ColumnChartMonth;
-
-const Container = styled.div`
-  width: auto;
-  flex-grow: 1;
-  margin-top: 30px;
-`;
-
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
-`;

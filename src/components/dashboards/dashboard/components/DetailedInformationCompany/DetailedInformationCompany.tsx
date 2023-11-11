@@ -7,7 +7,7 @@ import {
   Container,
   NameComponent,
   TableContainer,
-} from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompanyStyle';
+} from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
 
 const getColumn = (title: string, field: string) => {
   return {

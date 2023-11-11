@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import styled from 'styled-components';
+import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
 import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChartSlice';
 
 const LineChartYears: React.FC = () => {
@@ -63,15 +63,3 @@ const LineChartYears: React.FC = () => {
 };
 
 export default LineChartYears;
-
-const Container = styled.div`
-  width: auto;
-  flex-grow: 1;
-  margin-top: 30px;
-`;
-
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
-`;

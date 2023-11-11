@@ -9,7 +9,7 @@ export const TableContainer = styled.div`
 `;
 
 export const NameComponent = styled.div`
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
   font-weight: 700;
 `;

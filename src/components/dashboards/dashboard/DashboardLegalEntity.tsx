@@ -3,18 +3,17 @@ import styled from 'styled-components';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 import LineChartYears from '@app/components/dashboards/dashboard/components/LineChartYears/LineChartYears';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
-import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
 import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAge';
 import DetailedInformationCompany from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompany';
 import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
+import TypeActivitiesLiquidated from '@app/components/dashboards/dashboard/components/TypeActivitiesLiquidated/TypeActivitiesLiquidated';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
     <Container>
-      <SearchFilters />
       <Title>Юридические лица</Title>
       <MainInfo />
       <ChartsContainer>
@@ -29,6 +28,7 @@ const DashboardLegalEntity: React.FC = () => {
         <LineChartLiquidatedYears />
         <ColumnChartLiquidatedMonth />
       </ChartsContainer>
+      <TypeActivitiesLiquidated />
     </Container>
   );
 };
@@ -36,7 +36,7 @@ const DashboardLegalEntity: React.FC = () => {
 export default DashboardLegalEntity;
 
 const Container = styled.div`
-  flex-grow: 1;
+  width: 100%;
 `;
 
 const ChartsContainer = styled.div`

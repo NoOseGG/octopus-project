@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { Pie } from '@ant-design/charts';
-import { PieContainer } from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAgeStyle';
+import { PieContainer } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 
 const AgeDiagram: React.FC = () => {
   const count20More = useAppSelector((state) => state.currentByAge.moreThen20.age);

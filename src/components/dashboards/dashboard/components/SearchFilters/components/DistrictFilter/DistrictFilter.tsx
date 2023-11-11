@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
 import { doGetDistrictsList, setDistrict } from '@app/store/slices/searchFiltersSlice';
+import {
+  PlaceholderText,
+  filterStyle,
+} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
 
 const DistrictFilter: React.FC = () => {
   const districts = useAppSelector((state) => state.searchFilters.data_filters.districts);
@@ -25,10 +29,10 @@ const DistrictFilter: React.FC = () => {
 
   return (
     <Select
-      size="middle"
+      size="small"
       showSearch
-      style={{ width: 200 }}
-      placeholder="Район"
+      style={filterStyle}
+      placeholder={<PlaceholderText>Район</PlaceholderText>}
       value={district}
       optionFilterProp="children"
       onChange={onChange}

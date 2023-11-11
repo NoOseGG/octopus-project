@@ -4,7 +4,7 @@ import {
   Title,
   Content,
   AverageAgeContainer,
-} from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAgeStyle';
+} from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import { doGetCurrentByAgeAvgAge } from '@app/store/slices/legalEntityDashboard/currentByAge/avgAgeSlice';
 
 const AvgAge: React.FC = () => {

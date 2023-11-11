@@ -39,7 +39,7 @@ export const Percent = styled.span<PercentWithProps>`
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   text-align: center;
 
@@ -49,7 +49,7 @@ export const Title = styled.div`
 `;
 
 export const Content = styled.div`
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 700;
 
   @media only screen and ${mediaMax.xl} {

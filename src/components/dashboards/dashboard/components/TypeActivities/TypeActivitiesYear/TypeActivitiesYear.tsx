@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Container, Content, Title, Line, SpinnerSpace } from '../TypeActivitiesStyle';
+import { Container, Content, Title, Line, SpinnerSpace, TextLine } from '../../../styles/TypeActivitiesStyle';
 import { doGetTypeActivitiesLastYear } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesYear';
 import { Spin } from 'antd';
 
@@ -25,8 +25,8 @@ const TypeActivitiesYear: React.FC = () => {
           <Content>
             {typeActivities.results?.slice(0, 30)?.map((typeActivity, index) => (
               <Line key={index} value={index}>
-                <span>{typeActivity.group_fields.type_activity_name}</span>
-                <span>{typeActivity.Count}</span>
+                <TextLine>{typeActivity.group_fields.type_activity_name}</TextLine>
+                <TextLine>{typeActivity.Count}</TextLine>
               </Line>
             ))}
           </Content>

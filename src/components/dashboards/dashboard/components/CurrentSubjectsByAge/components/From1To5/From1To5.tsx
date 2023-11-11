@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import {
-  Block,
-  Title,
-  Content,
-} from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAgeStyle';
+import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import { doGetCurrentByAgeFrom1To5 } from '@app/store/slices/legalEntityDashboard/currentByAge/from1To5Slice';
 
 const From1To5: React.FC = () => {

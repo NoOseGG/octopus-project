@@ -1,5 +1,4 @@
 import React from 'react';
-import { CloseOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import {
   setCodeActivity,
@@ -8,6 +7,7 @@ import {
   setSettlement,
   setTypeActivity,
 } from '@app/store/slices/searchFiltersSlice';
+import { Button } from 'antd';
 
 const ResetFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +21,9 @@ const ResetFilters: React.FC = () => {
   };
   return (
     <div>
-      <CloseOutlined height={64} width={64} style={{ cursor: 'pointer' }} onClick={handleClick} />
+      <Button style={{ marginTop: 10 }} size={'small'} type="primary" onClick={handleClick}>
+        Сбросить фильтры
+      </Button>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import {
   NameComponent,
   AgeContainer,
   ChartContainer,
-} from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAgeStyle';
+} from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import AgeDiagram from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/AgeDiagram/AgeDiagram';
 import AvgAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/AvgAge/AvgAge';
 import MoreThen20 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/MoreThen20/MoreThen20';

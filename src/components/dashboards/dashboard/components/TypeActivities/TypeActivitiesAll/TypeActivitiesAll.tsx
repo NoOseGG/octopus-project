@@ -6,7 +6,8 @@ import {
   Line,
   Title,
   SpinnerSpace,
-} from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesStyle';
+  TextLine,
+} from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
 import { doGetTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesAll';
 import { Spin } from 'antd';
 
@@ -31,8 +32,8 @@ const TypeActivitiesAll: React.FC = () => {
           <Content>
             {typeActivities.results?.map((typeActivity, index) => (
               <Line key={index} value={index}>
-                <span>{typeActivity.group_fields.type_activity_name}</span>
-                <span>{typeActivity.Count}</span>
+                <TextLine>{typeActivity.group_fields.type_activity_name}</TextLine>
+                <TextLine>{typeActivity.Count}</TextLine>
               </Line>
             ))}
           </Content>

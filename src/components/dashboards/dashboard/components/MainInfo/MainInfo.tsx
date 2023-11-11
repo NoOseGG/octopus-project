@@ -1,20 +1,18 @@
 import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Container } from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoStyle';
-import CountAll from '@app/components/dashboards/dashboard/components/MainInfo/components/CountAll/CountAll';
-import CountYear from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYear';
-import CountQuarter from '@app/components/dashboards/dashboard/components/MainInfo/components/CountQuarter/CountQuarter';
-import CountOperating from '@app/components/dashboards/dashboard/components/MainInfo/components/CountOperating/CountOperating';
+import { Container } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
+import CreatedCount from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CreatedCount';
+import { DynamicPath, EntityType } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 const MainInfo: React.FC = () => {
   const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
   return (
     <Container value={isDate}>
-      <CountAll />
-      <CountYear />
-      <CountQuarter />
-      <CountOperating />
+      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} dynamicPath={DynamicPath.CREATED_ALL} />
+      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} dynamicPath={DynamicPath.CREATED_YEAR} />
+      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} dynamicPath={DynamicPath.CREATED_QUARTER} />
+      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} dynamicPath={DynamicPath.CREATED_OPERATION} />
     </Container>
   );
 };

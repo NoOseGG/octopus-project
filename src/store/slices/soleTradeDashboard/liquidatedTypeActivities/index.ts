@@ -1,0 +1,14 @@
+import { combineReducers } from '@reduxjs/toolkit';
+import typeActivitiesLiquidatedSoleTradeAllReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiuaidatedSoleTradeAll';
+import typeActivitiesLiquidatedSoleTradeYearReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeYear';
+import typeActivitiesLiquidatedSoleTradeQuarterReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeQuarter';
+import typeActivitiesLiquidatedSoleTradeMonthReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeMonth';
+
+export const typeActivitiesReducer = combineReducers({
+  typeActivitiesLiquidatedSoleTradeAll: typeActivitiesLiquidatedSoleTradeAllReducer,
+  typeActivitiesLiquidatedSoleTradeYear: typeActivitiesLiquidatedSoleTradeYearReducer,
+  typeActivitiesLiquidatedSoleTradeQuarter: typeActivitiesLiquidatedSoleTradeQuarterReducer,
+  typeActivitiesLiquidatedSoleTradeMonth: typeActivitiesLiquidatedSoleTradeMonthReducer,
+});
+
+export default typeActivitiesReducer;

@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
 import { doGetTypeActivitiesList, setCodeActivity } from '@app/store/slices/searchFiltersSlice';
+import {
+  PlaceholderText,
+  filterStyle,
+} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
 
 const CodeActivityFilter: React.FC = () => {
   const codes = useAppSelector((state) => state.searchFilters.data_filters.type_activities);
@@ -25,10 +29,10 @@ const CodeActivityFilter: React.FC = () => {
 
   return (
     <Select
-      size="middle"
+      size="small"
       showSearch
-      style={{ width: 200 }}
-      placeholder="Код деятельности"
+      style={filterStyle}
+      placeholder={<PlaceholderText>Код деятельности</PlaceholderText>}
       optionFilterProp="children"
       value={codeActivity}
       onChange={onChange}

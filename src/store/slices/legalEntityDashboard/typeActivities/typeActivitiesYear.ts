@@ -1,12 +1,9 @@
-import {
-  TypeActivityState,
-  TypeActivityType,
-} from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesType';
+import { TypeActivityState, TypeActivityType } from '@app/store/types/dashboard/TypeActivitiesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
 import axios from 'axios';
+import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
 
 const initialState: TypeActivityState = {
   typeActivities: {
@@ -16,9 +13,9 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesLastYear = createAsyncThunk<TypeActivityType, FiltersType>(
+export const doGetTypeActivitiesLastYear = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetTypeActivitiesLastYear',
-  async (filters) => {
+  async ({ filters }) => {
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(

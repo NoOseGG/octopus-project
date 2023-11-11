@@ -1,8 +1,8 @@
 # Lightence
 
-React-powered **100% FREE** Admin Dashboard Template for building rich user interfaces significantly faster. For developers of all levels. Open-source and maintained by the [Altence](https://altence.com) team.
+React-powered **100% FREE** Admin DashboardLegalEntity Template for building rich user interfaces significantly faster. For developers of all levels. Open-source and maintained by the [Altence](https://altence.com) team.
 
-<p align="center">
+<p >
     <img src="./public/Lightence-screenshot.png" alt="Lightence Admin Template">
 </p>
 

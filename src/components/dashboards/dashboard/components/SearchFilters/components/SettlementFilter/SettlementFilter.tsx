@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
 import { doGetSettlementsList, setSettlement } from '@app/store/slices/searchFiltersSlice';
+import {
+  PlaceholderText,
+  filterStyle,
+} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
 
 const SettlementFilter: React.FC = () => {
   const settlements = useAppSelector((state) => state.searchFilters.data_filters.settlements);
@@ -26,10 +30,10 @@ const SettlementFilter: React.FC = () => {
 
   return (
     <Select
-      size="middle"
+      size="small"
       showSearch
-      style={{ width: 200 }}
-      placeholder="Населенный пункт"
+      style={filterStyle}
+      placeholder={<PlaceholderText>Населённый пункт</PlaceholderText>}
       value={settlement}
       optionFilterProp="children"
       onChange={onChange}

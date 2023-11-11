@@ -12,24 +12,34 @@ const SearchFilters: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Container>
+        <Title>Фильтрация</Title>
         <SettlementFilter />
         <RegionFilter />
         <DistrictFilter />
         <TypeActivityFilter />
         <CodeActivityFilter />
+        <DateFilter />
         <ResetFilters />
       </Container>
-      <DateFilter />
     </div>
   );
 };
 
 export default SearchFilters;
 
+const Title = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+`;
+
 const Container = styled.div`
+  width: 250px;
+  padding: 10px;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  flex-direction: column;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 20px;
+  gap: 10px;
+  border: 1px solid #e8e4e4;
 `;

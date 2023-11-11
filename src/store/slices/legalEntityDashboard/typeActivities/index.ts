@@ -10,3 +10,5 @@ export const typeActivitiesReducer = combineReducers({
   typeActivitiesQuarter: typeActivitiesQuarterReducer,
   typeActivitiesMonth: typeActivitiesMonthReducer,
 });
+
+export default typeActivitiesReducer;

@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/dashboardSlice';
-import styled from 'styled-components';
+import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
+import { doGetDataForLineChart } from '@app/store/slices/legalEntityDashboard/charts/createdLineChartSlice';
 
 const LineChartYears: React.FC = () => {
-  const { lineChart } = useAppSelector((state) => state.dashboard);
+  const { results } = useAppSelector((state) => state.charts.createdLineChart);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetDataForLineChart(filters));
+    dispatch(doGetDataForLineChart({ filters }));
   }, [dispatch, filters]);
 
-  const data = lineChart.results.map((item) => {
+  const data = results.map((item) => {
     return {
       year: item.group_fields.company_date_registration__year,
       value: item.Count,
@@ -63,15 +63,3 @@ const LineChartYears: React.FC = () => {
 };
 
 export default LineChartYears;
-
-const Container = styled.div`
-  width: auto;
-  flex-grow: 1;
-  margin-top: 30px;
-`;
-
-const Title = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
-`;

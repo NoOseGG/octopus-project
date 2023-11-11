@@ -4,17 +4,21 @@ import nightModeReducer from '@app/store/slices/nightModeSlice';
 import themeReducer from '@app/store/slices/themeSlice';
 import searchReducer from '@app/store/slices/searchSlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
-import dashboardReducer from '@app/store/slices/legalEntityDashboard/dashboardSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
-import { typeActivitiesReducer } from '@app/store/slices/legalEntityDashboard/typeActivities';
-import { typeActivitiesSoleTradeReducer } from '@app/store/slices/dashboardSoleTrader/typeActivities';
-import currentSubjectsSoleTradeByAgeReducer from '@app/store/slices/dashboardSoleTrader/currentSubjectsSoleTradeByAgeSlice';
-import currentSubjectsByAgeReducer from '@app/store/slices/legalEntityDashboard/currentSubjectsByAgeSlice';
-import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationCompanySlice';
-import detailedInformationCompanySoleTradeReducer from '@app/store/slices/dashboardSoleTrader/detailedInformationCompanySliceSoleTrade';
-import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
-import mainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/mainInfoSoleTraderSlice';
-import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/dashboardSoleTrader/liquidatedMainInfoSoleTradeSlice';
+import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities';
+import typeActivitiesLiquidatedReducer from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities';
+import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade';
+import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities';
+import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/currentByAge/index';
+import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/currentByAgeSoleTrade';
+import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
+import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailedInformationSoleTradeSlice';
+import liquidatedMainInfo from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo';
+import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/liquidatedMainInfoSoleTrade';
+import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/index';
+import mainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade';
+import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
+import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts';
 
 export default {
   user: userReducer,
@@ -24,15 +28,19 @@ export default {
   // pwa: pwaReducer,
   search: searchReducer,
   searchProfile: searchProfileReducer,
-  dashboard: dashboardReducer,
   searchFilters: searchFiltersReducer,
+  mainInfo: mainInfoReducer,
+  mainInfoSoleTrade: mainInfoSoleTradeReducer,
+  charts: chartsReducer,
+  chartsSoleTrade: chartsSoleTradeReducer,
   typeActivities: typeActivitiesReducer,
+  typeActivitiesLiquidated: typeActivitiesLiquidatedReducer,
   typeActivitiesSoleTrade: typeActivitiesSoleTradeReducer,
-  currentSubjectsByAge: currentSubjectsByAgeReducer,
-  currentSubjectsSoleTradeByAge: currentSubjectsSoleTradeByAgeReducer,
+  typeActivitiesLiquidatedSoleTrade: typeActivitiesLiquidatedSoleTradeReducer,
+  currentByAge: currentByAgeReducer,
+  currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
   detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
-  liquidatedMainInfo: liquidatedMainInfoReducer,
-  mainInfoSoleTrade: mainInfoSoleTradeReducer,
+  liquidatedMainInfo: liquidatedMainInfo,
   liquidatedMainInfoSoleTrade: liquidatedMainInfoSoleTradeReducer,
 };

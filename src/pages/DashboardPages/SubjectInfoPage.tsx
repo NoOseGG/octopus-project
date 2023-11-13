@@ -8,7 +8,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-import SubjectInfo from '@app/components/dashboards/subject-info-dashboard/SubjectInfo/SubjectInfo';
+import SubjectInfo from '@app/components/dashboards/search-dashboard/SubjectInfo/SubjectInfo';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 
 const SubjectInfoPage: React.FC = () => {

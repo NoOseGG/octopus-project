@@ -16,8 +16,9 @@ import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import SubjectInfoPage from '@app/pages/DashboardPages/SubjectInfoPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
-import AnalytixPage from '@app/pages/DashboardPages/AnalytixPage';
+import SearchPage from '@app/pages/DashboardPages/SearchPage';
 import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
+import AnalytixPage from '@app/pages/DashboardPages/AnalytixPage';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -29,12 +30,14 @@ const Logout = React.lazy(() => import('./Logout'));
 
 export const LOGIN_PAGE_PATH = '/auth/login';
 export const ANALYTIC_DASHBOARD_PATH = '/';
+export const SEARCH_DASHBOARD_PATH = '/search';
 export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
 export const CHANGE_LOG_PATH = '/change-log';
-export const DASHBOARD_PAGE = '/dashboard';
+export const DASHBOARD_PATH = '/dashboard';
 
-const SubjectInfo = withLoading(SubjectInfoPage);
 const Analytix = withLoading(AnalytixPage);
+const SubjectInfo = withLoading(SubjectInfoPage);
+const Search = withLoading(SearchPage);
 const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
 
@@ -64,7 +67,8 @@ export const AppRouter: React.FC = () => {
           <Route index element={<Analytix />} />
           <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
           <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
-          <Route path={DASHBOARD_PAGE} element={<Dashboard />} />
+          <Route path={DASHBOARD_PATH} element={<Dashboard />} />
+          <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
           <Route path="profile" element={<ProfileLayout />}>

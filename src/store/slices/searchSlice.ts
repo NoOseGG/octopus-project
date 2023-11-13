@@ -75,7 +75,7 @@ export const doNewPage = createAsyncThunk<Data, string>(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue('');
+      return rejectWithValue('Ошибка');
     }
   },
 );
@@ -94,6 +94,14 @@ export const searchSlice = createSlice({
     setSubjectUnn: (state, action) => {
       state.unn = action.payload;
     },
+    clearSearchData: (state) => {
+      state.data = {
+        count: 0,
+        next: null,
+        previous: null,
+        results: [],
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(doSearch.pending, (state) => {
@@ -106,7 +114,7 @@ export const searchSlice = createSlice({
       state.error = null;
     });
     builder.addCase(doSearch.rejected, (state, action) => {
-      state.data = initialState.data;
+      state.data.results = [];
       if (typeof action.payload === 'string') {
         state.error = action.payload;
       } else {
@@ -136,5 +144,5 @@ export const searchSlice = createSlice({
   },
 });
 
-export const { setData, setError, setSubjectUnn } = searchSlice.actions;
+export const { setData, setError, setSubjectUnn, clearSearchData } = searchSlice.actions;
 export default searchSlice.reducer;

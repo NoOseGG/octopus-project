@@ -53,7 +53,6 @@ const calculatePercentSlice = createSlice({
         const lastTwoYear = action.payload.results[1].Count;
 
         const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
-        console.log(percent);
         state.percent = parseInt(percent, 10);
       } else {
         state.percent = 0;

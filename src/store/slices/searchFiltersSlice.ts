@@ -65,11 +65,6 @@ export const doGetTypeActivitiesList = createAsyncThunk<TypeActivitiesType[]>('d
   try {
     const response = await axios.get(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
 
-    console.log(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
-    console.log(SEARCH_FILTERS_URL.REGION);
-    console.log(SEARCH_FILTERS_URL.DISTRICTS);
-    console.log(SEARCH_FILTERS_URL.SETTLEMENT);
-
     return response.data;
   } catch (error) {
     console.log(error);

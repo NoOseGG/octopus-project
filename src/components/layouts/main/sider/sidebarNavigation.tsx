@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardOutlined, SearchOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { DashboardOutlined, HomeOutlined, SearchOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -11,10 +11,17 @@ export interface SidebarNavigationItem {
 
 export const sidebarNavigation: SidebarNavigationItem[] = [
   {
+    title: 'common.analytix',
+    key: 'homePage',
+    // TODO use path variable
+    url: '/',
+    icon: <HomeOutlined />,
+  },
+  {
     title: 'common.searchSubject',
     key: 'searchSubject',
     // TODO use path variable
-    url: '/',
+    url: '/search',
     icon: <SearchOutlined />,
   },
   {

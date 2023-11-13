@@ -3,6 +3,7 @@ import authReducer from '@app/store/slices/authSlice';
 import nightModeReducer from '@app/store/slices/nightModeSlice';
 import themeReducer from '@app/store/slices/themeSlice';
 import searchReducer from '@app/store/slices/searchSlice';
+import searchHistoryReducer from '@app/store/slices/search/searchHistorySlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities';
@@ -27,6 +28,7 @@ export default {
   theme: themeReducer,
   // pwa: pwaReducer,
   search: searchReducer,
+  searchHistory: searchHistoryReducer,
   searchProfile: searchProfileReducer,
   searchFilters: searchFiltersReducer,
   mainInfo: mainInfoReducer,

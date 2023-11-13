@@ -11,6 +11,7 @@ interface UrlConfig {
   CHECK_USER: string;
   SEARCH: string;
   SEARCH_SUBJECT: string;
+  SEARCH_HISTORY: string;
 }
 
 export const URLS: UrlConfig = {
@@ -25,6 +26,7 @@ export const URLS: UrlConfig = {
   CHECK_USER: '',
   SEARCH: '',
   SEARCH_SUBJECT: '',
+  SEARCH_HISTORY: '',
 };
 
 URLS.BASE = `${URLS.ADDRESS}${URLS.API}${URLS.VERSION}`;
@@ -34,6 +36,7 @@ URLS.SIGNUP = `${URLS.BASE}auth/users/`;
 URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;
 URLS.SEARCH = `${URLS.BASE}profile_search/`;
 URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
+URLS.SEARCH_HISTORY = `${URLS.BASE}user/view_history/`;
 
 export const SEARCH_FILTERS_URL = {
   TYPE_ACTIVITIES: `${URLS.BASE}dashboard/ref/type_activity`,

@@ -235,6 +235,22 @@ export function formatDate(dateString: string | null): string | null {
   return `${day}.${month}.${year}`;
 }
 
+export function formatDateWithTime(inputDate: string | null): string {
+  if (inputDate === null) {
+    return '';
+  }
+
+  const dateObject = new Date(inputDate);
+
+  // Функция для добавления ведущего нуля к числам < 10
+  const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
+
+  return (
+    `${padZero(dateObject.getHours())}:${padZero(dateObject.getMinutes())}:${padZero(dateObject.getSeconds())} ` +
+    `${padZero(dateObject.getDate())}.${padZero(dateObject.getMonth() + 1)}.${dateObject.getFullYear()}`
+  );
+}
+
 export function formatPhoneNumber(phoneNumber: string): string {
   if (!phoneNumber.match(/^\d{12}$/)) {
     return phoneNumber;

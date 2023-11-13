@@ -48,14 +48,14 @@ export const HeaderSearch: React.FC = () => {
   const delaySearch = useCallback(
     _.debounce((query: string) => {
       dispatch(doSearch(query));
-    }, 500),
+    }, 200),
     [dispatch],
   );
 
   useEffect(() => {
-    if (query.trim().length >= 3) {
+    if (query.trim().length > 2) {
       delaySearch(query);
-      navigate('/');
+      navigate('/search');
     }
   }, [query]);
 

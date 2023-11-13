@@ -20,8 +20,8 @@ export const SiderLogo: React.FC<SiderLogoProps> = ({ isSiderCollapsed, toggleSi
   return (
     <S.SiderLogoDiv>
       <S.SiderLogoLink to="/">
-        <img src={img} alt="Analytix" width={48} height={48} />
-        <S.BrandSpan>Analytix</S.BrandSpan>
+        <img src={img} alt="Search" width={48} height={48} />
+        <S.BrandSpan>Search</S.BrandSpan>
       </S.SiderLogoLink>
       {tabletOnly && (
         <S.CollapseButton

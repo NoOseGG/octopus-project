@@ -10,7 +10,8 @@ interface HeaderProps {
 
 export default styled(Content)<HeaderProps>`
   padding: ${LAYOUT.mobile.paddingVertical} ${LAYOUT.mobile.paddingHorizontal};
-  overflow: auto;
+  height: cacl(100% - ${LAYOUT.desktop.headerHeight});
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

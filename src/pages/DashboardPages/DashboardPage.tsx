@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Tabs } from 'antd';
+import { Col, Row, Tabs } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
@@ -12,6 +12,7 @@ import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 import DashboardLegalEntity from '@app/components/dashboards/dashboard/DashboardLegalEntity';
 import DashboardSoleTrader from '@app/components/dashboards/dashboard-sole-trade/DashboardSoleTrader';
 import { deleteLegalEntity, setLegalEntity } from '@app/store/slices/searchFiltersSlice';
+import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 
 enum TABS_KEY {
   LEGAL_ENTITY = 'LEGAL_ENTITY',
@@ -48,7 +49,7 @@ const DashboardPage: React.FC = () => {
 
   const desktopLayout = (
     <Row>
-      <S.LeftSideCol>
+      <S.LeftSideCol span={20}>
         <Tabs defaultActiveKey={'1'} style={{ width: '100%' }} centered onChange={handleChangeLegalEntity}>
           <Tabs.TabPane tab={'Юридические лица'} key={TABS_KEY.LEGAL_ENTITY}>
             <DashboardLegalEntity />
@@ -59,6 +60,9 @@ const DashboardPage: React.FC = () => {
         </Tabs>
         <References />
       </S.LeftSideCol>
+      <Col span={4}>
+        <SearchFilters />
+      </Col>
     </Row>
   );
 

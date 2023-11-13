@@ -10,18 +10,16 @@ import CodeActivityFilter from '@app/components/dashboards/dashboard/components/
 
 const SearchFilters: React.FC = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Container>
-        <Title>Фильтрация</Title>
-        <SettlementFilter />
-        <RegionFilter />
-        <DistrictFilter />
-        <TypeActivityFilter />
-        <CodeActivityFilter />
-        <DateFilter />
-        <ResetFilters />
-      </Container>
-    </div>
+    <Container>
+      <Title>Фильтрация</Title>
+      <SettlementFilter />
+      <RegionFilter />
+      <DistrictFilter />
+      <TypeActivityFilter />
+      <CodeActivityFilter />
+      <DateFilter />
+      <ResetFilters />
+    </Container>
   );
 };
 
@@ -33,9 +31,9 @@ const Title = styled.div`
 `;
 
 const Container = styled.div`
-  width: 250px;
+  width: auto;
   padding: 10px;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: start;
   flex-direction: column;

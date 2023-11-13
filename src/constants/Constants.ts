@@ -14,8 +14,8 @@ interface UrlConfig {
 }
 
 export const URLS: UrlConfig = {
-  ADDRESS: 'http://93.125.0.140:',
-  PORT: '1338/',
+  ADDRESS: 'https://api.analytix.by/',
+  PORT: '',
   API: 'api/',
   VERSION: 'v1/',
   BASE: '',
@@ -27,13 +27,20 @@ export const URLS: UrlConfig = {
   SEARCH_SUBJECT: '',
 };
 
-URLS.BASE = `${URLS.ADDRESS}${URLS.PORT}${URLS.API}${URLS.VERSION}`;
+URLS.BASE = `${URLS.ADDRESS}${URLS.API}${URLS.VERSION}`;
 URLS.LOGIN = `${URLS.BASE}auth/login/`;
 URLS.LOGOUT = `${URLS.BASE}auth/logout/`;
 URLS.SIGNUP = `${URLS.BASE}auth/users/`;
 URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;
 URLS.SEARCH = `${URLS.BASE}profile_search/`;
 URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
+
+export const SEARCH_FILTERS_URL = {
+  TYPE_ACTIVITIES: `${URLS.BASE}dashboard/ref/type_activity`,
+  SETTLEMENT: `${URLS.BASE}dashboard/ref/settlement`,
+  DISTRICTS: `${URLS.BASE}dashboard/ref/district`,
+  REGION: `${URLS.BASE}dashboard/ref/region`,
+};
 
 export const TOKEN_NAME = 'Welcome';
 

@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const SEARCH_FILTERS_URL = {
-  TYPE_ACTIVITIES: 'http://93.125.0.140:1338/api/v1/dashboard/ref/type_activity',
-  SETTLEMENT: 'http://93.125.0.140:1338/api/v1/dashboard/ref/settlement',
-  DISTRICTS: 'http://93.125.0.140:1338/api/v1/dashboard/ref/district',
-  REGION: 'http://93.125.0.140:1338/api/v1/dashboard/ref/region',
-};
+import { SEARCH_FILTERS_URL } from '@app/constants/Constants';
 
 interface TypeActivitiesType {
   type_activity_code: string;
@@ -70,6 +64,11 @@ const initialState: SearchFiltersSlice = {
 export const doGetTypeActivitiesList = createAsyncThunk<TypeActivitiesType[]>('doGetTypeActivities', async () => {
   try {
     const response = await axios.get(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
+
+    console.log(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
+    console.log(SEARCH_FILTERS_URL.REGION);
+    console.log(SEARCH_FILTERS_URL.DISTRICTS);
+    console.log(SEARCH_FILTERS_URL.SETTLEMENT);
 
     return response.data;
   } catch (error) {

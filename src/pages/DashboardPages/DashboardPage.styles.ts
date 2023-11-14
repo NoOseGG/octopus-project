@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Col } from 'antd';
-import { LAYOUT, media } from '@app/styles/themes/constants';
+import { LAYOUT } from '@app/styles/themes/constants';
 
 export const RightSideCol = styled(Col)`
   padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
@@ -14,16 +14,14 @@ export const RightSideCol = styled(Col)`
 `;
 
 export const LeftSideCol = styled(Col)`
-  @media only screen and ${media.xl} {
-    padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
-    height: calc(100vh - ${LAYOUT.desktop.headerHeight});
-    width: 100%;
-    overflow: auto;
-    // My style
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e8e4e4;
-  }
+  padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
+  height: calc(100vh - ${LAYOUT.desktop.headerHeight});
+  width: 100%;
+  overflow: auto;
+  // My style
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e8e4e4;
 `;
 
 export const Space = styled.div`

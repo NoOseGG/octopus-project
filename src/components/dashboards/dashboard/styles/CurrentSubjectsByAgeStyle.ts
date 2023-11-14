@@ -28,12 +28,20 @@ export const Title = styled.div`
   font-size: 16px;
   text-align: center;
   font-weight: 700;
+
+  @media only screen and ${mediaMax.xl} {
+    font-size: 10px;
+  }
 `;
 
 export const Content = styled.div`
   font-size: 36px;
   text-align: center;
   font-weight: 700;
+
+  @media only screen and ${mediaMax.xl} {
+    font-size: 16px;
+  }
 `;
 
 export const ChartContainer = styled.div`

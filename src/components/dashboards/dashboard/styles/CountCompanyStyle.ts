@@ -36,6 +36,10 @@ export const Percent = styled.span<PercentWithProps>`
     }
   }};
   font-size: 20px;
+
+  @media only screen and ${mediaMax.xl} {
+    font-size: 10px;
+  }
 `;
 
 export const Title = styled.div`
@@ -44,7 +48,7 @@ export const Title = styled.div`
   text-align: center;
 
   @media only screen and ${mediaMax.xl} {
-    font-size: 16px;
+    font-size: 10px;
   }
 `;
 
@@ -53,6 +57,6 @@ export const Content = styled.div`
   font-weight: 700;
 
   @media only screen and ${mediaMax.xl} {
-    font-size: 36px;
+    font-size: 16px;
   }
 `;

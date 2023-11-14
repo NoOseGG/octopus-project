@@ -36,8 +36,7 @@ const Search: React.FC = () => {
 export default Search;
 
 const Container = styled.div`
-  height: 100%;
-  flex-grow: 1;
+  width: 100%;
 `;
 
 const SpinnerSpace = styled.div`

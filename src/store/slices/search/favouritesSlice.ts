@@ -5,12 +5,17 @@ import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
 
 const initialState: FavouritesState = {
-  favourites: [],
+  favourites: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
   loading: false,
   error: null,
 };
 
-const doGetFavourites = createAsyncThunk<FavouritesResponse[], FavouritesRequest>('doGetFavourites', async () => {
+export const doGetFavourites = createAsyncThunk<FavouritesResponse>('doGetFavourites', async () => {
   try {
     const response = await axios.get(URLS.FAVOURITES, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
@@ -21,11 +26,25 @@ const doGetFavourites = createAsyncThunk<FavouritesResponse[], FavouritesRequest
   }
 });
 
-const doPostFavourites = createAsyncThunk<FavouritesResponse[], FavouritesRequest>(
+export const doPostFavourites = createAsyncThunk<FavouritesResponse, FavouritesRequest>(
   'doPostFavourites',
   async (favourite) => {
     try {
       const response = await axios.post(URLS.FAVOURITES, favourite, {
+        headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
+export const doDeleteFavourites = createAsyncThunk<FavouritesResponse, string>(
+  'doDeleteFavourites',
+  async (favourite) => {
+    try {
+      const response = await axios.delete(URLS.FAVOURITES + favourite, {
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
       });
       return response.data;

@@ -1,4 +1,7 @@
 export interface FavouritesResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
   results: FavouritesObject[];
 }
 
@@ -12,7 +15,7 @@ export interface FavouritesRequest {
 }
 
 export interface FavouritesState {
-  favourites: FavouritesResponse[];
+  favourites: FavouritesResponse;
   loading: boolean;
   error: string | null;
 }

@@ -39,7 +39,7 @@ URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;
 URLS.SEARCH = `${URLS.BASE}profile_search/`;
 URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
 URLS.SEARCH_HISTORY = `${URLS.BASE}user/view_history/`;
-URLS.SEARCH_HISTORY = `${URLS.BASE}user/favourites/`;
+URLS.FAVOURITES = `${URLS.BASE}user/favourites/`;
 
 export const SEARCH_FILTERS_URL = {
   TYPE_ACTIVITIES: `${URLS.BASE}dashboard/ref/type_activity`,

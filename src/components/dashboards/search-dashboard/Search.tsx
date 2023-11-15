@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Spin } from 'antd';
+import { Col, Spin } from 'antd';
 import styled from 'styled-components';
 import SubjectsList from '@app/components/dashboards/search-dashboard/subjectsList/SubjectsList';
 import { doGetSearchHistory } from '@app/store/slices/search/searchHistorySlice';
 import SearchHistory from '@app/components/dashboards/search-dashboard/SearchHistory/SearchHistory';
+import Favourites from '@app/components/dashboards/search-dashboard/Favourites/Favourites';
 
 const Search: React.FC = () => {
   const { history } = useAppSelector((state) => state.searchHistory);
   const { results } = useAppSelector((state) => state.search.data);
   const { error, loading } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
+
+  console.log(history);
 
   useEffect(() => {
     dispatch(doGetSearchHistory());
@@ -26,7 +29,16 @@ const Search: React.FC = () => {
 
       {error !== null && <h1>{error}</h1>}
 
-      {!loading && error === null && !Boolean(results.length) && <SearchHistory listHistory={history} />}
+      {!loading && error === null && !Boolean(results.length) && (
+        <div style={{ display: 'flex', gap: 20 }}>
+          <Col span={14}>
+            <SearchHistory listHistory={history} />
+          </Col>
+          <Col span={10}>
+            <Favourites />
+          </Col>
+        </div>
+      )}
 
       {Boolean(results.length) && !loading && <SubjectsList listItems={results} />}
     </Container>

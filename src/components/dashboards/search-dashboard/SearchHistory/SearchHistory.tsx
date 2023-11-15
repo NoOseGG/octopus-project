@@ -20,6 +20,8 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
     };
   });
 
+  console.log(newListHistory);
+
   const columns: ColumnsType<SearchHistoryObject> = [
     {
       title: 'УНП',
@@ -43,7 +45,7 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
   return (
     <div>
       <Divider>История поиска</Divider>
-      <Table columns={columns} dataSource={newListHistory} size={'small'} pagination={{ pageSize: 30 }}></Table>
+      <Table columns={columns} dataSource={newListHistory} size={'small'} pagination={{ pageSize: 12 }}></Table>
     </div>
   );
 };

@@ -4,15 +4,15 @@ export interface SearchHistoryObject {
   user: string | null;
 }
 
-export interface SearchHistoryState {
-  history: SearchHistoryObject[];
-  loading: boolean;
-  error: string | null;
-}
-
 export interface ResponseSearchHistory {
   count: number | null;
   next: string | null;
   previous: string | null;
   results: SearchHistoryObject[];
+}
+
+export interface SearchHistoryState {
+  history: ResponseSearchHistory;
+  loading: boolean;
+  error: string | null;
 }

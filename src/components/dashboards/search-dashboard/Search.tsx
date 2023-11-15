@@ -32,7 +32,7 @@ const Search: React.FC = () => {
       {!loading && error === null && !Boolean(results.length) && (
         <div style={{ display: 'flex', gap: 20 }}>
           <Col span={14}>
-            <SearchHistory listHistory={history} />
+            <SearchHistory listHistory={history.results} />
           </Col>
           <Col span={10}>
             <Favourites />

@@ -21,7 +21,8 @@ const SubjectMainContent: React.FC = () => {
     <Card title="Информация" style={{ width: '100%' }}>
       {unn && (
         <>
-          <Text strong={true}>УНП: </Text> <Text copyable={{ tooltips: false }}>{unn}</Text>
+          <Text strong={true}>УНП: </Text>
+          <Text copyable={{ tooltips: false }}>{unn}</Text>
           <br />
         </>
       )}

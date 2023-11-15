@@ -1,4 +1,4 @@
-import { FavouritesRequest, FavouritesResponse, FavouritesState } from '@app/store/types/FavouritesTypes';
+import { FavouritesResponse, FavouritesState } from '@app/store/types/FavouritesTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
@@ -26,19 +26,16 @@ export const doGetFavourites = createAsyncThunk<FavouritesResponse>('doGetFavour
   }
 });
 
-export const doPostFavourites = createAsyncThunk<FavouritesResponse, FavouritesRequest>(
-  'doPostFavourites',
-  async (favourite) => {
-    try {
-      const response = await axios.post(URLS.FAVOURITES, favourite, {
-        headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
-      });
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  },
-);
+export const doPostFavourites = createAsyncThunk<FavouritesResponse, string>('doPostFavourites', async (favourite) => {
+  try {
+    const response = await axios.post(URLS.FAVOURITES, favourite, {
+      headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const doDeleteFavourites = createAsyncThunk<FavouritesResponse, string>(
   'doDeleteFavourites',
@@ -66,6 +63,14 @@ const favouritesSlice = createSlice({
     builder.addCase(doGetFavourites.fulfilled, (state, action) => {
       state.favourites = action.payload;
       state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(doPostFavourites.fulfilled, (state) => {
+      doGetFavourites();
+      state.error = null;
+    });
+    builder.addCase(doDeleteFavourites.fulfilled, (state) => {
+      doGetFavourites();
       state.error = null;
     });
     builder.addCase(doPostFavourites.rejected, (state) => {

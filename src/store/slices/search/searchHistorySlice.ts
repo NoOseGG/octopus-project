@@ -5,7 +5,12 @@ import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
 
 const initialState: SearchHistoryState = {
-  history: [],
+  history: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
   loading: false,
   error: null,
 };
@@ -27,7 +32,7 @@ const searchHistorySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doGetSearchHistory.fulfilled, (state, action) => {
-      state.history = action.payload.results;
+      state.history = action.payload;
     });
   },
 });

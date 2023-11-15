@@ -6,6 +6,7 @@ import searchReducer from '@app/store/slices/searchSlice';
 import searchHistoryReducer from '@app/store/slices/search/searchHistorySlice';
 import searchProfileReducer from '@app/store/slices/searchProfileSlice';
 import searchFiltersReducer from '@app/store/slices/searchFiltersSlice';
+import favouritesReducer from '@app/store/slices/search/favouritesSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities';
 import typeActivitiesLiquidatedReducer from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities';
 import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade';
@@ -31,6 +32,7 @@ export default {
   searchHistory: searchHistoryReducer,
   searchProfile: searchProfileReducer,
   searchFilters: searchFiltersReducer,
+  favourites: favouritesReducer,
   mainInfo: mainInfoReducer,
   mainInfoSoleTrade: mainInfoSoleTradeReducer,
   charts: chartsReducer,

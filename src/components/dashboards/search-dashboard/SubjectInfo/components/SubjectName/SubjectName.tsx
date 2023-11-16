@@ -4,9 +4,13 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import { Popover, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import { useAppSelector } from '@app/hooks/reduxHooks';
+import FavouritesButton, {
+  FavouritesButtonSize,
+} from '@app/components/dashboards/search-dashboard/FavouritesButton/FavouritesButton';
 
 const SubjectName: React.FC = () => {
   const names = useAppSelector((state) => state.searchProfile.profile.names);
+  const unn = useAppSelector((state) => state.searchProfile.profile.unn);
 
   const contentFullName = () => {
     return (
@@ -39,7 +43,10 @@ const SubjectName: React.FC = () => {
             </Popover>
           </Title>
           <SubTitle>
-            ({names[0].short_name})
+            <SubTitleContainer>
+              {names[0].short_name}
+              {unn && <FavouritesButton unn={unn} size={FavouritesButtonSize.MIDDLE} />}
+            </SubTitleContainer>
             <Popover placement={'bottomLeft'} title="Список сокращенных названий" content={contentShortName()}>
               <CaretDownOutlined />
             </Popover>
@@ -66,4 +73,10 @@ const SubTitle = styled.div`
   font-weight: 500;
   text-align: center;
   margin-bottom: 20px;
+`;
+
+const SubTitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 `;

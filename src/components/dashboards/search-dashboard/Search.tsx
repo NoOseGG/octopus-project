@@ -10,10 +10,9 @@ import Favourites from '@app/components/dashboards/search-dashboard/Favourites/F
 const Search: React.FC = () => {
   const { history } = useAppSelector((state) => state.searchHistory);
   const { results } = useAppSelector((state) => state.search.data);
+  const { favourites } = useAppSelector((state) => state.favourites);
   const { error, loading } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
-
-  console.log(history);
 
   useEffect(() => {
     dispatch(doGetSearchHistory());
@@ -35,7 +34,7 @@ const Search: React.FC = () => {
             <SearchHistory listHistory={history.results} />
           </Col>
           <Col span={10}>
-            <Favourites />
+            <Favourites favourites={favourites.results} />
           </Col>
         </div>
       )}

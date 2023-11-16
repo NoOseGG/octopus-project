@@ -7,7 +7,7 @@ import { ColumnsType } from 'antd/es/table';
 import SingleGiasPlan from '@app/components/dashboards/search-dashboard/SubjectInfo/components/SubjectGias/SubjectGiasPlan/SingleGiasPlan/SingleGiasPlan';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 
-const SubjectGiasAccreditedCustomer: React.FC = () => {
+const SubjectGiasPlan: React.FC = () => {
   const gias_plans = useAppSelector((state) => state.searchProfile.profile.gias_plan);
   const new_gias_plan = gias_plans.map((gias_plan) => ({
     ...gias_plan,
@@ -83,7 +83,7 @@ const SubjectGiasAccreditedCustomer: React.FC = () => {
   );
 };
 
-export default SubjectGiasAccreditedCustomer;
+export default SubjectGiasPlan;
 
 const Title = styled.div`
   width: 100%;

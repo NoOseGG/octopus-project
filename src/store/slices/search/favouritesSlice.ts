@@ -1,4 +1,4 @@
-import { FavouritesResponse, FavouritesState } from '@app/store/types/FavouritesTypes';
+import { FavouritesResponsePost, FavouritesResponse, FavouritesState } from '@app/store/types/FavouritesTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
@@ -26,24 +26,33 @@ export const doGetFavourites = createAsyncThunk<FavouritesResponse>('doGetFavour
   }
 });
 
-export const doPostFavourites = createAsyncThunk<FavouritesResponse, string>('doPostFavourites', async (favourite) => {
-  try {
-    const response = await axios.post(URLS.FAVOURITES, favourite, {
-      headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
-    });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+export const doPostFavourites = createAsyncThunk<FavouritesResponsePost, string>(
+  'doPostFavourites',
+  async (favourite, { dispatch }) => {
+    try {
+      const response = await axios.post(
+        URLS.FAVOURITES,
+        { legal_entity_id: favourite },
+        {
+          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+        },
+      );
+      dispatch(doGetFavourites());
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
 
 export const doDeleteFavourites = createAsyncThunk<FavouritesResponse, string>(
   'doDeleteFavourites',
-  async (favourite) => {
+  async (favourite, { dispatch }) => {
     try {
-      const response = await axios.delete(URLS.FAVOURITES + favourite, {
+      const response = await axios.delete(URLS.FAVOURITES + favourite + '/', {
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
       });
+      dispatch(doGetFavourites());
       return response.data;
     } catch (error) {
       console.log(error);
@@ -66,11 +75,9 @@ const favouritesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(doPostFavourites.fulfilled, (state) => {
-      doGetFavourites();
       state.error = null;
     });
     builder.addCase(doDeleteFavourites.fulfilled, (state) => {
-      doGetFavourites();
       state.error = null;
     });
     builder.addCase(doPostFavourites.rejected, (state) => {

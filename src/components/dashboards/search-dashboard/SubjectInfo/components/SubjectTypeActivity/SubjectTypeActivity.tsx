@@ -5,7 +5,7 @@ import DataFieldDate from '@app/components/dashboards/search-dashboard/SubjectIn
 import styled from 'styled-components';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 
-const SubjectStatus: React.FC = () => {
+const SubjectTypeActivity: React.FC = () => {
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
 
   const [index, setIndex] = useState(0);
@@ -40,7 +40,7 @@ const SubjectStatus: React.FC = () => {
   );
 };
 
-export default SubjectStatus;
+export default SubjectTypeActivity;
 
 const Container = styled.div`
   display: flex;

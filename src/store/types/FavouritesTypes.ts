@@ -19,3 +19,8 @@ export interface FavouritesState {
   loading: boolean;
   error: string | null;
 }
+
+export interface FavouritesResponsePost {
+  message: string;
+  data: FavouritesObject;
+}

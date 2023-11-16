@@ -11,10 +11,11 @@ const SubjectVacancies: React.FC = () => {
   const vacancies = useAppSelector((state) => state.searchProfile.profile.vacancy);
   const [selectedVacancy, setSelectedVacancy] = useState<Vacancy | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const newVacancies = vacancies.map((vacancy) => ({
+  const newVacancies = vacancies.map((vacancy, index) => ({
     ...vacancy,
     min_salary_byn: `${vacancy.min_salary_byn} BYN`,
     from_dttm: `${formatDate(vacancy.from_dttm)}`,
+    key: index,
   }));
 
   const handleRowClick = (record: Vacancy) => {

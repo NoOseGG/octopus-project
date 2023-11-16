@@ -12,7 +12,7 @@ const SubjectResume: React.FC = () => {
 
   const [selectedResume, setSelectedResume] = useState<Resume | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const newResumes = resumes.map((resume) => ({
+  const newResumes = resumes.map((resume, index) => ({
     ...resume,
     salary_byn: resume.salary_byn ? `${resume.salary_byn} BYN` : '',
     salary_usd: resume.salary_usd ? `${resume.salary_usd} USD` : '',
@@ -20,6 +20,7 @@ const SubjectResume: React.FC = () => {
     to_dttm: `${formatDate(resume.to_dttm)}`,
     birth_date: `${formatDate(resume.birth_date)}`,
     resume_from_dttm: `${formatDate(resume.resume_from_dttm)}`,
+    key: index,
   }));
 
   const handleRowClick = (record: Resume) => {

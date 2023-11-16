@@ -20,8 +20,6 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
     };
   });
 
-  console.log(newListHistory);
-
   const columns: ColumnsType<SearchHistoryObject> = [
     {
       title: 'УНП',

@@ -10,6 +10,7 @@ import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
 import TypeActivitiesLiquidated from '@app/components/dashboards/dashboard/components/TypeActivitiesLiquidated/TypeActivitiesLiquidated';
+import LiquidatedSubjectsByAge from '@app/components/dashboards/dashboard/components/LiquidatedCurrentSubjectByAge/LiquidatedSubjectsByAge';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const DashboardLegalEntity: React.FC = () => {
         <ColumnChartLiquidatedMonth />
       </ChartsContainer>
       <TypeActivitiesLiquidated />
+      <LiquidatedSubjectsByAge />
     </Container>
   );
 };

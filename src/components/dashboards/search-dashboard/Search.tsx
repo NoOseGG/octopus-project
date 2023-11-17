@@ -28,7 +28,7 @@ const Search: React.FC = () => {
 
       {error !== null && <h1>{error}</h1>}
 
-      {!loading && error === null && !Boolean(results.length) && (
+      {!loading && error === null && !Boolean(results?.length) && (
         <div style={{ display: 'flex', gap: 20 }}>
           <Col span={14}>
             <SearchHistory listHistory={history.results} />

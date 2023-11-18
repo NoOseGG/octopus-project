@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { FavouritesObject } from '@app/store/types/FavouritesTypes';
 import { doDeleteFavourites, doGetFavourites, doPostFavourites } from '@app/store/slices/search/favouritesSlice';
-import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
 
 export enum FavouritesButtonSize {
   SMALL = 16,
@@ -32,15 +32,11 @@ const FavouritesButton: React.FC<MyComponentProps> = ({ unn, size }) => {
 
   const changeFavourite = () => {
     console.log(favourites.results);
-    const aaa = checkFavourite(unn, favourites.results);
-    console.log(`return => ${aaa}`);
     if (checkFavourite(unn, favourites.results)) {
       dispatch(doDeleteFavourites(unn));
-      console.log('delete');
       setIsFavourite(false);
     } else {
       dispatch(doPostFavourites(unn));
-      console.log('post');
       setIsFavourite(true);
     }
   };
@@ -48,9 +44,9 @@ const FavouritesButton: React.FC<MyComponentProps> = ({ unn, size }) => {
   return (
     <>
       {isFavourite ? (
-        <HeartFilled onClick={changeFavourite} style={{ fontSize: size }} />
+        <StarFilled onClick={changeFavourite} style={{ fontSize: size }} />
       ) : (
-        <HeartOutlined onClick={changeFavourite} style={{ fontSize: size }} />
+        <StarOutlined onClick={changeFavourite} style={{ fontSize: size }} />
       )}
     </>
   );

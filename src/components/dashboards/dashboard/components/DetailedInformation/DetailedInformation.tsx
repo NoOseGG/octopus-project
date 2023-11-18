@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton, Table } from 'antd';
 import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
@@ -8,6 +8,13 @@ import {
   NameComponent,
   TableContainer,
 } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
+import {
+  DETAILED_TYPE,
+  DetailedProps,
+  getStateForDetailed,
+  getTitleForDetailed,
+} from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
+import { doGetDetailedInformationCompanySoleTrade } from '@app/store/slices/soleTradeDashboard/detailedInformationSoleTradeSlice';
 
 const getColumn = (title: string, field: string) => {
   return {
@@ -32,14 +39,30 @@ const columns = [
   getColumn('Наимменование инспецкции НМС', 'tax_office_name'),
 ];
 
-const DetailedInformation: React.FC = () => {
-  const { results, loading } = useAppSelector((state) => state.detailedInformationCompany);
+const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
+  const dynamicState = useAppSelector((state) => getStateForDetailed(state, detailed));
+  const results = dynamicState?.results;
+  const loading = dynamicState?.loading;
+
+  const getData = useCallback(
+    (detailed) => {
+      switch (detailed) {
+        case DETAILED_TYPE.LEGAl_ENTITY_CREATED:
+          dispatch(doGetDetailedInformationCompany({ filters }));
+          break;
+        case DETAILED_TYPE.SOLE_TRADE_CREATED:
+          dispatch(doGetDetailedInformationCompanySoleTrade({ filters }));
+          break;
+      }
+    },
+    [dispatch, filters],
+  );
 
   useEffect(() => {
-    dispatch(doGetDetailedInformationCompany({ filters }));
-  }, [dispatch, filters]);
+    getData(detailed);
+  }, [getData]);
 
   return (
     <>
@@ -47,12 +70,12 @@ const DetailedInformation: React.FC = () => {
         <Skeleton active paragraph={{ rows: 20 }} />
       ) : (
         <>
-          {Boolean(results.length) && (
+          {Boolean(results?.length) && (
             <Container>
-              <NameComponent>Детализированая информация о регистрации компаний</NameComponent>
+              <NameComponent>{getTitleForDetailed(detailed)}</NameComponent>
               <TableContainer>
                 <Table
-                  dataSource={results.map((item, index) => ({ ...item, key: index }))}
+                  dataSource={results?.map((item, index) => ({ ...item, key: index }))}
                   columns={columns}
                   size={'small'}
                   bordered={true}

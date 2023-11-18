@@ -5,12 +5,13 @@ import LineChartYearsSoleTrade from '@app/components/dashboards/dashboard-sole-t
 import ColumnChartMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartMonthSoleTrade/ColumnChartMonthSoleTrade';
 import TypeActivitiesSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesSoleTrade';
 import CurrentSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/CurrentSubjectsByAgeSoleTrade/CurrentSubjectsByAgeSoleTrade';
-import DetailedInformationCompanySoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/DetailedInformationCompanySoleTrade/DetailedInformationCompanySoleTrade';
 import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
 import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
 import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartLiquidatedMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
 import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesLiquidatedSoleTrade/TypeActivitiesLiquidatedSoleTrade';
 import LiquidatedSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedSubjectByAge/LiquidatedSubjectsByAgeSoleTrade';
+import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
+import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const DashboardSoleTrader: React.FC = () => {
       </ChartsContainer>
       <TypeActivitiesSoleTrade />
       <CurrentSubjectsByAgeSoleTrade />
-      <DetailedInformationCompanySoleTrade />
+      <DetailedInformation detailed={DETAILED_TYPE.SOLE_TRADE_CREATED} />
       <LiquidatedMainInfoSoleTrade />
       <ChartsContainer>
         <LineChartLiquidatedYearsSoleTrade />

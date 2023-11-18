@@ -9,6 +9,31 @@ const ChangeLog: React.FC = () => {
     <Container>
       <Title>Журнал изменений</Title>
 
+      <Version>0.1.7</Version>
+      <VersionDate>28.10.2023</VersionDate>
+      <ul>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлено отображение в дашборд:
+          <ul style={{ paddingLeft: 20 }}>
+            <li>детализированной информации о регистрации компании;</li>
+            <li>информации по ликвидированным компаниям;</li>
+            <li>виды деятельности ликвидированых компаний;</li>
+            <li>срез по годам ликвидированных компаний.</li>
+          </ul>
+        </MarkerList>
+        <MarkerList marker={MarkerType.ADD}>Добавлена вкладка в дашборд с информацией по ИП.</MarkerList>
+        <MarkerList marker={MarkerType.ADD}>
+          Добавлен индикатор:
+          <ul style={{ paddingLeft: 20 }}>
+            <li>уровня контактности субъекта.</li>
+          </ul>
+          <MarkerList marker={MarkerType.ADD}>Добавлена фильрация по виду и коду деятельности.</MarkerList>
+          <MarkerList marker={MarkerType.ADD}>Добавлена история поиска.</MarkerList>
+          <MarkerList marker={MarkerType.ADD}>Добавлена возможность добавления в избранное.</MarkerList>
+          <MarkerList marker={MarkerType.CHANGE}>Изменено расположение меню фильтрации.</MarkerList>
+        </MarkerList>
+      </ul>
+
       <Version>0.1.6</Version>
       <VersionDate>05.11.2023</VersionDate>
       <ul>

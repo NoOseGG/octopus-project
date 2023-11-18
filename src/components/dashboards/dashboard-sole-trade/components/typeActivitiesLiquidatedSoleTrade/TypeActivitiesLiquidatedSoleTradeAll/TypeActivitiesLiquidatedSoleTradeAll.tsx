@@ -9,7 +9,7 @@ import {
   TextLine,
 } from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
 import { Spin } from 'antd';
-import { doGetTypeActivitiesLiquidatedSoleTradeAll } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiuaidatedSoleTradeAll';
+import { doGetTypeActivitiesLiquidatedSoleTradeAll } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeAll';
 
 const TypeActivitiesLiquidatedSoleTradeAll: React.FC = () => {
   const { typeActivities, loading } = useAppSelector(
@@ -21,9 +21,6 @@ const TypeActivitiesLiquidatedSoleTradeAll: React.FC = () => {
   useEffect(() => {
     dispatch(doGetTypeActivitiesLiquidatedSoleTradeAll({ filters }));
   }, [dispatch, filters]);
-
-  const sum = typeActivities.results.reduce((acumulator, value) => acumulator + value.Count, 0);
-  console.log(sum);
 
   return (
     <Container>

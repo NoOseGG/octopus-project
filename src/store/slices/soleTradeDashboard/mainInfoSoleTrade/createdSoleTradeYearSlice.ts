@@ -23,7 +23,6 @@ export const doGetTotalCountCreatedSoleTradeLastYear = createAsyncThunk<Response
         false,
       );
       const response = await axios.get(url);
-      console.log(url);
       return response.data;
     } catch (error) {
       console.log(error);

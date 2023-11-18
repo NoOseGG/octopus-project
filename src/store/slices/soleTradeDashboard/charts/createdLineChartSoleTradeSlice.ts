@@ -24,7 +24,6 @@ export const doGetDataForLineSoleTradeChart = createAsyncThunk<ResponseLineChart
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
       const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
-      console.log('CREATED LINE CHART');
       return response.data;
     } catch (error) {
       console.log(error);

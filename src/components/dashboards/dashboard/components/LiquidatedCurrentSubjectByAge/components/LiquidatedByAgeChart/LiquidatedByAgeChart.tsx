@@ -10,7 +10,7 @@ const LiquidatedByAgeChart: React.FC = () => {
 
   useEffect(() => {
     dispatch(doGetDataForLiquidatedByAgeChart({ filters }));
-  }, [dispatch]);
+  }, [dispatch, filters]);
 
   const data = results?.map((item) => {
     return {
@@ -19,8 +19,6 @@ const LiquidatedByAgeChart: React.FC = () => {
       category: item.group_fields.period_activity,
     };
   });
-
-  console.log(JSON.stringify(data));
 
   const COLOR_PLATE_10 = [
     '#5B8FF9',

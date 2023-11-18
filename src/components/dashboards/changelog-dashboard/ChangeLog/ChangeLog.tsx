@@ -10,7 +10,7 @@ const ChangeLog: React.FC = () => {
       <Title>Журнал изменений</Title>
 
       <Version>0.1.7</Version>
-      <VersionDate>28.10.2023</VersionDate>
+      <VersionDate>18.11.2023</VersionDate>
       <ul>
         <MarkerList marker={MarkerType.ADD}>
           Добавлено отображение в дашборд:

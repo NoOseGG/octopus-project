@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaMax } from '@app/styles/themes/constants';
 
 export interface LineProps {
   value: number;
@@ -45,4 +46,14 @@ export const SpinnerSpace = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ContainerTypeActivities = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  @media only screen and ${mediaMax.lg} {
+    display: flex;
+    flex-direction: column;
+  }
 `;

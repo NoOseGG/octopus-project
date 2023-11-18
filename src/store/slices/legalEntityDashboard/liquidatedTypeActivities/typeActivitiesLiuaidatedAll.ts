@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesLiquidatedAll = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetTypeActivitiesLiquidatedAll',
+export const doGetLiquidatedTypeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetLiquidatedTypeActivitiesAll',
   async ({ filters }) => {
     try {
       let baseUrl =
@@ -47,10 +47,10 @@ const typeActivitiesAllSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeActivitiesLiquidatedAll.pending, (state) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesAll.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTypeActivitiesLiquidatedAll.fulfilled, (state, action) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesAll.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });

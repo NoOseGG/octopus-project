@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesLiquidatedLastMonth = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetTypeActivitiesLiquidatedLastMonth',
+export const doGetLiquidatedTypeActivitiesMonth = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetLiquidatedTypeActivitiesMonth',
   async ({ filters }) => {
     try {
       const date = getDateLastMonth();
@@ -44,10 +44,10 @@ const typeActivitiesLiquidatedMonthSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeActivitiesLiquidatedLastMonth.pending, (state) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesMonth.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTypeActivitiesLiquidatedLastMonth.fulfilled, (state, action) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesMonth.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });

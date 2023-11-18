@@ -8,10 +8,10 @@ import CurrentSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-
 import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
 import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
 import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartLiquidatedMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
-import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesLiquidatedSoleTrade/TypeActivitiesLiquidatedSoleTrade';
 import LiquidatedSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedSubjectByAge/LiquidatedSubjectsByAgeSoleTrade';
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
+import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesLiquidatedSoleTrade';
 
 const DashboardSoleTrader: React.FC = () => {
   return (

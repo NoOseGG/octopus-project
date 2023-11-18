@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesLastYear = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetTypeActivitiesLastYear',
+export const doGetTypeActivitiesYear = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetTypeActivitiesYear',
   async ({ filters }) => {
     try {
       const year = getCurrentYear();
@@ -44,10 +44,10 @@ const typeActivitiesYearSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeActivitiesLastYear.pending, (state) => {
+    builder.addCase(doGetTypeActivitiesYear.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTypeActivitiesLastYear.fulfilled, (state, action) => {
+    builder.addCase(doGetTypeActivitiesYear.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });

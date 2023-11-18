@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeSoleTradeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetTypeSoleTradeActivitiesAll',
+export const doGetTypeActivitiesAllSoleTrade = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetTypeActivitiesAllSoleTrade',
   async ({ filters }) => {
     try {
       let baseUrl =
@@ -47,10 +47,10 @@ const typeSoleTradeActivitiesAllSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeSoleTradeActivitiesAll.pending, (state) => {
+    builder.addCase(doGetTypeActivitiesAllSoleTrade.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTypeSoleTradeActivitiesAll.fulfilled, (state, action) => {
+    builder.addCase(doGetTypeActivitiesAllSoleTrade.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });

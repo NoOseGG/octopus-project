@@ -9,9 +9,9 @@ import DetailedInformation from '@app/components/dashboards/dashboard/components
 import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
-import TypeActivitiesLiquidated from '@app/components/dashboards/dashboard/components/TypeActivitiesLiquidated/TypeActivitiesLiquidated';
 import LiquidatedSubjectsByAge from '@app/components/dashboards/dashboard/components/LiquidatedCurrentSubjectByAge/LiquidatedSubjectsByAge';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
+import TypeActivitiesLiquidated from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesLiquidated';
 
 const DashboardLegalEntity: React.FC = () => {
   return (

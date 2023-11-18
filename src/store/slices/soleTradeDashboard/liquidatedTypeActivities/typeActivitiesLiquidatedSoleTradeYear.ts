@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetTypeActivitiesLiquidatedSoleTradeLastYear = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetTypeActivitiesLiquidatedSoleTradeLastYear',
+export const doGetLiquidatedTypeActivitiesYearSoleTrade = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetLiquidatedTypeActivitiesYearSoleTrade',
   async ({ filters }) => {
     try {
       const year = getCurrentYear();
@@ -44,10 +44,10 @@ const typeActivitiesLiquidatedSoleTradeYearSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTypeActivitiesLiquidatedSoleTradeLastYear.pending, (state) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesYearSoleTrade.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTypeActivitiesLiquidatedSoleTradeLastYear.fulfilled, (state, action) => {
+    builder.addCase(doGetLiquidatedTypeActivitiesYearSoleTrade.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });

@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
-import { doGetLiquidatedByAgeFrom10To20 } from '@app/store/slices/legalEntityDashboard/liquidatedByAge/LiquidatedFrom10To20Slice';
+import { doGetLiquidatedByAgeLessThen1SoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedByAgeSoleTrade/LiquidatedLessThen1SoleTradeSlice';
 
-const LiquidatedFrom10To20: React.FC = () => {
-  const { age } = useAppSelector((state) => state.liquidatedByAge.liquidateFrom10To20);
+const LiquidatedLessThen1: React.FC = () => {
+  const { age } = useAppSelector((state) => state.liquidatedByAgeSoleTrade.liquidateLessThen1SoleTrade);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetLiquidatedByAgeFrom10To20({ filters }));
+    dispatch(doGetLiquidatedByAgeLessThen1SoleTrade({ filters }));
   }, [dispatch, filters]);
 
   return (
     <Block>
-      <Title>от 10 до 20 лет</Title>
+      <Title>менее года</Title>
       <Content>{age}</Content>
     </Block>
   );
 };
 
-export default LiquidatedFrom10To20;
+export default LiquidatedLessThen1;

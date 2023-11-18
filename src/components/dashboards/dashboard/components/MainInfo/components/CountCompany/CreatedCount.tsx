@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Content, Title } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { Skeleton } from 'antd';
-import { DashboardProps, DynamicPath } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { DashboardProps, COUNT_TYPE } from '@app/components/dashboards/dashboard/DashboardTypes';
 import { getStateByPath, getTitleByPath } from '@app/components/dashboards/dashboard/DashboardUtils';
 import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/createdAllSlice';
 import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/createdYearSlice';
@@ -13,38 +13,38 @@ import { doGetTotalCountCreatedSoleTrade } from '@app/store/slices/soleTradeDash
 import { doGetTotalCountCreatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeYearSlice';
 import { doGetTotalCountCreatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeQuarterSlice';
 
-const CreatedCount: React.FC<DashboardProps> = ({ dynamicPath }) => {
+const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
-  const dynamicState = useAppSelector((state) => getStateByPath(state, dynamicPath));
+  const dynamicState = useAppSelector((state) => getStateByPath(state, countType));
   const count = dynamicState?.count;
   const loading = dynamicState?.loading;
 
   const getData = useCallback(
     (dynamicPath) => {
       switch (dynamicPath) {
-        case DynamicPath.CREATED_ALL:
+        case COUNT_TYPE.CREATED_ALL:
           dispatch(doGetTotalCountCreated({ filters }));
           break;
-        case DynamicPath.CREATED_YEAR:
+        case COUNT_TYPE.CREATED_YEAR:
           dispatch(doGetTotalCountCreatedLastYear({ filters }));
           break;
-        case DynamicPath.CREATED_QUARTER:
+        case COUNT_TYPE.CREATED_QUARTER:
           dispatch(doGetTotalCountCreatedLastQuarter({ filters }));
           break;
-        case DynamicPath.CREATED_OPERATION:
+        case COUNT_TYPE.CREATED_OPERATION:
           dispatch(doGetTotalCountOperatingCompany({ filters }));
           break;
-        case DynamicPath.CREATED_SOLE_TRADE_ALL:
+        case COUNT_TYPE.CREATED_SOLE_TRADE_ALL:
           dispatch(doGetTotalCountCreatedSoleTrade({ filters }));
           break;
-        case DynamicPath.CREATED_SOLE_TRADE_YEAR:
+        case COUNT_TYPE.CREATED_SOLE_TRADE_YEAR:
           dispatch(doGetTotalCountCreatedSoleTradeLastYear({ filters }));
           break;
-        case DynamicPath.CREATED_SOLE_TRADE_QUARTER:
+        case COUNT_TYPE.CREATED_SOLE_TRADE_QUARTER:
           dispatch(doGetTotalCountCreatedSoleTradeLastQuarter({ filters }));
           break;
-        case DynamicPath.CREATED_SOLE_TRADE_OPERATION:
+        case COUNT_TYPE.CREATED_SOLE_TRADE_OPERATION:
           dispatch(doGetTotalCountSoleTradeOperatingCompany({ filters }));
           break;
       }
@@ -53,7 +53,7 @@ const CreatedCount: React.FC<DashboardProps> = ({ dynamicPath }) => {
   );
 
   useEffect(() => {
-    getData(dynamicPath);
+    getData(countType);
   }, [getData]);
 
   return (
@@ -62,7 +62,7 @@ const CreatedCount: React.FC<DashboardProps> = ({ dynamicPath }) => {
         <Skeleton style={{ padding: 5 }} active />
       ) : (
         <Block>
-          <Title>{getTitleByPath(dynamicPath)}</Title>
+          <Title>{getTitleByPath(countType)}</Title>
           <Content>{count}</Content>
         </Block>
       )}

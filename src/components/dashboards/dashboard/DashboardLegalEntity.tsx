@@ -5,7 +5,7 @@ import LineChartYears from '@app/components/dashboards/dashboard/components/Line
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/ColumnChartMonth/ColumnChartMonth';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
 import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/CurrentSubjectsByAge';
-import DetailedInformationCompany from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformationCompany';
+import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformationCompany/DetailedInformation';
 import LiquidatedMainInfo from '@app/components/dashboards/dashboard/components/LiquidatedMainInfo/LiquidatedMainInfo';
 import LineChartLiquidatedYears from '@app/components/dashboards/dashboard/components/LineChartLiquidatedYear/LineChartLiquidatedYears';
 import ColumnChartLiquidatedMonth from '@app/components/dashboards/dashboard/components/ColumnChartLiquidatedMoth/ColumnChartLiquidatedMonth';
@@ -23,7 +23,7 @@ const DashboardLegalEntity: React.FC = () => {
       </ChartsContainer>
       <TypeActivities />
       <CurrentSubjectsByAge />
-      <DetailedInformationCompany />
+      <DetailedInformation />
       <LiquidatedMainInfo />
       <ChartsContainer>
         <LineChartLiquidatedYears />

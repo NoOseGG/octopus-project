@@ -5,7 +5,7 @@ import {
   Content,
   AverageAgeContainer,
 } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
-import { doGetCurrentByAgeAvgAge } from '@app/store/slices/legalEntityDashboard/currentByAge/avgAgeSlice';
+import { doGetLiquidatedByAgeAvgAgeSoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedByAgeSoleTrade/LiquidatedAvgAgeSoleTradeSlice';
 
 const LiquidatedAvgAge: React.FC = () => {
   const avgAge = useAppSelector((state) => state.liquidatedByAge.liquidateAvgAge.count);
@@ -14,12 +14,12 @@ const LiquidatedAvgAge: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetCurrentByAgeAvgAge({ filters }));
+    dispatch(doGetLiquidatedByAgeAvgAgeSoleTrade({ filters }));
   }, [dispatch, filters]);
 
   return (
     <AverageAgeContainer>
-      <Title>Средний возраст компаний</Title>
+      <Title>Средний возраст ИП</Title>
       <Content>{avgAge?.toFixed(1)}</Content>
     </AverageAgeContainer>
   );

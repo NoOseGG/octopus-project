@@ -12,7 +12,8 @@ import typeActivitiesLiquidatedReducer from '@app/store/slices/legalEntityDashbo
 import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade';
 import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities';
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/currentByAge/index';
-import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/LiquidatedByAge';
+import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/liquidatedByAge';
+import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/liquidatedByAgeSoleTrade/';
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/currentByAgeSoleTrade';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailedInformationSoleTradeSlice';
@@ -44,6 +45,7 @@ export default {
   typeActivitiesLiquidatedSoleTrade: typeActivitiesLiquidatedSoleTradeReducer,
   currentByAge: currentByAgeReducer,
   liquidatedByAge: liquidatedByAgeReducer,
+  liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
   detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,

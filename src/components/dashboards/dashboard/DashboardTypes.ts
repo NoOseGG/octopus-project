@@ -11,10 +11,10 @@ export enum EntityType {
 
 export type DashboardProps = {
   legalEntity: EntityType;
-  dynamicPath: DynamicPath;
+  countType: COUNT_TYPE;
 };
 
-export enum DynamicPath {
+export enum COUNT_TYPE {
   CREATED_ALL,
   CREATED_YEAR,
   CREATED_QUARTER,

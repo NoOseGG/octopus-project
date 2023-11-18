@@ -27,6 +27,10 @@ export const DASH = {
     return `group_by=${field}&`;
   },
 
+  GROUP_BY_PERIOD_ACTIVITY: (): string => {
+    return `group_by=company_status_from_dttm__year,period_activity&`;
+  },
+
   AVG_FIELD: (field: string): string => {
     return `avg_field=${field}&`;
   },

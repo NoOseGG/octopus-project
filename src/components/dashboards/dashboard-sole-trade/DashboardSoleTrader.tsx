@@ -10,6 +10,7 @@ import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-so
 import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
 import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartLiquidatedMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
 import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesLiquidatedSoleTrade/TypeActivitiesLiquidatedSoleTrade';
+import LiquidatedSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedSubjectByAge/LiquidatedSubjectsByAgeSoleTrade';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const DashboardSoleTrader: React.FC = () => {
         <ColumnChartLiquidatedMonthSoleTrade />
       </ChartsContainer>
       <TypeActivitiesLiquidatedSoleTrade />
+      <LiquidatedSubjectsByAgeSoleTrade />
     </Container>
   );
 };

@@ -32,7 +32,7 @@ const columns = [
   getColumn('Наимменование инспецкции НМС', 'tax_office_name'),
 ];
 
-const DetailedInformationCompany: React.FC = () => {
+const DetailedInformation: React.FC = () => {
   const { results, loading } = useAppSelector((state) => state.detailedInformationCompany);
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
@@ -66,4 +66,4 @@ const DetailedInformationCompany: React.FC = () => {
   );
 };
 
-export default DetailedInformationCompany;
+export default DetailedInformation;

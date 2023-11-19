@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import MainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/mainInfoSoleTrade/MainInfoSoleTrade';
-import LineChartYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LineChartYearSoleTrade/LineChartYearsSoleTrade';
 import ColumnChartMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartMonthSoleTrade/ColumnChartMonthSoleTrade';
 import TypeActivitiesSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesSoleTrade';
 import CurrentSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/CurrentSubjectsByAgeSoleTrade/CurrentSubjectsByAgeSoleTrade';
 import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
-import LineChartLiquidatedYearsSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LineChartLiquidatedYearSoleTrade/LineChartLiquidatedYearsSoleTrade';
 import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartLiquidatedMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
 import LiquidatedSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedSubjectByAge/LiquidatedSubjectsByAgeSoleTrade';
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
 import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesLiquidatedSoleTrade';
+import LineChartYears from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYears';
+import { LINE_CHART_YEAR } from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYearsTypes';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const DashboardSoleTrader: React.FC = () => {
       <Title>Индивидуальные предприниматели (ИП)</Title>
       <MainInfoSoleTrade />
       <ChartsContainer>
-        <LineChartYearsSoleTrade />
+        <LineChartYears lineChart={LINE_CHART_YEAR.ST_CREATED} />
         <ColumnChartMonthSoleTrade />
       </ChartsContainer>
       <TypeActivitiesSoleTrade />
@@ -27,7 +27,7 @@ const DashboardSoleTrader: React.FC = () => {
       <DetailedInformation detailed={DETAILED_TYPE.SOLE_TRADE_CREATED} />
       <LiquidatedMainInfoSoleTrade />
       <ChartsContainer>
-        <LineChartLiquidatedYearsSoleTrade />
+        <LineChartYears lineChart={LINE_CHART_YEAR.ST_LIQUIDATED} />
         <ColumnChartLiquidatedMonthSoleTrade />
       </ChartsContainer>
       <TypeActivitiesLiquidatedSoleTrade />

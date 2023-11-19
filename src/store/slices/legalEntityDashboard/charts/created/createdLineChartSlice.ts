@@ -1,11 +1,12 @@
-import { LineChartState, ResponseLineChart } from '@app/store/types/dashboard/DashboardSlicesType';
+import { ResponseLineChart } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 
-const initialState: LineChartState = {
+const initialState: LineChartYearsState = {
   results: [],
   loading: false,
   error: null,
@@ -40,7 +41,12 @@ const createdLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload.results.map((item) => {
+        return {
+          year: item.group_fields.company_date_registration__year,
+          count: item.Count,
+        };
+      });
       state.loading = false;
     });
   },

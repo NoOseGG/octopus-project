@@ -13,7 +13,7 @@ import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard
 import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated';
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/current';
 import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/liquidated';
-import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/liquidatedByAgeSoleTrade/';
+import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailed/current/detailedInformationSlice';
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';

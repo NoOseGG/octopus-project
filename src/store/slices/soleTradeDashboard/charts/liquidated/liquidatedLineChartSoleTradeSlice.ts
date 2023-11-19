@@ -3,12 +3,10 @@ import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
-import {
-  LiquidatedLineChartState,
-  LiquidatedResponseLineChart,
-} from '@app/store/types/dashboard/LiquidatedChartsTypes';
+import { LiquidatedResponseLineChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
+import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 
-const initialState: LiquidatedLineChartState = {
+const initialState: LineChartYearsState = {
   results: [],
   loading: false,
   error: null,
@@ -49,7 +47,12 @@ const liquidatedLineChartSoleTradeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedLineChartSoleTrade.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload.results.map((item) => {
+        return {
+          year: item.group_fields.company_status_from_dttm__year,
+          count: item.Count,
+        };
+      });
       state.loading = false;
     });
   },

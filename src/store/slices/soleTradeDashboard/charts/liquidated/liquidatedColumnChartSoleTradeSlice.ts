@@ -3,12 +3,10 @@ import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate } from '
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
-import {
-  LiquidatedColumnChartState,
-  LiquidatedResponseColumnChart,
-} from '@app/store/types/dashboard/LiquidatedChartsTypes';
+import { LiquidatedResponseColumnChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
+import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 
-const initialState: LiquidatedColumnChartState = {
+const initialState: ColumnChartMonthState = {
   results: [],
   loading: false,
   error: null,
@@ -51,7 +49,12 @@ const liquidatedColumnChartSoleTradeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedColumnChartSoleTrade.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload.results.map((item) => {
+        return {
+          type: item.group_fields.company_status_from_dttm__month,
+          sales: item.Count,
+        };
+      });
       state.loading = false;
     });
   },

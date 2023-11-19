@@ -11,8 +11,8 @@ const initialState: MainInfoState = {
   error: null,
 };
 
-export const doGetTotalCountCreatedSoleTradeLastYear = createAsyncThunk<ResponseMainInfo, RequestData>(
-  'doGetTotalCountCreatedSoleTradeLastYear',
+export const doGetCountCreatedYearSoleTrade = createAsyncThunk<ResponseMainInfo, RequestData>(
+  'doGetCountCreatedYearSoleTrade',
   async ({ filters }) => {
     try {
       const year = getCurrentYear();
@@ -35,10 +35,10 @@ const createdSoleTradeYearSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetTotalCountCreatedSoleTradeLastYear.pending, (state) => {
+    builder.addCase(doGetCountCreatedYearSoleTrade.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetTotalCountCreatedSoleTradeLastYear.fulfilled, (state, action) => {
+    builder.addCase(doGetCountCreatedYearSoleTrade.fulfilled, (state, action) => {
       state.count = action.payload.count;
       state.loading = false;
     });

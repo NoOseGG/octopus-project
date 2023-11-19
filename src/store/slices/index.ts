@@ -17,8 +17,8 @@ import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboar
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
 import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailed/current/detailedInformationSlice';
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
-import liquidatedMainInfo from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
-import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated';
+import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
+import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/';
 import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created';
 import mainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/created';
 import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
@@ -37,6 +37,8 @@ export default {
   favourites: favouritesReducer,
   mainInfo: mainInfoReducer,
   mainInfoSoleTrade: mainInfoSoleTradeReducer,
+  liquidatedMainInfo: liquidatedMainInfoReducer,
+  liquidatedMainInfoSoleTrade: liquidatedMainInfoSoleTradeReducer,
   charts: chartsReducer,
   chartsSoleTrade: chartsSoleTradeReducer,
   typeActivities: typeActivitiesReducer,
@@ -49,6 +51,4 @@ export default {
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
   detailedInformationCompany: detailedInformationCompanyReducer,
   detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
-  liquidatedMainInfo: liquidatedMainInfo,
-  liquidatedMainInfoSoleTrade: liquidatedMainInfoSoleTradeReducer,
 };

@@ -11,13 +11,13 @@ const initialState: PercentState = {
   error: null,
 };
 
-export const doCalculateLiquidatedPercentYear = createAsyncThunk<ResponsePercent, RequestData>(
-  'doCalculateLiquidatedPercentYear',
+export const doCalculateLiquidatedPercentSoleTradeYear = createAsyncThunk<ResponsePercent, RequestData>(
+  'doCalculateLiquidatedPercentYearSoleTrade',
   async ({ filters }) => {
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
+        DASH.BASE + DASH.SOLE_TRADE + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
         filters,
         true,
         false,
@@ -30,16 +30,16 @@ export const doCalculateLiquidatedPercentYear = createAsyncThunk<ResponsePercent
   },
 );
 
-const calculateLiquidatedPercentSlice = createSlice({
-  name: 'calculateLiquidatedPercent',
+const liquidatedSoleTradePercentSlice = createSlice({
+  name: 'liquidatedSoleTradePercent',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doCalculateLiquidatedPercentYear.pending, (state) => {
+    builder.addCase(doCalculateLiquidatedPercentSoleTradeYear.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doCalculateLiquidatedPercentYear.fulfilled, (state, action) => {
-      if (action.payload.results.length > 0) {
+    builder.addCase(doCalculateLiquidatedPercentSoleTradeYear.fulfilled, (state, action) => {
+      if (action.payload?.results?.length > 0) {
         const lastYear = action.payload.results[0].Count;
         const lastTwoYear = action.payload.results[1].Count;
 
@@ -53,4 +53,4 @@ const calculateLiquidatedPercentSlice = createSlice({
   },
 });
 
-export default calculateLiquidatedPercentSlice.reducer;
+export default liquidatedSoleTradePercentSlice.reducer;

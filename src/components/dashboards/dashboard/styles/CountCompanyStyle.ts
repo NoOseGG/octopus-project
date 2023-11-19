@@ -5,10 +5,16 @@ export interface GridProps {
   value: boolean;
 }
 
+// export const Container = styled.div<GridProps>`
+//   display: grid;
+//   grid-template-columns: ${(props) => (props.value ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)')};
+//   align-items: center;
+// `;
+
 export const Container = styled.div<GridProps>`
-  display: grid;
-  grid-template-columns: ${(props) => (props.value ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)')};
+  display: flex;
   align-items: center;
+  justify-content: space-around;
 `;
 
 export const Block = styled.div`

@@ -2,50 +2,65 @@ import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Content, Title } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { Skeleton } from 'antd';
-import { DashboardProps, COUNT_TYPE } from '@app/components/dashboards/dashboard/DashboardTypes';
-import { getStateByPath, getTitleByPath } from '@app/components/dashboards/dashboard/DashboardUtils';
 import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdAllSlice';
-import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
 import { doGetTotalCountCreatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdQuarterSlice';
 import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdOperatingSlice';
 import { doGetTotalCountSoleTradeOperatingCompany } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeOperatingSlice';
 import { doGetTotalCountCreatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeAllSlice';
-import { doGetTotalCountCreatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeYearSlice';
 import { doGetTotalCountCreatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeQuarterSlice';
+import {
+  COUNT_TYPE,
+  CountCompanyProps,
+  getStateForCountCompany,
+  getTitleForCountCompany,
+} from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTypes';
+import { doGetTotalCountLiquidated } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedAllSlice';
+import { doGetTotalCountLiquidatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedQuarterSlice';
+import { doGetTotalCountLiquidatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedSoleTradeQuarterSlice';
+import { doGetTotalCountLiquidatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedSoleTradeAllSlice';
 
-const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
+const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
-  const dynamicState = useAppSelector((state) => getStateByPath(state, countType));
+  const dynamicState = useAppSelector((state) => getStateForCountCompany(state, countCompany));
   const count = dynamicState?.count;
   const loading = dynamicState?.loading;
 
   const getData = useCallback(
     (dynamicPath) => {
       switch (dynamicPath) {
-        case COUNT_TYPE.CREATED_ALL:
+        case COUNT_TYPE.LE_CREATED_ALL:
           dispatch(doGetTotalCountCreated({ filters }));
           break;
-        case COUNT_TYPE.CREATED_YEAR:
-          dispatch(doGetTotalCountCreatedLastYear({ filters }));
-          break;
-        case COUNT_TYPE.CREATED_QUARTER:
+        case COUNT_TYPE.LE_CREATED_QUARTER:
           dispatch(doGetTotalCountCreatedLastQuarter({ filters }));
           break;
-        case COUNT_TYPE.CREATED_OPERATION:
+        case COUNT_TYPE.LE_CREATED_OPERATION:
           dispatch(doGetTotalCountOperatingCompany({ filters }));
           break;
-        case COUNT_TYPE.CREATED_SOLE_TRADE_ALL:
+
+        case COUNT_TYPE.LE_LIQUIDATED_ALL:
+          dispatch(doGetTotalCountLiquidated({ filters }));
+          break;
+        case COUNT_TYPE.LE_LIQUIDATED_QUARTER:
+          dispatch(doGetTotalCountLiquidatedLastQuarter({ filters }));
+          break;
+
+        case COUNT_TYPE.ST_CREATED_ALL:
           dispatch(doGetTotalCountCreatedSoleTrade({ filters }));
           break;
-        case COUNT_TYPE.CREATED_SOLE_TRADE_YEAR:
-          dispatch(doGetTotalCountCreatedSoleTradeLastYear({ filters }));
-          break;
-        case COUNT_TYPE.CREATED_SOLE_TRADE_QUARTER:
+        case COUNT_TYPE.ST_CREATED_QUARTER:
           dispatch(doGetTotalCountCreatedSoleTradeLastQuarter({ filters }));
           break;
-        case COUNT_TYPE.CREATED_SOLE_TRADE_OPERATION:
+        case COUNT_TYPE.ST_CREATED_OPERATION:
           dispatch(doGetTotalCountSoleTradeOperatingCompany({ filters }));
+          break;
+
+        case COUNT_TYPE.ST_LIQUIDATED_ALL:
+          dispatch(doGetTotalCountLiquidatedSoleTrade({ filters }));
+          break;
+        case COUNT_TYPE.ST_LIQUIDATED_QUARTER:
+          dispatch(doGetTotalCountLiquidatedSoleTradeLastQuarter({ filters }));
           break;
       }
     },
@@ -53,7 +68,7 @@ const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
   );
 
   useEffect(() => {
-    getData(countType);
+    getData(countCompany);
   }, [getData]);
 
   return (
@@ -62,7 +77,7 @@ const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
         <Skeleton style={{ padding: 5 }} active />
       ) : (
         <Block>
-          <Title>{getTitleByPath(countType)}</Title>
+          <Title>{getTitleForCountCompany(countCompany)}</Title>
           <Content>{count}</Content>
         </Block>
       )}
@@ -70,4 +85,4 @@ const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
   );
 };
 
-export default CreatedCount;
+export default CountCompany;

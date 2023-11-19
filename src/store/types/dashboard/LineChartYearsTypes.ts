@@ -4,12 +4,6 @@ export interface LineChartYearsState {
   error: string | null;
 }
 export interface LineChartYearsObject {
-  year: number;
-  count: number;
-}
-export interface ResponseLineChart {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: LineChartYearsObject[];
+  type: number;
+  sales: number;
 }

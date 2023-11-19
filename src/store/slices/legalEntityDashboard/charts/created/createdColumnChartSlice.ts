@@ -1,11 +1,12 @@
-import { ColumnChartState, ResponseColumnChart } from '@app/store/types/dashboard/DashboardSlicesType';
+import { ResponseColumnChart } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 
-const initialState: ColumnChartState = {
+const initialState: ColumnChartMonthState = {
   results: [],
   loading: false,
   error: null,
@@ -44,7 +45,12 @@ const createdLColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForColumnChart.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload.results.map((item) => {
+        return {
+          type: item.group_fields.company_date_registration__month,
+          sales: item.Count,
+        };
+      });
       state.loading = false;
     });
   },

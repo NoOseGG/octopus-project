@@ -1,20 +1,20 @@
 import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { Container } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import CreatedCount from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CreatedCount';
-import { COUNT_TYPE, EntityType } from '@app/components/dashboards/dashboard/DashboardTypes';
+import CountCompany from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompany';
 import CountYear from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYear';
+import { MainInfoProps } from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoTypes';
+import { COUNT_TYPE } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTypes';
 
-const MainInfo: React.FC = () => {
+const MainInfo: React.FC<MainInfoProps> = ({ all, year, quarter, operation, percent }) => {
   const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
   return (
     <Container value={isDate}>
-      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} countType={COUNT_TYPE.CREATED_ALL} />
-      <CountYear />
-      {/*<CreatedCount legalEntity={EntityType.LEGAL_ENTITY} dynamicPath={DynamicPath.CREATED_YEAR} />*/}
-      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} countType={COUNT_TYPE.CREATED_QUARTER} />
-      <CreatedCount legalEntity={EntityType.LEGAL_ENTITY} countType={COUNT_TYPE.CREATED_OPERATION} />
+      <CountCompany countCompany={all} />
+      <CountYear countYear={year} percentYear={percent} />
+      <CountCompany countCompany={quarter} />
+      {operation !== COUNT_TYPE.NONE && <CountCompany countCompany={operation} />}
     </Container>
   );
 };

@@ -1,34 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/mainInfoSoleTrade/MainInfoSoleTrade';
-import ColumnChartMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartMonthSoleTrade/ColumnChartMonthSoleTrade';
 import TypeActivitiesSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesSoleTrade';
 import CurrentSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/CurrentSubjectsByAgeSoleTrade/CurrentSubjectsByAgeSoleTrade';
-import LiquidatedMainInfoSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedMainInfoSoleTrade/LiquidatedMainInfoSoleTrade';
-import ColumnChartLiquidatedMonthSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/ColumnChartLiquidatedMonthSoleTrade/ColumnChartLiquidatedMonthSoleTrade';
 import LiquidatedSubjectsByAgeSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/LiquidatedSubjectByAge/LiquidatedSubjectsByAgeSoleTrade';
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
 import TypeActivitiesLiquidatedSoleTrade from '@app/components/dashboards/dashboard-sole-trade/components/typeActivitiesSoleTrade/TypeActivitiesLiquidatedSoleTrade';
 import LineChartYears from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYears';
 import { LINE_CHART_YEAR } from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYearsTypes';
+import ColumnChartMonth from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonth';
+import { COLUMN_CHART_MONTH } from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonthTypes';
+import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
+import { COUNT_TYPE } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTypes';
+import {
+  COUNT_YEAR_TYPE,
+  PERCENT_TYPE,
+} from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
     <Container>
       <Title>Индивидуальные предприниматели (ИП)</Title>
-      <MainInfoSoleTrade />
+      <MainInfo
+        all={COUNT_TYPE.ST_CREATED_ALL}
+        year={COUNT_YEAR_TYPE.ST_CREATED_YEAR}
+        quarter={COUNT_TYPE.ST_CREATED_QUARTER}
+        operation={COUNT_TYPE.ST_CREATED_OPERATION}
+        percent={PERCENT_TYPE.ST_CREATE_PERCENT}
+      />
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.ST_CREATED} />
-        <ColumnChartMonthSoleTrade />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.ST_CREATED} />
       </ChartsContainer>
       <TypeActivitiesSoleTrade />
       <CurrentSubjectsByAgeSoleTrade />
       <DetailedInformation detailed={DETAILED_TYPE.SOLE_TRADE_CREATED} />
-      <LiquidatedMainInfoSoleTrade />
+      <MainInfo
+        all={COUNT_TYPE.ST_LIQUIDATED_ALL}
+        year={COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR}
+        quarter={COUNT_TYPE.ST_LIQUIDATED_QUARTER}
+        operation={COUNT_TYPE.NONE}
+        percent={PERCENT_TYPE.ST_LIQUIDATE_PERCENT}
+      />
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.ST_LIQUIDATED} />
-        <ColumnChartLiquidatedMonthSoleTrade />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.ST_LIQUIDATED} />
       </ChartsContainer>
       <TypeActivitiesLiquidatedSoleTrade />
       <LiquidatedSubjectsByAgeSoleTrade />

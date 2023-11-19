@@ -11,8 +11,8 @@ const initialState: PercentState = {
   error: null,
 };
 
-export const doCalculatePercentYearSoleTrade = createAsyncThunk<ResponsePercent, RequestData>(
-  'doCalculatePercentYearSoleTrade',
+export const doCalculateCreatedPercentYearSoleTrade = createAsyncThunk<ResponsePercent, RequestData>(
+  'doCalculateCreatedPercentYearSoleTrade',
   async ({ filters }) => {
     try {
       const currentDate = getCurrentDate();
@@ -39,15 +39,15 @@ export const doCalculatePercentYearSoleTrade = createAsyncThunk<ResponsePercent,
   },
 );
 
-const calculateSoleTradePercentSlice = createSlice({
-  name: 'calculateSoleTradePercent',
+const createdPercentSoleTradeSlice = createSlice({
+  name: 'createdPercentSoleTradeSlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doCalculatePercentYearSoleTrade.pending, (state) => {
+    builder.addCase(doCalculateCreatedPercentYearSoleTrade.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doCalculatePercentYearSoleTrade.fulfilled, (state, action) => {
+    builder.addCase(doCalculateCreatedPercentYearSoleTrade.fulfilled, (state, action) => {
       if (action.payload.results.length > 0) {
         const lastYear = action.payload.results[0].Count;
         const lastTwoYear = action.payload.results[1].Count;
@@ -62,4 +62,4 @@ const calculateSoleTradePercentSlice = createSlice({
   },
 });
 
-export default calculateSoleTradePercentSlice.reducer;
+export default createdPercentSoleTradeSlice.reducer;

@@ -3,7 +3,7 @@ import CreatedAllReducer from '@app/store/slices/legalEntityDashboard/mainInfo/c
 import CreatedYearReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
 import CreatedQuarterReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdQuarterSlice';
 import CreatedOperatingReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdOperatingSlice';
-import CalculatePercentReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created/calculatePercentSlice';
+import CalculatePercentReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdPercentSlice';
 
 export const mainInfoReducer = combineReducers({
   createdAll: CreatedAllReducer,

@@ -6,7 +6,7 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import { doSearch } from '@app/store/slices/searchSlice';
+import { doSearch } from '@app/store/slices/search/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';

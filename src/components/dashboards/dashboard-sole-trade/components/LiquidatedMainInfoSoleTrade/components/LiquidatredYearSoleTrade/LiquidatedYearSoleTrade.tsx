@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import { doGetTotalCountLiquidatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/liquidatedMainInfoSoleTrade/liquidatedSoleTradeYearSlice';
+import { doGetTotalCountLiquidatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedSoleTradeYearSlice';
 
 const LiquidatedYearSoleTrade: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);

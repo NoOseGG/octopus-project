@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/createdYearSlice';
+import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
 import { Skeleton } from 'antd';
-import { doCalculatePercentYear } from '@app/store/slices/legalEntityDashboard/mainInfo/calculatePercentSlice';
+import { doCalculatePercentYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/calculatePercentSlice';
 
 const CountYear: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);

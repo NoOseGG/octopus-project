@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePicker } from 'antd';
 import styled from 'styled-components';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { deleteDate, setDate } from '@app/store/slices/searchFiltersSlice';
+import { deleteDate, setDate } from '@app/store/slices/search/searchFiltersSlice';
 
 const { RangePicker } = DatePicker;
 

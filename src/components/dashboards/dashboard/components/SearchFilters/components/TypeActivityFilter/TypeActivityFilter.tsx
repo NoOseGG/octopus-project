@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Select } from 'antd';
-import { doGetTypeActivitiesList, setTypeActivity } from '@app/store/slices/searchFiltersSlice';
+import { doGetTypeActivitiesList, setTypeActivity } from '@app/store/slices/search/searchFiltersSlice';
 import {
   PlaceholderText,
   filterStyle,

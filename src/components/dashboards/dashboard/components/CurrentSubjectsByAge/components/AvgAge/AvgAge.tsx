@@ -5,7 +5,7 @@ import {
   Content,
   AverageAgeContainer,
 } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
-import { doGetCurrentByAgeAvgAge } from '@app/store/slices/legalEntityDashboard/currentByAge/avgAgeSlice';
+import { doGetCurrentByAgeAvgAge } from '@app/store/slices/legalEntityDashboard/byAge/current/avgAgeSlice';
 
 const AvgAge: React.FC = () => {
   const avgAge = useAppSelector((state) => state.currentByAge.avgAge.count);

@@ -1,4 +1,4 @@
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
+import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
 
 export interface RequestData {
   filters: FiltersType;

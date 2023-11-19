@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/createdOperatingSlice';
+import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdOperatingSlice';
 import { Skeleton } from 'antd';
 
 const CountOperating: React.FC = () => {

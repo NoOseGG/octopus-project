@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doGetDataForLiquidatedByAgeChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedByAgeChartSlice';
+import { doGetDataForLiquidatedByAgeChart } from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedByAgeChartSlice';
 import { Line, LineConfig } from '@ant-design/charts';
 
 const LiquidatedByAgeChart: React.FC = () => {

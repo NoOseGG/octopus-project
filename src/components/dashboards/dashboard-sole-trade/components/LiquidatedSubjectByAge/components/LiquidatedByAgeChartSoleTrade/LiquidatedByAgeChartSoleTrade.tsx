@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Line, LineConfig } from '@ant-design/charts';
-import { doGetDataForLiquidatedByAgeChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidatedByAgeChartSoleTradeSlice';
+import { doGetDataForLiquidatedByAgeChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidated/liquidatedByAgeChartSoleTradeSlice';
 
 const LiquidatedByAgeChartSoleTrade: React.FC = () => {
   const { results } = useAppSelector((state) => state.chartsSoleTrade.liquidatedByAgeSoleTrade);

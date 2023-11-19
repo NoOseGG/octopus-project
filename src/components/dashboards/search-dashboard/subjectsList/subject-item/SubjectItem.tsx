@@ -1,5 +1,5 @@
 import React from 'react';
-import { Organization } from '@app/store/slices/searchSlice';
+import { Organization } from '@app/store/slices/search/searchSlice';
 import { Badge, Descriptions } from 'antd';
 import styled from 'styled-components';
 import styles from '@app/components/dashboards/search-dashboard/subjectsList/subject-item/SubjectItem.module.css';

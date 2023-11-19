@@ -11,7 +11,7 @@ import { doCheckAuth } from '@app/store/slices/authSlice';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
 import DashboardLegalEntity from '@app/components/dashboards/dashboard/DashboardLegalEntity';
 import DashboardSoleTrader from '@app/components/dashboards/dashboard-sole-trade/DashboardSoleTrader';
-import { deleteLegalEntity, setLegalEntity } from '@app/store/slices/searchFiltersSlice';
+import { deleteLegalEntity, setLegalEntity } from '@app/store/slices/search/searchFiltersSlice';
 import SearchFilters from '@app/components/dashboards/dashboard/components/SearchFilters/SearchFilters';
 
 enum TABS_KEY {

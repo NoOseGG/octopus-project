@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { Skeleton } from 'antd';
-import { doGetTotalCountSoleTradeOperatingCompany } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeOperatingSlice';
+import { doGetTotalCountSoleTradeOperatingCompany } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeOperatingSlice';
 
 const CountOperatingSoleTrade: React.FC = () => {
   const filters = useAppSelector((state) => state.searchFilters.filters);

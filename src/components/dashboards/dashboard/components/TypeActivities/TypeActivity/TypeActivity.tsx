@@ -8,7 +8,7 @@ import {
   SpinnerSpace,
   TextLine,
 } from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
-import { doGetTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesAll';
+import { doGetTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesAll';
 import { Spin } from 'antd';
 import {
   getStateForTypeActivity,
@@ -16,21 +16,21 @@ import {
   TYPE_ACTIVITY_TYPE,
   TypeActivitiesProps,
 } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivityTypes';
-import { doGetTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesYear';
-import { doGetTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesQuarter';
-import { doGetTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/typeActivitiesMonth';
-import { doGetTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade/typeActivitiesAllSoleTrade';
-import { doGetTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade/typeActivitiesYearSoleTrade';
-import { doGetTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade/typeActivitiesQuarterSoleTrade';
-import { doGetTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivitiesSoleTrade/typeActivitiesMonthSoleTrade';
-import { doGetLiquidatedTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities/typeActivitiesLiuaidatedAll';
-import { doGetLiquidatedTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedYear';
-import { doGetLiquidatedTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedQuarter';
-import { doGetLiquidatedTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedMonth';
-import { doGetLiquidatedTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeAll';
-import { doGetLiquidatedTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeYear';
-import { doGetLiquidatedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeQuarter';
-import { doGetLiquidatedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/liquidatedTypeActivities/typeActivitiesLiquidatedSoleTradeMonth';
+import { doGetTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesYear';
+import { doGetTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesQuarter';
+import { doGetTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesMonth';
+import { doGetTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/current/typeActivitiesAllSoleTrade';
+import { doGetTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/current/typeActivitiesYearSoleTrade';
+import { doGetTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/current/typeActivitiesQuarterSoleTrade';
+import { doGetTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/current/typeActivitiesMonthSoleTrade';
+import { doGetLiquidatedTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/liquidated/typeActivitiesLiuaidatedAll';
+import { doGetLiquidatedTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/liquidated/typeActivitiesLiquidatedYear';
+import { doGetLiquidatedTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/liquidated/typeActivitiesLiquidatedQuarter';
+import { doGetLiquidatedTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/liquidated/typeActivitiesLiquidatedMonth';
+import { doGetLiquidatedTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeAll';
+import { doGetLiquidatedTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeYear';
+import { doGetLiquidatedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeQuarter';
+import { doGetLiquidatedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeMonth';
 
 const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();

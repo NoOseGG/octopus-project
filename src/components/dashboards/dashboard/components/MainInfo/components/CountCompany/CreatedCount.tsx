@@ -4,14 +4,14 @@ import { Block, Content, Title } from '@app/components/dashboards/dashboard/styl
 import { Skeleton } from 'antd';
 import { DashboardProps, COUNT_TYPE } from '@app/components/dashboards/dashboard/DashboardTypes';
 import { getStateByPath, getTitleByPath } from '@app/components/dashboards/dashboard/DashboardUtils';
-import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/createdAllSlice';
-import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/createdYearSlice';
-import { doGetTotalCountCreatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/createdQuarterSlice';
-import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/createdOperatingSlice';
-import { doGetTotalCountSoleTradeOperatingCompany } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeOperatingSlice';
-import { doGetTotalCountCreatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeAllSlice';
-import { doGetTotalCountCreatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeYearSlice';
-import { doGetTotalCountCreatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfoSoleTrade/createdSoleTradeQuarterSlice';
+import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdAllSlice';
+import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
+import { doGetTotalCountCreatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdQuarterSlice';
+import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdOperatingSlice';
+import { doGetTotalCountSoleTradeOperatingCompany } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeOperatingSlice';
+import { doGetTotalCountCreatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeAllSlice';
+import { doGetTotalCountCreatedSoleTradeLastYear } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeYearSlice';
+import { doGetTotalCountCreatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdSoleTradeQuarterSlice';
 
 const CreatedCount: React.FC<DashboardProps> = ({ countType }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);

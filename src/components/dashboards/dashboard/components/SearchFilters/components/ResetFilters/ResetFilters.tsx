@@ -6,7 +6,7 @@ import {
   setRegion,
   setSettlement,
   setTypeActivity,
-} from '@app/store/slices/searchFiltersSlice';
+} from '@app/store/slices/search/searchFiltersSlice';
 import { Button } from 'antd';
 
 const ResetFilters: React.FC = () => {

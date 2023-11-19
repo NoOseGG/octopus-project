@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
-import { doGetDataForLiquidatedLineChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidatedLineChartSoleTradeSlice';
+import { doGetDataForLiquidatedLineChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidated/liquidatedLineChartSoleTradeSlice';
 
 const LineChartLiquidatedYearsSoleTrade: React.FC = () => {
   const { results } = useAppSelector((state) => state.chartsSoleTrade.liquidatedLineChartSoleTrade);

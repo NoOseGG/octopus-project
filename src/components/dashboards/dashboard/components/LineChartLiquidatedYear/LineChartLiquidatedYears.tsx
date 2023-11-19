@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Line, LineConfig } from '@ant-design/charts';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
-import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedLineChartSlice';
+import { doGetDataForLiquidatedLineChart } from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedLineChartSlice';
 
 const LineChartLiquidatedYears: React.FC = () => {
   const { results } = useAppSelector((state) => state.charts.liquidatedLineChart);

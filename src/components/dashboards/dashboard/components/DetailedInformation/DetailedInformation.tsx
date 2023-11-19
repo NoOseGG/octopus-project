@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton, Table } from 'antd';
-import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailedInformationSlice';
+import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailed/current/detailedInformationSlice';
 import {
   Content,
   Container,
@@ -14,7 +14,7 @@ import {
   getStateForDetailed,
   getTitleForDetailed,
 } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
-import { doGetDetailedInformationCompanySoleTrade } from '@app/store/slices/soleTradeDashboard/detailedInformationSoleTradeSlice';
+import { doGetDetailedInformationCompanySoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
 
 const getColumn = (title: string, field: string) => {
   return {

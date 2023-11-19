@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
-import { doGetDataForLiquidatedColumnChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidatedColumnChartSoleTradeSlice';
+import { doGetDataForLiquidatedColumnChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidated/liquidatedColumnChartSoleTradeSlice';
 
 const ColumnChartLiquidatedMonthSoleTrade: React.FC = () => {
   const { results } = useAppSelector((state) => state.chartsSoleTrade.liquidatedColumnChartSoleTrade);

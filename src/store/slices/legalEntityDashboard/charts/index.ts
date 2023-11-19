@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import createdLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/createdLineChartSlice';
-import createdColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/createdColumnChartSlice';
-import liquidatedLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidatedLineChartSlice';
-import liquidatedColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidatedColumnChartSlice';
-import liquidatedByAgeChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidatedByAgeChartSlice';
+import createdLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/created/createdLineChartSlice';
+import createdColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/created/createdColumnChartSlice';
+import liquidatedLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedLineChartSlice';
+import liquidatedColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedColumnChartSlice';
+import liquidatedByAgeChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedByAgeChartSlice';
 
 export const chartsReducer = combineReducers({
   createdLineChart: createdLineChartReducer,

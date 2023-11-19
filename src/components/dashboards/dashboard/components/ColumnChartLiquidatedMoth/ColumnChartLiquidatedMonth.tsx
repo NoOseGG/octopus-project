@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Container, Title } from '@app/components/dashboards/dashboard/styles/ChartsStyle';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnConfig } from '@ant-design/charts';
-import { doGetDataForLiquidatedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/liquidatedColumnChartSlice';
+import { doGetDataForLiquidatedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedColumnChartSlice';
 
 const ColumnChartLiquidatedMonth: React.FC = () => {
   const { results } = useAppSelector((state) => state.charts.liquidatedColumnChart);

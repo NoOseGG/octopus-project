@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import styles from './SubjectList.module.css';
-import { doNewPage, Organization } from '@app/store/slices/searchSlice';
+import { doNewPage, Organization } from '@app/store/slices/search/searchSlice';
 import SubjectItem from '@app/components/dashboards/search-dashboard/subjectsList/subject-item/SubjectItem';
 import { useResponsive } from '@app/hooks/useResponsive';
 

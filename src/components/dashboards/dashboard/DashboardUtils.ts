@@ -1,10 +1,10 @@
 import { RootState } from '@app/store/store';
 import { COUNT_TYPE } from '@app/components/dashboards/dashboard/DashboardTypes';
-import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/createdAllSlice';
-import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/createdYearSlice';
-import { doGetTotalCountCreatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/createdQuarterSlice';
-import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/createdOperatingSlice';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
+import { doGetTotalCountCreated } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdAllSlice';
+import { doGetTotalCountCreatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
+import { doGetTotalCountCreatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdQuarterSlice';
+import { doGetTotalCountOperatingCompany } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdOperatingSlice';
+import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
 
 export const getActionByPath = (dynamicPath: COUNT_TYPE) => {
   return (filters: FiltersType) => {

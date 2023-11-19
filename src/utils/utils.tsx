@@ -4,7 +4,7 @@ import { CurrencyType } from '@app/interfaces/interfaces';
 import { Priority } from '@app//constants/enums/priorities';
 import { ReactComponent as ETHIcon } from '@app/assets/icons/eth.svg';
 import { ReactComponent as BTCIcon } from '@app/assets/icons/btc.svg';
-import { FiltersType } from '@app/store/slices/searchFiltersSlice';
+import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import React from 'react';
 import { EntityType } from '@app/constants/Constants';

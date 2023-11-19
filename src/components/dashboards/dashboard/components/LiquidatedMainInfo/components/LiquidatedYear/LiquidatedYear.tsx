@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import { doGetTotalCountLiquidatedLastYear } from '@app/store/slices/legalEntityDashboard/liquidatedMainInfo/liquidatedYearSlice';
+import { doGetTotalCountLiquidatedLastYear } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedYearSlice';
 import { Skeleton } from 'antd';
 
 const LiquidatedYear: React.FC = () => {

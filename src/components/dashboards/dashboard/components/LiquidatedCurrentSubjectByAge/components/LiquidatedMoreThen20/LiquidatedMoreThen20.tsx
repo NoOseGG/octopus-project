@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
-import { doGetLiquidatedByAgeMoreThen20 } from '@app/store/slices/legalEntityDashboard/liquidatedByAge/LiquidatedMoreThen20Slice';
+import { doGetLiquidatedByAgeMoreThen20 } from '@app/store/slices/legalEntityDashboard/byAge/liquidated/LiquidatedMoreThen20Slice';
 
 const LiquidatedMoreThen20: React.FC = () => {
   const { age } = useAppSelector((state) => state.liquidatedByAge.liquidateMoreThen20);

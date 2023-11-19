@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doSearchProfile } from '@app/store/slices/searchProfileSlice';
+import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
 import styles from './SubjectInfo.module.css';
 import { Spin } from 'antd';
 import styled from 'styled-components';

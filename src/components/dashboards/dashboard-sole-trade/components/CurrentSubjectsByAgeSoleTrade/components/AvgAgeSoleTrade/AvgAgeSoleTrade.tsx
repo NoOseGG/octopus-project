@@ -5,7 +5,7 @@ import {
   Content,
   AverageAgeContainer,
 } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
-import { doGetCurrentByAgeAvgAgeSoleTrade } from '@app/store/slices/soleTradeDashboard/currentByAgeSoleTrade/avgAgeSoleTradeSlice';
+import { doGetCurrentByAgeAvgAgeSoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/current/avgAgeSoleTradeSlice';
 
 const AvgAgeSoleTrade: React.FC = () => {
   const avgAge = useAppSelector((state) => state.currentByAgeSoleTrade.avgAgeSoleTrade.count);

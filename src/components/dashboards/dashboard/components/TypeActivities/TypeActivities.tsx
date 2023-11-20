@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import { mediaMax } from '@app/styles/themes/constants';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TypeActivity from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivity';
-import { TYPE_ACTIVITY_TYPE } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivityTypes';
+import { TypeActivitiesProps } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesTypes';
 
-const TypeActivities: React.FC = () => {
+const TypeActivities: React.FC<TypeActivitiesProps> = ({ all, year, quarter, month }) => {
   const { isDate, isLegalEntity } = useAppSelector((state) => state.searchFilters.filters);
 
   return (
     <div>
       {isDate && isLegalEntity ? (
-        <TypeActivity typeActivity={TYPE_ACTIVITY_TYPE.LE_CREATED_ALL} />
+        <TypeActivity typeActivity={all} />
       ) : (
         <>
           <ContainerTypeActivities>
-            <TypeActivity typeActivity={TYPE_ACTIVITY_TYPE.LE_CREATED_YEAR} />
-            <TypeActivity typeActivity={TYPE_ACTIVITY_TYPE.LE_CREATED_QUARTER} />
-            <TypeActivity typeActivity={TYPE_ACTIVITY_TYPE.LE_CREATED_MONTH} />
+            <TypeActivity typeActivity={year} />
+            <TypeActivity typeActivity={quarter} />
+            <TypeActivity typeActivity={month} />
           </ContainerTypeActivities>
-          <TypeActivity typeActivity={TYPE_ACTIVITY_TYPE.LE_CREATED_ALL} />
+          <TypeActivity typeActivity={all} />
         </>
       )}
     </div>

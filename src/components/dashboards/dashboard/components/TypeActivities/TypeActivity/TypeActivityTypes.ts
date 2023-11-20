@@ -1,6 +1,6 @@
 import { RootState } from '@app/store/store';
 
-export type TypeActivitiesProps = {
+export type TypeActivityProps = {
   typeActivity: TYPE_ACTIVITY_TYPE;
 };
 
@@ -9,18 +9,27 @@ export enum TYPE_ACTIVITY_TYPE {
   LE_CREATED_YEAR,
   LE_CREATED_QUARTER,
   LE_CREATED_MONTH,
-  ST_CREATED_ALL,
-  ST_CREATED_YEAR,
-  ST_CREATED_QUARTER,
-  ST_CREATED_MONTH,
   LE_LIQUIDATED_ALL,
   LE_LIQUIDATED_YEAR,
   LE_LIQUIDATED_QUARTER,
   LE_LIQUIDATED_MONTH,
+  LE_BANKRUPTED_ALL,
+  LE_BANKRUPTED_YEAR,
+  LE_BANKRUPTED_QUARTER,
+  LE_BANKRUPTED_MONTH,
+
+  ST_CREATED_ALL,
+  ST_CREATED_YEAR,
+  ST_CREATED_QUARTER,
+  ST_CREATED_MONTH,
   ST_LIQUIDATED_ALL,
   ST_LIQUIDATED_YEAR,
   ST_LIQUIDATED_QUARTER,
   ST_LIQUIDATED_MONTH,
+  ST_BANKRUPTED_ALL,
+  ST_BANKRUPTED_YEAR,
+  ST_BANKRUPTED_QUARTER,
+  ST_BANKRUPTED_MONTH,
 }
 
 export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACTIVITY_TYPE) => {
@@ -43,6 +52,17 @@ export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACT
     case TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_MONTH:
       return state.typeActivitiesLiquidated.typeActivitiesLiquidatedMonth;
 
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL:
+      return state.typeActivitiesBankrupted.typeActivitiesBankruptedAll;
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR:
+      return state.typeActivitiesBankrupted.typeActivitiesBankruptedYear;
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER:
+      return state.typeActivitiesBankrupted.typeActivitiesBankruptedQuarter;
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
+      return state.typeActivitiesBankrupted.typeActivitiesBankruptedMonth;
+
+    // SOLE TRADE
+
     case TYPE_ACTIVITY_TYPE.ST_CREATED_ALL:
       return state.typeActivitiesSoleTrade.typeActivitiesSoleTradeAll;
     case TYPE_ACTIVITY_TYPE.ST_CREATED_YEAR:
@@ -60,6 +80,15 @@ export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACT
       return state.typeActivitiesLiquidatedSoleTrade.typeActivitiesLiquidatedSoleTradeQuarter;
     case TYPE_ACTIVITY_TYPE.ST_LIQUIDATED_MONTH:
       return state.typeActivitiesLiquidatedSoleTrade.typeActivitiesLiquidatedSoleTradeMonth;
+
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_ALL:
+      return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeAll;
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_YEAR:
+      return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeYear;
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_QUARTER:
+      return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeQuarter;
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
+      return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeMonth;
   }
 };
 
@@ -83,6 +112,17 @@ export const getTitleForTypeActivity = (typeActivity: TYPE_ACTIVITY_TYPE): strin
     case TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_MONTH:
       return 'Виды деятельности (Месяц)';
 
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL:
+      return 'Виды деятельности';
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR:
+      return 'Виды деятельности (Год)';
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER:
+      return 'Виды деятельности (Квартал)';
+    case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
+      return 'Виды деятельности (Месяц)';
+
+    // Sole Trade
+
     case TYPE_ACTIVITY_TYPE.ST_CREATED_ALL:
       return 'Виды деятельности';
     case TYPE_ACTIVITY_TYPE.ST_CREATED_YEAR:
@@ -99,6 +139,15 @@ export const getTitleForTypeActivity = (typeActivity: TYPE_ACTIVITY_TYPE): strin
     case TYPE_ACTIVITY_TYPE.ST_LIQUIDATED_QUARTER:
       return 'Виды деятельности (Квартал)';
     case TYPE_ACTIVITY_TYPE.ST_LIQUIDATED_MONTH:
+      return 'Виды деятельности (Месяц)';
+
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_ALL:
+      return 'Виды деятельности';
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_YEAR:
+      return 'Виды деятельности (Год)';
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_QUARTER:
+      return 'Виды деятельности (Квартал)';
+    case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
       return 'Виды деятельности (Месяц)';
   }
 };

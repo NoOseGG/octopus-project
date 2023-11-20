@@ -7,7 +7,6 @@ import CurrentSubjectsByAge from '@app/components/dashboards/dashboard/component
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
 import LiquidatedSubjectsByAge from '@app/components/dashboards/dashboard/components/LiquidatedCurrentSubjectByAge/LiquidatedSubjectsByAge';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
-import TypeActivitiesLiquidated from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivitiesLiquidated';
 import { LINE_CHART_YEAR } from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYearsTypes';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonth';
 import { COLUMN_CHART_MONTH } from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonthTypes';
@@ -16,6 +15,7 @@ import {
   COUNT_YEAR_TYPE,
   PERCENT_TYPE,
 } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
+import { TYPE_ACTIVITY_TYPE } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivityTypes';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -32,7 +32,12 @@ const DashboardLegalEntity: React.FC = () => {
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_CREATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CREATED} />
       </ChartsContainer>
-      <TypeActivities />
+      <TypeActivities
+        all={TYPE_ACTIVITY_TYPE.LE_CREATED_ALL}
+        year={TYPE_ACTIVITY_TYPE.LE_CREATED_YEAR}
+        quarter={TYPE_ACTIVITY_TYPE.LE_CREATED_QUARTER}
+        month={TYPE_ACTIVITY_TYPE.LE_CREATED_MONTH}
+      />
       <CurrentSubjectsByAge />
       <DetailedInformation detailed={DETAILED_TYPE.LE_CREATED} />
       <MainInfo
@@ -46,7 +51,12 @@ const DashboardLegalEntity: React.FC = () => {
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_LIQUIDATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_LIQUIDATED} />
       </ChartsContainer>
-      <TypeActivitiesLiquidated />
+      <TypeActivities
+        all={TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_ALL}
+        year={TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_YEAR}
+        quarter={TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_QUARTER}
+        month={TYPE_ACTIVITY_TYPE.LE_LIQUIDATED_MONTH}
+      />
       <LiquidatedSubjectsByAge />
       <DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />
       <MainInfo
@@ -60,6 +70,12 @@ const DashboardLegalEntity: React.FC = () => {
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />
       </ChartsContainer>
+      <TypeActivities
+        all={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL}
+        year={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR}
+        quarter={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER}
+        month={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH}
+      />
     </Container>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { ContainerTypeActivities } from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TypeActivity from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivity';
-import { TYPE_ACTIVITY_TYPE } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivityTypes';
+import { TYPE_ACTIVITY_TYPE } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivityTypes';
 
 const TypeActivities: React.FC = () => {
   const { isDate, isLegalEntity } = useAppSelector((state) => state.searchFilters.filters);

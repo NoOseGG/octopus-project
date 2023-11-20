@@ -13,8 +13,8 @@ const initialState: TypeActivityState = {
   error: null,
 };
 
-export const doGetLiquidatedTypeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
-  'doGetLiquidatedTypeActivitiesAll',
+export const doGetBankruptedTypeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
+  'doGetBankruptedTypeActivitiesAll',
   async ({ filters }) => {
     try {
       let baseUrl =
@@ -22,7 +22,7 @@ export const doGetLiquidatedTypeActivitiesAll = createAsyncThunk<TypeActivityTyp
         DASH.AGR_COUNT +
         DASH.GROUP_BY('type_activity_name') +
         DASH.LEGAL_ENTITY +
-        DASH.LIQUIDATED_ENTITY +
+        DASH.STATUS_BP +
         DASH.IS_NULL_FALSE('type_activity_name') +
         DASH.PAGE_SIZE(10000);
       let url;
@@ -42,19 +42,19 @@ export const doGetLiquidatedTypeActivitiesAll = createAsyncThunk<TypeActivityTyp
   },
 );
 
-const typeActivitiesLiquidatedAllSlice = createSlice({
-  name: 'typeActivitiesLiquidatedAll',
+const typeActivitiesBankruptedAllSlice = createSlice({
+  name: 'typeActivitiesBankruptedAll',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetLiquidatedTypeActivitiesAll.pending, (state) => {
+    builder.addCase(doGetBankruptedTypeActivitiesAll.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetLiquidatedTypeActivitiesAll.fulfilled, (state, action) => {
+    builder.addCase(doGetBankruptedTypeActivitiesAll.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
       state.loading = false;
     });
   },
 });
 
-export default typeActivitiesLiquidatedAllSlice.reducer;
+export default typeActivitiesBankruptedAllSlice.reducer;

@@ -7,8 +7,8 @@ import {
   getStateForTypeActivity,
   getTitleForTypeActivity,
   TYPE_ACTIVITY_TYPE,
-  TypeActivitiesProps,
-} from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivityTypes';
+  TypeActivityProps,
+} from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivityTypes';
 import { doGetTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesYear';
 import { doGetTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesQuarter';
 import { doGetTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesMonth';
@@ -25,8 +25,16 @@ import { doGetLiquidatedTypeActivitiesYearSoleTrade } from '@app/store/slices/so
 import { doGetLiquidatedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeQuarter';
 import { doGetLiquidatedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeMonth';
 import { ColumnsType } from 'antd/es/table';
+import { doGetBankruptedTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/bankrupted/typeActivitiesBankruptedAll';
+import { doGetBankruptedTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/bankrupted/typeActivitiesBankruptedYear';
+import { doGetBankruptedTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/bankrupted/typeActivitiesBankruptedQuarter';
+import { doGetBankruptedTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/bankrupted/typeActivitiesBankruptedMonth';
+import { doGetBankruptedTypeActivitiesSoleTradeAll } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeAll';
+import { doGetBankruptedTypeActivitiesSoleTradeYear } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeYear';
+import { doGetBankruptedTypeActivitiesSoleTradeQuarter } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeQuarter';
+import { doGetBankruptedTypeActivitiesSoleTradeMonth } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeMonth';
 
-const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
+const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dynamicState = useAppSelector((state) => getStateForTypeActivity(state, typeActivity));
@@ -69,6 +77,21 @@ const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
           dispatch(doGetLiquidatedTypeActivitiesMonth({ filters }));
           break;
 
+        case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL:
+          dispatch(doGetBankruptedTypeActivitiesAll({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR:
+          dispatch(doGetBankruptedTypeActivitiesYear({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER:
+          dispatch(doGetBankruptedTypeActivitiesQuarter({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
+          dispatch(doGetBankruptedTypeActivitiesMonth({ filters }));
+          break;
+
+        //----------- SOLE TRADE --------------
+
         case TYPE_ACTIVITY_TYPE.ST_CREATED_ALL:
           dispatch(doGetTypeActivitiesAllSoleTrade({ filters }));
           break;
@@ -94,6 +117,19 @@ const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
         case TYPE_ACTIVITY_TYPE.ST_LIQUIDATED_MONTH:
           dispatch(doGetLiquidatedTypeActivitiesMonthSoleTrade({ filters }));
           break;
+
+        case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_ALL:
+          dispatch(doGetBankruptedTypeActivitiesSoleTradeAll({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_YEAR:
+          dispatch(doGetBankruptedTypeActivitiesSoleTradeYear({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_QUARTER:
+          dispatch(doGetBankruptedTypeActivitiesSoleTradeQuarter({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
+          dispatch(doGetBankruptedTypeActivitiesSoleTradeMonth({ filters }));
+          break;
       }
     },
     [dispatch, filters],
@@ -101,7 +137,7 @@ const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
 
   useEffect(() => {
     getData(typeActivity);
-  }, [getData]);
+  }, [getData, typeActivity]);
 
   interface DataType {
     name: string;

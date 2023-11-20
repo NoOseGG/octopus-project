@@ -6,14 +6,7 @@ export interface LineProps {
 }
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  font-size: 16px;
-  margin-top: 40px;
-  border: 1px solid #cfcfcf;
-  border-radius: 10px;
-  padding: 10px;
+  margin-top: 20px;
 `;
 
 export const Content = styled.div`

@@ -1,15 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import {
-  Container,
-  Content,
-  Line,
-  Title,
-  SpinnerSpace,
-  TextLine,
-} from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
+import { Container } from '@app/components/dashboards/dashboard/styles/TypeActivitiesStyle';
 import { doGetTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/current/typeActivitiesAll';
-import { Spin } from 'antd';
+import { Skeleton, Table, TableProps } from 'antd';
 import {
   getStateForTypeActivity,
   getTitleForTypeActivity,
@@ -31,6 +24,7 @@ import { doGetLiquidatedTypeActivitiesAllSoleTrade } from '@app/store/slices/sol
 import { doGetLiquidatedTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeYear';
 import { doGetLiquidatedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeQuarter';
 import { doGetLiquidatedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated/typeActivitiesLiquidatedSoleTradeMonth';
+import { ColumnsType } from 'antd/es/table';
 
 const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
@@ -38,6 +32,13 @@ const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
   const dynamicState = useAppSelector((state) => getStateForTypeActivity(state, typeActivity));
   const results = dynamicState?.typeActivities.results;
   const loading = dynamicState?.loading;
+
+  const data = results.map((item) => {
+    return {
+      name: item.group_fields.type_activity_name,
+      count: item.Count,
+    };
+  });
 
   const getData = useCallback(
     (typeActivity) => {
@@ -102,27 +103,70 @@ const TypeActivity: React.FC<TypeActivitiesProps> = ({ typeActivity }) => {
     getData(typeActivity);
   }, [getData]);
 
+  interface DataType {
+    name: string;
+    count: number;
+  }
+
+  const columns: ColumnsType<DataType> = [
+    {
+      title: <div style={{ fontSize: 12, fontWeight: 700 }}>{getTitleForTypeActivity(typeActivity)}</div>,
+      dataIndex: 'name',
+      width: '85%',
+      render: (text) => <div style={{ cursor: 'pointer', fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
+    },
+    {
+      title: '',
+      dataIndex: 'count',
+      width: '15%',
+      render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+      sorter: (a, b) => a.count - b.count,
+      showSorterTooltip: false,
+    },
+  ];
+
+  const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
+  };
+
   return (
     <Container>
       {loading ? (
-        <SpinnerSpace>
-          <Spin size="large" />
-        </SpinnerSpace>
+        <Skeleton paragraph={{ rows: 10 }} active={true} />
       ) : (
-        <>
-          <Title>{getTitleForTypeActivity(typeActivity)}</Title>
-          <Content>
-            {results?.map((typeActivity, index) => (
-              <Line key={index} value={index}>
-                <TextLine>{typeActivity.group_fields.type_activity_name}</TextLine>
-                <TextLine>{typeActivity.Count}</TextLine>
-              </Line>
-            ))}
-          </Content>
-        </>
+        <Table
+          columns={columns}
+          dataSource={data}
+          onChange={onChange}
+          size={'small'}
+          pagination={false}
+          scroll={{ y: 360 }}
+        />
       )}
     </Container>
   );
+
+  // return (
+  //   <Container>
+  //     {loading ? (
+  //       <SpinnerSpace>
+  //         <Spin size="large" />
+  //       </SpinnerSpace>
+  //     ) : (
+  //       <>
+  //         <Title>{getTitleForTypeActivity(typeActivity)}</Title>
+  //         <Content>
+  //           {results?.map((typeActivity, index) => (
+  //             <Line key={index} value={index}>
+  //               <TextLine>{typeActivity.group_fields.type_activity_name}</TextLine>
+  //               <TextLine>{typeActivity.Count}</TextLine>
+  //             </Line>
+  //           ))}
+  //         </Content>
+  //       </>
+  //     )}
+  //   </Container>
+  // );
 };
 
 export default TypeActivity;

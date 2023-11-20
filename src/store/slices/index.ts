@@ -15,12 +15,14 @@ import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/cu
 import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/liquidated';
 import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
-import detailedInformationCompanyReducer from '@app/store/slices/legalEntityDashboard/detailed/current/detailedInformationSlice';
+import detailedInformationReducer from '@app/store/slices/legalEntityDashboard/detailed';
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
 import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/';
 import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created';
 import mainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/created';
+import mainInfoBankruptedReducer from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt';
+import mainInfoBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted';
 import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
 import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts';
 
@@ -39,6 +41,8 @@ export default {
   mainInfoSoleTrade: mainInfoSoleTradeReducer,
   liquidatedMainInfo: liquidatedMainInfoReducer,
   liquidatedMainInfoSoleTrade: liquidatedMainInfoSoleTradeReducer,
+  mainInfoBankrupted: mainInfoBankruptedReducer,
+  mainInfoBankruptedSoleTrade: mainInfoBankruptedSoleTradeReducer,
   charts: chartsReducer,
   chartsSoleTrade: chartsSoleTradeReducer,
   typeActivities: typeActivitiesReducer,
@@ -49,6 +53,6 @@ export default {
   liquidatedByAge: liquidatedByAgeReducer,
   liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
-  detailedInformationCompany: detailedInformationCompanyReducer,
+  detailedInformation: detailedInformationReducer,
   detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
 };

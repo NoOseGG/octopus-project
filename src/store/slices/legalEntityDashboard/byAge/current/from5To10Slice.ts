@@ -1,6 +1,6 @@
 import { CurrentByAgeState, ResponseCurrentByAge } from '@app/store/types/dashboard/CurrentByAgeType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';

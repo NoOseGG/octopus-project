@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 
 const initialState: MainInfoState = {
   count: 0,

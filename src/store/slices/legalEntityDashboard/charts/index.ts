@@ -4,6 +4,8 @@ import createdColumnChartReducer from '@app/store/slices/legalEntityDashboard/ch
 import liquidatedLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedLineChartSlice';
 import liquidatedColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedColumnChartSlice';
 import liquidatedByAgeChartReducer from '@app/store/slices/legalEntityDashboard/charts/liquidated/liquidatedByAgeChartSlice';
+import bankruptedLineChartReducer from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankruptedLineChartSlice';
+import bankruptedColumnChartReducer from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankrutpedColumnChartSlice';
 
 export const chartsReducer = combineReducers({
   createdLineChart: createdLineChartReducer,
@@ -11,6 +13,8 @@ export const chartsReducer = combineReducers({
   liquidatedLineChart: liquidatedLineChartReducer,
   liquidatedColumnChart: liquidatedColumnChartReducer,
   liquidatedByAgeChart: liquidatedByAgeChartReducer,
+  bankruptedLineChart: bankruptedLineChartReducer,
+  bankruptedColumnChart: bankruptedColumnChartReducer,
 });
 
 export default chartsReducer;

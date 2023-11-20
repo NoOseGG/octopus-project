@@ -5,30 +5,35 @@ export type DetailedProps = {
 };
 
 export enum DETAILED_TYPE {
-  LEGAl_ENTITY_CREATED,
-  LEGAl_ENTITY_LIQUIDATED,
-  LEGAl_ENTITY_BANKRUPTED,
-  LEGAl_ENTITY_CHECKED,
-  SOLE_TRADE_CREATED,
-  SOLE_TRADE_LIQUIDATED,
-  SOLE_TRADE_BANKRUPTED,
-  SOLE_TRADE_CHECKED,
+  LE_CREATED,
+  LE_LIQUIDATED,
+  LE_BANKRUPTED,
+  LE_CHECKED,
+  ST_CREATED,
+  ST_LIQUIDATED,
+  ST_BANKRUPTED,
+  ST_CHECKED,
 }
 
 export const getStateForDetailed = (state: RootState, detailed: DETAILED_TYPE) => {
   switch (detailed) {
-    case DETAILED_TYPE.LEGAl_ENTITY_CREATED:
-      return state.detailedInformationCompany;
-    case DETAILED_TYPE.SOLE_TRADE_CREATED:
+    case DETAILED_TYPE.LE_CREATED:
+      return state.detailedInformation.detailed;
+    case DETAILED_TYPE.LE_LIQUIDATED:
+      return state.detailedInformation.liquidatedDetailed;
+
+    case DETAILED_TYPE.ST_CREATED:
       return state.detailedInformationCompanySoleTrade;
   }
 };
 
 export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
   switch (detailed) {
-    case DETAILED_TYPE.LEGAl_ENTITY_CREATED:
+    case DETAILED_TYPE.LE_CREATED:
       return 'Детализированая информация о регистрации компаний';
-    case DETAILED_TYPE.SOLE_TRADE_CREATED:
+    case DETAILED_TYPE.LE_LIQUIDATED:
+      return 'Детализированая информация о ликвидированных компаниях';
+    case DETAILED_TYPE.ST_CREATED:
       return 'Детализированая информация о регистрации ИП';
     default:
       return 'default';

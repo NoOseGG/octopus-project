@@ -34,7 +34,7 @@ const DashboardSoleTrader: React.FC = () => {
       </ChartsContainer>
       <TypeActivitiesSoleTrade />
       <CurrentSubjectsByAgeSoleTrade />
-      <DetailedInformation detailed={DETAILED_TYPE.SOLE_TRADE_CREATED} />
+      <DetailedInformation detailed={DETAILED_TYPE.ST_CREATED} />
       <MainInfo
         all={COUNT_TYPE.ST_LIQUIDATED_ALL}
         year={COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR}
@@ -48,6 +48,17 @@ const DashboardSoleTrader: React.FC = () => {
       </ChartsContainer>
       <TypeActivitiesLiquidatedSoleTrade />
       <LiquidatedSubjectsByAgeSoleTrade />
+      <MainInfo
+        all={COUNT_TYPE.ST_BANKRUPT_ALL}
+        year={COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR}
+        quarter={COUNT_TYPE.ST_BANKRUPT_QUARTER}
+        operation={COUNT_TYPE.NONE}
+        percent={PERCENT_TYPE.ST_BANKRUPTED_PERCENT}
+      />
+      <ChartsContainer>
+        <LineChartYears lineChart={LINE_CHART_YEAR.ST_BANKRUPTED} />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.ST_BANKRUPTED} />
+      </ChartsContainer>
     </Container>
   );
 };

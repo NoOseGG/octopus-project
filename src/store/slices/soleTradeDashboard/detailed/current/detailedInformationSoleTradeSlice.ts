@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import {
   DetailedInformationState,
   ResponseDetailedInformation,

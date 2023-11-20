@@ -17,6 +17,8 @@ import { doCalculateCreatedPercent } from '@app/store/slices/legalEntityDashboar
 import { doCalculateLiquidatedPercent } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedPercentSlice';
 import { doCalculateCreatedPercentYearSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/created/createdPercentSoleTradeSlice';
 import { doCalculateLiquidatedPercentSoleTradeYear } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedPercentSoleTradeSlice';
+import { doGetCountBankruptedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedYearSlice';
+import { doCalculateBankruptedPercent } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedPercentSlice';
 
 const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -38,6 +40,10 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
         case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
           dispatch(doGetCountLiquidatedYear({ filters }));
           dispatch(doCalculateLiquidatedPercent({ filters }));
+          break;
+        case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
+          dispatch(doGetCountBankruptedYear({ filters }));
+          dispatch(doCalculateBankruptedPercent({ filters }));
           break;
 
         case COUNT_YEAR_TYPE.ST_CREATED_YEAR:

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { LiquidatedResponseLineChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 
@@ -49,8 +49,8 @@ const liquidatedLineChartSoleTradeSlice = createSlice({
     builder.addCase(doGetDataForLiquidatedLineChartSoleTrade.fulfilled, (state, action) => {
       state.results = action.payload.results.map((item) => {
         return {
-          year: item.group_fields.company_status_from_dttm__year,
-          count: item.Count,
+          type: item.group_fields.company_status_from_dttm__year,
+          sales: item.Count,
         };
       });
       state.loading = false;

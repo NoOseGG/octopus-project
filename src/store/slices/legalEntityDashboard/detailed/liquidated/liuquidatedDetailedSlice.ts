@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import {
   DetailedInformationState,
   ResponseDetailedInformation,
@@ -14,16 +14,17 @@ const initialState: DetailedInformationState = {
   error: null,
 };
 
-export const doGetDetailedInformationCompany = createAsyncThunk<ResponseDetailedInformation, RequestData>(
-  'doGetInDetailedInformationCompany',
+export const doGetLiquidatedDetailed = createAsyncThunk<ResponseDetailedInformation, RequestData>(
+  'doGetLiquidatedDetailed',
   async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.PAGE_SIZE(30) +
           DASH.LEGAL_ENTITY +
-          DASH.ORDERING('-company_date_registration') +
-          DASH.IS_NULL_FALSE('company_date_registration'),
+          DASH.LIQUIDATED_ENTITY +
+          DASH.ORDERING('-company_status_from_dttm') +
+          DASH.IS_NULL_FALSE('company_status_from_dttm'),
         filters,
         false,
         false,
@@ -37,19 +38,19 @@ export const doGetDetailedInformationCompany = createAsyncThunk<ResponseDetailed
   },
 );
 
-const detailedInformationSlice = createSlice({
-  name: 'detailedInformationCompanySlice',
+const liquidatedDetailedSlice = createSlice({
+  name: 'liquidatedDetailed',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetDetailedInformationCompany.pending, (state) => {
+    builder.addCase(doGetLiquidatedDetailed.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetDetailedInformationCompany.fulfilled, (state, action) => {
+    builder.addCase(doGetLiquidatedDetailed.fulfilled, (state, action) => {
       state.results = action.payload.results;
       state.loading = false;
     });
   },
 });
 
-export default detailedInformationSlice.reducer;
+export default liquidatedDetailedSlice.reducer;

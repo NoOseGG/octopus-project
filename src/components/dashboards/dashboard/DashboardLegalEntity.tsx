@@ -34,7 +34,7 @@ const DashboardLegalEntity: React.FC = () => {
       </ChartsContainer>
       <TypeActivities />
       <CurrentSubjectsByAge />
-      <DetailedInformation detailed={DETAILED_TYPE.LEGAl_ENTITY_CREATED} />
+      <DetailedInformation detailed={DETAILED_TYPE.LE_CREATED} />
       <MainInfo
         all={COUNT_TYPE.LE_LIQUIDATED_ALL}
         year={COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR}
@@ -48,6 +48,18 @@ const DashboardLegalEntity: React.FC = () => {
       </ChartsContainer>
       <TypeActivitiesLiquidated />
       <LiquidatedSubjectsByAge />
+      <DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />
+      <MainInfo
+        all={COUNT_TYPE.LE_BANKRUPT_ALL}
+        year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}
+        quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}
+        operation={COUNT_TYPE.NONE}
+        percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}
+      />
+      <ChartsContainer>
+        <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />
+      </ChartsContainer>
     </Container>
   );
 };

@@ -8,14 +8,22 @@ export enum COUNT_TYPE {
   LE_CREATED_ALL,
   LE_CREATED_QUARTER,
   LE_CREATED_OPERATION,
+
   LE_LIQUIDATED_ALL,
   LE_LIQUIDATED_QUARTER,
+
+  LE_BANKRUPT_ALL,
+  LE_BANKRUPT_QUARTER,
 
   ST_CREATED_ALL,
   ST_CREATED_QUARTER,
   ST_CREATED_OPERATION,
+
   ST_LIQUIDATED_ALL,
   ST_LIQUIDATED_QUARTER,
+
+  ST_BANKRUPT_ALL,
+  ST_BANKRUPT_QUARTER,
 
   NONE,
 }
@@ -34,6 +42,11 @@ export const getStateForCountCompany = (state: RootState, countCompany: COUNT_TY
     case COUNT_TYPE.LE_LIQUIDATED_QUARTER:
       return state.liquidatedMainInfo.liquidatedQuarter;
 
+    case COUNT_TYPE.LE_BANKRUPT_ALL:
+      return state.mainInfoBankrupted.bankruptedAll;
+    case COUNT_TYPE.LE_BANKRUPT_QUARTER:
+      return state.mainInfoBankrupted.bankruptedQuarter;
+
     case COUNT_TYPE.ST_CREATED_ALL:
       return state.mainInfoSoleTrade.createdAllSoleTrade;
     case COUNT_TYPE.ST_CREATED_QUARTER:
@@ -45,6 +58,11 @@ export const getStateForCountCompany = (state: RootState, countCompany: COUNT_TY
       return state.liquidatedMainInfoSoleTrade.liquidatedAllSoleTrade;
     case COUNT_TYPE.ST_LIQUIDATED_QUARTER:
       return state.liquidatedMainInfoSoleTrade.liquidatedQuarterSoleTrade;
+
+    case COUNT_TYPE.ST_BANKRUPT_ALL:
+      return state.mainInfoBankruptedSoleTrade.bankruptedAllSoleTrade;
+    case COUNT_TYPE.ST_BANKRUPT_QUARTER:
+      return state.mainInfoBankruptedSoleTrade.bankruptedQuarterSoleTrade;
   }
 };
 
@@ -62,6 +80,11 @@ export const getTitleForCountCompany = (countCompany: COUNT_TYPE): string => {
     case COUNT_TYPE.LE_LIQUIDATED_QUARTER:
       return 'Количество ликвидированных компаний (квартал)';
 
+    case COUNT_TYPE.LE_BANKRUPT_ALL:
+      return 'Общее количество обонкротившихся компаний';
+    case COUNT_TYPE.LE_BANKRUPT_QUARTER:
+      return 'Количество ликвидированных обонкротившихся компаний (квартал)';
+
     case COUNT_TYPE.ST_CREATED_ALL:
       return 'Общее количество созданных ИП';
     case COUNT_TYPE.ST_CREATED_QUARTER:
@@ -73,6 +96,11 @@ export const getTitleForCountCompany = (countCompany: COUNT_TYPE): string => {
       return 'Общее количество ликвидированных ИП';
     case COUNT_TYPE.ST_LIQUIDATED_QUARTER:
       return 'Количество ликвидированных ИП (квартал)';
+
+    case COUNT_TYPE.ST_BANKRUPT_ALL:
+      return 'Общее количество обонкротившихся ИП';
+    case COUNT_TYPE.ST_BANKRUPT_QUARTER:
+      return 'Количество ликвидированных обонкротившихся ИП (квартал)';
 
     case COUNT_TYPE.NONE:
       return 'Отсутсвует';

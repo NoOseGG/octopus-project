@@ -20,6 +20,7 @@ export const DASH = {
   },
 
   STATUS_AT: 'company_status_code=AT&',
+  STATUS_BP: 'company_status_code=BP&',
   AGR_COUNT: 'aggregate_by=Count&',
   AGR_AVERAGE: 'aggregate_by=Avg&',
 

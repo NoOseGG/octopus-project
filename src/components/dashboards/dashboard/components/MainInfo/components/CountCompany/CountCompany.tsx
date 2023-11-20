@@ -18,6 +18,10 @@ import { doGetTotalCountLiquidated } from '@app/store/slices/legalEntityDashboar
 import { doGetTotalCountLiquidatedLastQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedQuarterSlice';
 import { doGetTotalCountLiquidatedSoleTradeLastQuarter } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedSoleTradeQuarterSlice';
 import { doGetTotalCountLiquidatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedSoleTradeAllSlice';
+import { doGetTotalCountBankrupted } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedAllSlice';
+import { doGetCountBankruptedQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedQuarterSlice';
+import { doGetTotalCountBankruptedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedAllSoleTradeSlice';
+import { doGetCountBankruptedQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedQuarterSoleTradeSlice';
 
 const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -46,6 +50,13 @@ const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
           dispatch(doGetTotalCountLiquidatedLastQuarter({ filters }));
           break;
 
+        case COUNT_TYPE.LE_BANKRUPT_ALL:
+          dispatch(doGetTotalCountBankrupted({ filters }));
+          break;
+        case COUNT_TYPE.LE_BANKRUPT_QUARTER:
+          dispatch(doGetCountBankruptedQuarter({ filters }));
+          break;
+
         case COUNT_TYPE.ST_CREATED_ALL:
           dispatch(doGetTotalCountCreatedSoleTrade({ filters }));
           break;
@@ -61,6 +72,13 @@ const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
           break;
         case COUNT_TYPE.ST_LIQUIDATED_QUARTER:
           dispatch(doGetTotalCountLiquidatedSoleTradeLastQuarter({ filters }));
+          break;
+
+        case COUNT_TYPE.ST_BANKRUPT_ALL:
+          dispatch(doGetTotalCountBankruptedSoleTrade({ filters }));
+          break;
+        case COUNT_TYPE.ST_BANKRUPT_QUARTER:
+          dispatch(doGetCountBankruptedQuarterSoleTrade({ filters }));
           break;
       }
     },

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton, Table } from 'antd';
-import { doGetDetailedInformationCompany } from '@app/store/slices/legalEntityDashboard/detailed/current/detailedInformationSlice';
+import { doGetDetailed } from '@app/store/slices/legalEntityDashboard/detailed/current/detailedSlice';
 import {
   Content,
   Container,
@@ -15,6 +15,7 @@ import {
   getTitleForDetailed,
 } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
 import { doGetDetailedInformationCompanySoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
+import { doGetLiquidatedDetailed } from '@app/store/slices/legalEntityDashboard/detailed/liquidated/liuquidatedDetailedSlice';
 
 const getColumn = (title: string, field: string) => {
   return {
@@ -49,10 +50,13 @@ const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
   const getData = useCallback(
     (detailed) => {
       switch (detailed) {
-        case DETAILED_TYPE.LEGAl_ENTITY_CREATED:
-          dispatch(doGetDetailedInformationCompany({ filters }));
+        case DETAILED_TYPE.LE_CREATED:
+          dispatch(doGetDetailed({ filters }));
           break;
-        case DETAILED_TYPE.SOLE_TRADE_CREATED:
+        case DETAILED_TYPE.LE_LIQUIDATED:
+          dispatch(doGetLiquidatedDetailed({ filters }));
+          break;
+        case DETAILED_TYPE.ST_CREATED:
           dispatch(doGetDetailedInformationCompanySoleTrade({ filters }));
           break;
       }

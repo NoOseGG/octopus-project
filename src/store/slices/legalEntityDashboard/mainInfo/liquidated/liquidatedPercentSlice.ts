@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
-import { RequestData } from '@app/components/dashboards/dashboard/DashboardTypes';
+import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { PercentState, ResponsePercent } from '@app/store/types/dashboard/DashboardSlicesType';
 
 const initialState: PercentState = {
@@ -17,7 +17,7 @@ export const doCalculateLiquidatedPercent = createAsyncThunk<ResponsePercent, Re
     try {
       const year = getCurrentYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LEGAL_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
         filters,
         true,
         false,

@@ -19,7 +19,6 @@ const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dynamicState = useAppSelector((state) => getStateForLineChartYears(state, lineChart));
   const results = dynamicState?.results;
-  const loading = dynamicState?.loading;
   const dispatch = useAppDispatch();
 
   const getData = useCallback(
@@ -51,7 +50,7 @@ const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
 
   useEffect(() => {
     getData(lineChart);
-  }, [getData]);
+  }, [getData, lineChart]);
 
   const data = results.map((item) => {
     return {
@@ -59,8 +58,6 @@ const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
       value: item.sales,
     };
   });
-
-  console.log(data);
 
   const config: LineConfig = {
     data,

@@ -45,6 +45,7 @@ export const HeaderSearch: React.FC = () => {
     setOverlayVisible(false);
   }, [pathname]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const delaySearch = useCallback(
     _.debounce((query: string) => {
       dispatch(doSearch(query));
@@ -52,6 +53,7 @@ export const HeaderSearch: React.FC = () => {
     [dispatch],
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (query.trim().length > 2) {
       delaySearch(query);

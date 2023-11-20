@@ -1,4 +1,3 @@
-import { ResponseLineChart } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';

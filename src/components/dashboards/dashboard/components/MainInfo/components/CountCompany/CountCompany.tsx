@@ -87,7 +87,7 @@ const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
 
   useEffect(() => {
     getData(countCompany);
-  }, [getData]);
+  }, [getData, countCompany]);
 
   return (
     <>

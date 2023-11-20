@@ -28,7 +28,6 @@ export const doGetDataForBankruptedLineChart = createAsyncThunk<BankruptedRespon
         baseUrl += DASH.DATE_AFTER_LIQUIDATED('2000-01-01');
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-      console.log(url);
       const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
       return response.data;
     } catch (error) {

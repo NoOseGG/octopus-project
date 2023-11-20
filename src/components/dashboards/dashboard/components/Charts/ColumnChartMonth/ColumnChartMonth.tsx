@@ -21,7 +21,6 @@ const ColumnChartMonth: React.FC<ColumnChartMonthProps> = ({ columnChart }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dynamicState = useAppSelector((state) => getStateForColumnChartMonth(state, columnChart));
   const results = dynamicState?.results;
-  const loading = dynamicState?.loading;
   const dispatch = useAppDispatch();
 
   const getData = useCallback(
@@ -53,7 +52,7 @@ const ColumnChartMonth: React.FC<ColumnChartMonthProps> = ({ columnChart }) => {
 
   useEffect(() => {
     getData(columnChart);
-  }, [getData]);
+  }, [getData, columnChart]);
 
   const data = results.map((item) => {
     return {

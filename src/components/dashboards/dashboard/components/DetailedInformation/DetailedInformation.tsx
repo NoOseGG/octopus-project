@@ -66,7 +66,7 @@ const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
 
   useEffect(() => {
     getData(detailed);
-  }, [getData]);
+  }, [getData, detailed]);
 
   return (
     <>

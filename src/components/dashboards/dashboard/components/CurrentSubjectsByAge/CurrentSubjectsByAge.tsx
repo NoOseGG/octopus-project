@@ -7,7 +7,7 @@ import {
   ChartContainer,
 } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import AgeDiagram from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/AgeDiagram/AgeDiagram';
-import AvgAge from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/AvgAge/AvgAge';
+import AvgAge2 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/AvgAge/AvgAge2';
 import MoreThen20 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/MoreThen20/MoreThen20';
 import From10To20 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/From10To20/From10To20';
 import From5To10 from '@app/components/dashboards/dashboard/components/CurrentSubjectsByAge/components/From5To10/From5To10';
@@ -27,7 +27,7 @@ const CurrentSubjectsByAge: React.FC = () => {
         <LessThen1 />
       </AgeContainer>
       <ChartContainer>
-        <AvgAge />
+        <AvgAge2 />
         <AgeDiagram />
       </ChartContainer>
       <Divider />

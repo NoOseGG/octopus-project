@@ -12,6 +12,7 @@ export interface GridProps {
 // `;
 
 export const Container = styled.div<GridProps>`
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-around;

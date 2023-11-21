@@ -3,6 +3,14 @@ export interface LiquidatedByAgeChartState {
   loading: boolean;
   error: string | null;
 }
+
+export interface LiquidatedByAgeChartResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: LiquidatedByAgeChartObject[];
+}
+
 interface LiquidatedByAgeChartObject {
   group_fields: {
     company_status_from_dttm__year: number;
@@ -10,9 +18,10 @@ interface LiquidatedByAgeChartObject {
   };
   Count: number;
 }
-export interface LiquidatedByAgeChartResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: LiquidatedByAgeChartObject[];
+
+export interface LiquidatedByAgeChartStateObject {
+  year: number;
+  value: number;
+  category: string;
+  key: number;
 }

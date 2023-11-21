@@ -15,8 +15,10 @@ import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTrad
 import typeActivitiesBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted';
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/current';
 import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/liquidated';
-import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
+import bankruptedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/bankrupted';
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
+import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
+import bankruptedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/bankrupted';
 import detailedInformationReducer from '@app/store/slices/legalEntityDashboard/detailed';
 import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
@@ -55,8 +57,10 @@ export default {
   typeActivitiesBankruptedSoleTrade: typeActivitiesBankruptedSoleTradeReducer,
   currentByAge: currentByAgeReducer,
   liquidatedByAge: liquidatedByAgeReducer,
-  liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
+  bankruptedByAge: bankruptedByAgeReducer,
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
+  liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
+  bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,
   detailedInformation: detailedInformationReducer,
   detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
 };

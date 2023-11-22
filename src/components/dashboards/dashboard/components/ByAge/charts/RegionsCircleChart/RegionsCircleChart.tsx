@@ -44,7 +44,7 @@ const RegionsCircleChart: React.FC = () => {
 
   return (
     <PieContainer>
-      return <Pie {...config} />;
+      <Pie {...config} />;
     </PieContainer>
   );
 };

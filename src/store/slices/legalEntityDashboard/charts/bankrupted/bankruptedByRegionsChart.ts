@@ -28,7 +28,6 @@ export const doGetDataForBankruptedByRegionsChart = createAsyncThunk<BankruptedB
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
       const response = await axios.get(url + DASH.ORDERING_AGG('Count'));
-      console.log(url);
       return response.data;
     } catch (error) {
       console.log(error);

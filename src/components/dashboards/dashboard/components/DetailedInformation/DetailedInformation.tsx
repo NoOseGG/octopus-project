@@ -14,8 +14,11 @@ import {
   getStateForDetailed,
   getTitleForDetailed,
 } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
-import { doGetDetailedInformationCompanySoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
+import { doGetDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
 import { doGetLiquidatedDetailed } from '@app/store/slices/legalEntityDashboard/detailed/liquidated/liuquidatedDetailedSlice';
+import { doGetBankruptedDetailed } from '@app/store/slices/legalEntityDashboard/detailed/bankrupted/bankruptedDetailedSlice';
+import { doGetLiquidatedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/liquidated/liuquidatedDetailedSoleTradeSlice';
+import { doGetBankruptedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/bankrupted/bankruptedDetailedSoleTradeSlice';
 
 const getColumn = (title: string, field: string) => {
   return {
@@ -56,8 +59,18 @@ const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
         case DETAILED_TYPE.LE_LIQUIDATED:
           dispatch(doGetLiquidatedDetailed({ filters }));
           break;
+        case DETAILED_TYPE.LE_BANKRUPTED:
+          dispatch(doGetBankruptedDetailed({ filters }));
+          break;
+
         case DETAILED_TYPE.ST_CREATED:
-          dispatch(doGetDetailedInformationCompanySoleTrade({ filters }));
+          dispatch(doGetDetailedSoleTrade({ filters }));
+          break;
+        case DETAILED_TYPE.ST_LIQUIDATED:
+          dispatch(doGetLiquidatedDetailedSoleTrade({ filters }));
+          break;
+        case DETAILED_TYPE.ST_BANKRUPTED:
+          dispatch(doGetBankruptedDetailedSoleTrade({ filters }));
           break;
       }
     },

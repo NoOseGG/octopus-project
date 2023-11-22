@@ -21,9 +21,15 @@ export const getStateForDetailed = (state: RootState, detailed: DETAILED_TYPE) =
       return state.detailedInformation.detailed;
     case DETAILED_TYPE.LE_LIQUIDATED:
       return state.detailedInformation.liquidatedDetailed;
+    case DETAILED_TYPE.LE_BANKRUPTED:
+      return state.detailedInformation.bankruptedDetailed;
 
     case DETAILED_TYPE.ST_CREATED:
-      return state.detailedInformationCompanySoleTrade;
+      return state.detailedInformationSoleTrade.detailedSoleTrade;
+    case DETAILED_TYPE.ST_LIQUIDATED:
+      return state.detailedInformationSoleTrade.liquidatedDetailedSoleTrade;
+    case DETAILED_TYPE.ST_BANKRUPTED:
+      return state.detailedInformationSoleTrade.bankruptedDetailedSoleTrade;
   }
 };
 
@@ -33,8 +39,15 @@ export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
       return 'Детализированая информация о регистрации компаний';
     case DETAILED_TYPE.LE_LIQUIDATED:
       return 'Детализированая информация о ликвидированных компаниях';
+    case DETAILED_TYPE.LE_BANKRUPTED:
+      return 'Детализированая информация о обонкроченных компаниях';
+
     case DETAILED_TYPE.ST_CREATED:
       return 'Детализированая информация о регистрации ИП';
+    case DETAILED_TYPE.ST_LIQUIDATED:
+      return 'Детализированая информация о ликвидированных ИП';
+    case DETAILED_TYPE.ST_BANKRUPTED:
+      return 'Детализированая информация о обонкроченных ИП';
     default:
       return 'default';
   }

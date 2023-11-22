@@ -96,6 +96,7 @@ const DashboardSoleTrader: React.FC = () => {
         chartType={CHART_TYPE.ROSE}
       />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.ST_LIQUIDATED} />
+      <DetailedInformation detailed={DETAILED_TYPE.ST_LIQUIDATED} />
       <MainInfo
         all={COUNT_TYPE.ST_BANKRUPT_ALL}
         year={COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR}
@@ -121,6 +122,7 @@ const DashboardSoleTrader: React.FC = () => {
         lessThen1={AGE_TYPES.ST_BANKRUPTED_LESS_THEN_1}
       />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.ST_BANKRUPTED} />
+      <DetailedInformation detailed={DETAILED_TYPE.ST_BANKRUPTED} />
     </Container>
   );
 };

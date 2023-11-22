@@ -14,16 +14,17 @@ const initialState: DetailedInformationState = {
   error: null,
 };
 
-export const doGetDetailedSoleTrade = createAsyncThunk<ResponseDetailedInformation, RequestData>(
-  'doGetDetailedInformationCompanySoleTrade',
+export const doGetBankruptedDetailed = createAsyncThunk<ResponseDetailedInformation, RequestData>(
+  'doGetBankruptedDetailed',
   async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.PAGE_SIZE(30) +
-          DASH.SOLE_TRADE +
-          DASH.ORDERING('-company_date_registration') +
-          DASH.IS_NULL_FALSE('company_date_registration'),
+          DASH.LEGAL_ENTITY +
+          DASH.STATUS_BP +
+          DASH.ORDERING('-company_status_from_dttm') +
+          DASH.IS_NULL_FALSE('company_status_from_dttm'),
         filters,
         false,
         false,
@@ -37,19 +38,19 @@ export const doGetDetailedSoleTrade = createAsyncThunk<ResponseDetailedInformati
   },
 );
 
-const detailedInformationSoleTradeSlice = createSlice({
-  name: 'detailedInformationSoleTrade',
+const bankruptedDetailedSlice = createSlice({
+  name: 'bankruptedDetailed',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetDetailedSoleTrade.pending, (state) => {
+    builder.addCase(doGetBankruptedDetailed.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(doGetDetailedSoleTrade.fulfilled, (state, action) => {
+    builder.addCase(doGetBankruptedDetailed.fulfilled, (state, action) => {
       state.results = action.payload.results;
       state.loading = false;
     });
   },
 });
 
-export default detailedInformationSoleTradeSlice.reducer;
+export default bankruptedDetailedSlice.reducer;

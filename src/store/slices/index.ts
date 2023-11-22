@@ -20,7 +20,7 @@ import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/b
 import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
 import bankruptedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/bankrupted';
 import detailedInformationReducer from '@app/store/slices/legalEntityDashboard/detailed';
-import detailedInformationCompanySoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed/current/detailedInformationSoleTradeSlice';
+import detailedInformationSoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
 import liquidatedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/';
 import mainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/created';
@@ -62,5 +62,5 @@ export default {
   liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
   bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,
   detailedInformation: detailedInformationReducer,
-  detailedInformationCompanySoleTrade: detailedInformationCompanySoleTradeReducer,
+  detailedInformationSoleTrade: detailedInformationSoleTradeReducer,
 };

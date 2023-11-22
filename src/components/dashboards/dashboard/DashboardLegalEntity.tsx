@@ -22,6 +22,7 @@ import AgePieChart from '@app/components/dashboards/dashboard/components/ByAge/c
 import AgeMultipleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/AgeMultipleChart/AgeMultipleChart';
 import { AGE_MULTIPLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgeMultipleChart/AgeMultipleChartTypes';
 import { CHART_TYPE } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgePieChart/AgePieCharTypes';
+import RegionsCircleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChart';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -121,7 +122,9 @@ const DashboardLegalEntity: React.FC = () => {
         from1To5={AGE_TYPES.LE_BANKRUPTED_FROM_1_TO_5}
         lessThen1={AGE_TYPES.LE_BANKRUPTED_LESS_THEN_1}
       />
+      <RegionsCircleChart />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
+      <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
     </Container>
   );
 };

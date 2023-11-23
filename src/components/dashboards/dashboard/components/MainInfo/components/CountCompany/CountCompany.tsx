@@ -57,6 +57,8 @@ const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
           dispatch(doGetCountBankruptedQuarter({ filters }));
           break;
 
+        // Sole Trade
+
         case COUNT_TYPE.ST_CREATED_ALL:
           dispatch(doGetTotalCountCreatedSoleTrade({ filters }));
           break;

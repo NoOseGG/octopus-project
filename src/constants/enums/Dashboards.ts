@@ -1,5 +1,6 @@
 export const DASH = {
   BASE: 'https://api.analytix.by/api/v1/dashboard/main/?',
+  BASE_INSPECTION: 'https://api.analytix.by/api/v1/dashboard/inspection/?',
   LEGAL_ENTITY: 'legal_form_entity_type__iexact=Юридическое+лицо&',
   SOLE_TRADE: 'legal_form_entity_type__iexact=Индивидуальный+предприниматель&',
   LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,BP,PL,RG,SA,LC&',

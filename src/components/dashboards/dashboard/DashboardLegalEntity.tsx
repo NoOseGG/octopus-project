@@ -23,6 +23,8 @@ import AgeMultipleChart from '@app/components/dashboards/dashboard/components/By
 import { AGE_MULTIPLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgeMultipleChart/AgeMultipleChartTypes';
 import { CHART_TYPE } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgePieChart/AgePieCharTypes';
 import RegionsCircleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChart';
+import Inspections from '@app/components/dashboards/dashboard/components/Inspection/components/Inspections';
+import { COUNT_CHECKED_TYPE } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -125,6 +127,11 @@ const DashboardLegalEntity: React.FC = () => {
       <RegionsCircleChart />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
       <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
+      <Inspections
+        all={COUNT_CHECKED_TYPE.LE_CHECKED_ALL}
+        liquidated={COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED}
+        bankrupted={COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED}
+      />
     </Container>
   );
 };

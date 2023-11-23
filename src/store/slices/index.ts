@@ -29,6 +29,7 @@ import mainInfoBankruptedReducer from '@app/store/slices/legalEntityDashboard/ma
 import mainInfoBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted';
 import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
 import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts';
+import checkedReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
 
 export default {
   user: userReducer,
@@ -63,4 +64,5 @@ export default {
   bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,
   detailedInformation: detailedInformationReducer,
   detailedInformationSoleTrade: detailedInformationSoleTradeReducer,
+  checked: checkedReducer,
 };

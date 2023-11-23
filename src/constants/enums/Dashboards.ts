@@ -20,6 +20,14 @@ export const DASH = {
     return `company_status_from_dttm__gte=${date}&`;
   },
 
+  DATE_BEFORE_INSPECTION: (date: string): string => {
+    return `inspection_dttm__lte=${date}&`;
+  },
+
+  DATE_AFTER_INSPECTION: (date: string): string => {
+    return `inspection_dttm__gte=${date}&`;
+  },
+
   STATUS_AT: 'company_status_code=AT&',
   STATUS_BP: 'company_status_code=BP&',
   AGR_COUNT: 'aggregate_by=Count&',

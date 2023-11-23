@@ -132,6 +132,9 @@ const DashboardLegalEntity: React.FC = () => {
         liquidated={COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED}
         bankrupted={COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED}
       />
+      <ChartsContainer>
+        <LineChartYears lineChart={LINE_CHART_YEAR.LE_CHECKED} />
+      </ChartsContainer>
     </Container>
   );
 };

@@ -14,6 +14,7 @@ import { doGetDataForLineChartSoleTrade } from '@app/store/slices/soleTradeDashb
 import { doGetDataForLiquidatedLineChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/liquidated/liquidatedLineChartSoleTradeSlice';
 import { doGetDataForBankruptedLineChart } from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankruptedLineChartSlice';
 import { doGetDataForBankruptedLineChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankruptedLineChartSoleTradeSlice';
+import { doGetDataForCheckedLineChart } from '@app/store/slices/legalEntityDashboard/charts/checked/checkedLineChartSlice';
 
 const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -32,6 +33,9 @@ const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
           break;
         case LINE_CHART_YEAR.LE_BANKRUPTED:
           dispatch(doGetDataForBankruptedLineChart({ filters }));
+          break;
+        case LINE_CHART_YEAR.LE_CHECKED:
+          dispatch(doGetDataForCheckedLineChart({ filters }));
           break;
 
         case LINE_CHART_YEAR.ST_CREATED:

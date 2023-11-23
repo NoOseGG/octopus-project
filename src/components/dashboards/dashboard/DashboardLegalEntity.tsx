@@ -134,6 +134,7 @@ const DashboardLegalEntity: React.FC = () => {
       />
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_CHECKED} />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CHECKED} />
       </ChartsContainer>
     </Container>
   );

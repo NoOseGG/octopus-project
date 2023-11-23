@@ -3,7 +3,7 @@ export const DASH = {
   BASE_INSPECTION: 'https://api.analytix.by/api/v1/dashboard/inspection/?',
   LEGAL_ENTITY: 'legal_form_entity_type__iexact=Юридическое+лицо&',
   SOLE_TRADE: 'legal_form_entity_type__iexact=Индивидуальный+предприниматель&',
-  LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,BP,PL,RG,SA,LC&',
+  LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,PL,RG,SA,LC&',
   COUNT: 'count=1&',
   DATE_BEFORE: (date: string): string => {
     return `company_date_registration__lte=${date}&`;

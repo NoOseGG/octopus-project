@@ -9,6 +9,8 @@ import {
   getTitleForCountChecked,
 } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
 import { doGetTotalCountChecked } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedAllSlice';
+import { doGetTotalCountCheckedLiquidated } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedLiquidatedSlice';
+import { doGetTotalCountCheckedBankrupted } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedBankruptedSlice';
 
 const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -23,6 +25,12 @@ const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
         case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
           dispatch(doGetTotalCountChecked({ filters }));
           break;
+        case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
+          dispatch(doGetTotalCountCheckedLiquidated({ filters }));
+          break;
+        case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
+          dispatch(doGetTotalCountCheckedBankrupted({ filters }));
+          break;
       }
     },
     [dispatch, filters],
@@ -30,7 +38,7 @@ const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
 
   useEffect(() => {
     getData(countChecked);
-  }, [getData]);
+  }, [getData, countChecked]);
 
   return (
     <>

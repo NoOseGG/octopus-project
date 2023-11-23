@@ -13,6 +13,8 @@ const Inspections: React.FC<InspectionsProps> = ({ all, liquidated, bankrupted }
       <Divider />
       <Container value={isDate}>
         <CountChecked countChecked={all} />
+        <CountChecked countChecked={liquidated} />
+        <CountChecked countChecked={bankrupted} />
       </Container>
     </>
   );

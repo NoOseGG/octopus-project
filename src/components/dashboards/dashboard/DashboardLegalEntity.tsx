@@ -25,6 +25,7 @@ import { CHART_TYPE } from '@app/components/dashboards/dashboard/components/ByAg
 import RegionsCircleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChart';
 import Inspections from '@app/components/dashboards/dashboard/components/Inspection/components/Inspections';
 import { COUNT_CHECKED_TYPE } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
+import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -124,7 +125,7 @@ const DashboardLegalEntity: React.FC = () => {
         from1To5={AGE_TYPES.LE_BANKRUPTED_FROM_1_TO_5}
         lessThen1={AGE_TYPES.LE_BANKRUPTED_LESS_THEN_1}
       />
-      <RegionsCircleChart />
+      <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_BANKRUPTED} />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
       <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
       <Inspections
@@ -135,6 +136,10 @@ const DashboardLegalEntity: React.FC = () => {
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_CHECKED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CHECKED} />
+      </ChartsContainer>
+      <ChartsContainer>
+        <AvgAge avgAge={AVG_AGE_TYPES.LE_CHECKED} />
+        <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_CHECKED} />
       </ChartsContainer>
     </Container>
   );
@@ -147,6 +152,7 @@ const Container = styled.div`
 `;
 
 const ChartsContainer = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

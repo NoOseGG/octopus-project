@@ -182,28 +182,6 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
       )}
     </Container>
   );
-
-  // return (
-  //   <Container>
-  //     {loading ? (
-  //       <SpinnerSpace>
-  //         <Spin size="large" />
-  //       </SpinnerSpace>
-  //     ) : (
-  //       <>
-  //         <Title>{getTitleForTypeActivity(typeActivity)}</Title>
-  //         <Content>
-  //           {results?.map((typeActivity, index) => (
-  //             <Line key={index} value={index}>
-  //               <TextLine>{typeActivity.group_fields.type_activity_name}</TextLine>
-  //               <TextLine>{typeActivity.Count}</TextLine>
-  //             </Line>
-  //           ))}
-  //         </Content>
-  //       </>
-  //     )}
-  //   </Container>
-  // );
 };
 
 export default TypeActivity;

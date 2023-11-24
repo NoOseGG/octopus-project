@@ -16,6 +16,7 @@ import typeActivitiesBankruptedSoleTradeReducer from '@app/store/slices/soleTrad
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/current';
 import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/liquidated';
 import bankruptedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/bankrupted';
+import checkedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/checked';
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
 import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
 import bankruptedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/bankrupted';
@@ -59,6 +60,7 @@ export default {
   currentByAge: currentByAgeReducer,
   liquidatedByAge: liquidatedByAgeReducer,
   bankruptedByAge: bankruptedByAgeReducer,
+  checkedByAge: checkedByAgeReducer,
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
   liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
   bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,

@@ -1,19 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Pie, PieConfig } from '@ant-design/charts';
 import { PieContainer } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
+import {
+  getStateForRegionCircleChart,
+  REGION_CIRCLE_TYPES,
+  RegionsCircleProps,
+} from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
 import { doGetDataForBankruptedByRegionsChart } from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankruptedByRegionsChart';
+import { doGetDataForCheckedBySettlementsChart } from '@app/store/slices/legalEntityDashboard/charts/checked/checkedBySettlementsChart';
 
-const RegionsCircleChart: React.FC = () => {
-  const { results } = useAppSelector((state) => state.charts.bankruptedByRegionsChart);
+const RegionsCircleChart: React.FC<RegionsCircleProps> = ({ regionCircle }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dispatch = useAppDispatch();
+  const dynamicState = useAppSelector((state) => getStateForRegionCircleChart(state, regionCircle));
+  const results = dynamicState?.results;
+
+  const getData = useCallback(
+    (regionCircle) => {
+      switch (regionCircle) {
+        case REGION_CIRCLE_TYPES.LE_BANKRUPTED:
+          dispatch(doGetDataForBankruptedByRegionsChart({ filters }));
+          break;
+        case REGION_CIRCLE_TYPES.LE_CHECKED:
+          dispatch(doGetDataForCheckedBySettlementsChart({ filters }));
+          break;
+      }
+    },
+    [dispatch, filters],
+  );
 
   useEffect(() => {
-    dispatch(doGetDataForBankruptedByRegionsChart({ filters }));
-  }, [dispatch, filters]);
+    getData(regionCircle);
+  }, [getData, regionCircle]);
 
-  const data = results;
+  const data = results.slice(0, 15);
 
   const config: PieConfig = {
     appendPadding: 10,
@@ -44,7 +65,7 @@ const RegionsCircleChart: React.FC = () => {
 
   return (
     <PieContainer>
-      <Pie {...config} />;
+      <Pie {...config} />
     </PieContainer>
   );
 };

@@ -25,7 +25,6 @@ export const doGetDataForCheckedLineChart = createAsyncThunk<CheckedResponseLine
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
       const response = await axios.get(url + DASH.ORDERING_AGG('inspection_dttm__year'));
-      console.log(url);
       return response.data;
     } catch (error) {
       console.log(error);

@@ -17,11 +17,20 @@ export enum COUNT_CHECKED_TYPE {
 export const getStateForCountChecked = (state: RootState, countChecked: COUNT_CHECKED_TYPE) => {
   switch (countChecked) {
     case COUNT_CHECKED_TYPE.LE_CHECKED_ALL:
-      return state.checked.checkedAll;
+      return state.checkedMainInfo.checkedAll;
     case COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED:
-      return state.checked.checkedLiquidated;
+      return state.checkedMainInfo.checkedLiquidated;
     case COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED:
-      return state.checked.checkedBankrupted;
+      return state.checkedMainInfo.checkedBankrupted;
+
+    // Sole Trade
+
+    case COUNT_CHECKED_TYPE.ST_CHECKED_ALL:
+      return state.checkedMainInfoSoleTrade.checkedAllSoleTrade;
+    case COUNT_CHECKED_TYPE.ST_CHECKED_LIQUIDATED:
+      return state.checkedMainInfoSoleTrade.checkedLiquidatedSoleTrade;
+    case COUNT_CHECKED_TYPE.ST_CHECKED_BANKRUPTED:
+      return state.checkedMainInfoSoleTrade.checkedBankruptedSoleTrade;
   }
 };
 
@@ -33,6 +42,16 @@ export const getTitleForCountChecked = (countYear: COUNT_CHECKED_TYPE): string =
       return 'Количество проверок компаний, которые на данный момент ликвидированы';
     case COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED:
       return 'Количество проверок компаний, которые на данный момент обанкрочены';
+
+    // Sole Trade
+
+    case COUNT_CHECKED_TYPE.ST_CHECKED_ALL:
+      return 'Общее количество проверок ИП';
+    case COUNT_CHECKED_TYPE.ST_CHECKED_LIQUIDATED:
+      return 'Количество проверок ИП, которые на данный момент ликвидированы';
+    case COUNT_CHECKED_TYPE.ST_CHECKED_BANKRUPTED:
+      return 'Количество проверок ИП, которые на данный момент обанкрочены';
+
     default:
       return '';
   }

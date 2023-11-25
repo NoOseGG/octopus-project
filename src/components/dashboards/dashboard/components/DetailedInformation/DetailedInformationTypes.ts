@@ -23,6 +23,8 @@ export const getStateForDetailed = (state: RootState, detailed: DETAILED_TYPE) =
       return state.detailedInformation.liquidatedDetailed;
     case DETAILED_TYPE.LE_BANKRUPTED:
       return state.detailedInformation.bankruptedDetailed;
+    case DETAILED_TYPE.LE_CHECKED:
+      return state.detailedInformation.checkedDetailed;
 
     case DETAILED_TYPE.ST_CREATED:
       return state.detailedInformationSoleTrade.detailedSoleTrade;
@@ -30,6 +32,8 @@ export const getStateForDetailed = (state: RootState, detailed: DETAILED_TYPE) =
       return state.detailedInformationSoleTrade.liquidatedDetailedSoleTrade;
     case DETAILED_TYPE.ST_BANKRUPTED:
       return state.detailedInformationSoleTrade.bankruptedDetailedSoleTrade;
+    case DETAILED_TYPE.ST_CHECKED:
+      return state.detailedInformationSoleTrade.checkedDetailedSoleTrade;
   }
 };
 
@@ -41,6 +45,8 @@ export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
       return 'Детализированая информация о ликвидированных компаниях';
     case DETAILED_TYPE.LE_BANKRUPTED:
       return 'Детализированая информация о обонкроченных компаниях';
+    case DETAILED_TYPE.LE_CHECKED:
+      return 'Детализированая информация о проверенных компаниях';
 
     case DETAILED_TYPE.ST_CREATED:
       return 'Детализированая информация о регистрации ИП';
@@ -48,6 +54,9 @@ export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
       return 'Детализированая информация о ликвидированных ИП';
     case DETAILED_TYPE.ST_BANKRUPTED:
       return 'Детализированая информация о обонкроченных ИП';
+    case DETAILED_TYPE.ST_CHECKED:
+      return 'Детализированая информация о проверенных ИП';
+
     default:
       return 'default';
   }

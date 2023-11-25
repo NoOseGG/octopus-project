@@ -16,7 +16,7 @@ export const doGetBankruptedByAgeMoreThen20SoleTrade = createAsyncThunk<Response
   async ({ filters }) => {
     try {
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_BP + DASH.AGE_RANGE(20, 100),
+        DASH.BASE + DASH.SOLE_TRADE + DASH.STATUS_BP + DASH.AGE_RANGE(20, 100),
         filters,
         true,
         false,

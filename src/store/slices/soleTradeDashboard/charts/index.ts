@@ -7,6 +7,10 @@ import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboar
 import bankruptedLineChartSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankruptedLineChartSoleTradeSlice';
 import bankruptedColumnChartSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankrutpedColumnChartSoleTradeSlice';
 import bankruptedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankruptedByAgeChartSoleTradeSlice';
+import bankruptedByRegionsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankruptedByRegionsChartSoleTrade';
+import checkedLineChartSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/checked/checkedLineChartSoleTradeSlice';
+import checkedColumnChartSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/checked/checkedColumnChartSoleTradeSlice';
+import checkedBySettlementsChartSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts/checked/checkedBySettlementsChartSoleTradeSlice';
 
 export const chartsSoleTradeReducer = combineReducers({
   createdLineChartSoleTrade: createdLineChartSoleTradeReducer,
@@ -17,6 +21,10 @@ export const chartsSoleTradeReducer = combineReducers({
   bankruptedLineChartSoleTrade: bankruptedLineChartSoleTradeReducer,
   bankruptedColumnChartSoleTrade: bankruptedColumnChartSoleTradeReducer,
   bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,
+  bankruptedByRegionsSoleTrade: bankruptedByRegionsSoleTradeReducer,
+  checkedLineChartSoleTrade: checkedLineChartSoleTradeReducer,
+  checkedColumnChartSoleTrade: checkedColumnChartSoleTradeReducer,
+  checkedBySettlementsChartSoleTrade: checkedBySettlementsChartSoleTradeReducer,
 });
 
 export default chartsSoleTradeReducer;

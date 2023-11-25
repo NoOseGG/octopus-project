@@ -11,6 +11,9 @@ import {
 import { doGetTotalCountChecked } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedAllSlice';
 import { doGetTotalCountCheckedLiquidated } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedLiquidatedSlice';
 import { doGetTotalCountCheckedBankrupted } from '@app/store/slices/legalEntityDashboard/mainInfo/checked/checkedBankruptedSlice';
+import { doGetTotalCountCheckedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedAllSoleTradeSlice';
+import { doGetTotalCountCheckedLiquidatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedLiquidatedSoleTradeSlice';
+import { doGetTotalCountCheckedBankruptedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedBankruptedSoleTradeSlice';
 
 const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -30,6 +33,18 @@ const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
           break;
         case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
           dispatch(doGetTotalCountCheckedBankrupted({ filters }));
+          break;
+
+        // Sole Trade
+
+        case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
+          dispatch(doGetTotalCountCheckedSoleTrade({ filters }));
+          break;
+        case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
+          dispatch(doGetTotalCountCheckedLiquidatedSoleTrade({ filters }));
+          break;
+        case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
+          dispatch(doGetTotalCountCheckedBankruptedSoleTrade({ filters }));
           break;
       }
     },

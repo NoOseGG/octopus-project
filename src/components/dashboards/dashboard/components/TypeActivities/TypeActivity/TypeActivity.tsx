@@ -37,6 +37,10 @@ import { doGetCheckedTypeActivitiesAll } from '@app/store/slices/legalEntityDash
 import { doGetCheckedTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedYear';
 import { doGetCheckedTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedQuarter';
 import { doGetCheckedTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedMonth';
+import { doGetCheckedTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTradeAll';
+import { doGetCheckedTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTrdeYearSlice';
+import { doGetCheckedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTradeQuarterSlice';
+import { doGetCheckedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTradeMonth';
 
 const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
@@ -147,6 +151,19 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
           break;
         case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
           dispatch(doGetBankruptedTypeActivitiesSoleTradeMonth({ filters }));
+          break;
+
+        case TYPE_ACTIVITY_TYPE.ST_CHECKED_ALL:
+          dispatch(doGetCheckedTypeActivitiesAllSoleTrade({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_CHECKED_YEAR:
+          dispatch(doGetCheckedTypeActivitiesYearSoleTrade({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_CHECKED_QUARTER:
+          dispatch(doGetCheckedTypeActivitiesQuarterSoleTrade({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.ST_CHECKED_MONTH:
+          dispatch(doGetCheckedTypeActivitiesMonthSoleTrade({ filters }));
           break;
       }
     },

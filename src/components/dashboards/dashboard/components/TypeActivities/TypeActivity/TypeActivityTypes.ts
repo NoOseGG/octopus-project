@@ -34,6 +34,10 @@ export enum TYPE_ACTIVITY_TYPE {
   ST_BANKRUPTED_YEAR,
   ST_BANKRUPTED_QUARTER,
   ST_BANKRUPTED_MONTH,
+  ST_CHECKED_ALL,
+  ST_CHECKED_YEAR,
+  ST_CHECKED_QUARTER,
+  ST_CHECKED_MONTH,
 }
 
 export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACTIVITY_TYPE) => {
@@ -102,6 +106,15 @@ export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACT
       return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeQuarter;
     case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
       return state.typeActivitiesBankruptedSoleTrade.typeActivitiesBankruptedSoleTradeMonth;
+
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_ALL:
+      return state.typeActivitiesCheckedSoleTrade.typeActivitiesCheckedAllSoleTrade;
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_YEAR:
+      return state.typeActivitiesCheckedSoleTrade.typeActivitiesCheckedYearSoleTrade;
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_QUARTER:
+      return state.typeActivitiesCheckedSoleTrade.typeActivitiesCheckedQuarterSoleTrade;
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_MONTH:
+      return state.typeActivitiesCheckedSoleTrade.typeActivitiesCheckedMonthSoleTrade;
   }
 };
 
@@ -170,6 +183,15 @@ export const getTitleForTypeActivity = (typeActivity: TYPE_ACTIVITY_TYPE): strin
     case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_QUARTER:
       return 'Виды деятельности (Квартал)';
     case TYPE_ACTIVITY_TYPE.ST_BANKRUPTED_MONTH:
+      return 'Виды деятельности (Месяц)';
+
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_ALL:
+      return 'Виды деятельности';
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_YEAR:
+      return 'Виды деятельности (Год)';
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_QUARTER:
+      return 'Виды деятельности (Квартал)';
+    case TYPE_ACTIVITY_TYPE.ST_CHECKED_MONTH:
       return 'Виды деятельности (Месяц)';
   }
 };

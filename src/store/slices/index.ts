@@ -14,6 +14,7 @@ import typeActivitiesCheckedReducer from '@app/store/slices/legalEntityDashboard
 import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/current';
 import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated';
 import typeActivitiesBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted';
+import typeActivitiesCheckedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/checked';
 import currentByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/current';
 import liquidatedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/liquidated';
 import bankruptedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/bankrupted';
@@ -21,6 +22,7 @@ import checkedByAgeReducer from '@app/store/slices/legalEntityDashboard/byAge/ch
 import currentByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/current';
 import liquidatedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/liquidated';
 import bankruptedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/bankrupted';
+import checkedByAgeSoleTradeReducer from '@app/store/slices/soleTradeDashboard/byAge/checked';
 import detailedInformationReducer from '@app/store/slices/legalEntityDashboard/detailed';
 import detailedInformationSoleTradeReducer from '@app/store/slices/soleTradeDashboard/detailed';
 import liquidatedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated';
@@ -31,7 +33,8 @@ import mainInfoBankruptedReducer from '@app/store/slices/legalEntityDashboard/ma
 import mainInfoBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted';
 import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
 import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts';
-import checkedReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
+import checkedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
+import checkedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/checked';
 
 export default {
   user: userReducer,
@@ -59,6 +62,7 @@ export default {
   typeActivitiesSoleTrade: typeActivitiesSoleTradeReducer,
   typeActivitiesLiquidatedSoleTrade: typeActivitiesLiquidatedSoleTradeReducer,
   typeActivitiesBankruptedSoleTrade: typeActivitiesBankruptedSoleTradeReducer,
+  typeActivitiesCheckedSoleTrade: typeActivitiesCheckedSoleTradeReducer,
   currentByAge: currentByAgeReducer,
   liquidatedByAge: liquidatedByAgeReducer,
   bankruptedByAge: bankruptedByAgeReducer,
@@ -66,7 +70,9 @@ export default {
   currentByAgeSoleTrade: currentByAgeSoleTradeReducer,
   liquidatedByAgeSoleTrade: liquidatedByAgeSoleTradeReducer,
   bankruptedByAgeSoleTrade: bankruptedByAgeSoleTradeReducer,
+  checkedByAgeSoleTrade: checkedByAgeSoleTradeReducer,
   detailedInformation: detailedInformationReducer,
   detailedInformationSoleTrade: detailedInformationSoleTradeReducer,
-  checked: checkedReducer,
+  checkedMainInfo: checkedMainInfoReducer,
+  checkedMainInfoSoleTrade: checkedMainInfoSoleTradeReducer,
 };

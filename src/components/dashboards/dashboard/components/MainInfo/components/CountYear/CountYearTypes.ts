@@ -10,7 +10,7 @@ export enum COUNT_YEAR_TYPE {
   LE_LIQUIDATED_YEAR,
   LE_BANKRUPTED_YEAR,
   ST_CREATED_YEAR,
-  ST_LIQUIDATE_YEAR,
+  ST_LIQUIDATED_YEAR,
   ST_BANKRUPTED_YEAR,
 }
 
@@ -25,7 +25,7 @@ export const getStateForCountYear = (state: RootState, countYear: COUNT_YEAR_TYP
 
     case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
       return state.mainInfoSoleTrade.createdYearSoleTrade;
-    case COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR:
+    case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
       return state.liquidatedMainInfoSoleTrade.liquidatedYearSoleTrade;
     case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
       return state.liquidatedMainInfoSoleTrade.liquidatedYearSoleTrade;
@@ -43,7 +43,7 @@ export const getTitleForCountYear = (countYear: COUNT_YEAR_TYPE): string => {
 
     case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
       return 'Количество созданных ИП (год)';
-    case COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR:
+    case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
       return 'Количество ликвидированных ИП (год)';
     case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
       return 'Количество обонкротившихся ИП (год)';

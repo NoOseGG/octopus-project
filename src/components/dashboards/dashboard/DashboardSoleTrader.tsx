@@ -22,6 +22,11 @@ import AgePieChart from '@app/components/dashboards/dashboard/components/ByAge/c
 import { CHART_TYPE } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgePieChart/AgePieCharTypes';
 import AgeMultipleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/AgeMultipleChart/AgeMultipleChart';
 import { AGE_MULTIPLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/AgeMultipleChart/AgeMultipleChartTypes';
+import { COUNT_CHECKED_TYPE } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
+import Inspections from '@app/components/dashboards/dashboard/components/Inspection/components/Inspections';
+import { Divider } from 'antd';
+import RegionsCircleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChart';
+import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -65,7 +70,7 @@ const DashboardSoleTrader: React.FC = () => {
       <DetailedInformation detailed={DETAILED_TYPE.ST_CREATED} />
       <MainInfo
         all={COUNT_TYPE.ST_LIQUIDATED_ALL}
-        year={COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR}
+        year={COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR}
         quarter={COUNT_TYPE.ST_LIQUIDATED_QUARTER}
         operation={COUNT_TYPE.NONE}
         percent={PERCENT_TYPE.ST_LIQUIDATE_PERCENT}
@@ -121,8 +126,31 @@ const DashboardSoleTrader: React.FC = () => {
         from1To5={AGE_TYPES.ST_BANKRUPTED_FROM_1_TO_5}
         lessThen1={AGE_TYPES.ST_BANKRUPTED_LESS_THEN_1}
       />
+      <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.ST_BANKRUPTED} />
+      <Divider />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.ST_BANKRUPTED} />
+      <Divider />
       <DetailedInformation detailed={DETAILED_TYPE.ST_BANKRUPTED} />
+      <Inspections
+        all={COUNT_CHECKED_TYPE.ST_CHECKED_ALL}
+        liquidated={COUNT_CHECKED_TYPE.ST_CHECKED_LIQUIDATED}
+        bankrupted={COUNT_CHECKED_TYPE.ST_CHECKED_BANKRUPTED}
+      />
+      <ChartsContainer>
+        <LineChartYears lineChart={LINE_CHART_YEAR.ST_CHECKED} />
+        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.ST_CHECKED} />
+      </ChartsContainer>
+      <ChartsContainer>
+        <AvgAge avgAge={AVG_AGE_TYPES.ST_CHECKED} />
+        <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.ST_CHECKED} />
+      </ChartsContainer>
+      <TypeActivities
+        all={TYPE_ACTIVITY_TYPE.ST_CHECKED_ALL}
+        year={TYPE_ACTIVITY_TYPE.ST_CHECKED_YEAR}
+        quarter={TYPE_ACTIVITY_TYPE.ST_CHECKED_QUARTER}
+        month={TYPE_ACTIVITY_TYPE.ST_CHECKED_MONTH}
+      />
+      <DetailedInformation detailed={DETAILED_TYPE.ST_CHECKED} />
     </Container>
   );
 };

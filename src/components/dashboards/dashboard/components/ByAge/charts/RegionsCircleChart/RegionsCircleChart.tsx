@@ -8,7 +8,9 @@ import {
   RegionsCircleProps,
 } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
 import { doGetDataForBankruptedByRegionsChart } from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankruptedByRegionsChart';
-import { doGetDataForCheckedBySettlementsChart } from '@app/store/slices/legalEntityDashboard/charts/checked/checkedBySettlementsChart';
+import { doGetDataForCheckedBySettlementsChart } from '@app/store/slices/legalEntityDashboard/charts/checked/checkedBySettlementsChartSlice';
+import { doGetDataForBankruptedByRegionsChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankruptedByRegionsChartSoleTrade';
+import { doGetDataForCheckedBySettlementsChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/checked/checkedBySettlementsChartSoleTradeSlice';
 
 const RegionsCircleChart: React.FC<RegionsCircleProps> = ({ regionCircle }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -24,6 +26,15 @@ const RegionsCircleChart: React.FC<RegionsCircleProps> = ({ regionCircle }) => {
           break;
         case REGION_CIRCLE_TYPES.LE_CHECKED:
           dispatch(doGetDataForCheckedBySettlementsChart({ filters }));
+          break;
+
+        // Sole Trade
+
+        case REGION_CIRCLE_TYPES.ST_BANKRUPTED:
+          dispatch(doGetDataForBankruptedByRegionsChartSoleTrade({ filters }));
+          break;
+        case REGION_CIRCLE_TYPES.ST_CHECKED:
+          dispatch(doGetDataForCheckedBySettlementsChartSoleTrade({ filters }));
           break;
       }
     },

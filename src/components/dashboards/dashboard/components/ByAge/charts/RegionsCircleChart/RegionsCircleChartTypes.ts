@@ -7,6 +7,9 @@ export type RegionsCircleProps = {
 export enum REGION_CIRCLE_TYPES {
   LE_BANKRUPTED,
   LE_CHECKED,
+
+  ST_BANKRUPTED,
+  ST_CHECKED,
 }
 
 export const getStateForRegionCircleChart = (state: RootState, regionCircle: REGION_CIRCLE_TYPES) => {
@@ -15,14 +18,22 @@ export const getStateForRegionCircleChart = (state: RootState, regionCircle: REG
       return state.charts.bankruptedByRegionsChart;
     case REGION_CIRCLE_TYPES.LE_CHECKED:
       return state.charts.checkedBySettlementsChart;
+
+    // Sole Trade
+
+    case REGION_CIRCLE_TYPES.ST_BANKRUPTED:
+      return state.chartsSoleTrade.bankruptedByRegionsSoleTrade;
+    case REGION_CIRCLE_TYPES.ST_CHECKED:
+      return state.chartsSoleTrade.checkedBySettlementsChartSoleTrade;
   }
 };
 
 export const getTitleForRegionCircleChart = (regionCircle: REGION_CIRCLE_TYPES): string => {
   switch (regionCircle) {
     case REGION_CIRCLE_TYPES.LE_BANKRUPTED:
-      return '';
     case REGION_CIRCLE_TYPES.LE_CHECKED:
+    case REGION_CIRCLE_TYPES.ST_BANKRUPTED:
+    case REGION_CIRCLE_TYPES.ST_CHECKED:
       return '';
   }
 };

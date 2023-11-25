@@ -14,6 +14,7 @@ import {
 } from '@app/components/dashboards/dashboard/components/ByAge/components/AvgAge/AvgAgeTypes';
 import { doGetCurrentByAgeAvgAgeSoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/current/avgAgeSoleTradeSlice';
 import { doGetCheckedByAgeAvgAge } from '@app/store/slices/legalEntityDashboard/byAge/checked/checkedAvgAgeSlice';
+import { doGetCheckedByAgeAvgAgeSoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/checked/checkedAvgAgeSoleTradeSlice';
 
 const AvgAge: React.FC<AvgAgeProps> = ({ avgAge }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -30,8 +31,14 @@ const AvgAge: React.FC<AvgAgeProps> = ({ avgAge }) => {
         case AVG_AGE_TYPES.LE_CHECKED:
           dispatch(doGetCheckedByAgeAvgAge({ filters }));
           break;
+
+        // Sole Trade
+
         case AVG_AGE_TYPES.ST_CURRENT:
           dispatch(doGetCurrentByAgeAvgAgeSoleTrade({ filters }));
+          break;
+        case AVG_AGE_TYPES.ST_CHECKED:
+          dispatch(doGetCheckedByAgeAvgAgeSoleTrade({ filters }));
           break;
       }
     },

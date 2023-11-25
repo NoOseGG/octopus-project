@@ -50,7 +50,7 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
           dispatch(doGetCountCreatedYearSoleTrade({ filters }));
           dispatch(doCalculateCreatedPercentYearSoleTrade({ filters }));
           break;
-        case COUNT_YEAR_TYPE.ST_LIQUIDATE_YEAR:
+        case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
           dispatch(doGetCountLiquidatedYearSoleTrade({ filters }));
           dispatch(doCalculateLiquidatedPercentSoleTradeYear({ filters }));
           break;
@@ -61,7 +61,7 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
 
   useEffect(() => {
     getData(countYear);
-  }, [getData]);
+  }, [getData, countYear]);
 
   return (
     <>

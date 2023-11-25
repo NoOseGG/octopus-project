@@ -13,6 +13,7 @@ export enum LINE_CHART_YEAR {
   ST_CREATED,
   ST_LIQUIDATED,
   ST_BANKRUPTED,
+  ST_CHECKED,
 }
 
 export const getStateForLineChartYears = (state: RootState, lineChart: LINE_CHART_YEAR) => {
@@ -32,6 +33,8 @@ export const getStateForLineChartYears = (state: RootState, lineChart: LINE_CHAR
       return state.chartsSoleTrade.liquidatedLineChartSoleTrade;
     case LINE_CHART_YEAR.ST_BANKRUPTED:
       return state.chartsSoleTrade.bankruptedLineChartSoleTrade;
+    case LINE_CHART_YEAR.ST_CHECKED:
+      return state.chartsSoleTrade.checkedLineChartSoleTrade;
   }
 };
 
@@ -52,5 +55,7 @@ export const getTitleForLineChartYears = (lineChart: LINE_CHART_YEAR): string =>
       return 'Динамика ликвидаций ИП';
     case LINE_CHART_YEAR.ST_BANKRUPTED:
       return 'Динамика банкротств ИП';
+    case LINE_CHART_YEAR.ST_CHECKED:
+      return 'Динамика проверок ИП';
   }
 };

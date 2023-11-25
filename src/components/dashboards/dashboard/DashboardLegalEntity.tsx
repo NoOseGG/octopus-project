@@ -26,6 +26,7 @@ import RegionsCircleChart from '@app/components/dashboards/dashboard/components/
 import Inspections from '@app/components/dashboards/dashboard/components/Inspection/components/Inspections';
 import { COUNT_CHECKED_TYPE } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
 import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
+import { Divider } from 'antd';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -126,7 +127,9 @@ const DashboardLegalEntity: React.FC = () => {
         lessThen1={AGE_TYPES.LE_BANKRUPTED_LESS_THEN_1}
       />
       <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_BANKRUPTED} />
+      <Divider />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
+      <Divider />
       <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
       <Inspections
         all={COUNT_CHECKED_TYPE.LE_CHECKED_ALL}
@@ -147,6 +150,7 @@ const DashboardLegalEntity: React.FC = () => {
         quarter={TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER}
         month={TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH}
       />
+      <DetailedInformation detailed={DETAILED_TYPE.LE_CHECKED} />
     </Container>
   );
 };

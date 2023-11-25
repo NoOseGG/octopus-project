@@ -17,6 +17,7 @@ import { doGetDataForLiquidatedColumnChartSoleTrade } from '@app/store/slices/so
 import { doGetDataForBankruptedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/bankrupted/bankrutpedColumnChartSlice';
 import { doGetDataForBankruptedColumnChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/bankrupted/bankrutpedColumnChartSoleTradeSlice';
 import { doGetDataForCheckedColumnChart } from '@app/store/slices/legalEntityDashboard/charts/checked/checkedColumnChartSlice';
+import { doGetDataForCheckedColumnChartSoleTrade } from '@app/store/slices/soleTradeDashboard/charts/checked/checkedColumnChartSoleTradeSlice';
 
 const ColumnChartMonth: React.FC<ColumnChartMonthProps> = ({ columnChart }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -48,6 +49,9 @@ const ColumnChartMonth: React.FC<ColumnChartMonthProps> = ({ columnChart }) => {
           break;
         case COLUMN_CHART_MONTH.ST_BANKRUPTED:
           dispatch(doGetDataForBankruptedColumnChartSoleTrade({ filters }));
+          break;
+        case COLUMN_CHART_MONTH.ST_CHECKED:
+          dispatch(doGetDataForCheckedColumnChartSoleTrade({ filters }));
           break;
       }
     },

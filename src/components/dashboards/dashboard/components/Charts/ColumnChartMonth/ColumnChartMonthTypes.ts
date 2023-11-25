@@ -13,6 +13,7 @@ export enum COLUMN_CHART_MONTH {
   ST_CREATED,
   ST_LIQUIDATED,
   ST_BANKRUPTED,
+  ST_CHECKED,
 }
 
 export const getStateForColumnChartMonth = (state: RootState, columnChart: COLUMN_CHART_MONTH) => {
@@ -32,6 +33,8 @@ export const getStateForColumnChartMonth = (state: RootState, columnChart: COLUM
       return state.chartsSoleTrade.liquidatedColumnChartSoleTrade;
     case COLUMN_CHART_MONTH.ST_BANKRUPTED:
       return state.chartsSoleTrade.bankruptedColumnChartSoleTrade;
+    case COLUMN_CHART_MONTH.ST_CHECKED:
+      return state.chartsSoleTrade.checkedColumnChartSoleTrade;
   }
 };
 
@@ -52,5 +55,7 @@ export const getTitleForColumnChartMonth = (columnChart: COLUMN_CHART_MONTH): st
       return 'Динамика ликвидаций ИП по месяцам';
     case COLUMN_CHART_MONTH.ST_BANKRUPTED:
       return 'Динамика банкротств ИП по месяцам';
+    case COLUMN_CHART_MONTH.ST_CHECKED:
+      return 'Динамика проверок ИП по месяцам';
   }
 };

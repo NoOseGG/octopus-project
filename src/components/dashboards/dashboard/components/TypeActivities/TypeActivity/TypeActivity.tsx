@@ -41,6 +41,7 @@ import { doGetCheckedTypeActivitiesAllSoleTrade } from '@app/store/slices/soleTr
 import { doGetCheckedTypeActivitiesYearSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTrdeYearSlice';
 import { doGetCheckedTypeActivitiesQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTradeQuarterSlice';
 import { doGetCheckedTypeActivitiesMonthSoleTrade } from '@app/store/slices/soleTradeDashboard/typeActivities/checked/typeActivitiesCheckedSoleTradeMonth';
+import { setTypeActivity } from '@app/store/slices/search/searchFiltersSlice';
 
 const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
@@ -179,12 +180,20 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
     count: number;
   }
 
+  const handleClick = (value: string) => {
+    dispatch(setTypeActivity(value));
+  };
+
   const columns: ColumnsType<DataType> = [
     {
       title: <div style={{ fontSize: 12, fontWeight: 700 }}>{getTitleForTypeActivity(typeActivity)}</div>,
       dataIndex: 'name',
       width: '85%',
-      render: (text) => <div style={{ cursor: 'pointer', fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
+      render: (text) => (
+        <div onClick={() => handleClick(text)} style={{ cursor: 'pointer', fontSize: 12, lineHeight: 1.3 }}>
+          {text}
+        </div>
+      ),
     },
     {
       title: '',

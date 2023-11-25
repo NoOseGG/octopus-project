@@ -43,7 +43,6 @@ const checkedAvgAgeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetCheckedByAgeAvgAge.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.count =
         action.payload?.results?.reduce((accumulator, currentValue) => accumulator + currentValue.Avg, 0) /
         action.payload?.results?.length;

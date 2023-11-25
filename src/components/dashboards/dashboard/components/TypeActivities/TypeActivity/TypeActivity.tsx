@@ -33,6 +33,10 @@ import { doGetBankruptedTypeActivitiesSoleTradeAll } from '@app/store/slices/sol
 import { doGetBankruptedTypeActivitiesSoleTradeYear } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeYear';
 import { doGetBankruptedTypeActivitiesSoleTradeQuarter } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeQuarter';
 import { doGetBankruptedTypeActivitiesSoleTradeMonth } from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted/typeActivitiesBankruptedSoleTradeMonth';
+import { doGetCheckedTypeActivitiesAll } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedAll';
+import { doGetCheckedTypeActivitiesYear } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedYear';
+import { doGetCheckedTypeActivitiesQuarter } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedQuarter';
+import { doGetCheckedTypeActivitiesMonth } from '@app/store/slices/legalEntityDashboard/typeActivities/checked/typeActivitiesCheckedMonth';
 
 const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
@@ -89,6 +93,19 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
           break;
         case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
           dispatch(doGetBankruptedTypeActivitiesMonth({ filters }));
+          break;
+
+        case TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL:
+          dispatch(doGetCheckedTypeActivitiesAll({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR:
+          dispatch(doGetCheckedTypeActivitiesYear({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER:
+          dispatch(doGetCheckedTypeActivitiesQuarter({ filters }));
+          break;
+        case TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH:
+          dispatch(doGetCheckedTypeActivitiesMonth({ filters }));
           break;
 
         //----------- SOLE TRADE --------------

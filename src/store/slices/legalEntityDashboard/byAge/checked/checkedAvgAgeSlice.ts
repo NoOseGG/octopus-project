@@ -20,6 +20,7 @@ export const doGetCheckedByAgeAvgAge = createAsyncThunk<ResponseCurrentByAvgAge,
           DASH.AGR_AVERAGE +
           DASH.AVG_FIELD('age_short') +
           DASH.LEGAL_ENTITY +
+          DASH.GROUP_BY('company_status_code') +
           DASH.ORDERING_AGG('-avg'),
         filters,
         false,
@@ -42,7 +43,10 @@ const checkedAvgAgeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetCheckedByAgeAvgAge.fulfilled, (state, action) => {
-      state.count = action.payload?.results[0]?.Avg;
+      console.log(action.payload);
+      state.count =
+        action.payload?.results?.reduce((accumulator, currentValue) => accumulator + currentValue.Avg, 0) /
+        action.payload?.results?.length;
       state.loading = false;
     });
   },

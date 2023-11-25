@@ -17,6 +17,10 @@ export enum TYPE_ACTIVITY_TYPE {
   LE_BANKRUPTED_YEAR,
   LE_BANKRUPTED_QUARTER,
   LE_BANKRUPTED_MONTH,
+  LE_CHECKED_ALL,
+  LE_CHECKED_YEAR,
+  LE_CHECKED_QUARTER,
+  LE_CHECKED_MONTH,
 
   ST_CREATED_ALL,
   ST_CREATED_YEAR,
@@ -60,6 +64,15 @@ export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACT
       return state.typeActivitiesBankrupted.typeActivitiesBankruptedQuarter;
     case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
       return state.typeActivitiesBankrupted.typeActivitiesBankruptedMonth;
+
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL:
+      return state.typeActivitiesChecked.typeActivitiesCheckedAll;
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR:
+      return state.typeActivitiesChecked.typeActivitiesCheckedYear;
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER:
+      return state.typeActivitiesChecked.typeActivitiesCheckedQuarter;
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH:
+      return state.typeActivitiesChecked.typeActivitiesCheckedMonth;
 
     // SOLE TRADE
 
@@ -119,6 +132,15 @@ export const getTitleForTypeActivity = (typeActivity: TYPE_ACTIVITY_TYPE): strin
     case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER:
       return 'Виды деятельности (Квартал)';
     case TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH:
+      return 'Виды деятельности (Месяц)';
+
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL:
+      return 'Виды деятельности';
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR:
+      return 'Виды деятельности (Год)';
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER:
+      return 'Виды деятельности (Квартал)';
+    case TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH:
       return 'Виды деятельности (Месяц)';
 
     // Sole Trade

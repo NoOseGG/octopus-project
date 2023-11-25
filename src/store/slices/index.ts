@@ -10,6 +10,7 @@ import favouritesReducer from '@app/store/slices/search/favouritesSlice';
 import typeActivitiesReducer from '@app/store/slices/legalEntityDashboard/typeActivities/current';
 import typeActivitiesLiquidatedReducer from '@app/store/slices/legalEntityDashboard/typeActivities/liquidated';
 import typeActivitiesBankruptedReducer from '@app/store/slices/legalEntityDashboard/typeActivities/bankrupted';
+import typeActivitiesCheckedReducer from '@app/store/slices/legalEntityDashboard/typeActivities/checked';
 import typeActivitiesSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/current';
 import typeActivitiesLiquidatedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/liquidated';
 import typeActivitiesBankruptedSoleTradeReducer from '@app/store/slices/soleTradeDashboard/typeActivities/bankrupted';
@@ -54,6 +55,7 @@ export default {
   typeActivities: typeActivitiesReducer,
   typeActivitiesLiquidated: typeActivitiesLiquidatedReducer,
   typeActivitiesBankrupted: typeActivitiesBankruptedReducer,
+  typeActivitiesChecked: typeActivitiesCheckedReducer,
   typeActivitiesSoleTrade: typeActivitiesSoleTradeReducer,
   typeActivitiesLiquidatedSoleTrade: typeActivitiesLiquidatedSoleTradeReducer,
   typeActivitiesBankruptedSoleTrade: typeActivitiesBankruptedSoleTradeReducer,

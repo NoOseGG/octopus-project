@@ -141,6 +141,12 @@ const DashboardLegalEntity: React.FC = () => {
         <AvgAge avgAge={AVG_AGE_TYPES.LE_CHECKED} />
         <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_CHECKED} />
       </ChartsContainer>
+      <TypeActivities
+        all={TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL}
+        year={TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR}
+        quarter={TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER}
+        month={TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH}
+      />
     </Container>
   );
 };

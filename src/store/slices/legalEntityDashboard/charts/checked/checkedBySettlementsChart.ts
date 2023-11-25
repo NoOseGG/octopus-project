@@ -22,6 +22,8 @@ export const doGetDataForCheckedBySettlementsChart = createAsyncThunk<CheckedByS
         DASH.BASE_INSPECTION +
         DASH.AGR_COUNT +
         DASH.GROUP_BY('address_settlement') +
+        DASH.PAGE_SIZE(10000) +
+        DASH.IS_NULL_FALSE('address_settlement') +
         DASH.LEGAL_ENTITY +
         DASH.IS_NULL_FALSE('inspection_dttm');
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);

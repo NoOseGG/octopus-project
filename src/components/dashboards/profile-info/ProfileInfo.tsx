@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
-import { Col, Row } from 'antd';
+import { Col, Row, Spin } from 'antd';
 import styled from 'styled-components';
 import MainInfo from '@app/components/dashboards/profile-info/components/MainInfo/MainInfo';
 import Description from '@app/components/dashboards/profile-info/components/Description/Description';
@@ -24,18 +24,34 @@ const ProfileInfo: React.FC = () => {
   }, [unn, dispatch]);
 
   return (
-    <ProfileRow>
-      <LeftCol span={20}>
-        <Description />
-        <MainInfo />
-        <Contacts />
-      </LeftCol>
-      <RightCol span={4}></RightCol>
-    </ProfileRow>
+    <>
+      {loading ? (
+        <SpinnerSpace>
+          <Spin size="large" tip="Загрузка данных . . ." />
+        </SpinnerSpace>
+      ) : (
+        <ProfileRow>
+          <LeftCol span={20}>
+            <Description />
+            <MainInfo />
+            <Contacts />
+          </LeftCol>
+          <RightCol span={4}></RightCol>
+        </ProfileRow>
+      )}
+    </>
   );
 };
 
 export default ProfileInfo;
+
+const SpinnerSpace = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const ProfileRow = styled(Row)`
   margin-inline: 100px;

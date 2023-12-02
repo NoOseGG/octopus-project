@@ -33,6 +33,15 @@ export const Text = styled.div`
   white-space: pre-wrap;
 `;
 
+export const ButtonShowStyle = styled(Text)`
+  color: blue;
+
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+`;
+
 export const Title = styled(Text)`
   font-weight: 700;
 `;

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TableLine from '@app/components/dashboards/profile-info/components/Fields/TableLine/TableLine';
+
+const COUNT_VISIBLE_ITEMS = 4;
 
 type MyComponentProps = {
   name: string | null | undefined;
@@ -9,16 +11,20 @@ type MyComponentProps = {
 };
 
 const TableLineArray: React.FC<MyComponentProps> = ({ name, fields, isDate = false, isCopyable = false }) => {
+  const isCollapsed = useState(false);
+
   return (
     <>
-      {fields.length < 30 ? (
+      {fields.length < COUNT_VISIBLE_ITEMS ? (
         <>
           {fields.map((item, index) => (
             <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />
           ))}
         </>
       ) : (
-        <div></div>
+        <>
+
+        </>
       )}
     </>
   );

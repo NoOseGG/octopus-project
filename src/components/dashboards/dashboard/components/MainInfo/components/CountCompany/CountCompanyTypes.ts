@@ -28,6 +28,7 @@ export enum COUNT_TYPE {
   NONE,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForCountCompany = (state: RootState, countCompany: COUNT_TYPE) => {
   switch (countCompany) {
     case COUNT_TYPE.LE_CREATED_ALL:

@@ -44,6 +44,7 @@ export enum AGE_TYPES {
   ST_BANKRUPTED_LESS_THEN_1,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForAge = (state: RootState, countCompany: AGE_TYPES) => {
   switch (countCompany) {
     case AGE_TYPES.LE_CURRENT_MORE_THEN_20:

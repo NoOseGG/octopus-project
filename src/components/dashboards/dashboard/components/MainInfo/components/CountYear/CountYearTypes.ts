@@ -14,6 +14,7 @@ export enum COUNT_YEAR_TYPE {
   ST_BANKRUPTED_YEAR,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForCountYear = (state: RootState, countYear: COUNT_YEAR_TYPE) => {
   switch (countYear) {
     case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
@@ -59,6 +60,7 @@ export enum PERCENT_TYPE {
   ST_BANKRUPTED_PERCENT,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForPercent = (state: RootState, percent: PERCENT_TYPE) => {
   switch (percent) {
     case PERCENT_TYPE.LE_CREATED_PERCENT:

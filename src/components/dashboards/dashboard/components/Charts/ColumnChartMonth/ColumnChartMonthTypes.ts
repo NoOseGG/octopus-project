@@ -16,6 +16,7 @@ export enum COLUMN_CHART_MONTH {
   ST_CHECKED,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForColumnChartMonth = (state: RootState, columnChart: COLUMN_CHART_MONTH) => {
   switch (columnChart) {
     case COLUMN_CHART_MONTH.LE_CREATED:

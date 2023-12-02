@@ -14,7 +14,7 @@ export enum DETAILED_TYPE {
   ST_BANKRUPTED,
   ST_CHECKED,
 }
-
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForDetailed = (state: RootState, detailed: DETAILED_TYPE) => {
   switch (detailed) {
     case DETAILED_TYPE.LE_CREATED:

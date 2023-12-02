@@ -218,8 +218,8 @@ export const dateTransformForRegistration = (dateString: string): string => {
   return `${year}-${month}-${day}`;
 };
 
-export function formatDate(dateString: string | null): string | null {
-  if (dateString === null) {
+export function formatDate(dateString: string | null | undefined): string | null {
+  if (dateString === null || dateString === undefined) {
     return ''; // Если дата равна null, вернем тоже null
   }
 

@@ -40,6 +40,7 @@ export enum TYPE_ACTIVITY_TYPE {
   ST_CHECKED_MONTH,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForTypeActivity = (state: RootState, typeActivity: TYPE_ACTIVITY_TYPE) => {
   switch (typeActivity) {
     case TYPE_ACTIVITY_TYPE.LE_CREATED_ALL:

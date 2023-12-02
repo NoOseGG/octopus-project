@@ -8,8 +8,8 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-import SubjectInfo from '@app/components/dashboards/search-dashboard/SubjectInfo/SubjectInfo';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
+import ProfileInfo from '@app/components/dashboards/profile-info/ProfileInfo';
 
 const SubjectInfoPage: React.FC = () => {
   const navigate = useNavigate();
@@ -31,7 +31,8 @@ const SubjectInfoPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <SubjectInfo />
+        <ProfileInfo />
+        {/*<SubjectInfo />*/}
         <References />
       </S.LeftSideCol>
     </Row>

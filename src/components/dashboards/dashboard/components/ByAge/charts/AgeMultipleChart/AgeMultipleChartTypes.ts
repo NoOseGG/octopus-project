@@ -11,6 +11,7 @@ export enum AGE_MULTIPLE_TYPES {
   ST_BANKRUPTED,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForAgeMultipleChart = (state: RootState, ageMultiple: AGE_MULTIPLE_TYPES) => {
   switch (ageMultiple) {
     case AGE_MULTIPLE_TYPES.LE_LIQUIDATED:

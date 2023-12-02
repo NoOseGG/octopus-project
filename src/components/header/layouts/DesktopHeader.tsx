@@ -6,6 +6,7 @@ import { HeaderSearch } from '../components/HeaderSearch/HeaderSearch';
 import { SettingsDropdown } from '../components/settingsDropdown/SettingsDropdown';
 import { HeaderFullscreen } from '../components/HeaderFullscreen/HeaderFullscreen';
 import * as S from '../Header.styles';
+import SwitchDesign from '@app/components/header/components/SwitchDesign/SwitchDesign';
 
 interface DesktopHeaderProps {
   isTwoColumnsLayout: boolean;
@@ -36,6 +37,10 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
         <Row align="middle" justify="end" gutter={[10, 10]}>
           <Col>
             <Row gutter={[{ xxl: 10 }, { xxl: 10 }]}>
+              <Col>
+                <SwitchDesign />
+              </Col>
+
               <Col>
                 <HeaderFullscreen />
               </Col>

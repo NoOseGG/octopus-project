@@ -60,7 +60,13 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         )}
         <span onClick={() => handleClick()}>
           <ButtonShow>
-            {textCollapseButton} ({fields.length})
+            {isCollapsed ? (
+              <>{textCollapseButton}</>
+            ) : (
+              <>
+                {textCollapseButton} ({fields.length})
+              </>
+            )}
           </ButtonShow>
         </span>
       </>

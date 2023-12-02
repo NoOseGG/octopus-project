@@ -36,6 +36,8 @@ import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts'
 import checkedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
 import checkedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/checked';
 
+import designReducer from '@app/store/slices/search/designSlice';
+
 export default {
   user: userReducer,
   auth: authReducer,
@@ -75,4 +77,5 @@ export default {
   detailedInformationSoleTrade: detailedInformationSoleTradeReducer,
   checkedMainInfo: checkedMainInfoReducer,
   checkedMainInfoSoleTrade: checkedMainInfoSoleTradeReducer,
+  design: designReducer,
 };

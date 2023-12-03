@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TableLine from '@app/components/dashboards/profile-info/components/Fields/TableLine/TableLine';
+import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 
 const COUNT_VISIBLE_ITEMS = 4;
 
@@ -22,9 +22,7 @@ const TableLineArray: React.FC<MyComponentProps> = ({ name, fields, isDate = fal
           ))}
         </>
       ) : (
-        <>
-
-        </>
+        <></>
       )}
     </>
   );

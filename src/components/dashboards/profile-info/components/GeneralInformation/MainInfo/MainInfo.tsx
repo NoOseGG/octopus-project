@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
-import TableLine from '@app/components/dashboards/profile-info/components/Fields/TableLine/TableLine';
+import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const MainInfo: React.FC = () => {

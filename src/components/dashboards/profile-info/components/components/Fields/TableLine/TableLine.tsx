@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
-import Text from '@app/components/dashboards/profile-info/components/Fields/TableLine/Text';
+import Text from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/Text';
 
 type MyComponentProps = {
   name: string | null | undefined;

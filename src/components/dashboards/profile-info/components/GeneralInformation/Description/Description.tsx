@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import { Typography } from 'antd';
-import ButtonShow from '@app/components/dashboards/profile-info/components/Fields/ButtonShow/ButtonShow';
+import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 
 const { Text } = Typography;
 
@@ -16,7 +16,7 @@ const Description: React.FC = () => {
 
   return (
     <>
-      {description[0].description && (
+      {description[0]?.description && (
         <Container>
           <Text
             style={{

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TableLine from '@app/components/dashboards/profile-info/components/Fields/TableLine/TableLine';
-import ButtonShow from '@app/components/dashboards/profile-info/components/Fields/ButtonShow/ButtonShow';
+import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
+import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import { Modal } from 'antd';
 
 const COLLAPSE_OPEN = 'Закрыть все';

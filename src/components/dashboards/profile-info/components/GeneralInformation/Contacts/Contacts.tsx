@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import TableLineCollapsed from '@app/components/dashboards/profile-info/components/Fields/TableLineCollapsed/TableLineCollapsed';
+import TableLineCollapsed from '@app/components/dashboards/profile-info/components/components/Fields/TableLineCollapsed/TableLineCollapsed';
 
 const Contacts: React.FC = () => {
   const webSites = useAppSelector((state) => state.searchProfile.profile.web_sites);

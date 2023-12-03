@@ -1,0 +1,27 @@
+import React from 'react';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
+import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
+import { useAppSelector } from '@app/hooks/reduxHooks';
+
+const BasicDetails: React.FC = () => {
+  const taxOffices = useAppSelector((state) => state.searchProfile.profile.tax_offices);
+
+  return (
+    <>
+      <S.StyledTable>
+        <thead>
+          <tr>
+            <td>
+              <S.Title>Основные реквизиты</S.Title>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <TableLine name={'Регистратор'} field={taxOffices[0].name} />
+        </tbody>
+      </S.StyledTable>
+    </>
+  );
+};
+
+export default BasicDetails;

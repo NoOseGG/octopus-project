@@ -4,10 +4,12 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
 import { Col, Row, Spin } from 'antd';
 import styled from 'styled-components';
-import MainInfo from '@app/components/dashboards/profile-info/components/MainInfo/MainInfo';
-import Description from '@app/components/dashboards/profile-info/components/Description/Description';
-import Contacts from '@app/components/dashboards/profile-info/components/Contacts/Contacts';
-import Favourite from '@app/components/dashboards/profile-info/components/Buttons/Favourite/Favourite';
+import MainInfo from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfo/MainInfo';
+import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
+import Contacts from '@app/components/dashboards/profile-info/components/GeneralInformation/Contacts/Contacts';
+import Favourite from '@app/components/dashboards/profile-info/components/components/Buttons/Favourite/Favourite';
+import BasicDetails from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetails/BasicDetails';
+import Requisites from '@app/components/dashboards/profile-info/components/components/Buttons/Requisites/Requisites';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -25,7 +27,7 @@ const ProfileInfo: React.FC = () => {
   }, [unn, dispatch]);
 
   return (
-    <>
+    <ProfileContainer>
       {loading ? (
         <SpinnerSpace>
           <Spin size="large" tip="Загрузка данных . . ." />
@@ -36,17 +38,23 @@ const ProfileInfo: React.FC = () => {
             <Description />
             <MainInfo />
             <Contacts />
+            <BasicDetails />
           </LeftCol>
           <RightCol span={4}>
-            <Favourite />
+            <Requisites />
+            {unn && <Favourite unn={unn} />}
           </RightCol>
         </ProfileRow>
       )}
-    </>
+    </ProfileContainer>
   );
 };
 
 export default ProfileInfo;
+
+const ProfileContainer = styled.div`
+  flex-grow: 1;
+`;
 
 const SpinnerSpace = styled.div`
   width: 100%;
@@ -62,4 +70,8 @@ const ProfileRow = styled(Row)`
 
 const LeftCol = styled(Col)``;
 
-const RightCol = styled(Col)``;
+const RightCol = styled(Col)`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;

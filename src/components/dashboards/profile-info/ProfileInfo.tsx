@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import MainInfo from '@app/components/dashboards/profile-info/components/MainInfo/MainInfo';
 import Description from '@app/components/dashboards/profile-info/components/Description/Description';
 import Contacts from '@app/components/dashboards/profile-info/components/Contacts/Contacts';
+import Favourite from '@app/components/dashboards/profile-info/components/Buttons/Favourite/Favourite';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -36,7 +37,9 @@ const ProfileInfo: React.FC = () => {
             <MainInfo />
             <Contacts />
           </LeftCol>
-          <RightCol span={4}></RightCol>
+          <RightCol span={4}>
+            <Favourite />
+          </RightCol>
         </ProfileRow>
       )}
     </>
@@ -59,6 +62,4 @@ const ProfileRow = styled(Row)`
 
 const LeftCol = styled(Col)``;
 
-const RightCol = styled(Col)`
-  background-color: green;
-`;
+const RightCol = styled(Col)``;

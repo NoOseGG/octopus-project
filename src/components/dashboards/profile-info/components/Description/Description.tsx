@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Text } from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import styled from 'styled-components';
+import { Typography } from 'antd';
+import ButtonShow from '@app/components/dashboards/profile-info/components/Fields/ButtonShow/ButtonShow';
+
+const { Text } = Typography;
 
 const Description: React.FC = () => {
   const description = useAppSelector((state) => state.searchProfile.profile.descriptions);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   return (
-    <Container>
-      <Text>{Boolean(description.length) && <div>{description[0].description}</div>}</Text>
-    </Container>
+    <>
+      {description[0].description && (
+        <Container>
+          <Text
+            style={{
+              display: 'block',
+              overflow: isCollapsed ? 'hidden' : 'auto',
+              maxHeight: isCollapsed ? '3.6em' : 'none',
+              lineHeight: '1.2em',
+            }}
+          >
+            {description[0].description}
+          </Text>
+          {description[0].description.length > 100 && (
+            <span onClick={toggleCollapse}>
+              <ButtonShow>{isCollapsed ? 'Показать полностью' : 'Свернуть'}</ButtonShow>
+            </span>
+          )}
+        </Container>
+      )}
+    </>
   );
 };
 

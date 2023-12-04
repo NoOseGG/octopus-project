@@ -7,12 +7,14 @@ import { ShareAltOutlined } from '@ant-design/icons';
 const Requisites: React.FC = () => {
   const { short_name } = useAppSelector((state) => state.searchProfile.profile.names[0]);
   const { full_address } = useAppSelector((state) => state.searchProfile.profile.addresses[0]);
+  const unn = useAppSelector((state) => state.searchProfile.profile.unn);
 
   return (
     <Container>
       <Title>Реквизиты</Title>
       <LineText>{short_name}</LineText>
       <LineText>{full_address}</LineText>
+      <LineText>УНП: {unn}</LineText>
       <ButtonContainer>
         <ButtonCopyStyle>Скопировать</ButtonCopyStyle>
         <ButtonShareStyle>

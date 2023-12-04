@@ -34,13 +34,13 @@ const ProfileInfo: React.FC = () => {
         </SpinnerSpace>
       ) : (
         <ProfileRow>
-          <LeftCol span={20}>
+          <LeftCol span={19}>
             <Description />
             <MainInfo />
             <Contacts />
             <BasicDetails />
           </LeftCol>
-          <RightCol span={4}>
+          <RightCol span={5}>
             <Requisites />
             {unn && <Favourite unn={unn} />}
           </RightCol>

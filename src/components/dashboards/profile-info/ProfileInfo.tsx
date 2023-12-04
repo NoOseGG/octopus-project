@@ -53,6 +53,8 @@ const ProfileInfo: React.FC = () => {
 export default ProfileInfo;
 
 const ProfileContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1320px;
   flex-grow: 1;
 `;
 

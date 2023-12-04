@@ -34,7 +34,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
     if (isModal) success();
   };
 
-  if (fields.length === 1) {
+  if (fields.length < 2) {
     return (
       <>
         {fields.map((item, index) => (

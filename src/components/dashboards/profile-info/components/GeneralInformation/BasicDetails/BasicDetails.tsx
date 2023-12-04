@@ -5,6 +5,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const BasicDetails: React.FC = () => {
   const taxOffices = useAppSelector((state) => state.searchProfile.profile.tax_offices);
+  const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
 
   return (
     <>
@@ -18,6 +19,8 @@ const BasicDetails: React.FC = () => {
         </thead>
         <tbody>
           <TableLine name={'Регистратор'} field={taxOffices[0].name} />
+          <TableLine name={'Дата начала действия'} field={taxOffices[0].from_dttm} isDate={true} />
+          <TableLine name={'Юридический адрес'} field={addresses[0].full_address} />
         </tbody>
       </S.StyledTable>
     </>

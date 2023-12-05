@@ -10,6 +10,7 @@ import Contacts from '@app/components/dashboards/profile-info/components/General
 import Favourite from '@app/components/dashboards/profile-info/components/components/Buttons/Favourite/Favourite';
 import BasicDetails from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetails/BasicDetails';
 import Requisites from '@app/components/dashboards/profile-info/components/components/Buttons/Requisites/Requisites';
+import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -39,6 +40,7 @@ const ProfileInfo: React.FC = () => {
             <MainInfo />
             <Contacts />
             <BasicDetails />
+            <TypeActivities />
           </LeftCol>
           <RightCol span={5}>
             <Requisites />

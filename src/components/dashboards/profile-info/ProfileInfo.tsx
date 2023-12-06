@@ -4,13 +4,10 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
 import { Col, Row, Spin } from 'antd';
 import styled from 'styled-components';
-import MainInfo from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfo/MainInfo';
-import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
-import Contacts from '@app/components/dashboards/profile-info/components/GeneralInformation/Contacts/Contacts';
-import Favourite from '@app/components/dashboards/profile-info/components/components/Buttons/Favourite/Favourite';
-import BasicDetails from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetails/BasicDetails';
 import Requisites from '@app/components/dashboards/profile-info/components/components/Buttons/Requisites/Requisites';
-import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
+import GeneralInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformation';
+import Favourite from '@app/components/dashboards/profile-info/components/components/Buttons/Favourite/Favourite';
+import Vacancies from '@app/components/dashboards/profile-info/components/Vacancies/Vacancies';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -36,11 +33,8 @@ const ProfileInfo: React.FC = () => {
       ) : (
         <ProfileRow>
           <LeftCol span={19}>
-            <Description />
-            <MainInfo />
-            <Contacts />
-            <BasicDetails />
-            <TypeActivities />
+            <GeneralInformation />
+            <Vacancies />
           </LeftCol>
           <RightCol span={5}>
             <Requisites />

@@ -5,6 +5,7 @@ import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoSt
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import TableLineKeySkill from '@app/components/dashboards/profile-info/components/Vacancies/components/TableLineKeySkill/TableLineKeySkill';
+import { formatDate } from '@app/utils/utils';
 
 const COLLAPSE_OPEN = 'Скрыть вакансию';
 const COLLAPSE_CLOSE = 'Показать вакансию';
@@ -26,7 +27,8 @@ const MyVacancy: React.FC<MyComponentProps> = ({ vacancy }) => {
   return (
     <VacancyContainer>
       <Title>
-        <TitleName>{vacancy.vacancy_name}</TitleName> <TitleFromDttm>{`от ${vacancy.from_dttm}`}</TitleFromDttm>
+        <TitleName>{vacancy.vacancy_name}</TitleName>{' '}
+        <TitleFromDttm>{`от ${formatDate(vacancy.from_dttm)}`}</TitleFromDttm>
       </Title>
       <S.StyledTable>
         <tbody>

@@ -37,9 +37,17 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
   };
 
   return (
-    <FavouriteButton isFavourite={isFavourite} onClick={changeFavourite}>
-      Отслеживать <AimOutlined />
-    </FavouriteButton>
+    <>
+      {isFavourite ? (
+        <FavouriteButton isFavourite={isFavourite} onClick={changeFavourite}>
+          Не отслеживать <AimOutlined />
+        </FavouriteButton>
+      ) : (
+        <FavouriteButton isFavourite={isFavourite} onClick={changeFavourite}>
+          Отслеживать <AimOutlined />
+        </FavouriteButton>
+      )}
+    </>
   );
 };
 
@@ -56,7 +64,7 @@ const FavouriteButton = styled(Button)<FavouriteButtonProps>`
   margin-inline: 15px;
   color: #0057ff;
   height: 2rem;
-  background: ${(props) => (props.isFavourite ? '#ff4d78' : 'white')};
+  background: ${(props) => (props.isFavourite ? '#85a8da' : 'white')};
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;

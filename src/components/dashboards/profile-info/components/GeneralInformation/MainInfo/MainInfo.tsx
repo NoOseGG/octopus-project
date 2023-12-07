@@ -13,7 +13,7 @@ const MainInfo: React.FC = () => {
   return (
     <S.StyledTable>
       <tbody>
-        <TableLine name={'УНП'} field={unn} isCopyable={true} />
+        <TableLine name={'УНП'} field={unn} />
         <TableLine name={'Сокращённое наименование'} field={names[0]?.short_name} />
         <TableLine name={'Полное наименование'} field={names[0]?.full_name} />
         <TableLine name={'Статус'} field={status[0]?.name} />

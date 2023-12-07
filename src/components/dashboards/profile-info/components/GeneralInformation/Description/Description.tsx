@@ -21,6 +21,7 @@ const Description: React.FC = () => {
           <Text
             style={{
               display: 'block',
+              textAlign: 'justify',
               overflow: isCollapsed ? 'hidden' : 'auto',
               maxHeight: isCollapsed ? '3.6em' : 'none',
               lineHeight: '1.2em',

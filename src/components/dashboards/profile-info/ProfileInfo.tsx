@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
-import { Col, Row, Spin } from 'antd';
+import { Col, Row, Spin, Tabs } from 'antd';
 import styled from 'styled-components';
 import Requisites from '@app/components/dashboards/profile-info/components/components/Buttons/Requisites/Requisites';
 import GeneralInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformation';
@@ -31,16 +31,30 @@ const ProfileInfo: React.FC = () => {
           <Spin size="large" tip="Загрузка данных . . ." />
         </SpinnerSpace>
       ) : (
-        <ProfileRow>
-          <LeftCol span={19}>
-            <GeneralInformation />
-            <Vacancies />
-          </LeftCol>
-          <RightCol span={5}>
-            <Requisites />
-            {unn && <Favourite unn={unn} />}
-          </RightCol>
-        </ProfileRow>
+        <Tabs defaultActiveKey="1">
+          <Tabs.TabPane tab="Основаная информация" key="1">
+            <ProfileRow>
+              <LeftCol span={19}>
+                <GeneralInformation />
+              </LeftCol>
+              <RightCol span={5}>
+                <Requisites />
+                {unn && <Favourite unn={unn} />}
+              </RightCol>
+            </ProfileRow>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Вакансии" key="2">
+            <ProfileRow>
+              <LeftCol span={19}>
+                <Vacancies />
+              </LeftCol>
+              <RightCol span={5}>
+                <Requisites />
+                {unn && <Favourite unn={unn} />}
+              </RightCol>
+            </ProfileRow>
+          </Tabs.TabPane>
+        </Tabs>
       )}
     </ProfileContainer>
   );

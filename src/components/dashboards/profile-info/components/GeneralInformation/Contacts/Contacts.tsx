@@ -14,8 +14,6 @@ const Contacts: React.FC = () => {
     ?.map((item) => item.phone_number)
     .filter((phone_number) => phone_number !== null) as string[];
 
-  console.log(`url ${newEmails.toString()}`);
-
   return (
     <>
       <S.StyledTable>

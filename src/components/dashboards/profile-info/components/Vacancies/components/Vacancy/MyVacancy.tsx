@@ -26,7 +26,7 @@ const MyVacancy: React.FC<MyComponentProps> = ({ vacancy }) => {
   return (
     <VacancyContainer>
       <Title>
-        <TitleName>{vacancy.vacancy_name}</TitleName> <TitleFromDttm>{`от ${vacancy.min_salary_byn}`}</TitleFromDttm>
+        <TitleName>{vacancy.vacancy_name}</TitleName> <TitleFromDttm>{`от ${vacancy.from_dttm}`}</TitleFromDttm>
       </Title>
       <S.StyledTable>
         <tbody>

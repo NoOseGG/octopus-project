@@ -12,9 +12,10 @@ type MyComponentProps = {
   fields: string[];
   isDate?: boolean;
   isCopyable?: boolean;
+  isLink?: boolean;
 };
 
-const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, isCopyable }) => {
+const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, isCopyable, isLink }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textCollapseButton, setTextCollapseButton] = useState(COLLAPSE_CLOSE);
   const [modalVisible, setModalVisible] = useState(false);
@@ -39,7 +40,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
     return (
       <>
         {fields.map((item, index) => (
-          <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />
+          <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
         ))}
       </>
     );

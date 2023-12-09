@@ -7,9 +7,10 @@ type MyComponentProps = {
   field: string | null | undefined;
   isDate?: boolean;
   isCopyable?: boolean;
+  isLink?: boolean;
 };
 
-const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable }) => {
+const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable, isLink }) => {
   return (
     <>
       {name && field && (
@@ -17,7 +18,7 @@ const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable
           <S.LeftCell>
             <S.Text>{name}</S.Text>
           </S.LeftCell>
-          <Text field={field} isDate={isDate} isCopyable={isCopyable} />
+          <Text field={field} isDate={isDate} isCopyable={isCopyable} isLink={isLink} />
         </S.StyledRow>
       )}
     </>

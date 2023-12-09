@@ -55,9 +55,11 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
           </>
         ) : (
           <>
-            {fields.map((item, index) => (
-              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />
-            ))}
+            {fields.map((item, index) => {
+              if (index < 1)
+                return <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />;
+              else return <TableLine name={' '} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />;
+            })}
           </>
         )}
         <span onClick={() => handleClick()}>

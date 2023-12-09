@@ -19,7 +19,7 @@ const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate = false, is
 
   return (
     <>
-      {name && field && (
+      {name && keySkills && (
         <S.StyledRow>
           <S.LeftCell>
             <S.Text>{name}</S.Text>

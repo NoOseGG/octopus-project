@@ -4,10 +4,10 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
 import { Col, Row, Spin, Tabs } from 'antd';
 import styled from 'styled-components';
-import Requisites from '@app/components/dashboards/profile-info/components/components/Buttons/Requisites/Requisites';
 import GeneralInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformation';
-import Favourite from '@app/components/dashboards/profile-info/components/components/Buttons/Favourite/Favourite';
 import Vacancies from '@app/components/dashboards/profile-info/components/Vacancies/Vacancies';
+import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
+import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -32,25 +32,23 @@ const ProfileInfo: React.FC = () => {
         </SpinnerSpace>
       ) : (
         <Tabs defaultActiveKey="1">
-          <Tabs.TabPane tab="Основаная информация" key="1">
+          <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key="1">
             <ProfileRow>
               <LeftCol span={19}>
                 <GeneralInformation />
               </LeftCol>
               <RightCol span={5}>
-                <Requisites />
-                {unn && <Favourite unn={unn} />}
+                <SiderMenu />
               </RightCol>
             </ProfileRow>
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Вакансии" key="2">
+          <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key="2">
             <ProfileRow>
               <LeftCol span={19}>
                 <Vacancies />
               </LeftCol>
               <RightCol span={5}>
-                <Requisites />
-                {unn && <Favourite unn={unn} />}
+                <SiderMenu />
               </RightCol>
             </ProfileRow>
           </Tabs.TabPane>

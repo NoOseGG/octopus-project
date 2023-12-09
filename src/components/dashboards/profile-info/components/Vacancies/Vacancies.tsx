@@ -8,14 +8,20 @@ const Vacancies: React.FC = () => {
   const vacancies = useAppSelector((state) => state.searchProfile.profile.vacancy);
 
   return (
-    <div style={{ maxWidth: 1320 }}>
-      <CountVacancies count={vacancies.length} />
-      <VacanciesContainer>
-        {vacancies.map((item, index) => (
-          <MyVacancy vacancy={item} key={index} />
-        ))}
-      </VacanciesContainer>
-    </div>
+    <>
+      {Boolean(vacancies.length) ? (
+        <>
+          <CountVacancies count={vacancies.length} />
+          <VacanciesContainer>
+            {vacancies.map((item, index) => (
+              <MyVacancy vacancy={item} key={index} />
+            ))}
+          </VacanciesContainer>
+        </>
+      ) : (
+        <h1>Вакансии отсутсвуют</h1>
+      )}
+    </>
   );
 };
 

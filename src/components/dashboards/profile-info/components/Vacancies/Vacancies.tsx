@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import MyVacancy from '@app/components/dashboards/profile-info/components/Vacancies/components/Vacancy/MyVacancy';
 import styled from 'styled-components';
-import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 
 const Vacancies: React.FC = () => {
@@ -10,7 +9,6 @@ const Vacancies: React.FC = () => {
 
   return (
     <div style={{ maxWidth: 1320 }}>
-      <Description />
       <CountVacancies count={vacancies.length} />
       <VacanciesContainer>
         {vacancies.map((item, index) => (

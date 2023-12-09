@@ -25,9 +25,9 @@ const Contacts: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <TableLineCollapsed name={'Сайты'} fields={newWebSites} />
-          <TableLineCollapsed name={'Емайлы'} fields={newEmails} />
-          <TableLineCollapsed name={'Телефоны'} fields={newPhones} />
+          <TableLineCollapsed name={'Сайты'} fields={newWebSites} isCopyable={true} />
+          <TableLineCollapsed name={'Емайлы'} fields={newEmails} isCopyable={true} />
+          <TableLineCollapsed name={'Телефоны'} fields={newPhones} isCopyable={true} />
         </tbody>
       </S.StyledTable>
     </>

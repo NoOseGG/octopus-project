@@ -13,9 +13,9 @@ const MainInfo: React.FC = () => {
   return (
     <S.StyledTable>
       <tbody>
-        <TableLine name={'УНП'} field={unn} />
-        <TableLine name={'Сокращённое наименование'} field={names[0]?.short_name} />
-        <TableLine name={'Полное наименование'} field={names[0]?.full_name} />
+        <TableLine name={'УНП'} field={unn} isCopyable={true} />
+        <TableLine name={'Сокращённое наименование'} field={names[0]?.short_name} isCopyable={true} />
+        <TableLine name={'Полное наименование'} field={names[0]?.full_name} isCopyable={true} />
         <TableLine name={'Статус'} field={status[0]?.name} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />

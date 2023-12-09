@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import { Modal } from 'antd';
+import CopyButton from '@app/components/dashboards/profile-info/components/components/Buttons/CopyButton/CopyButton';
 
 const COLLAPSE_OPEN = 'Закрыть все';
 const COLLAPSE_CLOSE = 'Показать все';
@@ -86,7 +87,9 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
               <tbody>
                 {fields.map((item, index) => (
                   <tr key={index}>
-                    <td>{item}</td>
+                    <td>
+                      <CopyButton text={item} /> {item}
+                    </td>
                   </tr>
                 ))}
               </tbody>

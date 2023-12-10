@@ -58,6 +58,7 @@ const initialState: SubjectState = {
     metric_change_constituent_doc: [],
     metric_change_director: [],
     metric_entity_contact: [],
+    metric_level_competition: [],
   },
   loading: false,
   error: false,

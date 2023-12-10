@@ -5,10 +5,11 @@ import styled from 'styled-components';
 type MyComponentProps = {
   risk: string;
   name: string;
+  content: number;
   description: string;
 };
 
-const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, description }) => {
+const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, description }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {
@@ -18,10 +19,18 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, description })
     endAngle: 2 * Math.PI,
     indicator: false,
     statistic: {
+      title: {
+        offsetY: -20,
+        style: {
+          fontSize: '8px',
+          color: '#4B535E',
+        },
+        formatter: () => `${content}`,
+      },
       content: {
         style: {
-          fontSize: '12px',
-          lineHeight: '12px',
+          fontSize: '10px',
+          lineHeight: '10px',
           color: '#4B535E',
         },
         formatter: () => risk,
@@ -31,7 +40,7 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, description })
   return (
     <Container>
       <Title>{name}</Title>
-      <Gauge {...config} style={{ height: 150, width: 150 }} />
+      <Gauge {...config} style={{ height: 120, width: 120, padding: 0 }} />
     </Container>
   );
 };
@@ -39,6 +48,7 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, description })
 export default MeterGaugePlot;
 
 const Container = styled.div`
+  margin-inline: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +56,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.span`
-  width: 200px;
+  width: 120px;
   font-size: 12px;
   text-align: center;
 `;

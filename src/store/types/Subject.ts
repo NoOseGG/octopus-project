@@ -45,6 +45,7 @@ export interface SubjectType {
   metric_change_constituent_doc: MetricChangeConstituentDoc[];
   metric_change_director: MetricChangeDirector[];
   metric_entity_contact: MetricEntityContact[];
+  metric_level_competition: MetricLevelCompetition[];
 }
 
 export interface Emails {
@@ -592,4 +593,9 @@ export interface MetricChangeDirector {
 export interface MetricEntityContact {
   sum_count: number | null;
   risk_level: string | null;
+}
+
+export interface MetricLevelCompetition {
+  count_lei: number | null;
+  level_competition: string | null;
 }

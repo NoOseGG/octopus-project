@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 import MyResume from '@app/components/dashboards/profile-info/components/Resumes/components/Resume/MyResume';
+import CountResumes from '@app/components/dashboards/profile-info/components/Resumes/components/CountResumes/CountResumes';
 
 const Resumes: React.FC = () => {
   const resumes = useAppSelector((state) => state.searchProfile.profile.resume);
@@ -11,7 +11,7 @@ const Resumes: React.FC = () => {
     <>
       {Boolean(resumes.length) ? (
         <>
-          <CountVacancies count={resumes.length} />
+          <CountResumes count={resumes.length} />
           <ResumesContainer>
             {resumes.map((item, index) => (
               <MyResume resume={item} key={index} />

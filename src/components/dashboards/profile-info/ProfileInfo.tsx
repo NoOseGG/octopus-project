@@ -8,6 +8,7 @@ import GeneralInformation from '@app/components/dashboards/profile-info/componen
 import Vacancies from '@app/components/dashboards/profile-info/components/Vacancies/Vacancies';
 import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
 import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
+import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -42,10 +43,22 @@ const ProfileInfo: React.FC = () => {
               </RightCol>
             </ProfileRow>
           </Tabs.TabPane>
+
           <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key="2">
             <ProfileRow>
               <LeftCol span={19}>
                 <Vacancies />
+              </LeftCol>
+              <RightCol span={5}>
+                <SiderMenu />
+              </RightCol>
+            </ProfileRow>
+          </Tabs.TabPane>
+
+          <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key="3">
+            <ProfileRow>
+              <LeftCol span={19}>
+                <Resumes />
               </LeftCol>
               <RightCol span={5}>
                 <SiderMenu />

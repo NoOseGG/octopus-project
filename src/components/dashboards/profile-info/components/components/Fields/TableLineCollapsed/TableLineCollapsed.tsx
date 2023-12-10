@@ -50,15 +50,34 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         {!isCollapsed ? (
           <>
             {fields.slice(0, 1).map((item, index) => (
-              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />
+              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
             ))}
           </>
         ) : (
           <>
             {fields.map((item, index) => {
               if (index < 1)
-                return <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />;
-              else return <TableLine name={' '} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />;
+                return (
+                  <TableLine
+                    name={name}
+                    field={item}
+                    isDate={isDate}
+                    isCopyable={isCopyable}
+                    isLink={isLink}
+                    key={index}
+                  />
+                );
+              else
+                return (
+                  <TableLine
+                    name={' '}
+                    field={item}
+                    isDate={isDate}
+                    isCopyable={isCopyable}
+                    isLink={isLink}
+                    key={index}
+                  />
+                );
             })}
           </>
         )}
@@ -81,7 +100,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         {!isCollapsed ? (
           <>
             {fields.slice(0, 1).map((item, index) => (
-              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} key={index} />
+              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
             ))}
           </>
         ) : (

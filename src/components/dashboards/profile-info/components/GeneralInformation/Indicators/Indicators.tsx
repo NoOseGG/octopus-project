@@ -12,11 +12,9 @@ const Indicators: React.FC = () => {
   const metric_entity_contact = useAppSelector((state) => state.searchProfile.profile.metric_entity_contact);
   const metric_level_competition = useAppSelector((state) => state.searchProfile.profile.metric_level_competition);
 
-  console.log(`---> ${metric_level_competition[0].level_competition}`);
-
   return (
     <Container>
-      {metric_address_2[0]?.risk_level && metric_address_2[0]?.count_changes && (
+      {metric_address_2[0]?.risk_level && (
         <MeterGaugePlot
           risk={metric_address_2[0].risk_level}
           name={'Частота смены адреса'}
@@ -24,7 +22,7 @@ const Indicators: React.FC = () => {
           description={'Описание'}
         />
       )}
-      {metric_change_constituent_doc[0]?.risk_level && metric_change_constituent_doc[0]?.count_activity && (
+      {metric_change_constituent_doc[0]?.risk_level && (
         <MeterGaugePlot
           risk={metric_change_constituent_doc[0].risk_level}
           name={'Частота юридически значимых действий'}
@@ -32,7 +30,7 @@ const Indicators: React.FC = () => {
           description={'Описание'}
         />
       )}
-      {metric_change_director[0]?.risk_level && metric_change_director[0]?.count_changes && (
+      {metric_change_director[0]?.risk_level && (
         <MeterGaugePlot
           risk={metric_change_director[0].risk_level}
           name={'Частота смены руководителя'}
@@ -40,7 +38,7 @@ const Indicators: React.FC = () => {
           description={'Описание'}
         />
       )}
-      {metric_entity_contact[0]?.risk_level && metric_entity_contact[0]?.sum_count && (
+      {metric_entity_contact[0]?.risk_level && (
         <MeterGaugePlot
           risk={metric_entity_contact[0].risk_level}
           name={'Уровень контактности субъекта'}
@@ -48,7 +46,7 @@ const Indicators: React.FC = () => {
           description={'Описание'}
         />
       )}
-      {metric_level_competition[0]?.level_competition && metric_level_competition[0]?.count_lei && (
+      {metric_level_competition[0]?.level_competition && (
         <MeterGaugePlot
           risk={metric_level_competition[0].level_competition}
           name={'Уровень конкуренции'}
@@ -64,6 +62,7 @@ export default Indicators;
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: stretch;
+  flex-wrap: wrap;
 `;

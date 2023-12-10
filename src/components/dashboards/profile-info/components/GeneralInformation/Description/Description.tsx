@@ -43,6 +43,5 @@ const Description: React.FC = () => {
 export default Description;
 
 const Container = styled.div`
-  margin-right: 250px;
-  margin-bottom: 1.875rem;
+  margin-right: 12rem;
 `;

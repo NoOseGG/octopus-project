@@ -576,26 +576,26 @@ export interface MetricAddressMain {
 }
 
 export interface MetricAddress2 {
-  count_changes: number | null;
+  count_changes: number;
   risk_level: string | null;
 }
 
 export interface MetricChangeConstituentDoc {
-  count_activity: number | null;
+  count_activity: number;
   risk_level: string | null;
 }
 
 export interface MetricChangeDirector {
-  count_changes: number | null;
+  count_changes: number;
   risk_level: string | null;
 }
 
 export interface MetricEntityContact {
-  sum_count: number | null;
+  sum_count: number;
   risk_level: string | null;
 }
 
 export interface MetricLevelCompetition {
-  count_lei: number | null;
+  count_lei: number;
   level_competition: string | null;
 }

@@ -9,6 +9,7 @@ const MainInfo: React.FC = () => {
   const status = useAppSelector((state) => state.searchProfile.profile.statuses);
   const dateRegNMS = useAppSelector((state) => state.searchProfile.profile.date_reg_mns);
   const dateRegEGR = useAppSelector((state) => state.searchProfile.profile.date_reg_egr);
+  const periodActivity = useAppSelector((state) => state.searchProfile.profile.period_activity);
 
   return (
     <S.StyledTable>
@@ -19,6 +20,7 @@ const MainInfo: React.FC = () => {
         <TableLine name={'Статус'} field={status[0]?.name} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
+        <TableLine name={'Период деятельности'} field={periodActivity} />
       </tbody>
     </S.StyledTable>
   );

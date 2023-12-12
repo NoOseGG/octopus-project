@@ -20,6 +20,7 @@ const CountVacancies: React.FC<MyComponentProps> = ({ count }) => {
 export default CountVacancies;
 
 const CountVacanciesContainer = styled.div`
+  margin-top: 1.8735rem;
   width: 100%;
   padding: 16px;
   text-align: center;

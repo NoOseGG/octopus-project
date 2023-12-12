@@ -76,6 +76,7 @@ export default ProfileInfo;
 const ProfileContainer = styled.div`
   margin: 0 auto;
   max-width: 1320px;
+  width: 100%;
   flex-grow: 1;
 `;
 

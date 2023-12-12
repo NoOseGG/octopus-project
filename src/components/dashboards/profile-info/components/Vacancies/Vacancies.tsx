@@ -3,7 +3,6 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import MyVacancy from '@app/components/dashboards/profile-info/components/Vacancies/components/Vacancy/MyVacancy';
 import styled from 'styled-components';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
-import { Vacancy } from '@app/store/types/Subject';
 import { Select } from 'antd';
 import { PlaceholderText, filterStyle } from '@app/components/dashboards/profile-info/styles/SelectStyles';
 
@@ -22,7 +21,7 @@ const Vacancies: React.FC = () => {
   const [sortedVacancies, setSortedVacancies] = useState([...vacancies]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
-  const avgSalary = (
+  const avgSalaryBYN = (
     vacancies.reduce((acc, item) => {
       if (item.min_salary_byn !== null && item.max_salary_byn !== null) {
         return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
@@ -31,42 +30,73 @@ const Vacancies: React.FC = () => {
       }
     }, 0) / vacancies.length
   ).toFixed();
+  const avgSalaryUSD = (
+    vacancies.reduce((acc, item) => {
+      if (item.min_salary_usd !== null && item.max_salary_usd !== null) {
+        return acc + (Number(item.min_salary_usd) + Number(item.max_salary_usd)) / 2;
+      } else {
+        return 0;
+      }
+    }, 0) / vacancies.length
+  ).toFixed();
 
-  const sortVacancies = (): Vacancy[] => {
+  const sortVacancies = () => {
     switch (selectField) {
       case SelectEnum.DATE: {
         if (ascending === AscendingEnum.ASCENDING) {
-          setSortedVacancies([...vacancies]);
-          console.log(JSON.stringify(sortedVacancies));
-          return [...vacancies];
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
+              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
+              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
+
+              // Добавьте проверку на null перед использованием даты
+              if (dateA && dateB) {
+                return dateA.getTime() - dateB.getTime();
+              }
+
+              // Обработка случая, если хотя бы одна из дат равна null
+              return 0;
+            }),
+          );
         } else {
-          setSortedVacancies([...vacancies.reverse()]);
-          console.log(JSON.stringify(sortedVacancies));
-          return [...vacancies.reverse()];
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
+              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
+              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
+
+              // Добавьте проверку на null перед использованием даты
+              if (dateA && dateB) {
+                return dateB.getTime() - dateA.getTime();
+              }
+
+              // Обработка случая, если хотя бы одна из дат равна null
+              return 0;
+            }),
+          );
         }
+        break;
       }
       case SelectEnum.NAME: {
         if (ascending === AscendingEnum.ASCENDING) {
-          setSortedVacancies([
-            ...vacancies.sort((a, b) => {
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
               const nameA = a.vacancy_name || '';
               const nameB = b.vacancy_name || '';
 
               return nameA.localeCompare(nameB);
             }),
-          ]);
-          return [...vacancies];
+          );
         } else {
-          setSortedVacancies([
-            ...vacancies.sort((a, b) => {
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
               const nameA = a.vacancy_name || '';
               const nameB = b.vacancy_name || '';
 
               return nameB.localeCompare(nameA);
             }),
-          ]);
-          return [...vacancies.reverse()];
+          );
         }
+        break;
       }
     }
   };
@@ -74,7 +104,7 @@ const Vacancies: React.FC = () => {
   useEffect(() => {
     console.log(ascending);
     sortVacancies();
-  }, [ascending]);
+  }, [ascending, selectField]);
 
   const dataSelectField = [
     {
@@ -102,7 +132,16 @@ const Vacancies: React.FC = () => {
     <>
       {Boolean(sortedVacancies.length) ? (
         <>
-          <div>Средння зарплата по всем вакансиям: {avgSalary} BYN</div>
+          <AvgSalaryContainer>
+            <AvgSalary>
+              <span style={{ fontWeight: 700 }}>Средняя зарплата</span>
+              <span>{avgSalaryBYN} BYN</span>
+            </AvgSalary>
+            <AvgSalary>
+              <span style={{ fontWeight: 700 }}>Средняя зарплата </span>
+              <span>{avgSalaryUSD} USD</span>
+            </AvgSalary>
+          </AvgSalaryContainer>
           <CountVacancies count={sortedVacancies.length} />
           <SelectContainer>
             <Select
@@ -135,7 +174,7 @@ const Vacancies: React.FC = () => {
           </VacanciesContainer>
         </>
       ) : (
-        <h1>Вакансии отсутсвуют</h1>
+        <h1 style={{ textAlign: 'center' }}>Вакансии отсутсвуют</h1>
       )}
     </>
   );
@@ -149,4 +188,15 @@ const SelectContainer = styled.div`
   margin-top: 1.8735rem;
   display: flex;
   justify-content: space-around;
+`;
+
+const AvgSalaryContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const AvgSalary = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

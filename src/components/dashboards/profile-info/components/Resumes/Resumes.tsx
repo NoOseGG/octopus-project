@@ -19,7 +19,7 @@ const Resumes: React.FC = () => {
           </ResumesContainer>
         </>
       ) : (
-        <h1>Резюме отсутсвуют</h1>
+        <h1 style={{ textAlign: 'center' }}>Резюме отсутсвуют</h1>
       )}
     </>
   );

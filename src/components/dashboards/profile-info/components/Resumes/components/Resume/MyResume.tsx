@@ -47,7 +47,7 @@ const MyResume: React.FC<MyComponentProps> = ({ resume }) => {
               <TableLine name={'Сведения об образовании'} field={resume.education} />
               <TableLine name={'Должностные обязанности'} field={resume.responsibilities} />
               <TableLine name={'Владение языками'} field={resume.language_name} />
-              <TableLineKeySkill name={'Желаемая заработная плата USD'} field={resume.skill_name} />
+              <TableLineKeySkill name={'Ключевые навыки'} field={resume.skill_name} />
             </>
           )}
         </tbody>

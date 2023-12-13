@@ -9,6 +9,17 @@ import Vacancies from '@app/components/dashboards/profile-info/components/Vacanc
 import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
 import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
 import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
+import Purchases from '@app/components/dashboards/profile-info/components/Purchases/Purchases';
+
+const LEFT_COLUMN_SIZE = 19;
+const RIGHT_COLUMN_SIZE = 5;
+
+enum TABS {
+  GENERAL_INFORMATION = '1',
+  VACANCIES = '2',
+  RESUMES = '3',
+  PURCHASES = '4',
+}
 
 const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
@@ -32,35 +43,46 @@ const ProfileInfo: React.FC = () => {
           <Spin size="large" tip="Загрузка данных . . ." />
         </SpinnerSpace>
       ) : (
-        <Tabs defaultActiveKey="1">
-          <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key="1">
+        <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
+          <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
             <ProfileRow>
-              <LeftCol span={19}>
+              <LeftCol span={LEFT_COLUMN_SIZE}>
                 <GeneralInformation />
               </LeftCol>
-              <RightCol span={5}>
+              <RightCol span={RIGHT_COLUMN_SIZE}>
                 <SiderMenu />
               </RightCol>
             </ProfileRow>
           </Tabs.TabPane>
 
-          <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key="2">
+          <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>
             <ProfileRow>
-              <LeftCol span={19}>
+              <LeftCol span={LEFT_COLUMN_SIZE}>
                 <Vacancies />
               </LeftCol>
-              <RightCol span={5}>
+              <RightCol span={RIGHT_COLUMN_SIZE}>
                 <SiderMenu />
               </RightCol>
             </ProfileRow>
           </Tabs.TabPane>
 
-          <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key="3">
+          <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key={TABS.RESUMES}>
             <ProfileRow>
-              <LeftCol span={19}>
+              <LeftCol span={LEFT_COLUMN_SIZE}>
                 <Resumes />
               </LeftCol>
-              <RightCol span={5}>
+              <RightCol span={RIGHT_COLUMN_SIZE}>
+                <SiderMenu />
+              </RightCol>
+            </ProfileRow>
+          </Tabs.TabPane>
+
+          <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
+            <ProfileRow>
+              <LeftCol span={LEFT_COLUMN_SIZE}>
+                <Purchases />
+              </LeftCol>
+              <RightCol span={RIGHT_COLUMN_SIZE}>
                 <SiderMenu />
               </RightCol>
             </ProfileRow>

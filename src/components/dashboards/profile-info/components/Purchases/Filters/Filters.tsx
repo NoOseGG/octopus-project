@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DatePicker, Select } from 'antd';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 
 const { RangePicker } = DatePicker;
 
 const Filters: React.FC = () => {
+  const [status, setStatus] = useState(StatuesEnum.ALL);
+  const [role, setRole] = useState(RolesEnum.ALL);
+  const [typeFilter, setTypeFilter] = useState(TypeFilterEnum.DATE_ASCENDING);
+
   return (
     <FiltersContainer>
       <SelectsContainer>
         <Select
           defaultValue={StatuesEnum.ALL}
           style={selectFilterStyle}
-          placeholder={StatuesEnum.ALL}
-          allowClear
-          options={StatusesData.map((item) => {
+          value={status}
+          onChange={setStatus}
+          size={'small'}
+          options={statusesData.map((item) => {
             return {
               value: item,
               label: item,
             };
           })}
         />
-        <RangePicker />
+        <RangePicker size={'small'} />
         <Select
-          defaultValue={StatuesEnum.ALL}
+          defaultValue={RolesEnum.ALL}
           style={selectFilterStyle}
-          placeholder={StatuesEnum.ALL}
-          allowClear
+          value={role}
+          onChange={setRole}
+          size={'small'}
           options={RolesData.map((item) => {
             return {
               value: item,
@@ -34,20 +41,17 @@ const Filters: React.FC = () => {
           })}
         />
       </SelectsContainer>
-      <ButtonContainer>
+      <ButtonContainer style={{ alignItems: 'center' }}>
         <ButtonClear>Сбросить всё</ButtonClear>
         <CountContract>2375 Контрактов</CountContract>
         <Select
-          defaultValue={StatuesEnum.ALL}
+          defaultValue={TypeFilterEnum.DATE_ASCENDING}
           style={selectDateFilterStyle}
-          placeholder={StatuesEnum.ALL}
+          value={typeFilter}
+          onChange={setTypeFilter}
           allowClear
-          options={RolesData.map((item) => {
-            return {
-              value: item,
-              label: item,
-            };
-          })}
+          size={'small'}
+          options={typeFilterData}
         />
       </ButtonContainer>
     </FiltersContainer>
@@ -58,9 +62,12 @@ export default Filters;
 
 const selectFilterStyle = {
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
 };
 
 const selectDateFilterStyle = {
+  width: 'auto',
   backgroundColor: '#f1f5fb',
 };
 
@@ -82,6 +89,11 @@ const SelectsContainer = styled.div`
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
+`;
+
+const PlaceHolder = styled.span`
+  font-size: 10px;
+  color: red;
 `;
 
 const ButtonContainer = styled.div`
@@ -112,7 +124,7 @@ enum StatuesEnum {
   PROGRESS = 'В процессе',
   FINISHED = 'Завершенно',
 }
-const StatusesData = [StatuesEnum.ALL, StatuesEnum.PROGRESS, StatuesEnum.FINISHED];
+const statusesData = [StatuesEnum.ALL, StatuesEnum.PROGRESS, StatuesEnum.FINISHED];
 
 enum RolesEnum {
   ALL = 'Все роли',
@@ -120,3 +132,26 @@ enum RolesEnum {
   SUPPLIER = 'Поставщик',
 }
 const RolesData = [RolesEnum.ALL, RolesEnum.CUSTOMER, RolesEnum.SUPPLIER];
+
+enum TypeFilterEnum {
+  DATE_ASCENDING,
+  DATE_DESCENDING,
+}
+const typeFilterData = [
+  {
+    value: TypeFilterEnum.DATE_ASCENDING,
+    label: (
+      <span>
+        <ArrowDownOutlined /> По дате
+      </span>
+    ),
+  },
+  {
+    value: TypeFilterEnum.DATE_DESCENDING,
+    label: (
+      <span>
+        <ArrowUpOutlined /> По дате
+      </span>
+    ),
+  },
+];

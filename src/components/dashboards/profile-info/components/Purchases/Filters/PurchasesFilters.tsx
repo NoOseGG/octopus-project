@@ -48,12 +48,12 @@ const PurchasesFilters: React.FC<MyComponentProps> = ({ iceTrades, handleSetPurc
   useEffect(() => {
     const iceTrade = sortPurchases(status, role, typeFilter, iceTrades);
     handleSetPurchase(iceTrade);
-  }, [status, role, typeFilter]);
+  }, [status, role, typeFilter, iceTrades]);
 
   const handleClearFilters = () => {
     setStatus(StatusEnum.ALL);
     setRole(RolesEnum.ALL);
-    setTypeFilter(TypeFilterEnum.DATE_ASCENDING);
+    setTypeFilter(TypeFilterEnum.DATE_DESCENDING);
   };
 
   return (

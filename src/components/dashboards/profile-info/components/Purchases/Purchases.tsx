@@ -3,6 +3,7 @@ import PurchasesFilters from '@app/components/dashboards/profile-info/components
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { IceTradeCustomer } from '@app/store/types/Subject';
 import MyPurchase from '@app/components/dashboards/profile-info/components/Purchases/components/Purchase/MyPurchase';
+import { IceTrade } from '@app/components/dashboards/profile-info/components/Purchases/Filters/PurchasesFiltersTypes';
 
 const Purchases: React.FC = () => {
   const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
@@ -13,7 +14,7 @@ const Purchases: React.FC = () => {
     (state) => state.searchProfile.profile.icetrade_organizer_negotiations,
   );
 
-  const [purchases, setPurchases] = useState<IceTradeCustomer[]>([]);
+  const [purchases, setPurchases] = useState<IceTrade[]>([]);
 
   const handleSetPurchases = (iceTrade: IceTradeCustomer[]) => {
     setPurchases(iceTrade);

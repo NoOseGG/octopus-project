@@ -1,5 +1,5 @@
-import { IceTradeCustomer } from '@app/store/types/Subject';
 import {
+  IceTrade,
   IceTrades,
   RolesEnum,
   StatusEnum,
@@ -11,13 +11,15 @@ export const sortPurchases = (
   role: RolesEnum,
   typeFilter: TypeFilterEnum,
   iceTrades: IceTrades,
-): IceTradeCustomer[] => {
+): IceTrade[] => {
+  console.log(`role: ${role} status: ${status} typeFilter: ${typeFilter}`);
   const iceTrade = getSelectedArray(role, iceTrades);
   const sortedTypeIceTrade = getSortedDateArray(typeFilter, iceTrade);
-  return sortedTypeIceTrade;
+  const sortedStatusIceTrade = getSortedStatusArray(status, sortedTypeIceTrade);
+  return sortedStatusIceTrade;
 };
 
-const getSelectedArray = (role: RolesEnum, iceTrades: IceTrades): IceTradeCustomer[] => {
+const getSelectedArray = (role: RolesEnum, iceTrades: IceTrades): IceTrade[] => {
   switch (role) {
     case RolesEnum.ALL:
       return [
@@ -40,7 +42,7 @@ const getSelectedArray = (role: RolesEnum, iceTrades: IceTrades): IceTradeCustom
   }
 };
 
-const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTradeCustomer[]): IceTradeCustomer[] => {
+const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTrade[]): IceTrade[] => {
   switch (typeFilter) {
     case TypeFilterEnum.DATE_ASCENDING: {
       return iceTrade.sort((a, b) => {
@@ -66,5 +68,42 @@ const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTradeCustom
         return 0;
       });
     }
+    case TypeFilterEnum.SUM_ASCENDING: {
+      return iceTrade.sort((a, b) => {
+        const sumA = a.lot_price_byn ? a.lot_price_byn : null;
+        const sumB = b.lot_price_byn ? b.lot_price_byn : null;
+
+        if (sumA && sumB) {
+          return sumA - sumB;
+        }
+
+        return 0;
+      });
+    }
+    case TypeFilterEnum.SUM_DESCENDING: {
+      return iceTrade.sort((a, b) => {
+        const sumA = a.lot_price_byn ? a.lot_price_byn : null;
+        const sumB = b.lot_price_byn ? b.lot_price_byn : null;
+
+        if (sumA && sumB) {
+          return sumB - sumA;
+        }
+
+        return 0;
+      });
+    }
+  }
+};
+
+const getSortedStatusArray = (status: StatusEnum, iceTrade: IceTrade[]): IceTrade[] => {
+  switch (status) {
+    case StatusEnum.ALL:
+      return iceTrade;
+    case StatusEnum.FINISHED:
+      return [...iceTrade.filter((item) => item.purchase_status === StatusEnum.FINISHED)];
+    case StatusEnum.CANCELLED:
+      return [...iceTrade.filter((item) => item.purchase_status === StatusEnum.CANCELLED)];
+    case StatusEnum.RESULT_NOT_POST:
+      return [...iceTrade.filter((item) => item.purchase_status === StatusEnum.RESULT_NOT_POST)];
   }
 };

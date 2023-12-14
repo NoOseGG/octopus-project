@@ -1,40 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { DatePicker, Select } from 'antd';
 import {
   RolesData,
   RolesEnum,
-  StatuesEnum,
+  StatusEnum,
   statusesData,
   typeFilterData,
   TypeFilterEnum,
 } from '@app/components/dashboards/profile-info/components/Purchases/Filters/PurchasesFiltersTypes';
-import { useAppSelector } from '@app/hooks/reduxHooks';
+import {
+  IceTradeCustomer,
+  IceTradeOrganizer,
+  IceTradeOrganizerNegotiations,
+  IceTradeOtherParticipant,
+  IceTradeParticipant,
+} from '@app/store/types/Subject';
+import { sortPurchases } from '@app/components/dashboards/profile-info/components/Purchases/Filters/sortPurchasesUtils';
 
 const { RangePicker } = DatePicker;
 
-const PurchasesFilters: React.FC = () => {
-  const [status, setStatus] = useState(StatuesEnum.ALL);
+type MyComponentProps = {
+  iceTrades: {
+    iceTradeCustomer: IceTradeCustomer[];
+    iceTradeParticipant: IceTradeParticipant[];
+    iceTradeOtherParticipant: IceTradeOtherParticipant[];
+    iceTradeOrganizer: IceTradeOrganizer[];
+    iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
+  };
+  handleSetPurchase: (iceTrade: IceTradeCustomer[]) => void;
+};
+
+const PurchasesFilters: React.FC<MyComponentProps> = ({ iceTrades, handleSetPurchase }) => {
+  const [status, setStatus] = useState(StatusEnum.ALL);
   const [role, setRole] = useState(RolesEnum.ALL);
-  const [typeFilter, setTypeFilter] = useState(TypeFilterEnum.DATE_ASCENDING);
+  const [typeFilter, setTypeFilter] = useState(TypeFilterEnum.DATE_DESCENDING);
 
   //ice trades
 
-  const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
-  const iceTradeParticipant = useAppSelector((state) => state.searchProfile.profile.icetrade_participant);
-  const iceTradeOtherParticipant = useAppSelector((state) => state.searchProfile.profile.icetrade_other_participant);
-  const iceTradeOrganizer = useAppSelector((state) => state.searchProfile.profile.icetrade_organizer);
-  const iceTradeOrganizerNegotiations = useAppSelector((state) => state.searchProfile.profile.icetrade_organizer);
-
   const allCount =
-    iceTradeCustomer?.length +
-    iceTradeParticipant?.length +
-    iceTradeOtherParticipant?.length +
-    iceTradeOrganizer?.length +
-    iceTradeOrganizerNegotiations?.length;
+    iceTrades.iceTradeCustomer?.length +
+    iceTrades.iceTradeParticipant?.length +
+    iceTrades.iceTradeOtherParticipant?.length +
+    iceTrades.iceTradeOrganizer?.length +
+    iceTrades.iceTradeOrganizerNegotiations?.length;
+
+  useEffect(() => {
+    const iceTrade = sortPurchases(status, role, typeFilter, iceTrades);
+    handleSetPurchase(iceTrade);
+  }, [status, role, typeFilter]);
 
   const handleClearFilters = () => {
-    setStatus(StatuesEnum.ALL);
+    setStatus(StatusEnum.ALL);
     setRole(RolesEnum.ALL);
     setTypeFilter(TypeFilterEnum.DATE_ASCENDING);
   };
@@ -43,7 +60,7 @@ const PurchasesFilters: React.FC = () => {
     <FiltersContainer>
       <SelectsContainer>
         <Select
-          defaultValue={StatuesEnum.ALL}
+          defaultValue={StatusEnum.ALL}
           style={selectFilterStyle}
           value={status}
           onChange={setStatus}
@@ -117,11 +134,6 @@ const SelectsContainer = styled.div`
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
-`;
-
-const PlaceHolder = styled.span`
-  font-size: 10px;
-  color: red;
 `;
 
 const ButtonContainer = styled.div`

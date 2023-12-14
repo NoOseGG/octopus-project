@@ -8,12 +8,12 @@ import {
   IceTradeParticipant,
 } from '@app/store/types/Subject';
 
-export enum StatuesEnum {
+export enum StatusEnum {
   ALL = 'Все статусы',
   PROGRESS = 'В процессе',
   FINISHED = 'Завершенно',
 }
-export const statusesData = [StatuesEnum.ALL, StatuesEnum.PROGRESS, StatuesEnum.FINISHED];
+export const statusesData = [StatusEnum.ALL, StatusEnum.PROGRESS, StatusEnum.FINISHED];
 
 export enum RolesEnum {
   ALL = 'Все роли',
@@ -59,6 +59,6 @@ export type IceTrades = {
   iceTradeCustomer: IceTradeCustomer[];
   iceTradeParticipant: IceTradeParticipant[];
   iceTradeOtherParticipant: IceTradeOtherParticipant[];
-  IceTradeOrganizer: IceTradeOrganizer[];
+  iceTradeOrganizer: IceTradeOrganizer[];
   iceTradeOrganizerNegotiations: IceTradeOrganizerNegotiations[];
 };

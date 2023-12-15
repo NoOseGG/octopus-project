@@ -33,12 +33,20 @@ const MyVacancy: React.FC<MyComponentProps> = ({ vacancy }) => {
       <S.StyledTable>
         <tbody>
           <TableLine name={'Регион'} field={vacancy.workplace_address_settlement} />
-          <TableLine name={'Зарплата'} field={`от ${vacancy.min_salary_byn}`} />
+          {Boolean(Number(vacancy.min_salary_byn)) && (
+            <TableLine name={'Зарплата'} field={`от ${vacancy.min_salary_byn}`} />
+          )}
           {isCollapsed && (
             <>
-              <TableLine name={'зарплата'} field={`до ${vacancy.max_salary_byn}`} />
-              <TableLine name={'Зарплата USD'} field={`от ${vacancy.min_salary_usd}`} />
-              <TableLine name={'Зарплата USD'} field={`до ${vacancy.max_salary_usd}`} />
+              {Boolean(Number(vacancy.max_salary_byn)) && (
+                <TableLine name={'Зарплата'} field={`до ${vacancy.max_salary_byn}`} />
+              )}
+              {Boolean(Number(vacancy.min_salary_usd)) && (
+                <TableLine name={'Зарплата USD'} field={`от ${vacancy.min_salary_usd}`} />
+              )}
+              {Boolean(Number(vacancy.max_salary_usd)) && (
+                <TableLine name={'Зарплата'} field={`до ${vacancy.max_salary_usd}`} />
+              )}
               <TableLine name={'Режим работы'} field={vacancy.working_hours} />
               <TableLine name={'Рабочая ставка'} field={vacancy.work_rate} />
               <TableLine name={'Группа занятий'} field={vacancy.class_group} />

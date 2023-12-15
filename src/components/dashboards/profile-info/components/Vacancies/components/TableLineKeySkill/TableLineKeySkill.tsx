@@ -15,8 +15,6 @@ const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate = false, is
     .map((item) => `- ${item}\n`)
     .join('');
 
-  console.log(`keySkills ${keySkills?.toString()}`);
-
   return (
     <>
       {name && keySkills && (

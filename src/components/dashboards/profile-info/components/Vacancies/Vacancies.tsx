@@ -5,10 +5,13 @@ import styled from 'styled-components';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 import { Select } from 'antd';
 import { PlaceholderText, filterStyle } from '@app/components/dashboards/profile-info/styles/SelectStyles';
+import CloudTags from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
+import { Vacancy } from '@app/store/types/Subject';
 
 enum SelectEnum {
   DATE = 'По названию',
   NAME = 'По имени',
+  SALARY = 'По зарплате',
 }
 
 enum AscendingEnum {
@@ -21,24 +24,25 @@ const Vacancies: React.FC = () => {
   const [sortedVacancies, setSortedVacancies] = useState([...vacancies]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
-  const avgSalaryBYN = (
-    vacancies.reduce((acc, item) => {
-      if (item.min_salary_byn !== null && item.max_salary_byn !== null) {
-        return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
-      } else {
-        return 0;
-      }
-    }, 0) / vacancies.length
-  ).toFixed();
-  const avgSalaryUSD = (
-    vacancies.reduce((acc, item) => {
-      if (item.min_salary_usd !== null && item.max_salary_usd !== null) {
-        return acc + (Number(item.min_salary_usd) + Number(item.max_salary_usd)) / 2;
-      } else {
-        return 0;
-      }
-    }, 0) / vacancies.length
-  ).toFixed();
+  const words = vacancies.reduce<string[]>((acc, obj) => {
+    const wordsArray = obj.key_skill?.split(';') ?? [];
+    return [...acc, ...wordsArray];
+  }, []);
+  const countObj: { [key: string]: number } = {};
+
+  // Подсчитываем количество каждого элемента в массиве
+  words.forEach((word) => {
+    countObj[word] = (countObj[word] || 0) + 1;
+  });
+
+  // Преобразуем объект в массив объектов
+  const keyWords: { name: string; value: number }[] = Object.entries(countObj).map(([name, value]) => ({
+    value,
+    name,
+  }));
+
+  const avgSalaryBYN = getAvgSalaryBYN(vacancies);
+  const avgSalaryUSD = getAvgSalaryUSD(vacancies);
 
   const sortVacancies = () => {
     switch (selectField) {
@@ -98,6 +102,28 @@ const Vacancies: React.FC = () => {
         }
         break;
       }
+      case SelectEnum.SALARY: {
+        if (ascending === AscendingEnum.ASCENDING) {
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
+              const salaryA = Number(a.min_salary_byn) || 0;
+              const salaryB = Number(b.min_salary_byn) || 0;
+
+              return salaryA - salaryB;
+            }),
+          );
+        } else {
+          setSortedVacancies(
+            vacancies.slice().sort((a, b) => {
+              const salaryA = Number(a.min_salary_byn) || 0;
+              const salaryB = Number(b.min_salary_byn) || 0;
+
+              return salaryB - salaryA;
+            }),
+          );
+        }
+        break;
+      }
     }
   };
 
@@ -115,6 +141,10 @@ const Vacancies: React.FC = () => {
       value: SelectEnum.NAME,
       label: 'По названию',
     },
+    {
+      value: SelectEnum.SALARY,
+      label: 'По зарплате',
+    },
   ];
 
   const dataAscending = [
@@ -130,17 +160,22 @@ const Vacancies: React.FC = () => {
 
   return (
     <>
+      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} />}
       {Boolean(sortedVacancies.length) ? (
         <>
           <AvgSalaryContainer>
-            <AvgSalary>
-              <span style={{ fontWeight: 700 }}>Средняя зарплата</span>
-              <span>{avgSalaryBYN} BYN</span>
-            </AvgSalary>
-            <AvgSalary>
-              <span style={{ fontWeight: 700 }}>Средняя зарплата </span>
-              <span>{avgSalaryUSD} USD</span>
-            </AvgSalary>
+            {Boolean(Number(avgSalaryBYN)) && (
+              <AvgSalary>
+                <span style={{ fontWeight: 700 }}>Средняя зарплата</span>
+                <span>{avgSalaryBYN} BYN</span>
+              </AvgSalary>
+            )}
+            {Boolean(Number(avgSalaryUSD)) && (
+              <AvgSalary>
+                <span style={{ fontWeight: 700 }}>Средняя зарплата </span>
+                <span>{avgSalaryUSD} USD</span>
+              </AvgSalary>
+            )}
           </AvgSalaryContainer>
           <CountVacancies count={sortedVacancies.length} />
           <SelectContainer>
@@ -200,3 +235,39 @@ const AvgSalary = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+const getAvgSalaryBYN = (vacancies: Vacancy[]): string => {
+  let length = 0;
+  const avg = vacancies.reduce((acc, item) => {
+    if (item.min_salary_byn !== '0' && item.max_salary_byn !== '0') {
+      length++;
+      return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
+    } else {
+      return 0;
+    }
+  }, 0);
+  return (avg / length).toFixed();
+};
+
+const getAvgSalaryUSD = (vacancies: Vacancy[]): string => {
+  let length = 0;
+  const avg = vacancies.reduce((acc, item) => {
+    if (item.min_salary_usd !== '0' && item.max_salary_usd !== '0') {
+      length++;
+      return acc + (Number(item.min_salary_usd) + Number(item.max_salary_usd)) / 2;
+    } else {
+      return 0;
+    }
+  }, 0);
+  return (avg / length).toFixed();
+};
+
+// const avgSalaryBYN = (
+//   vacancies.reduce((acc, item) => {
+//     if (item.min_salary_byn !== null && item.max_salary_byn !== null) {
+//       return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
+//     } else {
+//       return 0;
+//     }
+//   }, 0) / vacancies.length
+// ).toFixed();

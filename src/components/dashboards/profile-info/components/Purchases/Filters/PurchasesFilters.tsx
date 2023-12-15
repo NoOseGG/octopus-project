@@ -48,7 +48,7 @@ const PurchasesFilters: React.FC<MyComponentProps> = ({ iceTrades, handleSetPurc
   useEffect(() => {
     const iceTrade = sortPurchases(status, role, typeFilter, iceTrades);
     handleSetPurchase(iceTrade);
-  }, [status, role, typeFilter, iceTrades]);
+  }, [status, role, typeFilter]);
 
   const handleClearFilters = () => {
     setStatus(StatusEnum.ALL);

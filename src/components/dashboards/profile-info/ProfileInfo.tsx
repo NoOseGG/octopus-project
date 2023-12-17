@@ -25,6 +25,21 @@ const ProfileInfo: React.FC = () => {
   const { unn } = useParams();
   const { loading, error } = useAppSelector((state) => state.searchProfile);
   const dispatch = useAppDispatch();
+  const vacancies = useAppSelector((state) => state.searchProfile.profile.vacancy);
+  const resumes = useAppSelector((state) => state.searchProfile.profile.resume);
+  const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
+  const iceTradeParticipant = useAppSelector((state) => state.searchProfile.profile.icetrade_participant);
+  const iceTradeOtherParticipant = useAppSelector((state) => state.searchProfile.profile.icetrade_other_participant);
+  const iceTradeOrganizer = useAppSelector((state) => state.searchProfile.profile.icetrade_organizer);
+  const iceTradeOrganizerNegotiations = useAppSelector(
+    (state) => state.searchProfile.profile.icetrade_organizer_negotiations,
+  );
+  const iceTradeLength =
+    Boolean(iceTradeCustomer.length) ||
+    Boolean(iceTradeParticipant.length) ||
+    Boolean(iceTradeOtherParticipant.length) ||
+    Boolean(iceTradeOrganizer.length) ||
+    Boolean(iceTradeOrganizerNegotiations.length);
 
   useEffect(() => {
     try {
@@ -43,51 +58,79 @@ const ProfileInfo: React.FC = () => {
           <Spin size="large" tip="Загрузка данных . . ." />
         </SpinnerSpace>
       ) : (
-        <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
-          <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
-            <ProfileRow>
-              <LeftCol span={LEFT_COLUMN_SIZE}>
+        <ProfileRow>
+          <LeftCol span={LEFT_COLUMN_SIZE}>
+            <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
+              <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
                 <GeneralInformation />
-              </LeftCol>
-              <RightCol span={RIGHT_COLUMN_SIZE}>
-                <SiderMenu />
-              </RightCol>
-            </ProfileRow>
-          </Tabs.TabPane>
+              </Tabs.TabPane>
+              {Boolean(vacancies.length) && (
+                <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>
+                  <Vacancies />
+                </Tabs.TabPane>
+              )}
+              {Boolean(resumes.length) && (
+                <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key={TABS.RESUMES}>
+                  <Resumes />
+                </Tabs.TabPane>
+              )}
+              {iceTradeLength && (
+                <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
+                  <Purchases />
+                </Tabs.TabPane>
+              )}
+            </Tabs>
+          </LeftCol>
+          <RightCol span={RIGHT_COLUMN_SIZE}>
+            <SiderMenu />
+          </RightCol>
+        </ProfileRow>
 
-          <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>
-            <ProfileRow>
-              <LeftCol span={LEFT_COLUMN_SIZE}>
-                <Vacancies />
-              </LeftCol>
-              <RightCol span={RIGHT_COLUMN_SIZE}>
-                <SiderMenu />
-              </RightCol>
-            </ProfileRow>
-          </Tabs.TabPane>
-
-          <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key={TABS.RESUMES}>
-            <ProfileRow>
-              <LeftCol span={LEFT_COLUMN_SIZE}>
-                <Resumes />
-              </LeftCol>
-              <RightCol span={RIGHT_COLUMN_SIZE}>
-                <SiderMenu />
-              </RightCol>
-            </ProfileRow>
-          </Tabs.TabPane>
-
-          <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
-            <ProfileRow>
-              <LeftCol span={LEFT_COLUMN_SIZE}>
-                <Purchases />
-              </LeftCol>
-              <RightCol span={RIGHT_COLUMN_SIZE}>
-                <SiderMenu />
-              </RightCol>
-            </ProfileRow>
-          </Tabs.TabPane>
-        </Tabs>
+        // <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
+        //   <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
+        //     <ProfileRow>
+        //       <LeftCol span={LEFT_COLUMN_SIZE}>
+        //
+        //       </LeftCol>
+        //       <RightCol span={RIGHT_COLUMN_SIZE}>
+        //         <SiderMenu />
+        //       </RightCol>
+        //     </ProfileRow>
+        //   </Tabs.TabPane>
+        //
+        //   <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>
+        //     <ProfileRow>
+        //       <LeftCol span={LEFT_COLUMN_SIZE}>
+        //         <Vacancies />
+        //       </LeftCol>
+        //       <RightCol span={RIGHT_COLUMN_SIZE}>
+        //         <SiderMenu />
+        //       </RightCol>
+        //     </ProfileRow>
+        //   </Tabs.TabPane>
+        //
+        //   <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key={TABS.RESUMES}>
+        //     <ProfileRow>
+        //       <LeftCol span={LEFT_COLUMN_SIZE}>
+        //         <Resumes />
+        //       </LeftCol>
+        //       <RightCol span={RIGHT_COLUMN_SIZE}>
+        //         <SiderMenu />
+        //       </RightCol>
+        //     </ProfileRow>
+        //   </Tabs.TabPane>
+        //
+        //   <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
+        //     <ProfileRow>
+        //       <LeftCol span={LEFT_COLUMN_SIZE}>
+        //         <Purchases />
+        //       </LeftCol>
+        //       <RightCol span={RIGHT_COLUMN_SIZE}>
+        //         <SiderMenu />
+        //       </RightCol>
+        //     </ProfileRow>
+        //   </Tabs.TabPane>
+        // </Tabs>
       )}
     </ProfileContainer>
   );

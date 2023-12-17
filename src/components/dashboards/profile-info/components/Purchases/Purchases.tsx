@@ -21,7 +21,7 @@ const Purchases: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(JSON.stringify(purchases));
+    console.log('');
   }, [purchases]);
 
   return (

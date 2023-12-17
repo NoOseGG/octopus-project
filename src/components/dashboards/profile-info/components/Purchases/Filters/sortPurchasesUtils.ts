@@ -14,7 +14,7 @@ export const sortPurchases = (
 ): IceTrade[] => {
   console.log(`role: ${role} status: ${status} typeFilter: ${typeFilter}`);
   const iceTrade = getSelectedArray(role, iceTrades);
-  const sortedTypeIceTrade = getSortedDateArray(typeFilter, iceTrade);
+  const sortedTypeIceTrade = getSortedTypeArray(typeFilter, iceTrade);
   const sortedStatusIceTrade = getSortedStatusArray(status, sortedTypeIceTrade);
   return sortedStatusIceTrade;
 };
@@ -42,7 +42,7 @@ const getSelectedArray = (role: RolesEnum, iceTrades: IceTrades): IceTrade[] => 
   }
 };
 
-const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTrade[]): IceTrade[] => {
+const getSortedTypeArray = (typeFilter: TypeFilterEnum, iceTrade: IceTrade[]): IceTrade[] => {
   switch (typeFilter) {
     case TypeFilterEnum.DATE_ASCENDING: {
       return iceTrade.sort((a, b) => {
@@ -74,6 +74,8 @@ const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTrade[]): I
         const sumB = b.lot_price_byn ? b.lot_price_byn : null;
 
         if (sumA && sumB) {
+          console.log('SUM ASC');
+
           return sumA - sumB;
         }
 
@@ -86,6 +88,7 @@ const getSortedDateArray = (typeFilter: TypeFilterEnum, iceTrade: IceTrade[]): I
         const sumB = b.lot_price_byn ? b.lot_price_byn : null;
 
         if (sumA && sumB) {
+          console.log('SUM DES');
           return sumB - sumA;
         }
 

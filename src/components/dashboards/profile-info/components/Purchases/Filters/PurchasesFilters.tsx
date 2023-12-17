@@ -46,6 +46,7 @@ const PurchasesFilters: React.FC<MyComponentProps> = ({ iceTrades, handleSetPurc
     iceTrades.iceTradeOrganizerNegotiations?.length;
 
   useEffect(() => {
+    console.log('USE EFFECT');
     const iceTrade = sortPurchases(status, role, typeFilter, iceTrades);
     handleSetPurchase(iceTrade);
   }, [status, role, typeFilter]);

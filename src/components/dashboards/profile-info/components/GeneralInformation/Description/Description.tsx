@@ -42,6 +42,4 @@ const Description: React.FC = () => {
 
 export default Description;
 
-const Container = styled.div`
-  margin-right: 12rem;
-`;
+const Container = styled.div``;

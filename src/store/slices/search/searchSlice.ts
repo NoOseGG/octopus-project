@@ -44,9 +44,12 @@ const initialState: SearchState = {
 
 export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query: string, { rejectWithValue }) => {
   try {
+    const source = axios.CancelToken.source();
+
     const response = await axios.get(URLS.SEARCH, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
       params: { val: query },
+      cancelToken: source.token,
     });
 
     return response.data;

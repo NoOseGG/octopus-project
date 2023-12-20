@@ -12,7 +12,6 @@ export const sortPurchases = (
   typeFilter: TypeFilterEnum,
   iceTrades: IceTrades,
 ): IceTrade[] => {
-  console.log(`role: ${role} status: ${status} typeFilter: ${typeFilter}`);
   const iceTrade = getSelectedArray(role, iceTrades);
   const sortedTypeIceTrade = getSortedTypeArray(typeFilter, iceTrade);
   const sortedStatusIceTrade = getSortedStatusArray(status, sortedTypeIceTrade);

@@ -24,6 +24,7 @@ export interface SubjectType {
   licenses: License[];
   vacancy: Vacancy[];
   commercial_register: CommercialRegister[];
+  news: News[];
   gias_accredited_customer: GiasAccreditedCustomer[];
   gias_accredited_participant: GiasAccreditedParticipant[];
   gias_black_list: GiasBlackList[];
@@ -218,6 +219,13 @@ export interface CommercialRegister {
   type_retail_trade: string | null;
   type_wholesale_trade: string | null;
   to_dttm: string | null;
+}
+
+export interface News {
+  from_dttm: string | null;
+  news_title: string | null;
+  news_text: string | null;
+  url: string | null;
 }
 
 // ------------ GIAS -------------

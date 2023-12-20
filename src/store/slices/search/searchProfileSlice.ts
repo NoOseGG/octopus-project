@@ -37,6 +37,7 @@ const initialState: SubjectState = {
     licenses: [],
     vacancy: [],
     commercial_register: [],
+    news: [],
     gias_accredited_customer: [],
     gias_accredited_participant: [],
     gias_black_list: [],
@@ -72,7 +73,6 @@ export const doSearchProfile = createAsyncThunk<SubjectType, string>(
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
         params: { unn: unn },
       });
-
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

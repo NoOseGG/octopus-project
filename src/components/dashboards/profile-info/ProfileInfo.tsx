@@ -10,6 +10,7 @@ import TabButton from '@app/components/dashboards/profile-info/components/compon
 import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
 import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
 import Purchases from '@app/components/dashboards/profile-info/components/Purchases/Purchases';
+import NewsProfile from '@app/components/dashboards/profile-info/components/NewsProfile/NewsProfile';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -19,6 +20,7 @@ enum TABS {
   VACANCIES = '2',
   RESUMES = '3',
   PURCHASES = '4',
+  NEWS = '5',
 }
 
 const ProfileInfo: React.FC = () => {
@@ -34,6 +36,7 @@ const ProfileInfo: React.FC = () => {
   const iceTradeOrganizerNegotiations = useAppSelector(
     (state) => state.searchProfile.profile.icetrade_organizer_negotiations,
   );
+  const news = useAppSelector((state) => state.searchProfile.profile.news);
   const iceTradeLength =
     Boolean(iceTradeCustomer.length) ||
     Boolean(iceTradeParticipant.length) ||
@@ -77,6 +80,11 @@ const ProfileInfo: React.FC = () => {
               {iceTradeLength && (
                 <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
                   <Purchases />
+                </Tabs.TabPane>
+              )}
+              {Boolean(news.length) && (
+                <Tabs.TabPane tab={<TabButton>Новости</TabButton>} key={TABS.NEWS}>
+                  <NewsProfile />
                 </Tabs.TabPane>
               )}
             </Tabs>

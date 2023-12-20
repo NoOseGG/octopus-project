@@ -27,7 +27,7 @@ export type MyComponentProps = {
 const NewsFilters: React.FC<MyComponentProps> = ({ news, sortedNews, handleSetSortedNews, handleSetIsLoading }) => {
   const [type, setType] = useState(TypeFilterEnum.DATE);
   const [sort, setSort] = useState(SortFilterEnum.DESCENDING);
-  const [search, setSearch] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const result = sortNews(type, sort, sortedNews);
@@ -40,17 +40,15 @@ const NewsFilters: React.FC<MyComponentProps> = ({ news, sortedNews, handleSetSo
 
   useEffect(() => {
     handleSetIsLoading(true);
-    if (search !== null) {
-      const result = news?.filter((item) => item.news_title?.toLowerCase()?.includes(search.toLowerCase()));
-      handleSetSortedNews(result);
-    }
+    const result = news?.filter((item) => item.news_title?.toLowerCase()?.includes(search.toLowerCase()));
+    handleSetSortedNews(result);
     handleSetIsLoading(false);
   }, [search]);
 
   const handleClearFilters = () => {
     setType(TypeFilterEnum.DATE);
     setSort(SortFilterEnum.DESCENDING);
-    setSearch(null);
+    setSearch('');
     const result = sortNews(type, sort, sortedNews);
     handleSetSortedNews(result);
   };

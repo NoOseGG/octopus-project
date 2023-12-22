@@ -60,6 +60,8 @@ const initialState: SubjectState = {
     metric_change_director: [],
     metric_entity_contact: [],
     metric_level_competition: [],
+    metric_probability_liquidation: [],
+    metric_address_economic_high_risk_registry: [],
   },
   loading: false,
   error: false,

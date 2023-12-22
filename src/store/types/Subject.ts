@@ -47,6 +47,8 @@ export interface SubjectType {
   metric_change_director: MetricChangeDirector[];
   metric_entity_contact: MetricEntityContact[];
   metric_level_competition: MetricLevelCompetition[];
+  metric_probability_liquidation: MetricProbabilityLiquidation[];
+  metric_address_economic_high_risk_registry: MetricAddressEconomicHighRiskRegistry[];
 }
 
 export interface Emails {
@@ -606,4 +608,20 @@ export interface MetricEntityContact {
 export interface MetricLevelCompetition {
   count_lei: number;
   level_competition: string | null;
+}
+
+export interface MetricProbabilityLiquidation {
+  age_short: number | null;
+  address_settlement: string | null;
+  type_activity_name: string | null;
+  count_at: number | null;
+  count_not_at: number | null;
+  probability_liquidation: number | null;
+  ratio: string | null;
+  risk_level: string | null;
+}
+
+export interface MetricAddressEconomicHighRiskRegistry {
+  address_full: string | null;
+  address_description: string | null;
 }

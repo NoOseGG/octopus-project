@@ -40,7 +40,11 @@ const NewsFilters: React.FC<MyComponentProps> = ({ news, sortedNews, handleSetSo
 
   useEffect(() => {
     handleSetIsLoading(true);
-    const result = news?.filter((item) => item.news_title?.toLowerCase()?.includes(search.toLowerCase()));
+    const result = news?.filter(
+      (item) =>
+        item.news_title?.toLowerCase()?.includes(search.toLowerCase()) ||
+        item.news_text?.toLowerCase()?.includes(search.toLowerCase()),
+    );
     handleSetSortedNews(result);
     handleSetIsLoading(false);
   }, [search]);

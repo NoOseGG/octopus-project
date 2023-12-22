@@ -16,4 +16,9 @@ const TabButtonStyle = styled('button')`
   padding: 0 0.5rem;
   font-size: 0.9375rem;
   line-height: 1.625rem;
+
+  &:hover {
+    background-color: #00a6ff;
+    cursor: pointer;
+  }
 `;

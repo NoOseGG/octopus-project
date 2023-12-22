@@ -93,52 +93,6 @@ const ProfileInfo: React.FC = () => {
             <SiderMenu />
           </RightCol>
         </ProfileRow>
-
-        // <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
-        //   <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
-        //     <ProfileRow>
-        //       <LeftCol span={LEFT_COLUMN_SIZE}>
-        //
-        //       </LeftCol>
-        //       <RightCol span={RIGHT_COLUMN_SIZE}>
-        //         <SiderMenu />
-        //       </RightCol>
-        //     </ProfileRow>
-        //   </Tabs.TabPane>
-        //
-        //   <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>
-        //     <ProfileRow>
-        //       <LeftCol span={LEFT_COLUMN_SIZE}>
-        //         <Vacancies />
-        //       </LeftCol>
-        //       <RightCol span={RIGHT_COLUMN_SIZE}>
-        //         <SiderMenu />
-        //       </RightCol>
-        //     </ProfileRow>
-        //   </Tabs.TabPane>
-        //
-        //   <Tabs.TabPane tab={<TabButton>Резюме</TabButton>} key={TABS.RESUMES}>
-        //     <ProfileRow>
-        //       <LeftCol span={LEFT_COLUMN_SIZE}>
-        //         <Resumes />
-        //       </LeftCol>
-        //       <RightCol span={RIGHT_COLUMN_SIZE}>
-        //         <SiderMenu />
-        //       </RightCol>
-        //     </ProfileRow>
-        //   </Tabs.TabPane>
-        //
-        //   <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
-        //     <ProfileRow>
-        //       <LeftCol span={LEFT_COLUMN_SIZE}>
-        //         <Purchases />
-        //       </LeftCol>
-        //       <RightCol span={RIGHT_COLUMN_SIZE}>
-        //         <SiderMenu />
-        //       </RightCol>
-        //     </ProfileRow>
-        //   </Tabs.TabPane>
-        // </Tabs>
       )}
     </ProfileContainer>
   );
@@ -162,12 +116,15 @@ const SpinnerSpace = styled.div`
 `;
 
 const ProfileRow = styled(Row)`
-  margin-inline: 100px;
+  position: relative;
+  height: 100vh;
 `;
 
 const LeftCol = styled(Col)``;
 
 const RightCol = styled(Col)`
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -5,15 +5,15 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { ShareAltOutlined } from '@ant-design/icons';
 
 const Requisites: React.FC = () => {
-  const { short_name } = useAppSelector((state) => state.searchProfile.profile.names[0]);
-  const { full_address } = useAppSelector((state) => state.searchProfile.profile.addresses[0]);
+  const names = useAppSelector((state) => state.searchProfile.profile.names);
+  const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
 
   return (
     <Container>
       <Title>Реквизиты</Title>
-      <LineText>{short_name}</LineText>
-      <LineText>{full_address}</LineText>
+      <LineText>{names[0]?.short_name}</LineText>
+      <LineText>{addresses[0]?.full_address}</LineText>
       <LineText>УНП: {unn}</LineText>
       <ButtonContainer>
         <ButtonCopyStyle>Скопировать</ButtonCopyStyle>
@@ -37,6 +37,7 @@ const Container = styled.div`
 `;
 
 const ButtonContainer = styled.div`
+  width: 100%;
   margin-top: 0.8735rem;
   display: flex;
   justify-content: space-between;
@@ -44,7 +45,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ButtonCopyStyle = styled(Button)`
-  width: 11.4375rem;
+  width: 100%;
   height: 2rem;
   background: #f1f5fb;
   border-radius: 0.3125rem;
@@ -64,7 +65,7 @@ const ButtonCopyStyle = styled(Button)`
 `;
 
 const ButtonShareStyle = styled(Button)`
-  width: 3rem;
+  width: 100%;
   height: 2rem;
   background: #f1f5fb;
   border-radius: 0.3125rem;

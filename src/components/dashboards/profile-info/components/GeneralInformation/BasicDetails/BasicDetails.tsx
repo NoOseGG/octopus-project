@@ -18,9 +18,9 @@ const BasicDetails: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <TableLine name={'Регистратор'} field={taxOffices[0].name} />
-          <TableLine name={'Дата начала действия'} field={taxOffices[0].from_dttm} isDate={true} />
-          <TableLine name={'Юридический адрес'} field={addresses[0].full_address} />
+          <TableLine name={'Регистратор'} field={taxOffices[0]?.name} />
+          <TableLine name={'Дата начала действия'} field={taxOffices[0]?.from_dttm} isDate={true} />
+          <TableLine name={'Юридический адрес'} field={addresses[0]?.full_address} />
         </tbody>
       </S.StyledTable>
     </>

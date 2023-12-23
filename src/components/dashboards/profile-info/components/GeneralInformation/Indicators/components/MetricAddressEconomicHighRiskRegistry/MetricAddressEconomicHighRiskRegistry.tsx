@@ -18,7 +18,9 @@ const MetricAddressEconomicHighRiskRegistry: React.FC = () => {
 
 export default MetricAddressEconomicHighRiskRegistry;
 
-const Container = styled.div``;
+const Container = styled.div`
+  max-width: 400px;
+`;
 
 const Text = styled.div`
   font-size: 10px;

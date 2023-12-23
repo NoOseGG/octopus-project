@@ -47,6 +47,7 @@ const MetricProbabilityLiquidation: React.FC = () => {
 export default MetricProbabilityLiquidation;
 
 const Container = styled.div`
+  max-width: 500px;
   display: flex;
   gap: 10px;
   align-items: center;

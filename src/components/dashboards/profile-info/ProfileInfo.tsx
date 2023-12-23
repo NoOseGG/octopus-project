@@ -117,7 +117,6 @@ const SpinnerSpace = styled.div`
 
 const ProfileRow = styled(Row)`
   position: relative;
-  height: 100vh;
 `;
 
 const LeftCol = styled(Col)``;

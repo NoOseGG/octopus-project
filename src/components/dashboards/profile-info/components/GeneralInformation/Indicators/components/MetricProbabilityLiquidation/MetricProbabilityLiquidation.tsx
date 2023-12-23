@@ -37,6 +37,7 @@ const MetricProbabilityLiquidation: React.FC = () => {
         <Text>Вид деятельности: {metricProbabilityLiquidation[0]?.type_activity_name}</Text>
         <Text>Количество действующий субъектов: {metricProbabilityLiquidation[0]?.count_at}</Text>
         <Text>Общее количество зарегистрированных субъектов: {metricProbabilityLiquidation[0]?.count_not_at}</Text>
+        <Text>Вероятность ликвидации (%): {metricProbabilityLiquidation[0]?.probability_liquidation}</Text>
         <Text>Соотношение действующик к зарегистрированным: {metricProbabilityLiquidation[0]?.ratio}</Text>
         <Text>Уровень риска ликвидации: {metricProbabilityLiquidation[0]?.risk_level}</Text>
       </div>

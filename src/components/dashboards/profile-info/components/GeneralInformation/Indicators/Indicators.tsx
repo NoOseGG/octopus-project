@@ -13,6 +13,12 @@ const Indicators: React.FC = () => {
   const metric_change_director = useAppSelector((state) => state.searchProfile.profile.metric_change_director);
   const metric_entity_contact = useAppSelector((state) => state.searchProfile.profile.metric_entity_contact);
   const metric_level_competition = useAppSelector((state) => state.searchProfile.profile.metric_level_competition);
+  const metric_probability_liquidation = useAppSelector(
+    (state) => state.searchProfile.profile.metric_probability_liquidation,
+  );
+  const metric_address_economic_high_risk_registry = useAppSelector(
+    (state) => state.searchProfile.profile.metric_address_economic_high_risk_registry,
+  );
 
   return (
     <Container>
@@ -59,8 +65,10 @@ const Indicators: React.FC = () => {
         )}
       </TopLine>
       <BottomLine>
-        <MetricProbabilityLiquidation />
-        <MetricAddressEconomicHighRiskRegistry />
+        {metric_probability_liquidation[0]?.probability_liquidation && <MetricProbabilityLiquidation />}
+        {metric_address_economic_high_risk_registry[0]?.address_description && (
+          <MetricAddressEconomicHighRiskRegistry />
+        )}
       </BottomLine>
     </Container>
   );

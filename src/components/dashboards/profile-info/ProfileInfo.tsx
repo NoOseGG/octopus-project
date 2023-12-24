@@ -11,7 +11,7 @@ import SiderMenu from '@app/components/dashboards/profile-info/components/SiderM
 import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
 import Purchases from '@app/components/dashboards/profile-info/components/Purchases/Purchases';
 import NewsProfile from '@app/components/dashboards/profile-info/components/NewsProfile/NewsProfile';
-import HistoryProfile from '@app/components/dashboards/profile-info/components/GeneralInformation/HistoryProfile/HistoryProfile';
+import HistoryProfile from '@app/components/dashboards/profile-info/components/HistoryProfile/HistoryProfile';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;

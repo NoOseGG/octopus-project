@@ -63,11 +63,15 @@ const Indicators: React.FC = () => {
             description={'Описание'}
           />
         )}
+        {metric_address_economic_high_risk_registry[0]?.address_description && (
+          <MetricAddressEconomicHighRiskRegistry
+            risk={metric_address_economic_high_risk_registry[0].address_description}
+            name={'Адрес в реестре с повышенным риском'}
+            description={'Описание'}
+          />
+        )}
       </TopLine>
-      <BottomLine>
-        {Boolean(metric_probability_liquidation.length) && <MetricProbabilityLiquidation />}
-        {Boolean(metric_address_economic_high_risk_registry.length) && <MetricAddressEconomicHighRiskRegistry />}
-      </BottomLine>
+      <BottomLine>{Boolean(metric_probability_liquidation.length) && <MetricProbabilityLiquidation />}</BottomLine>
     </Container>
   );
 };

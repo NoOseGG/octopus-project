@@ -11,19 +11,13 @@ type TimeLineType = {
 
 const HistoryProfile: React.FC = () => {
   const constituentDoc = useAppSelector((state) => state.searchProfile.profile.constituent_doc);
-  const items: TimeLineType[] = constituentDoc?.map((item) => {
-    return {
-      children: `${formatDate(item.from_dttm)} - ${item.event_name} `,
-      label: '',
-    };
-  });
 
   return (
     <Container>
       <Title>История субъекта</Title>
       <Timeline mode={'alternate'}>
-        {items.map((item, index) => (
-          <Timeline.Item key={index}>{item.children}</Timeline.Item>
+        {constituentDoc.map((item, index) => (
+          <Timeline.Item key={index}>{TextDateLeft(item.event_name, item.from_dttm)}</Timeline.Item>
         ))}
       </Timeline>
     </Container>
@@ -40,3 +34,12 @@ const Title = styled.h2`
   text-align: center;
   margin-bottom: 40px;
 `;
+
+const TextDateLeft = (text: string | null, date: string | null) => {
+  return (
+    <div>
+      <div style={{ fontWeight: 600, textDecoration: 'underline' }}>{formatDate(date)}</div>
+      <div>{text}</div>
+    </div>
+  );
+};

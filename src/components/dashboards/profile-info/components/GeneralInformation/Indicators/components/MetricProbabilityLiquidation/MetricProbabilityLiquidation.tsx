@@ -30,17 +30,9 @@ const MetricProbabilityLiquidation: React.FC = () => {
 
   return (
     <Container>
+      <Text>Уровень риска ликвидации: {metricProbabilityLiquidation[0]?.risk_level}</Text>
       <RingProgress {...config} />
-      <div>
-        <Text>Возраст субъекта: {metricProbabilityLiquidation[0]?.age_short}</Text>
-        <Text>Населенный пункт: {metricProbabilityLiquidation[0]?.address_settlement}</Text>
-        <Text>Вид деятельности: {metricProbabilityLiquidation[0]?.type_activity_name}</Text>
-        <Text>Количество действующий субъектов: {metricProbabilityLiquidation[0]?.count_at}</Text>
-        <Text>Общее количество зарегистрированных субъектов: {metricProbabilityLiquidation[0]?.count_not_at}</Text>
-        <Text>Вероятность ликвидации (%): {metricProbabilityLiquidation[0]?.probability_liquidation}</Text>
-        <Text>Соотношение действующик к зарегистрированным: {metricProbabilityLiquidation[0]?.ratio}</Text>
-        <Text>Уровень риска ликвидации: {metricProbabilityLiquidation[0]?.risk_level}</Text>
-      </div>
+      <Text>действующие {metricProbabilityLiquidation[0]?.ratio} зарегистрированные</Text>
     </Container>
   );
 };
@@ -50,6 +42,7 @@ export default MetricProbabilityLiquidation;
 const Container = styled.div`
   max-width: 500px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   align-items: center;
 `;

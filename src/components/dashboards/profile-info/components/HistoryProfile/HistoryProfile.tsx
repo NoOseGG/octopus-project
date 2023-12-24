@@ -4,11 +4,6 @@ import { formatDate } from '@app/utils/utils';
 import { Timeline } from 'antd';
 import styled from 'styled-components';
 
-type TimeLineType = {
-  children: string;
-  label: string;
-};
-
 const HistoryProfile: React.FC = () => {
   const constituentDoc = useAppSelector((state) => state.searchProfile.profile.constituent_doc);
 

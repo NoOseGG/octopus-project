@@ -12,6 +12,7 @@ import Resumes from '@app/components/dashboards/profile-info/components/Resumes/
 import Purchases from '@app/components/dashboards/profile-info/components/Purchases/Purchases';
 import NewsProfile from '@app/components/dashboards/profile-info/components/NewsProfile/NewsProfile';
 import HistoryProfile from '@app/components/dashboards/profile-info/components/HistoryProfile/HistoryProfile';
+import CommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegister';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -22,7 +23,8 @@ enum TABS {
   RESUMES = '3',
   PURCHASES = '4',
   NEWS = '5',
-  HISTORY = '6',
+  COMMERCIAL_REGISTER = '6',
+  HISTORY = '7',
 }
 
 const ProfileInfo: React.FC = () => {
@@ -40,6 +42,7 @@ const ProfileInfo: React.FC = () => {
   );
   const news = useAppSelector((state) => state.searchProfile.profile.news);
   const constituentDoc = useAppSelector((state) => state.searchProfile.profile.constituent_doc);
+  const commercialRegister = useAppSelector((state) => state.searchProfile.profile.commercial_register);
   const iceTradeLength =
     Boolean(iceTradeCustomer.length) ||
     Boolean(iceTradeParticipant.length) ||
@@ -88,6 +91,11 @@ const ProfileInfo: React.FC = () => {
               {Boolean(news.length) && (
                 <Tabs.TabPane tab={<TabButton>Новости</TabButton>} key={TABS.NEWS}>
                   <NewsProfile />
+                </Tabs.TabPane>
+              )}
+              {Boolean(commercialRegister.length) && (
+                <Tabs.TabPane tab={<TabButton>Торговый реестр</TabButton>} key={TABS.COMMERCIAL_REGISTER}>
+                  <CommercialRegister />
                 </Tabs.TabPane>
               )}
               {Boolean(constituentDoc.length) && (

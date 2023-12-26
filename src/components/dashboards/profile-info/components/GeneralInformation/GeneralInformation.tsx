@@ -5,6 +5,7 @@ import Contacts from '@app/components/dashboards/profile-info/components/General
 import BasicDetails from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetails/BasicDetails';
 import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
 import Indicators from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/Indicators';
+import Licenses from '@app/components/dashboards/profile-info/components/GeneralInformation/Licenses/Licenses';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const GeneralInformation: React.FC = () => {
       <Contacts />
       <BasicDetails />
       <TypeActivities />
+      <Licenses />
     </div>
   );
 };

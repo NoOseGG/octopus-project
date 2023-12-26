@@ -19,6 +19,7 @@ export const StyledCell = styled.td`
 export const LeftCell = styled(StyledCell)`
   width: 30%;
   color: #666;
+  padding-right: 5px;
 `;
 
 export const RightCell = styled(StyledCell)`

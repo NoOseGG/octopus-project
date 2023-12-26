@@ -64,7 +64,7 @@ const Title = styled.span`
 
 const getRiskLevel = (risk: string): number => {
   if (risk.localeCompare(ADDRESS_LISTED) === 0) {
-    return 0.8;
+    return 1;
   } else {
     return 0.2;
   }

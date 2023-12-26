@@ -68,7 +68,7 @@ const getRiskLevel = (risk: string): number => {
     case 'Средний':
       return 0.5;
     case 'Высокий':
-      return 0.8;
+      return 1;
     default:
       return 0;
   }

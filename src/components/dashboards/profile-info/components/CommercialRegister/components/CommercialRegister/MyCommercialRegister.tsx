@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
-import { formatDate } from '@app/utils/utils';
+import CommercialRegisterTitle from '@app/components/dashboards/profile-info/components/CommercialRegister/components/CommercialRegisterTitle/CommercialRegisterTitle';
 
 const COLLAPSE_OPEN = 'Скрыть данные';
 const COLLAPSE_CLOSE = 'Показать данные';
@@ -25,14 +25,12 @@ const MyCommercialRegister: React.FC<MyComponentProps> = ({ commercialRegister }
 
   return (
     <CommercialRegisterContainer>
-      <Title>
-        {commercialRegister.type_retail_goods ? (
-          <TitleName>{commercialRegister.type_retail_goods}</TitleName>
-        ) : (
-          <TitleName>{commercialRegister.object_type}</TitleName>
-        )}{' '}
-        <TitleFromDttm>{`от ${formatDate(commercialRegister.from_dttm)}`}</TitleFromDttm>
-      </Title>
+      <CommercialRegisterTitle
+        firstTitle={commercialRegister.type_retail_goods}
+        secondTitle={commercialRegister.object_type}
+        fromDate={commercialRegister.from_dttm}
+        toDate={commercialRegister.to_dttm}
+      />
       <S.StyledTable>
         <tbody>
           <TableLine name={'Населенный пункт торгового объекта'} field={commercialRegister.object_address_settlement} />
@@ -95,17 +93,4 @@ export default MyCommercialRegister;
 const CommercialRegisterContainer = styled.div`
   width: 100%;
   margin-top: 1.835rem;
-`;
-
-const Title = styled.div`
-  width: 100%;
-  font-size: 16px;
-`;
-
-const TitleName = styled.span`
-  color: blue;
-`;
-
-const TitleFromDttm = styled.span`
-  color: grey;
 `;

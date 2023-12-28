@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 
-const ADDRESS_LISTED = 'Адрес не значится в реестре неблагонадежных субъектов';
+const ADDRESS_LISTED = 'Адрес значится в реестре неблагонадежных субъектов';
 
 type MyComponentProps = {
   risk: string;
@@ -63,7 +63,7 @@ const Title = styled.span`
 `;
 
 const getRiskLevel = (risk: string): number => {
-  if (risk.localeCompare(ADDRESS_LISTED) === 0) {
+  if (risk === ADDRESS_LISTED) {
     return 1;
   } else {
     return 0.2;
@@ -71,7 +71,7 @@ const getRiskLevel = (risk: string): number => {
 };
 
 const getColorByRisk = (risk: string): string => {
-  if (risk.localeCompare(ADDRESS_LISTED) === 0) {
+  if (risk === ADDRESS_LISTED) {
     return 'red';
   } else {
     return 'green';
@@ -79,7 +79,7 @@ const getColorByRisk = (risk: string): string => {
 };
 
 const getNameByRisk = (risk: string): string => {
-  if (risk.localeCompare(ADDRESS_LISTED) === 0) {
+  if (risk === ADDRESS_LISTED) {
     return 'Высокий риск';
   } else {
     return 'Низкий риск';

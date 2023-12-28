@@ -34,18 +34,15 @@ const MyVacancy: React.FC<MyComponentProps> = ({ vacancy }) => {
         <tbody>
           <TableLine name={'Регион'} field={vacancy.workplace_address_settlement} />
           {Boolean(Number(vacancy.min_salary_byn)) && (
-            <TableLine name={'Зарплата'} field={`от ${vacancy.min_salary_byn}`} />
+            <TableLine name={'Зарплата BYN'} field={getSalaryString(vacancy.min_salary_byn, vacancy.max_salary_byn)} />
           )}
           {isCollapsed && (
             <>
               {Boolean(Number(vacancy.max_salary_byn)) && (
-                <TableLine name={'Зарплата'} field={`до ${vacancy.max_salary_byn}`} />
-              )}
-              {Boolean(Number(vacancy.min_salary_usd)) && (
-                <TableLine name={'Зарплата USD'} field={`от ${vacancy.min_salary_usd}`} />
-              )}
-              {Boolean(Number(vacancy.max_salary_usd)) && (
-                <TableLine name={'Зарплата'} field={`до ${vacancy.max_salary_usd}`} />
+                <TableLine
+                  name={'Зарплата USD'}
+                  field={getSalaryString(vacancy.min_salary_usd, vacancy.max_salary_usd)}
+                />
               )}
               <TableLine name={'Режим работы'} field={vacancy.working_hours} />
               <TableLine name={'Рабочая ставка'} field={vacancy.work_rate} />
@@ -93,3 +90,11 @@ const TitleName = styled.span`
 const TitleFromDttm = styled.span`
   color: grey;
 `;
+
+const getSalaryString = (minSalary: string | null, maxSalary: string | null): string => {
+  let result = '';
+  if (minSalary !== null) result += `от ${minSalary}`;
+  if (maxSalary !== null) result += `от ${maxSalary}`;
+
+  return result;
+};

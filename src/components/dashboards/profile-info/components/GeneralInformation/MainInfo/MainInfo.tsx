@@ -9,6 +9,12 @@ const MainInfo: React.FC = () => {
   const status = useAppSelector((state) => state.searchProfile.profile.statuses);
   const dateRegNMS = useAppSelector((state) => state.searchProfile.profile.date_reg_mns);
   const dateRegEGR = useAppSelector((state) => state.searchProfile.profile.date_reg_egr);
+  const decision_create_number = useAppSelector((state) => state.searchProfile.profile.decision_create_number);
+  const decision_liquidation_number = useAppSelector(
+    (state) => state.searchProfile.profile.decision_liquidation_number,
+  );
+  const period_activity = useAppSelector((state) => state.searchProfile.profile.period_activity);
+  const age_short = useAppSelector((state) => state.searchProfile.profile.age_short);
 
   return (
     <S.StyledTable>
@@ -19,6 +25,10 @@ const MainInfo: React.FC = () => {
         <TableLine name={'Статус'} field={status[0]?.name} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
+        <TableLine name={'Номер решения о создании'} field={decision_create_number} />
+        <TableLine name={'Номер решения о ликвидации'} field={decision_liquidation_number} />
+        <TableLine name={'Период деятельности'} field={period_activity} />
+        <TableLine name={'Количество лет деятельности'} field={age_short} />
       </tbody>
     </S.StyledTable>
   );

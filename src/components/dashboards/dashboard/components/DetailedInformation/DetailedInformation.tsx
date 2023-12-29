@@ -42,7 +42,7 @@ const columns = [
   getColumn('Полный адрес', 'address_full'),
   getColumn('Сайт', 'contact_web_site'),
   getColumn('Электроная почта', 'contact_email'),
-  getColumn('Наимменование инспецкции НМС', 'tax_office_name'),
+  getColumn('Наименование инспекции НМС', 'tax_office_name'),
 ];
 
 const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {

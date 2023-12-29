@@ -40,14 +40,14 @@ export const getTitleForCountYear = (countYear: COUNT_YEAR_TYPE): string => {
     case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
       return 'Количество ликвидированных компаний (год)';
     case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
-      return 'Количество обокротившихся компаний (год)';
+      return 'Количество обанкротившихся компаний (год)';
 
     case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
       return 'Количество созданных ИП (год)';
     case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
       return 'Количество ликвидированных ИП (год)';
     case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
-      return 'Количество обонкротившихся ИП (год)';
+      return 'Количество обанкротившихся ИП (год)';
   }
 };
 

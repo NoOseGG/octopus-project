@@ -46,7 +46,7 @@ export const getTitleForLineChartYears = (lineChart: LINE_CHART_YEAR): string =>
     case LINE_CHART_YEAR.LE_LIQUIDATED:
       return 'Динамика ликвидаций компаний';
     case LINE_CHART_YEAR.LE_BANKRUPTED:
-      return 'Динамика бакнротства компаний';
+      return 'Динамика банкротств компаний';
     case LINE_CHART_YEAR.LE_CHECKED:
       return 'Динамика проверок компаний';
 

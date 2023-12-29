@@ -8,18 +8,20 @@ const TypeActivities: React.FC = () => {
 
   return (
     <>
-      <S.StyledTable>
-        <thead>
-          <tr>
-            <td>
-              <S.Title>Виды деятельности</S.Title>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {Boolean(typeActivities.length) && <TableLineCollapsedTypeActivities typeActivities={typeActivities} />}
-        </tbody>
-      </S.StyledTable>
+      {Boolean(typeActivities.length) && (
+        <S.StyledTable>
+          <thead>
+            <tr>
+              <td>
+                <S.Title>Виды деятельности</S.Title>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {Boolean(typeActivities.length) && <TableLineCollapsedTypeActivities typeActivities={typeActivities} />}
+          </tbody>
+        </S.StyledTable>
+      )}
     </>
   );
 };

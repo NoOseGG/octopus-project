@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import MeterGaugePlot from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MeterGaugePlot/MeterGaugePlot';
 import styled from 'styled-components';
-import MetricProbabilityLiquidation from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MetricProbabilityLiquidation/MetricProbabilityLiquidation';
 import MetricAddressEconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MetricAddressEconomicHighRiskRegistry/MetricAddressEconomicHighRiskRegistry';
 
 const Indicators: React.FC = () => {
@@ -70,8 +69,15 @@ const Indicators: React.FC = () => {
             description={'Описание'}
           />
         )}
+        {metric_probability_liquidation[0]?.risk_level && (
+          <MeterGaugePlot
+            risk={metric_probability_liquidation[0].risk_level}
+            name={'Уровень риска ликвидации'}
+            content={`${metric_probability_liquidation[0]?.probability_liquidation?.toFixed(2)}%`}
+            description={'Описание'}
+          />
+        )}
       </TopLine>
-      <BottomLine>{Boolean(metric_probability_liquidation.length) && <MetricProbabilityLiquidation />}</BottomLine>
     </Container>
   );
 };

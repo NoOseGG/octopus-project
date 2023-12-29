@@ -34,14 +34,17 @@ const MyVacancy: React.FC<MyComponentProps> = ({ vacancy }) => {
         <tbody>
           <TableLine name={'Регион'} field={vacancy.workplace_address_settlement} />
           {Boolean(Number(vacancy.min_salary_byn)) && (
-            <TableLine name={'Зарплата BYN'} field={getSalaryString(vacancy.min_salary_byn, vacancy.max_salary_byn)} />
+            <TableLine
+              name={'Зарплата BYN'}
+              field={getSalaryString(vacancy.min_salary_byn, vacancy.max_salary_byn, 'BYN')}
+            />
           )}
           {isCollapsed && (
             <>
               {Boolean(Number(vacancy.max_salary_byn)) && (
                 <TableLine
                   name={'Зарплата USD'}
-                  field={getSalaryString(vacancy.min_salary_usd, vacancy.max_salary_usd)}
+                  field={getSalaryString(vacancy.min_salary_usd, vacancy.max_salary_usd, 'USD')}
                 />
               )}
               <TableLine name={'Режим работы'} field={vacancy.working_hours} />
@@ -91,10 +94,10 @@ const TitleFromDttm = styled.span`
   color: grey;
 `;
 
-const getSalaryString = (minSalary: string | null, maxSalary: string | null): string => {
+const getSalaryString = (minSalary: string | null, maxSalary: string | null, currency: string): string => {
   let result = '';
-  if (minSalary !== null) result += `от ${minSalary}`;
-  if (maxSalary !== null) result += `от ${maxSalary}`;
+  if (minSalary !== null) result += `от ${Number(minSalary).toFixed()}`;
+  if (maxSalary !== null) result += ` до ${Number(maxSalary).toFixed()} ${currency}`;
 
   return result;
 };

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 type MyComponentProps = {
   risk: string;
   name: string;
-  content: number;
+  content: number | string;
   description: string;
 };
 

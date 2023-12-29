@@ -21,20 +21,34 @@ import { doGetLiquidatedDetailedSoleTrade } from '@app/store/slices/soleTradeDas
 import { doGetBankruptedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/bankrupted/bankruptedDetailedSoleTradeSlice';
 import { doGetCheckedDetailed } from '@app/store/slices/legalEntityDashboard/detailed/checked/checkedDetailedSlice';
 import { doGetCheckedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/checked/checkedDetailedSoleTradeSlice';
+import styles from '@app/components/dashboards/search-dashboard/subjectsList/subject-item/SubjectItem.module.css';
+import { SUBJECT_INFO_DASHBOARD_PATH } from '@app/components/router/AppRouter';
+import { Link } from 'react-router-dom';
 
-const getColumn = (title: string, field: string) => {
+const getColumn = (title: string, field: string, link = false) => {
+  let renderText;
+  if (link) {
+    renderText = (text: string, record: any) => (
+      <Link className={styles.link} to={`${SUBJECT_INFO_DASHBOARD_PATH}/${record.legal_entity_id}`} target={'_blank'}>
+        <span style={{ cursor: 'pointer', textDecoration: 'underline', fontSize: 14 }}>{text}</span>
+      </Link>
+    );
+  } else {
+    renderText = (text: string) => {
+      return <Content>{text}</Content>;
+    };
+  }
+
   return {
     title: title,
     dataIndex: field,
     key: field,
-    render: (text: string) => {
-      return <Content>{text}</Content>;
-    },
+    render: renderText,
   };
 };
 
 const columns = [
-  getColumn('УНП', 'legal_entity_id'),
+  getColumn('УНП', 'legal_entity_id', true),
   getColumn('Сокращенное наименование', 'company_short_name'),
   getColumn('Вид деятельности', 'type_activity_name'),
   getColumn('Дата регистрации', 'company_date_registration'),

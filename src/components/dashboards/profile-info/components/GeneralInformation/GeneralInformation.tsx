@@ -6,6 +6,9 @@ import BasicDetails from '@app/components/dashboards/profile-info/components/Gen
 import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
 import Indicators from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/Indicators';
 import Licenses from '@app/components/dashboards/profile-info/components/GeneralInformation/Licenses/Licenses';
+import LegalForms from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalForms/LegalForms';
+import StatusesTypes from '@app/components/dashboards/profile-info/components/GeneralInformation/StatusesType/StatusesType';
+import StatesBodies from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodies/StatesBodies';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -17,6 +20,9 @@ const GeneralInformation: React.FC = () => {
       <BasicDetails />
       <TypeActivities />
       <Licenses />
+      <LegalForms />
+      <StatusesTypes />
+      <StatesBodies />
     </div>
   );
 };

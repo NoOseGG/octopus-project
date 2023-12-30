@@ -64,11 +64,11 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ANALYTIC_DASHBOARD_PATH} element={protectedLayout}>
-          <Route index element={<Analytix />} />
+          <Route index element={<Search />} />
           <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
           <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
           <Route path={DASHBOARD_PATH} element={<Dashboard />} />
-          <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
+          {/*<Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />*/}
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
           <Route path="profile" element={<ProfileLayout />}>

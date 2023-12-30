@@ -21,7 +21,7 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     title: 'common.searchSubject',
     key: 'searchSubject',
     // TODO use path variable
-    url: '/search',
+    url: '/',
     icon: <SearchOutlined />,
   },
   {

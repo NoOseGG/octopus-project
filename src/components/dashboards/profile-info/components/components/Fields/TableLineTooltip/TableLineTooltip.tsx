@@ -1,7 +1,8 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { BulbOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import { Popover } from 'antd';
+import styled from 'styled-components';
 
 type MyComponentProps = {
   name: string | null | undefined;
@@ -21,9 +22,9 @@ const TableLineTooltip: React.FC<MyComponentProps> = ({ name, field, description
             <S.Text>
               {field}{' '}
               {description && (
-                <Tooltip destroyTooltipOnHide={true} placement={'left'} title={description}>
+                <Popover trigger={'hover'} content={<StyledTooltipContent>{description}</StyledTooltipContent>}>
                   <BulbOutlined />
-                </Tooltip>
+                </Popover>
               )}
             </S.Text>
           </S.RightCell>
@@ -34,3 +35,9 @@ const TableLineTooltip: React.FC<MyComponentProps> = ({ name, field, description
 };
 
 export default TableLineTooltip;
+
+const StyledTooltipContent = styled.div`
+  max-width: 700px;
+  max-height: 250px;
+  overflow: auto;
+`;

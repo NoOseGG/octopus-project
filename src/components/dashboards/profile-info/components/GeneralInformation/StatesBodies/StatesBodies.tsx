@@ -18,9 +18,8 @@ const StatesBodies: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Код'} field={states_bodies[0]?.state_body_code} />
             <TableLine name={'Полное наименование'} field={states_bodies[0]?.full_name} />
-            <TableLine name={'Полное наименование'} field={getStatusByCode(states_bodies[0]?.status)} />
+            <TableLine name={'Код статуса'} field={getStatusByCode(states_bodies[0]?.status)} />
             <TableLine name={'Дата начала действия'} field={states_bodies[0]?.from_dttm} isDate={true} />
           </tbody>
         </S.StyledTable>

@@ -12,7 +12,7 @@ type MyComponentProps = {
 };
 
 const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
-  const newListHistory = listHistory.map((item, index) => {
+  const newListHistory = listHistory?.map((item, index) => {
     return {
       ...item,
       view_dttm: formatDateWithTime(item.view_dttm),

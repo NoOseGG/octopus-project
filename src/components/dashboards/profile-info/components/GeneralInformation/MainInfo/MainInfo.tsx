@@ -13,8 +13,7 @@ const MainInfo: React.FC = () => {
   const decision_liquidation_number = useAppSelector(
     (state) => state.searchProfile.profile.decision_liquidation_number,
   );
-  const period_activity = useAppSelector((state) => state.searchProfile.profile.period_activity);
-  const age_short = useAppSelector((state) => state.searchProfile.profile.age_short);
+  const age_full = useAppSelector((state) => state.searchProfile.profile.age_full);
 
   return (
     <S.StyledTable>
@@ -27,8 +26,7 @@ const MainInfo: React.FC = () => {
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
         <TableLine name={'Номер решения о создании'} field={decision_create_number} />
         <TableLine name={'Номер решения о ликвидации'} field={decision_liquidation_number} />
-        <TableLine name={'Период деятельности'} field={period_activity} />
-        <TableLine name={'Количество лет деятельности'} field={age_short} />
+        <TableLine name={'Количество дней деятельности'} field={age_full} />
       </tbody>
     </S.StyledTable>
   );

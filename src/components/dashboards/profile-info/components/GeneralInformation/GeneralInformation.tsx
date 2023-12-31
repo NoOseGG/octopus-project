@@ -9,6 +9,7 @@ import Licenses from '@app/components/dashboards/profile-info/components/General
 import LegalForms from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalForms/LegalForms';
 import StatusesTypes from '@app/components/dashboards/profile-info/components/GeneralInformation/StatusesType/StatusesType';
 import StatesBodies from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodies/StatesBodies';
+import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const GeneralInformation: React.FC = () => {
       <MainInfo />
       <Contacts />
       <BasicDetails />
+      <TaxOfficesArrears />
       <TypeActivities />
       <Licenses />
       <LegalForms />

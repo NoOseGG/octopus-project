@@ -59,7 +59,7 @@ export const HeaderSearch: React.FC = () => {
       delaySearch(query);
       navigate('/');
     }
-  },[query]);
+  }, [query]);
 
   return (
     <>

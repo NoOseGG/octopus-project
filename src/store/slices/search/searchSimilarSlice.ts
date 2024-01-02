@@ -6,19 +6,22 @@ import { readToken } from '@app/services/localStorage.service';
 
 const initialState: IInitialState = {
   results: [],
+  unnProfile: null,
   loading: false,
   error: null,
 };
 
 export const doSearchSimilar = createAsyncThunk<ResponseData, RequestData>(
   'doSearchSimilar',
-  async (request, { rejectWithValue }) => {
+  async (request, { dispatch, rejectWithValue }) => {
     try {
+      dispatch(setUnn(request.unn));
       let url = 'https://api.analytix.by/api/v1/dashboard/main/?';
       if (request.settlement !== null) url += `address_settlement=${request.settlement}&`;
       if (request.taxOffice !== null) url += `tax_office_name=${request.taxOffice}&`;
       if (request.typeActivity !== null) url += `type_activity_name=${request.typeActivity}&`;
-      url += `page_size=5`;
+      url += 'company_status_code=AT&';
+      url += `page_size=6`;
 
       const response = await axios.get(url, {
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
@@ -33,13 +36,18 @@ export const doSearchSimilar = createAsyncThunk<ResponseData, RequestData>(
 const searchSimilarSlice = createSlice({
   name: 'searchSimilar',
   initialState,
-  reducers: {},
+  reducers: {
+    setUnn: (state, action) => {
+      state.unnProfile = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(doSearchSimilar.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(doSearchSimilar.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      const result = action.payload.results.filter((item) => item.legal_entity_id !== state.unnProfile);
+      state.results = result;
       state.loading = false;
       state.error = null;
     });
@@ -47,3 +55,5 @@ const searchSimilarSlice = createSlice({
 });
 
 export default searchSimilarSlice.reducer;
+
+export const { setUnn } = searchSimilarSlice.actions;

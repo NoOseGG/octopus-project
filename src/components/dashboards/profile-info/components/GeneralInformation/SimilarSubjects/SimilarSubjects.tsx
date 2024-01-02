@@ -8,6 +8,7 @@ const SimilarSubjects: React.FC = () => {
   const { results } = useAppSelector((state) => state.searchSimilar);
   const dispatch = useAppDispatch();
 
+  const unn = useAppSelector((state) => state.searchProfile.profile.unn);
   const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0]?.settlement);
   const taxOffice = useAppSelector((state) => state.searchProfile.profile.tax_offices[0]?.name);
   const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0]?.name);
@@ -15,6 +16,7 @@ const SimilarSubjects: React.FC = () => {
   useEffect(() => {
     dispatch(
       doSearchSimilar({
+        unn,
         settlement,
         taxOffice,
         typeActivity,
@@ -24,16 +26,18 @@ const SimilarSubjects: React.FC = () => {
 
   return (
     <>
-      <Title>Похожие организации</Title>
-      <SimilarContainer>
-        {results && (
-          <>
-            {results?.map((item, index) => (
-              <OneSimilar subject={item} key={index} />
-            ))}
-          </>
-        )}
-      </SimilarContainer>
+      {Boolean(results.length) && (
+        <>
+          <Title>Похожие организации</Title>
+          <SimilarContainer>
+            <>
+              {results?.slice(0, 5)?.map((item, index) => (
+                <OneSimilar subject={item} key={index} />
+              ))}
+            </>
+          </SimilarContainer>
+        </>
+      )}
     </>
   );
 };
@@ -43,7 +47,7 @@ export default SimilarSubjects;
 const SimilarContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: stretch;
   gap: 20px;
 `;

@@ -11,6 +11,7 @@ import StatusesTypes from '@app/components/dashboards/profile-info/components/Ge
 import StatesBodies from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodies/StatesBodies';
 import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
 import SimilarSubjects from '@app/components/dashboards/profile-info/components/GeneralInformation/SimilarSubjects/SimilarSubjects';
+import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const GeneralInformation: React.FC = () => {
       <LegalForms />
       <StatusesTypes />
       <StatesBodies />
+      <LegalEntityType />
       <SimilarSubjects />
     </div>
   );

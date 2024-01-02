@@ -1,5 +1,6 @@
 export interface IInitialState {
   results: SimilarSubject[];
+  unnProfile: string | null;
   loading: boolean;
   error: string | null;
 }
@@ -16,6 +17,7 @@ export interface SimilarSubject {
 }
 
 export interface RequestData {
+  unn: string | null;
   settlement: string | null;
   taxOffice: string | null;
   typeActivity: string | null;

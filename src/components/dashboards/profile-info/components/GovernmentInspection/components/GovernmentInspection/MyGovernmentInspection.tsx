@@ -6,8 +6,8 @@ import TableLine from '@app/components/dashboards/profile-info/components/compon
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import { formatDate } from '@app/utils/utils';
 
-const COLLAPSE_OPEN = 'Скрыть вакансию';
-const COLLAPSE_CLOSE = 'Показать вакансию';
+const COLLAPSE_OPEN = 'Скрыть проверку';
+const COLLAPSE_CLOSE = 'Показать проверку';
 
 type MyComponentProps = {
   governmentInspection: GovernmentInspection;

@@ -39,13 +39,13 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
   return (
     <>
       {isFavourite ? (
-        <FavouriteButtonFavourited onClick={changeFavourite}>
+        <FavouriteButtonFavourite onClick={changeFavourite}>
           Не отслеживать <AimOutlined />
-        </FavouriteButtonFavourited>
+        </FavouriteButtonFavourite>
       ) : (
-        <FavouriteButtonNotFavourited onClick={changeFavourite}>
+        <FavouriteButtonNotFavourite onClick={changeFavourite}>
           Отслеживать <AimOutlined />
-        </FavouriteButtonNotFavourited>
+        </FavouriteButtonNotFavourite>
       )}
     </>
   );
@@ -53,7 +53,7 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
 
 export default Favourite;
 
-const FavouriteButtonFavourited = styled(Button)`
+const FavouriteButtonFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -74,7 +74,7 @@ const FavouriteButtonFavourited = styled(Button)`
   }
 `;
 
-const FavouriteButtonNotFavourited = styled(Button)`
+const FavouriteButtonNotFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;

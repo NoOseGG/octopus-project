@@ -35,6 +35,7 @@ import chartsReducer from '@app/store/slices/legalEntityDashboard/charts';
 import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts';
 import checkedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
 import checkedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/checked';
+import searchSimilarReducer from '@app/store/slices/search/searchSimilarSlice';
 
 import designReducer from '@app/store/slices/search/designSlice';
 
@@ -48,6 +49,7 @@ export default {
   searchHistory: searchHistoryReducer,
   searchProfile: searchProfileReducer,
   searchFilters: searchFiltersReducer,
+  searchSimilar: searchSimilarReducer,
   favourites: favouritesReducer,
   mainInfo: mainInfoReducer,
   mainInfoSoleTrade: mainInfoSoleTradeReducer,

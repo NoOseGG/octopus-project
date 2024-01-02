@@ -31,11 +31,11 @@ const StatesBodies: React.FC = () => {
 export default StatesBodies;
 
 const getStatusByCode = (code: string | null): string | null => {
-  if (code) return null;
+  if (code === null) return null;
   switch (code) {
     case 'LVK':
       return 'Орган принявший решение о ликвидации';
-    case 'CUR ':
+    case 'CUR':
       return 'Текущий орган учета';
     case 'CRT':
       return 'Орган принявший решение о создании';

@@ -29,23 +29,23 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
     console.log(favourites.results);
     if (checkFavourite(unn, favourites.results)) {
       dispatch(doDeleteFavourites(unn));
-      setIsFavourite(false);
+      dispatch(doGetFavourites());
     } else {
       dispatch(doPostFavourites(unn));
-      setIsFavourite(true);
+      dispatch(doGetFavourites());
     }
   };
 
   return (
     <>
       {isFavourite ? (
-        <FavouriteButton isFavourite={isFavourite} onClick={changeFavourite}>
+        <FavouriteButtonFavourited onClick={changeFavourite}>
           Не отслеживать <AimOutlined />
-        </FavouriteButton>
+        </FavouriteButtonFavourited>
       ) : (
-        <FavouriteButton isFavourite={isFavourite} onClick={changeFavourite}>
+        <FavouriteButtonNotFavourited onClick={changeFavourite}>
           Отслеживать <AimOutlined />
-        </FavouriteButton>
+        </FavouriteButtonNotFavourited>
       )}
     </>
   );
@@ -53,18 +53,35 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
 
 export default Favourite;
 
-interface FavouriteButtonProps {
-  isFavourite: boolean;
-}
-
-const FavouriteButton = styled(Button)<FavouriteButtonProps>`
+const FavouriteButtonFavourited = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-inline: 15px;
   color: #0057ff;
   height: 2rem;
-  background: ${(props) => (props.isFavourite ? '#85a8da' : 'white')};
+  background: #85a8da;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  padding: 0.3125rem 0.9375rem;
+  border: 1px solid rgba(170, 170, 170, 0.33);
+
+  &:hover {
+    color: #ff4d78;
+    border-color: #aaaaaa54;
+    background-color: #fbf3e9;
+  }
+`;
+
+const FavouriteButtonNotFavourited = styled(Button)`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-inline: 15px;
+  color: #0057ff;
+  height: 2rem;
+  background: white;
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;

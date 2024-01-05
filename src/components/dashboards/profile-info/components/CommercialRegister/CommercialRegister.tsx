@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import MyCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/CommercialRegister/MyCommercialRegister';
 import { Select } from 'antd';
 import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
+import StatisticCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/StatisticCommercialRegister/StatisticCommercialRegister';
+import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -21,6 +23,28 @@ const CommercialRegister: React.FC = () => {
   const [sortedCommercialRegister, setSortedCommercialRegister] = useState([...commercialRegister]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
+  const [statisticData, setStatisticData] = useState<{ value: string; count: number }[]>([]);
+
+  useEffect(() => {
+    const groupData: GroupDataType = sortedCommercialRegister.reduce((acc: GroupDataType, item) => {
+      const value = item.object_type;
+
+      if (value !== null) {
+        if (acc[value]) {
+          acc[value]++;
+        } else {
+          acc[value] = 1;
+        }
+      }
+
+      return acc;
+    }, {});
+
+    const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
+
+    setStatisticData(resultArray);
+    console.log(resultArray);
+  }, [sortedCommercialRegister]);
 
   const sortCommercialRegister = () => {
     switch (selectField) {
@@ -113,6 +137,7 @@ const CommercialRegister: React.FC = () => {
     <>
       {Boolean(sortedCommercialRegister.length) ? (
         <>
+          <StatisticCommercialRegister statistics={statisticData} />
           <SelectContainer>
             <Select
               size="small"

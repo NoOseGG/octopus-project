@@ -18,6 +18,7 @@ const CountCommercialRegister: React.FC<MyComponentProps> = ({ count }) => {
 export default CountCommercialRegister;
 
 const CountCommercialRegisterContainer = styled.div`
+  margin-top: 20px;
   width: 100%;
   padding: 16px;
   text-align: center;

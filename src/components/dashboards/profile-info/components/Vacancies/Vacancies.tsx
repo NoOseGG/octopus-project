@@ -7,6 +7,9 @@ import { Select } from 'antd';
 import { PlaceholderText, filterStyle } from '@app/components/dashboards/profile-info/styles/SelectStyles';
 import CloudTags from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 import { Vacancy } from '@app/store/types/Subject';
+import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
+import { getYearFromDate } from '@app/utils/utils';
+import StatisticVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/StatisticVacancies/StatisticVacancies';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -24,6 +27,8 @@ const Vacancies: React.FC = () => {
   const [sortedVacancies, setSortedVacancies] = useState([...vacancies]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
+  const [statisticsYear, setStatisticsYear] = useState<{ value: string; count: number }[]>([]);
+  const [statisticsNameVacancies, setStatisticsNameVacancies] = useState<{ value: string; count: number }[]>([]);
   const words = vacancies.reduce<string[]>((acc, obj) => {
     const wordsArray = obj.key_skill?.split(';') ?? [];
     return [...acc, ...wordsArray];
@@ -40,6 +45,46 @@ const Vacancies: React.FC = () => {
     value,
     name,
   }));
+
+  useEffect(() => {
+    const groupData: GroupDataType = sortedVacancies.reduce((acc: GroupDataType, item) => {
+      const value = getYearFromDate(item.from_dttm);
+
+      if (value !== null) {
+        if (acc[value]) {
+          acc[value]++;
+        } else {
+          acc[value] = 1;
+        }
+      }
+
+      return acc;
+    }, {});
+
+    const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
+
+    setStatisticsYear(resultArray);
+  }, [sortedVacancies]);
+
+  useEffect(() => {
+    const groupData: GroupDataType = sortedVacancies.reduce((acc: GroupDataType, item) => {
+      const value = item.vacancy_name;
+
+      if (value !== null) {
+        if (acc[value]) {
+          acc[value]++;
+        } else {
+          acc[value] = 1;
+        }
+      }
+
+      return acc;
+    }, {});
+
+    const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
+
+    setStatisticsNameVacancies(resultArray);
+  }, [sortedVacancies]);
 
   const avgSalaryBYN = getAvgSalaryBYN(vacancies);
   const avgSalaryUSD = getAvgSalaryUSD(vacancies);
@@ -161,6 +206,11 @@ const Vacancies: React.FC = () => {
   return (
     <>
       {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} />}
+      <h3>Статистика</h3>
+      <StatisticContainer>
+        <StatisticVacancies statistics={statisticsYear} />
+        <StatisticVacancies statistics={statisticsNameVacancies} />
+      </StatisticContainer>
       {Boolean(sortedVacancies.length) ? (
         <>
           <AvgSalaryContainer>
@@ -226,6 +276,7 @@ const SelectContainer = styled.div`
 `;
 
 const AvgSalaryContainer = styled.div`
+  margin-top: 20px;
   display: flex;
   justify-content: space-around;
 `;
@@ -234,6 +285,11 @@ const AvgSalary = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const StatisticContainer = styled.div`
+  display: flex;
+  gap: 20px;
 `;
 
 const getAvgSalaryBYN = (vacancies: Vacancy[]): string => {

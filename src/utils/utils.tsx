@@ -296,6 +296,14 @@ export const getDateLastYear = (): string => {
   return `${year}-${month}-${day}`;
 };
 
+export const getYearFromDate = (date: string | null): string => {
+  if (date === null) return 'Без даты';
+  const currentDate = new Date(date);
+  const year = currentDate.getFullYear();
+
+  return `${year}`;
+};
+
 export const getDateLastQuarter = (): string => {
   const currentDate = new Date();
   currentDate.setMonth(currentDate.getMonth() - 3);

@@ -5,6 +5,7 @@ import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoSt
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import { formatDate } from '@app/utils/utils';
+import TableLineLink from '@app/components/dashboards/profile-info/components/components/Fields/TableLineLink/TableLineLink';
 
 const COLLAPSE_OPEN = 'Скрыть проверку';
 const COLLAPSE_CLOSE = 'Показать проверку';
@@ -31,7 +32,7 @@ const MyResume: React.FC<MyComponentProps> = ({ governmentInspection }) => {
       </Title>
       <S.StyledTable>
         <tbody>
-          <TableLine
+          <TableLineLink
             name={'УНП контролирующего (надзорного) органа'}
             field={governmentInspection.legal_entity_id_gov}
           />

@@ -20,8 +20,7 @@ const StatesBodies: React.FC = () => {
           <tbody>
             {states_bodies.map((item, index) => (
               <Fragment key={index}>
-                <TableLine name={'Полное наименование'} field={item.full_name} />
-                <TableLine name={'Код статуса'} field={getStatusByCode(item.status)} />
+                <TableLine name={getStatusByCode(item.status)} field={item.full_name} />
                 <TableLine name={'Дата начала действия'} field={item.from_dttm} isDate={true} />
                 {index !== states_bodies.length - 1 && <br />}
               </Fragment>

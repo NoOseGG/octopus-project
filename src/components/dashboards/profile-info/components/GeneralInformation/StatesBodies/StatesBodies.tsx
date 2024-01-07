@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 
 const StatesBodies: React.FC = () => {
   const states_bodies = useAppSelector((state) => state.searchProfile.profile.states_bodies);
-
+  console.log(states_bodies);
   return (
     <>
       {Boolean(states_bodies.length) && (
@@ -18,9 +18,14 @@ const StatesBodies: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Полное наименование'} field={states_bodies[0]?.full_name} />
-            <TableLine name={'Код статуса'} field={getStatusByCode(states_bodies[0]?.status)} />
-            <TableLine name={'Дата начала действия'} field={states_bodies[0]?.from_dttm} isDate={true} />
+            {states_bodies.map((item, index) => (
+              <Fragment key={index}>
+                <TableLine name={'Полное наименование'} field={item.full_name} />
+                <TableLine name={'Код статуса'} field={getStatusByCode(item.status)} />
+                <TableLine name={'Дата начала действия'} field={item.from_dttm} isDate={true} />
+                {index !== states_bodies.length - 1 && <br />}
+              </Fragment>
+            ))}
           </tbody>
         </S.StyledTable>
       )}

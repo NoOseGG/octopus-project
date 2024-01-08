@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import { useAppSelector } from '@app/hooks/reduxHooks';
+import TableLineCollapsed from '@app/components/dashboards/profile-info/components/components/Fields/TableLineCollapsed/TableLineCollapsed';
 
 const MainInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
@@ -15,12 +16,14 @@ const MainInfo: React.FC = () => {
   );
   const age_full = useAppSelector((state) => state.searchProfile.profile.age_full);
 
+  const newFullNames = names?.map((item) => item.full_name).filter((full_name) => full_name !== null) as string[];
+
   return (
     <S.StyledTable>
       <tbody>
         <TableLine name={'УНП'} field={unn} isCopyable={true} />
         <TableLine name={'Сокращённое наименование'} field={names[0]?.short_name} isCopyable={true} />
-        <TableLine name={'Полное наименование'} field={names[0]?.full_name} isCopyable={true} />
+        <TableLineCollapsed name={'Полное наименование'} fields={newFullNames} isCopyable={true} />
         <TableLine name={'Статус'} field={status[0]?.name} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />

@@ -5,7 +5,7 @@ import TableLine from '@app/components/dashboards/profile-info/components/compon
 
 const StatesBodies: React.FC = () => {
   const states_bodies = useAppSelector((state) => state.searchProfile.profile.states_bodies);
-  console.log(states_bodies);
+
   return (
     <>
       {Boolean(states_bodies.length) && (

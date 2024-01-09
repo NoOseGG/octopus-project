@@ -12,6 +12,7 @@ import StatesBodies from '@app/components/dashboards/profile-info/components/Gen
 import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
 import SimilarSubjects from '@app/components/dashboards/profile-info/components/GeneralInformation/SimilarSubjects/SimilarSubjects';
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
+import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const GeneralInformation: React.FC = () => {
       <StatusesTypes />
       <StatesBodies />
       <LegalEntityType />
+      <EconomicHighRiskRegistry />
       <SimilarSubjects />
     </div>
   );

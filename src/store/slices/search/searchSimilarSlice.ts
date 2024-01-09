@@ -17,8 +17,8 @@ export const doSearchSimilar = createAsyncThunk<ResponseData, RequestData>(
     try {
       dispatch(setUnn(request.unn));
       let url = 'https://api.analytix.by/api/v1/dashboard/main/?';
-      if (request.settlement !== null) url += `address_settlement=${request.settlement}&`;
       if (request.taxOffice !== null) url += `tax_office_name=${request.taxOffice}&`;
+      else url += `address_settlement=${request.settlement}&`;
       if (request.typeActivity !== null) url += `type_activity_name=${request.typeActivity}&`;
       url += 'company_status_code=AT&';
       url += `page_size=6`;

@@ -18,9 +18,9 @@ const CommercialRegisterTitle: React.FC<MyComponentProps> = ({ firstTitle, secon
         <TitleName>{title}</TitleName> <TitleFromDttm>{`от ${formatDate(fromDate)}`}</TitleFromDttm>
       </div>
       {toDate ? (
-        <TitleStatus color={'#64bb42'}>Действующий</TitleStatus>
-      ) : (
         <TitleStatus color={'#ffd19b'}>Исключен</TitleStatus>
+      ) : (
+        <TitleStatus color={'#64bb42'}>Действующий</TitleStatus>
       )}
     </Title>
   );

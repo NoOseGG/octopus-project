@@ -14,13 +14,13 @@ interface DataType {
 
 const columns: ColumnsType<DataType> = [
   {
-    title: 'Год',
+    title: 'Название вакансии',
     dataIndex: 'value',
     width: '85%',
     render: (text) => <div style={{ fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
   },
   {
-    title: 'К-во',
+    title: 'Количество',
     dataIndex: 'count',
     width: '15%',
     render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
@@ -33,6 +33,7 @@ const StatisticCommercialRegister: React.FC<MyComponentProps> = ({ statistics })
   console.log(statistics);
   return (
     <Container>
+      <Title>Статистика</Title>
       <Table
         columns={columns}
         dataSource={statistics.sort((a, b) => b.count - a.count)}
@@ -50,3 +51,5 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const Title = styled.h3``;

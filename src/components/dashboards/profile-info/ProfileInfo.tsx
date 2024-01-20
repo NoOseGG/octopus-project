@@ -14,6 +14,7 @@ import NewsProfile from '@app/components/dashboards/profile-info/components/News
 import HistoryProfile from '@app/components/dashboards/profile-info/components/HistoryProfile/HistoryProfile';
 import CommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegister';
 import GovernmentInspections from '@app/components/dashboards/profile-info/components/GovernmentInspection/GovernmentInspections';
+import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -27,6 +28,7 @@ enum TABS {
   COMMERCIAL_REGISTER = '6',
   HISTORY = '7',
   GOVERNMENT_INSPECTION = '8',
+  ICE_TRADES = '9',
 }
 
 const ProfileInfo: React.FC = () => {
@@ -109,6 +111,11 @@ const ProfileInfo: React.FC = () => {
               {Boolean(government_inspection.length) && (
                 <Tabs.TabPane tab={<TabButton>Проверки</TabButton>} key={TABS.GOVERNMENT_INSPECTION}>
                   <GovernmentInspections />
+                </Tabs.TabPane>
+              )}
+              {iceTradeLength && (
+                <Tabs.TabPane tab={<TabButton>Ice Trades</TabButton>} key={TABS.ICE_TRADES}>
+                  <IceTrades />
                 </Tabs.TabPane>
               )}
             </Tabs>

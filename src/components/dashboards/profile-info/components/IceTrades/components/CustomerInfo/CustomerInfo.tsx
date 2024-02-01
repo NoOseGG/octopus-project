@@ -67,31 +67,25 @@ const getCustomerCount = (iceTrade: IceTradeCustomer[]): number => {
 };
 
 const getConcludedCount = (iceTrade: IceTradeCustomer[]): number => {
-  const count = iceTrade.filter((item) => item.purchase_status === 'Состоялась').length;
-
-  return count;
+  return iceTrade.filter((item) => item.purchase_status === 'Состоялась').length;
 };
 
 const getTotalValueBYN = (iceTrade: IceTradeCustomer[]): number => {
-  const result = iceTrade.reduce((acc, item) => {
+  return iceTrade.reduce((acc, item) => {
     // Проверка на null перед добавлением к аккумулятору
-    if (item.price_byn !== null) {
-      acc += item.price_byn;
+    if (item.total_price_purchase_byn !== null && item.purchase_status === 'Состоялась') {
+      acc += item.total_price_purchase_byn;
     }
     return acc;
   }, 0);
-
-  return result;
 };
 
 const getTotalValueUSD = (iceTrade: IceTradeCustomer[]): number => {
-  const result = iceTrade.reduce((acc, item) => {
+  return iceTrade.reduce((acc, item) => {
     // Проверка на null перед добавлением к аккумулятору
-    if (item.price_usd !== null) {
-      acc += item.price_usd;
+    if (item.total_price_purchase_usd !== null && item.purchase_status === 'Состоялась') {
+      acc += item.total_price_purchase_usd;
     }
     return acc;
   }, 0);
-
-  return result;
 };

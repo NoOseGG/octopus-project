@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CustomerInfo from '@app/components/dashboards/profile-info/components/IceTrades/components/CustomerInfo/CustomerInfo';
 import ListOfSuppliers from '@app/components/dashboards/profile-info/components/IceTrades/components/ListOfSuppliers/ListOfSuppliers';
 import ListOfProducts from '@app/components/dashboards/profile-info/components/IceTrades/components/ListOfProducts/ListOfProducts';
+import HistoryCompletedPurchases from '@app/components/dashboards/profile-info/components/IceTrades/components/HistoryCompletedPurchases/HistoryCompletedPurchases';
 
 const IceTrades: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const IceTrades: React.FC = () => {
         <ListOfSuppliers />
         <ListOfProducts />
       </div>
+      <HistoryCompletedPurchases />
     </Container>
   );
 };

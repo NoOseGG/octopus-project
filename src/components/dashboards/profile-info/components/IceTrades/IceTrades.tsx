@@ -4,6 +4,7 @@ import CustomerInfo from '@app/components/dashboards/profile-info/components/Ice
 import ListOfSuppliers from '@app/components/dashboards/profile-info/components/IceTrades/components/ListOfSuppliers/ListOfSuppliers';
 import ListOfProducts from '@app/components/dashboards/profile-info/components/IceTrades/components/ListOfProducts/ListOfProducts';
 import HistoryCompletedPurchases from '@app/components/dashboards/profile-info/components/IceTrades/components/HistoryCompletedPurchases/HistoryCompletedPurchases';
+import HistoryNotCompletedPurchases from '@app/components/dashboards/profile-info/components/IceTrades/components/HistoryNotCompletedPurchases/HistoryNotCompletedPurchases';
 
 const IceTrades: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const IceTrades: React.FC = () => {
         <ListOfProducts />
       </div>
       <HistoryCompletedPurchases />
+      <HistoryNotCompletedPurchases />
     </Container>
   );
 };

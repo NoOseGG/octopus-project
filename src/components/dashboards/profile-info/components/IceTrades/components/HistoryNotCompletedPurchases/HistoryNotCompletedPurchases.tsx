@@ -66,19 +66,19 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const HistoryCompletedPurchases: React.FC = () => {
+const HistoryNotCompletedPurchases: React.FC = () => {
   const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
-  const [historyCompletedPurchases, setHistoryCompletedPurchases] = useState<DataType[]>([]);
+  const [historyNotCompletedPurchases, setHistoryNotCompletedPurchases] = useState<DataType[]>([]);
 
   useEffect(() => {
-    setHistoryCompletedPurchases(groupingList(iceTradeCustomer));
+    setHistoryNotCompletedPurchases(groupingList(iceTradeCustomer));
   }, [iceTradeCustomer]);
 
   return (
     <Container>
       <Table
         columns={columns}
-        dataSource={historyCompletedPurchases}
+        dataSource={historyNotCompletedPurchases}
         size={'small'}
         pagination={false}
         scroll={{ y: 500 }}
@@ -93,7 +93,7 @@ const Container = styled.div`
 
 const groupingList = (iceTradeCustomer: IceTradeCustomer[]): DataType[] => {
   return iceTradeCustomer
-    .filter((item) => item.purchase_status === 'Состоялась')
+    .filter((item) => item.purchase_status !== 'Состоялась')
     .map((item) => {
       return {
         short_name_participants: item.participants !== null ? item.participants : '-',
@@ -111,4 +111,4 @@ const groupingList = (iceTradeCustomer: IceTradeCustomer[]): DataType[] => {
     });
 };
 
-export default HistoryCompletedPurchases;
+export default HistoryNotCompletedPurchases;

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { IceTradeCustomer } from '@app/store/types/Subject';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/es/table';
 import { Table } from 'antd';
-import { TableTitle, Title } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradesStyles';
+import {
+  TableTitle,
+  Title,
+  TableContent,
+} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
+import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
 
 //For Table
 
@@ -19,19 +22,19 @@ const columns: ColumnsType<DataType> = [
     title: <TableTitle>УНП</TableTitle>,
     dataIndex: 'unn',
     width: '25%',
-    render: (text) => <div style={{ fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
     title: <TableTitle>Название организации</TableTitle>,
     dataIndex: 'name',
     width: '60%',
-    render: (text) => <div style={{ fontSize: 12 }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
     title: <TableTitle>Сумма</TableTitle>,
     dataIndex: 'totalPrice',
     width: '15%',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text.toFixed(1)}</div>,
+    render: (text) => <TableContent>{text.toFixed(1)}</TableContent>,
   },
 ];
 
@@ -43,14 +46,17 @@ type ArrayDataType = {
   totalPrice: number;
 };
 
-const ListOfSuppliers: React.FC = () => {
-  const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
+type MyComponentProps = {
+  iceTrade: IceTradesType;
+};
+
+const ListOfSuppliers: React.FC<MyComponentProps> = ({ iceTrade }) => {
   const [listOfSuppliers, setListOfSuppliers] = useState<ArrayDataType[]>([]);
 
   useEffect(() => {
-    console.log(JSON.stringify(iceTradeCustomer));
-    setListOfSuppliers(groupingList(iceTradeCustomer));
-  }, [iceTradeCustomer]);
+    console.log(JSON.stringify(iceTrade));
+    setListOfSuppliers(groupingList(iceTrade));
+  }, [iceTrade]);
 
   useEffect(() => {
     console.log(JSON.stringify(listOfSuppliers));
@@ -74,7 +80,7 @@ export default ListOfSuppliers;
 
 const Container = styled.div``;
 
-const groupingList = (iceTradeCustomer: IceTradeCustomer[]) => {
+const groupingList = (iceTradeCustomer: IceTradesType) => {
   const groupedData: GroupedData = {};
 
   iceTradeCustomer.forEach((obj) => {

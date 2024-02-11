@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '@app/hooks/reduxHooks';
 import { ColumnsType } from 'antd/es/table';
-import { IceTradeCustomer } from '@app/store/types/Subject';
 import { Table } from 'antd';
 import styled from 'styled-components';
-import { TableTitle, Title } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradesStyles';
+import {
+  TableTitle,
+  Title,
+  TableContent,
+} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
+import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
 
 //For Table
 
@@ -18,13 +21,13 @@ const columns: ColumnsType<DataType> = [
     title: <TableTitle>Предмет закупки</TableTitle>,
     dataIndex: 'name',
     width: '85%',
-    render: (text) => <div style={{ fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
     title: <TableTitle>Сумма</TableTitle>,
     dataIndex: 'totalPrice',
     width: '15%',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text.toFixed(1)}</div>,
+    render: (text) => <TableContent>{text.toFixed(1)}</TableContent>,
   },
 ];
 
@@ -35,14 +38,17 @@ type ArrayDataType = {
   totalPrice: number;
 };
 
-const ListOfProducts: React.FC = () => {
-  const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
+type MyComponentProps = {
+  iceTrade: IceTradesType;
+};
+
+const ListOfProducts: React.FC<MyComponentProps> = ({ iceTrade }) => {
   const [listOfProducts, setListOfProducts] = useState<ArrayDataType[]>([]);
 
   useEffect(() => {
-    console.log(JSON.stringify(iceTradeCustomer));
-    setListOfProducts(groupingList(iceTradeCustomer));
-  }, [iceTradeCustomer]);
+    console.log(JSON.stringify(iceTrade));
+    setListOfProducts(groupingList(iceTrade));
+  }, [iceTrade]);
 
   return (
     <Container>
@@ -62,7 +68,7 @@ export default ListOfProducts;
 
 const Container = styled.div``;
 
-const groupingList = (iceTradeCustomer: IceTradeCustomer[]) => {
+const groupingList = (iceTradeCustomer: IceTradesType) => {
   const groupedData: GroupedData = {};
 
   iceTradeCustomer.forEach((obj) => {

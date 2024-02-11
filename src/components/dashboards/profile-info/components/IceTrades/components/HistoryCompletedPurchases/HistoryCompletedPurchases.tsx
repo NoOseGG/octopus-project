@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ColumnsType } from 'antd/es/table';
 import { formatDate } from '@app/utils/utils';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { IceTradeCustomer } from '@app/store/types/Subject';
 import { Table } from 'antd';
 import styled from 'styled-components';
 import {
   TableTitle,
   Title,
   TableContent,
-} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradesStyles';
+} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
+import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
 
 interface DataType {
   short_name_participants: string;
@@ -71,13 +70,16 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const HistoryCompletedPurchases: React.FC = () => {
-  const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
+type MyComponentProps = {
+  iceTrade: IceTradesType;
+};
+
+const HistoryCompletedPurchases: React.FC<MyComponentProps> = ({ iceTrade }) => {
   const [historyCompletedPurchases, setHistoryCompletedPurchases] = useState<DataType[]>([]);
 
   useEffect(() => {
-    setHistoryCompletedPurchases(groupingList(iceTradeCustomer));
-  }, [iceTradeCustomer]);
+    setHistoryCompletedPurchases(groupingList(iceTrade));
+  }, [iceTrade]);
 
   return (
     <Container>
@@ -97,8 +99,8 @@ const Container = styled.div`
   margin-top: 20px;
 `;
 
-const groupingList = (iceTradeCustomer: IceTradeCustomer[]): DataType[] => {
-  return iceTradeCustomer
+const groupingList = (iceTrade: IceTradesType): DataType[] => {
+  return iceTrade
     .filter((item) => item.purchase_status === 'Состоялась')
     .map((item) => {
       return {

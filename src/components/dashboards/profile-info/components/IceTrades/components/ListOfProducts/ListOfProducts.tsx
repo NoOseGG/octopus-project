@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { ColumnsType } from 'antd/es/table';
 import { IceTradeCustomer } from '@app/store/types/Subject';
-import { Table, Typography } from 'antd';
+import { Table } from 'antd';
 import styled from 'styled-components';
+import { TableTitle, Title } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradesStyles';
 
 //For Table
 
@@ -14,13 +15,13 @@ interface DataType {
 
 const columns: ColumnsType<DataType> = [
   {
-    title: 'Предмет закупки',
+    title: <TableTitle>Предмет закупки</TableTitle>,
     dataIndex: 'name',
     width: '85%',
     render: (text) => <div style={{ fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
   },
   {
-    title: 'Сумма',
+    title: <TableTitle>Сумма</TableTitle>,
     dataIndex: 'totalPrice',
     width: '15%',
     render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text.toFixed(1)}</div>,
@@ -47,9 +48,7 @@ const ListOfProducts: React.FC = () => {
     <Container>
       <Table
         columns={columns}
-        title={() => (
-          <Typography.Text style={{ fontSize: 20, fontWeight: 550 }}>Список товарок (услуг)</Typography.Text>
-        )}
+        title={() => <Title>Список товарок (услуг)</Title>}
         dataSource={listOfProducts}
         size={'small'}
         pagination={false}

@@ -5,6 +5,11 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { IceTradeCustomer } from '@app/store/types/Subject';
 import { Table } from 'antd';
 import styled from 'styled-components';
+import {
+  TableTitle,
+  Title,
+  TableContent,
+} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradesStyles';
 
 interface DataType {
   short_name_participants: string;
@@ -20,49 +25,49 @@ interface DataType {
 
 const columns: ColumnsType<DataType> = [
   {
-    title: 'Краткое наименование заказчика',
+    title: <TableTitle>Краткое наименование заказчика</TableTitle>,
     dataIndex: 'short_name_participants',
-    render: (text) => <div style={{ fontSize: 12, lineHeight: 1.3 }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Дата договора',
+    title: <TableTitle>Дата договора</TableTitle>,
     dataIndex: 'contract_date',
-    render: (text) => <div style={{ fontSize: 12 }}>{formatDate(text)}</div>,
+    render: (text) => <TableContent>{formatDate(text)}</TableContent>,
   },
   {
-    title: 'Предмет закупки',
+    title: <TableTitle>Предмет закупки</TableTitle>,
     dataIndex: 'description',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Объём',
+    title: <TableTitle>Объём</TableTitle>,
     dataIndex: 'volume_lot',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Стоимость в белорусских рублях',
+    title: <TableTitle>Стоимость в белорусских рублях</TableTitle>,
     dataIndex: 'total_price_purchase_byn',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Стоимость в долларах',
+    title: <TableTitle>Стоимость в долларах</TableTitle>,
     dataIndex: 'total_price_purchase_usd',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Фирменное наименование поставщик',
+    title: <TableTitle>Фирменное наименование поставщик</TableTitle>,
     dataIndex: 'firm_name',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'УНП поставщика',
+    title: <TableTitle>УНП поставщика</TableTitle>,
     dataIndex: 'participants_identifier',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
   {
-    title: 'Краткое наименование поставщика',
+    title: <TableTitle>Краткое наименование поставщика</TableTitle>,
     dataIndex: 'short_name',
-    render: (text) => <div style={{ fontSize: 12, textAlign: 'center' }}>{text}</div>,
+    render: (text) => <TableContent>{text}</TableContent>,
   },
 ];
 
@@ -78,6 +83,7 @@ const HistoryCompletedPurchases: React.FC = () => {
     <Container>
       <Table
         columns={columns}
+        title={() => <Title>История завершенных закупок</Title>}
         dataSource={historyCompletedPurchases}
         size={'small'}
         pagination={false}

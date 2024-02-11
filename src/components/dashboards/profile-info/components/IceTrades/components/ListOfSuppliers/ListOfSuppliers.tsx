@@ -3,7 +3,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { IceTradeCustomer } from '@app/store/types/Subject';
 import styled from 'styled-components';
 import { ColumnsType } from 'antd/es/table';
-import { Table } from 'antd';
+import { Table, Typography } from 'antd';
 
 //For Table
 
@@ -57,7 +57,14 @@ const ListOfSuppliers: React.FC = () => {
 
   return (
     <Container>
-      <Table columns={columns} dataSource={listOfSuppliers} size={'small'} pagination={false} scroll={{ y: 500 }} />
+      <Table
+        columns={columns}
+        title={() => <Typography.Text style={{ fontSize: 20, fontWeight: 550 }}>Список поставщиков</Typography.Text>}
+        dataSource={listOfSuppliers}
+        size={'small'}
+        pagination={false}
+        scroll={{ y: 360 }}
+      />
     </Container>
   );
 };

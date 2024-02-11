@@ -81,7 +81,7 @@ const HistoryCompletedPurchases: React.FC = () => {
         dataSource={historyCompletedPurchases}
         size={'small'}
         pagination={false}
-        scroll={{ y: 500 }}
+        scroll={{ y: 360 }}
       />
     </Container>
   );

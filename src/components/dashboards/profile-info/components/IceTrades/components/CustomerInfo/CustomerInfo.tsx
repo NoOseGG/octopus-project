@@ -18,30 +18,47 @@ const CustomerInfo: React.FC = () => {
   }, [iceTradeCustomer]);
 
   return (
-    <Container>
-      <Count>
-        <Title>Общее количество заявок</Title>
-        <Content>{customerCount}</Content>
-      </Count>
-      <Count>
-        <Title>Количество заключенных контрактов</Title>
-        <Content>{concludedCount}</Content>
-      </Count>
-      <Count>
-        <Title>Общая стоимость заключенных контрактов (BYN)</Title>
-        <Content>{totalValueBYN.toFixed()}</Content>
-      </Count>
-      <Count>
-        <Title>Общая стоимость заключенных контрактов (USD)</Title>
-        <Content>{totalValueUSD.toFixed()}</Content>
-      </Count>
-    </Container>
+    <>
+      {Boolean(iceTradeCustomer.length) && (
+        <Container>
+          <TitleName>Заказчик</TitleName>
+          <CustomerInfoContainer>
+            <Count>
+              <Title>Общее количество заявок</Title>
+              <Content>{customerCount}</Content>
+            </Count>
+            <Count>
+              <Title>Количество заключенных контрактов</Title>
+              <Content>{concludedCount}</Content>
+            </Count>
+            <Count>
+              <Title>Общая стоимость заключенных контрактов (BYN)</Title>
+              <Content>{totalValueBYN.toFixed()}</Content>
+            </Count>
+            <Count>
+              <Title>Общая стоимость заключенных контрактов (USD)</Title>
+              <Content>{totalValueUSD.toFixed()}</Content>
+            </Count>
+          </CustomerInfoContainer>
+        </Container>
+      )}
+    </>
   );
 };
 
 export default CustomerInfo;
 
+const TitleName = styled.h2`
+  font-size: 36px;
+  text-align: center;
+`;
+
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CustomerInfoContainer = styled.div`
   display: flex;
   justify-content: space-around;
 `;

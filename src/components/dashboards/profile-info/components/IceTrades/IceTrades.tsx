@@ -9,7 +9,6 @@ import HistoryNotCompletedPurchases from '@app/components/dashboards/profile-inf
 const IceTrades: React.FC = () => {
   return (
     <Container>
-      <Title>Заказчик</Title>
       <CustomerInfo />
       <div style={{ display: 'flex', gap: 10, marginLeft: 10, marginRight: 10, marginTop: 10 }}>
         <ListOfSuppliers />
@@ -17,7 +16,6 @@ const IceTrades: React.FC = () => {
       </div>
       <HistoryCompletedPurchases />
       <HistoryNotCompletedPurchases />
-      <Title>Поставщик</Title>
     </Container>
   );
 };
@@ -25,8 +23,3 @@ const IceTrades: React.FC = () => {
 export default IceTrades;
 
 const Container = styled.div``;
-
-const Title = styled.h2`
-  font-size: 28px;
-  text-align: center;
-`;

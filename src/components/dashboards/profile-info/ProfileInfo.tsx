@@ -9,7 +9,6 @@ import Vacancies from '@app/components/dashboards/profile-info/components/Vacanc
 import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
 import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
 import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
-import Purchases from '@app/components/dashboards/profile-info/components/Purchases/Purchases';
 import NewsProfile from '@app/components/dashboards/profile-info/components/NewsProfile/NewsProfile';
 import HistoryProfile from '@app/components/dashboards/profile-info/components/HistoryProfile/HistoryProfile';
 import CommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegister';
@@ -90,7 +89,7 @@ const ProfileInfo: React.FC = () => {
               )}
               {iceTradeLength && (
                 <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
-                  <Purchases />
+                  <IceTrades />
                 </Tabs.TabPane>
               )}
               {Boolean(news.length) && (
@@ -111,11 +110,6 @@ const ProfileInfo: React.FC = () => {
               {Boolean(government_inspection.length) && (
                 <Tabs.TabPane tab={<TabButton>Проверки</TabButton>} key={TABS.GOVERNMENT_INSPECTION}>
                   <GovernmentInspections />
-                </Tabs.TabPane>
-              )}
-              {iceTradeLength && (
-                <Tabs.TabPane tab={<TabButton>Ice Trades</TabButton>} key={TABS.ICE_TRADES}>
-                  <IceTrades />
                 </Tabs.TabPane>
               )}
             </Tabs>

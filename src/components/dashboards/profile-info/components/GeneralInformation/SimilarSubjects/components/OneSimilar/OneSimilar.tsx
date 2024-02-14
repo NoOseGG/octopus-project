@@ -87,6 +87,7 @@ const Title = styled.div`
   line-height: 1.1;
   margin-top: 5px;
   margin-bottom: 5px;
+  word-break: break-word;
 `;
 
 const LineText = styled.div`

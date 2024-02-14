@@ -93,14 +93,11 @@ export const getColumns = (detailed: DETAILED_TYPE) => {
     case DETAILED_TYPE.ST_CREATED:
       return [
         getColumn('УНП', 'legal_entity_id', true),
-        getColumn('Сокращенное наименование', 'company_short_name'),
+        getColumn('Полное наименование', 'company_full_name'),
         getColumn('Вид деятельности', 'type_activity_name'),
         getColumn('Дата регистрации', 'company_date_registration'),
         getColumn('Состояние', 'company_status_name'),
-        getColumn('Полный адрес', 'address_full'),
-        getColumn('Сайт', 'contact_web_site'),
-        getColumn('Электроная почта', 'contact_email'),
-        getColumn('Наименование инспекции НМС', 'tax_office_name'),
+        getColumn('Наименование инспекции НМС', 'state_body_crt_name'),
       ];
 
     case DETAILED_TYPE.ST_LIQUIDATED:

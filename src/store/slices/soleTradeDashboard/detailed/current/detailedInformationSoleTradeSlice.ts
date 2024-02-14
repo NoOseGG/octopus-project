@@ -28,7 +28,7 @@ export const doGetDetailedSoleTrade = createAsyncThunk<ResponseDetailedInformati
         false,
         false,
       );
-
+      console.log(url);
       const response = await axios.get(url);
       return response.data;
     } catch (error) {

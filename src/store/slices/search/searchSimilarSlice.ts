@@ -22,7 +22,7 @@ export const doSearchSimilar = createAsyncThunk<ResponseData, RequestData>(
       if (request.typeActivity !== null) url += `type_activity_name=${request.typeActivity}&`;
       url += 'company_status_code=AT&';
       url += `page_size=6`;
-
+      console.log(url);
       const response = await axios.get(url, {
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
       });
@@ -46,8 +46,7 @@ const searchSimilarSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doSearchSimilar.fulfilled, (state, action) => {
-      const result = action.payload.results.filter((item) => item.legal_entity_id !== state.unnProfile);
-      state.results = result;
+      state.results = action.payload.results.filter((item) => item.legal_entity_id !== state.unnProfile);
       state.loading = false;
       state.error = null;
     });

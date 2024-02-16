@@ -92,4 +92,5 @@ const Title = styled.div`
 
 const LineText = styled.div`
   font-size: 12px;
+  word-break: break-word;
 `;

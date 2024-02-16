@@ -13,6 +13,7 @@ interface UrlConfig {
   SEARCH_SUBJECT: string;
   SEARCH_HISTORY: string;
   FAVOURITES: string;
+  FEEDBACK: string;
 }
 
 export const URLS: UrlConfig = {
@@ -29,6 +30,7 @@ export const URLS: UrlConfig = {
   SEARCH_SUBJECT: '',
   SEARCH_HISTORY: '',
   FAVOURITES: '',
+  FEEDBACK: '',
 };
 
 URLS.BASE = `${URLS.ADDRESS}${URLS.API}${URLS.VERSION}`;
@@ -40,6 +42,7 @@ URLS.SEARCH = `${URLS.BASE}profile_search/`;
 URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
 URLS.SEARCH_HISTORY = `${URLS.BASE}user/view_history/`;
 URLS.FAVOURITES = `${URLS.BASE}user/favourites/`;
+URLS.FEEDBACK = `${URLS.BASE}user/feedback/`;
 
 export const SEARCH_FILTERS_URL = {
   TYPE_ACTIVITIES: `${URLS.BASE}dashboard/ref/type_activity`,

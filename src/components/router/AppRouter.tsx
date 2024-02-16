@@ -19,6 +19,7 @@ import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
 import SearchPage from '@app/pages/DashboardPages/SearchPage';
 import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 import AnalytixPage from '@app/pages/DashboardPages/AnalytixPage';
+import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -33,6 +34,7 @@ export const ANALYTIC_DASHBOARD_PATH = '/';
 export const SEARCH_DASHBOARD_PATH = '/search';
 export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
 export const CHANGE_LOG_PATH = '/change-log';
+export const FEEDBACK_PATH = '/feedback';
 export const DASHBOARD_PATH = '/dashboard';
 
 const Analytix = withLoading(AnalytixPage);
@@ -40,6 +42,7 @@ const SubjectInfo = withLoading(SubjectInfoPage);
 const Search = withLoading(SearchPage);
 const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
+const Feedback = withLoading(FeedbackPage);
 
 const ServerError = withLoading(ServerErrorPage);
 const Error404 = withLoading(Error404Page);
@@ -68,6 +71,7 @@ export const AppRouter: React.FC = () => {
           <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
           <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
           <Route path={DASHBOARD_PATH} element={<Dashboard />} />
+          <Route path={FEEDBACK_PATH} element={<Feedback />} />
           {/*<Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />*/}
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />

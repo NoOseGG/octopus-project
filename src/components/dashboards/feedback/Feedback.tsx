@@ -1,7 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Feedback: React.FC = () => {
-  return <div></div>;
+export const Feedback: React.FC = () => {
+  return <Container>Обратная связь</Container>;
 };
 
-export default Feedback;
+const Container = styled.div`
+  text-align: center;
+`;

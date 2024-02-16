@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardOutlined, SearchOutlined } from '@ant-design/icons';
+import { DashboardOutlined, FormOutlined, SearchOutlined } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
   title: string;
@@ -30,6 +30,13 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     // TODO use path variable
     url: '/dashboard',
     icon: <DashboardOutlined />,
+  },
+  {
+    title: 'common.feedback',
+    key: 'feedback',
+    // TODO use path variable
+    url: '/feedback',
+    icon: <FormOutlined />,
   },
   // {
   //   title: 'common.change-log',

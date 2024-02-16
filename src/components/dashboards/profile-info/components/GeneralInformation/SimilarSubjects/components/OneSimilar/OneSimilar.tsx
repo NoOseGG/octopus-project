@@ -50,7 +50,7 @@ export default OneSimilar;
 // `;
 
 const WIDTH = 150;
-const HEIGHT = 200;
+const HEIGHT = 220;
 
 const Container = styled.div`
   width: ${`${WIDTH}px`};

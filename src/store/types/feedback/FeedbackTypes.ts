@@ -1,0 +1,17 @@
+export interface FeedbackResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: FeedbackObject[];
+}
+
+interface FeedbackObject {
+  created_at: string;
+  message: string;
+}
+
+export interface FeedbackState {
+  feedbacks: FeedbackResponse;
+  loading: boolean;
+  error: string | null;
+}

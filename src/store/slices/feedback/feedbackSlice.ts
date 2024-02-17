@@ -20,6 +20,9 @@ export const doGetFeedbacks = createAsyncThunk<FeedbackResponse>('doGetFeedbacks
     const response = await axios.get(URLS.FEEDBACK, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
     });
+    console.log(URLS.FEEDBACK);
+    console.log(JSON.stringify(response.data));
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -33,6 +36,11 @@ const feedbackSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(doGetFeedbacks.pending, (state) => {
       state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(doGetFeedbacks.fulfilled, (state, action) => {
+      state.feedbacks = action.payload;
+      state.loading = false;
       state.error = null;
     });
   },

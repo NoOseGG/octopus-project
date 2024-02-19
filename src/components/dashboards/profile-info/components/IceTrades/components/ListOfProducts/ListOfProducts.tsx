@@ -27,7 +27,7 @@ const columns: ColumnsType<DataType> = [
     title: <TableTitle>Сумма</TableTitle>,
     dataIndex: 'totalPrice',
     width: '15%',
-    render: (text) => <TableContent>{text.toFixed(1)}</TableContent>,
+    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
   },
 ];
 

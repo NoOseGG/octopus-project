@@ -15,8 +15,8 @@ interface DataType {
   contract_date: string;
   description: string;
   volume_lot: string;
-  total_price_purchase_byn: string;
-  total_price_purchase_usd: string;
+  total_price_purchase_byn: number;
+  total_price_purchase_usd: number;
   firm_name: string;
   participants_identifier: string;
   short_name: string;
@@ -46,12 +46,12 @@ const columns: ColumnsType<DataType> = [
   {
     title: <TableTitle>Стоимость в белорусских рублях</TableTitle>,
     dataIndex: 'total_price_purchase_byn',
-    render: (text) => <TableContent>{text}</TableContent>,
+    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
   },
   {
     title: <TableTitle>Стоимость в долларах</TableTitle>,
     dataIndex: 'total_price_purchase_usd',
-    render: (text) => <TableContent>{text}</TableContent>,
+    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
   },
   {
     title: <TableTitle>Фирменное наименование поставщик</TableTitle>,
@@ -108,10 +108,8 @@ const groupingList = (iceTrade: IceTradesType): DataType[] => {
         contract_date: item.contract_date !== null ? item.contract_date : '-',
         description: item.description !== null ? item.description : '-',
         volume_lot: item.volume_lot !== null ? item.volume_lot : '-',
-        total_price_purchase_byn:
-          item.total_price_purchase_byn !== null ? item.total_price_purchase_byn.toString() : '-',
-        total_price_purchase_usd:
-          item.total_price_purchase_usd !== null ? item.total_price_purchase_usd.toString() : '-',
+        total_price_purchase_byn: item.total_price_purchase_byn !== null ? item.total_price_purchase_byn : 0,
+        total_price_purchase_usd: item.total_price_purchase_usd !== null ? item.total_price_purchase_usd : 0,
         firm_name: item.participants !== null ? item.participants : '-',
         participants_identifier: item.participants_identifier !== null ? item.participants_identifier : '-',
         short_name: item.participants !== null ? item.participants : '-',

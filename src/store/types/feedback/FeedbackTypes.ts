@@ -15,3 +15,8 @@ export interface FeedbackState {
   loading: boolean;
   error: string | null;
 }
+
+export interface FeedbackRequest {
+  name: string;
+  message: string;
+}

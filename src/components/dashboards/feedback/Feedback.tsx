@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListOfFeedbacks from '@app/components/dashboards/feedback/components/ListOfFeedbacks/ListOfFeedbacks';
+import AddFeedback from '@app/components/dashboards/feedback/components/AddFeedback/AddFeedback';
 
 export const Feedback: React.FC = () => {
   return (
     <Container>
       <Title>Обратная связь</Title>
+      <AddFeedback />
+      <Title>Список обращений:</Title>
       <ListOfFeedbacks />
     </Container>
   );

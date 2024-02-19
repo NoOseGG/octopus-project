@@ -20,14 +20,30 @@ export const doGetFeedbacks = createAsyncThunk<FeedbackResponse>('doGetFeedbacks
     const response = await axios.get(URLS.FEEDBACK, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
     });
-    console.log(URLS.FEEDBACK);
-    console.log(JSON.stringify(response.data));
-
     return response.data;
   } catch (error) {
     console.log(error);
   }
 });
+
+export const doAddFeedback = createAsyncThunk<FeedbackResponse, string>(
+  'doAddFeedback',
+  async (feedback, { dispatch }) => {
+    try {
+      const response = await axios.post(
+        URLS.FEEDBACK,
+        { message: feedback },
+        {
+          headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+        },
+      );
+      dispatch(doGetFeedbacks());
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
 
 const feedbackSlice = createSlice({
   name: 'feedbackSlice',
@@ -41,6 +57,9 @@ const feedbackSlice = createSlice({
     builder.addCase(doGetFeedbacks.fulfilled, (state, action) => {
       state.feedbacks = action.payload;
       state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(doAddFeedback.fulfilled, (state) => {
       state.error = null;
     });
   },

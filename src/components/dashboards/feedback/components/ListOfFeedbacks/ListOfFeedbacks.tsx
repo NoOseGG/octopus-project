@@ -5,7 +5,7 @@ import { doGetFeedbacks } from '@app/store/slices/feedback/feedbackSlice';
 import { formatDate } from '@app/utils/utils';
 
 const ListOfFeedbacks: React.FC = () => {
-  const feedbacks = useAppSelector((state) => state.feedback.feedbacks.results);
+  const { results } = useAppSelector((state) => state.feedback.feedbacks);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -14,9 +14,9 @@ const ListOfFeedbacks: React.FC = () => {
 
   return (
     <Container>
-      {Boolean(feedbacks.length) && (
+      {Boolean(results.length) && (
         <>
-          {feedbacks.map((item, index) => (
+          {results.map((item, index) => (
             <MessageContainer key={index}>
               <Text>{`${formatDate(item.created_at)} - `}</Text>
               <Text>{item.message}</Text>

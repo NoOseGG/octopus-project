@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
+import { Button } from 'antd';
 
 const Header: React.FC = () => {
   return (
@@ -18,8 +19,8 @@ const Header: React.FC = () => {
             <MenuItem>О Нас</MenuItem>
           </MenuContainer>
           <ButtonContainer>
-            <Button>Войти</Button>
-            <Button>Попробовать</Button>
+            <StyledButton>Войти</StyledButton>
+            <StyledButton>Попробовать</StyledButton>
           </ButtonContainer>
         </HeaderContainer>
       </InnerContainer>
@@ -65,4 +66,4 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const Button = styled.button``;
+const StyledButton = styled(Button)``;

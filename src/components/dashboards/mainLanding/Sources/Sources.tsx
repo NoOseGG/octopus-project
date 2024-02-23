@@ -1,6 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InnerContainer } from '../styles/MainLandingStyles';
+import SourceItem, {
+  GradientType,
+  SourceItemObject,
+} from '@app/components/dashboards/mainLanding/Sources/SourceItem/SourceItem';
+
+const SocialItem: SourceItemObject = {
+  gradient: GradientType.BLUE,
+  title: 'Социальные медиа',
+  number: '3 млрд',
+  value: 'сообщений в месяц',
+  description:
+    'Соцсети: ВКонтакте, Instagram*, Одноклассники, Facebook*, Rutube, YouTube, TikTok и др.\n' +
+    'Блоги, форумы, сайты отзывов\n' +
+    'Telegram-каналы и открытые чаты',
+};
+
+const SMIItem: SourceItemObject = {
+  gradient: GradientType.GREEN,
+  title: 'СМИ',
+  number: '60 тыс.',
+  value: 'источников',
+  description: 'Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы, ТВ и радио',
+};
+
+const ArchiveItem: SourceItemObject = {
+  gradient: GradientType.SILVER,
+  title: 'Архив',
+  number: '220 млрд',
+  value: 'сообщений',
+  description: 'Архив сообщений из соцмедиа с 2012 года',
+};
 
 const Sources: React.FC = () => {
   return (
@@ -9,16 +40,9 @@ const Sources: React.FC = () => {
         <SourcesContainer>
           <Title>Источники</Title>
           <SourceItemContainer>
-            <Item>
-              <ItemTitle>СМИ</ItemTitle>
-              <ItemStats>
-                <ItemStatsNumber>60 тыс.</ItemStatsNumber>
-                <ItemStatsValue>источников</ItemStatsValue>
-              </ItemStats>
-              <ItemDescription>
-                Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы, ТВ и радио
-              </ItemDescription>
-            </Item>
+            <SourceItem item={SocialItem} />
+            <SourceItem item={SMIItem} />
+            <SourceItem item={ArchiveItem} />
           </SourceItemContainer>
         </SourcesContainer>
       </InnerContainer>
@@ -70,60 +94,4 @@ const SourceItemContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 48px 48px 0;
-`;
-
-const Item = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px 24px 48px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-`;
-
-const ItemTitle = styled.div`
-  font-size: 18px;
-  line-height: 1.33;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 0;
-  padding-bottom: 11px;
-`;
-
-const ItemStats = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 700;
-  text-align: center;
-  color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 30px 0 32px;
-  background-image: linear-gradient(to right, #b7ff49, #77ba12);
-`;
-
-const ItemStatsNumber = styled.span`
-  font-size: 50px;
-  line-height: 1.08;
-  font-weight: 800;
-  margin-bottom: 4px;
-  text-align: center;
-  color: transparent;
-`;
-
-const ItemStatsValue = styled.span`
-  font-size: 18px;
-  line-height: 1.56;
-  font-weight: 700;
-  text-align: center;
-  color: transparent;
-`;
-
-const ItemDescription = styled.div`
-  font-size: 14px;
-  line-height: 1.43;
-  text-align: center;
-  color: #979ca9;
-  margin: 0 0 7px;
 `;

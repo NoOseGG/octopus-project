@@ -5,6 +5,7 @@ import TopMain from '@app/components/dashboards/mainLanding/TopMain/TopMain';
 import SearchLine from '@app/components/dashboards/mainLanding/SearchLine/SearchLine';
 import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
+import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
 
 const MainLanding: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const MainLanding: React.FC = () => {
       <SearchLine />
       {/*<MainFunctionService />*/}
       <MainFunction />
+      <Sources />
       <Footer />
     </MainLandingContainer>
   );

@@ -66,6 +66,7 @@ const TopLine = styled.div`
   display: flex;
   justify-content: start;
   gap: 20px;
+  flex-wrap: wrap;
 `;
 
 const MiddleLine = styled.div`
@@ -73,6 +74,7 @@ const MiddleLine = styled.div`
   display: flex;
   justify-content: end;
   gap: 20px;
+  flex-wrap: wrap;
 `;
 
 const BottomLine = styled.div`
@@ -80,4 +82,5 @@ const BottomLine = styled.div`
   display: flex;
   justify-content: start;
   gap: 20px;
+  flex-wrap: wrap;
 `;

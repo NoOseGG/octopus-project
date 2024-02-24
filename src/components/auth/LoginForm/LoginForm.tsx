@@ -28,7 +28,7 @@ export const LoginForm: React.FC = () => {
 
   useEffect(() => {
     if (token !== null) {
-      navigate('/');
+      navigate('/search');
     }
   }, [token, navigate]);
 
@@ -37,7 +37,7 @@ export const LoginForm: React.FC = () => {
     dispatch(doLogin(values))
       .unwrap()
       .then((response) => {
-        navigate('/');
+        navigate('/search');
         notificationController.success({ message: ` Добро пожаловать, ${response.user.first_name}!` });
       })
       .catch(() => {

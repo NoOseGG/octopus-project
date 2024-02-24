@@ -18,8 +18,8 @@ import SubjectInfoPage from '@app/pages/DashboardPages/SubjectInfoPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
 import SearchPage from '@app/pages/DashboardPages/SearchPage';
 import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
-import AnalytixPage from '@app/pages/DashboardPages/AnalytixPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
+import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -37,7 +37,7 @@ export const CHANGE_LOG_PATH = '/change-log';
 export const FEEDBACK_PATH = '/feedback';
 export const DASHBOARD_PATH = '/dashboard';
 
-const Analytix = withLoading(AnalytixPage);
+const Analytix = withLoading(MainLanding);
 const SubjectInfo = withLoading(SubjectInfoPage);
 const Search = withLoading(SearchPage);
 const Dashboard = withLoading(DashboardPage);
@@ -66,20 +66,22 @@ export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ANALYTIC_DASHBOARD_PATH} element={protectedLayout}>
-          <Route index element={<Search />} />
-          <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
-          <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
-          <Route path={DASHBOARD_PATH} element={<Dashboard />} />
-          <Route path={FEEDBACK_PATH} element={<Feedback />} />
-          {/*<Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />*/}
-          <Route path="server-error" element={<ServerError />} />
-          <Route path="404" element={<Error404 />} />
-          <Route path="profile" element={<ProfileLayout />}>
-            <Route path="personal-info" element={<PersonalInfo />} />
-            <Route path="security-settings" element={<SecuritySettings />} />
-            <Route path="notifications" element={<Notifications />} />
-            <Route path="payments" element={<Payments />} />
+        <Route path={ANALYTIC_DASHBOARD_PATH}>
+          <Route index element={<Analytix />} />
+          <Route path={''} element={protectedLayout}>
+            <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
+            <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
+            <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
+            <Route path={DASHBOARD_PATH} element={<Dashboard />} />
+            <Route path={FEEDBACK_PATH} element={<Feedback />} />
+            <Route path="server-error" element={<ServerError />} />
+            <Route path="404" element={<Error404 />} />
+            <Route path="profile" element={<ProfileLayout />}>
+              <Route path="personal-info" element={<PersonalInfo />} />
+              <Route path="security-settings" element={<SecuritySettings />} />
+              <Route path="notifications" element={<Notifications />} />
+              <Route path="payments" element={<Payments />} />
+            </Route>
           </Route>
         </Route>
         <Route path="/auth" element={<AuthLayoutFallback />}>

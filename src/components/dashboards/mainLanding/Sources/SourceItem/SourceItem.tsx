@@ -50,6 +50,7 @@ const ItemTitle = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   margin: 0;
   padding-bottom: 11px;
+  text-align: center;
 `;
 
 interface ItemStatsProps {

@@ -3,8 +3,13 @@ import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
 import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const handleClickLogIn = () => {
+    console.log('click');
+  };
+
   return (
     <Container backgroundColor={'white'}>
       <InnerContainer>
@@ -19,8 +24,12 @@ const Header: React.FC = () => {
             <MenuItem>О Нас</MenuItem>
           </MenuContainer>
           <ButtonContainer>
-            <StyledButton>Войти</StyledButton>
-            <StyledButton>Попробовать</StyledButton>
+            <Link to={'/auth/login'}>
+              <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
+            </Link>
+            <Link to={'/auth/sign-up'}>
+              <StyledButton>Попробовать</StyledButton>
+            </Link>
           </ButtonContainer>
         </HeaderContainer>
       </InnerContainer>

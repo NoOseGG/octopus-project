@@ -5,22 +5,20 @@ import SourceItem, {
   GradientType,
   SourceItemObject,
 } from '@app/components/dashboards/mainLanding/Sources/SourceItem/SourceItem';
+import Geography from '@app/components/dashboards/mainLanding/Sources/Geography/Geography';
 
 const SocialItem: SourceItemObject = {
   gradient: GradientType.BLUE,
-  title: 'Социальные медиа',
-  number: '3 млрд',
+  title: 'Юридические лица и ИП',
+  number: '10 тыс.',
   value: 'сообщений в месяц',
-  description:
-    'Соцсети: ВКонтакте, Instagram*, Одноклассники, Facebook*, Rutube, YouTube, TikTok и др.\n' +
-    'Блоги, форумы, сайты отзывов\n' +
-    'Telegram-каналы и открытые чаты',
+  description: 'ЕГР, МНС, Вакансии, Резюме, Закупки, Банкротства, Ликвидации',
 };
 
 const SMIItem: SourceItemObject = {
   gradient: GradientType.GREEN,
   title: 'СМИ',
-  number: '60 тыс.',
+  number: '5 тыс.',
   value: 'источников',
   description: 'Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы, ТВ и радио',
 };
@@ -28,9 +26,9 @@ const SMIItem: SourceItemObject = {
 const ArchiveItem: SourceItemObject = {
   gradient: GradientType.SILVER,
   title: 'Архив',
-  number: '220 млрд',
+  number: '3 млн',
   value: 'сообщений',
-  description: 'Архив сообщений из соцмедиа с 2012 года',
+  description: 'Архив сообщений с 2018 года',
 };
 
 const Sources: React.FC = () => {
@@ -44,6 +42,7 @@ const Sources: React.FC = () => {
             <SourceItem item={SMIItem} />
             <SourceItem item={ArchiveItem} />
           </SourceItemContainer>
+          <Geography />
         </SourcesContainer>
       </InnerContainer>
     </Container>

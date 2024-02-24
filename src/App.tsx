@@ -8,7 +8,7 @@ import { useAutoNightMode } from './hooks/useAutoNightMode';
 import { useThemeWatcher } from './hooks/useThemeWatcher';
 import { useAppSelector } from './hooks/reduxHooks';
 import { themeObject } from './styles/themes/themeVariables';
-import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
+import { AppRouter } from '@app/components/router/AppRouter';
 
 const App: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.theme);
@@ -22,8 +22,8 @@ const App: React.FC = () => {
       <meta name="theme-color" content={themeObject[theme].primary} />
       <GlobalStyle />
       <ConfigProvider locale={ruRu}>
-        {/*<AppRouter />*/}
-        <MainLanding />
+        <AppRouter />
+        {/*<MainLanding />*/}
       </ConfigProvider>
     </>
   );

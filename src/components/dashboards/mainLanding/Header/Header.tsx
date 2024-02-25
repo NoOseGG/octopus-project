@@ -53,17 +53,29 @@ const LogoContainer = styled.div`
 const Logo = styled.img`
   width: 50px;
   height: 50px;
+
+  @media (max-width: 580px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const Title = styled.div`
   font-size: 24px;
+
+  @media (max-width: 580px) {
+    font-size: 16px;
+  }
 `;
 
 const MenuContainer = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 70px;
   gap: 20px;
+
+  @media (max-width: 980px) {
+    display: none;
+  }
 `;
 
 const MenuItem = styled.div`

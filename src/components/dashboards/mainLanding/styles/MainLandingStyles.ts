@@ -12,7 +12,7 @@ const Container = styled.div<ContainerProps>`
 `;
 
 const InnerContainer = styled.div`
-  width: 80%;
+  width: 95%;
   height: 100%;
   margin: 0 auto;
   padding: 0 20px;

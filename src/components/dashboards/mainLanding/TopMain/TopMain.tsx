@@ -30,4 +30,9 @@ const TopMainContainer = styled.div`
 const Text = styled.p`
   font-size: 16px;
   width: 500px;
+
+  @media (max-width: 700px) {
+    font-size: 12px;
+    width: 300px;
+  }
 `;

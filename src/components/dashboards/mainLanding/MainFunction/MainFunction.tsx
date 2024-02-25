@@ -55,4 +55,16 @@ const MainFunctionContainer = styled.div`
   grid-row-gap: 20px;
   width: 100%;
   padding: 32px 48px 0;
+
+  @media (max-width: 1450px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 1120px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (max-width: 800px) {
+    padding: 32px 5px;
+  }
 `;

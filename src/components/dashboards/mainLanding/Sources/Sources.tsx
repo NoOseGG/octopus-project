@@ -93,4 +93,9 @@ const SourceItemContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 48px 48px 0;
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;

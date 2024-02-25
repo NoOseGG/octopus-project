@@ -41,6 +41,10 @@ const Item = styled.div`
   padding: 16px 24px 48px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 400px) {
+    padding: 8px 10px 8px;
+  }
 `;
 
 const ItemTitle = styled.div`
@@ -51,6 +55,10 @@ const ItemTitle = styled.div`
   margin: 0;
   padding-bottom: 11px;
   text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 12px;
+  }
 `;
 
 interface ItemStatsProps {
@@ -77,6 +85,10 @@ const ItemStatsNumber = styled.span`
   margin-bottom: 4px;
   text-align: center;
   color: transparent;
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 const ItemStatsValue = styled.span`
@@ -85,6 +97,10 @@ const ItemStatsValue = styled.span`
   font-weight: 700;
   text-align: center;
   color: transparent;
+
+  @media (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 const ItemDescription = styled.div`
@@ -93,6 +109,10 @@ const ItemDescription = styled.div`
   text-align: center;
   color: #979ca9;
   margin: 0 0 7px;
+
+  @media (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 const getGradient = (gradient: GradientType) => {

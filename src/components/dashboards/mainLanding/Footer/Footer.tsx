@@ -39,6 +39,11 @@ const FooterContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 50px 0;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const LeftColumn = styled.div``;

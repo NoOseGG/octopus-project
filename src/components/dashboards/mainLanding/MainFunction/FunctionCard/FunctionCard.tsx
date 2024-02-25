@@ -25,6 +25,10 @@ const FunctionCardContainer = styled.div`
   padding: 20px 24px 24px;
   border-radius: 16px;
   background: #fff;
+
+  @media (max-width: 400px) {
+    padding: 12px 12px 14px;
+  }
 `;
 
 const TitleContainer = styled.header`
@@ -37,6 +41,10 @@ const Image = styled.img`
   width: 44px;
   height: auto;
   margin-right: 20px;
+
+  @media (max-width: 400px) {
+    width: 32px;
+  }
 `;
 
 const Title = styled.h3`
@@ -45,10 +53,19 @@ const Title = styled.h3`
   margin: 0;
   font-weight: 800;
   color: #292f37;
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 const Content = styled.p`
   line-height: 1.5;
   margin: 0;
   color: #4c515c;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+    line-height: 1.2;
+  }
 `;

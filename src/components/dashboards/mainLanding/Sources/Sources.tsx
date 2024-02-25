@@ -67,6 +67,10 @@ const Container = styled.div`
     opacity: 0.24;
     background-image: radial-gradient(circle at 0 0, #0f00ff, rgba(0, 0, 0, 0) 44%);
   }
+
+  @media (max-width: 500px) {
+    padding: 5px 0;
+  }
 `;
 
 const SourcesContainer = styled.div`
@@ -97,5 +101,19 @@ const SourceItemContainer = styled.div`
   @media (max-width: 700px) {
     display: flex;
     flex-direction: column;
+  }
+
+  @media (max-width: 400px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+    grid-column-gap: 10px;
+  }
+
+  @media (max-width: 360px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0;
+    grid-column-gap: 10px;
   }
 `;

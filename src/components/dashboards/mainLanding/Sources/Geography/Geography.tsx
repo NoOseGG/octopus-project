@@ -25,6 +25,11 @@ const GeographyContainer = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
+
+  @media (max-width: 360px) {
+    margin: 30px auto 0;
+    padding: 10px 0 20px;
+  }
 `;
 
 const Title = styled.h2`
@@ -32,6 +37,14 @@ const Title = styled.h2`
   color: #fff;
   font-weight: 800;
   font-size: 48px;
+
+  @media (max-width: 500px) {
+    font-size: 30px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 const CountCountries = styled.span`
@@ -43,6 +56,14 @@ const CountCountries = styled.span`
   background-image: linear-gradient(to right, #74a6ff, #2775ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 500px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 50px;
+  }
 `;
 
 const Content = styled.span`
@@ -56,4 +77,8 @@ const Content = styled.span`
   margin-inline-start: 0;
   margin-inline-end: 0;
   text-align: center;
+
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
 `;

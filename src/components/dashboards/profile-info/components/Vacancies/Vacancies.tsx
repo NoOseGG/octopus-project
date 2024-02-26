@@ -4,8 +4,10 @@ import MyVacancy from '@app/components/dashboards/profile-info/components/Vacanc
 import styled from 'styled-components';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 import { Select } from 'antd';
-import { PlaceholderText, filterStyle } from '@app/components/dashboards/profile-info/styles/SelectStyles';
-import CloudTags from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
+import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
+import CloudTags, {
+  CloudTagsTitleType,
+} from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 import { Vacancy } from '@app/store/types/Subject';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
 import StatisticVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/StatisticVacancies/StatisticVacancies';
@@ -183,7 +185,7 @@ const Vacancies: React.FC = () => {
 
   return (
     <>
-      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} />}
+      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
       <StatisticVacancies statistics={statisticsNameVacancies} />
       {Boolean(sortedVacancies.length) ? (
         <>

@@ -3,7 +3,9 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import MyResume from '@app/components/dashboards/profile-info/components/Resumes/components/Resume/MyResume';
 import CountResumes from '@app/components/dashboards/profile-info/components/Resumes/components/CountResumes/CountResumes';
-import CloudTags from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
+import CloudTags, {
+  CloudTagsTitleType,
+} from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 
 const Resumes: React.FC = () => {
   const resumes = useAppSelector((state) => state.searchProfile.profile.resume);
@@ -27,7 +29,7 @@ const Resumes: React.FC = () => {
 
   return (
     <>
-      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} />}
+      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.RESUMES} />}
       {Boolean(resumes.length) ? (
         <>
           <CountResumes count={resumes.length} />

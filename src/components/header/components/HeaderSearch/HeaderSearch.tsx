@@ -57,7 +57,7 @@ export const HeaderSearch: React.FC = () => {
   useEffect(() => {
     if (query.trim().length > 2) {
       delaySearch(query);
-      navigate('/');
+      navigate('/search');
     }
   }, [query]);
 

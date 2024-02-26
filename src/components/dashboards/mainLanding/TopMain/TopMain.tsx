@@ -20,9 +20,10 @@ const TopMain: React.FC = () => {
 export default TopMain;
 
 const TopMainContainer = styled.div`
-  background-image: url('/LendingTopMainBackground.png');
+  background-image: url('/LendingTopMainBackground.jpg');
   background-repeat: no-repeat;
   background-position: center;
+  background-color: #b9dbf4;
   padding: 50px 0;
   height: 500px;
 `;

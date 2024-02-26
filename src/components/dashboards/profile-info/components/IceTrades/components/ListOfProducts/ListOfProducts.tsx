@@ -28,6 +28,8 @@ const columns: ColumnsType<DataType> = [
     dataIndex: 'totalPrice',
     width: '15%',
     render: (text) => <TableContent>{text.toFixed()}</TableContent>,
+    sorter: (a, b) => a.totalPrice - b.totalPrice,
+    showSorterTooltip: false,
   },
 ];
 

@@ -49,6 +49,7 @@ type TitleStatusProps = {
 };
 
 const TitleStatus = styled.span<TitleStatusProps>`
+  color: #000;
   margin-left: 2rem;
   max-width: 9rem;
   height: 1.125rem;

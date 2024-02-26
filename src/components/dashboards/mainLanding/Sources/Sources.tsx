@@ -108,12 +108,12 @@ const SourceItemContainer = styled.div`
     grid-template-columns: repeat(3, 1fr);
     margin-top: 20px;
     grid-column-gap: 10px;
+    padding: 0;
   }
 
   @media (max-width: 360px) {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    padding: 0;
     grid-column-gap: 10px;
   }
 `;

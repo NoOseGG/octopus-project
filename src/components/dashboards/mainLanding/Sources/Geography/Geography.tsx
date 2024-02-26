@@ -26,7 +26,7 @@ const GeographyContainer = styled.div`
   background-repeat: no-repeat;
   text-align: center;
 
-  @media (max-width: 360px) {
+  @media (max-width: 400px) {
     margin: 30px auto 0;
     padding: 10px 0 20px;
   }

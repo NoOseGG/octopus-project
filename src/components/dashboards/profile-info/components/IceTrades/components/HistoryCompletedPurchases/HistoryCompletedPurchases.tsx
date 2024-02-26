@@ -20,6 +20,7 @@ interface DataType {
   firm_name: string;
   participants_identifier: string;
   short_name: string;
+  request_end: string;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -68,6 +69,11 @@ const columns: ColumnsType<DataType> = [
     dataIndex: 'short_name',
     render: (text) => <TableContent>{text}</TableContent>,
   },
+  {
+    title: <TableTitle>Дата и время окончания приема предложений</TableTitle>,
+    dataIndex: 'request_end',
+    render: (text) => <TableContent>{formatDate(text)}</TableContent>,
+  },
 ];
 
 type MyComponentProps = {
@@ -113,6 +119,7 @@ const groupingList = (iceTrade: IceTradesType): DataType[] => {
         firm_name: item.participants !== null ? item.participants : '-',
         participants_identifier: item.participants_identifier !== null ? item.participants_identifier : '-',
         short_name: item.participants !== null ? item.participants : '-',
+        request_end: item.request_end !== null ? item.request_end : '-',
       };
     });
 };

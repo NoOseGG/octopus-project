@@ -24,6 +24,7 @@ const CommercialRegister: React.FC = () => {
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
   const [statisticData, setStatisticData] = useState<{ value: string; count: number }[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
   useEffect(() => {
     const groupData: GroupDataType = sortedCommercialRegister.reduce((acc: GroupDataType, item) => {
@@ -45,6 +46,17 @@ const CommercialRegister: React.FC = () => {
     setStatisticData(resultArray);
     console.log(resultArray);
   }, [sortedCommercialRegister]);
+
+  const addFilter = (text: string) => {
+    const result = sortedCommercialRegister.filter((item) => item.object_type === text);
+    setSortedCommercialRegister(result);
+    setSelectedFilter(text);
+  };
+
+  const deleteFilter = () => {
+    setSortedCommercialRegister([...commercialRegister]);
+    setSelectedFilter(null);
+  };
 
   const sortCommercialRegister = () => {
     switch (selectField) {
@@ -137,7 +149,12 @@ const CommercialRegister: React.FC = () => {
     <>
       {Boolean(sortedCommercialRegister.length) ? (
         <>
-          <StatisticCommercialRegister statistics={statisticData} />
+          <StatisticCommercialRegister
+            statistics={statisticData}
+            addFilter={addFilter}
+            deleteFilter={deleteFilter}
+            selectedFilter={selectedFilter}
+          />
           <SelectContainer>
             <Select
               size="small"

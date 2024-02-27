@@ -16,6 +16,10 @@ const InnerContainer = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (min-width: 1920px) {
+    width: 1920px;
+  }
 `;
 
 export { Container, InnerContainer };

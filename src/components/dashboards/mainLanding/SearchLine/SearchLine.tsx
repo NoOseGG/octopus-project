@@ -22,12 +22,8 @@ const SearchLineContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 80%;
   height: 80px;
-
-  @media (max-width: 1920px) {
-    width: 80%;
-  }
 
   @media (max-width: 800px) {
     width: 100%;

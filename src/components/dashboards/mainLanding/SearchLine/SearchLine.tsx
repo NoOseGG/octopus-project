@@ -18,9 +18,18 @@ const SearchLine: React.FC = () => {
 export default SearchLine;
 
 const SearchLineContainer = styled.div`
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 50%;
   height: 80px;
+
+  @media (max-width: 1920px) {
+    width: 80%;
+  }
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;

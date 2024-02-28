@@ -19,7 +19,6 @@ type MyComponentProps = {
 
 const CloudTags: React.FC<MyComponentProps> = ({ keyWords, title }) => {
   const data = keyWords;
-  console.log(JSON.stringify(data));
 
   const config: WordCloudConfig = {
     data,

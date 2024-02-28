@@ -6,6 +6,7 @@ import SearchLine from '@app/components/dashboards/mainLanding/SearchLine/Search
 import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
 import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
+import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 
 const MainLanding: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const MainLanding: React.FC = () => {
       <MainFunction />
       <Sources />
       <Footer />
+      <PayAttentionModal />
     </MainLandingContainer>
   );
 };

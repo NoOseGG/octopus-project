@@ -14,7 +14,7 @@ const PayAttentionModal: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsModalVisible(true);
-    }, 1000);
+    }, 5000);
   }, []);
 
   return isModelVisible ? (

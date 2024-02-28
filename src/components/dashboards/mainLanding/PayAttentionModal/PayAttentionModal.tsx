@@ -61,6 +61,7 @@ const PayAttentionContainer = styled.div`
 `;
 
 const ModalWrapper = styled.div`
+  padding: 10px;
   position: fixed;
   top: 0;
   left: 0;

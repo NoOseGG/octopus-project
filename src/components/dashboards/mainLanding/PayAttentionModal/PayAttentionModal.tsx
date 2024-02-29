@@ -79,11 +79,23 @@ const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 16px;
+
+  @media (max-height: 800px) {
+    height: 100%;
+  }
+
+  @media (max-height: 600px) {
+    padding: 10px;
+  }
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 40px;
   width: 100%;
+
+  @media (max-height: 600px) {
+    margin-top: 20px;
+  }
 `;
 
 const PayAttentionImage = styled.img`
@@ -95,9 +107,30 @@ const Text = styled.div`
   margin-top: 10px;
   font-size: 16px;
   text-align: center;
+
+  @media (max-height: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-height: 760px) {
+    line-height: 1.2;
+  }
+
+  @media (max-height: 600px) {
+    margin-top: 0;
+    line-height: 1.2;
+  }
 `;
 
 const RedText = styled.span`
   color: red;
   text-decoration: underline;
+
+  @media (max-height: 800px) {
+    font-size: 15px;
+  }
+
+  @media (max-height: 760px) {
+    line-height: 1.2;
+  }
 `;

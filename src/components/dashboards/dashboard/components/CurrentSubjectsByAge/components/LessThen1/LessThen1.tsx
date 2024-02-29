@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import { doGetCurrentByAgeLessThen1 } from '@app/store/slices/legalEntityDashboard/byAge/current/lessThen1Slice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const LessThen1: React.FC = () => {
   const { age } = useAppSelector((state) => state.currentByAge.lessThen1);
@@ -15,7 +16,7 @@ const LessThen1: React.FC = () => {
   return (
     <Block>
       <Title>менее года</Title>
-      <Content>{age}</Content>
+      <Content>{formatNumberWithCommas(age)}</Content>
     </Block>
   );
 };

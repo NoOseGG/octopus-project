@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import { doGetCurrentByAgeFrom1To5 } from '@app/store/slices/legalEntityDashboard/byAge/current/from1To5Slice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const From1To5: React.FC = () => {
   const { age } = useAppSelector((state) => state.currentByAge.from1To5);
@@ -15,7 +16,7 @@ const From1To5: React.FC = () => {
   return (
     <Block>
       <Title>от 1 до 5 лет</Title>
-      <Content>{age}</Content>
+      <Content>{formatNumberWithCommas(age)}</Content>
     </Block>
   );
 };

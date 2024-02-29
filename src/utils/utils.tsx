@@ -192,10 +192,6 @@ export const hexToHSL = (hex: string): { h: number; s: number; l: number } => {
   }
 };
 
-export const formatNumberWithCommas = (value: number): string => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 // My Function
 
 export const dateTransformate = (date: string): string | undefined => {
@@ -421,5 +417,10 @@ export const getEntityName = (entityType: EntityType): string => {
       return 'ИП';
   }
 };
+
+export function formatNumberWithCommas(number: number | undefined): string {
+  if (number === undefined) return '';
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
 
 // DASH.ORDERING_AGG('company_date_registration__year')

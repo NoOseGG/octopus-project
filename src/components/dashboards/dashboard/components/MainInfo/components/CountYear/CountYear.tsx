@@ -19,6 +19,7 @@ import { doCalculateCreatedPercentYearSoleTrade } from '@app/store/slices/soleTr
 import { doCalculateLiquidatedPercentSoleTradeYear } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedPercentSoleTradeSlice';
 import { doGetCountBankruptedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedYearSlice';
 import { doCalculateBankruptedPercent } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedPercentSlice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -73,7 +74,7 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
             <Block>
               <Title>{getTitleForCountYear(countYear)}</Title>
               <Content>
-                {count} <Percent number={percent}>({percent}%)</Percent>
+                {formatNumberWithCommas(count)} <Percent number={percent}>({percent}%)</Percent>
               </Content>
             </Block>
           )}

@@ -20,11 +20,9 @@ const ResetFilters: React.FC = () => {
     dispatch(setCodeActivity(null));
   };
   return (
-    <div>
-      <Button style={{ marginTop: 10 }} size={'small'} type="primary" onClick={handleClick}>
-        Сбросить фильтры
-      </Button>
-    </div>
+    <Button style={{ marginTop: 10, width: '100%' }} size={'small'} type="primary" onClick={handleClick}>
+      Сбросить фильтры
+    </Button>
   );
 };
 

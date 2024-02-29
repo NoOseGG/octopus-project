@@ -20,7 +20,7 @@ const DateFilter: React.FC = () => {
 
   return (
     <Container>
-      <RangePicker size={'middle'} onChange={handleChange} />
+      <RangePicker style={{ width: '100%' }} size={'middle'} onChange={handleChange} />
     </Container>
   );
 };

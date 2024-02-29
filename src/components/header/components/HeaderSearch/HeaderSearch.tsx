@@ -76,26 +76,12 @@ export const HeaderSearch: React.FC = () => {
             onCancel={() => setModalVisible(false)}
             destroyOnClose
           >
-            <SearchDropdown
-              query={query}
-              setQuery={setQuery}
-              data={sortedResults}
-              isOverlayVisible={isOverlayVisible}
-              setOverlayVisible={setOverlayVisible}
-            />
+            <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />
           </S.SearchModal>
         </>
       )}
 
-      {isTablet && (
-        <SearchDropdown
-          query={query}
-          setQuery={setQuery}
-          data={sortedResults}
-          isOverlayVisible={isOverlayVisible}
-          setOverlayVisible={setOverlayVisible}
-        />
-      )}
+      {isTablet && <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />}
     </>
   );
 };

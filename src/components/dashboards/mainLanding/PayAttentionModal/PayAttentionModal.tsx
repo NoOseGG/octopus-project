@@ -80,10 +80,6 @@ const ModalContent = styled.div`
   padding: 20px;
   border-radius: 16px;
 
-  @media (max-height: 800px) {
-    height: 100%;
-  }
-
   @media (max-height: 600px) {
     padding: 10px;
   }

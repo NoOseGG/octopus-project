@@ -44,7 +44,7 @@ export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
     case DETAILED_TYPE.LE_LIQUIDATED:
       return 'Детализированая информация о ликвидированных компаниях';
     case DETAILED_TYPE.LE_BANKRUPTED:
-      return 'Детализированая информация о обанкроченных компаниях';
+      return 'Детализированая информация о банкротствах компаниях';
     case DETAILED_TYPE.LE_CHECKED:
       return 'Детализированая информация о проверенных компаниях';
 
@@ -53,7 +53,7 @@ export const getTitleForDetailed = (detailed: DETAILED_TYPE): string => {
     case DETAILED_TYPE.ST_LIQUIDATED:
       return 'Детализированая информация о ликвидированных ИП';
     case DETAILED_TYPE.ST_BANKRUPTED:
-      return 'Детализированая информация о обанкроченных ИП';
+      return 'Детализированая информация о банкротствах ИП';
     case DETAILED_TYPE.ST_CHECKED:
       return 'Детализированая информация о проверенных ИП';
 

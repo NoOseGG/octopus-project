@@ -116,7 +116,7 @@ const getColor = (date: string): string => {
   if (currentDate > valueDate) {
     return '#64bb42';
   } else if (valueDate > currentDate) {
-    return '#e770b0';
+    return '#1c689a';
   } else {
     return '#ffd19b';
   }

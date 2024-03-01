@@ -10,7 +10,7 @@ import CloudTags, {
 } from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 import { Vacancy } from '@app/store/types/Subject';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
-import StatisticVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/StatisticVacancies/StatisticVacancies';
+import StatisticCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/StatisticCommercialRegister/StatisticCommercialRegister';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -28,6 +28,7 @@ const Vacancies: React.FC = () => {
   const [sortedVacancies, setSortedVacancies] = useState([...vacancies]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [statisticsNameVacancies, setStatisticsNameVacancies] = useState<{ value: string; count: number }[]>([]);
   const words = vacancies.reduce<string[]>((acc, obj) => {
     const wordsArray = obj.key_skill?.split(';') ?? [];
@@ -68,6 +69,17 @@ const Vacancies: React.FC = () => {
 
   const avgSalaryBYN = getAvgSalaryBYN(vacancies);
   const avgSalaryUSD = getAvgSalaryUSD(vacancies);
+
+  const addFilter = (text: string) => {
+    const result = sortedVacancies.filter((item) => item.vacancy_name === text);
+    setSortedVacancies(result);
+    setSelectedFilter(text);
+  };
+
+  const deleteFilter = () => {
+    setSortedVacancies([...vacancies]);
+    setSelectedFilter(null);
+  };
 
   const sortVacancies = () => {
     switch (selectField) {
@@ -186,7 +198,12 @@ const Vacancies: React.FC = () => {
   return (
     <>
       {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
-      <StatisticVacancies statistics={statisticsNameVacancies} />
+      <StatisticCommercialRegister
+        statistics={statisticsNameVacancies}
+        addFilter={addFilter}
+        deleteFilter={deleteFilter}
+        selectedFilter={selectedFilter}
+      />
       {Boolean(sortedVacancies.length) ? (
         <>
           <AvgSalaryContainer>

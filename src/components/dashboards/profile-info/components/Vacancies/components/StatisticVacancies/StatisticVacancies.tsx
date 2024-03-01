@@ -29,7 +29,7 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const StatisticCommercialRegister: React.FC<MyComponentProps> = ({ statistics }) => {
+const StatisticVacancies: React.FC<MyComponentProps> = ({ statistics }) => {
   console.log(statistics);
   return (
     <Container>
@@ -45,7 +45,7 @@ const StatisticCommercialRegister: React.FC<MyComponentProps> = ({ statistics })
   );
 };
 
-export default StatisticCommercialRegister;
+export default StatisticVacancies;
 
 const Container = styled.div`
   display: flex;

@@ -8,6 +8,7 @@ import {
   TableContent,
 } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
 import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 //For Table
 
@@ -27,7 +28,7 @@ const columns: ColumnsType<DataType> = [
     title: <TableTitle>Сумма</TableTitle>,
     dataIndex: 'totalPrice',
     width: '15%',
-    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
+    render: (text) => <TableContent>{formatNumberWithCommas(text.toFixed())}</TableContent>,
     sorter: (a, b) => a.totalPrice - b.totalPrice,
     showSorterTooltip: false,
   },
@@ -53,16 +54,20 @@ const ListOfProducts: React.FC<MyComponentProps> = ({ iceTrade }) => {
   }, [iceTrade]);
 
   return (
-    <Container>
-      <Table
-        columns={columns}
-        title={() => <Title>Список товарок (услуг)</Title>}
-        dataSource={listOfProducts}
-        size={'small'}
-        pagination={false}
-        scroll={{ y: 360 }}
-      />
-    </Container>
+    <>
+      {Boolean(listOfProducts.length) && (
+        <Container>
+          <Table
+            columns={columns}
+            title={() => <Title>Список товарок (услуг)</Title>}
+            dataSource={listOfProducts}
+            size={'small'}
+            pagination={false}
+            scroll={{ y: 360 }}
+          />
+        </Container>
+      )}
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import {
   IceTradesType,
   NamesEnum,
 } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 type MyComponentProps = {
   iceTrade: IceTradesType;
@@ -29,19 +30,19 @@ const Info: React.FC<MyComponentProps> = ({ iceTrade, name }) => {
       <CustomerInfoContainer>
         <Count>
           <Title>Общее количество заявок</Title>
-          <Content>{customerCount}</Content>
+          <Content>{formatNumberWithCommas(customerCount)}</Content>
         </Count>
         <Count>
           <Title>Количество заключенных контрактов</Title>
-          <Content>{concludedCount}</Content>
+          <Content>{formatNumberWithCommas(concludedCount)}</Content>
         </Count>
         <Count>
           <Title>Общая стоимость заключенных контрактов (BYN)</Title>
-          <Content>{totalValueBYN.toFixed()}</Content>
+          <Content>{formatNumberWithCommas(Number(totalValueBYN.toFixed()))}</Content>
         </Count>
         <Count>
           <Title>Общая стоимость заключенных контрактов (USD)</Title>
-          <Content>{totalValueUSD.toFixed()}</Content>
+          <Content>{formatNumberWithCommas(Number(totalValueUSD.toFixed()))}</Content>
         </Count>
       </CustomerInfoContainer>
     </Container>

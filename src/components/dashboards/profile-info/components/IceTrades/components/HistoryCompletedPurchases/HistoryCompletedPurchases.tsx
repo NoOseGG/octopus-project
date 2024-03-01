@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ColumnsType } from 'antd/es/table';
-import { formatDate } from '@app/utils/utils';
+import { formatDate, formatNumberWithCommas } from '@app/utils/utils';
 import { Table } from 'antd';
 import styled from 'styled-components';
 import {
@@ -47,12 +47,12 @@ const columns: ColumnsType<DataType> = [
   {
     title: <TableTitle>Стоимость в белорусских рублях</TableTitle>,
     dataIndex: 'total_price_purchase_byn',
-    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
+    render: (text) => <TableContent>{formatNumberWithCommas(text.toFixed())}</TableContent>,
   },
   {
     title: <TableTitle>Стоимость в долларах</TableTitle>,
     dataIndex: 'total_price_purchase_usd',
-    render: (text) => <TableContent>{text.toFixed()}</TableContent>,
+    render: (text) => <TableContent>{formatNumberWithCommas(text.toFixed())}</TableContent>,
   },
   {
     title: <TableTitle>Фирменное наименование поставщик</TableTitle>,
@@ -88,16 +88,20 @@ const HistoryCompletedPurchases: React.FC<MyComponentProps> = ({ iceTrade }) => 
   }, [iceTrade]);
 
   return (
-    <Container>
-      <Table
-        columns={columns}
-        title={() => <Title>История завершенных закупок</Title>}
-        dataSource={historyCompletedPurchases}
-        size={'small'}
-        pagination={false}
-        scroll={{ y: 360 }}
-      />
-    </Container>
+    <>
+      {Boolean(historyCompletedPurchases.length) && (
+        <Container>
+          <Table
+            columns={columns}
+            title={() => <Title>История завершенных закупок</Title>}
+            dataSource={historyCompletedPurchases}
+            size={'small'}
+            pagination={false}
+            scroll={{ y: 360 }}
+          />
+        </Container>
+      )}
+    </>
   );
 };
 

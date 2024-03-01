@@ -7,6 +7,7 @@ import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
 import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
 import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
+import MapBelarus from '@app/components/dashboards/mainLanding/MapBelarus/MapBelarus';
 
 const MainLanding: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const MainLanding: React.FC = () => {
       {/*<MainFunctionService />*/}
       <MainFunction />
       <Sources />
+      <MapBelarus />
       <Footer />
       <PayAttentionModal />
     </MainLandingContainer>

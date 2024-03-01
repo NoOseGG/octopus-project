@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import MyCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/CommercialRegister/MyCommercialRegister';
 import { Select } from 'antd';
 import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
-import StatisticCommercialRegister, {
+import StatisticTable, {
   StatisticTableType,
-} from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticCommercialRegister';
+} from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
 
 enum SelectEnum {
@@ -151,7 +151,7 @@ const CommercialRegister: React.FC = () => {
     <>
       {Boolean(sortedCommercialRegister.length) ? (
         <>
-          <StatisticCommercialRegister
+          <StatisticTable
             statistics={statisticData}
             addFilter={addFilter}
             deleteFilter={deleteFilter}

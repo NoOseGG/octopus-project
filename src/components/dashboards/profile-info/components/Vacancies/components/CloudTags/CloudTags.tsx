@@ -49,6 +49,5 @@ const CloudTagsContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  text-align: center;
-  text-decoration: underline;
+  text-align: left;
 `;

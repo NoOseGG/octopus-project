@@ -23,7 +23,7 @@ interface DataType {
   count: number;
 }
 
-const StatisticCommercialRegister: React.FC<MyComponentProps> = ({
+const StatisticTable: React.FC<MyComponentProps> = ({
   statistics,
   addFilter,
   deleteFilter,
@@ -68,7 +68,7 @@ const StatisticCommercialRegister: React.FC<MyComponentProps> = ({
   );
 };
 
-export default StatisticCommercialRegister;
+export default StatisticTable;
 
 const Container = styled.div`
   display: flex;

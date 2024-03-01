@@ -95,12 +95,13 @@ type TitleStatusProps = {
 
 const TitleStatus = styled.span<TitleStatusProps>`
   color: #000;
+  font-weight: 600;
   margin-left: 2rem;
   max-width: 9rem;
-  height: 1.125rem;
-  padding: 0.25rem 0.5rem;
+  height: 1.3rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 6.25rem;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   line-height: 0.725rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;

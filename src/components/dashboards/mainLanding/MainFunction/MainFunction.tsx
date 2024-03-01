@@ -8,6 +8,7 @@ import fourImage from '../../../../assets/images/landing/mainFunction/four.svg';
 import fiveImage from '../../../../assets/images/landing/mainFunction/five.svg';
 import sixImage from '../../../../assets/images/landing/mainFunction/six.svg';
 import FunctionCard from '@app/components/dashboards/mainLanding/MainFunction/FunctionCard/FunctionCard';
+import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
 
 const oneTitle = 'Сбор и обработка данных';
 const oneContent =
@@ -30,7 +31,7 @@ const sixContent =
 
 const MainFunction: React.FC = () => {
   return (
-    <Container backgroundColor={'#b9dbf4'}>
+    <Container backgroundColor={'#b9dbf4'} id={ScrollType.MainFunction}>
       <InnerContainer>
         <MainFunctionContainer>
           <FunctionCard image={oneImage} title={oneTitle} content={oneContent} />

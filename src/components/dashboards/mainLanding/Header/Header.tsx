@@ -5,9 +5,29 @@ import logo from '../../../../assets/logo.png';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 
+export enum ScrollType {
+  MainFunction = 'mainFunction',
+  Sources = 'sources',
+}
+
 const Header: React.FC = () => {
   const handleClickLogIn = () => {
     console.log('click');
+  };
+
+  const scrollToMainFunction = (scrollType: ScrollType) => {
+    switch (scrollType) {
+      case ScrollType.MainFunction: {
+        const section = document.getElementById(ScrollType.MainFunction);
+        section?.scrollIntoView({ behavior: 'smooth' });
+        break;
+      }
+      case ScrollType.Sources: {
+        const section = document.getElementById(ScrollType.Sources);
+        section?.scrollIntoView({ behavior: 'smooth' });
+        break;
+      }
+    }
   };
 
   return (
@@ -19,9 +39,9 @@ const Header: React.FC = () => {
             <Title>Analytix</Title>
           </LogoContainer>
           <MenuContainer>
-            <MenuItem>Возможности</MenuItem>
+            <MenuItem onClick={() => scrollToMainFunction(ScrollType.MainFunction)}>Возможности</MenuItem>
+            <MenuItem onClick={() => scrollToMainFunction(ScrollType.Sources)}>Источники</MenuItem>
             <MenuItem>Тарифы</MenuItem>
-            <MenuItem>О Нас</MenuItem>
           </MenuContainer>
           <ButtonContainer>
             <Link to={'/auth/login'}>
@@ -80,6 +100,12 @@ const MenuContainer = styled.nav`
 
 const MenuItem = styled.div`
   font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    font-size: 17px;
+    color: red;
+  }
 `;
 
 const ButtonContainer = styled.div`

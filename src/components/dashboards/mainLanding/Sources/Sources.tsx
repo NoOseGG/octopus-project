@@ -6,6 +6,7 @@ import SourceItem, {
   SourceItemObject,
 } from '@app/components/dashboards/mainLanding/Sources/SourceItem/SourceItem';
 import Geography from '@app/components/dashboards/mainLanding/Sources/Geography/Geography';
+import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
 
 const SocialItem: SourceItemObject = {
   gradient: GradientType.BLUE,
@@ -33,7 +34,7 @@ const ArchiveItem: SourceItemObject = {
 
 const Sources: React.FC = () => {
   return (
-    <Container>
+    <Container id={ScrollType.Sources}>
       <InnerContainer>
         <SourcesContainer>
           <Title>Источники</Title>

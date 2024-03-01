@@ -8,7 +8,9 @@ import CloudTags, {
 } from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 import { Select } from 'antd';
 import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
-import StatisticCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/StatisticCommercialRegister/StatisticCommercialRegister';
+import StatisticCommercialRegister, {
+  StatisticTableType,
+} from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticCommercialRegister';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
 
 enum SelectEnum {
@@ -201,6 +203,7 @@ const Resumes: React.FC = () => {
         addFilter={addFilter}
         deleteFilter={deleteFilter}
         selectedFilter={selectedFilter}
+        statisticTableType={StatisticTableType.RESUMES}
       />
       {Boolean(sortedResumes.length) ? (
         <>

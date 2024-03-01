@@ -2,13 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import '../../styles.css';
+import '../CommercialRegister/styles.css';
+
+export enum StatisticTableType {
+  VACANCIES,
+  RESUMES,
+  COMMERCIAL_REGISTERS,
+}
 
 type MyComponentProps = {
   statistics: { value: string; count: number }[];
   addFilter: (text: string) => void;
   deleteFilter: () => void;
   selectedFilter: string | null;
+  statisticTableType: StatisticTableType;
 };
 
 interface DataType {
@@ -21,10 +28,11 @@ const StatisticCommercialRegister: React.FC<MyComponentProps> = ({
   addFilter,
   deleteFilter,
   selectedFilter,
+  statisticTableType,
 }) => {
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Тип объекта',
+      title: getTableTitle(statisticTableType),
       dataIndex: 'value',
       width: '85%',
       render: (text) => <TableContentName>{text}</TableContentName>,
@@ -42,7 +50,7 @@ const StatisticCommercialRegister: React.FC<MyComponentProps> = ({
   return (
     <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Title>Статистика торгового реестра</Title>
+        <Title>{getTitle(statisticTableType)}</Title>
         {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}
       </div>
       <Table
@@ -65,6 +73,7 @@ export default StatisticCommercialRegister;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 `;
 
 const Title = styled.h3``;
@@ -86,3 +95,25 @@ const ClearButton = styled(Button)`
   padding: 0;
   font-size: 14px;
 `;
+
+const getTitle = (statisticTableType: StatisticTableType): string => {
+  switch (statisticTableType) {
+    case StatisticTableType.VACANCIES:
+      return 'Статистика вакансий';
+    case StatisticTableType.RESUMES:
+      return 'Статистика резюме';
+    case StatisticTableType.COMMERCIAL_REGISTERS:
+      return 'Статистика торгового реестра';
+  }
+};
+
+const getTableTitle = (statisticTableType: StatisticTableType): string => {
+  switch (statisticTableType) {
+    case StatisticTableType.VACANCIES:
+      return 'Название вакансии';
+    case StatisticTableType.RESUMES:
+      return 'Название резюме';
+    case StatisticTableType.COMMERCIAL_REGISTERS:
+      return 'Название объекта';
+  }
+};

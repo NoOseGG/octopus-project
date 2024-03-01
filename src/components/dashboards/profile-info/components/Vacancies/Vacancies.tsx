@@ -10,7 +10,9 @@ import CloudTags, {
 } from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
 import { Vacancy } from '@app/store/types/Subject';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
-import StatisticCommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/components/StatisticCommercialRegister/StatisticCommercialRegister';
+import StatisticCommercialRegister, {
+  StatisticTableType,
+} from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticCommercialRegister';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -203,6 +205,7 @@ const Vacancies: React.FC = () => {
         addFilter={addFilter}
         deleteFilter={deleteFilter}
         selectedFilter={selectedFilter}
+        statisticTableType={StatisticTableType.VACANCIES}
       />
       {Boolean(sortedVacancies.length) ? (
         <>

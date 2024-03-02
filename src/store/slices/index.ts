@@ -39,6 +39,7 @@ import searchSimilarReducer from '@app/store/slices/search/searchSimilarSlice';
 import feedbackReducer from '@app/store/slices/feedback/feedbackSlice';
 
 import designReducer from '@app/store/slices/search/designSlice';
+import mapBelarusReducer from '@app/store/slices/landing/mapBelarusSlice';
 
 export default {
   user: userReducer,
@@ -82,4 +83,5 @@ export default {
   checkedMainInfo: checkedMainInfoReducer,
   checkedMainInfoSoleTrade: checkedMainInfoSoleTradeReducer,
   design: designReducer,
+  mapBelarus: mapBelarusReducer,
 };

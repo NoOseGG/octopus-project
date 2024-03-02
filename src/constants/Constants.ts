@@ -51,6 +51,11 @@ export const SEARCH_FILTERS_URL = {
   REGION: `${URLS.BASE}dashboard/ref/region`,
 };
 
+export const REGIONS_URL = {
+  SOLE_TRADE: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Индивидуальный предприниматель&ordering_agg=-avg&group_by=address_district`,
+  LEGAL_ENTITY: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Юридическое лицо&ordering_agg=-avg&group_by=address_district`,
+};
+
 export const TOKEN_NAME = 'Welcome';
 
 // SubjectInfo

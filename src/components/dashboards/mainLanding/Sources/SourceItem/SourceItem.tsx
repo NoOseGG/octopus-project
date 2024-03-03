@@ -9,6 +9,7 @@ export enum GradientType {
 
 export interface SourceItemObject {
   gradient: GradientType;
+  upperTitle: string;
   title: string;
   number: string;
   value: string;
@@ -24,6 +25,7 @@ const SourceItem: React.FC<MyComponentProps> = ({ item }) => {
     <Item>
       <ItemTitle>{item.title}</ItemTitle>
       <ItemStats gradient={item.gradient}>
+        <ItemStatsValue>{item.upperTitle}</ItemStatsValue>
         <ItemStatsNumber>{item.number}</ItemStatsNumber>
         <ItemStatsValue>{item.value}</ItemStatsValue>
       </ItemStats>

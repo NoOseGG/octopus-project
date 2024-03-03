@@ -13,7 +13,7 @@ interface ForgotPasswordFormData {
 }
 
 const initValues = {
-  email: 'chris.johnson@altence.com',
+  email: 'email@analytix.by',
 };
 
 export const ForgotPasswordForm: React.FC = () => {

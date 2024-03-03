@@ -12,7 +12,7 @@ export interface MapBelarusResponse {
 
 export interface MapBelarusObject {
   group_fields: {
-    address_district: string;
+    address_region: string;
   };
   Count: number;
 }

@@ -1,3 +1,8 @@
-#subregions polygon:hover {
+#regions polygon {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+#regions polygon:hover {
     fill: rgba(0,0,0,0.3);
 }

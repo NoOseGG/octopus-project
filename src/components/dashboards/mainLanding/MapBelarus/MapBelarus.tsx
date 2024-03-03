@@ -18,7 +18,7 @@ const styles = {
 };
 
 const MapBelarus: React.FC = () => {
-  const [region, setRegion] = useState<string | null>('Минский район');
+  const [region, setRegion] = useState<string | null>('Минская область');
   const [countSoleTrades, setCountSoleTrades] = useState(0);
   const [countLegalEntity, setCountLegalEntity] = useState(0);
   const { soleTrades, legalEntities } = useAppSelector((state) => state.mapBelarus);
@@ -34,7 +34,7 @@ const MapBelarus: React.FC = () => {
     const countLE = getCountFormEntityOfRegion(region, legalEntities.results);
     setCountSoleTrades(countST);
     setCountLegalEntity(countLE);
-  }, [region]);
+  }, [legalEntities.results, region, soleTrades.results]);
 
   const handleMouseOver = function (event: React.MouseEvent<SVGElement>) {
     const region = (event.target as SVGElement).getAttribute('data-region');
@@ -72,7 +72,7 @@ const MapBelarus: React.FC = () => {
                     `}
               </style>
 
-              <g id="subregions">
+              <g id="regions">
                 {regions.map((region, index) => {
                   return (
                     <polygon
@@ -163,7 +163,7 @@ const InfoContent = styled.div`
 const getCountFormEntityOfRegion = (region: string | null, soleTrades: MapBelarusObject[]): number => {
   if (region === null) return 0;
   for (const item of soleTrades) {
-    if (item.group_fields.address_district === region) return item.Count;
+    if (item.group_fields.address_region === region) return item.Count;
   }
   return 0;
 };

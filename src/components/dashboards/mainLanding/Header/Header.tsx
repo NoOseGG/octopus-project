@@ -106,7 +106,8 @@ const MenuContainer = styled.nav`
 `;
 
 const MenuItem = styled.div`
-  font-size: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
   cursor: pointer;
 
   &:hover {
@@ -120,4 +121,7 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const StyledButton = styled(Button)``;
+const StyledButton = styled(Button)`
+  font-size: 14px;
+  text-transform: uppercase;
+`;

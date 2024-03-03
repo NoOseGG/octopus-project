@@ -10,24 +10,27 @@ import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header
 
 const SocialItem: SourceItemObject = {
   gradient: GradientType.BLUE,
-  title: 'Юридические лица и ИП',
-  number: '10 тыс.',
+  upperTitle: 'более',
+  title: '200 тыс. организаций и ИП',
+  number: '70 тыс.',
   value: 'сообщений в месяц',
   description: 'ЕГР, МНС, Вакансии, Резюме, Закупки, Банкротства, Ликвидации',
 };
 
 const SMIItem: SourceItemObject = {
   gradient: GradientType.GREEN,
+  upperTitle: 'более',
   title: 'СМИ',
-  number: '5 тыс.',
+  number: '10 тыс.',
   value: 'источников',
-  description: 'Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы, ТВ и радио',
+  description: 'Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы',
 };
 
 const ArchiveItem: SourceItemObject = {
   gradient: GradientType.SILVER,
+  upperTitle: 'более',
   title: 'Архив',
-  number: '3 млн',
+  number: '30 млн',
   value: 'сообщений',
   description: 'Архив сообщений с 2018 года',
 };

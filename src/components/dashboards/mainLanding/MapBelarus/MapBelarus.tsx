@@ -10,6 +10,7 @@ import {
   doGetCountLegalEntitiesOfRegions,
   doGetCountSoleTradesOfRegions,
 } from '@app/store/slices/landing/mapBelarusSlice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const styles = {
   subregions: { fill: '#eeeeee', stroke: '#ffffff', strokeWidth: 0.5 },
@@ -92,11 +93,11 @@ const MapBelarus: React.FC = () => {
             <SubjectContainer>
               <FormEntityContainer>
                 <h3>Юридические лица </h3>
-                <InfoContent>{countLegalEntity}</InfoContent>
+                <InfoContent>{formatNumberWithCommas(countLegalEntity)}</InfoContent>
               </FormEntityContainer>
               <FormEntityContainer>
-                <h3>Индив. предпрениматели </h3>
-                <InfoContent>{countSoleTrades}</InfoContent>
+                <h3>Индив. предприниматели </h3>
+                <InfoContent>{formatNumberWithCommas(countSoleTrades)}</InfoContent>
               </FormEntityContainer>
             </SubjectContainer>
           </InfoContainer>

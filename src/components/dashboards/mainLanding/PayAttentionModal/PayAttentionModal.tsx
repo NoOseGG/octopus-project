@@ -100,6 +100,7 @@ const PayAttentionImage = styled.img`
 `;
 
 const Text = styled.div`
+  color: #000;
   width: 100%;
   margin-top: 10px;
   font-size: 16px;

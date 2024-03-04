@@ -29,6 +29,7 @@ const TopMainContainer = styled.div`
 `;
 
 const Text = styled.p`
+  color: #000;
   font-size: 16px;
   width: 500px;
 

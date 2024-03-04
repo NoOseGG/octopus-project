@@ -89,6 +89,7 @@ const Logo = styled.img`
 
 const Title = styled.div`
   font-size: 24px;
+  color: #000;
 
   @media (max-width: 580px) {
     font-size: 16px;
@@ -106,6 +107,7 @@ const MenuContainer = styled.nav`
 `;
 
 const MenuItem = styled.div`
+  color: #000;
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;
@@ -122,6 +124,8 @@ const ButtonContainer = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+  color: #000;
+  background-color: white;
   font-size: 14px;
   text-transform: uppercase;
 `;

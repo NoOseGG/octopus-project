@@ -25,8 +25,6 @@ const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
 const PersonalInfoPage = React.lazy(() => import('@app/pages/PersonalInfoPage'));
 const SecuritySettingsPage = React.lazy(() => import('@app/pages/SecuritySettingsPage'));
-const NotificationsPage = React.lazy(() => import('@app/pages/NotificationsPage'));
-const PaymentsPage = React.lazy(() => import('@app/pages/PaymentsPage'));
 const Logout = React.lazy(() => import('./Logout'));
 
 export const LOGIN_PAGE_PATH = '/auth/login';
@@ -50,8 +48,6 @@ const Error404 = withLoading(Error404Page);
 // Profile
 const PersonalInfo = withLoading(PersonalInfoPage);
 const SecuritySettings = withLoading(SecuritySettingsPage);
-const Notifications = withLoading(NotificationsPage);
-const Payments = withLoading(PaymentsPage);
 
 const AuthLayoutFallback = withLoading(AuthLayout);
 const LogoutFallback = withLoading(Logout);
@@ -79,8 +75,8 @@ export const AppRouter: React.FC = () => {
             <Route path="profile" element={<ProfileLayout />}>
               <Route path="personal-info" element={<PersonalInfo />} />
               <Route path="security-settings" element={<SecuritySettings />} />
-              <Route path="notifications" element={<Notifications />} />
-              <Route path="payments" element={<Payments />} />
+              {/*<Route path="notifications" element={<Notifications />} />*/}
+              {/*<Route path="payments" element={<Payments />} />*/}
             </Route>
           </Route>
         </Route>

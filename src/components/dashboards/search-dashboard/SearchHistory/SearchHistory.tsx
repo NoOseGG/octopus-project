@@ -3,9 +3,8 @@ import { Divider, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { SearchHistoryObject } from '@app/store/types/search/SearchHistory';
 import { formatDateWithTime } from '@app/utils/utils';
-import styles from '@app/components/dashboards/search-dashboard/subjectsList/subject-item/SubjectItem.module.css';
 import { SUBJECT_INFO_DASHBOARD_PATH } from '@app/components/router/AppRouter';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import './styles/styles.css';
 
@@ -14,6 +13,8 @@ type MyComponentProps = {
 };
 
 const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
+  const navigate = useNavigate();
+
   const newListHistory = listHistory?.map((item, index) => {
     return {
       ...item,
@@ -26,11 +27,7 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
     {
       title: 'УНП',
       dataIndex: 'legal_entity_id',
-      render: (text, record) => (
-        <Link className={styles.link} to={`${SUBJECT_INFO_DASHBOARD_PATH}/${record.legal_entity_id}`}>
-          <span style={{ cursor: 'pointer', textDecoration: 'underline', fontSize: 12 }}>{text}</span>
-        </Link>
-      ),
+      render: (text) => <Content>{text}</Content>,
     },
     {
       title: 'Название',
@@ -50,7 +47,7 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
   ];
 
   const handleClickRow = (value: string) => {
-    history.push(`${SUBJECT_INFO_DASHBOARD_PATH}/${value}`);
+    navigate(`${SUBJECT_INFO_DASHBOARD_PATH}/${value}`);
   };
 
   return (

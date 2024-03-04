@@ -5,7 +5,7 @@ import { doDeleteFavourites, doGetFavourites, doPostFavourites } from '@app/stor
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 
 export enum FavouritesButtonSize {
-  SMALL = 16,
+  SMALL = 14,
   MIDDLE = 24,
   BIG = 32,
 }

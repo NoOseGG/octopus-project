@@ -1,19 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import { CountInformationContainer } from '../../../../styles/ProfileInfoStyles';
 
 type MyComponentProps = {
   count: number;
 };
 
 const CountResumes: React.FC<MyComponentProps> = ({ count }) => {
-  return <>{count && <CountVacanciesContainer>{`${count} резюме`}</CountVacanciesContainer>}</>;
+  return <>{count && <CountInformationContainer>{`${count} резюме`}</CountInformationContainer>}</>;
 };
 
 export default CountResumes;
-
-const CountVacanciesContainer = styled.div`
-  width: 100%;
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f5fb;
-`;

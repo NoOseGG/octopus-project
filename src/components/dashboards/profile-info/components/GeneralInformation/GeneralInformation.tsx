@@ -13,10 +13,12 @@ import TaxOfficesArrears from '@app/components/dashboards/profile-info/component
 import SimilarSubjects from '@app/components/dashboards/profile-info/components/GeneralInformation/SimilarSubjects/SimilarSubjects';
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
+import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
 
 const GeneralInformation: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.835rem' }}>
+      <TitleName />
       <Description />
       <Indicators />
       <MainInfo />

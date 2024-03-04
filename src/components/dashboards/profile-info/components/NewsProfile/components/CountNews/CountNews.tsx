@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { CountInformationContainer } from '../../../../styles/ProfileInfoStyles';
 
 type MyComponentProps = {
   count: number;
@@ -9,23 +9,15 @@ const CountNews: React.FC<MyComponentProps> = ({ count }) => {
   return (
     <>
       {Boolean(count) && (
-        <CountNewsContainer>
+        <CountInformationContainer>
           {count} {getNewsEnding(count)}
-        </CountNewsContainer>
+        </CountInformationContainer>
       )}
     </>
   );
 };
 
 export default CountNews;
-
-const CountNewsContainer = styled.div`
-  margin-top: 1.8735rem;
-  width: 100%;
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f5fb;
-`;
 
 const getNewsEnding = (count: number) => {
   if (count % 100 >= 11 && count % 100 <= 19) {

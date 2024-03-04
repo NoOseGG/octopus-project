@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import { CountInformationContainer } from '../../../../styles/ProfileInfoStyles';
 
 type MyComponentProps = {
   count: number;
@@ -9,22 +9,15 @@ const CountGovernmentInspections: React.FC<MyComponentProps> = ({ count }) => {
   return (
     <>
       {count && (
-        <Container>
+        <CountInformationContainer>
           {count} {getInspectionEnding(count)}
-        </Container>
+        </CountInformationContainer>
       )}
     </>
   );
 };
 
 export default CountGovernmentInspections;
-
-const Container = styled.div`
-  width: 100%;
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f5fb;
-`;
 
 const getInspectionEnding = (count: number) => {
   if (count % 100 >= 11 && count % 100 <= 19) {

@@ -53,7 +53,7 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
   return (
     <div>
       <Divider>Избранные</Divider>
-      <Table columns={columns} dataSource={newFavourites} size={'small'} pagination={{ pageSize: 12 }}></Table>
+      <Table columns={columns} dataSource={newFavourites} size={'small'} pagination={{ pageSize: 10 }}></Table>
     </div>
   );
 };

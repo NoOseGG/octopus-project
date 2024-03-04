@@ -8,7 +8,7 @@ export const ReferencesWrapper = styled.div`
   flex-direction: column;
   align-items: start;
   flex-wrap: nowrap;
-  margin-top: 2rem;
+  margin-top: 2px;
 
   @media only screen and ${media.sm} {
     align-items: center;

@@ -47,3 +47,13 @@ export const Title = styled(Text)`
 `;
 
 //
+
+export const CountInformationContainer = styled.div`
+  margin-top: 1.8735rem;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #b7b6b6;
+  border-radius: 5px;
+`;

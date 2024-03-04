@@ -126,13 +126,11 @@ const ImageContainer = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.21);
   padding: 5px 15px 20px 15px;
   width: 500px;
   height: 300px;
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
 `;
 
 const InfoTitle = styled.h1`

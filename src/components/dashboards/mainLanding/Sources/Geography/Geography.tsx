@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import MapBelarus from '@app/components/dashboards/mainLanding/MapBelarus/MapBelarus';
+import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
 
 const Geography: React.FC = () => {
   return (
-    <GeographyContainer>
-      <Title>География</Title>
-      <CountCountries>Беларусь</CountCountries>
-      <Content>
-        Analytix предназначен для сбора и анализа информации из открытых источников о всех субъектах РБ.
-      </Content>
+    <GeographyContainer id={ScrollType.Map}>
+      <Title>Интерактивная карта</Title>
+      <CountCountries>Беларуси</CountCountries>
+      <Content>Количество дейтвующих субъектов по регионам.</Content>
+      <MapBelarus />
     </GeographyContainer>
   );
 };
@@ -19,8 +20,7 @@ const GeographyContainer = styled.div`
   margin: 88px auto 0;
   padding: 13px 0 97px;
   width: 100%;
-  max-width: 831px;
-  background-image: url('/geography.svg');
+  //background-image: url('/geography.svg');
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -33,7 +33,7 @@ const GeographyContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 0 auto 45px;
+  margin: 0 auto 20px;
   color: #fff;
   font-weight: 800;
   font-size: 48px;

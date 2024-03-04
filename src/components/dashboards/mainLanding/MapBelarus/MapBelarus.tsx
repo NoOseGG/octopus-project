@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Container, InnerContainer } from '../styles/MainLandingStyles';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { InnerContainer } from '../styles/MainLandingStyles';
 import { regions } from '@app/components/dashboards/mainLanding/MapBelarus/data/mapBelarusData';
 import './styles/styles.css';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
@@ -43,9 +42,8 @@ const MapBelarus: React.FC = () => {
   };
 
   return (
-    <Container backgroundColor={'#b9dbf4'} id={ScrollType.Map}>
+    <Container>
       <InnerContainer>
-        <Title>Интерактивная карта</Title>
         <MapBelarusContainer>
           <ImageContainer>
             <svg
@@ -92,11 +90,11 @@ const MapBelarus: React.FC = () => {
             <InfoTitle>{region}</InfoTitle>
             <SubjectContainer>
               <FormEntityContainer>
-                <h3>Юридические лица </h3>
+                <EntityTitle>Юридические лица </EntityTitle>
                 <InfoContent>{formatNumberWithCommas(countLegalEntity)}</InfoContent>
               </FormEntityContainer>
               <FormEntityContainer>
-                <h3>Индив. предприниматели </h3>
+                <EntityTitle>Индив. предприниматели </EntityTitle>
                 <InfoContent>{formatNumberWithCommas(countSoleTrades)}</InfoContent>
               </FormEntityContainer>
             </SubjectContainer>
@@ -109,8 +107,8 @@ const MapBelarus: React.FC = () => {
 
 export default MapBelarus;
 
-const Title = styled.h1`
-  text-align: center;
+const Container = styled.div`
+  width: 100%;
 `;
 
 const MapBelarusContainer = styled.div`
@@ -138,9 +136,13 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.h1`
-  font-family: Inter, sans-serif;
+  margin: 0 auto;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
+  color: transparent;
+  background-image: linear-gradient(to right, #74a6ff, #2775ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
 `;
 
@@ -159,6 +161,16 @@ const FormEntityContainer = styled.div`
 
 const InfoContent = styled.div`
   font-size: 40px;
+  color: #fff;
+`;
+
+const EntityTitle = styled.h3`
+  margin: 0 auto;
+  font-weight: 800;
+  color: transparent;
+  background-image: linear-gradient(to right, #74a6ff, #2775ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const getCountFormEntityOfRegion = (region: string | null, soleTrades: MapBelarusObject[]): number => {

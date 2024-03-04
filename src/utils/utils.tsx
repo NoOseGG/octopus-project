@@ -242,8 +242,8 @@ export function formatDateWithTime(inputDate: string | null): string {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
 
   return (
-    `${padZero(dateObject.getHours())}:${padZero(dateObject.getMinutes())}:${padZero(dateObject.getSeconds())} ` +
-    `${padZero(dateObject.getDate())}.${padZero(dateObject.getMonth() + 1)}.${dateObject.getFullYear()}`
+    `${dateObject.getFullYear()}.${padZero(dateObject.getMonth() + 1)}.${padZero(dateObject.getDate())} ` +
+    `${padZero(dateObject.getHours())}:${padZero(dateObject.getMinutes())}:${padZero(dateObject.getSeconds())}`
   );
 }
 

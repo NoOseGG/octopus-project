@@ -6,9 +6,7 @@ import SearchLine from '@app/components/dashboards/mainLanding/SearchLine/Search
 import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
 import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
-import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 import ScrollButton from '@app/components/dashboards/profile-info/components/components/Buttons/ScrollButton/ScrollButton';
-import Tariffs from '@app/components/dashboards/mainLanding/Tariffs/Tariffs';
 
 const MainLanding: React.FC = () => {
   return (
@@ -16,12 +14,11 @@ const MainLanding: React.FC = () => {
       <Header />
       <TopMain />
       <SearchLine />
-      {/*<MainFunctionService />*/}
       <MainFunction />
       <Sources />
-      <Tariffs />
+      {/*<Tariffs />*/}
       <Footer />
-      <PayAttentionModal />
+      {/*<PayAttentionModal />*/}
       <ScrollButton />
     </MainLandingContainer>
   );

@@ -11,7 +11,7 @@ import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header
 const SocialItem: SourceItemObject = {
   gradient: GradientType.BLUE,
   upperTitle: 'более',
-  title: '200 тыс. организаций и ИП',
+  title: '400 тыс. организаций и ИП',
   number: '70 тыс.',
   value: 'сообщений в месяц',
   description: 'ЕГР, МНС, Вакансии, Резюме, Закупки, Банкротства, Ликвидации',
@@ -21,7 +21,7 @@ const SMIItem: SourceItemObject = {
   gradient: GradientType.GREEN,
   upperTitle: 'более',
   title: 'СМИ',
-  number: '10 тыс.',
+  number: '10',
   value: 'источников',
   description: 'Информагентства, онлайн-СМИ, отраслевые порталы, агрегаторы, газеты, журналы',
 };

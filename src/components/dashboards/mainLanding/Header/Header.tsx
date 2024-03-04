@@ -117,10 +117,11 @@ const MenuItem = styled.div`
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;
+  transition: 1s; /* Время эффекта */
 
   &:hover {
-    font-size: 17px;
-    color: red;
+    color: red; /* Меняем цвет текста */
+    transform: scale(1.2); /* Увеличиваем масштаб */
   }
 `;
 

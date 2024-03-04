@@ -15,6 +15,10 @@ const Search: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log(`data ${JSON.stringify(results)}`);
+  }, [results]);
+
+  useEffect(() => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
 

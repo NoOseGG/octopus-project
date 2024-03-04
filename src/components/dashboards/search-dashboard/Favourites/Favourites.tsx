@@ -49,13 +49,13 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
       ),
     },
     {
-      title: 'Время',
-      dataIndex: 'created_at',
+      title: 'Название',
+      dataIndex: 'legal_entity_name',
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'Название',
-      dataIndex: 'legal_entity_name',
+      title: 'Время добавления',
+      dataIndex: 'created_at',
       render: (text) => <Content>{text}</Content>,
     },
   ];

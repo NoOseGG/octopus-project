@@ -13,7 +13,7 @@ export const ProfileDropdown: React.FC = () => {
       <S.ProfileDropdownHeader as={Row} gutter={[10, 10]} align="middle">
         <Col>
           <Avatar
-            src="https://sneg.top/uploads/posts/2023-06/1687659465_sneg-top-p-avatarka-dlya-gitkhaba-krasivo-43.jpg"
+            src="https://med-rf.ru/upload/medialibrary/83a/83a409c7407fc054a1cd0fdcf0e432bb.jpg"
             alt="User"
             shape="circle"
             size={40}

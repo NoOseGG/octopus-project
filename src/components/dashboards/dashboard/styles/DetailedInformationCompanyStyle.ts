@@ -14,6 +14,7 @@ export const NameComponent = styled.div`
   font-weight: 700;
 `;
 
-export const Content = styled.span`
+export const Content = styled.div`
   font-size: 12px;
+  line-height: 1.2;
 `;

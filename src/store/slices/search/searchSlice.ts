@@ -105,6 +105,7 @@ export const searchSlice = createSlice({
         results: [],
       };
       state.loading = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {

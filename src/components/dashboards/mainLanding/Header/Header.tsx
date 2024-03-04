@@ -9,6 +9,7 @@ export enum ScrollType {
   MainFunction = 'mainFunction',
   Sources = 'sources',
   Map = 'map',
+  Tariffs = 'tariffs',
 }
 
 const Header: React.FC = () => {
@@ -33,6 +34,11 @@ const Header: React.FC = () => {
         section?.scrollIntoView({ behavior: 'smooth' });
         break;
       }
+      case ScrollType.Tariffs: {
+        const section = document.getElementById(ScrollType.Tariffs);
+        section?.scrollIntoView({ behavior: 'smooth' });
+        break;
+      }
     }
   };
 
@@ -48,7 +54,7 @@ const Header: React.FC = () => {
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.MainFunction)}>Возможности</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Sources)}>Источники</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Map)}>Карта</MenuItem>
-            <MenuItem>Тарифы</MenuItem>
+            <MenuItem onClick={() => scrollToMainFunction(ScrollType.Tariffs)}>Тарифы</MenuItem>
           </MenuContainer>
           <ButtonContainer>
             <Link to={'/auth/login'}>

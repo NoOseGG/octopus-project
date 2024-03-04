@@ -8,6 +8,7 @@ import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/Ma
 import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
 import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 import ScrollButton from '@app/components/dashboards/profile-info/components/components/Buttons/ScrollButton/ScrollButton';
+import Tariffs from '@app/components/dashboards/mainLanding/Tariffs/Tariffs';
 
 const MainLanding: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const MainLanding: React.FC = () => {
       {/*<MainFunctionService />*/}
       <MainFunction />
       <Sources />
+      <Tariffs />
       <Footer />
       <PayAttentionModal />
       <ScrollButton />

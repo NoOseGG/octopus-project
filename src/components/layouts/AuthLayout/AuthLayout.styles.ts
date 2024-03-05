@@ -182,6 +182,13 @@ export const SubmitButton = styled(Button)`
   width: 100%;
 `;
 
+export const HomeButton = styled(Button)`
+  margin-top: 10px;
+  font-size: ${FONT_SIZE.md};
+  font-weight: ${FONT_WEIGHT.semibold};
+  width: 100%;
+`;
+
 export const SocialButton = styled(Button)`
   font-size: ${FONT_SIZE.md};
   font-weight: ${FONT_WEIGHT.semibold};

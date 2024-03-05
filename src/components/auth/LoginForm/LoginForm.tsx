@@ -32,6 +32,10 @@ export const LoginForm: React.FC = () => {
     }
   }, [token, navigate]);
 
+  const handleClickHomeButton = () => {
+    navigate('/');
+  };
+
   const handleSubmit = (values: LoginFormData) => {
     setLoading(true);
     dispatch(doLogin(values))
@@ -80,6 +84,9 @@ export const LoginForm: React.FC = () => {
           <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.login')}
           </Auth.SubmitButton>
+        </BaseForm.Item>
+        <BaseForm.Item noStyle>
+          <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
         <Auth.FooterWrapper>
           <Auth.Text>

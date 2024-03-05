@@ -61,6 +61,10 @@ export const SignUpForm: React.FC = () => {
       });
   };
 
+  const handleClickHomeButton = () => {
+    navigate('/');
+  };
+
   return (
     <Auth.RegisterFormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
@@ -166,6 +170,9 @@ export const SignUpForm: React.FC = () => {
           <Auth.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.signUp')}
           </Auth.SubmitButton>
+        </BaseForm.Item>
+        <BaseForm.Item noStyle>
+          <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
         <Auth.FooterWrapper>
           <Auth.Text>

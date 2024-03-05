@@ -118,19 +118,39 @@ const MapBelarusContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   width: 500px;
+
+  @media (max-width: 420px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 400px) {
+    max-width: 340px;
+  }
+
+  @media (max-width: 370px) {
+    max-width: 200px;
+  }
 `;
 
 const InfoContainer = styled.div`
   padding: 5px 15px 20px 15px;
-  width: 500px;
+  max-width: 500px;
   height: 300px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 420px) {
+    max-width: 100%;
+  }
 `;
 
 const InfoTitle = styled.h1`
@@ -142,12 +162,20 @@ const InfoTitle = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+
+  @media (max-width: 420px) {
+    font-size: 20px;
+  }
 `;
 
 const SubjectContainer = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
+
+  @media (max-width: 420px) {
+    justify-content: space-between;
+  }
 `;
 
 const FormEntityContainer = styled.div`
@@ -160,6 +188,10 @@ const FormEntityContainer = styled.div`
 const InfoContent = styled.div`
   font-size: 40px;
   color: #fff;
+
+  @media (max-width: 420px) {
+    font-size: 30px;
+  }
 `;
 
 const EntityTitle = styled.h3`
@@ -169,6 +201,10 @@ const EntityTitle = styled.h3`
   background-image: linear-gradient(to right, #74a6ff, #2775ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 420px) {
+    font-size: 14px;
+  }
 `;
 
 const getCountFormEntityOfRegion = (region: string | null, soleTrades: MapBelarusObject[]): number => {

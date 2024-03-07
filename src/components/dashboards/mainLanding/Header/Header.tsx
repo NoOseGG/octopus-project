@@ -3,7 +3,8 @@ import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
 import { Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 
 export enum ScrollType {
   MainFunction = 'mainFunction',
@@ -13,9 +14,8 @@ export enum ScrollType {
 }
 
 const Header: React.FC = () => {
-  const handleClickLogIn = () => {
-    console.log('click');
-  };
+  const navigate = useNavigate();
+  const token = useAppSelector((state) => state.auth.token);
 
   const scrollToMainFunction = (scrollType: ScrollType) => {
     switch (scrollType) {
@@ -42,6 +42,20 @@ const Header: React.FC = () => {
     }
   };
 
+  const handleClickLogIn = () => {
+    if (token !== null && token !== 'bearerToken') {
+      console.log(`1 token = ${token}`);
+      navigate('/search');
+    } else {
+      console.log(`2 token = ${token}`);
+      navigate('/auth/login');
+    }
+  };
+
+  const handleClickSigUp = () => {
+    navigate('/auth/sig-up');
+  };
+
   return (
     <Container backgroundColor={'white'}>
       <InnerContainer>
@@ -57,12 +71,8 @@ const Header: React.FC = () => {
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Tariffs)}>Тарифы</MenuItem>
           </MenuContainer>
           <ButtonContainer>
-            <Link to={'/auth/login'}>
-              <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
-            </Link>
-            <Link to={'/auth/sign-up'}>
-              <StyledButton>Попробовать</StyledButton>
-            </Link>
+            <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
+            <StyledButton onClick={handleClickSigUp}>Попробовать</StyledButton>
           </ButtonContainer>
         </HeaderContainer>
       </InnerContainer>

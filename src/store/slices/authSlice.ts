@@ -94,6 +94,7 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
+  dispatch(deleteTokenInState());
   return response;
 });
 
@@ -104,7 +105,11 @@ export const doCheckAuth = createAsyncThunk('auth/checkAuth', async () => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteTokenInState: (state) => {
+      state.token = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
       if (action.payload.user !== undefined) {
@@ -120,4 +125,5 @@ const authSlice = createSlice({
   },
 });
 
+const { deleteTokenInState } = authSlice.actions;
 export default authSlice.reducer;

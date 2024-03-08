@@ -9,6 +9,7 @@ const TABLE_CONTENT_FONT_SIZE = '12px';
 export const TableTitle = styled.div`
   font-size: ${TABLE_TITLE_FONT_SIZE};
   font-weight: ${TABLE_TITLE_FONT_WEIGHT};
+  text-align: center;
 `;
 
 export const Title = styled.div`

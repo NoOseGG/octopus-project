@@ -1,81 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { ColumnsType } from 'antd/es/table';
-import { formatDate, formatNumberWithCommas } from '@app/utils/utils';
+import { formatDate } from '@app/utils/utils';
 import { Table } from 'antd';
 import styled from 'styled-components';
+import { Title } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
 import {
-  TableTitle,
-  Title,
-  TableContent,
-} from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
-import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
-
-interface DataType {
-  short_name_participants: string;
-  contract_date: string;
-  description: string;
-  volume_lot: string;
-  total_price_purchase_byn: number;
-  total_price_purchase_usd: number;
-  firm_name: string;
-  participants_identifier: string;
-  short_name: string;
-}
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: <TableTitle>Краткое наименование заказчика</TableTitle>,
-    dataIndex: 'short_name_participants',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-  {
-    title: <TableTitle>Дата договора</TableTitle>,
-    dataIndex: 'contract_date',
-    render: (text) => <TableContent>{formatDate(text)}</TableContent>,
-  },
-  {
-    title: <TableTitle>Предмет закупки</TableTitle>,
-    dataIndex: 'description',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-  {
-    title: <TableTitle>Объём</TableTitle>,
-    dataIndex: 'volume_lot',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-  {
-    title: <TableTitle>Стоимость в белорусских рублях</TableTitle>,
-    dataIndex: 'total_price_purchase_byn',
-    render: (text) => <TableContent>{formatNumberWithCommas(text)}</TableContent>,
-  },
-  {
-    title: <TableTitle>Стоимость в долларах</TableTitle>,
-    dataIndex: 'total_price_purchase_usd',
-    render: (text) => <TableContent>{formatNumberWithCommas(text)}</TableContent>,
-  },
-  {
-    title: <TableTitle>Фирменное наименование поставщик</TableTitle>,
-    dataIndex: 'firm_name',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-  {
-    title: <TableTitle>УНП поставщика</TableTitle>,
-    dataIndex: 'participants_identifier',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-  {
-    title: <TableTitle>Краткое наименование поставщика</TableTitle>,
-    dataIndex: 'short_name',
-    render: (text) => <TableContent>{text}</TableContent>,
-  },
-];
+  IceTradeHistoryDataType,
+  IceTradeNamesEnum,
+  IceTradesType,
+} from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
+import { getIceTradeHistoryColumns } from '@app/components/dashboards/profile-info/components/IceTrades/utils/IceTradeUtils';
 
 type MyComponentProps = {
   iceTrade: IceTradesType;
+  iceTradeNamesEnum: IceTradeNamesEnum;
 };
 
-const HistoryNotCompletedPurchases: React.FC<MyComponentProps> = ({ iceTrade }) => {
-  const [historyNotCompletedPurchases, setHistoryNotCompletedPurchases] = useState<DataType[]>([]);
+const HistoryNotCompletedPurchases: React.FC<MyComponentProps> = ({ iceTrade, iceTradeNamesEnum }) => {
+  const [historyNotCompletedPurchases, setHistoryNotCompletedPurchases] = useState<IceTradeHistoryDataType[]>([]);
+  const columns = getIceTradeHistoryColumns(iceTradeNamesEnum);
 
   useEffect(() => {
     setHistoryNotCompletedPurchases(groupingList(iceTrade));
@@ -103,13 +45,13 @@ const Container = styled.div`
   margin-top: 20px;
 `;
 
-const groupingList = (iceTrade: IceTradesType): DataType[] => {
+const groupingList = (iceTrade: IceTradesType): IceTradeHistoryDataType[] => {
   return iceTrade
     .filter((item) => item.purchase_status !== 'Состоялась')
     .map((item) => {
       return {
         short_name_participants: item.participants !== null ? item.participants : '-',
-        contract_date: item.contract_date !== null ? item.contract_date : '-',
+        contract_date: item.contract_date !== null ? formatDate(item.contract_date) : '-',
         description: item.description !== null ? item.description : '-',
         volume_lot: item.volume_lot !== null ? item.volume_lot : '-',
         total_price_purchase_byn: item.total_price_purchase_byn !== null ? item.total_price_purchase_byn : 0,
@@ -117,6 +59,9 @@ const groupingList = (iceTrade: IceTradesType): DataType[] => {
         firm_name: item.participants !== null ? item.participants : '-',
         participants_identifier: item.participants_identifier !== null ? item.participants_identifier : '-',
         short_name: item.participants !== null ? item.participants : '-',
+        request_end: item.request_end !== null ? formatDate(item.request_end) : '-',
+        customer_id: item.customer_id !== null ? item.customer_id : '-',
+        customer_name: item.customer_name !== null ? item.customer_name : '-',
       };
     });
 };

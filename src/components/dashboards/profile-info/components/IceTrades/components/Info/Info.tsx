@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   IceTradesType,
-  NamesEnum,
+  IceTradeNamesEnum,
 } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
 import { formatNumberWithCommas } from '@app/utils/utils';
 
 type MyComponentProps = {
   iceTrade: IceTradesType;
-  name: NamesEnum;
+  iceTradeNamesEnum: IceTradeNamesEnum;
 };
 
-const Info: React.FC<MyComponentProps> = ({ iceTrade, name }) => {
+const Info: React.FC<MyComponentProps> = ({ iceTrade, iceTradeNamesEnum }) => {
   const [customerCount, setCustomerCount] = useState(0);
   const [concludedCount, setConcludedCount] = useState(0);
   const [totalValueBYN, setTotalValueBYN] = useState(0);
@@ -26,7 +26,7 @@ const Info: React.FC<MyComponentProps> = ({ iceTrade, name }) => {
 
   return (
     <Container>
-      <TitleName>{name}</TitleName>
+      <TitleName>{iceTradeNamesEnum}</TitleName>
       <CustomerInfoContainer>
         <Count>
           <Title>Общее количество заявок</Title>

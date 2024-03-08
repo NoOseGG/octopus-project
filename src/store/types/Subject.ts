@@ -366,6 +366,8 @@ export interface IceTradeCustomer {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeParticipant {
@@ -403,6 +405,8 @@ export interface IceTradeParticipant {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOtherParticipant {
@@ -440,6 +444,8 @@ export interface IceTradeOtherParticipant {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOrganizerNegotiations {

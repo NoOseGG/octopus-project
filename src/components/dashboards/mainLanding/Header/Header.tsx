@@ -44,16 +44,14 @@ const Header: React.FC = () => {
 
   const handleClickLogIn = () => {
     if (token !== null && token !== 'bearerToken') {
-      console.log(`1 token = ${token}`);
       navigate('/search');
     } else {
-      console.log(`2 token = ${token}`);
       navigate('/auth/login');
     }
   };
 
   const handleClickSigUp = () => {
-    navigate('/auth/sig-up');
+    navigate('/auth/sign-up');
   };
 
   return (

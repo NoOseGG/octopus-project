@@ -483,6 +483,8 @@ export interface IceTradeOrganizerNegotiations {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOrganizer {
@@ -520,6 +522,8 @@ export interface IceTradeOrganizer {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface GovernmentInspection {

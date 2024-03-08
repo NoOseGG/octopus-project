@@ -22,12 +22,11 @@ enum TABS {
   GENERAL_INFORMATION = '1',
   VACANCIES = '2',
   RESUMES = '3',
-  PURCHASES = '4',
+  ICE_TRADES = '4',
   NEWS = '5',
   COMMERCIAL_REGISTER = '6',
   HISTORY = '7',
   GOVERNMENT_INSPECTION = '8',
-  ICE_TRADES = '9',
 }
 
 const ProfileInfo: React.FC = () => {
@@ -88,7 +87,7 @@ const ProfileInfo: React.FC = () => {
                 </Tabs.TabPane>
               )}
               {iceTradeLength && (
-                <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.PURCHASES}>
+                <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.ICE_TRADES}>
                   <IceTrades />
                 </Tabs.TabPane>
               )}

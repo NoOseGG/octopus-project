@@ -13,9 +13,10 @@ type MyComponentProps = {
   isDate?: boolean;
   isCopyable?: boolean;
   isLink?: boolean;
+  postfix?: string;
 };
 
-const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, isCopyable, isLink }) => {
+const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, isCopyable, isLink, postfix }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textCollapseButton, setTextCollapseButton] = useState(COLLAPSE_CLOSE);
   const [modalVisible, setModalVisible] = useState(false);
@@ -84,10 +85,12 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         <span onClick={() => handleClick()}>
           <ButtonShow>
             {isCollapsed ? (
-              <>{textCollapseButton}</>
+              <>
+                {textCollapseButton} {postfix}
+              </>
             ) : (
               <>
-                {textCollapseButton} ({fields.length})
+                {textCollapseButton} {postfix} ({fields.length})
               </>
             )}
           </ButtonShow>
@@ -121,10 +124,12 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         <span onClick={() => handleClick(true)}>
           <ButtonShow>
             {isCollapsed ? (
-              <>{textCollapseButton}</>
+              <>
+                {textCollapseButton} {postfix}
+              </>
             ) : (
               <>
-                {textCollapseButton} ({fields.length})
+                {textCollapseButton} {postfix} ({fields.length})
               </>
             )}
           </ButtonShow>

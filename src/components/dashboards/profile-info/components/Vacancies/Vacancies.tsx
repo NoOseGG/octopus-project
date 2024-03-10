@@ -167,7 +167,6 @@ const Vacancies: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(ascending);
     sortVacancies();
   }, [ascending, selectField]);
 

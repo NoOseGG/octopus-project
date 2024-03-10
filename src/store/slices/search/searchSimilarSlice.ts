@@ -22,7 +22,6 @@ export const doSearchSimilar = createAsyncThunk<ResponseData, RequestData>(
       if (request.typeActivity !== null) url += `type_activity_name=${request.typeActivity}&`;
       url += 'company_status_code=AT&';
       url += `page_size=6`;
-      console.log(url);
       const response = await axios.get(url, {
         headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
       });

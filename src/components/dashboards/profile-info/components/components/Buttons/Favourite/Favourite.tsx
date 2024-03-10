@@ -26,7 +26,6 @@ const Favourite: React.FC<MyComponentProps> = ({ unn }) => {
   }, [favourites]);
 
   const changeFavourite = () => {
-    console.log(favourites.results);
     if (checkFavourite(unn, favourites.results)) {
       dispatch(doDeleteFavourites(unn));
       dispatch(doGetFavourites());

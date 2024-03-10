@@ -16,10 +16,11 @@ const CodeActivityFilter: React.FC = () => {
     dispatch(doGetTypeActivitiesList());
   }, [dispatch]);
 
-  const data = codes?.map((code) => {
+  const data = codes?.map((code, index) => {
     return {
       value: code.type_activity_code,
       label: code.type_activity_code,
+      key: index,
     };
   });
 

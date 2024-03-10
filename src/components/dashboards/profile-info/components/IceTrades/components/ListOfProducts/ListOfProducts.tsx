@@ -49,7 +49,6 @@ const ListOfProducts: React.FC<MyComponentProps> = ({ iceTrade }) => {
   const [listOfProducts, setListOfProducts] = useState<ArrayDataType[]>([]);
 
   useEffect(() => {
-    console.log(JSON.stringify(iceTrade));
     setListOfProducts(groupingList(iceTrade));
   }, [iceTrade]);
 

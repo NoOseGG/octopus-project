@@ -26,7 +26,7 @@ export const HeaderSearch: React.FC = () => {
   const [components] = useState<Component[]>(configComponents);
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  // const [isOverlayVisible, setOverlayVisible] = useState(false);
 
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {
@@ -42,7 +42,7 @@ export const HeaderSearch: React.FC = () => {
 
   useEffect(() => {
     setModalVisible(false);
-    setOverlayVisible(false);
+    // setOverlayVisible(false);
   }, [pathname]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

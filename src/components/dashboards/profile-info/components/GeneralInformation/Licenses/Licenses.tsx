@@ -22,7 +22,7 @@ const Licenses: React.FC = () => {
             <TableLine name={'Дата начала действия'} field={licenses[0]?.from_dttm} isDate={true} />
             <TableLine name={'Орган выдавший'} field={licenses[0]?.state_body_name} />
             <TableLine name={'Название'} field={licenses[0]?.license_name} />
-            <TableLine name={'Название статуса'} field={licenses[0]?.status_name} />
+            <TableLine name={'Статус'} field={licenses[0]?.status_name} />
           </tbody>
         </S.StyledTable>
       )}

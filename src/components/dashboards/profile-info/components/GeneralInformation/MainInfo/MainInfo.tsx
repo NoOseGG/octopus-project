@@ -40,7 +40,7 @@ const MainInfo: React.FC = () => {
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
         <TableLine name={'Номер решения о создании'} field={decision_create_number} />
         <TableLine name={'Номер решения о ликвидации'} field={decision_liquidation_number} />
-        <TableLine name={'Количество дней деятельности'} field={age_full} />
+        <TableLine name={'Продолжительность деятельности'} field={age_full} />
       </tbody>
     </S.StyledTable>
   );

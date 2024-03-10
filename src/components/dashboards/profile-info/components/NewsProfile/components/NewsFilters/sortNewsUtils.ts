@@ -4,7 +4,7 @@ import {
 } from '@app/components/dashboards/profile-info/components/NewsProfile/components/NewsFilters/NewsFilters';
 import { News } from '@app/store/types/Subject';
 
-export const sortNews = (type: TypeFilterEnum, sort: SortFilterEnum, news: News[]) => {
+export const sortNews = (type: TypeFilterEnum, sort: SortFilterEnum, news: News[]): News[] => {
   switch (type) {
     case TypeFilterEnum.DATE: {
       return getDateSorted(sort, news);

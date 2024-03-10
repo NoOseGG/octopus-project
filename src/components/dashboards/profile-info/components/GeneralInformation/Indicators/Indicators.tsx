@@ -97,12 +97,3 @@ const TopLine = styled.div`
   align-items: stretch;
   flex-wrap: wrap;
 `;
-
-const BottomLine = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-`;

@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import { Button } from 'antd';
 import payAttentionImage from '../../../../assets/landing/payAttention/PayAttention.jpg';
 import './style.css';
+import { clickedPayAttention, getPayAttention } from '@app/services/localStorage.service';
 
 const PayAttentionModal: React.FC = () => {
   const [isModelVisible, setIsModalVisible] = useState(false);
 
   const closeModal = () => {
+    clickedPayAttention();
     setIsModalVisible(false);
   };
 
   useEffect(() => {
     setTimeout(() => {
-      setIsModalVisible(true);
+      if (getPayAttention() !== 'true') setIsModalVisible(true);
     }, 5000);
   }, []);
 
@@ -48,7 +50,6 @@ const PayAttentionModal: React.FC = () => {
       </ModalContent>
     </ModalWrapper>
   ) : (
-    //
     <div></div>
   );
 };

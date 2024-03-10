@@ -10,7 +10,7 @@ type MyComponentProps = {
   description: string;
 };
 
-const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ risk, name, description }) => {
+const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ risk, name }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {

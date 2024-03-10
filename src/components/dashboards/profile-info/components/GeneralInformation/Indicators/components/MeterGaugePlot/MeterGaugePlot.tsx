@@ -9,7 +9,7 @@ type MyComponentProps = {
   description: string;
 };
 
-const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, description }) => {
+const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {

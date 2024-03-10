@@ -43,7 +43,6 @@ export interface LoginResponse {
 
 export const login = (loginPayload: LoginRequest): Promise<LoginResponse> =>
   httpApi.post<LoginResponse>(`${BASE_URL}login`, { ...loginPayload }).then(({ data }) => {
-    console.log(`${JSON.stringify(data)}`);
     return data;
   });
 

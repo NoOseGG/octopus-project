@@ -4,7 +4,7 @@ export type IceTradesType = IceTradeCustomer[] | IceTradeParticipant[] | IceTrad
 
 export enum IceTradeNamesEnum {
   CUSTOMER = 'Заказчик',
-  PARTICIPANT = 'Участник процедуры государственной закупки с которым заключён договор',
+  PARTICIPANT = 'Участник процедуры государственной закупки с которым заключен договор',
   OTHER_PARTICIPANT = 'Участник процедуры государственной закупки с которым не заключен договор',
   // ORGANIZER = 'Организатор',
   // ORGANIZER_NEGOTIATIONS = 'Переговоры с организатором',

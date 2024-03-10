@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate } from '@app/utils/utils';
+import {
+  constructorUrlForDashboard,
+  getCurrentDate,
+  getPastMonth,
+  getPastMonthFromDate,
+  sortDataByMonth,
+} from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
@@ -18,12 +24,13 @@ export const doGetDataForCheckedColumnChartSoleTrade = createAsyncThunk<CheckedR
       let baseUrl = DASH.BASE_INSPECTION + DASH.AGR_COUNT + DASH.GROUP_BY('inspection_dttm__month') + DASH.SOLE_TRADE;
 
       if (filters.isDate && filters.toDate !== null) {
-        const month = getPastMonthFromDate(6, new Date(filters.toDate));
+        const month = getPastMonthFromDate(5, new Date(filters.toDate));
         baseUrl += DASH.DATE_AFTER_INSPECTION(month);
         baseUrl += DASH.DATE_BEFORE_INSPECTION(filters.toDate);
       } else {
-        const month = getPastMonth(6);
+        const month = getPastMonth(5);
         baseUrl += DASH.DATE_AFTER_INSPECTION(`${month}-01`);
+        baseUrl += DASH.DATE_BEFORE_INSPECTION(getCurrentDate());
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
       const response = await axios.get(url + DASH.ORDERING_AGG('inspection_dttm__month'));
@@ -43,12 +50,13 @@ const checkedColumnChartSoleTradeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForCheckedColumnChartSoleTrade.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      const data = action.payload.results.map((item) => {
         return {
           type: item.group_fields.inspection_dttm__month,
           sales: item.Count,
         };
       });
+      state.results = sortDataByMonth(data);
       state.loading = false;
     });
   },

@@ -8,6 +8,7 @@ import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import React from 'react';
 import { EntityType } from '@app/constants/Constants';
+import { ColumnChartMonthObject } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 
 export const camelize = (string: string): string => {
   return string
@@ -214,7 +215,7 @@ export const dateTransformForRegistration = (dateString: string): string => {
   return `${year}-${month}-${day}`;
 };
 
-export function formatDate(dateString: string | null | undefined): string | null {
+export function formatDate(dateString: string | null | undefined, isReverse = false): string | null {
   if (dateString === null || dateString === undefined) {
     return ''; // Если дата равна null, вернем тоже null
   }
@@ -228,6 +229,7 @@ export function formatDate(dateString: string | null | undefined): string | null
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Преобразуем месяц (с учетом того, что месяцы в JavaScript начинаются с 0)
   const year = date.getFullYear().toString(); // Преобразуем год
 
+  if (isReverse) return `${year}.${month}.${day}`;
   return `${day}.${month}.${year}`;
 }
 
@@ -371,6 +373,19 @@ export const getNameMonthByNumber = (number: number): string => {
     default:
       return 'Неизвестно';
   }
+};
+
+export const sortDataByMonth = (data: ColumnChartMonthObject[]): ColumnChartMonthObject[] => {
+  data.sort((a, b) => a.type - b.type);
+
+  while (data.length > 0 && data[0].type !== undefined && data[0].type < 6) {
+    const first = data.shift();
+    if (first !== undefined) {
+      data.push(first);
+    }
+  }
+
+  return data;
 };
 
 export const constructorUrlForDashboard = (

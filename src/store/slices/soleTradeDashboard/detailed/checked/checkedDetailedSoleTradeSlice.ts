@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
-import { constructorUrlForDashboard } from '@app/utils/utils';
+import { constructorUrlForDashboard, getCurrentDate } from '@app/utils/utils';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import {
   DetailedInformationState,
@@ -18,12 +18,14 @@ export const doGetCheckedDetailedSoleTrade = createAsyncThunk<ResponseDetailedIn
   'doGetCheckedDetailedSoleTrade',
   async ({ filters }) => {
     try {
+      const date = getCurrentDate();
       const url = constructorUrlForDashboard(
         DASH.BASE_INSPECTION +
           DASH.PAGE_SIZE(30) +
           DASH.SOLE_TRADE +
-          DASH.ORDERING('-company_date_registration') +
-          DASH.IS_NULL_FALSE('company_date_registration'),
+          DASH.DATE_BEFORE_INSPECTION(date) +
+          DASH.ORDERING('-inspection_dttm') +
+          DASH.IS_NULL_FALSE('inspection_dttm'),
         filters,
         false,
         false,

@@ -4,7 +4,7 @@ export interface ColumnChartMonthState {
   error: string | null;
 }
 
-interface ColumnChartMonthObject {
+export interface ColumnChartMonthObject {
   type: number;
   sales: number;
 }

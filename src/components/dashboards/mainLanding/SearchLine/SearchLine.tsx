@@ -8,7 +8,7 @@ const SearchLine: React.FC = () => {
     <Container backgroundColor={'#dbe1ea'}>
       <InnerContainer>
         <SearchLineContainer>
-          <Search placeholder={'Введите УНП или название проверяемого объекта'} enterButton={'Проверить'} />
+          <Search placeholder={'Введите УНП или название проверяемого субъекта'} enterButton={'Проверить'} />
         </SearchLineContainer>
       </InnerContainer>
     </Container>

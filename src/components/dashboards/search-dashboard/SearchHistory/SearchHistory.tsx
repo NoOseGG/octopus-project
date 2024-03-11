@@ -30,7 +30,7 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'Название',
+      title: 'Наименование',
       dataIndex: 'legal_entity_name',
       render: (text) => <Content>{text}</Content>,
     },

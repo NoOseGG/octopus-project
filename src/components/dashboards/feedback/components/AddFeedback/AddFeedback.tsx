@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doAddFeedback } from '@app/store/slices/feedback/feedbackSlice';
+import { notificationController } from '@app/controllers/notificationController';
 
 interface FeedBackObject {
   name: string;
@@ -14,8 +15,20 @@ const AddFeedback: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
 
   const onFinish = (values: FeedBackObject) => {
-    if (user?.first_name !== null && user?.last_name !== null)
+    if (checkedMessages(values.message)) {
       dispatch(doAddFeedback(`${user?.first_name} ${user?.last_name}: ${values.message}`));
+      notificationController.success({
+        message: `Обращение получено, ответ будет отправлен на электронный адрес "${user?.email}"`,
+      });
+    } else {
+      notificationController.error({
+        message: 'Некоректное сообщение',
+      });
+    }
+  };
+
+  const checkedMessages = (message: string): boolean => {
+    return user?.first_name !== null && user?.last_name !== null && message.trim().length > 5;
   };
 
   return (

@@ -68,7 +68,7 @@ export const SignUpForm: React.FC = () => {
   return (
     <Auth.RegisterFormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
-        <S.Title>{t('common.signUp')}</S.Title>
+        <S.Title>{t('common.signUpTitle')}</S.Title>
 
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
           <div style={{ flex: 1, marginRight: '20px' }}>
@@ -156,12 +156,13 @@ export const SignUpForm: React.FC = () => {
               <Auth.Text>
                 {t('signup.agree')}{' '}
                 <Link to="/" target={'_blank'}>
-                  <Auth.LinkText>{t('signup.termOfUse')}</Auth.LinkText>
+                  <Auth.LinkText>{t('signup.personalDataPolicy')}</Auth.LinkText>
                 </Link>{' '}
                 {t('signup.and')}{' '}
                 <Link to="/" target={'_blank'}>
-                  <Auth.LinkText>{t('signup.privacyOPolicy')}</Auth.LinkText>
+                  <Auth.LinkText>{t('signup.publicAgreement')}</Auth.LinkText>
                 </Link>
+                {t('signup.dot')}
               </Auth.Text>
             </Auth.FormCheckbox>
           </BaseForm.Item>

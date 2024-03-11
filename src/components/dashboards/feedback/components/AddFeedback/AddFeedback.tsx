@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import styled from 'styled-components';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doAddFeedback } from '@app/store/slices/feedback/feedbackSlice';
 
 interface FeedBackObject {
@@ -11,18 +11,16 @@ interface FeedBackObject {
 
 const AddFeedback: React.FC = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.user);
 
   const onFinish = (values: FeedBackObject) => {
-    dispatch(doAddFeedback(`${values.name}: ${values.message}`));
+    if (user?.first_name !== null && user?.last_name !== null)
+      dispatch(doAddFeedback(`${user?.first_name} ${user?.last_name}: ${values.message}`));
   };
 
   return (
     <Container>
       <Form style={{ width: 600 }} onFinish={onFinish}>
-        <Form.Item label="Имя" name="name" rules={[{ required: true, message: 'Введите Ваше имя' }]}>
-          <Input />
-        </Form.Item>
-
         <Form.Item label="Сообщение" name="message" rules={[{ required: true, message: 'Введите сообщение!' }]}>
           <Input.TextArea />
         </Form.Item>

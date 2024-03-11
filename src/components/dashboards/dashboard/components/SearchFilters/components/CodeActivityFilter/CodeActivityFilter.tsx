@@ -8,7 +8,7 @@ import {
 } from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
 
 const CodeActivityFilter: React.FC = () => {
-  const codes = useAppSelector((state) => state.searchFilters.data_filters.type_activities);
+  const codes = useAppSelector((state) => state.searchFilters.data_filters.codeActivities);
   const codeActivity = useAppSelector((state) => state.searchFilters.filters.codeActivities);
   const dispatch = useAppDispatch();
 
@@ -18,8 +18,8 @@ const CodeActivityFilter: React.FC = () => {
 
   const data = codes?.map((code, index) => {
     return {
-      value: code.type_activity_code,
-      label: code.type_activity_code,
+      value: code,
+      label: code,
       key: index,
     };
   });

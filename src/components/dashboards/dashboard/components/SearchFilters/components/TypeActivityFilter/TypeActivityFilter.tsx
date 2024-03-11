@@ -8,7 +8,7 @@ import {
 } from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
 
 const TypeActivityFilter: React.FC = () => {
-  const activities = useAppSelector((state) => state.searchFilters.data_filters.type_activities);
+  const activities = useAppSelector((state) => state.searchFilters.data_filters.typeActivities);
   const typeActivity = useAppSelector((state) => state.searchFilters.filters.typeActivities);
   const dispatch = useAppDispatch();
 
@@ -16,10 +16,11 @@ const TypeActivityFilter: React.FC = () => {
     dispatch(doGetTypeActivitiesList());
   }, [dispatch]);
 
-  const data = activities?.map((activity) => {
+  const data = activities?.map((activity, index) => {
     return {
-      value: activity.type_activity_name,
-      label: activity.type_activity_name,
+      value: activity,
+      label: activity,
+      key: index,
     };
   });
 

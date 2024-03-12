@@ -3,11 +3,28 @@ import styled from 'styled-components';
 import { Button } from 'antd';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { ShareAltOutlined } from '@ant-design/icons';
+import { notificationController } from '@app/controllers/notificationController';
 
 const Requisites: React.FC = () => {
   const names = useAppSelector((state) => state.searchProfile.profile.names);
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
+
+  const handleCopyClick = () => {
+    let requisites = '';
+    if (Boolean(names[0]?.short_name?.length)) requisites += names[0]?.short_name + '\n';
+    if (Boolean(addresses[0]?.full_address?.length)) requisites += addresses[0]?.full_address + '\n';
+    if (Boolean(unn?.length)) requisites += `УНП: ${unn}`;
+
+    try {
+      if (Boolean(requisites.length)) {
+        navigator.clipboard.writeText(requisites);
+        notificationController.success({ message: 'Реквизиты скопированы' });
+      }
+    } catch (err) {
+      console.error('Не удалось скопировать текст:', err);
+    }
+  };
 
   return (
     <Container>
@@ -16,7 +33,7 @@ const Requisites: React.FC = () => {
       <LineText>{addresses[0]?.full_address}</LineText>
       <LineText>УНП: {unn}</LineText>
       <ButtonContainer>
-        <ButtonCopyStyle>Скопировать</ButtonCopyStyle>
+        <ButtonCopyStyle onClick={() => handleCopyClick()}>Скопировать</ButtonCopyStyle>
         <ButtonShareStyle>
           <ShareAltOutlined />
         </ButtonShareStyle>
@@ -47,7 +64,7 @@ const ButtonContainer = styled.div`
 const ButtonCopyStyle = styled(Button)`
   width: 100%;
   height: 2rem;
-  background: #f1f5fb;
+  background-color: #f1f5fb;
   border-radius: 0.3125rem;
   border-width: 0;
   color: #0057ff;

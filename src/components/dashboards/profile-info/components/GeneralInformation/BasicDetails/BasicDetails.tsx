@@ -12,8 +12,8 @@ const BasicDetails: React.FC = () => {
   const countries = useAppSelector((state) => state.searchProfile.profile.countries);
 
   const newFullAddresses = addresses
-    ?.map((item, index) => {
-      const date = index !== 0 ? `(${formatDate(item.from_dttm)})` : '';
+    ?.map((item) => {
+      const date = `(${formatDate(item.from_dttm)})`;
       return `${getFullAddress(item)} ${date}`;
     })
     .filter((full_name) => full_name !== null) as string[];

@@ -111,11 +111,15 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
             <table>
               <tbody>
                 {fields.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      <CopyButton text={item} /> {item}
-                    </td>
-                  </tr>
+                  <>
+                    {index !== 0 && (
+                      <tr key={index}>
+                        <td>
+                          <CopyButton text={item} /> {item}
+                        </td>
+                      </tr>
+                    )}
+                  </>
                 ))}
               </tbody>
             </table>

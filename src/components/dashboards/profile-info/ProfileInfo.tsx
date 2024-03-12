@@ -11,7 +11,7 @@ import SiderMenu from '@app/components/dashboards/profile-info/components/SiderM
 import Resumes from '@app/components/dashboards/profile-info/components/Resumes/Resumes';
 import NewsProfile from '@app/components/dashboards/profile-info/components/NewsProfile/NewsProfile';
 import HistoryProfile from '@app/components/dashboards/profile-info/components/HistoryProfile/HistoryProfile';
-import CommercialRegister from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegister';
+import CommercialRegisterProfile from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegisterProfile';
 import GovernmentInspections from '@app/components/dashboards/profile-info/components/GovernmentInspection/GovernmentInspections';
 import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
 
@@ -98,7 +98,7 @@ const ProfileInfo: React.FC = () => {
               )}
               {Boolean(commercialRegister.length) && (
                 <Tabs.TabPane tab={<TabButton>Торговый реестр</TabButton>} key={TABS.COMMERCIAL_REGISTER}>
-                  <CommercialRegister />
+                  <CommercialRegisterProfile />
                 </Tabs.TabPane>
               )}
               {Boolean(constituentDoc.length) && (

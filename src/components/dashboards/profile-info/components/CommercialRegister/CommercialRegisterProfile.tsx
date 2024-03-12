@@ -9,6 +9,7 @@ import StatisticTable, {
   StatisticTableType,
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import { GroupDataType } from '@app/components/dashboards/profile-info/components/CommercialRegister/types/CommercialRegisterTypes';
+import { CommercialRegister } from '@app/store/types/Subject';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -20,11 +21,18 @@ enum AscendingEnum {
   ASCENDING_REVERSE = 'По убыванию',
 }
 
-const CommercialRegister: React.FC = () => {
+enum StatusEnum {
+  ALL = 'Все статусы',
+  CURRENT = 'Действующий',
+  EXCLUDED = 'Исключен',
+}
+
+const CommercialRegisterProfile: React.FC = () => {
   const commercialRegister = useAppSelector((state) => state.searchProfile.profile.commercial_register);
   const [sortedCommercialRegister, setSortedCommercialRegister] = useState([...commercialRegister]);
   const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
+  const [status, setStatus] = useState(StatusEnum.ALL);
   const [statisticData, setStatisticData] = useState<{ value: string; count: number }[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
@@ -60,70 +68,81 @@ const CommercialRegister: React.FC = () => {
     setSelectedFilter(null);
   };
 
-  const sortCommercialRegister = () => {
+  const sortCommercialRegister = (commercial: CommercialRegister[]): CommercialRegister[] => {
     switch (selectField) {
       case SelectEnum.DATE: {
         if (ascending === AscendingEnum.ASCENDING) {
-          setSortedCommercialRegister(
-            commercialRegister.slice().sort((a, b) => {
-              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
-              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
+          return commercial.slice().sort((a, b) => {
+            const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
+            const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
 
-              // Добавьте проверку на null перед использованием даты
-              if (dateA && dateB) {
-                return dateA.getTime() - dateB.getTime();
-              }
+            // Добавьте проверку на null перед использованием даты
+            if (dateA && dateB) {
+              return dateA.getTime() - dateB.getTime();
+            }
 
-              // Обработка случая, если хотя бы одна из дат равна null
-              return 0;
-            }),
-          );
+            // Обработка случая, если хотя бы одна из дат равна null
+            return 0;
+          });
         } else {
-          setSortedCommercialRegister(
-            commercialRegister.slice().sort((a, b) => {
-              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
-              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
+          return commercial.slice().sort((a, b) => {
+            const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
+            const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
 
-              // Добавьте проверку на null перед использованием даты
-              if (dateA && dateB) {
-                return dateB.getTime() - dateA.getTime();
-              }
+            // Добавьте проверку на null перед использованием даты
+            if (dateA && dateB) {
+              return dateB.getTime() - dateA.getTime();
+            }
 
-              // Обработка случая, если хотя бы одна из дат равна null
-              return 0;
-            }),
-          );
+            // Обработка случая, если хотя бы одна из дат равна null
+            return 0;
+          });
         }
-        break;
       }
       case SelectEnum.NAME: {
         if (ascending === AscendingEnum.ASCENDING) {
-          setSortedCommercialRegister(
-            commercialRegister.slice().sort((a, b) => {
-              const nameA = a.type_retail_goods || '';
-              const nameB = b.type_retail_goods || '';
+          return commercial.slice().sort((a, b) => {
+            const nameA = a.type_retail_goods || '';
+            const nameB = b.type_retail_goods || '';
 
-              return nameA.localeCompare(nameB);
-            }),
-          );
+            return nameA.localeCompare(nameB);
+          });
         } else {
-          setSortedCommercialRegister(
-            commercialRegister.slice().sort((a, b) => {
-              const nameA = a.type_retail_goods || '';
-              const nameB = b.type_retail_goods || '';
+          return commercial.slice().sort((a, b) => {
+            const nameA = a.type_retail_goods || '';
+            const nameB = b.type_retail_goods || '';
 
-              return nameB.localeCompare(nameA);
-            }),
-          );
+            return nameB.localeCompare(nameA);
+          });
         }
-        break;
       }
     }
   };
 
+  const filterCommercialRegister = (commercial: CommercialRegister[]) => {
+    switch (status) {
+      case StatusEnum.ALL:
+        {
+          setSortedCommercialRegister(commercial);
+        }
+        break;
+      case StatusEnum.CURRENT:
+        {
+          setSortedCommercialRegister(commercial.filter((item) => item.to_dttm === null));
+        }
+        break;
+      case StatusEnum.EXCLUDED:
+        {
+          setSortedCommercialRegister(commercial.filter((item) => item.to_dttm !== null));
+        }
+        break;
+    }
+  };
+
   useEffect(() => {
-    sortCommercialRegister();
-  }, [ascending, selectField]);
+    const sortedCommercial = sortCommercialRegister(commercialRegister);
+    filterCommercialRegister(sortedCommercial);
+  }, [ascending, selectField, status]);
 
   const dataSelectField = [
     {
@@ -147,9 +166,24 @@ const CommercialRegister: React.FC = () => {
     },
   ];
 
+  const dataStatus = [
+    {
+      value: StatusEnum.ALL,
+      label: 'Все статусы',
+    },
+    {
+      value: StatusEnum.CURRENT,
+      label: 'Действующий',
+    },
+    {
+      value: StatusEnum.EXCLUDED,
+      label: 'Исключен',
+    },
+  ];
+
   return (
     <>
-      {Boolean(sortedCommercialRegister.length) ? (
+      {Boolean(commercialRegister.length) ? (
         <>
           <StatisticTable
             statistics={statisticData}
@@ -181,6 +215,17 @@ const CommercialRegister: React.FC = () => {
               filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
               options={dataAscending}
             />
+            <Select
+              size="small"
+              showSearch
+              style={filterStyle}
+              placeholder={<PlaceholderText>{status}</PlaceholderText>}
+              optionFilterProp="children"
+              value={status}
+              onChange={setStatus}
+              filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
+              options={dataStatus}
+            />
           </SelectContainer>
           <CountCommercialRegister count={commercialRegister.length} />
           <CommercialRegisterContainer>
@@ -196,7 +241,7 @@ const CommercialRegister: React.FC = () => {
   );
 };
 
-export default CommercialRegister;
+export default CommercialRegisterProfile;
 
 const CommercialRegisterContainer = styled.div``;
 

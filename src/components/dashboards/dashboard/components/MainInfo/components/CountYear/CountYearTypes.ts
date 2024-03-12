@@ -36,7 +36,7 @@ export const getStateForCountYear = (state: RootState, countYear: COUNT_YEAR_TYP
 export const getTitleForCountYear = (countYear: COUNT_YEAR_TYPE): string => {
   switch (countYear) {
     case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
-      return 'Количество созданных компаний (год)';
+      return 'Количество созданных за период';
     case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
       return 'Количество ликвидированных компаний (год)';
     case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:

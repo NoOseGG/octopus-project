@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { doGetCountCreatedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
-import { Skeleton } from 'antd';
+import { Popover, Skeleton } from 'antd';
 import {
   COUNT_YEAR_TYPE,
   CountYearProps,
@@ -19,7 +19,7 @@ import { doCalculateCreatedPercentYearSoleTrade } from '@app/store/slices/soleTr
 import { doCalculateLiquidatedPercentSoleTradeYear } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedPercentSoleTradeSlice';
 import { doGetCountBankruptedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedYearSlice';
 import { doCalculateBankruptedPercent } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedPercentSlice';
-import { formatNumberWithCommas } from '@app/utils/utils';
+import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
 
 const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -27,16 +27,20 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const dynamicStateYear = useAppSelector((state) => getStateForCountYear(state, countYear));
   const count = dynamicStateYear?.count;
   const loading = dynamicStateYear?.loading;
+  const currentDate = getCurrentDate(true);
+  const lastYearDate = getDateLastYear(1, true);
+  const twoLastYearDate = getDateLastYear(2, true);
 
   const dynamicStatePercent = useAppSelector((state) => getStateForPercent(state, percentYear));
   const percent = dynamicStatePercent.percent;
+  const percentLoading = dynamicStatePercent.loading;
 
   const getData = useCallback(
     (countYear) => {
       switch (countYear) {
         case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
           dispatch(doGetCountCreatedYear({ filters }));
-          dispatch(doCalculateCreatedPercent({ filters }));
+          dispatch(doCalculateCreatedPercent());
           break;
         case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
           dispatch(doGetCountLiquidatedYear({ filters }));
@@ -73,8 +77,23 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
           {!filters.isDate && (
             <Block>
               <Title>{getTitleForCountYear(countYear)}</Title>
+              <Title>
+                ({getDateLastYear(1, true)} - {getCurrentDate(true)})
+              </Title>
               <Content>
-                {formatNumberWithCommas(count)} <Percent number={percent}>({percent}%)</Percent>
+                <div>
+                  {formatNumberWithCommas(count)}{' '}
+                  {percentLoading ? (
+                    <Skeleton.Button style={{ marginTop: 10 }} active={true} size={'small'} shape={'circle'} />
+                  ) : (
+                    <Popover
+                      trigger={'hover'}
+                      content={`Отношение количества созданных по отношению к прошлому году: (${twoLastYearDate} - ${lastYearDate}) к (${lastYearDate} - ${currentDate})`}
+                    >
+                      <Percent number={percent}>({percent}%)</Percent>
+                    </Popover>
+                  )}
+                </div>
               </Content>
             </Block>
           )}

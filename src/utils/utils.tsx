@@ -273,24 +273,26 @@ export const getCurrentYear = (): string => {
   return year.toString();
 };
 
-export const getCurrentDate = (): string => {
+export const getCurrentDate = (isReverse = false): string => {
   const currentDate = new Date();
 
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // +1, так как месяцы начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
+  if (isReverse) return `${day}-${month}-${year}`;
   return `${year}-${month}-${day}`;
 };
 
-export const getDateLastYear = (): string => {
+export const getDateLastYear = (previousYear = 1, isReverse = false): string => {
   const currentDate = new Date();
-  currentDate.setFullYear(currentDate.getFullYear() - 1);
+  currentDate.setFullYear(currentDate.getFullYear() - previousYear);
 
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
+  if (isReverse) return `${day}-${month}-${year}`;
   return `${year}-${month}-${day}`;
 };
 

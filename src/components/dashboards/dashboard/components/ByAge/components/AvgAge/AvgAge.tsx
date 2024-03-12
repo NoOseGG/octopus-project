@@ -56,7 +56,7 @@ const AvgAge: React.FC<AvgAgeProps> = ({ avgAge }) => {
   return (
     <AverageAgeContainer>
       <Title>{getTitleForAvgAge(avgAge)}</Title>
-      <Content>{count?.toFixed(1)}</Content>
+      <Content>{count?.toFixed(1)} лет</Content>
     </AverageAgeContainer>
   );
 };

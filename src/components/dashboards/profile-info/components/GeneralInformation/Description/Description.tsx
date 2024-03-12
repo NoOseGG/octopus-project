@@ -9,9 +9,16 @@ const { Text } = Typography;
 const Description: React.FC = () => {
   const description = useAppSelector((state) => state.searchProfile.profile.descriptions);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const initialDisplayText = description[0]?.description?.substring(0, 300);
+  const [displayText, setDisplayText] = useState(initialDisplayText);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
+    if (isCollapsed && description[0].description !== null) {
+      setDisplayText(description[0]?.description);
+    } else {
+      setDisplayText(initialDisplayText);
+    }
   };
 
   return (
@@ -27,9 +34,9 @@ const Description: React.FC = () => {
               lineHeight: '1.2em',
             }}
           >
-            {description[0].description}
+            {displayText}
           </Text>
-          {description[0].description.length > 100 && (
+          {description[0].description.length > 300 && (
             <span onClick={toggleCollapse}>
               <ButtonShow>{isCollapsed ? 'Показать полностью' : 'Свернуть'}</ButtonShow>
             </span>

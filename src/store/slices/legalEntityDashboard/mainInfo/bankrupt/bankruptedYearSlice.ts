@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
+import { constructorUrlForDashboard, getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
@@ -15,9 +15,14 @@ export const doGetCountBankruptedYear = createAsyncThunk<ResponseMainInfo, Reque
   'doGetCountBankruptedYear',
   async ({ filters }) => {
     try {
-      const year = getCurrentYear();
+      const currentDate = getCurrentDate();
+      const lastYearDate = getDateLastYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_BP + DASH.DATE_AFTER_LIQUIDATED(`${year}-01-01`),
+        DASH.BASE +
+          DASH.LEGAL_ENTITY +
+          DASH.STATUS_BP +
+          DASH.DATE_AFTER_LIQUIDATED(lastYearDate) +
+          DASH.DATE_BEFORE_LIQUIDATED(currentDate),
         filters,
         true,
         false,

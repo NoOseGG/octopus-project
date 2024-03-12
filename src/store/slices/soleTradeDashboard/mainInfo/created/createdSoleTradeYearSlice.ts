@@ -1,6 +1,6 @@
 import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
+import { constructorUrlForDashboard, getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
@@ -15,9 +15,10 @@ export const doGetCountCreatedYearSoleTrade = createAsyncThunk<ResponseMainInfo,
   'doGetCountCreatedYearSoleTrade',
   async ({ filters }) => {
     try {
-      const year = getCurrentYear();
+      const currentDate = getCurrentDate();
+      const lastYearDate = getDateLastYear();
       const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(`${year}-01-01`),
+        DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate),
         filters,
         true,
         false,

@@ -20,6 +20,7 @@ export const doCalculateLiquidatedPercent = createAsyncThunk<ResponsePercentToSl
 
       const lastYearUrl =
         DASH.BASE +
+        DASH.LEGAL_ENTITY +
         DASH.LIQUIDATED_ENTITY +
         DASH.DATE_AFTER_LIQUIDATED(lastYearDate) +
         DASH.DATE_BEFORE_LIQUIDATED(currentDate) +
@@ -27,6 +28,7 @@ export const doCalculateLiquidatedPercent = createAsyncThunk<ResponsePercentToSl
 
       const twoLastYearUrl =
         DASH.BASE +
+        DASH.LEGAL_ENTITY +
         DASH.LIQUIDATED_ENTITY +
         DASH.DATE_AFTER_LIQUIDATED(twoLastYearDate) +
         DASH.DATE_BEFORE_LIQUIDATED(lastYearDate) +

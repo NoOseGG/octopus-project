@@ -19,10 +19,10 @@ export const doCalculateCreatedPercent = createAsyncThunk<ResponsePercentToSlice
       const twoLastYearDate = getDateLastYear(2);
 
       const lastYearUrl =
-        DASH.BASE + DASH.STATUS_AT + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate) + DASH.COUNT;
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate) + DASH.COUNT;
 
       const twoLastYearUrl =
-        DASH.BASE + DASH.STATUS_AT + DASH.DATE_AFTER(twoLastYearDate) + DASH.DATE_BEFORE(lastYearDate) + DASH.COUNT;
+        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(twoLastYearDate) + DASH.DATE_BEFORE(lastYearDate) + DASH.COUNT;
 
       const responseLastYear = await axios.get(lastYearUrl);
       const responseTwoLastYear = await axios.get(twoLastYearUrl);

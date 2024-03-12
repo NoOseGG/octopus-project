@@ -13,6 +13,7 @@ export interface GridProps {
 
 export const Container = styled.div<GridProps>`
   margin-top: 30px;
+  gap: 15px;
   display: flex;
   align-content: stretch;
   justify-content: space-around;

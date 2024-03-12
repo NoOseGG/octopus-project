@@ -4,21 +4,33 @@ import { Button } from 'antd';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { ShareAltOutlined } from '@ant-design/icons';
 import { notificationController } from '@app/controllers/notificationController';
+import { useLocation } from 'react-router';
 
 const Requisites: React.FC = () => {
   const names = useAppSelector((state) => state.searchProfile.profile.names);
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
+  const location = useLocation();
 
-  const handleCopyClick = () => {
+  const getCopyText = (text = null): string => {
+    if (text !== null) return text;
     let requisites = '';
     if (Boolean(names[0]?.short_name?.length)) requisites += names[0]?.short_name + '\n';
     if (Boolean(addresses[0]?.full_address?.length)) requisites += addresses[0]?.full_address + '\n';
     if (Boolean(unn?.length)) requisites += `УНП: ${unn}`;
 
+    return requisites;
+  };
+
+  const handleCopyClick = (isShare = false) => {
     try {
-      if (Boolean(requisites.length)) {
-        navigator.clipboard.writeText(requisites);
+      if (isShare) {
+        const currentUrl = 'https://analytix.by' + location.pathname;
+        navigator.clipboard.writeText(currentUrl);
+        notificationController.success({ message: 'Сыллка на субъекта скопирована' });
+      } else {
+        const copyText = getCopyText();
+        navigator.clipboard.writeText(copyText);
         notificationController.success({ message: 'Реквизиты скопированы' });
       }
     } catch (err) {
@@ -34,7 +46,7 @@ const Requisites: React.FC = () => {
       <LineText>УНП: {unn}</LineText>
       <ButtonContainer>
         <ButtonCopyStyle onClick={() => handleCopyClick()}>Скопировать</ButtonCopyStyle>
-        <ButtonShareStyle>
+        <ButtonShareStyle onClick={() => handleCopyClick(true)}>
           <ShareAltOutlined />
         </ButtonShareStyle>
       </ButtonContainer>

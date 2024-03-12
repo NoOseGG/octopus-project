@@ -12,7 +12,7 @@ export const References: React.FC = () => {
   return (
     <S.ReferencesWrapper>
       <Container>
-        <Divider />
+        <Divider style={{ margin: 0 }} />
         <Text>{new Date().getFullYear()}</Text>
       </Container>
 

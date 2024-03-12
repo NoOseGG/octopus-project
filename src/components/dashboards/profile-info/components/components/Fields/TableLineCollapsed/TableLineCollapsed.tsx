@@ -90,7 +90,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
               </>
             ) : (
               <>
-                {textCollapseButton} {postfix} ({fields.length})
+                {textCollapseButton} {postfix} ({fields.length - 1})
               </>
             )}
           </ButtonShow>
@@ -129,7 +129,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
               </>
             ) : (
               <>
-                {textCollapseButton} {postfix} ({fields.length})
+                {textCollapseButton} {postfix} ({fields.length - 1})
               </>
             )}
           </ButtonShow>

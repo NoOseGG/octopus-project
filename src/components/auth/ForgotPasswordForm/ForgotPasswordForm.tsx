@@ -13,7 +13,7 @@ interface ForgotPasswordFormData {
 }
 
 const initValues = {
-  email: 'email@analytix.by',
+  email: '',
 };
 
 export const ForgotPasswordForm: React.FC = () => {
@@ -58,7 +58,7 @@ export const ForgotPasswordForm: React.FC = () => {
           label={t('common.email')}
           rules={[{ required: true, message: t('common.emailError') }]}
         >
-          <Auth.FormInput placeholder={t('common.email')} />
+          <Auth.FormInput placeholder={t('common.emailPlaceHolder')} />
         </Auth.FormItem>
         <BaseForm.Item noStyle>
           <S.SubmitButton type="primary" htmlType="submit" loading={isLoading}>

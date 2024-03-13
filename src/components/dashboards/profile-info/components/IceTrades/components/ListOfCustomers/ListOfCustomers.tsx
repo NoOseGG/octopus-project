@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { ColumnsType } from 'antd/es/table';
-import { Table } from 'antd';
 import {
+  TableContent,
   TableTitle,
   Title,
-  TableContent,
 } from '@app/components/dashboards/profile-info/components/IceTrades/styles/IceTradeStyles';
-import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
 import { formatNumberWithCommas } from '@app/utils/utils';
+import { IceTradesType } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
+import { Table } from 'antd';
+import styled from 'styled-components';
 
 //For Table
 
@@ -53,21 +53,21 @@ type MyComponentProps = {
   iceTrade: IceTradesType;
 };
 
-const ListOfSuppliers: React.FC<MyComponentProps> = ({ iceTrade }) => {
-  const [listOfSuppliers, setListOfSuppliers] = useState<ArrayDataType[]>([]);
+const ListOfCustomers: React.FC<MyComponentProps> = ({ iceTrade }) => {
+  const [listOfCustomers, setListOfCustomers] = useState<ArrayDataType[]>([]);
 
   useEffect(() => {
-    setListOfSuppliers(groupingList(iceTrade));
+    setListOfCustomers(groupingList(iceTrade));
   }, [iceTrade]);
 
   return (
     <>
-      {Boolean(listOfSuppliers.length) && (
+      {Boolean(listOfCustomers.length) && (
         <Container>
           <Table
             columns={columns}
-            title={() => <Title>Список поставщиков</Title>}
-            dataSource={listOfSuppliers}
+            title={() => <Title>Список заказчиков</Title>}
+            dataSource={listOfCustomers}
             size={'small'}
             pagination={false}
             scroll={{ y: 360 }}
@@ -78,7 +78,7 @@ const ListOfSuppliers: React.FC<MyComponentProps> = ({ iceTrade }) => {
   );
 };
 
-export default ListOfSuppliers;
+export default ListOfCustomers;
 
 const Container = styled.div``;
 
@@ -86,13 +86,13 @@ const groupingList = (iceTradeCustomer: IceTradesType) => {
   const groupedData: GroupedData = {};
 
   iceTradeCustomer.forEach((obj) => {
-    const groupName = obj.participants;
+    const groupName = obj.customer_name;
 
     if (groupName !== null && obj.purchase_status === 'Состоялась') {
       if (!groupedData[groupName]) {
         groupedData[groupName] = {
-          unn: obj.participants_identifier !== null ? obj.participants_identifier : '-',
-          name: obj.participants !== null ? obj.participants : '-',
+          unn: obj.customer_id !== null ? obj.customer_id : '-',
+          name: obj.customer_name !== null ? obj.customer_name : '-',
           totalPrice: 0,
         };
       }

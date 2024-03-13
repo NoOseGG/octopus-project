@@ -7,6 +7,7 @@ import HistoryCompletedPurchases from '@app/components/dashboards/profile-info/c
 import HistoryNotCompletedPurchases from '@app/components/dashboards/profile-info/components/IceTrades/components/HistoryNotCompletedPurchases/HistoryNotCompletedPurchases';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { IceTradeNamesEnum } from '@app/components/dashboards/profile-info/components/IceTrades/types/IceTradeTypes';
+import ListOfCustomers from '@app/components/dashboards/profile-info/components/IceTrades/components/ListOfCustomers/ListOfCustomers';
 
 const IceTrades: React.FC = () => {
   const iceTradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
@@ -30,7 +31,7 @@ const IceTrades: React.FC = () => {
         <>
           <Info iceTrade={iceTradeParticipant} iceTradeNamesEnum={IceTradeNamesEnum.PARTICIPANT} />
           <ListContainer>
-            <ListOfSuppliers iceTrade={iceTradeParticipant} />
+            <ListOfCustomers iceTrade={iceTradeParticipant} />
             <ListOfProducts iceTrade={iceTradeParticipant} />
           </ListContainer>
           <HistoryCompletedPurchases iceTrade={iceTradeParticipant} iceTradeNamesEnum={IceTradeNamesEnum.PARTICIPANT} />
@@ -44,7 +45,7 @@ const IceTrades: React.FC = () => {
         <>
           <Info iceTrade={iceTradeOtherParticipant} iceTradeNamesEnum={IceTradeNamesEnum.OTHER_PARTICIPANT} />
           <ListContainer>
-            <ListOfSuppliers iceTrade={iceTradeOtherParticipant} />
+            <ListOfCustomers iceTrade={iceTradeOtherParticipant} />
             <ListOfProducts iceTrade={iceTradeOtherParticipant} />
           </ListContainer>
           <HistoryCompletedPurchases

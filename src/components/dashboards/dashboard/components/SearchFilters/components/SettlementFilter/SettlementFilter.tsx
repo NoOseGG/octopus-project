@@ -33,7 +33,7 @@ const SettlementFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
-      placeholder={<PlaceholderText>Населённый пункт</PlaceholderText>}
+      placeholder={<PlaceholderText>Населенный пункт</PlaceholderText>}
       value={settlement}
       optionFilterProp="children"
       onChange={onChange}

@@ -18,8 +18,8 @@ const MainInfo: React.FC = () => {
   const age_full = useAppSelector((state) => state.searchProfile.profile.age_full);
 
   const newFullNames = names
-    ?.map((item, index) => {
-      const date = index !== 0 ? `(${formatDate(item.to_dttm)})` : '';
+    ?.map((item) => {
+      const date = `(${formatDate(item.from_dttm)})`;
       return `${item.full_name} ${date}`;
     })
     .filter((full_name) => full_name !== null) as string[];
@@ -28,7 +28,7 @@ const MainInfo: React.FC = () => {
     <S.StyledTable>
       <tbody>
         <TableLine name={'УНП'} field={unn} isCopyable={true} />
-        <TableLine name={'Сокращённое наименование'} field={names[0]?.short_name} isCopyable={true} />
+        <TableLine name={'Сокращенное наименование'} field={names[0]?.short_name} isCopyable={true} />
         <TableLineCollapsed
           name={'Полное наименование'}
           fields={newFullNames}

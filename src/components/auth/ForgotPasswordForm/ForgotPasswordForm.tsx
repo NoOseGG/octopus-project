@@ -23,16 +23,25 @@ export const ForgotPasswordForm: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (values: ForgotPasswordFormData) => {
+    console.log(JSON.stringify(values));
     setLoading(true);
     dispatch(doResetPassword(values))
       .unwrap()
       .then(() => {
-        navigate('/auth/security-code');
+        notificationController.warning({
+          message: 'Письмо с сбросом пароля отправлено на указанный электронный адрес.',
+        });
+        // navigate('/auth/security-code');
+        setLoading(false);
       })
       .catch((err) => {
         notificationController.error({ message: err.message });
         setLoading(false);
       });
+  };
+
+  const handleClickHomeButton = () => {
+    navigate('/');
   };
 
   return (
@@ -55,6 +64,9 @@ export const ForgotPasswordForm: React.FC = () => {
           <S.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('forgotPassword.sendInstructions')}
           </S.SubmitButton>
+        </BaseForm.Item>
+        <BaseForm.Item noStyle>
+          <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
       </BaseForm>
     </Auth.FormWrapper>

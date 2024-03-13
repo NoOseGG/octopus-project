@@ -6,8 +6,6 @@ const AuthLayout = React.lazy(() => import('@app/components/layouts/AuthLayout/A
 import LoginPage from '@app/pages/LoginPage';
 import SignUpPage from '@app/pages/SignUpPage';
 import ForgotPasswordPage from '@app/pages/ForgotPasswordPage';
-import SecurityCodePage from '@app/pages/SecurityCodePage';
-import NewPasswordPage from '@app/pages/NewPasswordPage';
 import LockPage from '@app/pages/LockPage';
 
 import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
@@ -20,6 +18,7 @@ import SearchPage from '@app/pages/DashboardPages/SearchPage';
 import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
 import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
+import ResetPassword from '@app/pages/ResetPassword';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -83,6 +82,7 @@ export const AppRouter: React.FC = () => {
         <Route path="/auth" element={<AuthLayoutFallback />}>
           <Route path="login" element={<LoginPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
+          <Route path="password/reset/confirm/:id/:token" element={<ResetPassword />} />
           <Route
             path="lock"
             element={
@@ -92,8 +92,9 @@ export const AppRouter: React.FC = () => {
             }
           />
           <Route path="forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="security-code" element={<SecurityCodePage />} />
-          <Route path="new-password" element={<NewPasswordPage />} />
+
+          {/*<Route path="security-code" element={<SecurityCodePage />} />*/}
+          {/*<Route path="new-password" element={<NewPasswordPage />} />*/}
         </Route>
         <Route path="/logout" element={<LogoutFallback />} />
       </Routes>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { notificationController } from '@app/controllers/notificationController';
@@ -14,8 +14,8 @@ interface NewPasswordFormData {
 }
 
 const initStates = {
-  password: 'new-password',
-  confirmPassword: 'new-password',
+  password: '',
+  confirmPassword: '',
 };
 
 export const NewPasswordForm: React.FC = () => {
@@ -23,22 +23,41 @@ export const NewPasswordForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [isLoading, setLoading] = useState(false);
+  const { id, token } = useParams<{ id: string; token: string }>();
 
   const handleSubmit = (values: NewPasswordFormData) => {
-    setLoading(true);
-    dispatch(doSetNewPassword({ newPassword: values.password }))
-      .unwrap()
-      .then(() => {
-        navigate('/auth/login');
-        notificationController.success({
-          message: t('newPassword.successMessage'),
-          description: t('newPassword.successDescription'),
+    if (values.password.length < 8) {
+      notificationController.error({ message: 'Пароль слишком короткий' });
+      setLoading(false);
+      return;
+    }
+    if (id !== undefined && token !== undefined) {
+      console.log(JSON.stringify(values));
+      setLoading(true);
+      dispatch(
+        doSetNewPassword({
+          uid: id,
+          token: token,
+          new_password: values.password,
+        }),
+      )
+        .unwrap()
+        .then(() => {
+          navigate('/auth/login');
+          notificationController.success({
+            message: t('newPassword.successMessage'),
+            description: t('newPassword.successDescription'),
+          });
+        })
+        .catch((err) => {
+          notificationController.error({ message: err.message });
+          setLoading(false);
         });
-      })
-      .catch((err) => {
-        notificationController.error({ message: err.message });
-        setLoading(false);
-      });
+    }
+  };
+
+  const handleClickHomeButton = () => {
+    navigate('/');
   };
 
   return (
@@ -80,6 +99,9 @@ export const NewPasswordForm: React.FC = () => {
           <S.SubmitButton type="primary" htmlType="submit" loading={isLoading}>
             {t('common.resetPassword')}
           </S.SubmitButton>
+        </BaseForm.Item>
+        <BaseForm.Item noStyle>
+          <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
       </BaseForm>
     </Auth.FormWrapper>

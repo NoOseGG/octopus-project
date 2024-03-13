@@ -3,11 +3,9 @@ import {
   ResetPasswordRequest,
   LoginRequest,
   SignUpRequest,
-  resetPassword,
   verifySecurityCode,
   SecurityCodePayload,
   NewPasswordData,
-  setNewPassword,
   LoginResponse,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
@@ -77,7 +75,23 @@ export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: 
 
 export const doResetPassword = createAsyncThunk(
   'auth/doResetPassword',
-  async (resetPassPayload: ResetPasswordRequest) => resetPassword(resetPassPayload),
+  async (resetPassPayload: ResetPasswordRequest, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.RESET_PASSWORD, resetPassPayload);
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
 );
 
 export const doVerifySecurityCode = createAsyncThunk(
@@ -85,8 +99,25 @@ export const doVerifySecurityCode = createAsyncThunk(
   async (securityCodePayload: SecurityCodePayload) => verifySecurityCode(securityCodePayload),
 );
 
-export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async (newPasswordData: NewPasswordData) =>
-  setNewPassword(newPasswordData),
+export const doSetNewPassword = createAsyncThunk(
+  'auth/doSetNewPassword',
+  async (newPasswordData: NewPasswordData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.SET_NEW_PASSWORD, newPasswordData);
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
 );
 
 export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {

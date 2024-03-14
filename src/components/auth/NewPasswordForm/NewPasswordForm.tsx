@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { notificationController } from '@app/controllers/notificationController';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { doSetNewPassword } from '@app/store/slices/authSlice';
+import { doSetNewPasswordAfterReset } from '@app/store/slices/authSlice';
 import * as S from './NewPasswordForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 
@@ -35,7 +35,7 @@ export const NewPasswordForm: React.FC = () => {
       console.log(JSON.stringify(values));
       setLoading(true);
       dispatch(
-        doSetNewPassword({
+        doSetNewPasswordAfterReset({
           uid: id,
           token: token,
           new_password: values.password,

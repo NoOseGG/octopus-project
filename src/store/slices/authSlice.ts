@@ -5,8 +5,9 @@ import {
   SignUpRequest,
   verifySecurityCode,
   SecurityCodePayload,
-  NewPasswordData,
+  NewPasswordAfterResetData,
   LoginResponse,
+  NewPasswordData,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
@@ -103,7 +104,31 @@ export const doSetNewPassword = createAsyncThunk(
   'auth/doSetNewPassword',
   async (newPasswordData: NewPasswordData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(URLS.SET_NEW_PASSWORD, newPasswordData);
+      console.log(`new password -> ${JSON.stringify(newPasswordData)}`);
+      const response = await axios.post(URLS.SET_NEW_PASSWORD, newPasswordData, {
+        headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+      });
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
+);
+
+export const doSetNewPasswordAfterReset = createAsyncThunk(
+  'auth/doSetNewPasswordAfterReset',
+  async (newPasswordAfterResetData: NewPasswordAfterResetData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.SET_NEW_PASSWORD_AFTER_RESET, newPasswordAfterResetData);
       console.log(JSON.stringify(response.data));
       return response.data;
     } catch (error) {

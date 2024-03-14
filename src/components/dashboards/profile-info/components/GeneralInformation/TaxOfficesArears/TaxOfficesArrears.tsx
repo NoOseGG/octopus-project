@@ -18,7 +18,7 @@ const TaxOfficesArrears: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Номер лицензии'} field={tax_offices_arrears[0]?.code} />
+            <TableLine name={'Код'} field={tax_offices_arrears[0]?.code} />
             <TableLine name={'Наименование'} field={tax_offices_arrears[0]?.name} />
             <TableLine name={'Код региона'} field={tax_offices_arrears[0]?.region_code} />
             <TableLine name={'Название региона'} field={tax_offices_arrears[0]?.region_name} />

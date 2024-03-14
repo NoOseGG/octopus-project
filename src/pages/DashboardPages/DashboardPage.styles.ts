@@ -22,6 +22,7 @@ export const LeftSideCol = styled(Col)`
   display: flex;
   flex-direction: column;
   border: 1px solid #e8e4e4;
+  gap: 10px;
 `;
 
 export const Space = styled.div`

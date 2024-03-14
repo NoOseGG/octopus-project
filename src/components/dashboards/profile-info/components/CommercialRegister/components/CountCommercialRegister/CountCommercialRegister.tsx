@@ -9,7 +9,9 @@ const CountCommercialRegister: React.FC<MyComponentProps> = ({ count }) => {
   return (
     <>
       {count && (
-        <CountCommercialRegisterContainer>{`${count} данных в торговом реестре`}</CountCommercialRegisterContainer>
+        <CountCommercialRegisterContainer>{`${count} ${getCommercialRegisterEnding(
+          count,
+        )} в торговом реестре`}</CountCommercialRegisterContainer>
       )}
     </>
   );
@@ -24,3 +26,20 @@ const CountCommercialRegisterContainer = styled.div`
   text-align: center;
   background-color: #f1f5fb;
 `;
+
+const getCommercialRegisterEnding = (count: number) => {
+  if (count % 100 >= 11 && count % 100 <= 19) {
+    return 'записей';
+  } else {
+    switch (count % 10) {
+      case 1:
+        return 'запись';
+      case 2:
+      case 3:
+      case 4:
+        return 'записи';
+      default:
+        return 'записей';
+    }
+  }
+};

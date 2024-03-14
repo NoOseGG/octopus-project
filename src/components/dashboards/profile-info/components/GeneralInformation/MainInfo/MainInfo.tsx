@@ -17,25 +17,36 @@ const MainInfo: React.FC = () => {
   );
   const age_full = useAppSelector((state) => state.searchProfile.profile.age_full);
 
-  const newFullNames = names
-    ?.map((item) => {
-      const date = `(${formatDate(item.from_dttm)})`;
-      return `${item.full_name} ${date}`;
-    })
-    .filter((full_name) => full_name !== null) as string[];
-
   return (
     <S.StyledTable>
       <tbody>
         <TableLine name={'УНП'} field={unn} isCopyable={true} />
         <TableLine name={'Сокращенное наименование'} field={names[0]?.short_name} isCopyable={true} />
-        <TableLineCollapsed
-          name={'Полное наименование'}
-          fields={newFullNames}
-          isCopyable={true}
-          postfix={'предыдущие названия'}
+        {names?.length === 1 ? (
+          <TableLine name={'Полное наименование'} field={names[0].full_name} />
+        ) : (
+          <TableLineCollapsed
+            name={'Полное наименование'}
+            fields={
+              names
+                ?.map((item) => {
+                  const date = `(${formatDate(item.from_dttm)})`;
+                  return `${item.full_name} ${date}`;
+                })
+                .filter((full_name) => full_name !== null) as string[]
+            }
+            isCopyable={true}
+            postfix={'предыдущие названия'}
+          />
+        )}
+        <TableLine
+          name={'Статус'}
+          field={
+            status[0]?.name === 'Действующий'
+              ? status[0]?.name
+              : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`
+          }
         />
-        <TableLine name={'Статус'} field={status[0]?.name} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
         <TableLine name={'Номер решения о создании'} field={decision_create_number} />

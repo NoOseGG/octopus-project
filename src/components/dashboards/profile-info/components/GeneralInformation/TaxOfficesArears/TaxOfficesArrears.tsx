@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
+import TableLineTaxOfficesArrears from '@app/components/dashboards/profile-info/components/components/Fields/TableLineTaxOfficesArrears/TableLineTaxOfficesArrears';
 
 const TaxOfficesArrears: React.FC = () => {
   const tax_offices_arrears = useAppSelector((state) => state.searchProfile.profile.tax_offices_arrears);
@@ -18,12 +18,7 @@ const TaxOfficesArrears: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Код'} field={tax_offices_arrears[0]?.code} />
-            <TableLine name={'Наименование'} field={tax_offices_arrears[0]?.name} />
-            <TableLine name={'Код региона'} field={tax_offices_arrears[0]?.region_code} />
-            <TableLine name={'Название региона'} field={tax_offices_arrears[0]?.region_name} />
-            <TableLine name={'Дата начала действия'} field={tax_offices_arrears[0]?.from_dttm} isDate={true} />
-            <TableLine name={'Дата окончания действия'} field={tax_offices_arrears[0]?.to_dttm} isDate={true} />
+            <TableLineTaxOfficesArrears taxOfficesArrears={tax_offices_arrears} />
           </tbody>
         </S.StyledTable>
       )}

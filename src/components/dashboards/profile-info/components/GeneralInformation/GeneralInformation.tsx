@@ -14,6 +14,7 @@ import SimilarSubjects from '@app/components/dashboards/profile-info/components/
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
+import Gias from '@app/components/dashboards/profile-info/components/GeneralInformation/Gias/Gias';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const GeneralInformation: React.FC = () => {
       <TypeActivities />
       <Licenses />
       <LegalForms />
+      <Gias />
       <StatusesTypes />
       <StatesBodies />
       <LegalEntityType />

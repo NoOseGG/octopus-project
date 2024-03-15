@@ -14,6 +14,7 @@ import HistoryProfile from '@app/components/dashboards/profile-info/components/H
 import CommercialRegisterProfile from '@app/components/dashboards/profile-info/components/CommercialRegister/CommercialRegisterProfile';
 import GovernmentInspections from '@app/components/dashboards/profile-info/components/GovernmentInspection/GovernmentInspections';
 import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
+import GiasPlan from '@app/components/dashboards/profile-info/components/GiasPlan/GiasPlan';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -95,7 +96,7 @@ const ProfileInfo: React.FC = () => {
               )}
               {gias_plan && (
                 <Tabs.TabPane tab={<TabButton>Гос. Закупки</TabButton>} key={TABS.GIAS}>
-                  <IceTrades />
+                  <GiasPlan />
                 </Tabs.TabPane>
               )}
               {Boolean(news.length) && (

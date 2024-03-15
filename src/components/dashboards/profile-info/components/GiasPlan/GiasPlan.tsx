@@ -1,6 +1,6 @@
 import React from "react";
 
-const GiasPlant: React.FC = () => {
+const GiasPlan: React.FC = () => {
   return (
     <div>
 
@@ -8,4 +8,4 @@ const GiasPlant: React.FC = () => {
   );
 };
 
-export default GiasPlant;
+export default GiasPlan;

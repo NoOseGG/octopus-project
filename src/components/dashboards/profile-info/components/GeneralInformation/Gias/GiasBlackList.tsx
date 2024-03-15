@@ -18,9 +18,9 @@ const GiasBlackList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Дата включения в реестр'} field={gias_black_list[0]?.from_dttm} />
+            <TableLine name={'Дата включения в реестр'} field={gias_black_list[0]?.from_dttm} isDate={true} />
             <TableLine name={'Основание включения в список'} field={gias_black_list[0]?.basis_inclusion} />
-            <TableLine name={'Дата исключения из реестра'} field={gias_black_list[0]?.to_dttm} />
+            <TableLine name={'Дата исключения из реестра'} field={gias_black_list[0]?.to_dttm} isDate={true} />
             <TableLine name={'Основание исключения из списка'} field={gias_black_list[0]?.basis_exclusion} />
           </tbody>
         </S.StyledTable>

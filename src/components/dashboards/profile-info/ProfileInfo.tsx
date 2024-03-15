@@ -95,7 +95,7 @@ const ProfileInfo: React.FC = () => {
                 </Tabs.TabPane>
               )}
               {Boolean(gias_plan.length) && (
-                <Tabs.TabPane tab={<TabButton>Гос. Закупки</TabButton>} key={TABS.GIAS}>
+                <Tabs.TabPane tab={<TabButton>Планы Гос. Закупок</TabButton>} key={TABS.GIAS}>
                   <GiasPlan />
                 </Tabs.TabPane>
               )}

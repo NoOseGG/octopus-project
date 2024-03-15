@@ -20,8 +20,16 @@ const GiasAccreditedParticipant: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <TableLine name={'Дата включения в реестр'} field={gias_accredited_participant[0]?.from_dttm} />
-            <TableLine name={'Дата исключения из реестра'} field={gias_accredited_participant[0]?.to_dttm} />
+            <TableLine
+              name={'Дата включения в реестр'}
+              field={gias_accredited_participant[0]?.from_dttm}
+              isDate={true}
+            />
+            <TableLine
+              name={'Дата исключения из реестра'}
+              field={gias_accredited_participant[0]?.to_dttm}
+              isDate={true}
+            />
           </tbody>
         </S.StyledTable>
       )}

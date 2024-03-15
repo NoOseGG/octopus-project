@@ -36,7 +36,7 @@ const MainInfo: React.FC = () => {
                 .filter((full_name) => full_name !== null) as string[]
             }
             isCopyable={true}
-            postfix={'предыдущие названия'}
+            postfix={'предыдущие наименования'}
           />
         )}
         <TableLine

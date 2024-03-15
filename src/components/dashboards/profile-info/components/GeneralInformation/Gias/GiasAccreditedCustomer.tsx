@@ -13,7 +13,7 @@ const GiasAccreditedCustomer: React.FC = () => {
           <thead>
             <tr>
               <td>
-                <S.Title>Реестр ГИАС аккредитованных заказчиков</S.Title>
+                <S.Title>Реестр аккредитованных заказчиков</S.Title>
               </td>
             </tr>
           </thead>

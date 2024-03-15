@@ -13,7 +13,7 @@ const GiasComplaintReceive: React.FC = () => {
           <thead>
             <tr>
               <td>
-                <S.Title>Реестр жалоб ГИАС которые получал субъект</S.Title>
+                <S.Title>Реестр жалоб которые получал субъект</S.Title>
               </td>
             </tr>
           </thead>

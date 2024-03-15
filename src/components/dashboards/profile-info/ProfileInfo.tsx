@@ -23,10 +23,11 @@ enum TABS {
   VACANCIES = '2',
   RESUMES = '3',
   ICE_TRADES = '4',
-  NEWS = '5',
-  COMMERCIAL_REGISTER = '6',
-  HISTORY = '7',
-  GOVERNMENT_INSPECTION = '8',
+  GIAS = '5',
+  NEWS = '6',
+  COMMERCIAL_REGISTER = '7',
+  HISTORY = '8',
+  GOVERNMENT_INSPECTION = '9',
 }
 
 const ProfileInfo: React.FC = () => {
@@ -52,6 +53,7 @@ const ProfileInfo: React.FC = () => {
     Boolean(iceTradeOtherParticipant.length) ||
     Boolean(iceTradeOrganizer.length) ||
     Boolean(iceTradeOrganizerNegotiations.length);
+  const gias_plan = useAppSelector((state) => state.searchProfile.profile.gias_plan);
 
   useEffect(() => {
     try {
@@ -88,6 +90,11 @@ const ProfileInfo: React.FC = () => {
               )}
               {iceTradeLength && (
                 <Tabs.TabPane tab={<TabButton>Закупки</TabButton>} key={TABS.ICE_TRADES}>
+                  <IceTrades />
+                </Tabs.TabPane>
+              )}
+              {gias_plan && (
+                <Tabs.TabPane tab={<TabButton>Гос. Закупки</TabButton>} key={TABS.GIAS}>
                   <IceTrades />
                 </Tabs.TabPane>
               )}

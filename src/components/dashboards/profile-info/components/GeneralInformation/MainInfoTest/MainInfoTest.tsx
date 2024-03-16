@@ -76,7 +76,7 @@ const MainInfoTest: React.FC = () => {
               : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`
           }
         />
-        <TableLine name={'Регистрируемый орган'} field={states_bodies[0]?.full_name} />
+        <TableLine name={'Регистрирующий орган'} field={states_bodies[0]?.full_name} />
         <TableLine name={'Налоговый учет'} field={taxOffices[0]?.name} />
       </tbody>
     </S.StyledTable>

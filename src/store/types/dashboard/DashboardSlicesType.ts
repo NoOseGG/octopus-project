@@ -11,20 +11,14 @@ export interface PercentState {
 }
 
 export interface ResponsePercent {
-  results: [
-    {
-      group_fields: {
-        company_date_registration__year: number;
-      };
-      Count: number;
-    },
-    {
-      group_fields: {
-        company_date_registration__year: number;
-      };
-      Count: number;
-    },
-  ];
+  results: {
+    count: number | null;
+  };
+}
+
+export interface ResponsePercentToSlice {
+  lastYearCount: number;
+  twoLastYearCount: number;
 }
 
 export interface ResponseMainInfo {

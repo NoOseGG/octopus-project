@@ -28,6 +28,7 @@ export enum COUNT_TYPE {
   NONE,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForCountCompany = (state: RootState, countCompany: COUNT_TYPE) => {
   switch (countCompany) {
     case COUNT_TYPE.LE_CREATED_ALL:
@@ -81,9 +82,9 @@ export const getTitleForCountCompany = (countCompany: COUNT_TYPE): string => {
       return 'Количество ликвидированных компаний (квартал)';
 
     case COUNT_TYPE.LE_BANKRUPT_ALL:
-      return 'Общее количество обонкротившихся компаний';
+      return 'Общее количество обанкротившихся компаний';
     case COUNT_TYPE.LE_BANKRUPT_QUARTER:
-      return 'Количество ликвидированных обонкротившихся компаний (квартал)';
+      return 'Количество обанкротившихся компаний (квартал)';
 
     case COUNT_TYPE.ST_CREATED_ALL:
       return 'Общее количество созданных ИП';
@@ -98,9 +99,9 @@ export const getTitleForCountCompany = (countCompany: COUNT_TYPE): string => {
       return 'Количество ликвидированных ИП (квартал)';
 
     case COUNT_TYPE.ST_BANKRUPT_ALL:
-      return 'Общее количество обонкротившихся ИП';
+      return 'Общее количество обанкротившихся ИП';
     case COUNT_TYPE.ST_BANKRUPT_QUARTER:
-      return 'Количество ликвидированных обонкротившихся ИП (квартал)';
+      return 'Количество обанкротившихся ИП (квартал)';
 
     case COUNT_TYPE.NONE:
       return 'Отсутсвует';

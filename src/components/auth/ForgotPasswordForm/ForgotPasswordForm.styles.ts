@@ -22,5 +22,4 @@ export const SubmitButton = styled(Button)`
   font-weight: ${FONT_WEIGHT.semibold};
   width: 100%;
   margin-top: 1.125rem;
-  margin-bottom: 1rem;
 `;

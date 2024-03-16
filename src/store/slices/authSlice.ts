@@ -3,12 +3,11 @@ import {
   ResetPasswordRequest,
   LoginRequest,
   SignUpRequest,
-  resetPassword,
   verifySecurityCode,
   SecurityCodePayload,
-  NewPasswordData,
-  setNewPassword,
+  NewPasswordAfterResetData,
   LoginResponse,
+  NewPasswordData,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
@@ -77,7 +76,23 @@ export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: 
 
 export const doResetPassword = createAsyncThunk(
   'auth/doResetPassword',
-  async (resetPassPayload: ResetPasswordRequest) => resetPassword(resetPassPayload),
+  async (resetPassPayload: ResetPasswordRequest, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.RESET_PASSWORD, resetPassPayload);
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
 );
 
 export const doVerifySecurityCode = createAsyncThunk(
@@ -85,8 +100,49 @@ export const doVerifySecurityCode = createAsyncThunk(
   async (securityCodePayload: SecurityCodePayload) => verifySecurityCode(securityCodePayload),
 );
 
-export const doSetNewPassword = createAsyncThunk('auth/doSetNewPassword', async (newPasswordData: NewPasswordData) =>
-  setNewPassword(newPasswordData),
+export const doSetNewPassword = createAsyncThunk(
+  'auth/doSetNewPassword',
+  async (newPasswordData: NewPasswordData, { rejectWithValue }) => {
+    try {
+      console.log(`new password -> ${JSON.stringify(newPasswordData)}`);
+      const response = await axios.post(URLS.SET_NEW_PASSWORD, newPasswordData, {
+        headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+      });
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
+);
+
+export const doSetNewPasswordAfterReset = createAsyncThunk(
+  'auth/doSetNewPasswordAfterReset',
+  async (newPasswordAfterResetData: NewPasswordAfterResetData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.SET_NEW_PASSWORD_AFTER_RESET, newPasswordAfterResetData);
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: LoginError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
 );
 
 export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
@@ -94,6 +150,7 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   deleteToken();
   deleteUser();
   dispatch(setUser(null));
+  dispatch(deleteTokenInState());
   return response;
 });
 
@@ -104,7 +161,11 @@ export const doCheckAuth = createAsyncThunk('auth/checkAuth', async () => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteTokenInState: (state) => {
+      state.token = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
       if (action.payload.user !== undefined) {
@@ -120,4 +181,5 @@ const authSlice = createSlice({
   },
 });
 
+const { deleteTokenInState } = authSlice.actions;
 export default authSlice.reducer;

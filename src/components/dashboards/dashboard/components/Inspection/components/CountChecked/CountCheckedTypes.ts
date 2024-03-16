@@ -14,6 +14,7 @@ export enum COUNT_CHECKED_TYPE {
   ST_CHECKED_BANKRUPTED,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForCountChecked = (state: RootState, countChecked: COUNT_CHECKED_TYPE) => {
   switch (countChecked) {
     case COUNT_CHECKED_TYPE.LE_CHECKED_ALL:

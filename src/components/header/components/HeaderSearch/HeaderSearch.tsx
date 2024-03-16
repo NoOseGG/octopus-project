@@ -6,7 +6,7 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import { doSearch } from '@app/store/slices/search/searchSlice';
+import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
@@ -26,7 +26,7 @@ export const HeaderSearch: React.FC = () => {
   const [components] = useState<Component[]>(configComponents);
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  // const [isOverlayVisible, setOverlayVisible] = useState(false);
 
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {
@@ -42,14 +42,21 @@ export const HeaderSearch: React.FC = () => {
 
   useEffect(() => {
     setModalVisible(false);
-    setOverlayVisible(false);
+    // setOverlayVisible(false);
   }, [pathname]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const delaySearch = useCallback(
     _.debounce((query: string) => {
       dispatch(doSearch(query));
-    }, 200),
+    }, 500),
+    [dispatch],
+  );
+
+  const clearSearch = useCallback(
+    _.debounce(() => {
+      dispatch(clearSearchData());
+    }, 600),
     [dispatch],
   );
 
@@ -58,6 +65,8 @@ export const HeaderSearch: React.FC = () => {
     if (query.trim().length > 2) {
       delaySearch(query);
       navigate('/search');
+    } else {
+      clearSearch();
     }
   }, [query]);
 
@@ -76,26 +85,12 @@ export const HeaderSearch: React.FC = () => {
             onCancel={() => setModalVisible(false)}
             destroyOnClose
           >
-            <SearchDropdown
-              query={query}
-              setQuery={setQuery}
-              data={sortedResults}
-              isOverlayVisible={isOverlayVisible}
-              setOverlayVisible={setOverlayVisible}
-            />
+            <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />
           </S.SearchModal>
         </>
       )}
 
-      {isTablet && (
-        <SearchDropdown
-          query={query}
-          setQuery={setQuery}
-          data={sortedResults}
-          isOverlayVisible={isOverlayVisible}
-          setOverlayVisible={setOverlayVisible}
-        />
-      )}
+      {isTablet && <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />}
     </>
   );
 };

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { ApiError } from '@app/api/ApiError';
 import { readToken } from '@app/services/localStorage.service';
 
-const BASE_URL = 'http://93.125.0.140:1338/api/v1/auth/';
+const BASE_URL = 'https://api.analytix.by/api/v1/auth/';
 
 export const httpApi = axios.create({
   baseURL: BASE_URL,
@@ -28,7 +28,6 @@ httpApi.interceptors.request.use((config) => {
       Authorization: `Welcome ${token}`,
     };
   }
-  console.log(`Url -> ${config.url}`);
 
   return config;
 });

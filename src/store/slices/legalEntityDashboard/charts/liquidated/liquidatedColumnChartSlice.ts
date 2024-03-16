@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate } from '@app/utils/utils';
+import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate, sortDataByMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
@@ -24,11 +24,11 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<LiquidatedResp
         DASH.LIQUIDATED_ENTITY;
 
       if (filters.isDate && filters.toDate !== null) {
-        const month = getPastMonthFromDate(6, new Date(filters.toDate));
+        const month = getPastMonthFromDate(5, new Date(filters.toDate));
         baseUrl += DASH.DATE_AFTER_LIQUIDATED(month);
         baseUrl += DASH.DATE_BEFORE_LIQUIDATED(filters.toDate);
       } else {
-        const month = getPastMonth(6);
+        const month = getPastMonth(5);
         baseUrl += DASH.DATE_AFTER_LIQUIDATED(`${month}-01`);
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
@@ -49,12 +49,13 @@ const liquidatedColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedColumnChart.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      const data = action.payload.results.map((item) => {
         return {
           type: item.group_fields.company_status_from_dttm__month,
           sales: item.Count,
         };
       });
+      state.results = sortDataByMonth(data);
       state.loading = false;
     });
   },

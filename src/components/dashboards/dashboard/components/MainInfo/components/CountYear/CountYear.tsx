@@ -2,12 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content, Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { doGetCountCreatedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/created/createdYearSlice';
-import { Skeleton } from 'antd';
+import { Popover, Skeleton } from 'antd';
 import {
   COUNT_YEAR_TYPE,
   CountYearProps,
   getStateForCountYear,
   getStateForPercent,
+  getStatusForPercent,
   getTitleForCountYear,
 } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
 import { doGetCountLiquidatedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/liquidated/liquidatedYearSlice';
@@ -19,6 +20,9 @@ import { doCalculateCreatedPercentYearSoleTrade } from '@app/store/slices/soleTr
 import { doCalculateLiquidatedPercentSoleTradeYear } from '@app/store/slices/soleTradeDashboard/mainInfo/liquidated/liquidatedPercentSoleTradeSlice';
 import { doGetCountBankruptedYear } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedYearSlice';
 import { doCalculateBankruptedPercent } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedPercentSlice';
+import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
+import { doGetCountBankruptedYearSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedYearSoleTradeSlice';
+import { doCalculateBankruptedPercentSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedPercentSoleTradeSlice';
 
 const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -26,33 +30,41 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
   const dynamicStateYear = useAppSelector((state) => getStateForCountYear(state, countYear));
   const count = dynamicStateYear?.count;
   const loading = dynamicStateYear?.loading;
+  const currentDate = getCurrentDate(true);
+  const lastYearDate = getDateLastYear(1, true);
+  const twoLastYearDate = getDateLastYear(2, true);
 
   const dynamicStatePercent = useAppSelector((state) => getStateForPercent(state, percentYear));
   const percent = dynamicStatePercent.percent;
+  const percentLoading = dynamicStatePercent.loading;
 
   const getData = useCallback(
     (countYear) => {
       switch (countYear) {
         case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
           dispatch(doGetCountCreatedYear({ filters }));
-          dispatch(doCalculateCreatedPercent({ filters }));
+          dispatch(doCalculateCreatedPercent());
           break;
         case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
           dispatch(doGetCountLiquidatedYear({ filters }));
-          dispatch(doCalculateLiquidatedPercent({ filters }));
+          dispatch(doCalculateLiquidatedPercent());
           break;
         case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
           dispatch(doGetCountBankruptedYear({ filters }));
-          dispatch(doCalculateBankruptedPercent({ filters }));
+          dispatch(doCalculateBankruptedPercent());
           break;
 
         case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
           dispatch(doGetCountCreatedYearSoleTrade({ filters }));
-          dispatch(doCalculateCreatedPercentYearSoleTrade({ filters }));
+          dispatch(doCalculateCreatedPercentYearSoleTrade());
           break;
         case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
           dispatch(doGetCountLiquidatedYearSoleTrade({ filters }));
-          dispatch(doCalculateLiquidatedPercentSoleTradeYear({ filters }));
+          dispatch(doCalculateLiquidatedPercentSoleTradeYear());
+          break;
+        case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
+          dispatch(doGetCountBankruptedYearSoleTrade({ filters }));
+          dispatch(doCalculateBankruptedPercentSoleTrade());
           break;
       }
     },
@@ -72,8 +84,25 @@ const CountYear: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
           {!filters.isDate && (
             <Block>
               <Title>{getTitleForCountYear(countYear)}</Title>
+              <Title>
+                ({getDateLastYear(1, true)} - {getCurrentDate(true)})
+              </Title>
               <Content>
-                {count} <Percent number={percent}>({percent}%)</Percent>
+                <div>
+                  {formatNumberWithCommas(count)}{' '}
+                  {percentLoading ? (
+                    <Skeleton.Button style={{ marginTop: 10 }} active={true} size={'small'} shape={'circle'} />
+                  ) : (
+                    <Popover
+                      trigger={'hover'}
+                      content={`Отношение количества ${getStatusForPercent(
+                        percentYear,
+                      )} по отношению к прошлому году: (${twoLastYearDate} - ${lastYearDate}) к (${lastYearDate} - ${currentDate})`}
+                    >
+                      <Percent number={percent}>({percent}%)</Percent>
+                    </Popover>
+                  )}
+                </div>
               </Content>
             </Block>
           )}

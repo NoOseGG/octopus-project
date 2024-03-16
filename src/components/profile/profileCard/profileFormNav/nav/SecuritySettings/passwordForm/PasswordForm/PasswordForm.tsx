@@ -7,20 +7,44 @@ import { CurrentPasswordItem } from '@app/components/profile/profileCard/profile
 import { NewPasswordItem } from '@app/components/profile/profileCard/profileFormNav/nav/SecuritySettings/passwordForm/NewPasswordItem/NewPasswordItem';
 import { notificationController } from '@app/controllers/notificationController';
 import * as S from './PasswordForm.styles';
+import { useAppDispatch } from '@app/hooks/reduxHooks';
+import { doSetNewPassword } from '@app/store/slices/authSlice';
+
+interface NewPasswordFormData {
+  password: string;
+  newPassword: string;
+  confirmPassword: string;
+}
 
 export const PasswordForm: React.FC = () => {
   const [isFieldsChanged, setFieldsChanged] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const onFinish = (values: []) => {
+  const onFinish = (values: NewPasswordFormData) => {
+    console.log(JSON.stringify(values));
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setFieldsChanged(false);
-      notificationController.success({ message: t('common.success') });
-      console.log(values);
-    }, 1000);
+    dispatch(
+      doSetNewPassword({
+        new_password: values.newPassword,
+        re_new_password: values.confirmPassword,
+        current_password: values.password,
+      }),
+    )
+      .unwrap()
+      .then(() => {
+        notificationController.success({
+          message: 'Новый пароль установлен',
+        });
+        setLoading(false);
+      })
+      .catch(() => {
+        notificationController.error({
+          message: 'Не удалось установить новый пароль',
+        });
+        setLoading(false);
+      });
   };
 
   return (

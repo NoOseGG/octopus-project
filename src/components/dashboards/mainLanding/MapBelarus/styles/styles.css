@@ -1,0 +1,9 @@
+#regions polygon {
+    pointer-events: all;
+    cursor: pointer;
+    fill: #325738;
+}
+
+#regions polygon:hover {
+    fill: rgba(39, 199, 40, 0.3);
+}

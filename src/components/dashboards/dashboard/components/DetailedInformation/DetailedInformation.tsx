@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton, Table } from 'antd';
 import { doGetDetailed } from '@app/store/slices/legalEntityDashboard/detailed/current/detailedSlice';
 import {
-  Content,
   Container,
   NameComponent,
   TableContainer,
@@ -21,29 +20,7 @@ import { doGetLiquidatedDetailedSoleTrade } from '@app/store/slices/soleTradeDas
 import { doGetBankruptedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/bankrupted/bankruptedDetailedSoleTradeSlice';
 import { doGetCheckedDetailed } from '@app/store/slices/legalEntityDashboard/detailed/checked/checkedDetailedSlice';
 import { doGetCheckedDetailedSoleTrade } from '@app/store/slices/soleTradeDashboard/detailed/checked/checkedDetailedSoleTradeSlice';
-
-const getColumn = (title: string, field: string) => {
-  return {
-    title: title,
-    dataIndex: field,
-    key: field,
-    render: (text: string) => {
-      return <Content>{text}</Content>;
-    },
-  };
-};
-
-const columns = [
-  getColumn('УНП', 'legal_entity_id'),
-  getColumn('Сокращенное наименование', 'company_short_name'),
-  getColumn('Вид деятельности', 'type_activity_name'),
-  getColumn('Дата регистрации', 'company_date_registration'),
-  getColumn('Состояние', 'company_status_name'),
-  getColumn('Полный адрес', 'address_full'),
-  getColumn('Сайт', 'contact_web_site'),
-  getColumn('Электроная почта', 'contact_email'),
-  getColumn('Наимменование инспецкции НМС', 'tax_office_name'),
-];
+import { getColumns } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationUtils';
 
 const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -51,6 +28,7 @@ const DetailedInformation: React.FC<DetailedProps> = ({ detailed }) => {
   const dynamicState = useAppSelector((state) => getStateForDetailed(state, detailed));
   const results = dynamicState?.results;
   const loading = dynamicState?.loading;
+  const columns = getColumns(detailed);
 
   const getData = useCallback(
     (detailed) => {

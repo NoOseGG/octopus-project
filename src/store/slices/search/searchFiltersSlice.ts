@@ -33,7 +33,8 @@ export interface FiltersType {
 
 interface SearchFiltersSlice {
   data_filters: {
-    type_activities: TypeActivitiesType[];
+    codeActivities: string[];
+    typeActivities: string[];
     settlements: SettlementType[];
     districts: DistrictType[];
     regions: RegionType[];
@@ -43,7 +44,8 @@ interface SearchFiltersSlice {
 
 const initialState: SearchFiltersSlice = {
   data_filters: {
-    type_activities: [],
+    codeActivities: [],
+    typeActivities: [],
     settlements: [],
     districts: [],
     regions: [],
@@ -135,7 +137,10 @@ const searchFiltersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(doGetTypeActivitiesList.fulfilled, (state, action) => {
-      state.data_filters.type_activities = action.payload;
+      const codes = action.payload.map((item) => item.type_activity_code);
+      const activities = action.payload.map((item) => item.type_activity_name);
+      state.data_filters.codeActivities = Array.from(new Set(codes));
+      state.data_filters.typeActivities = Array.from(new Set(activities));
     });
     builder.addCase(doGetSettlementsList.fulfilled, (state, action) => {
       state.data_filters.settlements = action.payload;

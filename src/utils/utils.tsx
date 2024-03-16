@@ -8,6 +8,7 @@ import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
 import { DASH } from '@app/constants/enums/Dashboards';
 import React from 'react';
 import { EntityType } from '@app/constants/Constants';
+import { ColumnChartMonthObject } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 
 export const camelize = (string: string): string => {
   return string
@@ -192,10 +193,6 @@ export const hexToHSL = (hex: string): { h: number; s: number; l: number } => {
   }
 };
 
-export const formatNumberWithCommas = (value: number): string => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 // My Function
 
 export const dateTransformate = (date: string): string | undefined => {
@@ -218,8 +215,8 @@ export const dateTransformForRegistration = (dateString: string): string => {
   return `${year}-${month}-${day}`;
 };
 
-export function formatDate(dateString: string | null): string | null {
-  if (dateString === null) {
+export function formatDate(dateString: string | null | undefined, isReverse = false): string | null {
+  if (dateString === null || dateString === undefined) {
     return ''; // Если дата равна null, вернем тоже null
   }
 
@@ -232,6 +229,7 @@ export function formatDate(dateString: string | null): string | null {
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Преобразуем месяц (с учетом того, что месяцы в JavaScript начинаются с 0)
   const year = date.getFullYear().toString(); // Преобразуем год
 
+  if (isReverse) return `${year}.${month}.${day}`;
   return `${day}.${month}.${year}`;
 }
 
@@ -246,8 +244,8 @@ export function formatDateWithTime(inputDate: string | null): string {
   const padZero = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
 
   return (
-    `${padZero(dateObject.getHours())}:${padZero(dateObject.getMinutes())}:${padZero(dateObject.getSeconds())} ` +
-    `${padZero(dateObject.getDate())}.${padZero(dateObject.getMonth() + 1)}.${dateObject.getFullYear()}`
+    `${dateObject.getFullYear()}.${padZero(dateObject.getMonth() + 1)}.${padZero(dateObject.getDate())} ` +
+    `${padZero(dateObject.getHours())}:${padZero(dateObject.getMinutes())}:${padZero(dateObject.getSeconds())}`
   );
 }
 
@@ -275,25 +273,35 @@ export const getCurrentYear = (): string => {
   return year.toString();
 };
 
-export const getCurrentDate = (): string => {
+export const getCurrentDate = (isReverse = false): string => {
   const currentDate = new Date();
 
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // +1, так как месяцы начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
+  if (isReverse) return `${day}-${month}-${year}`;
   return `${year}-${month}-${day}`;
 };
 
-export const getDateLastYear = (): string => {
+export const getDateLastYear = (previousYear = 1, isReverse = false): string => {
   const currentDate = new Date();
-  currentDate.setFullYear(currentDate.getFullYear() - 1);
+  currentDate.setFullYear(currentDate.getFullYear() - previousYear);
 
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JavaScript начинаются с 0
   const day = String(currentDate.getDate()).padStart(2, '0');
 
+  if (isReverse) return `${day}-${month}-${year}`;
   return `${year}-${month}-${day}`;
+};
+
+export const getYearFromDate = (date: string | null): string => {
+  if (date === null) return 'Без даты';
+  const currentDate = new Date(date);
+  const year = currentDate.getFullYear();
+
+  return `${year}`;
 };
 
 export const getDateLastQuarter = (): string => {
@@ -369,6 +377,19 @@ export const getNameMonthByNumber = (number: number): string => {
   }
 };
 
+export const sortDataByMonth = (data: ColumnChartMonthObject[]): ColumnChartMonthObject[] => {
+  data.sort((a, b) => a.type - b.type);
+
+  while (data.length > 0 && data[0].type !== undefined && data[0].type < 6) {
+    const first = data.shift();
+    if (first !== undefined) {
+      data.push(first);
+    }
+  }
+
+  return data;
+};
+
 export const constructorUrlForDashboard = (
   base: string,
   filters: FiltersType,
@@ -413,5 +434,10 @@ export const getEntityName = (entityType: EntityType): string => {
       return 'ИП';
   }
 };
+
+export function formatNumberWithCommas(number: number | undefined): string {
+  if (number === undefined) return '';
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
 
 // DASH.ORDERING_AGG('company_date_registration__year')

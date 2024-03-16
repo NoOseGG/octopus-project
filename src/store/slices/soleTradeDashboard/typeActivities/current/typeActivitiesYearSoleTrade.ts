@@ -1,7 +1,7 @@
 import { TypeActivityState, TypeActivityType } from '@app/store/types/dashboard/TypeActivitiesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
-import { constructorUrlForDashboard, getCurrentYear } from '@app/utils/utils';
+import { constructorUrlForDashboard, getDateLastYear } from '@app/utils/utils';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 
@@ -17,14 +17,14 @@ export const doGetTypeActivitiesYearSoleTrade = createAsyncThunk<TypeActivityTyp
   'doGetTypeActivitiesYearSoleTrade',
   async ({ filters }) => {
     try {
-      const year = getCurrentYear();
+      const date = getDateLastYear();
       const url = constructorUrlForDashboard(
         DASH.BASE +
           DASH.AGR_COUNT +
           DASH.GROUP_BY('type_activity_name') +
           DASH.SOLE_TRADE +
           DASH.STATUS_AT +
-          DASH.DATE_AFTER(`${year}-01-01`) +
+          DASH.DATE_AFTER(date) +
           DASH.IS_NULL_FALSE('type_activity_name') +
           DASH.PAGE_SIZE(10000),
         filters,

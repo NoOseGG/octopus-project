@@ -14,6 +14,7 @@ export enum COUNT_YEAR_TYPE {
   ST_BANKRUPTED_YEAR,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForCountYear = (state: RootState, countYear: COUNT_YEAR_TYPE) => {
   switch (countYear) {
     case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
@@ -28,25 +29,25 @@ export const getStateForCountYear = (state: RootState, countYear: COUNT_YEAR_TYP
     case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
       return state.liquidatedMainInfoSoleTrade.liquidatedYearSoleTrade;
     case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
-      return state.liquidatedMainInfoSoleTrade.liquidatedYearSoleTrade;
+      return state.mainInfoBankruptedSoleTrade.bankruptedYearSoleTrade;
   }
 };
 
 export const getTitleForCountYear = (countYear: COUNT_YEAR_TYPE): string => {
   switch (countYear) {
     case COUNT_YEAR_TYPE.LE_CREATED_YEAR:
-      return 'Количество созданных компаний (год)';
+      return 'Количество созданных компаний за период';
     case COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR:
-      return 'Количество ликвидированных компаний (год)';
+      return 'Количество ликвидированных компаний за период';
     case COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR:
-      return 'Количество обокротившихся компаний (год)';
+      return 'Количество обанкротившихся компаний за период';
 
     case COUNT_YEAR_TYPE.ST_CREATED_YEAR:
-      return 'Количество созданных ИП (год)';
+      return 'Количество созданных ИП за период';
     case COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR:
-      return 'Количество ликвидированных ИП (год)';
+      return 'Количество ликвидированных ИП за период';
     case COUNT_YEAR_TYPE.ST_BANKRUPTED_YEAR:
-      return 'Количество обонкротившихся ИП (год)';
+      return 'Количество обанкротившихся ИП за период';
   }
 };
 
@@ -59,6 +60,7 @@ export enum PERCENT_TYPE {
   ST_BANKRUPTED_PERCENT,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForPercent = (state: RootState, percent: PERCENT_TYPE) => {
   switch (percent) {
     case PERCENT_TYPE.LE_CREATED_PERCENT:
@@ -74,5 +76,23 @@ export const getStateForPercent = (state: RootState, percent: PERCENT_TYPE) => {
       return state.liquidatedMainInfoSoleTrade.liquidatedPercentSoleTrade;
     case PERCENT_TYPE.ST_BANKRUPTED_PERCENT:
       return state.mainInfoBankruptedSoleTrade.bankruptedPercentSoleTrade;
+  }
+};
+
+export const getStatusForPercent = (percentType: PERCENT_TYPE): string => {
+  switch (percentType) {
+    case PERCENT_TYPE.LE_CREATED_PERCENT:
+      return 'созданных компаний';
+    case PERCENT_TYPE.LE_LIQUIDATED_PERCENT:
+      return 'ликвидированных компаний';
+    case PERCENT_TYPE.LE_BANKRUPTED_PERCENT:
+      return 'обанкротившихся компаний';
+
+    case PERCENT_TYPE.ST_CREATE_PERCENT:
+      return 'созданных ИП';
+    case PERCENT_TYPE.ST_LIQUIDATE_PERCENT:
+      return 'ликвидированных ИП';
+    case PERCENT_TYPE.ST_BANKRUPTED_PERCENT:
+      return 'обанкротившихся ИП';
   }
 };

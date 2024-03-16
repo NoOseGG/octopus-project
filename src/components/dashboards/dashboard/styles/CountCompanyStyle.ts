@@ -13,13 +13,14 @@ export interface GridProps {
 
 export const Container = styled.div<GridProps>`
   margin-top: 30px;
+  gap: 15px;
   display: flex;
-  align-items: center;
+  align-content: stretch;
   justify-content: space-around;
 `;
 
 export const Block = styled.div`
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +44,7 @@ export const Percent = styled.span<PercentWithProps>`
     }
   }};
   font-size: 20px;
+  cursor: pointer;
 
   @media only screen and ${mediaMax.xl} {
     font-size: 10px;
@@ -62,8 +64,14 @@ export const Title = styled.div`
 export const Content = styled.div`
   font-size: 36px;
   font-weight: 700;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and ${mediaMax.xl} {
     font-size: 16px;
   }
+`;
+
+export const Text = styled.div`
+  font-size: 10px;
 `;

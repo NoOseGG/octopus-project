@@ -1,9 +1,8 @@
-import { PercentState, ResponsePercent } from '@app/store/types/dashboard/DashboardSlicesType';
+import { PercentState, ResponsePercentToSlice } from '@app/store/types/dashboard/DashboardSlicesType';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { constructorUrlForDashboard, getCurrentDate, getLastYear } from '@app/utils/utils';
+import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
-import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 
 const initialState: PercentState = {
   percent: 0,
@@ -11,30 +10,32 @@ const initialState: PercentState = {
   error: null,
 };
 
-export const doCalculateCreatedPercentYearSoleTrade = createAsyncThunk<ResponsePercent, RequestData>(
+export const doCalculateCreatedPercentYearSoleTrade = createAsyncThunk<ResponsePercentToSlice>(
   'doCalculateCreatedPercentYearSoleTrade',
-  async ({ filters }) => {
+  async () => {
     try {
       const currentDate = getCurrentDate();
-      const lastYear = getLastYear();
+      const lastYearDate = getDateLastYear();
+      const twoLastYearDate = getDateLastYear(2);
 
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_COUNT +
-          DASH.GROUP_BY('company_date_registration__year') +
-          DASH.SOLE_TRADE +
-          DASH.DATE_BEFORE(currentDate) +
-          DASH.DATE_AFTER(`${lastYear}-01-01`) +
-          DASH.ORDERING_AGG('-company_date_registration__year'),
-        filters,
-        false,
-        false,
-      );
+      const lastYearUrl =
+        DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate) + DASH.COUNT;
 
-      const response = await axios.get(url);
-      return response.data;
+      const twoLastYearUrl =
+        DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(twoLastYearDate) + DASH.DATE_BEFORE(lastYearDate) + DASH.COUNT;
+
+      const responseLastYear = await axios.get(lastYearUrl);
+      const responseTwoLastYear = await axios.get(twoLastYearUrl);
+
+      const lastYearCount = responseLastYear.data.count;
+      const twoLastYearCount = responseTwoLastYear.data.count;
+
+      const result: ResponsePercentToSlice = { lastYearCount, twoLastYearCount };
+
+      return result;
     } catch (error) {
       console.log(error);
+      throw error; // Бросаем ошибку, чтобы Redux Toolkit мог обработать ее
     }
   },
 );
@@ -48,9 +49,9 @@ const createdPercentSoleTradeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doCalculateCreatedPercentYearSoleTrade.fulfilled, (state, action) => {
-      if (action.payload.results.length > 0) {
-        const lastYear = action.payload.results[0].Count;
-        const lastTwoYear = action.payload.results[1].Count;
+      if (Boolean(action.payload.lastYearCount) && Boolean(action.payload.twoLastYearCount)) {
+        const lastYear = action.payload.lastYearCount;
+        const lastTwoYear = action.payload.twoLastYearCount;
 
         const percent = (((lastYear - lastTwoYear) / lastYear) * 100).toFixed(2);
         state.percent = parseInt(percent, 10);

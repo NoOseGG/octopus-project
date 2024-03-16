@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CurrentSubjectsByAgeStyle';
 import { doGetLiquidatedByAgeFrom1To5 } from '@app/store/slices/legalEntityDashboard/byAge/liquidated/LiquidatedFrom1To5Slice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const LiquidatedFrom1To5: React.FC = () => {
   const { age } = useAppSelector((state) => state.liquidatedByAge.liquidateFrom1To5);
@@ -15,7 +16,7 @@ const LiquidatedFrom1To5: React.FC = () => {
   return (
     <Block>
       <Title>от 1 до 5 лет</Title>
-      <Content>{age}</Content>
+      <Content>{formatNumberWithCommas(age)}</Content>
     </Block>
   );
 };

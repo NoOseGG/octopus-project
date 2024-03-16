@@ -16,6 +16,7 @@ export enum LINE_CHART_YEAR {
   ST_CHECKED,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForLineChartYears = (state: RootState, lineChart: LINE_CHART_YEAR) => {
   switch (lineChart) {
     case LINE_CHART_YEAR.LE_CREATED:
@@ -45,7 +46,7 @@ export const getTitleForLineChartYears = (lineChart: LINE_CHART_YEAR): string =>
     case LINE_CHART_YEAR.LE_LIQUIDATED:
       return 'Динамика ликвидаций компаний';
     case LINE_CHART_YEAR.LE_BANKRUPTED:
-      return 'Динамика бакнротства компаний';
+      return 'Динамика банкротств компаний';
     case LINE_CHART_YEAR.LE_CHECKED:
       return 'Динамика проверок компаний';
 

@@ -14,6 +14,7 @@ import { doGetTotalCountCheckedBankrupted } from '@app/store/slices/legalEntityD
 import { doGetTotalCountCheckedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedAllSoleTradeSlice';
 import { doGetTotalCountCheckedLiquidatedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedLiquidatedSoleTradeSlice';
 import { doGetTotalCountCheckedBankruptedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/checked/checkedBankruptedSoleTradeSlice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -64,7 +65,7 @@ const CountYear: React.FC<CountCheckedProps> = ({ countChecked }) => {
           {!filters.isDate && (
             <Block>
               <Title>{getTitleForCountChecked(countChecked)}</Title>
-              <Content>{count}</Content>
+              <Content>{formatNumberWithCommas(count)}</Content>
             </Block>
           )}
         </>

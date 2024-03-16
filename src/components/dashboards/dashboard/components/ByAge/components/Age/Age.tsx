@@ -38,6 +38,7 @@ import { doGetBankruptedByAgeFrom10To20SoleTrade } from '@app/store/slices/soleT
 import { doGetBankruptedByAgeFrom5To10SoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/bankrupted/bankruptedFrom5To10SoleTradeSlice';
 import { doGetBankruptedByAgeFrom1To5SoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/bankrupted/bankruptedFrom1To5SoleTradeSlice';
 import { doGetBankruptedByAgeLessThen1SoleTrade } from '@app/store/slices/soleTradeDashboard/byAge/bankrupted/bankruptedLessThen1SoleTradeSlice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const Age: React.FC<AgeProps> = ({ age }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -162,7 +163,7 @@ const Age: React.FC<AgeProps> = ({ age }) => {
       ) : (
         <Block>
           <Title>{getTitleForAge(age)}</Title>
-          <Content>{count}</Content>
+          <Content>{formatNumberWithCommas(count)}</Content>
         </Block>
       )}
     </>

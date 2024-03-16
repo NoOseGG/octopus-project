@@ -8,6 +8,7 @@ export interface FavouritesResponse {
 export interface FavouritesObject {
   created_at: string | null;
   legal_entity_id: string | null;
+  legal_entity_name: string | null;
 }
 
 export interface FavouritesRequest {

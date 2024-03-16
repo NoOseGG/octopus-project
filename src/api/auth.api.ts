@@ -2,7 +2,7 @@ import { httpApi } from '@app/api/http.api';
 import './mocks/auth.api.mock';
 import { UserModel } from '@app/domain/UserModel';
 
-const BASE_URL = 'http://93.125.0.140:1338/api/v1/auth/';
+const BASE_URL = 'https://api.analytix.by/api/v1/auth/';
 
 export interface AuthData {
   email: string;
@@ -28,7 +28,15 @@ export interface SecurityCodePayload {
 }
 
 export interface NewPasswordData {
-  newPassword: string;
+  new_password: string;
+  re_new_password: string;
+  current_password: string;
+}
+
+export interface NewPasswordAfterResetData {
+  uid: string;
+  token: string;
+  new_password: string;
 }
 
 export interface LoginRequest {
@@ -43,7 +51,6 @@ export interface LoginResponse {
 
 export const login = (loginPayload: LoginRequest): Promise<LoginResponse> =>
   httpApi.post<LoginResponse>(`${BASE_URL}login`, { ...loginPayload }).then(({ data }) => {
-    console.log(`${JSON.stringify(data)}`);
     return data;
   });
 
@@ -51,10 +58,10 @@ export const signUp = (signUpData: SignUpRequest): Promise<undefined> =>
   httpApi.post<undefined>('signUp', { ...signUpData }).then(({ data }) => data);
 
 export const resetPassword = (resetPasswordPayload: ResetPasswordRequest): Promise<undefined> =>
-  httpApi.post<undefined>('forgotPassword', { ...resetPasswordPayload }).then(({ data }) => data);
+  httpApi.post<undefined>('users/reset_password/', { ...resetPasswordPayload }).then(({ data }) => data);
 
 export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Promise<undefined> =>
   httpApi.post<undefined>('verifySecurityCode', { ...securityCodePayload }).then(({ data }) => data);
 
-export const setNewPassword = (newPasswordData: NewPasswordData): Promise<undefined> =>
+export const setNewPassword = (newPasswordData: NewPasswordAfterResetData): Promise<undefined> =>
   httpApi.post<undefined>('setNewPassword', { ...newPasswordData }).then(({ data }) => data);

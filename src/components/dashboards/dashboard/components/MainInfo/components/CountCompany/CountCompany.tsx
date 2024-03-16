@@ -22,6 +22,7 @@ import { doGetTotalCountBankrupted } from '@app/store/slices/legalEntityDashboar
 import { doGetCountBankruptedQuarter } from '@app/store/slices/legalEntityDashboard/mainInfo/bankrupt/bankruptedQuarterSlice';
 import { doGetTotalCountBankruptedSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedAllSoleTradeSlice';
 import { doGetCountBankruptedQuarterSoleTrade } from '@app/store/slices/soleTradeDashboard/mainInfo/bankrupted/bankruptedQuarterSoleTradeSlice';
+import { formatNumberWithCommas } from '@app/utils/utils';
 
 const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
@@ -98,7 +99,7 @@ const CountCompany: React.FC<CountCompanyProps> = ({ countCompany }) => {
       ) : (
         <Block>
           <Title>{getTitleForCountCompany(countCompany)}</Title>
-          <Content>{count}</Content>
+          <Content>{formatNumberWithCommas(count)}</Content>
         </Block>
       )}
     </>

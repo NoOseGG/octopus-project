@@ -8,14 +8,16 @@ import { notificationController } from '@app/controllers/notificationController'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
-import SubjectInfo from '@app/components/dashboards/search-dashboard/SubjectInfo/SubjectInfo';
 import { LOGIN_PAGE_PATH } from '@app/components/router/AppRouter';
+import ProfileInfo from '@app/components/dashboards/profile-info/ProfileInfo';
+import SubjectInfo from '@app/components/dashboards/search-dashboard/SubjectInfo/SubjectInfo';
 
 const SubjectInfoPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
+  const { isNewDesign } = useAppSelector((state) => state.design);
 
   useEffect(() => {
     dispatch(doCheckAuth());
@@ -31,7 +33,7 @@ const SubjectInfoPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        <SubjectInfo />
+        {isNewDesign ? <ProfileInfo /> : <SubjectInfo />}
         <References />
       </S.LeftSideCol>
     </Row>

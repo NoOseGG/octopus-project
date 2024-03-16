@@ -11,6 +11,7 @@ export enum AVG_AGE_TYPES {
   ST_CHECKED,
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStateForAvgAge = (state: RootState, avgAge: AVG_AGE_TYPES) => {
   switch (avgAge) {
     case AVG_AGE_TYPES.LE_CURRENT:

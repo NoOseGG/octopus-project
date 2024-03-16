@@ -14,7 +14,7 @@ export const RightSideCol = styled(Col)`
 `;
 
 export const LeftSideCol = styled(Col)`
-  padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
+  padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal} 0;
   height: calc(100vh - ${LAYOUT.desktop.headerHeight});
   width: 100%;
   overflow: auto;
@@ -22,6 +22,7 @@ export const LeftSideCol = styled(Col)`
   display: flex;
   flex-direction: column;
   border: 1px solid #e8e4e4;
+  gap: 10px;
 `;
 
 export const Space = styled.div`

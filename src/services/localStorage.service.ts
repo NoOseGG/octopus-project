@@ -37,3 +37,8 @@ export const readUser = (): UserModel | null => {
 
 export const deleteToken = (): void => localStorage.removeItem('accessToken');
 export const deleteUser = (): void => localStorage.removeItem('user');
+
+export const clickedPayAttention = (): void => localStorage.setItem('payAttention', 'true');
+export const getPayAttention = (): string | null => {
+  return localStorage.getItem('payAttention');
+};

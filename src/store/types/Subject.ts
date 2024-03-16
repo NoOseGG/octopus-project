@@ -24,6 +24,7 @@ export interface SubjectType {
   licenses: License[];
   vacancy: Vacancy[];
   commercial_register: CommercialRegister[];
+  news: News[];
   gias_accredited_customer: GiasAccreditedCustomer[];
   gias_accredited_participant: GiasAccreditedParticipant[];
   gias_black_list: GiasBlackList[];
@@ -45,6 +46,9 @@ export interface SubjectType {
   metric_change_constituent_doc: MetricChangeConstituentDoc[];
   metric_change_director: MetricChangeDirector[];
   metric_entity_contact: MetricEntityContact[];
+  metric_level_competition: MetricLevelCompetition[];
+  metric_probability_liquidation: MetricProbabilityLiquidation[];
+  metric_address_economic_high_risk_registry: MetricAddressEconomicHighRiskRegistry[];
 }
 
 export interface Emails {
@@ -219,6 +223,13 @@ export interface CommercialRegister {
   to_dttm: string | null;
 }
 
+export interface News {
+  from_dttm: string | null;
+  news_title: string | null;
+  news_text: string | null;
+  url: string | null;
+}
+
 // ------------ GIAS -------------
 
 export interface GiasAccreditedCustomer {
@@ -355,6 +366,8 @@ export interface IceTradeCustomer {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeParticipant {
@@ -392,6 +405,8 @@ export interface IceTradeParticipant {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOtherParticipant {
@@ -429,6 +444,8 @@ export interface IceTradeOtherParticipant {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOrganizerNegotiations {
@@ -466,6 +483,8 @@ export interface IceTradeOrganizerNegotiations {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface IceTradeOrganizer {
@@ -503,6 +522,8 @@ export interface IceTradeOrganizer {
   lot_status: string | null;
   source_financing: string | null;
   okrb_code: string | null;
+  customer_id: string | null;
+  customer_name: string | null;
 }
 
 export interface GovernmentInspection {
@@ -575,21 +596,42 @@ export interface MetricAddressMain {
 }
 
 export interface MetricAddress2 {
-  count_changes: number | null;
+  count_changes: number;
   risk_level: string | null;
 }
 
 export interface MetricChangeConstituentDoc {
-  count_activity: number | null;
+  count_activity: number;
   risk_level: string | null;
 }
 
 export interface MetricChangeDirector {
-  count_changes: number | null;
+  count_changes: number;
   risk_level: string | null;
 }
 
 export interface MetricEntityContact {
-  sum_count: number | null;
+  sum_count: number;
   risk_level: string | null;
+}
+
+export interface MetricLevelCompetition {
+  count_lei: number;
+  level_competition: string | null;
+}
+
+export interface MetricProbabilityLiquidation {
+  age_short: number | null;
+  address_settlement: string | null;
+  type_activity_name: string | null;
+  count_at: number | null;
+  count_not_at: number | null;
+  probability_liquidation: number | null;
+  ratio: string | null;
+  risk_level: string | null;
+}
+
+export interface MetricAddressEconomicHighRiskRegistry {
+  address_full: string | null;
+  address_description: string | null;
 }

@@ -5,11 +5,13 @@ import { regions } from '@app/components/dashboards/mainLanding/MapBelarus/data/
 import './styles/styles.css';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { MapBelarusObject } from '@app/store/types/landing/MapBelarusTypes';
-import {
-  doGetCountLegalEntitiesOfRegions,
-  doGetCountSoleTradesOfRegions,
-} from '@app/store/slices/landing/mapBelarusSlice';
+import { doGetCountEntitiesOfMap } from '@app/store/slices/landing/mapBelarusSlice';
 import { formatNumberWithCommas } from '@app/utils/utils';
+
+enum ENTITY_TYPE {
+  LEGAL_ENTITY = 'Юридическое лицо',
+  SOLE_TRADE = 'Индивидуальный предприниматель',
+}
 
 const styles = {
   subregions: { fill: '#eeeeee', stroke: '#ffffff', strokeWidth: 0.5 },
@@ -21,20 +23,20 @@ const MapBelarus: React.FC = () => {
   const [region, setRegion] = useState<string | null>('Минская область');
   const [countSoleTrades, setCountSoleTrades] = useState(0);
   const [countLegalEntity, setCountLegalEntity] = useState(0);
-  const { soleTrades, legalEntities } = useAppSelector((state) => state.mapBelarus);
+  const countEntitiesOfMap = useAppSelector((state) => state.mapBelarus.countEntitiesOfMap);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(doGetCountSoleTradesOfRegions());
-    dispatch(doGetCountLegalEntitiesOfRegions());
+    dispatch(doGetCountEntitiesOfMap());
   }, [dispatch]);
 
   useEffect(() => {
-    const countST = getCountFormEntityOfRegion(region, soleTrades.results);
-    const countLE = getCountFormEntityOfRegion(region, legalEntities.results);
+    console.log(JSON.stringify(countEntitiesOfMap));
+    const countST = getCountFormEntityOfRegion(region, countEntitiesOfMap, ENTITY_TYPE.LEGAL_ENTITY);
+    const countLE = getCountFormEntityOfRegion(region, countEntitiesOfMap, ENTITY_TYPE.SOLE_TRADE);
     setCountSoleTrades(countST);
     setCountLegalEntity(countLE);
-  }, [legalEntities.results, region, soleTrades.results]);
+  }, [countEntitiesOfMap, region]);
 
   const handleMouseOver = function (event: React.MouseEvent<SVGElement>) {
     const region = (event.target as SVGElement).getAttribute('data-region');
@@ -207,10 +209,16 @@ const EntityTitle = styled.h3`
   }
 `;
 
-const getCountFormEntityOfRegion = (region: string | null, soleTrades: MapBelarusObject[]): number => {
+const getCountFormEntityOfRegion = (
+  region: string | null,
+  entities: MapBelarusObject[],
+  entityType: ENTITY_TYPE,
+): number => {
   if (region === null) return 0;
-  for (const item of soleTrades) {
-    if (item.group_fields.address_region === region) return item.Count;
+  if (entities !== undefined) {
+    for (const item of entities) {
+      if (item?.address_region === region && item?.legal_form_entity_type === entityType) return item?.count_at;
+    }
   }
   return 0;
 };

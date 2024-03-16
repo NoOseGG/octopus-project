@@ -7,6 +7,7 @@ import ResetFilters from '@app/components/dashboards/dashboard/components/Search
 import DateFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/DateFilter/DateFilter';
 import TypeActivityFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/TypeActivityFilter/TypeActivityFilter';
 import CodeActivityFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/CodeActivityFilter/CodeActivityFilter';
+import TaxOfficeFilter from '@app/components/dashboards/dashboard/components/SearchFilters/components/TaxOfficeFilter/TaxOfficeFilter';
 
 const SearchFilters: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const SearchFilters: React.FC = () => {
       <SettlementFilter />
       <RegionFilter />
       <DistrictFilter />
+      <TaxOfficeFilter />
       <TypeActivityFilter />
       <CodeActivityFilter />
       <DateFilter />

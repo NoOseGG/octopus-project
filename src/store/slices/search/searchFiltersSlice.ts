@@ -19,10 +19,18 @@ interface RegionType {
   address_region: string;
 }
 
+interface TaxOfficeType {
+  tax_office_id: string;
+  tax_office_name: string;
+  region_code: string;
+  region_name: string;
+}
+
 export interface FiltersType {
   settlements: string | null;
   districts: string | null;
   regions: string | null;
+  taxOffices: string | null;
   typeActivities: string | null;
   codeActivities: string | null;
   fromDate: string | null;
@@ -38,6 +46,7 @@ interface SearchFiltersSlice {
     settlements: SettlementType[];
     districts: DistrictType[];
     regions: RegionType[];
+    taxOffices: TaxOfficeType[];
   };
   filters: FiltersType;
 }
@@ -49,11 +58,13 @@ const initialState: SearchFiltersSlice = {
     settlements: [],
     districts: [],
     regions: [],
+    taxOffices: [],
   },
   filters: {
     settlements: null,
     districts: null,
     regions: null,
+    taxOffices: null,
     typeActivities: null,
     codeActivities: null,
     fromDate: null,
@@ -103,6 +114,16 @@ export const doGetRegions = createAsyncThunk<RegionType[]>('doGetRegions', async
   }
 });
 
+export const doGetTaxOfficesList = createAsyncThunk<TaxOfficeType[]>('doGetTaxOffices', async () => {
+  try {
+    const response = await axios.get(SEARCH_FILTERS_URL.TAX_OFFICES);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const searchFiltersSlice = createSlice({
   name: 'searchFilters',
   initialState,
@@ -121,6 +142,9 @@ const searchFiltersSlice = createSlice({
     },
     setCodeActivity: (state, action) => {
       state.filters = { ...state.filters, codeActivities: action.payload, typeActivities: null };
+    },
+    setTaxOffice: (state, action) => {
+      state.filters = { ...state.filters, taxOffices: action.payload };
     },
     setDate: (state, action) => {
       state.filters = { ...state.filters, fromDate: action.payload[0], toDate: action.payload[1], isDate: true };
@@ -151,6 +175,9 @@ const searchFiltersSlice = createSlice({
     builder.addCase(doGetRegions.fulfilled, (state, action) => {
       state.data_filters.regions = action.payload;
     });
+    builder.addCase(doGetTaxOfficesList.fulfilled, (state, action) => {
+      state.data_filters.taxOffices = action.payload;
+    });
   },
 });
 
@@ -164,5 +191,6 @@ export const {
   deleteLegalEntity,
   setTypeActivity,
   setCodeActivity,
+  setTaxOffice,
 } = searchFiltersSlice.actions;
 export default searchFiltersSlice.reducer;

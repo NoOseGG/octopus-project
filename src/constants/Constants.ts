@@ -58,11 +58,11 @@ export const SEARCH_FILTERS_URL = {
   SETTLEMENT: `${URLS.BASE}dashboard/ref/settlement`,
   DISTRICTS: `${URLS.BASE}dashboard/ref/district`,
   REGION: `${URLS.BASE}dashboard/ref/region`,
+  TAX_OFFICES: `${URLS.BASE}dashboard/ref/tax_office`,
 };
 
 export const REGIONS_URL = {
-  SOLE_TRADE: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Индивидуальный предприниматель&company_status_code=AT&ordering_agg=-avg&group_by=address_region`,
-  LEGAL_ENTITY: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Юридическое лицо&company_status_code=AT&ordering_agg=-avg&group_by=address_region`,
+  MAP_STATISTICS: `${URLS.BASE}dashboard/open_ref/map_statistic`,
 };
 
 export const TOKEN_NAME = 'Welcome';

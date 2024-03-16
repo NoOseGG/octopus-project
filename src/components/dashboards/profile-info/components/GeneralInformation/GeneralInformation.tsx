@@ -31,7 +31,7 @@ const GeneralInformation: React.FC = () => {
       {/*<BasicDetails />*/}
       <BasicDetailsTest />
       <TaxOfficesArrears />
-      <TypeActivities />
+      {/*<TypeActivities />*/}
       <Licenses />
       <LegalForms />
       <Gias />

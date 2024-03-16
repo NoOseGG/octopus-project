@@ -80,8 +80,8 @@ const getColorByRisk = (risk: string): string => {
 
 const getNameByRisk = (risk: string): string => {
   if (risk === ADDRESS_LISTED) {
-    return 'Высокий риск';
+    return 'Высокий';
   } else {
-    return 'Низкий риск';
+    return 'Низкий';
   }
 };

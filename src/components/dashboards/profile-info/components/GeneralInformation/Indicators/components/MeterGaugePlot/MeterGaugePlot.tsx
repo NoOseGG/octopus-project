@@ -7,9 +7,10 @@ type MyComponentProps = {
   name: string;
   content: number | string;
   description: string;
+  isChangeCase?: boolean;
 };
 
-const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content }) => {
+const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isChangeCase }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {
@@ -33,7 +34,7 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content }) => 
           lineHeight: '10px',
           color: '#4B535E',
         },
-        formatter: () => risk,
+        formatter: () => getRisk(risk, isChangeCase),
       },
     },
   };
@@ -84,5 +85,31 @@ const getColorByRisk = (risk: string): string => {
       return 'red';
     default:
       return 'white';
+  }
+};
+
+const getRisk = (risk: string, isChangeCase: boolean | undefined): string => {
+  if (isChangeCase) {
+    switch (risk.split(' ')[0]) {
+      case 'Низкий':
+        return 'Низкая';
+      case 'Средний':
+        return 'Средняя';
+      case 'Высокий':
+        return 'Высокая';
+      default:
+        return '';
+    }
+  }
+
+  switch (risk.split(' ')[0]) {
+    case 'Низкий':
+      return 'Низкий';
+    case 'Средний':
+      return 'Средний';
+    case 'Высокий':
+      return 'Высокий';
+    default:
+      return '';
   }
 };

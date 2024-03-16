@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { Typography } from 'antd';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 
@@ -25,6 +26,7 @@ const Description: React.FC = () => {
     <>
       {description[0]?.description && (
         <Container>
+          <S.Title>Описание</S.Title>
           <Text
             style={{
               display: 'block',

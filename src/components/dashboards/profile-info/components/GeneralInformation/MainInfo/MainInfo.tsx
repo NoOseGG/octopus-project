@@ -19,6 +19,13 @@ const MainInfo: React.FC = () => {
 
   return (
     <S.StyledTable>
+      <thead>
+        <tr>
+          <td>
+            <S.Title>Регистрационные данные</S.Title>
+          </td>
+        </tr>
+      </thead>
       <tbody>
         <TableLine name={'УНП'} field={unn} isCopyable={true} />
         <TableLine name={'Сокращенное наименование'} field={names[0]?.short_name} isCopyable={true} />

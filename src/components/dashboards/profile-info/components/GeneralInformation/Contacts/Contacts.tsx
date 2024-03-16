@@ -20,7 +20,7 @@ const Contacts: React.FC = () => {
         <thead>
           <tr>
             <td>
-              <S.Title>Контакты</S.Title>
+              <S.Title>Контактная информация</S.Title>
             </td>
           </tr>
         </thead>

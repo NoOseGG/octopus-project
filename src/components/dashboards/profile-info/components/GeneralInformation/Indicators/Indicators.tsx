@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import MeterGaugePlot from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MeterGaugePlot/MeterGaugePlot';
 import styled from 'styled-components';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import MetricAddressEconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MetricAddressEconomicHighRiskRegistry/MetricAddressEconomicHighRiskRegistry';
 
 const Indicators: React.FC = () => {
@@ -21,6 +22,7 @@ const Indicators: React.FC = () => {
 
   return (
     <Container>
+      <S.Title>Индикаторы возможных рисков</S.Title>
       <TopLine>
         {metric_address_2[0]?.risk_level && (
           <MeterGaugePlot
@@ -88,6 +90,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 const TopLine = styled.div`

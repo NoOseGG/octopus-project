@@ -10,7 +10,6 @@ const MainInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
   const names = useAppSelector((state) => state.searchProfile.profile.names);
   const status = useAppSelector((state) => state.searchProfile.profile.statuses);
-  const dateRegNMS = useAppSelector((state) => state.searchProfile.profile.date_reg_mns);
   const dateRegEGR = useAppSelector((state) => state.searchProfile.profile.date_reg_egr);
   const age_full = useAppSelector((state) => state.searchProfile.profile.age_short);
   const taxOffices = useAppSelector((state) => state.searchProfile.profile.tax_offices);
@@ -20,7 +19,7 @@ const MainInfoTest: React.FC = () => {
 
   const newFullAddresses = addresses
     ?.map((item) => {
-      const date = `(${formatDate(item.from_dttm)})`;
+      const date = `(с ${formatDate(item.from_dttm)})`;
       return `${getFullAddress(item)} ${date}`;
     })
     .filter((full_name) => full_name !== null) as string[];
@@ -47,7 +46,7 @@ const MainInfoTest: React.FC = () => {
             fields={
               names
                 ?.map((item) => {
-                  const date = `(${formatDate(item.from_dttm)})`;
+                  const date = `(с ${formatDate(item.from_dttm)})`;
                   return `${item.full_name} ${date}`;
                 })
                 .filter((full_name) => full_name !== null) as string[]

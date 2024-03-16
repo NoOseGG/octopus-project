@@ -582,7 +582,7 @@ export interface Resume {
   skill_name: string | null;
 }
 
-// ------------ Indicators -------------
+// ------------ IndicatorsTest -------------
 
 export interface MetricAddressMain {
   full_address: string | null;

@@ -15,6 +15,9 @@ import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/co
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
 import Gias from '@app/components/dashboards/profile-info/components/GeneralInformation/Gias/Gias';
 import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
+import BasicDetailsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetailsTest/BasicDetailsTest';
+import StatesBodiesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodiesTest/StatesBodiesTest';
+import OtherRelevantInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/OtherRelevantInformation/OtherRelevantInformation';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -25,16 +28,19 @@ const GeneralInformation: React.FC = () => {
       {/*<MainInfo />*/}
       <MainInfoTest />
       <Contacts />
-      <BasicDetails />
+      {/*<BasicDetails />*/}
+      <BasicDetailsTest />
       <TaxOfficesArrears />
       <TypeActivities />
       <Licenses />
       <LegalForms />
       <Gias />
       <StatusesTypes />
-      <StatesBodies />
+      {/*<StatesBodies />*/}
+      {/*<StatesBodiesTest />*/}
       <LegalEntityType />
       <EconomicHighRiskRegistry />
+      <OtherRelevantInformation />
       <SimilarSubjects />
     </div>
   );

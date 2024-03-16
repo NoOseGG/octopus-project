@@ -1,6 +1,5 @@
 import React from 'react';
 import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
-import MainInfo from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfo/MainInfo';
 import Contacts from '@app/components/dashboards/profile-info/components/GeneralInformation/Contacts/Contacts';
 import BasicDetails from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetails/BasicDetails';
 import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
@@ -15,6 +14,7 @@ import LegalEntityType from '@app/components/dashboards/profile-info/components/
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
 import Gias from '@app/components/dashboards/profile-info/components/GeneralInformation/Gias/Gias';
+import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
 
 const GeneralInformation: React.FC = () => {
   return (
@@ -22,7 +22,8 @@ const GeneralInformation: React.FC = () => {
       <TitleName />
       <Description />
       <Indicators />
-      <MainInfo />
+      {/*<MainInfo />*/}
+      <MainInfoTest />
       <Contacts />
       <BasicDetails />
       <TaxOfficesArrears />

@@ -32,6 +32,7 @@ const TaxOfficeFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
+      placement={'bottomRight'}
       placeholder={<PlaceholderText>Налоговый орган</PlaceholderText>}
       value={taxOffice}
       optionFilterProp="children"

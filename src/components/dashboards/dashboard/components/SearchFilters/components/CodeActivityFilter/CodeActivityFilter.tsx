@@ -33,6 +33,7 @@ const CodeActivityFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
+      placement={'bottomRight'}
       placeholder={<PlaceholderText>Код деятельности</PlaceholderText>}
       optionFilterProp="children"
       value={codeActivity}

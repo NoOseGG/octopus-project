@@ -32,6 +32,7 @@ const RegionFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
+      placement={'bottomRight'}
       placeholder={<PlaceholderText>Область</PlaceholderText>}
       optionFilterProp="children"
       value={region}

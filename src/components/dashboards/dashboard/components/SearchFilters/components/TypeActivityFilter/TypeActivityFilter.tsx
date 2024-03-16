@@ -33,6 +33,7 @@ const TypeActivityFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
+      placement={'bottomRight'}
       placeholder={<PlaceholderText>Вид деятельности</PlaceholderText>}
       optionFilterProp="children"
       value={typeActivity}

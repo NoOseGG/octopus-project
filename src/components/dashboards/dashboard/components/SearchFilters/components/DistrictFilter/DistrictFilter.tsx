@@ -32,6 +32,7 @@ const DistrictFilter: React.FC = () => {
       size="small"
       showSearch
       style={filterStyle}
+      placement={'bottomRight'}
       placeholder={<PlaceholderText>Район</PlaceholderText>}
       value={district}
       optionFilterProp="children"

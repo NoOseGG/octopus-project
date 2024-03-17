@@ -21,15 +21,15 @@ interface SignUpFormData {
 }
 
 const initValues = {
-  first_name: '',
-  last_name: '',
-  patronymic: '',
+  first_name: 'Мобилкин ',
+  last_name: 'Мобилкович',
+  patronymic: 'Мобилковин',
   birthdate: '',
-  phone_number: '+',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  termOfUse: false,
+  phone_number: '+375259586429',
+  email: 'noose1992@yandex.ru',
+  password: 'privet1992poka',
+  confirmPassword: 'privet1992poka',
+  termOfUse: true,
 };
 
 export const SignUpForm: React.FC = () => {
@@ -40,6 +40,7 @@ export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
 
   const handleSubmit = (values: SignUpFormData) => {
+    console.log(JSON.stringify(values));
     setLoading(true);
     const newValues = JSON.parse(JSON.stringify(values));
     newValues.birthdate = dateTransformForRegistration(values.birthdate);
@@ -55,8 +56,8 @@ export const SignUpForm: React.FC = () => {
         });
         navigate('/auth/login');
       })
-      .catch(() => {
-        // notificationController.error({ message: err.message });
+      .catch((err) => {
+        notificationController.error({ message: err.message });
         setLoading(false);
       });
   };

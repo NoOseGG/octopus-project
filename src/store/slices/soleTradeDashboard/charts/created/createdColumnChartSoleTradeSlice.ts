@@ -2,10 +2,9 @@ import { ResponseColumnChart } from '@app/store/types/dashboard/DashboardSlicesT
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate, sortDataByMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
-import { httpDashboard } from "@app/api/http.api";
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: ColumnChartMonthState = {
   results: [],

@@ -60,6 +60,7 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
 export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: SignUpRequest, { rejectWithValue }) => {
   try {
     const response = await axios.post(URLS.SIGNUP, signUpPayload);
+    console.log(JSON.stringify(response.data));
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

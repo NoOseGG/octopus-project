@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
@@ -7,6 +6,7 @@ import {
   DetailedInformationState,
   ResponseDetailedInformation,
 } from '@app/store/types/dashboard/DetailedInformationType';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: DetailedInformationState = {
   results: [],
@@ -30,7 +30,7 @@ export const doGetLiquidatedDetailed = createAsyncThunk<ResponseDetailedInformat
         false,
       );
 
-      const response = await axios.get(url);
+      const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
       console.log(error);

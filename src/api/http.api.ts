@@ -10,13 +10,27 @@ export const httpApi = axios.create({
   baseURL: BASE_URL,
 });
 
-axios.interceptors.request.use((config) => {
+export const httpDashboard = axios.create();
+
+httpApi.interceptors.request.use((config) => {
+  return config;
+});
+
+httpDashboard.interceptors.request.use((config) => {
   const token = readToken();
   if (token && config.headers) {
     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
   }
   return config;
 });
+
+// axios.interceptors.request.use((config) => {
+//   const token = readToken();
+//   if (token && config.headers) {
+//     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
+//   }
+//   return config;
+// });
 
 httpApi.interceptors.response.use(undefined, (error: AxiosError) => {
   throw new ApiError<ApiErrorData>(error.response?.data.message || error.message, error.response?.data);

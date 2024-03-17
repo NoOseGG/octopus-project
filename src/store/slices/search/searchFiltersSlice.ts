@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { SEARCH_FILTERS_URL } from '@app/constants/Constants';
+import { httpDashboard } from '@app/api/http.api';
 
 interface TypeActivitiesType {
   type_activity_code: string;
@@ -76,7 +76,7 @@ const initialState: SearchFiltersSlice = {
 
 export const doGetTypeActivitiesList = createAsyncThunk<TypeActivitiesType[]>('doGetTypeActivities', async () => {
   try {
-    const response = await axios.get(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
+    const response = await httpDashboard.get(SEARCH_FILTERS_URL.TYPE_ACTIVITIES);
 
     return response.data;
   } catch (error) {
@@ -86,7 +86,7 @@ export const doGetTypeActivitiesList = createAsyncThunk<TypeActivitiesType[]>('d
 
 export const doGetSettlementsList = createAsyncThunk<SettlementType[]>('doGetSettlements', async () => {
   try {
-    const response = await axios.get(SEARCH_FILTERS_URL.SETTLEMENT);
+    const response = await httpDashboard.get(SEARCH_FILTERS_URL.SETTLEMENT);
 
     return response.data;
   } catch (error) {
@@ -96,7 +96,7 @@ export const doGetSettlementsList = createAsyncThunk<SettlementType[]>('doGetSet
 
 export const doGetDistrictsList = createAsyncThunk<DistrictType[]>('doGetDistricts', async () => {
   try {
-    const response = await axios.get(SEARCH_FILTERS_URL.DISTRICTS);
+    const response = await httpDashboard.get(SEARCH_FILTERS_URL.DISTRICTS);
 
     return response.data;
   } catch (error) {
@@ -106,7 +106,7 @@ export const doGetDistrictsList = createAsyncThunk<DistrictType[]>('doGetDistric
 
 export const doGetRegions = createAsyncThunk<RegionType[]>('doGetRegions', async () => {
   try {
-    const response = await axios.get(SEARCH_FILTERS_URL.REGION);
+    const response = await httpDashboard.get(SEARCH_FILTERS_URL.REGION);
 
     return response.data;
   } catch (error) {
@@ -116,7 +116,7 @@ export const doGetRegions = createAsyncThunk<RegionType[]>('doGetRegions', async
 
 export const doGetTaxOfficesList = createAsyncThunk<TaxOfficeType[]>('doGetTaxOffices', async () => {
   try {
-    const response = await axios.get(SEARCH_FILTERS_URL.TAX_OFFICES);
+    const response = await httpDashboard.get(SEARCH_FILTERS_URL.TAX_OFFICES);
 
     return response.data;
   } catch (error) {

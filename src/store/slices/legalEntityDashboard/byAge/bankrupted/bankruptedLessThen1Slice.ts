@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: CurrentByAgeState = {
   age: 0,
@@ -21,7 +21,7 @@ export const doGetBankruptedByAgeLessThen1 = createAsyncThunk<ResponseCurrentByA
         true,
         false,
       );
-      const response = await axios.get(url);
+      const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
       console.log(error);

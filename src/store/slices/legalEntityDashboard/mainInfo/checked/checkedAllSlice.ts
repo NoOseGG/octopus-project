@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: MainInfoState = {
   count: 0,
@@ -21,7 +21,7 @@ export const doGetTotalCountChecked = createAsyncThunk<ResponseMainInfo, Request
         true,
         true,
       );
-      const response = await axios.get(url);
+      const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
       console.log(error);

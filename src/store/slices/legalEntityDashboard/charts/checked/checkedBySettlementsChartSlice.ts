@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import {
   CheckedBySettlementsChartResponse,
   CheckedBySettlementsChartState,
 } from '@app/store/types/dashboard/ChekcedBySettlementsChartTypes';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: CheckedBySettlementsChartState = {
   results: [],
@@ -28,7 +28,7 @@ export const doGetDataForCheckedBySettlementsChart = createAsyncThunk<CheckedByS
         DASH.IS_NULL_FALSE('inspection_dttm');
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
-      const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
+      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
       return response.data;
     } catch (error) {
       console.log(error);

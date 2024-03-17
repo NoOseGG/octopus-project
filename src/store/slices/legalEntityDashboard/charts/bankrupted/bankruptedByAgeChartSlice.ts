@@ -6,7 +6,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: LiquidatedByAgeChartState = {
   results: [],
@@ -28,7 +28,7 @@ export const doGetDataForBankruptedByAgeChart = createAsyncThunk<LiquidatedByAge
         DASH.IS_NULL_FALSE('period_activity');
       const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
-      const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
+      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
       return response.data;
     } catch (error) {
       console.log(error);

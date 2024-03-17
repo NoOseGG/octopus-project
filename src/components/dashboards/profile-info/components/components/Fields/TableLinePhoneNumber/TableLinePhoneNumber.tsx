@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import Text from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/Text';
+import { formatPhoneNumber } from '@app/utils/utils';
 
 type MyComponentProps = {
   name: string | null | undefined;
@@ -8,10 +9,9 @@ type MyComponentProps = {
   isDate?: boolean;
   isCopyable?: boolean;
   isLink?: boolean;
-  isPhone?: boolean;
 };
 
-const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable, isLink, isPhone }) => {
+const TableLinePhoneNumber: React.FC<MyComponentProps> = ({ name, field, isCopyable }) => {
   return (
     <>
       {name && field && (
@@ -19,11 +19,11 @@ const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable
           <S.LeftCell>
             <S.Text>{name}</S.Text>
           </S.LeftCell>
-          <Text field={field} isDate={isDate} isCopyable={isCopyable} isLink={isLink} isPhone={isPhone} />
+          <Text field={formatPhoneNumber(field)} isCopyable={isCopyable} />
         </S.StyledRow>
       )}
     </>
   );
 };
 
-export default TableLine;
+export default TableLinePhoneNumber;

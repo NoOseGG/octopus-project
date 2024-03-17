@@ -446,18 +446,31 @@ export function formatPhoneNumber(phoneNumber: string): string {
   const cleaned = phoneNumber.replace(/\D/g, '');
 
   // Проверяем длину номера телефона
-  if (cleaned.length === 11 || cleaned.length === 12) {
+  if (cleaned.length >= 7) {
     // Форматируем номер телефона
     const countryCode = cleaned.slice(0, 3);
     const operatorCode = cleaned.slice(3, 5);
-    const mainPart = cleaned.slice(5);
+    let mainPart = cleaned.slice(5);
+
     let formattedMainPart = '';
-    for (let i = 0; i < mainPart.length; i += 2) {
-      formattedMainPart += mainPart.slice(i, i + 2);
-      if (i + 2 < mainPart.length) {
-        formattedMainPart += '-';
+    if (mainPart.length <= 6) {
+      for (let i = 0; i < mainPart.length; i += 2) {
+        formattedMainPart += mainPart.slice(i, i + 2);
+        if (i + 2 < mainPart.length) {
+          formattedMainPart += '-';
+        }
+      }
+    } else {
+      formattedMainPart += mainPart.slice(0, 3) + '-';
+      mainPart = mainPart.slice(3);
+      for (let i = 0; i < mainPart.length; i += 2) {
+        formattedMainPart += mainPart.slice(i, i + 2);
+        if (i + 2 < mainPart.length) {
+          formattedMainPart += '-';
+        }
       }
     }
+
     return `+${countryCode}(${operatorCode}) ${formattedMainPart}`;
   } else {
     // Если длина номера неверная, возвращаем исходную строку

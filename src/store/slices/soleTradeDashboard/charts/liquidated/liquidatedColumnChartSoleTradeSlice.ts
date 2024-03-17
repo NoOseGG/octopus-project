@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate, sortDataByMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { LiquidatedResponseColumnChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: ColumnChartMonthState = {
   results: [],
@@ -32,7 +32,7 @@ export const doGetDataForLiquidatedColumnChartSoleTrade = createAsyncThunk<Liqui
         baseUrl += DASH.DATE_AFTER_LIQUIDATED(`${month}-01`);
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
-      const response = await axios.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
+      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
       return response.data;
     } catch (error) {
       console.log(error);

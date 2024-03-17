@@ -5,6 +5,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
+import { httpDashboard } from "@app/api/http.api";
 
 const initialState: ColumnChartMonthState = {
   results: [],
@@ -27,7 +28,7 @@ export const doGetDataForColumnChartSoleTrade = createAsyncThunk<ResponseColumnC
         baseUrl += DASH.DATE_AFTER(`${month}-01`);
       }
       const url = constructorUrlForDashboard(baseUrl, filters, false, false);
-      const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
+      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
 
       return response.data;
     } catch (error) {

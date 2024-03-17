@@ -400,6 +400,7 @@ export const constructorUrlForDashboard = (
   if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
   if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
   if (filters.regions !== null) url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
+  if (filters.taxOffices !== null) url += DASH.TAX_OFFICES_ICONTAINS(filters.taxOffices);
   if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY(filters.typeActivities);
   if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY(filters.codeActivities);
   if (date) {

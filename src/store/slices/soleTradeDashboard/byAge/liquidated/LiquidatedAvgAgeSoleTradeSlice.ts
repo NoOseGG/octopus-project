@@ -4,6 +4,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import axios from 'axios';
+import { httpDashboard } from "@app/api/http.api";
 
 const initialState: CurrentByAvgAgeState = {
   count: 0,
@@ -27,7 +28,7 @@ export const doGetLiquidatedByAgeAvgAgeSoleTrade = createAsyncThunk<ResponseCurr
         false,
         false,
       );
-      const response = await axios.get(url);
+      const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
       console.log(error);

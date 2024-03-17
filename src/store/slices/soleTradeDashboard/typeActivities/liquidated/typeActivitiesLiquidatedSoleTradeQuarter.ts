@@ -4,6 +4,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { constructorUrlForDashboard, getDateLastQuarter } from '@app/utils/utils';
 import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
+import { httpDashboard } from "@app/api/http.api";
 
 const initialState: TypeActivityState = {
   typeActivities: {
@@ -31,7 +32,7 @@ export const doGetLiquidatedTypeActivitiesQuarterSoleTrade = createAsyncThunk<Ty
         false,
         false,
       );
-      const response = await axios.get(url + DASH.ORDERING_AGG('-Count'));
+      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
       return response.data;
     } catch (error) {
       console.log(error);

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: MainInfoState = {
   count: 0,
@@ -27,7 +27,7 @@ export const doGetCountBankruptedYearSoleTrade = createAsyncThunk<ResponseMainIn
         true,
         false,
       );
-      const response = await axios.get(url);
+      const response = await httpDashboard.get(url);
       console.log(url);
       return response.data;
     } catch (error) {

@@ -2,7 +2,7 @@ import { PercentState, ResponsePercentToSlice } from '@app/store/types/dashboard
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: PercentState = {
   percent: 0,
@@ -24,8 +24,8 @@ export const doCalculateCreatedPercentYearSoleTrade = createAsyncThunk<ResponseP
       const twoLastYearUrl =
         DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(twoLastYearDate) + DASH.DATE_BEFORE(lastYearDate) + DASH.COUNT;
 
-      const responseLastYear = await axios.get(lastYearUrl);
-      const responseTwoLastYear = await axios.get(twoLastYearUrl);
+      const responseLastYear = await httpDashboard.get(lastYearUrl);
+      const responseTwoLastYear = await httpDashboard.get(twoLastYearUrl);
 
       const lastYearCount = responseLastYear.data.count;
       const twoLastYearCount = responseTwoLastYear.data.count;

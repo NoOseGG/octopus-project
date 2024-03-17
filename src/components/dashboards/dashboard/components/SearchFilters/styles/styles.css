@@ -1,4 +1,7 @@
-.ant-select-dropdown {
-    display: flex;
-    width: auto;
+.ant-select-selection-item {
+    height: 100%;
+    background-color: #f0f0f0; /* Цвет фона */
+    border-radius: 4px; /* Радиус скругления углов */
+    padding: 2px 6px; /* Отступы внутри элемента */
+    margin-right: 4px; /* Отступ между элементами */
 }

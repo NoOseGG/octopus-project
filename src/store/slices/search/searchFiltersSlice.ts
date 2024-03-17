@@ -29,7 +29,7 @@ interface TaxOfficeType {
 export interface FiltersType {
   settlements: string | null;
   districts: string | null;
-  regions: string | null;
+  regions: string[] | null;
   taxOffices: string | null;
   typeActivities: string | null;
   codeActivities: string | null;
@@ -129,22 +129,46 @@ const searchFiltersSlice = createSlice({
   initialState,
   reducers: {
     setSettlement: (state, action) => {
-      state.filters = { ...state.filters, settlements: action.payload, districts: null, regions: null };
+      state.filters = {
+        ...state.filters,
+        settlements: action.payload,
+        districts: null,
+        regions: null,
+        taxOffices: null,
+      };
     },
     setDistrict: (state, action) => {
-      state.filters = { ...state.filters, districts: action.payload, settlements: null, regions: null };
+      state.filters = {
+        ...state.filters,
+        districts: action.payload,
+        settlements: null,
+        regions: null,
+        taxOffices: null,
+      };
     },
     setRegion: (state, action) => {
-      state.filters = { ...state.filters, regions: action.payload, settlements: null, districts: null };
+      state.filters = {
+        ...state.filters,
+        regions: action.payload,
+        settlements: null,
+        districts: null,
+        taxOffices: null,
+      };
+    },
+    setTaxOffice: (state, action) => {
+      state.filters = {
+        ...state.filters,
+        taxOffices: action.payload,
+        settlements: null,
+        districts: null,
+        regions: null,
+      };
     },
     setTypeActivity: (state, action) => {
       state.filters = { ...state.filters, typeActivities: action.payload, codeActivities: null };
     },
     setCodeActivity: (state, action) => {
       state.filters = { ...state.filters, codeActivities: action.payload, typeActivities: null };
-    },
-    setTaxOffice: (state, action) => {
-      state.filters = { ...state.filters, taxOffices: action.payload };
     },
     setDate: (state, action) => {
       state.filters = { ...state.filters, fromDate: action.payload[0], toDate: action.payload[1], isDate: true };

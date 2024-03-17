@@ -69,6 +69,19 @@ export const DASH = {
     return `address_region__icontains=${field}&`;
   },
 
+  ADDRESS_REGION_IN: (field: string[]): string => {
+    let str = '';
+
+    field.forEach((item, index) => {
+      if (index === 0 && index === field.length - 1) str += `${item}&`;
+      else if (index === 0) str += item;
+      else if (index === field.length - 1) str += `, ${item}&`;
+      else str += `, ${item}`;
+    });
+
+    return `address_region__in=${str}`;
+  },
+
   TAX_OFFICES_ICONTAINS: (field: string): string => {
     return `tax_office_name__icontains=${field}&`;
   },

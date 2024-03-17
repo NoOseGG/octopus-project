@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Select } from 'antd';
+import { Select, Tag } from 'antd';
 import { doGetRegions, setRegion } from '@app/store/slices/search/searchFiltersSlice';
 import {
   PlaceholderText,
   filterStyle,
 } from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
 
 const RegionFilter: React.FC = () => {
   const regions = useAppSelector((state) => state.searchFilters.data_filters.regions);
@@ -23,21 +24,36 @@ const RegionFilter: React.FC = () => {
     };
   });
 
-  const onChange = (value: string) => {
+  const onChange = (value: string[]) => {
     dispatch(setRegion(value));
+  };
+
+  const tagRender = (props: CustomTagProps) => {
+    const { label, closable, onClose } = props;
+    const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    return (
+      <Tag onMouseDown={onPreventMouseDown} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
+        {label}
+      </Tag>
+    );
   };
 
   return (
     <Select
+      mode={'tags'}
       size="small"
       showSearch
       style={filterStyle}
+      value={region ?? undefined}
+      tagRender={tagRender}
       placement={'bottomRight'}
       placeholder={<PlaceholderText>Область</PlaceholderText>}
       optionFilterProp="children"
-      value={region}
       onChange={onChange}
-      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
+      // filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
       options={data}
     />
   );

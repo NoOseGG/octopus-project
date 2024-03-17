@@ -249,13 +249,13 @@ export function formatDateWithTime(inputDate: string | null): string {
   );
 }
 
-export function formatPhoneNumber(phoneNumber: string): string {
-  if (!phoneNumber.match(/^\d{12}$/)) {
-    return phoneNumber;
-  }
-
-  return phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
-}
+// export function formatPhoneNumber(phoneNumber: string): string {
+//   if (!phoneNumber.match(/^\d{12}$/)) {
+//     return phoneNumber;
+//   }
+//
+//   return phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
+// }
 
 export const getLastYear = (): string => {
   const currentDate = new Date();
@@ -439,6 +439,30 @@ export const getEntityName = (entityType: EntityType): string => {
 export function formatNumberWithCommas(number: number | undefined): string {
   if (number === undefined) return '';
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+export function formatPhoneNumber(phoneNumber: string): string {
+  // Удаляем все символы, кроме цифр
+  const cleaned = phoneNumber.replace(/\D/g, '');
+
+  // Проверяем длину номера телефона
+  if (cleaned.length === 11 || cleaned.length === 12) {
+    // Форматируем номер телефона
+    const countryCode = cleaned.slice(0, 3);
+    const operatorCode = cleaned.slice(3, 5);
+    const mainPart = cleaned.slice(5);
+    let formattedMainPart = '';
+    for (let i = 0; i < mainPart.length; i += 2) {
+      formattedMainPart += mainPart.slice(i, i + 2);
+      if (i + 2 < mainPart.length) {
+        formattedMainPart += '-';
+      }
+    }
+    return `+${countryCode}(${operatorCode}) ${formattedMainPart}`;
+  } else {
+    // Если длина номера неверная, возвращаем исходную строку
+    return phoneNumber;
+  }
 }
 
 // DASH.ORDERING_AGG('company_date_registration__year')

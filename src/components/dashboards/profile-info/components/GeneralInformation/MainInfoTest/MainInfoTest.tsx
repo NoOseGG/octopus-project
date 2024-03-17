@@ -67,7 +67,7 @@ const MainInfoTest: React.FC = () => {
           postfix={'предыдущие виды деятельности'}
         />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
-        <TableLine name={'Продолжительность деятельности'} field={age_full} />
+        <TableLine name={'Продолжительность деятельности'} field={age_full >= 1 ? age_full : 'Меньше года'} />
         <TableLine
           name={'Статус'}
           field={

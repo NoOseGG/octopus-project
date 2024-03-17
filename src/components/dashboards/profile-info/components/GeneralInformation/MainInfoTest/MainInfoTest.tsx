@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import TableLine from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/TableLine';
 import { useAppSelector } from '@app/hooks/reduxHooks';
@@ -16,6 +16,11 @@ const MainInfoTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
   const states_bodies = useAppSelector((state) => state.searchProfile.profile.states_bodies);
+
+  const age = useMemo(() => {
+    if (age_full !== null && Number(age_full) <= 1) return 'Меньше года';
+    else return age_full;
+  }, [age_full]);
 
   const newFullAddresses = addresses
     ?.map((item) => {
@@ -67,7 +72,7 @@ const MainInfoTest: React.FC = () => {
           postfix={'предыдущие виды деятельности'}
         />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
-        <TableLine name={'Продолжительность деятельности'} field={age_full >= 1 ? age_full : 'Меньше года'} />
+        <TableLine name={'Продолжительность деятельности'} field={age} />
         <TableLine
           name={'Статус'}
           field={

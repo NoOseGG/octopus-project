@@ -3,6 +3,7 @@ import { DatePicker } from 'antd';
 import styled from 'styled-components';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { deleteDate, setDate } from '@app/store/slices/search/searchFiltersSlice';
+import locale from './locale/ru_RU';
 
 const { RangePicker } = DatePicker;
 
@@ -20,7 +21,7 @@ const DateFilter: React.FC = () => {
 
   return (
     <Container>
-      <RangePicker style={{ width: '100%' }} size={'middle'} onChange={handleChange} />
+      <RangePicker locale={locale} style={{ width: '100%' }} size={'middle'} onChange={handleChange} />
     </Container>
   );
 };

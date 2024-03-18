@@ -9,6 +9,7 @@ interface UrlConfig {
   RESET_PASSWORD: string;
   SET_NEW_PASSWORD: string;
   SET_NEW_PASSWORD_AFTER_RESET: string;
+  ACTIVATE_EMAIL: string;
   LOGOUT: string;
   SIGNUP: string;
   CHECK_USER: string;
@@ -29,6 +30,7 @@ export const URLS: UrlConfig = {
   RESET_PASSWORD: '',
   SET_NEW_PASSWORD: '',
   SET_NEW_PASSWORD_AFTER_RESET: '',
+  ACTIVATE_EMAIL: '',
   LOGOUT: '',
   SIGNUP: '',
   CHECK_USER: '',
@@ -44,6 +46,7 @@ URLS.LOGIN = `${URLS.BASE}auth/login/`;
 URLS.RESET_PASSWORD = `${URLS.BASE}auth/users/reset_password/`;
 URLS.SET_NEW_PASSWORD = `${URLS.BASE}auth/users/set_password/`;
 URLS.SET_NEW_PASSWORD_AFTER_RESET = `${URLS.BASE}auth/users/reset_password_confirm/`;
+URLS.ACTIVATE_EMAIL = `${URLS.BASE}auth/users/activation/`;
 URLS.LOGOUT = `${URLS.BASE}auth/logout/`;
 URLS.SIGNUP = `${URLS.BASE}auth/users/`;
 URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;

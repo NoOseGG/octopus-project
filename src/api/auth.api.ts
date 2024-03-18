@@ -39,6 +39,11 @@ export interface NewPasswordAfterResetData {
   new_password: string;
 }
 
+export interface ActivationEmailData {
+  uid: string;
+  token: string;
+}
+
 export interface LoginRequest {
   email: string;
   password: string;

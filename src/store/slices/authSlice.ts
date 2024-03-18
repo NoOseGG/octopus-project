@@ -8,6 +8,7 @@ import {
   NewPasswordAfterResetData,
   LoginResponse,
   NewPasswordData,
+  ActivationEmailData,
 } from '@app/api/auth.api';
 import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
@@ -20,6 +21,10 @@ export interface AuthSlice {
 
 interface LoginError {
   non_field_errors: string[];
+}
+
+interface IActivateEmailError {
+  detail: string;
 }
 
 interface RegistrationError {
@@ -137,6 +142,27 @@ export const doSetNewPasswordAfterReset = createAsyncThunk(
         const responseError: LoginError | undefined = error.response?.data;
         if (responseError) {
           const errorMessage: string | null = responseError.non_field_errors[0];
+          return rejectWithValue(errorMessage);
+        } else {
+          return rejectWithValue('Ошибка');
+        }
+      }
+    }
+  },
+);
+
+export const doActivationEmail = createAsyncThunk(
+  'auth/doActivationEmail',
+  async (activationEmailData: ActivationEmailData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(URLS.ACTIVATE_EMAIL, activationEmailData);
+      console.log(JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const responseError: IActivateEmailError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.detail;
           return rejectWithValue(errorMessage);
         } else {
           return rejectWithValue('Ошибка');

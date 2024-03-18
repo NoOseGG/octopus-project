@@ -19,6 +19,7 @@ import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
 import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
 import ResetPassword from '@app/pages/ResetPassword';
+import ActivateEmailPage from '@app/pages/ActivateEmail';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -83,6 +84,7 @@ export const AppRouter: React.FC = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
           <Route path="password/reset/confirm/:id/:token" element={<ResetPassword />} />
+          <Route path="users/activation/:id/:token" element={<ActivateEmailPage />} />
           <Route
             path="lock"
             element={

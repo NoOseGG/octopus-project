@@ -14,22 +14,26 @@ const Contacts: React.FC = () => {
     ?.map((item) => item.phone_number)
     .filter((phone_number) => phone_number !== null) as string[];
 
+  const contactsLength = newWebSites.length + newEmails.length + newPhones.length;
+
   return (
     <>
-      <S.StyledTable>
-        <thead>
-          <tr>
-            <td>
-              <S.Title>Контактная информация</S.Title>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <TableLineCollapsed name={'Сайт'} fields={newWebSites} isCopyable={true} isLink={true} />
-          <TableLineCollapsed name={'Электронная почта'} fields={newEmails} isCopyable={true} />
-          <TableLineCollapsed name={'Телефон'} fields={newPhones} isCopyable={true} isPhone={true} />
-        </tbody>
-      </S.StyledTable>
+      {Boolean(contactsLength) && (
+        <S.StyledTable>
+          <thead>
+            <tr>
+              <td>
+                <S.Title>Контактная информация</S.Title>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <TableLineCollapsed name={'Сайт'} fields={newWebSites} isCopyable={true} isLink={true} />
+            <TableLineCollapsed name={'Электронная почта'} fields={newEmails} isCopyable={true} />
+            <TableLineCollapsed name={'Телефон'} fields={newPhones} isCopyable={true} isPhone={true} />
+          </tbody>
+        </S.StyledTable>
+      )}
     </>
   );
 };

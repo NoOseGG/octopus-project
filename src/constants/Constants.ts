@@ -70,6 +70,8 @@ export const REGIONS_URL = {
 
 export const TOKEN_NAME = 'Welcome';
 
+export const YANDEX_MAP_BASE_URL = 'https://yandex.ru/maps/?text=';
+
 // SubjectInfo
 
 export const MODAL_WIDTH_SMALL = 700;

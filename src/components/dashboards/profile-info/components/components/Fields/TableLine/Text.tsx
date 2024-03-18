@@ -3,6 +3,7 @@ import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoSt
 import { formatDate, formatPhoneNumber } from '@app/utils/utils';
 import CopyButton from '@app/components/dashboards/profile-info/components/components/Buttons/CopyButton/CopyButton';
 import Link from '@app/components/dashboards/profile-info/components/components/Fields/TableLine/Link';
+import { GlobalOutlined } from '@ant-design/icons';
 
 type MyComponentProps = {
   field: string;
@@ -10,9 +11,20 @@ type MyComponentProps = {
   isCopyable?: boolean;
   isLink?: boolean;
   isPhone?: boolean;
+  isMap?: boolean;
 };
 
-const Text: React.FC<MyComponentProps> = ({ field, isDate, isCopyable, isLink, isPhone }) => {
+const Text: React.FC<MyComponentProps> = ({ field, isDate, isCopyable, isLink, isPhone, isMap }) => {
+  if (isMap) {
+    return (
+      <S.RightCell>
+        <S.Text>
+          <CopyButton text={field} /> {field} <GlobalOutlined />
+        </S.Text>
+      </S.RightCell>
+    );
+  }
+
   if (isPhone) {
     if (isCopyable) {
       return (

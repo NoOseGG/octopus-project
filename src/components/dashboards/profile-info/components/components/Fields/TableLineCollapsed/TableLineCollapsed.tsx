@@ -15,6 +15,7 @@ type MyComponentProps = {
   isCopyable?: boolean;
   isLink?: boolean;
   isPhone?: boolean;
+  isMap?: boolean;
   postfix?: string;
 };
 
@@ -25,6 +26,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
   isCopyable,
   isLink,
   isPhone,
+  isMap,
   postfix,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -58,6 +60,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
             isCopyable={isCopyable}
             isLink={isLink}
             isPhone={isPhone}
+            isMap={isMap}
             key={index}
           />
         ))}
@@ -76,6 +79,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
                 isCopyable={isCopyable}
                 isLink={isLink}
                 isPhone={isPhone}
+                isMap={isMap}
                 key={index}
               />
             ))}
@@ -92,6 +96,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
                     isCopyable={isCopyable}
                     isLink={isLink}
                     isPhone={isPhone}
+                    isMap={isMap}
                     key={index}
                   />
                 );
@@ -104,6 +109,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
                     isCopyable={isCopyable}
                     isLink={isLink}
                     isPhone={isPhone}
+                    isMap={isMap}
                     key={index}
                   />
                 );
@@ -138,6 +144,7 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({
                 isCopyable={isCopyable}
                 isLink={isLink}
                 isPhone={isPhone}
+                isMap={isMap}
                 key={index}
               />
             ))}

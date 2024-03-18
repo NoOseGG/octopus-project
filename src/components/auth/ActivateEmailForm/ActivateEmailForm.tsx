@@ -35,7 +35,7 @@ export const ActivateEmailForm: React.FC = () => {
           setLoading(false);
         });
     }
-  }, [id, token]);
+  }, [id, token, dispatch]);
 
   const handleSubmit = () => {
     navigate('/auth/login');

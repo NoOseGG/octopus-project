@@ -61,6 +61,11 @@ export const DASH = {
     return `address_settlement__icontains=${field}&`;
   },
 
+  ADDRESS_SETTLEMENT_IN: (field: string[]): string => {
+    const postfixUrl = createUrlFromArray(field);
+    return `address_settlement__in=${postfixUrl}`;
+  },
+
   ADDRESS_DISTRICT_ICONTAINS: (field: string): string => {
     return `address_district__icontains=${field}&`;
   },
@@ -70,16 +75,8 @@ export const DASH = {
   },
 
   ADDRESS_REGION_IN: (field: string[]): string => {
-    let str = '';
-
-    field.forEach((item, index) => {
-      if (index === 0 && index === field.length - 1) str += `${item}&`;
-      else if (index === 0) str += item;
-      else if (index === field.length - 1) str += `, ${item}&`;
-      else str += `, ${item}`;
-    });
-
-    return `address_region__in=${str}`;
+    const postfixUrl = createUrlFromArray(field);
+    return `address_region__in=${postfixUrl}`;
   },
 
   TAX_OFFICES_ICONTAINS: (field: string): string => {
@@ -105,4 +102,15 @@ export const DASH = {
   AGE_RANGE: (start: number, end: number): string => {
     return `age_short__gte=${start}&age_short__lt=${end}&`;
   },
+};
+
+const createUrlFromArray = (array: string[]): string => {
+  let str = '';
+  array.forEach((item, index) => {
+    if (index === 0 && index === array.length - 1) str += `${item}&`;
+    else if (index === 0) str += item;
+    else if (index === array.length - 1) str += `, ${item}&`;
+    else str += `, ${item}`;
+  });
+  return str;
 };

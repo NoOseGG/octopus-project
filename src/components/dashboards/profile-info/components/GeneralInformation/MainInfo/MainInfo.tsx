@@ -4,6 +4,7 @@ import TableLine from '@app/components/dashboards/profile-info/components/compon
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import TableLineCollapsed from '@app/components/dashboards/profile-info/components/components/Fields/TableLineCollapsed/TableLineCollapsed';
 import { formatDate } from '@app/utils/utils';
+import { Status } from '@app/store/types/Subject';
 
 const MainInfo: React.FC = () => {
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
@@ -46,14 +47,7 @@ const MainInfo: React.FC = () => {
             postfix={'предыдущие наименования'}
           />
         )}
-        <TableLine
-          name={'Статус'}
-          field={
-            status[0]?.name === 'Действующий'
-              ? status[0]?.name
-              : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`
-          }
-        />
+        <TableLine name={'Статус'} field={checkStatus(status)} />
         <TableLine name={'Дата постановки на учет в ИМНС'} field={dateRegNMS} isDate={true} />
         <TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />
         <TableLine name={'Номер решения о создании'} field={decision_create_number} />
@@ -65,3 +59,10 @@ const MainInfo: React.FC = () => {
 };
 
 export default MainInfo;
+
+const checkStatus = (status: Status[] | null | undefined): string | null => {
+  if (!status || status[0]?.name === null || status[0]?.name === undefined) return null;
+  return status[0]?.name === 'Действующий'
+    ? status[0]?.name
+    : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`;
+};

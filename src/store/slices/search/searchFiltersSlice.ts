@@ -27,7 +27,7 @@ interface TaxOfficeType {
 }
 
 export interface FiltersType {
-  settlements: string | null;
+  settlements: string[] | null;
   districts: string | null;
   regions: string[] | null;
   taxOffices: string | null;

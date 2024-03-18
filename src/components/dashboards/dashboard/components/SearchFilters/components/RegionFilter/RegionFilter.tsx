@@ -43,7 +43,7 @@ const RegionFilter: React.FC = () => {
 
   return (
     <Select
-      mode={'tags'}
+      mode={'multiple'}
       size="small"
       showSearch
       style={filterStyle}
@@ -53,7 +53,7 @@ const RegionFilter: React.FC = () => {
       placeholder={<PlaceholderText>Область</PlaceholderText>}
       optionFilterProp="children"
       onChange={onChange}
-      // filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
+      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
       options={data}
     />
   );

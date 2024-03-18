@@ -397,7 +397,7 @@ export const constructorUrlForDashboard = (
   date: boolean,
 ): string => {
   let url = base;
-  if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
+  if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_IN(filters.settlements);
   if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
   if (Boolean(filters.regions?.length) && filters.regions !== null) url += DASH.ADDRESS_REGION_IN(filters.regions);
   if (filters.taxOffices !== null) url += DASH.TAX_OFFICES_ICONTAINS(filters.taxOffices);

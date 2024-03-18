@@ -70,6 +70,11 @@ export const DASH = {
     return `address_district__icontains=${field}&`;
   },
 
+  ADDRESS_DISTRICT_IN: (field: string[]): string => {
+    const postfixUrl = createUrlFromArray(field);
+    return `address_district__in=${postfixUrl}`;
+  },
+
   ADDRESS_REGION_ICONTAINS: (field: string): string => {
     return `address_region__icontains=${field}&`;
   },
@@ -81,6 +86,11 @@ export const DASH = {
 
   TAX_OFFICES_ICONTAINS: (field: string): string => {
     return `tax_office_name__icontains=${field}&`;
+  },
+
+  TAX_OFFICES_IN: (field: string[]): string => {
+    const postfixUrl = createUrlFromArray(field);
+    return `tax_office_name__in=${postfixUrl}`;
   },
 
   TYPE_ACTIVITY: (field: string): string => {

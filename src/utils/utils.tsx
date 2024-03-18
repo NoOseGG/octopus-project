@@ -397,10 +397,13 @@ export const constructorUrlForDashboard = (
   date: boolean,
 ): string => {
   let url = base;
-  if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_IN(filters.settlements);
-  if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
+  if (Boolean(filters.settlements?.length) && filters.settlements !== null)
+    url += DASH.ADDRESS_SETTLEMENT_IN(filters.settlements);
+  if (Boolean(filters.districts?.length) && filters.districts !== null)
+    url += DASH.ADDRESS_DISTRICT_IN(filters.districts);
   if (Boolean(filters.regions?.length) && filters.regions !== null) url += DASH.ADDRESS_REGION_IN(filters.regions);
-  if (filters.taxOffices !== null) url += DASH.TAX_OFFICES_ICONTAINS(filters.taxOffices);
+  if (Boolean(filters.taxOffices?.length) && filters.taxOffices !== null)
+    url += DASH.TAX_OFFICES_IN(filters.taxOffices);
   if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY(filters.typeActivities);
   if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY(filters.codeActivities);
   if (date) {

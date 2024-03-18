@@ -24,7 +24,7 @@ const SettlementFilter: React.FC = () => {
     };
   });
 
-  const onChange = (value: string) => {
+  const onChange = (value: string[]) => {
     dispatch(setSettlement(value));
   };
 

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doGetTaxOfficesList, setTaxOffice } from '@app/store/slices/search/searchFiltersSlice';
-import { Select } from 'antd';
+import { Select, Tag } from 'antd';
 import {
   filterStyle,
   PlaceholderText,
 } from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import { CustomTagProps } from 'rc-select/lib/BaseSelect';
 
 const TaxOfficeFilter: React.FC = () => {
   const taxOffices = useAppSelector((state) => state.searchFilters.data_filters.taxOffices);
@@ -23,18 +24,33 @@ const TaxOfficeFilter: React.FC = () => {
     };
   });
 
-  const onChange = (value: string) => {
+  const onChange = (value: string[]) => {
     dispatch(setTaxOffice(value));
+  };
+
+  const tagRender = (props: CustomTagProps) => {
+    const { label, closable, onClose } = props;
+    const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    return (
+      <Tag onMouseDown={onPreventMouseDown} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
+        {label}
+      </Tag>
+    );
   };
 
   return (
     <Select
+      mode={'multiple'}
       size="small"
       showSearch
       style={filterStyle}
+      value={taxOffice ?? undefined}
+      tagRender={tagRender}
       placement={'bottomRight'}
-      placeholder={<PlaceholderText>Налоговый орган</PlaceholderText>}
-      value={taxOffice}
+      placeholder={<PlaceholderText>Налоговый ораган</PlaceholderText>}
       optionFilterProp="children"
       onChange={onChange}
       filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}

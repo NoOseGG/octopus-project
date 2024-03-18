@@ -28,9 +28,9 @@ interface TaxOfficeType {
 
 export interface FiltersType {
   settlements: string[] | null;
-  districts: string | null;
+  districts: string[] | null;
   regions: string[] | null;
-  taxOffices: string | null;
+  taxOffices: string[] | null;
   typeActivities: string | null;
   codeActivities: string | null;
   fromDate: string | null;

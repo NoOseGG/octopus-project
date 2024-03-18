@@ -23,7 +23,6 @@ const mapBelarusSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(doGetCountEntitiesOfMap.fulfilled, (state, action) => {
-      console.log(JSON.stringify(action.payload));
       state.countEntitiesOfMap = action.payload;
     });
   },

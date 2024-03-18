@@ -28,8 +28,8 @@ interface IActivateEmailError {
 }
 
 interface RegistrationError {
-  phone_number: string[];
-  email: string[];
+  phone_number?: string[];
+  email?: string[];
 }
 
 const initialState: AuthSlice = {
@@ -71,8 +71,15 @@ export const doSignUp = createAsyncThunk('auth/doSignUp', async (signUpPayload: 
     if (axios.isAxiosError(error)) {
       const responseError: RegistrationError | undefined = error.response?.data;
       if (responseError) {
-        const errorMessage: string | null = responseError.email[0];
-        return rejectWithValue(errorMessage);
+        const errorMessagePhone: string | undefined = responseError?.phone_number?.[0];
+        const errorMessageEmail: string | undefined = responseError.email?.[0];
+
+        if (Boolean(errorMessageEmail?.length) && Boolean(errorMessagePhone?.length))
+          return rejectWithValue('Пользователь с таким номером телефона и электронной почтой уже существует');
+        else if (Boolean(errorMessageEmail?.length))
+          return rejectWithValue('Пользователь с такой электронной почтой уже существует');
+        else if (Boolean(errorMessagePhone?.length))
+          return rejectWithValue('Пользователь с таким номером телефона уже существует');
       } else {
         return rejectWithValue('Ошибка');
       }

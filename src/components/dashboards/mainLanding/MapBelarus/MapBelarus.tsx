@@ -31,7 +31,6 @@ const MapBelarus: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(JSON.stringify(countEntitiesOfMap));
     const countST = getCountFormEntityOfRegion(region, countEntitiesOfMap, ENTITY_TYPE.LEGAL_ENTITY);
     const countLE = getCountFormEntityOfRegion(region, countEntitiesOfMap, ENTITY_TYPE.SOLE_TRADE);
     setCountSoleTrades(countST);

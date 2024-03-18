@@ -9,6 +9,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './SignUpForm.styles';
 import { dateTransformForRegistration } from '@app/utils/utils';
+import locale from '../../dashboards/dashboard/components/SearchFilters/components/DateFilter/locale/ru_RU';
 
 interface SignUpFormData {
   firstName: string;
@@ -107,7 +108,7 @@ export const SignUpForm: React.FC = () => {
               label={t('common.birthdate')}
               rules={[{ required: true, message: t('common.requiredField') }]}
             >
-              <Auth.StyledDatePicker />
+              <Auth.StyledDatePicker locale={locale} />
             </Auth.FormItem>
           </div>
           <div style={{ flex: 1, marginRight: '20px' }}>

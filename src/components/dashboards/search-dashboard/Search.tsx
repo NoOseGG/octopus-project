@@ -54,7 +54,7 @@ export default Search;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
 `;
 
 const SpinnerSpace = styled.div`

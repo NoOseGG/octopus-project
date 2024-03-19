@@ -22,7 +22,7 @@ const TableLine: React.FC<MyComponentProps> = ({ name, field, isDate, isCopyable
             <S.LeftCell>
               <S.Text>{name}</S.Text>
             </S.LeftCell>
-            <TextAddress field={field} isMap={isMap} />
+            <TextAddress field={field} />
           </S.StyledRow>
         )}
       </>

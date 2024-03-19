@@ -33,7 +33,7 @@ interface RegistrationError {
 }
 
 const initialState: AuthSlice = {
-  token: readToken(),
+  token: null,
 };
 
 export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
@@ -208,6 +208,9 @@ const authSlice = createSlice({
     });
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = null;
+    });
+    builder.addCase(doCheckAuth.fulfilled, (state) => {
+      state.token = 'token';
     });
     builder.addCase(doCheckAuth.rejected, (state) => {
       state.token = null;

@@ -28,6 +28,6 @@ const DropdownMenuContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   width: 100%;
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
 `;

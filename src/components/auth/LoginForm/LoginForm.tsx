@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doLogin } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
+import { readToken } from '@app/services/localStorage.service';
 
 interface LoginFormData {
   email: string;
@@ -22,6 +23,17 @@ export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const token = useAppSelector((state) => state.auth.token);
+  const tokenLocal = readToken();
+
+  useEffect(() => {
+    if (token === null && tokenLocal !== null) {
+      console.log(333);
+      notificationController.success({
+        message: 'Авторизируйтесь снова!',
+      });
+    }
+  }, [token, tokenLocal]);
 
   const [isLoading, setLoading] = useState(false);
 

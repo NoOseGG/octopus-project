@@ -7,15 +7,18 @@ import _ from 'lodash';
 import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice';
 import { Dropdown } from 'antd';
 import DropdownMenu from '@app/components/dashboards/mainLanding/SearchLine/components/DropdownMenu/DropdownMenu';
+import { readToken } from '@app/services/localStorage.service';
+import { useNavigate } from 'react-router-dom';
+import { notificationController } from '@app/controllers/notificationController';
 
 const SearchLine: React.FC = () => {
   const dispatch = useAppDispatch();
   const { results } = useAppSelector((state) => state.search.data);
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    console.log(JSON.stringify(results));
     if (Boolean(results.length)) setIsVisible(true);
     else setIsVisible(false);
   }, [results]);
@@ -46,6 +49,19 @@ const SearchLine: React.FC = () => {
     setIsVisible(false);
   };
 
+  const handleSearch = () => {
+    if (Boolean(results.length)) {
+      const token = readToken();
+      if (token !== null) navigate('/search');
+      else {
+        navigate('/auth/login');
+        notificationController.warning({
+          message: 'Авторизируйтесь чтобы посмотреть найденных субъектов',
+        });
+      }
+    }
+  };
+
   return (
     <Container backgroundColor={'#dbe1ea'} onClick={handleClick}>
       <InnerContainer>
@@ -55,6 +71,7 @@ const SearchLine: React.FC = () => {
               placeholder={'Введите УНП или название проверяемого субъекта'}
               enterButton={'Проверить'}
               onChange={(event) => setQuery(event.target.value)}
+              onSearch={handleSearch}
             />
           </Dropdown>
         </SearchLineContainer>

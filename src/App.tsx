@@ -23,7 +23,6 @@ const App: React.FC = () => {
       <GlobalStyle />
       <ConfigProvider locale={ruRu}>
         <AppRouter />
-        {/*<MainLanding />*/}
       </ConfigProvider>
     </>
   );

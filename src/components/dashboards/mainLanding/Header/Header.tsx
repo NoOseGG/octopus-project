@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '@app/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
+import { doCheckAuth } from '@app/store/slices/authSlice';
 
 export enum ScrollType {
   MainFunction = 'mainFunction',
@@ -15,6 +16,7 @@ export enum ScrollType {
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
 
   const scrollToMainFunction = (scrollType: ScrollType) => {
@@ -43,7 +45,8 @@ const Header: React.FC = () => {
   };
 
   const handleClickLogIn = () => {
-    if (token !== null && token !== 'bearerToken') {
+    dispatch(doCheckAuth);
+    if (token !== null) {
       navigate('/search');
     } else {
       navigate('/auth/login');

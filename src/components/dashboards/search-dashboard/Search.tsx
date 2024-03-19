@@ -10,7 +10,7 @@ import dataImage from '../../../assets/images/seach/data-not-found.png';
 
 const Search: React.FC = () => {
   const { history } = useAppSelector((state) => state.searchHistory);
-  const { results } = useAppSelector((state) => state.search.data);
+  const results = useAppSelector((state) => state.search.data.results);
   const { favourites } = useAppSelector((state) => state.favourites);
   const { error, loading } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();

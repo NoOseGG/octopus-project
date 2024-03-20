@@ -411,7 +411,7 @@ export const constructorUrlForDashboard = (
     if (filters.toDate !== null) url += DASH.DATE_BEFORE(filters.toDate);
   }
   if (count) url += DASH.COUNT;
-  console.log(url);
+
   return url;
 };
 

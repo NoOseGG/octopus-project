@@ -211,7 +211,6 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
       persistToken(action.payload.token);
-      console.log(JSON.stringify(action.payload));
       if (action.payload !== undefined) {
         state.token = action.payload.token;
       }
@@ -219,13 +218,10 @@ const authSlice = createSlice({
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = null;
     });
-    builder.addCase(doCheckAuth.fulfilled, (state, action) => {
-      console.log(JSON.stringify(action.payload));
-      console.log(`readtoken ${readToken()}`);
+    builder.addCase(doCheckAuth.fulfilled, (state) => {
       state.token = 'token';
     });
     builder.addCase(doCheckAuth.rejected, (state) => {
-      console.log('Ошибка авторизации');
       deleteToken();
       state.token = null;
     });

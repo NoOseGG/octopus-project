@@ -404,8 +404,8 @@ export const constructorUrlForDashboard = (
   if (Boolean(filters.regions?.length) && filters.regions !== null) url += DASH.ADDRESS_REGION_IN(filters.regions);
   if (Boolean(filters.taxOffices?.length) && filters.taxOffices !== null)
     url += DASH.TAX_OFFICES_IN(filters.taxOffices);
-  if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY(filters.typeActivities);
-  if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY(filters.codeActivities);
+  if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY_IN(filters.typeActivities);
+  if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY_IN(filters.codeActivities);
   if (date) {
     if (filters.fromDate !== null) url += DASH.DATE_AFTER(filters.fromDate);
     if (filters.toDate !== null) url += DASH.DATE_BEFORE(filters.toDate);

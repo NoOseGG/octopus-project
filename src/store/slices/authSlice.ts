@@ -14,6 +14,7 @@ import { setUser } from '@app/store/slices/userSlice';
 import { deleteToken, deleteUser, persistToken, readToken } from '@app/services/localStorage.service';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
+import { UserModel } from '@app/domain/UserModel';
 
 export interface AuthSlice {
   token: string | null;
@@ -25,6 +26,10 @@ interface LoginError {
 
 interface IActivateEmailError {
   detail: string;
+}
+
+interface ICheckAuthResponse {
+  user: UserModel;
 }
 
 interface RegistrationError {
@@ -43,7 +48,6 @@ export const doLogin = createAsyncThunk<LoginResponse, LoginRequest>(
       const response = await axios.post(URLS.LOGIN, credentials);
       if (response.data.user !== undefined) {
         dispatch(setUser(response.data.user));
-        persistToken(response.data.token);
       } else {
         return rejectWithValue('Вы авторизированны на другом устройстве');
       }
@@ -188,8 +192,9 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
   return response;
 });
 
-export const doCheckAuth = createAsyncThunk('auth/checkAuth', async () => {
-  await axios.get(URLS.CHECK_USER, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
+export const doCheckAuth = createAsyncThunk<ICheckAuthResponse>('auth/checkAuth', async () => {
+  const response = await axios.get(URLS.CHECK_USER, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
+  return response.data;
 });
 
 const authSlice = createSlice({
@@ -202,17 +207,23 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
-      if (action.payload.user !== undefined) {
+      persistToken(action.payload.token);
+      console.log(JSON.stringify(action.payload));
+      if (action.payload !== undefined) {
         state.token = action.payload.token;
       }
     });
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = null;
     });
-    builder.addCase(doCheckAuth.fulfilled, (state) => {
+    builder.addCase(doCheckAuth.fulfilled, (state, action) => {
+      console.log(JSON.stringify(action.payload));
+      console.log(`readtoken ${readToken()}`);
       state.token = 'token';
     });
     builder.addCase(doCheckAuth.rejected, (state) => {
+      console.log('Ошибка авторизации');
+      deleteToken();
       state.token = null;
     });
   },

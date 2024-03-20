@@ -97,8 +97,18 @@ export const DASH = {
     return `type_activity_name__iexact=${field}&`;
   },
 
+  TYPE_ACTIVITY_IN: (field: string[]): string => {
+    const postfixUrl = createUrlFromArray(field);
+    return `type_activity_name__in=${postfixUrl}`;
+  },
+
   CODE_ACTIVITY: (field: string): string => {
     return `type_activity_code__iexact=${field}&`;
+  },
+
+  CODE_ACTIVITY_IN: (field: string[]): string => {
+    const postfixUrl = createUrlFromArray(field);
+    return `type_activity_code__in=${postfixUrl}`;
   },
 
   PAGE_SIZE: (field: number): string => {

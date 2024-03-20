@@ -17,10 +17,11 @@ const TaxOfficeFilter: React.FC = () => {
     dispatch(doGetTaxOfficesList());
   }, [dispatch]);
 
-  const data = taxOffices?.map((taxOffice) => {
+  const data = taxOffices?.map((taxOffice, index) => {
     return {
       value: taxOffice.tax_office_name,
       label: taxOffice.tax_office_name,
+      key: index,
     };
   });
 

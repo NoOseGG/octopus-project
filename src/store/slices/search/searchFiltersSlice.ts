@@ -31,8 +31,8 @@ export interface FiltersType {
   districts: string[] | null;
   regions: string[] | null;
   taxOffices: string[] | null;
-  typeActivities: string | null;
-  codeActivities: string | null;
+  typeActivities: string[] | null;
+  codeActivities: string[] | null;
   fromDate: string | null;
   toDate: string | null;
   isDate: boolean;

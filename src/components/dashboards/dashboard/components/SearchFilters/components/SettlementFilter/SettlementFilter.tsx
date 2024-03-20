@@ -17,10 +17,11 @@ const SettlementFilter: React.FC = () => {
     dispatch(doGetSettlementsList());
   }, [dispatch]);
 
-  const data = settlements?.map((settlement) => {
+  const data = settlements?.map((settlement, index) => {
     return {
       value: settlement.address_settlement,
       label: settlement.address_settlement,
+      key: index,
     };
   });
 

@@ -24,16 +24,14 @@ export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const token = useAppSelector((state) => state.auth.token);
-  const tokenLocal = readToken();
 
   useEffect(() => {
-    if (token === null && tokenLocal !== null) {
-      console.log(333);
+    if (token === null && readToken() === null) {
       notificationController.success({
         message: 'Авторизируйтесь снова!',
       });
     }
-  }, [token, tokenLocal]);
+  }, [token]);
 
   const [isLoading, setLoading] = useState(false);
 

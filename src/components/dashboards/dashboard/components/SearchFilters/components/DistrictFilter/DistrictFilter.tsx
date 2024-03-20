@@ -17,10 +17,11 @@ const DistrictFilter: React.FC = () => {
     dispatch(doGetDistrictsList());
   }, [dispatch]);
 
-  const data = districts?.map((district) => {
+  const data = districts?.map((district, index) => {
     return {
       value: district.address_district,
       label: district.address_district,
+      key: index,
     };
   });
 

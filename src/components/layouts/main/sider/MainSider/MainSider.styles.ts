@@ -54,6 +54,7 @@ export const CollapseButton = styled(Button)<{ $isCollapsed: boolean }>`
 `;
 
 export const SiderContent = styled.div`
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: calc(100vh - ${LAYOUT.mobile.headerHeight});

@@ -5,7 +5,7 @@ import logo from '../../../../assets/logo.png';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
-import { doCheckAuth } from '@app/store/slices/authSlice';
+import { doCheckAuth, setTokenInState } from '@app/store/slices/authSlice';
 import { readToken } from '@app/services/localStorage.service';
 
 export enum ScrollType {
@@ -45,6 +45,7 @@ const Header: React.FC = () => {
   };
 
   const handleClickLogIn = () => {
+    dispatch(setTokenInState());
     dispatch(doCheckAuth);
     if (readToken() !== null) {
       navigate('/search');

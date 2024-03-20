@@ -204,6 +204,9 @@ const authSlice = createSlice({
     deleteTokenInState: (state) => {
       state.token = null;
     },
+    setTokenInState: (state) => {
+      state.token = 'token';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(doLogin.fulfilled, (state, action) => {
@@ -229,5 +232,5 @@ const authSlice = createSlice({
   },
 });
 
-const { deleteTokenInState } = authSlice.actions;
+export const { deleteTokenInState, setTokenInState } = authSlice.actions;
 export default authSlice.reducer;

@@ -11,7 +11,7 @@ export const getStateForJumpSettlement = (state: RootState, jump: JUMP_TYPE) => 
       return state.jump.jumpSettlement;
 
     case JUMP_TYPE.SOLE_TRADE:
-      return state.jump.jumpSettlement;
+      return state.jumpSoleTrade.jumpSettlement;
   }
 };
 
@@ -21,6 +21,6 @@ export const getStateForJumpTypeActivity = (state: RootState, jump: JUMP_TYPE) =
       return state.jump.jumpTypeActivity;
 
     case JUMP_TYPE.SOLE_TRADE:
-      return state.jump.jumpTypeActivity;
+      return state.jumpSoleTrade.jumpTypeActivity;
   }
 };

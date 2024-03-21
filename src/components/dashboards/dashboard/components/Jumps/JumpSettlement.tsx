@@ -5,6 +5,7 @@ import { doGetJumpSettlement } from '@app/store/slices/legalEntityDashboard/jump
 import { Skeleton, Table } from 'antd';
 import { getStateForJumpSettlement, JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import { getColumnsJumpSettlement } from '@app/components/dashboards/dashboard/components/Jumps/JumpUtils';
+import { doGetJumpSettlementSoleTrade } from '@app/store/slices/soleTradeDashboard/jumps/jumpSettlementSoleTradeSlice';
 
 export enum JUMP_SETTLEMENT_TYPE {
   PLUS = '+',
@@ -32,7 +33,7 @@ const JumpSettlement: React.FC<MyComponentProps> = ({ jump }) => {
         // Sole Trade
 
         case JUMP_TYPE.SOLE_TRADE:
-          dispatch(doGetJumpSettlement());
+          dispatch(doGetJumpSettlementSoleTrade());
           break;
       }
     },

@@ -27,6 +27,9 @@ import Inspections from '@app/components/dashboards/dashboard/components/Inspect
 import { Divider } from 'antd';
 import RegionsCircleChart from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChart';
 import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
+import JumpSettlement from '@app/components/dashboards/dashboard/components/Jumps/JumpSettlement';
+import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
+import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -68,6 +71,10 @@ const DashboardSoleTrader: React.FC = () => {
         />
       </ChartsContainer>
       <DetailedInformation detailed={DETAILED_TYPE.ST_CREATED} />
+
+      <JumpSettlement jump={JUMP_TYPE.SOLE_TRADE} />
+      <JumpTypeActivity jump={JUMP_TYPE.SOLE_TRADE} />
+
       <MainInfo
         all={COUNT_TYPE.ST_LIQUIDATED_ALL}
         year={COUNT_YEAR_TYPE.ST_LIQUIDATED_YEAR}

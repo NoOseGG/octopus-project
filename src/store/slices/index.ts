@@ -36,6 +36,7 @@ import chartsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/charts'
 import checkedMainInfoReducer from '@app/store/slices/legalEntityDashboard/mainInfo/checked';
 import checkedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboard/mainInfo/checked';
 import searchSimilarReducer from '@app/store/slices/search/searchSimilarSlice';
+import jumpsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/jumps/';
 import jumpsReducer from '@app/store/slices/legalEntityDashboard/jumps';
 import feedbackReducer from '@app/store/slices/feedback/feedbackSlice';
 
@@ -86,4 +87,5 @@ export default {
   design: designReducer,
   mapBelarus: mapBelarusReducer,
   jump: jumpsReducer,
+  jumpSoleTrade: jumpsSoleTradeReducer,
 };

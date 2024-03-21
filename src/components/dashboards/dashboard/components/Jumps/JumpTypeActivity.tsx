@@ -8,6 +8,7 @@ import {
 } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import { getColumnsJumpTypeActivity } from '@app/components/dashboards/dashboard/components/Jumps/JumpUtils';
 import { doGetJumpTypeActivity } from '@app/store/slices/legalEntityDashboard/jumps/jumpTypeActivitySlice';
+import { doGetJumpTypeActivitySoleTrade } from '@app/store/slices/soleTradeDashboard/jumps/jumpTypeActivitySoleTradeSlice';
 
 export enum JUMP_SETTLEMENT_TYPE {
   PLUS = '+',
@@ -35,7 +36,7 @@ const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
         // Sole Trade
 
         case JUMP_TYPE.SOLE_TRADE:
-          dispatch(doGetJumpTypeActivity());
+          dispatch(doGetJumpTypeActivitySoleTrade());
           break;
       }
     },
@@ -56,14 +57,14 @@ const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
             <JumpSettlementContainer>
               <Table
                 columns={columns}
-                title={() => <Title>Всплеск регистраций по географическому принципу</Title>}
+                title={() => <Title>Всплеск регистраций по виду деятельности</Title>}
                 dataSource={result.filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.PLUS)}
                 pagination={{ showSizeChanger: false }}
                 size={'small'}
               />
               <Table
                 columns={columns}
-                title={() => <Title>Снижение регистраций по географическому принципу</Title>}
+                title={() => <Title>Снижение регистраций по виду деятельности</Title>}
                 dataSource={result.filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.MINUS)}
                 pagination={{ showSizeChanger: false }}
                 size={'small'}

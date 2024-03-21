@@ -30,6 +30,7 @@ import { Divider } from 'antd';
 import JumpSettlement from '@app/components/dashboards/dashboard/components/Jumps/JumpSettlement';
 import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
+import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -74,6 +75,7 @@ const DashboardLegalEntity: React.FC = () => {
 
       <JumpSettlement jump={JUMP_TYPE.LEGAL_ENTITY} />
       <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
+      <LevelCompetition />
 
       <MainInfo
         all={COUNT_TYPE.LE_LIQUIDATED_ALL}

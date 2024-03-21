@@ -11,7 +11,7 @@ export interface IJumpSettlementResponse {
   results: IJumpSettlementObject[];
 }
 
-export interface IJumpSettlementObject {
+interface IJumpSettlementObject {
   id: number;
   settlement: string;
   legal_form_id: string;
@@ -37,7 +37,7 @@ export interface IJumpTypeActivityResponse {
   results: IJumpTypeActivityObject[];
 }
 
-export interface IJumpTypeActivityObject {
+interface IJumpTypeActivityObject {
   id: number;
   type_activity_name: string;
   legal_form_id: string;

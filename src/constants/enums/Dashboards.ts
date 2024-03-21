@@ -3,7 +3,7 @@ export const DASH = {
   BASE_INSPECTION: 'https://api.analytix.by/api/v1/dashboard/inspection/?',
   BASE_JUMP_SETTLEMENT: 'https://api.analytix.by/api/v1/dashboard/jump_settlement/?',
   BASE_JUMP_TYPE_ACTIVITY: 'https://api.analytix.by/api/v1/dashboard/jump_type_activity/?',
-  BASE_LEVEL_COMPETITION: 'https://api.analytix.by/api/v1/dashboard/level_competition//?',
+  BASE_LEVEL_COMPETITION: 'https://api.analytix.by/api/v1/dashboard/level_competition/?',
   LEGAL_ENTITY: 'legal_form_entity_type__iexact=Юридическое+лицо&',
   SOLE_TRADE: 'legal_form_entity_type__iexact=Индивидуальный+предприниматель&',
   LIQUIDATED_ENTITY: 'company_status_code__in=DH,SL,PR,PL,RG,SA,LC&',

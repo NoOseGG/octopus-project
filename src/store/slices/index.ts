@@ -38,6 +38,7 @@ import checkedMainInfoSoleTradeReducer from '@app/store/slices/soleTradeDashboar
 import searchSimilarReducer from '@app/store/slices/search/searchSimilarSlice';
 import jumpsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/jumps/';
 import jumpsReducer from '@app/store/slices/legalEntityDashboard/jumps';
+import levelCompetitionReducer from '@app/store/slices/legalEntityDashboard/levelCompetition/levelCompetitonSlice';
 import feedbackReducer from '@app/store/slices/feedback/feedbackSlice';
 
 import designReducer from '@app/store/slices/search/designSlice';
@@ -88,4 +89,5 @@ export default {
   mapBelarus: mapBelarusReducer,
   jump: jumpsReducer,
   jumpSoleTrade: jumpsSoleTradeReducer,
+  levelCompetition: levelCompetitionReducer,
 };

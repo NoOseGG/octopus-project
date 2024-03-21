@@ -1,9 +1,9 @@
-import { IJumpSettlementResponse, IJumpSettlementState } from '@app/store/types/dashboard/JumpTypes';
+import { IJumpTypeActivityResponse, IJumpTypeActivityState } from '@app/store/types/dashboard/JumpTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
 
-const initialState: IJumpSettlementState = {
+const initialState: IJumpTypeActivityState = {
   jumps: {
     count: 0,
     next: null,
@@ -14,10 +14,10 @@ const initialState: IJumpSettlementState = {
   error: null,
 };
 
-export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('doGetJumpSettlement', async () => {
+export const doGetJumpTypeActivity = createAsyncThunk<IJumpTypeActivityResponse>('doGetJumpTypeActivity', async () => {
   try {
     const response = await httpDashboard.get(
-      DASH.BASE_JUMP_SETTLEMENT + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
+      DASH.BASE_JUMP_TYPE_ACTIVITY + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
     );
     return response.data;
   } catch (error) {
@@ -25,15 +25,15 @@ export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('do
   }
 });
 
-const jumpSettlementSlice = createSlice({
-  name: 'jumpSettlementSlice',
+const jumpTypeActivitySlice = createSlice({
+  name: 'jumpTypeActivitySlice',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doGetJumpSettlement.pending, (state) => {
+    builder.addCase(doGetJumpTypeActivity.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(doGetJumpSettlement.fulfilled, (state, action) => {
+    builder.addCase(doGetJumpTypeActivity.fulfilled, (state, action) => {
       state.jumps.count = action.payload.count;
       state.jumps.next = action.payload.next;
       state.jumps.previous = action.payload.previous;
@@ -48,4 +48,4 @@ const jumpSettlementSlice = createSlice({
   },
 });
 
-export default jumpSettlementSlice.reducer;
+export default jumpTypeActivitySlice.reducer;

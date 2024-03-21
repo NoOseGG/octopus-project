@@ -14,7 +14,12 @@ export const NameComponent = styled.div`
   font-weight: 700;
 `;
 
-export const Content = styled.div`
+interface ContentProps {
+  textAlign?: string;
+}
+
+export const Content = styled.div<ContentProps>`
+  text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};
   font-size: 12px;
   line-height: 1.2;
 `;

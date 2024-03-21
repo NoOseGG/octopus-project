@@ -27,7 +27,9 @@ import Inspections from '@app/components/dashboards/dashboard/components/Inspect
 import { COUNT_CHECKED_TYPE } from '@app/components/dashboards/dashboard/components/Inspection/components/CountChecked/CountCheckedTypes';
 import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/charts/RegionsCircleChart/RegionsCircleChartTypes';
 import { Divider } from 'antd';
-import JumpSettlement from '@app/components/dashboards/dashboard/components/Jumps/JumpSettlement/JumpSettlement';
+import JumpSettlement from '@app/components/dashboards/dashboard/components/Jumps/JumpSettlement';
+import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
+import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 
 const DashboardLegalEntity: React.FC = () => {
   return (
@@ -70,7 +72,8 @@ const DashboardLegalEntity: React.FC = () => {
       </ChartsContainer>
       <DetailedInformation detailed={DETAILED_TYPE.LE_CREATED} />
 
-      <JumpSettlement />
+      <JumpSettlement jump={JUMP_TYPE.LEGAL_ENTITY} />
+      <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
 
       <MainInfo
         all={COUNT_TYPE.LE_LIQUIDATED_ALL}

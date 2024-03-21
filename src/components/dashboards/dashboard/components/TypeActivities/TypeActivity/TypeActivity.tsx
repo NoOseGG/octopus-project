@@ -50,7 +50,7 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const results = dynamicState?.typeActivities.results;
   const loading = dynamicState?.loading;
 
-  const data = results.map((item, index) => {
+  const data = results?.map((item, index) => {
     return {
       name: item.group_fields.type_activity_name,
       count: item.Count,

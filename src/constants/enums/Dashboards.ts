@@ -130,6 +130,9 @@ export const DASH = {
 
   JUMP_SETTLEMENT_LEGAL_ENTITY: 'legal_form_id__icontains=ЮЛ&',
   JUMP_SETTLEMENT_SOLE_TRADE: 'legal_form_id__icontains=ИП&',
+
+  JUMP_TYPE_REG_PLUS: 'type_reg__iexact=+&',
+  JUMP_TYPE_REG_MINUS: 'type_reg__iexact=-&',
 };
 
 const createUrlFromArray = (array: string[]): string => {

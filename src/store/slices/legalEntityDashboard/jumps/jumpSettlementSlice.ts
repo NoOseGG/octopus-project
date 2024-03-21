@@ -16,7 +16,9 @@ const initialState: IJumpSettlementState = {
 
 export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('doGetJumpSettlement', async () => {
   try {
-    const response = await httpDashboard.get(DASH.BASE_JUMP_SETTLEMENT);
+    const response = await httpDashboard.get(
+      DASH.BASE_JUMP_SETTLEMENT + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
+    );
     return response.data;
   } catch (error) {
     console.log(error);

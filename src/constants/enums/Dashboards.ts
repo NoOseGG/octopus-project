@@ -125,6 +125,11 @@ export const DASH = {
   AGE_RANGE: (start: number, end: number): string => {
     return `age_short__gte=${start}&age_short__lt=${end}&`;
   },
+
+  // JumpSettlement
+
+  JUMP_SETTLEMENT_LEGAL_ENTITY: 'legal_form_id__icontains=ЮЛ&',
+  JUMP_SETTLEMENT_SOLE_TRADE: 'legal_form_id__icontains=ИП&',
 };
 
 const createUrlFromArray = (array: string[]): string => {

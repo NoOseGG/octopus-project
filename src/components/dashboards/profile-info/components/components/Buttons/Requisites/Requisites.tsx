@@ -16,6 +16,7 @@ const Requisites: React.FC = () => {
     if (text !== null) return text;
     let requisites = '';
     if (Boolean(names[0]?.short_name?.length)) requisites += names[0]?.short_name + '\n';
+    else requisites += names[0]?.full_name;
     if (Boolean(addresses[0]?.full_address?.length)) requisites += addresses[0]?.full_address + '\n';
     if (Boolean(unn?.length)) requisites += `УНП: ${unn}`;
 
@@ -41,7 +42,7 @@ const Requisites: React.FC = () => {
   return (
     <Container>
       <Title>Реквизиты</Title>
-      <LineText>{names[0]?.short_name}</LineText>
+      <LineText>{names[0]?.short_name ? names[0]?.short_name : names[0]?.full_name}</LineText>
       <LineText>{addresses[0]?.full_address}</LineText>
       <LineText>УНП: {unn}</LineText>
       <ButtonContainer>

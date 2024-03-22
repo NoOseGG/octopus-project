@@ -21,6 +21,8 @@ const Search: React.FC = () => {
 
   return (
     <Container>
+      {Boolean(results.length) && !loading && <SubjectsList listItems={results} />}
+
       {loading && (
         <SpinnerSpace>
           <Spin size="large" tip="Загрузка данных . . ." />
@@ -34,7 +36,7 @@ const Search: React.FC = () => {
         </ErrorContainer>
       )}
 
-      {!loading && error === null && !Boolean(results?.length) && (
+      {!Boolean(results?.length) && !loading && error === null && (
         <div style={{ display: 'flex', gap: 20 }}>
           <Col span={14}>
             <SearchHistory listHistory={history?.results} />
@@ -44,8 +46,6 @@ const Search: React.FC = () => {
           </Col>
         </div>
       )}
-
-      {Boolean(results.length) && !loading && <SubjectsList listItems={results} />}
     </Container>
   );
 };

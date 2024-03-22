@@ -31,6 +31,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
 
   const handleClick = () => {
+    console.log('click');
     dispatch(clearSearchData());
   };
 

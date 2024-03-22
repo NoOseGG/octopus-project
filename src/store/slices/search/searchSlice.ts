@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { CancelTokenSource } from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
+
+let source: CancelTokenSource | undefined;
 
 export interface Organization {
   unn: string;
@@ -44,7 +46,10 @@ const initialState: SearchState = {
 
 export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query: string, { rejectWithValue }) => {
   try {
-    const source = axios.CancelToken.source();
+    if (source !== undefined) {
+      source?.cancel();
+    }
+    source = axios.CancelToken.source();
 
     const response = await axios.get(URLS.SEARCH, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
@@ -54,6 +59,10 @@ export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (q
 
     return response.data;
   } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log(error);
+      return;
+    }
     if (axios.isAxiosError(error)) {
       const responseError: SearchError | undefined = error.response?.data;
       if (responseError) {
@@ -98,6 +107,7 @@ export const searchSlice = createSlice({
       state.unn = action.payload;
     },
     clearSearchData: (state) => {
+      console.log('clear data');
       state.data = {
         count: 0,
         next: null,

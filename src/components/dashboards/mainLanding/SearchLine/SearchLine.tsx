@@ -17,6 +17,7 @@ const SearchLine: React.FC = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [isVisible, setIsVisible] = useState(true);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     if (Boolean(results.length)) setIsVisible(true);
@@ -38,12 +39,17 @@ const SearchLine: React.FC = () => {
   );
 
   useEffect(() => {
-    if (query.trim().length > 2) {
-      delaySearch(query);
+    if (initialized) {
+      if (query.trim().length > 2) {
+        delaySearch(query);
+      } else {
+        clearSearch();
+      }
     } else {
-      clearSearch();
+      // Если это первый запуск, устанавливаем флаг инициализации в true
+      setInitialized(true);
     }
-  }, [query]);
+  }, [query, delaySearch, clearSearch]);
 
   const handleClick = () => {
     setIsVisible(false);

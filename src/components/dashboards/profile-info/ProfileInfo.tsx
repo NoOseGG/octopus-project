@@ -15,6 +15,7 @@ import CommercialRegisterProfile from '@app/components/dashboards/profile-info/c
 import GovernmentInspections from '@app/components/dashboards/profile-info/components/GovernmentInspection/GovernmentInspections';
 import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
 import GiasPlan from '@app/components/dashboards/profile-info/components/GiasPlan/GiasPlan';
+import GeneralInformationTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformationTest';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -56,6 +57,8 @@ const ProfileInfo: React.FC = () => {
     Boolean(iceTradeOrganizerNegotiations.length);
   const gias_plan = useAppSelector((state) => state.searchProfile.profile.gias_plan);
 
+  const isNewDesign = useAppSelector((state) => state.design.isNewDesign);
+
   useEffect(() => {
     try {
       if (typeof unn === 'string') {
@@ -77,7 +80,7 @@ const ProfileInfo: React.FC = () => {
           <LeftCol span={LEFT_COLUMN_SIZE}>
             <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
               <Tabs.TabPane tab={<TabButton>Основная информация</TabButton>} key={TABS.GENERAL_INFORMATION}>
-                <GeneralInformation />
+                {isNewDesign ? <GeneralInformation /> : <GeneralInformationTest />}
               </Tabs.TabPane>
               {Boolean(vacancies.length) && (
                 <Tabs.TabPane tab={<TabButton>Вакансии</TabButton>} key={TABS.VACANCIES}>

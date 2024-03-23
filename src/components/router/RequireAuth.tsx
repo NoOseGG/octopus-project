@@ -1,12 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { WithChildrenProps } from '@app/types/generalTypes';
-import { useAppSelector } from '@app/hooks/reduxHooks';
+import { readToken } from '@app/services/localStorage.service';
 
 const RequireAuth: React.FC<WithChildrenProps> = ({ children }) => {
-  const token = useAppSelector((state) => state.auth.token);
-
-  return token !== null ? (
+  return readToken() !== null ? (
     <>{children}</>
   ) : (
     <>

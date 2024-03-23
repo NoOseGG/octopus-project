@@ -4,15 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { References } from '@app/components/common/References/References';
 import * as S from './DashboardPage.styles';
-import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
+import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { doCheckAuth } from '@app/store/slices/authSlice';
 import ProfileInfo from '@app/components/dashboards/profile-info/ProfileInfo';
-import SubjectInfo from '@app/components/dashboards/search-dashboard/SubjectInfo/SubjectInfo';
 
 const SubjectInfoPage: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { isNewDesign } = useAppSelector((state) => state.design);
 
   useEffect(() => {
     dispatch(doCheckAuth());
@@ -21,7 +19,7 @@ const SubjectInfoPage: React.FC = () => {
   const desktopLayout = (
     <Row>
       <S.LeftSideCol>
-        {isNewDesign ? <ProfileInfo /> : <SubjectInfo />}
+        <ProfileInfo />
         <References />
       </S.LeftSideCol>
     </Row>

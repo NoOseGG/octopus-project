@@ -107,7 +107,6 @@ export const searchSlice = createSlice({
       state.unn = action.payload;
     },
     clearSearchData: (state) => {
-      console.log('clear data');
       state.data = {
         count: 0,
         next: null,

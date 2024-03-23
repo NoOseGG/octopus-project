@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 import LineChartYears from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYears';
@@ -31,8 +31,16 @@ import JumpSettlement from '@app/components/dashboards/dashboard/components/Jump
 import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
+import { dashboardSourceToken } from '@app/api/http.api';
 
 const DashboardLegalEntity: React.FC = () => {
+  useEffect(() => {
+    return () => {
+      console.log('cancels token');
+      dashboardSourceToken.cancel();
+    };
+  }, []);
+
   return (
     <Container>
       <Title>Юридические лица</Title>

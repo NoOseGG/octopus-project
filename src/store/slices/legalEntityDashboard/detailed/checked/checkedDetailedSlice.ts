@@ -7,6 +7,7 @@ import {
   ResponseDetailedInformation,
 } from '@app/store/types/dashboard/DetailedInformationType';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: DetailedInformationState = {
   results: [],
@@ -34,7 +35,11 @@ export const doGetCheckedDetailed = createAsyncThunk<ResponseDetailedInformation
       const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -48,7 +53,7 @@ const checkedDetailedSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetCheckedDetailed.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload?.results;
       state.loading = false;
     });
   },

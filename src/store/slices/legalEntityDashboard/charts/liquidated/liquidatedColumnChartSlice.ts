@@ -5,6 +5,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LiquidatedResponseColumnChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: ColumnChartMonthState = {
   results: [],
@@ -35,7 +36,11 @@ export const doGetDataForLiquidatedColumnChart = createAsyncThunk<LiquidatedResp
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__month'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -49,13 +54,13 @@ const liquidatedColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedColumnChart.fulfilled, (state, action) => {
-      const data = action.payload.results.map((item) => {
+      const data = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.company_status_from_dttm__month,
           sales: item.Count,
         };
       });
-      state.results = sortDataByMonth(data);
+      state.results = data ? sortDataByMonth(data) : [];
       state.loading = false;
     });
   },

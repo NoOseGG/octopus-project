@@ -5,6 +5,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LiquidatedResponseLineChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -33,7 +34,11 @@ export const doGetDataForLiquidatedLineChart = createAsyncThunk<LiquidatedRespon
 
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -47,7 +52,7 @@ const liquidatedLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedLineChart.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      state.results = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.company_status_from_dttm__year,
           sales: item.Count,

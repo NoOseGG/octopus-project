@@ -7,6 +7,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: LiquidatedByAgeChartState = {
   results: [],
@@ -31,7 +32,11 @@ export const doGetDataForLiquidatedByAgeChartSoleTrade = createAsyncThunk<Liquid
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -45,7 +50,7 @@ const liquidatedByAgeChartSoleTradeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLiquidatedByAgeChartSoleTrade.fulfilled, (state, action) => {
-      state.results = action.payload.results;
+      state.results = action.payload?.results;
       state.loading = false;
     });
   },

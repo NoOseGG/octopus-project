@@ -15,10 +15,6 @@ const LevelCompetition: React.FC = () => {
     dispatch(doGetLevelCompetition());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(JSON.stringify(level_competition?.results));
-  }, [level_competition?.results]);
-
   const columns: ColumnsType<ILevelCompetitionObject> = [
     {
       title: 'УНП',

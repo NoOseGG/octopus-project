@@ -20,7 +20,7 @@ const MetricProbabilityLiquidation: React.FC = () => {
       title: {
         style: {
           color: '#363636',
-          fontSize: '10px',
+          fontSize: '12px',
           lineHeight: '14px',
         },
         formatter: () => 'Ликвидация',

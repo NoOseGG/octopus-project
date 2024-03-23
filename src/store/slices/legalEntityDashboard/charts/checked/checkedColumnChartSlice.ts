@@ -10,6 +10,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { CheckedColumnChartState, CheckedResponseColumnChart } from '@app/store/types/dashboard/CheckedColumnChart';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: CheckedColumnChartState = {
   results: [],
@@ -36,7 +37,11 @@ export const doGetDataForCheckedColumnChart = createAsyncThunk<CheckedResponseCo
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('inspection_dttm__month'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -50,13 +55,13 @@ const checkedColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForCheckedColumnChart.fulfilled, (state, action) => {
-      const data = action.payload.results.map((item) => {
+      const data = action.payload?.results.map((item) => {
         return {
           type: item.group_fields.inspection_dttm__month,
           sales: item.Count,
         };
       });
-      state.results = sortDataByMonth(data);
+      state.results = data ? sortDataByMonth(data) : [];
       state.loading = false;
     });
   },

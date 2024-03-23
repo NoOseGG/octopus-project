@@ -1,6 +1,7 @@
 import React from 'react';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 import styled from 'styled-components';
+import { Popover } from 'antd';
 
 type MyComponentProps = {
   risk: string;
@@ -10,7 +11,7 @@ type MyComponentProps = {
   isChangeCase?: boolean;
 };
 
-const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isChangeCase }) => {
+const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isChangeCase, description }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {
@@ -23,14 +24,14 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isCha
       title: {
         offsetY: -20,
         style: {
-          fontSize: '8px',
+          fontSize: '12px',
           color: '#4B535E',
         },
         formatter: () => `${content}`,
       },
       content: {
         style: {
-          fontSize: '10px',
+          fontSize: '12px',
           lineHeight: '10px',
           color: '#4B535E',
         },
@@ -40,7 +41,9 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isCha
   };
   return (
     <Container>
-      <Title>{name}</Title>
+      <Popover content={description}>
+        <Title>{name}</Title>
+      </Popover>
       <Gauge {...config} style={{ height: 120, width: 120, padding: 0 }} />
     </Container>
   );
@@ -60,6 +63,13 @@ const Title = styled.span`
   width: 120px;
   font-size: 12px;
   text-align: center;
+  cursor: pointer;
+  color: dodgerblue;
+  transition: transfrom 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const getRiskLevel = (risk: string): number => {

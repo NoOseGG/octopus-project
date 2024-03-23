@@ -32,7 +32,6 @@ const levelCompetitionSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(doGetLevelCompetition.fulfilled, (state, action) => {
-      console.log(JSON.stringify(action.payload));
       state.level_competition = action.payload;
       state.isLoading = false;
     });

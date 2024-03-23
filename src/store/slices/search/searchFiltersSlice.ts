@@ -185,22 +185,22 @@ const searchFiltersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(doGetTypeActivitiesList.fulfilled, (state, action) => {
-      const codes = action.payload.map((item) => item.type_activity_code);
-      const activities = action.payload.map((item) => item.type_activity_name);
-      state.data_filters.codeActivities = Array.from(new Set(codes));
-      state.data_filters.typeActivities = Array.from(new Set(activities));
+      const codes = action.payload?.map((item) => item.type_activity_code);
+      const activities = action.payload?.map((item) => item.type_activity_name);
+      state.data_filters.codeActivities = codes ? Array.from(new Set(codes)) : [];
+      state.data_filters.typeActivities = activities ? Array.from(new Set(activities)) : [];
     });
     builder.addCase(doGetSettlementsList.fulfilled, (state, action) => {
-      state.data_filters.settlements = action.payload;
+      state.data_filters.settlements = action?.payload;
     });
     builder.addCase(doGetDistrictsList.fulfilled, (state, action) => {
-      state.data_filters.districts = action.payload;
+      state.data_filters.districts = action?.payload;
     });
     builder.addCase(doGetRegions.fulfilled, (state, action) => {
-      state.data_filters.regions = action.payload;
+      state.data_filters.regions = action?.payload;
     });
     builder.addCase(doGetTaxOfficesList.fulfilled, (state, action) => {
-      state.data_filters.taxOffices = action.payload;
+      state.data_filters.taxOffices = action?.payload;
     });
   },
 });

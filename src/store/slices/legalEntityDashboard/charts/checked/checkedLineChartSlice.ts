@@ -5,6 +5,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { CheckedResponseLineChart } from '@app/store/types/dashboard/CheckedLineChart';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -27,7 +28,11 @@ export const doGetDataForCheckedLineChart = createAsyncThunk<CheckedResponseLine
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('inspection_dttm__year'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -41,7 +46,7 @@ const liquidatedLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForCheckedLineChart.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      state.results = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.inspection_dttm__year,
           sales: item.Count,

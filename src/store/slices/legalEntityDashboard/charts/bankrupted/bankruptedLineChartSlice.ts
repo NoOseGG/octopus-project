@@ -5,6 +5,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { BankruptedResponseLineChart } from '@app/store/types/dashboard/BankruptedChartsTypes';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -31,7 +32,11 @@ export const doGetDataForBankruptedLineChart = createAsyncThunk<BankruptedRespon
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -45,7 +50,7 @@ const bankruptedLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForBankruptedLineChart.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      state.results = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.company_status_from_dttm__year,
           sales: item.Count,

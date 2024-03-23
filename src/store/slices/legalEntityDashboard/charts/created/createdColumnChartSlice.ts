@@ -5,6 +5,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: ColumnChartMonthState = {
   results: [],
@@ -31,7 +32,11 @@ export const doGetDataForColumnChart = createAsyncThunk<ResponseColumnChart, Req
 
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -45,13 +50,13 @@ const createdLColumnChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForColumnChart.fulfilled, (state, action) => {
-      const data = action.payload.results.map((item) => {
+      const data = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.company_date_registration__month,
           sales: item.Count,
         };
       });
-      state.results = sortDataByMonth(data);
+      state.results = data ? sortDataByMonth(data) : [];
       state.loading = false;
     });
   },

@@ -5,6 +5,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -27,7 +28,11 @@ export const doGetDataForLineChart = createAsyncThunk<ResponseLineChart, Request
       const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -41,7 +46,7 @@ const createdLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
-      state.results = action.payload.results.map((item) => {
+      state.results = action.payload?.results?.map((item) => {
         return {
           type: item.group_fields.company_date_registration__year,
           sales: item.Count,

@@ -40,7 +40,7 @@ const createdYearSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetCountCreatedYear.fulfilled, (state, action) => {
-      state.count = action.payload.count;
+      state.count = action.payload?.count;
       state.loading = false;
     });
   },

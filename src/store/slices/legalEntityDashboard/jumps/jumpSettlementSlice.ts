@@ -2,6 +2,7 @@ import { IJumpSettlementResponse, IJumpSettlementState } from '@app/store/types/
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: IJumpSettlementState = {
   jumps: {
@@ -21,7 +22,11 @@ export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('do
     );
     return response.data;
   } catch (error) {
-    console.log(error);
+    if (axios.isCancel(error)) {
+      console.log('request canceled');
+    } else {
+      console.log(error);
+    }
   }
 });
 
@@ -34,10 +39,10 @@ const jumpSettlementSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(doGetJumpSettlement.fulfilled, (state, action) => {
-      state.jumps.count = action.payload.count;
-      state.jumps.next = action.payload.next;
-      state.jumps.previous = action.payload.previous;
-      state.jumps.results = action.payload.results.sort((a, b) => {
+      state.jumps.count = action.payload?.count;
+      state.jumps.next = action.payload?.next;
+      state.jumps.previous = action.payload?.previous;
+      state.jumps.results = action.payload?.results?.sort((a, b) => {
         if (b.reg_year !== a.reg_year) {
           return b.reg_year - a.reg_year;
         }

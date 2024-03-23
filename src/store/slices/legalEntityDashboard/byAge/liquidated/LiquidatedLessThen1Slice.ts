@@ -4,6 +4,7 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
+import axios from 'axios';
 
 const initialState: CurrentByAgeState = {
   age: 0,
@@ -24,7 +25,11 @@ export const doGetLiquidatedByAgeLessThen1 = createAsyncThunk<ResponseCurrentByA
       const response = await httpDashboard.get(url);
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log('request canceled');
+      } else {
+        console.log(error);
+      }
     }
   },
 );
@@ -38,7 +43,7 @@ const liquidatedByAgeLessThen1Slice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetLiquidatedByAgeLessThen1.fulfilled, (state, action) => {
-      state.age = action.payload.count;
+      state.age = action.payload?.count;
       state.loading = false;
     });
   },

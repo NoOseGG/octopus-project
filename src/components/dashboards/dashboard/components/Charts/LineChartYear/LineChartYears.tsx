@@ -60,7 +60,7 @@ const LineChartYears: React.FC<LineChartYearsProps> = ({ lineChart }) => {
     getData(lineChart);
   }, [getData, lineChart]);
 
-  const data = results.map((item) => {
+  const data = results?.map((item) => {
     return {
       year: item.type,
       value: item.sales,

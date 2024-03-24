@@ -57,3 +57,15 @@ export const CountInformationContainer = styled.div`
   border: 1px solid #b7b6b6;
   border-radius: 5px;
 `;
+
+//---------------------------------------------
+
+export const Container = styled.div`
+  width: 100%;
+`;
+
+export const ContainerLineText = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;

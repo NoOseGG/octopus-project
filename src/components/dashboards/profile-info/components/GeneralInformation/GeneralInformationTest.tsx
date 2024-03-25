@@ -1,9 +1,6 @@
 import React from 'react';
 import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
-import Contacts from '@app/components/dashboards/profile-info/components/GeneralInformation/Contacts/Contacts';
-import TypeActivities from '@app/components/dashboards/profile-info/components/GeneralInformation/TypeActivities/TypeActivities';
 import Indicators from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/Indicators';
-import Licenses from '@app/components/dashboards/profile-info/components/GeneralInformation/Licenses/Licenses';
 import LegalForms from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalForms/LegalForms';
 import StatusesTypes from '@app/components/dashboards/profile-info/components/GeneralInformation/StatusesType/StatusesType';
 import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
@@ -16,6 +13,8 @@ import OtherRelevantInformation from '@app/components/dashboards/profile-info/co
 import StatesBodiesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodiesTest/StatesBodiesTest';
 import BasicDetailsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetailsTest/BasicDetailsTest';
 import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
+import ContactsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/ContactsTest/ContactsTest';
+import LicensesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/LicensesTest/LicensesTest';
 
 const GeneralInformationTest: React.FC = () => {
   return (
@@ -24,11 +23,10 @@ const GeneralInformationTest: React.FC = () => {
       <Description />
       <Indicators />
       <MainInfoTest />
-      <Contacts />
+      <ContactsTest />
       <BasicDetailsTest />
       <TaxOfficesArrears />
-      <TypeActivities />
-      <Licenses />
+      <LicensesTest />
       <LegalForms />
       <Gias />
       <StatusesTypes />

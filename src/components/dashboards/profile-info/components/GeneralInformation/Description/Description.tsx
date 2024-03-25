@@ -36,7 +36,7 @@ const Description: React.FC = () => {
               lineHeight: '1.2em',
             }}
           >
-            {displayText}
+            {displayText?.replaceAll('&quot;', '"')}
           </Text>
           {description[0].description.length > 300 && (
             <span onClick={toggleCollapse}>

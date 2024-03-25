@@ -4,6 +4,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { formatDate } from '@app/utils/utils';
 import { Address } from '@app/store/types/Subject';
 import LineText from '@app/components/dashboards/profile-info/components/components/Lines/LineText';
+import LineTextCollapsed from '@app/components/dashboards/profile-info/components/components/Lines/LineTextCollapsed';
 
 const MainInfoTest: React.FC = () => {
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
@@ -38,6 +39,27 @@ const MainInfoTest: React.FC = () => {
       <S.ContainerLineText>
         <LineText name={'УНП'} content={unn} isCopyable={true} />
         <LineText name={'Сокращенное наименование'} content={names[0]?.short_name} isCopyable={true} />
+        <LineTextCollapsed
+          name={'Полное наименование'}
+          contents={
+            names
+              ?.map((item) => {
+                const date = `(с ${formatDate(item.from_dttm)})`;
+                return `${item.full_name} ${date}`;
+              })
+              .filter((full_name) => full_name !== null) as string[]
+          }
+          isCopyable={true}
+          isColor={true}
+        />
+        <LineTextCollapsed
+          name={'Юридический адрес'}
+          contents={newFullAddresses}
+          isCopyable={true}
+          isMap={true}
+          isColor={true}
+        />
+        <LineTextCollapsed name={'Вид деятельности'} contents={newTypeActivities} />
         <LineText name={'Дата регистрации в ЕГР'} content={dateRegEGR} isDate={true} />
         <LineText name={'Продолжительность деятельности'} content={getYearString(age)} />
         <LineText
@@ -51,45 +73,6 @@ const MainInfoTest: React.FC = () => {
         <LineText name={'Регистрирующий орган'} content={states_bodies[0]?.full_name} />
         <LineText name={'Налоговый учет'} content={taxOffices[0]?.name} />
       </S.ContainerLineText>
-
-      {/*<TableLine name={'УНП'} field={unn} isCopyable={true} />*/}
-      {/*<TableLine name={'Сокращенное наименование'} field={names[0]?.short_name} isCopyable={true} />*/}
-      {/*{names?.length > 1 && (*/}
-      {/*  <TableLineCollapsed*/}
-      {/*    name={'Полное наименование'}*/}
-      {/*    fields={*/}
-      {/*      names*/}
-      {/*        ?.map((item) => {*/}
-      {/*          const date = `(с ${formatDate(item.from_dttm)})`;*/}
-      {/*          return `${item.full_name} ${date}`;*/}
-      {/*        })*/}
-      {/*        .filter((full_name) => full_name !== null) as string[]*/}
-      {/*    }*/}
-      {/*    isCopyable={true}*/}
-      {/*    postfix={'предыдущие наименования'}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*<TableLineCollapsed*/}
-      {/*  name={'Юридический адрес'}*/}
-      {/*  fields={newFullAddresses}*/}
-      {/*  isCopyable={true}*/}
-      {/*  postfix={'предыдущие адреса'}*/}
-      {/*/>*/}
-      {/*<TableLineCollapsed*/}
-      {/*  name={'Вид деятельности'}*/}
-      {/*  fields={newTypeActivities}*/}
-      {/*  postfix={'предыдущие виды деятельности'}*/}
-      {/*/>*/}
-      {/*<TableLine name={'Дата регистрации в ЕГР'} field={dateRegEGR} isDate={true} />*/}
-      {/*<TableLine name={'Продолжительность деятельности'} field={age} />*/}
-      {/*<TableLine*/}
-      {/*  name={'Статус'}*/}
-      {/*  field={*/}
-      {/*status[0]?.name === 'Действующий' ? status[0]?.name : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`*/}
-      {/*  }*/}
-      {/*/>*/}
-      {/*<TableLine name={'Регистрирующий орган'} field={states_bodies[0]?.full_name} />*/}
-      {/*<TableLine name={'Налоговый учет'} field={taxOffices[0]?.name} />*/}
     </S.Container>
   );
 };

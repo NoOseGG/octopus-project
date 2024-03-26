@@ -46,7 +46,7 @@ const LicensesTest: React.FC = () => {
     <>
       {Boolean(licenses.length) && (
         <S.Container>
-          <S.Title>Лицензии</S.Title>
+          <S.Title>Лицензии и иные государственные решения</S.Title>
           <Table
             columns={columns}
             dataSource={licenses}

@@ -17,6 +17,9 @@ const MainInfoTest: React.FC = () => {
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
   const states_bodies = useAppSelector((state) => state.searchProfile.profile.states_bodies);
 
+  const taxOffice = `${taxOffices[0]?.name} (c ${formatDate(taxOffices[0]?.from_dttm)})`;
+  const stateBody = `${states_bodies[0]?.full_name} (c ${formatDate(states_bodies[0]?.from_dttm)})`;
+
   const age = useMemo(() => {
     if (age_full !== null && Number(age_full) <= 1) return 'Меньше года';
     else return age_full;
@@ -70,8 +73,8 @@ const MainInfoTest: React.FC = () => {
               : `${status[0]?.name} (${formatDate(status[0]?.from_dttm)})`
           }
         />
-        <LineText name={'Регистрирующий орган'} content={states_bodies[0]?.full_name} />
-        <LineText name={'Налоговый учет'} content={taxOffices[0]?.name} />
+        <LineText name={'Регистрирующий орган'} content={stateBody} />
+        <LineText name={'Налоговый учет'} content={taxOffice} />
       </S.ContainerLineText>
     </S.Container>
   );

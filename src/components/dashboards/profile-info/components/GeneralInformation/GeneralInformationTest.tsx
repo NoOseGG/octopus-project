@@ -4,7 +4,6 @@ import Indicators from '@app/components/dashboards/profile-info/components/Gener
 import LegalForms from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalForms/LegalForms';
 import StatusesTypes from '@app/components/dashboards/profile-info/components/GeneralInformation/StatusesType/StatusesType';
 import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
-import SimilarSubjects from '@app/components/dashboards/profile-info/components/GeneralInformation/SimilarSubjects/SimilarSubjects';
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
@@ -14,6 +13,7 @@ import BasicDetailsTest from '@app/components/dashboards/profile-info/components
 import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
 import ContactsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/ContactsTest/ContactsTest';
 import LicensesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/LicensesTest/LicensesTest';
+import CompetitorsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsTest';
 
 const GeneralInformationTest: React.FC = () => {
   return (
@@ -32,8 +32,9 @@ const GeneralInformationTest: React.FC = () => {
       <StatesBodiesTest />
       <LegalEntityType />
       <EconomicHighRiskRegistry />
+      <CompetitorsTest />
       {/*<OtherRelevantInformation />*/}
-      <SimilarSubjects />
+      {/*<SimilarSubjects />*/}
     </div>
   );
 };

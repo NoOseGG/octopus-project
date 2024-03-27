@@ -40,6 +40,7 @@ import jumpsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/jumps/';
 import jumpsReducer from '@app/store/slices/legalEntityDashboard/jumps';
 import levelCompetitionReducer from '@app/store/slices/legalEntityDashboard/levelCompetition/levelCompetitonSlice';
 import feedbackReducer from '@app/store/slices/feedback/feedbackSlice';
+import competitorsReducer from './profileInfo/competitors/index';
 
 import designReducer from '@app/store/slices/search/designSlice';
 import mapBelarusReducer from '@app/store/slices/landing/mapBelarusSlice';
@@ -90,4 +91,5 @@ export default {
   jump: jumpsReducer,
   jumpSoleTrade: jumpsSoleTradeReducer,
   levelCompetition: levelCompetitionReducer,
+  competitors: competitorsReducer,
 };

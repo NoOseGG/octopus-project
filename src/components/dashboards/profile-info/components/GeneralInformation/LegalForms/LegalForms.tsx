@@ -14,7 +14,7 @@ const LegalForms: React.FC = () => {
           <thead>
             <tr>
               <td>
-                <S.Title>Данные о организационно правовой форме</S.Title>
+                <S.Title>Данные об организационно-правовой форме</S.Title>
               </td>
             </tr>
           </thead>

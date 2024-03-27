@@ -16,9 +16,16 @@ const MainInfoTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
   const states_bodies = useAppSelector((state) => state.searchProfile.profile.states_bodies);
+  const dateRegNMS = useAppSelector((state) => state.searchProfile.profile.date_reg_mns);
+  const decision_create_number = useAppSelector((state) => state.searchProfile.profile.decision_create_number);
+  const decision_liquidation_number = useAppSelector(
+    (state) => state.searchProfile.profile.decision_liquidation_number,
+  );
 
   const taxOffice = `${taxOffices[0]?.name} (c ${formatDate(taxOffices[0]?.from_dttm)})`;
-  const stateBody = `${states_bodies[0]?.full_name} (c ${formatDate(states_bodies[0]?.from_dttm)})`;
+  const stateBody = `${states_bodies[0]?.full_name} (c ${formatDate(
+    states_bodies[0]?.from_dttm,
+  )}) (решение №${decision_create_number})`;
 
   const age = useMemo(() => {
     if (age_full !== null && Number(age_full) <= 1) return 'Меньше года';
@@ -33,7 +40,7 @@ const MainInfoTest: React.FC = () => {
     .filter((full_name) => full_name !== null) as string[];
 
   const newTypeActivities = typeActivities?.map((item) => {
-    return `${item?.name} (Код: ${item?.code})`;
+    return `${item?.name} (${item?.code})`;
   });
 
   return (

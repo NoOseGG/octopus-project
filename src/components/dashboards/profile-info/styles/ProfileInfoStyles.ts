@@ -43,6 +43,7 @@ export const ButtonShowStyle = styled(Text)`
 `;
 
 export const Title = styled(Text)`
+  font-size: 1.1rem;
   font-weight: 700;
 `;
 

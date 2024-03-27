@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
@@ -18,6 +18,10 @@ export enum ScrollType {
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(doCheckAuth());
+  }, [dispatch]);
 
   const scrollToMainFunction = (scrollType: ScrollType) => {
     switch (scrollType) {

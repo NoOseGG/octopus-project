@@ -3917,24 +3917,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.28.9":
-  version: 5.28.9
-  resolution: "@tanstack/query-core@npm:5.28.9"
-  checksum: f2ee703fad514cf8d87636e79315f969a087f2300be8130c0ab6ee6549154fdda1bec267b1091abb77671e9bb9ef027a6d84cc65913d5fd59386247983db19ac
-  languageName: node
-  linkType: hard
-
-"@tanstack/react-query@npm:^5.28.9":
-  version: 5.28.9
-  resolution: "@tanstack/react-query@npm:5.28.9"
-  dependencies:
-    "@tanstack/query-core": 5.28.9
-  peerDependencies:
-    react: ^18.0.0
-  checksum: 2bcaec4c7d1c46a15996bf3295cc65cd56510e2dc31820e714a4f03b92253b57a5280fbf4ac1977b830fa87d681b6197f5d0dd80c52f7d5943ed2693c87e4d13
-  languageName: node
-  linkType: hard
-
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -13243,7 +13225,6 @@ __metadata:
     "@ant-design/pro-table": ^3.13.9
     "@craco/craco": ^6.1.2
     "@reduxjs/toolkit": ^1.7.1
-    "@tanstack/react-query": ^5.28.9
     "@types/country-list": ^2.1.0
     "@types/google-map-react": ^2.1.3
     "@types/leaflet": ^1.7.9

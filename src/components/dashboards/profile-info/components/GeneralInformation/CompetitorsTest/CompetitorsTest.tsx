@@ -14,8 +14,12 @@ const CompetitorsTest: React.FC = () => {
 
   return (
     <Container value={false}>
-      <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-      <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+      {addresses[0]?.settlement && typeActivities[0]?.name && (
+        <>
+          <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+          <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+        </>
+      )}
     </Container>
   );
 };

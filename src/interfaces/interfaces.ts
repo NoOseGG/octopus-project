@@ -29,3 +29,9 @@ export type TwoFactorAuthOption = 'is_email_confirmed';
 export type CurrencyType = 'USD' | 'ETH' | 'BTC';
 
 export type ActivityStatusType = 'sold' | 'booked' | 'added';
+
+// Competitors profile info
+
+export type CountCompetitorsResponse = {
+  count: number;
+};

@@ -1,28 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { doCountAllCompetitors } from '@app/store/slices/profileInfo/competitors/countAllCompetitors';
+import { useQuery } from '@tanstack/react-query';
+import competitorsService from '@app/services/competitors.service';
 
 type MyComponentsProps = {
-  settlement: string | null;
-  typeActivity: string | null;
+  settlement: string;
+  typeActivity: string;
 };
 
 const CountAllCompetitors: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
-  const dispatch = useAppDispatch();
-  const { count, isLoading } = useAppSelector((state) => state.competitors.countAllCompetitors);
-  const mySettlement = settlement ? settlement : '';
-  const myTypeActivity = typeActivity ? typeActivity : '';
-
-  useEffect(() => {
-    if (Boolean(mySettlement.length) && Boolean(myTypeActivity.length))
-      dispatch(doCountAllCompetitors({ settlement: mySettlement, typeActivity: myTypeActivity }));
-  }, [dispatch, mySettlement, myTypeActivity]);
+  const { data } = useQuery({
+    queryKey: ['countAllCompetitors'],
+    queryFn: () => competitorsService.getCountAll(settlement, typeActivity),
+    select: ({ data }) => data,
+    enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
+  });
 
   return (
     <Block>
       <Title>Количество созданных</Title>
-      <Content>{count}</Content>
+      <Content>{data?.count}</Content>
     </Block>
   );
 };

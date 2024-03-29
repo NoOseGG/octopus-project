@@ -18,7 +18,7 @@ const CountYearCompetitors: React.FC<MyComponentsProps> = ({ settlement, typeAct
 
   return (
     <Block>
-      <Title>Количество созданных за год</Title>
+      <Title>Год</Title>
       <Content>{data?.count}</Content>
     </Block>
   );

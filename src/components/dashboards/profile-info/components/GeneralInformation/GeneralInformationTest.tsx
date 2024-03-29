@@ -8,7 +8,6 @@ import LegalEntityType from '@app/components/dashboards/profile-info/components/
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
 import Gias from '@app/components/dashboards/profile-info/components/GeneralInformation/Gias/Gias';
-import StatesBodiesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/StatesBodiesTest/StatesBodiesTest';
 import BasicDetailsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/BasicDetailsTest/BasicDetailsTest';
 import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
 import ContactsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/ContactsTest/ContactsTest';
@@ -29,7 +28,7 @@ const GeneralInformationTest: React.FC = () => {
       <LegalForms />
       <Gias />
       <StatusesTypes />
-      <StatesBodiesTest />
+      {/*<StatesBodiesTest />*/}
       <LegalEntityType />
       <EconomicHighRiskRegistry />
       <CompetitorsTest />

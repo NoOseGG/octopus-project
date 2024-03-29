@@ -23,11 +23,7 @@ const MainInfoTest: React.FC = () => {
   );
 
   const taxOffice = getTaxOfficeString(taxOffices[0]?.name, taxOffices[0]?.from_dttm);
-  const stateBody = getStateBodiesString(
-    states_bodies[0]?.full_name,
-    states_bodies[0]?.from_dttm,
-    decision_create_number,
-  );
+  const stateBody = getStateBodiesString(states_bodies[0]?.full_name, decision_create_number);
 
   const newFullAddresses = addresses
     ?.map((item) => {
@@ -120,14 +116,9 @@ const getTaxOfficeString = (office: string | null, date: string | null): string 
   return result;
 };
 
-const getStateBodiesString = (
-  stateBody: string | null,
-  date: string | null,
-  decisionCreateNumber: string | null,
-): string => {
+const getStateBodiesString = (stateBody: string | null, decisionCreateNumber: string | null): string => {
   let result = '';
   if (Boolean(stateBody)) result += stateBody;
-  if (Boolean(date)) result += ` (с ${formatDate(date)})`;
-  if (Boolean(decisionCreateNumber)) result += ` (решение №${decisionCreateNumber})`;
+  if (Boolean(decisionCreateNumber)) result += ` (решение № ${decisionCreateNumber})`;
   return result;
 };

@@ -18,7 +18,7 @@ const CountAllCompetitors: React.FC<MyComponentsProps> = ({ settlement, typeActi
 
   return (
     <Block>
-      <Title>Количество действующих</Title>
+      <Title>Действующие</Title>
       <Content>{data?.count}</Content>
     </Block>
   );

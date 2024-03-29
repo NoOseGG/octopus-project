@@ -4,6 +4,7 @@ import MeterGaugePlot from '@app/components/dashboards/profile-info/components/G
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import MetricAddressEconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MetricAddressEconomicHighRiskRegistry/MetricAddressEconomicHighRiskRegistry';
+import LegendMap from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/LegendMap/LegendMap';
 
 const Indicators: React.FC = () => {
   const metric_address_2 = useAppSelector((state) => state.searchProfile.profile.metric_address_2);
@@ -83,6 +84,7 @@ const Indicators: React.FC = () => {
           />
         )}
       </TopLine>
+      <LegendMap />
     </Container>
   );
 };

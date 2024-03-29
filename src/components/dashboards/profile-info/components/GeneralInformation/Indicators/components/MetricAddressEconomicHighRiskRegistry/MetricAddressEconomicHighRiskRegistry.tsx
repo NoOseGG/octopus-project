@@ -21,22 +21,22 @@ const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ ris
     endAngle: 2 * Math.PI,
     indicator: false,
     statistic: {
-      title: {
-        offsetY: -20,
-        style: {
-          fontSize: '12px',
-          color: '#4B535E',
-        },
-        formatter: () => ``,
-      },
-      content: {
-        style: {
-          fontSize: '12px',
-          lineHeight: '10px',
-          color: '#4B535E',
-        },
-        formatter: () => getNameByRisk(risk),
-      },
+      // title: {
+      //   offsetY: -20,
+      //   style: {
+      //     fontSize: '12px',
+      //     color: '#4B535E',
+      //   },
+      //   formatter: () => ``,
+      // },
+      // content: {
+      //   style: {
+      //     fontSize: '12px',
+      //     lineHeight: '10px',
+      //     color: '#4B535E',
+      //   },
+      //   formatter: () => getNameByRisk(risk),
+      // },
     },
   };
   return (

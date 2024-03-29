@@ -21,21 +21,21 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isCha
     endAngle: 2 * Math.PI,
     indicator: false,
     statistic: {
-      title: {
-        offsetY: -20,
+      // title: {
+      //   offsetY: -20,
+      //   style: {
+      //     fontSize: '12px',
+      //     color: '#4B535E',
+      //   },
+      //   formatter: () => `${content}`,
+      // },
+      content: {
         style: {
-          fontSize: '12px',
+          fontSize: '18px',
+          lineHeight: '15px',
           color: '#4B535E',
         },
         formatter: () => `${content}`,
-      },
-      content: {
-        style: {
-          fontSize: '12px',
-          lineHeight: '10px',
-          color: '#4B535E',
-        },
-        formatter: () => getRisk(risk, isChangeCase),
       },
     },
   };

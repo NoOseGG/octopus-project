@@ -12,7 +12,7 @@ type MyComponentsProps = {
 
 const CompetitorsByAge: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['byAgeCompetitors'],
+    queryKey: ['byAgeCompetitors', settlement, typeActivity],
     queryFn: () => competitorsService.getDataByAge(settlement, typeActivity),
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
@@ -75,5 +75,5 @@ const CompetitorsByAge: React.FC<MyComponentsProps> = ({ settlement, typeActivit
 export default CompetitorsByAge;
 
 const CompetitorsByAgeContainer = styled.div`
-  width: 100%;
+  width: 50%;
 `;

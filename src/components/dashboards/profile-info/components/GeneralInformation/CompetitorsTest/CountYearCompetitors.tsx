@@ -10,7 +10,7 @@ type MyComponentsProps = {
 
 const CountYearCompetitors: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['countYearCompetitors'],
+    queryKey: ['countYearCompetitors', settlement, typeActivity],
     queryFn: () => competitorsService.getCountYear(settlement, typeActivity),
     select: ({ data }) => data,
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),

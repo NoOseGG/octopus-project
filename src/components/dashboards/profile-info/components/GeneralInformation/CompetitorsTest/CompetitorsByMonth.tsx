@@ -14,7 +14,7 @@ type MyComponentsProps = {
 
 const CompetitorsByMonth: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['byMonthCompetitors'],
+    queryKey: ['byMonthCompetitors', settlement, typeActivity],
     queryFn: () => competitorsService.getDataByMonth(settlement, typeActivity),
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
@@ -89,5 +89,5 @@ const sortDataByMonth = (data: ColumnChart[]): ColumnChart[] => {
 };
 
 const CompetitorsByMonthContainer = styled.div`
-  width: 100%;
+  width: 50%;
 `;

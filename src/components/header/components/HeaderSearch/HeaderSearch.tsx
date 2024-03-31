@@ -26,7 +26,6 @@ export const HeaderSearch: React.FC = () => {
   const [components] = useState<Component[]>(configComponents);
 
   const [isModalVisible, setModalVisible] = useState(false);
-  // const [isOverlayVisible, setOverlayVisible] = useState(false);
 
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {

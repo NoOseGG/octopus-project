@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { GridProps } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors';
 import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth';
+import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed';
 
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
@@ -28,7 +29,10 @@ const CompetitorsTest: React.FC = () => {
             <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountOperatingCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
           </CountContainer>
-          <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+          <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+          <ChartContainer>
+            <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+          </ChartContainer>
         </>
       )}
     </Container>
@@ -42,7 +46,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const CountContainer = styled.div<GridProps>`
+const ChartContainer = styled.div`
+  display: flex;
+`;
+
+const CountContainer = styled.div<GridProps>`
   margin-top: 10px;
   gap: 15px;
   display: flex;

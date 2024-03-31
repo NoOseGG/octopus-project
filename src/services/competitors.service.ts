@@ -1,5 +1,9 @@
 import { DASH } from '@app/constants/enums/Dashboards';
-import { CountCompetitorsResponse, ResponseColumnChart } from '@app/interfaces/interfaces';
+import {
+  CountCompetitorsResponse,
+  ResponseColumnChart,
+  ResponseDetailedTableCompetitors,
+} from '@app/interfaces/interfaces';
 import { httpDashboard } from '@app/api/http.api';
 import { getCurrentDate, getDateLastQuarter, getDateLastYear, getPastMonthFromDate } from '@app/utils/utils';
 
@@ -58,6 +62,17 @@ class CompetitorsService {
         DASH.TYPE_ACTIVITY(typeActivity) +
         DASH.DATE_AFTER(month) +
         DASH.DATE_BEFORE(currentDate),
+    );
+  }
+
+  async getDataForDetailed(settlement: string, typeActivity: string) {
+    return httpDashboard.get<ResponseDetailedTableCompetitors>(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+        DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.ORDERING('-company_date_registration') +
+        DASH.IS_NULL_FALSE('company_date_registration'),
     );
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-import 'styles.css';
 import { ColumnsType } from 'antd/es/table';
 import { SUBJECT_INFO_DASHBOARD_PATH } from '@app/components/router/AppRouter';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +9,7 @@ type DetailedTableProps<T> = {
   columns: ColumnsType<T>;
 };
 
-const DetailedTable = <T extends {}>({ data, columns }: DetailedTableProps<T>) => {
+const DetailedTable = <T extends []>({ data, columns }: DetailedTableProps<T>) => {
   const navigate = useNavigate();
 
   const handleClickRow = (value: string) => {

@@ -57,6 +57,27 @@ export interface ResponseColumnChart {
   results: ColumnChartObject[];
 }
 
+// Line Chart
+
+export interface LineChartObject {
+  group_fields: {
+    company_date_registration__year: number;
+  };
+  Count: number;
+}
+
+export interface LineChart {
+  type: number;
+  sales: number;
+}
+
+export interface ResponseLineChart {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: LineChartObject[];
+}
+
 // Detailed competitors
 
 export interface ResponseDetailedTableCompetitors {

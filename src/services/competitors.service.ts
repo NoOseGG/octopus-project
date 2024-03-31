@@ -3,6 +3,7 @@ import {
   CountCompetitorsResponse,
   ResponseColumnChart,
   ResponseDetailedTableCompetitors,
+  ResponseLineChart,
 } from '@app/interfaces/interfaces';
 import { httpDashboard } from '@app/api/http.api';
 import { getCurrentDate, getDateLastQuarter, getDateLastYear, getPastMonthFromDate } from '@app/utils/utils';
@@ -52,7 +53,7 @@ class CompetitorsService {
 
   async getDataByMonth(settlement: string, typeActivity: string) {
     const currentDate = getCurrentDate();
-    const month = getPastMonthFromDate(5, new Date());
+    const month = getPastMonthFromDate(6, new Date());
 
     return httpDashboard.get<ResponseColumnChart>(
       DASH.BASE +
@@ -65,12 +66,27 @@ class CompetitorsService {
     );
   }
 
+  async getDataByAge(settlement: string, typeActivity: string) {
+    const currentDate = getCurrentDate();
+
+    return httpDashboard.get<ResponseLineChart>(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('company_date_registration__year') +
+        DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+        DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.DATE_AFTER('2000-01-01') +
+        DASH.DATE_BEFORE(currentDate),
+    );
+  }
+
   async getDataForDetailed(settlement: string, typeActivity: string) {
     return httpDashboard.get<ResponseDetailedTableCompetitors>(
       DASH.BASE +
         DASH.AGR_COUNT +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
         DASH.ORDERING('-company_date_registration') +
         DASH.IS_NULL_FALSE('company_date_registration'),
     );

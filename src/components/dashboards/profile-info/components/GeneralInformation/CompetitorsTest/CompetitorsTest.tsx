@@ -9,6 +9,7 @@ import { GridProps } from '@app/components/dashboards/dashboard/styles/CountComp
 import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors';
 import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth';
 import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed';
+import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge';
 
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
@@ -31,6 +32,7 @@ const CompetitorsTest: React.FC = () => {
           </CountContainer>
           <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
           <ChartContainer>
+            <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
           </ChartContainer>
         </>
@@ -47,6 +49,7 @@ const Container = styled.div`
 `;
 
 const ChartContainer = styled.div`
+  width: 100%;
   display: flex;
 `;
 

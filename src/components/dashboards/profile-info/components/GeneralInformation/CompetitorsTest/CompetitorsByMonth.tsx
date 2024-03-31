@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import competitorsService from '@app/services/competitors.service';
 import { ColumnConfig } from '@ant-design/charts';
 import { Column } from '@ant-design/plots';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnChart, ColumnChartObject } from '@app/interfaces/interfaces';
+import styled from 'styled-components';
 
 type MyComponentsProps = {
   settlement: string;
@@ -18,10 +19,6 @@ const CompetitorsByMonth: React.FC<MyComponentsProps> = ({ settlement, typeActiv
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
   });
-
-  useEffect(() => {
-    console.log(JSON.stringify(data));
-  }, [data]);
 
   const sortingData = (data: ColumnChartObject[]) => {
     const sorted = data.map((item) => {
@@ -69,7 +66,11 @@ const CompetitorsByMonth: React.FC<MyComponentsProps> = ({ settlement, typeActiv
     },
   };
 
-  return <Column {...config} />;
+  return Boolean(data?.length) ? (
+    <CompetitorsByMonthContainer>
+      <Column {...config} />{' '}
+    </CompetitorsByMonthContainer>
+  ) : null;
 };
 
 export default CompetitorsByMonth;
@@ -86,3 +87,7 @@ const sortDataByMonth = (data: ColumnChart[]): ColumnChart[] => {
 
   return data;
 };
+
+const CompetitorsByMonthContainer = styled.div`
+  width: 100%;
+`;

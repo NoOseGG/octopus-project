@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors';
+import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors/CountYearCompetitors';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors';
-import CountQuarterCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountQuarterCompetitors';
+import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors/CountAllCompetitors';
+import CountQuarterCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountQuarterCompetitors/CountQuarterCompetitors';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import styled from 'styled-components';
 import { GridProps } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors';
-import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth';
-import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed';
-import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge';
+import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors/CountOperatingCompetitors';
+import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth/CompetitorsByMonth';
+import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed/CompetitorsDetailed';
+import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge/CompetitorsByAge';
 
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);

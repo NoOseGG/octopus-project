@@ -4,15 +4,11 @@ import competitorsService from '@app/services/competitors.service';
 import DetailedTable from '@app/components/tables/DetailedTable/DetailedTable';
 import styled from 'styled-components';
 import { DetailsTableType } from '@app/components/tables/DetailedTable/utils';
+import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
 
-type MyComponentsProps = {
-  settlement: string;
-  typeActivity: string;
-};
-
-const CompetitorsDetailed: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
+const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['detailsCompetitors', settlement, typeActivity],
+    queryKey: [competitorsService.COMPETITORS_KEY.DETAILS, settlement, typeActivity],
     queryFn: () => competitorsService.getDataForDetailed(settlement, typeActivity),
     select: ({ data }) => data,
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),

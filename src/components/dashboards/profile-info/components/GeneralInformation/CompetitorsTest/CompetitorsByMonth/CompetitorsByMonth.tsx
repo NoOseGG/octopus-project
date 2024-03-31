@@ -6,15 +6,11 @@ import { Column } from '@ant-design/plots';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnChart, ColumnChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
+import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
 
-type MyComponentsProps = {
-  settlement: string;
-  typeActivity: string;
-};
-
-const CompetitorsByMonth: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
+const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['byMonthCompetitors', settlement, typeActivity],
+    queryKey: [competitorsService.COMPETITORS_KEY.BY_MONTH, settlement, typeActivity],
     queryFn: () => competitorsService.getDataByMonth(settlement, typeActivity),
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),

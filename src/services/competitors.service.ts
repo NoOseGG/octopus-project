@@ -9,6 +9,16 @@ import { httpDashboard } from '@app/api/http.api';
 import { getCurrentDate, getDateLastQuarter, getDateLastYear, getPastMonthFromDate } from '@app/utils/utils';
 
 class CompetitorsService {
+  COMPETITORS_KEY = {
+    COUNT_ALL: 'countAllCompetitors',
+    COUNT_YEAR: 'countYearCompetitors',
+    COUNT_QUARTER: 'countQuarterCompetitors',
+    COUNT_OPERATING: 'countOperatingCompetitors',
+    BY_MONTH: 'byMonthCompetitors',
+    BY_AGE: 'byAgeCompetitors',
+    DETAILS: 'detailsCompetitors',
+  };
+
   async getCountAll(settlement: string, typeActivity: string) {
     return httpDashboard.get<CountCompetitorsResponse>(
       DASH.BASE + DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) + DASH.TYPE_ACTIVITY(typeActivity) + DASH.COUNT,

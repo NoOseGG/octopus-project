@@ -2,23 +2,19 @@ import React from 'react';
 import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { useQuery } from '@tanstack/react-query';
 import competitorsService from '@app/services/competitors.service';
+import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
 
-type MyComponentsProps = {
-  settlement: string;
-  typeActivity: string;
-};
-
-const CountYearCompetitors: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
+const CountYearCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['countQuarterCompetitors', settlement, typeActivity],
-    queryFn: () => competitorsService.getCountQuarter(settlement, typeActivity),
+    queryKey: [competitorsService.COMPETITORS_KEY.COUNT_YEAR, settlement, typeActivity],
+    queryFn: () => competitorsService.getCountYear(settlement, typeActivity),
     select: ({ data }) => data,
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
   });
 
   return (
     <Block>
-      <Title>Квартал</Title>
+      <Title>Год</Title>
       <Content>{data?.count}</Content>
     </Block>
   );

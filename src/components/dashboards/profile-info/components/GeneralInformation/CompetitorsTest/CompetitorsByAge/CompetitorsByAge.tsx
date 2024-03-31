@@ -4,15 +4,11 @@ import competitorsService from '@app/services/competitors.service';
 import { Line, LineConfig } from '@ant-design/charts';
 import { LineChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
+import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
 
-type MyComponentsProps = {
-  settlement: string;
-  typeActivity: string;
-};
-
-const CompetitorsByAge: React.FC<MyComponentsProps> = ({ settlement, typeActivity }) => {
+const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
-    queryKey: ['byAgeCompetitors', settlement, typeActivity],
+    queryKey: [competitorsService.COMPETITORS_KEY.BY_AGE, settlement, typeActivity],
     queryFn: () => competitorsService.getDataByAge(settlement, typeActivity),
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),

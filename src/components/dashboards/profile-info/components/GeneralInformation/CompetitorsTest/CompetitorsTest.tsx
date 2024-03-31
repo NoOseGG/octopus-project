@@ -7,6 +7,7 @@ import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoSt
 import styled from 'styled-components';
 import { GridProps } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors';
+import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth';
 
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
@@ -19,16 +20,17 @@ const CompetitorsTest: React.FC = () => {
   return (
     <Container>
       <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
-      <CountContainer value={false}>
-        {addresses[0]?.settlement && typeActivities[0]?.name && (
-          <>
+      {addresses[0]?.settlement && typeActivities[0]?.name && (
+        <>
+          <CountContainer value={false}>
             <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountOperatingCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-          </>
-        )}
-      </CountContainer>
+          </CountContainer>
+          <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+        </>
+      )}
     </Container>
   );
 };

@@ -35,3 +35,24 @@ export type ActivityStatusType = 'sold' | 'booked' | 'added';
 export type CountCompetitorsResponse = {
   count: number;
 };
+
+// Column chart
+
+export interface ColumnChartObject {
+  group_fields: {
+    company_date_registration__month: number;
+  };
+  Count: number;
+}
+
+export interface ColumnChart {
+  type: number;
+  sales: number;
+}
+
+export interface ResponseColumnChart {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ColumnChartObject[];
+}

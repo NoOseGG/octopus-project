@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Divider } from 'antd';
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -18,13 +19,13 @@ export const StyledCell = styled.td`
 
 export const LeftCell = styled(StyledCell)`
   width: 30%;
-  color: #666;
+  color: #000;
   padding-right: 5px;
 `;
 
 export const RightCell = styled(StyledCell)`
   width: 70%;
-  color: #222;
+  color: #333;
 `;
 
 export const Text = styled.div`
@@ -69,4 +70,9 @@ export const ContainerLineText = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+export const MyDivider = styled(Divider)`
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;

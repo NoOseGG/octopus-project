@@ -9,18 +9,21 @@ const GiasComplaintReceive: React.FC = () => {
   return (
     <>
       {Boolean(gias_complaint_receive.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Реестр жалоб которые получал субъект</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLineGiasComplaintReceive gias_complaint_receive={gias_complaint_receive} />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Реестр жалоб которые получал субъект</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLineGiasComplaintReceive gias_complaint_receive={gias_complaint_receive} />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

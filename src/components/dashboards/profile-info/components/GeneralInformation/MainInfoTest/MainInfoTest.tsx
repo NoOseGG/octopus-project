@@ -75,6 +75,7 @@ const MainInfoTest: React.FC = () => {
         />
         <LineText name={'Регистрирующий орган'} content={stateBody} />
         <LineText name={'Налоговый учет'} content={taxOffice} />
+        <S.MyDivider />
       </S.ContainerLineText>
     </S.Container>
   );

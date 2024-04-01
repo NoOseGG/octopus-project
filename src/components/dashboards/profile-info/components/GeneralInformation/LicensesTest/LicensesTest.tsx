@@ -55,6 +55,7 @@ const LicensesTest: React.FC = () => {
             pagination={false}
             scroll={{ y: 360 }}
           />
+          <S.MyDivider />
         </S.Container>
       )}
     </>

@@ -43,6 +43,7 @@ const Description: React.FC = () => {
               <ButtonShow>{isCollapsed ? 'Показать полностью' : 'Свернуть'}</ButtonShow>
             </span>
           )}
+          <S.MyDivider />
         </Container>
       )}
     </>

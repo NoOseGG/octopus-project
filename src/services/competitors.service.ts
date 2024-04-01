@@ -21,7 +21,11 @@ class CompetitorsService {
 
   async getCountAll(settlement: string, typeActivity: string) {
     return httpDashboard.get<CountCompetitorsResponse>(
-      DASH.BASE + DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) + DASH.TYPE_ACTIVITY(typeActivity) + DASH.COUNT,
+      DASH.BASE +
+        DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+        DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
+        DASH.COUNT,
     );
   }
 
@@ -35,6 +39,7 @@ class CompetitorsService {
         DASH.DATE_BEFORE(currentDate) +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
         DASH.COUNT,
     );
   }
@@ -47,6 +52,7 @@ class CompetitorsService {
         DASH.DATE_AFTER(date) +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
         DASH.COUNT,
     );
   }
@@ -71,6 +77,7 @@ class CompetitorsService {
         DASH.GROUP_BY('company_date_registration__month') +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
         DASH.DATE_AFTER(month) +
         DASH.DATE_BEFORE(currentDate),
     );
@@ -85,6 +92,7 @@ class CompetitorsService {
         DASH.GROUP_BY('company_date_registration__year') +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
         DASH.DATE_AFTER('2000-01-01') +
         DASH.DATE_BEFORE(currentDate),
     );

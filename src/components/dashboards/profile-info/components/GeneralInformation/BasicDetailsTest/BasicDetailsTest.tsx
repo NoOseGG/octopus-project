@@ -22,6 +22,7 @@ const BasicDetailsTest: React.FC = () => {
           <TableLine name={'Страна регистрации'} field={countries[0]?.name} />
         </tbody>
       </S.StyledTable>
+      <S.MyDivider />
     </>
   );
 };

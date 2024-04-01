@@ -9,19 +9,22 @@ const StatusesTypes: React.FC = () => {
   return (
     <>
       {Boolean(statuses_types.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Данные о способах создания / ликвидации</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLine name={'Наименование'} field={statuses_types[0]?.name} />
-            <TableLine name={'Дата начала действия'} field={statuses_types[0]?.from_dttm} isDate={true} />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Данные о способах создания / ликвидации</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLine name={'Наименование'} field={statuses_types[0]?.name} />
+              <TableLine name={'Дата начала действия'} field={statuses_types[0]?.from_dttm} isDate={true} />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

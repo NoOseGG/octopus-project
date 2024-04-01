@@ -9,20 +9,23 @@ const LegalEntityType: React.FC = () => {
   return (
     <>
       {Boolean(legal_entity_type.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Сведения о типе субъекта</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLine name={'Полное название типа'} field={legal_entity_type[0]?.entity_type_name} />
-            <TableLine name={'Краткое название типа'} field={legal_entity_type[0]?.entity_type_code} />
-            <TableLine name={'Дата начала действия'} field={legal_entity_type[0]?.from_dttm} isDate={true} />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Сведения о типе субъекта</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLine name={'Полное название типа'} field={legal_entity_type[0]?.entity_type_name} />
+              <TableLine name={'Краткое название типа'} field={legal_entity_type[0]?.entity_type_code} />
+              <TableLine name={'Дата начала действия'} field={legal_entity_type[0]?.from_dttm} isDate={true} />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

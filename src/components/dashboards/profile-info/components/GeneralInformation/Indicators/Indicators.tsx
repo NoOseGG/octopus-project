@@ -85,6 +85,7 @@ const Indicators: React.FC = () => {
         )}
       </TopLine>
       <LegendMap />
+      <S.MyDivider />
     </Container>
   );
 };

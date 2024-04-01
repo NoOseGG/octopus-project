@@ -9,21 +9,24 @@ const GiasBlackList: React.FC = () => {
   return (
     <>
       {Boolean(gias_black_list.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Реестр временно не допускаемых к участию в процедурах государственных закупок</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLine name={'Дата включения в реестр'} field={gias_black_list[0]?.from_dttm} isDate={true} />
-            <TableLine name={'Основание включения в список'} field={gias_black_list[0]?.basis_inclusion} />
-            <TableLine name={'Дата исключения из реестра'} field={gias_black_list[0]?.to_dttm} isDate={true} />
-            <TableLine name={'Основание исключения из списка'} field={gias_black_list[0]?.basis_exclusion} />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Реестр временно не допускаемых к участию в процедурах государственных закупок</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLine name={'Дата включения в реестр'} field={gias_black_list[0]?.from_dttm} isDate={true} />
+              <TableLine name={'Основание включения в список'} field={gias_black_list[0]?.basis_inclusion} />
+              <TableLine name={'Дата исключения из реестра'} field={gias_black_list[0]?.to_dttm} isDate={true} />
+              <TableLine name={'Основание исключения из списка'} field={gias_black_list[0]?.basis_exclusion} />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

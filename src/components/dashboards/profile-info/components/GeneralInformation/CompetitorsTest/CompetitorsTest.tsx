@@ -6,7 +6,6 @@ import CountQuarterCompetitors from '@app/components/dashboards/profile-info/com
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import styled from 'styled-components';
 import { GridProps } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
-import CountOperatingCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountOperatingCompetitors/CountOperatingCompetitors';
 import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth/CompetitorsByMonth';
 import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed/CompetitorsDetailed';
 import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge/CompetitorsByAge';
@@ -28,9 +27,9 @@ const CompetitorsTest: React.FC = () => {
             <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-            <CountOperatingCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
           </CountContainer>
           <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+          <S.Title>История регистрации конкурентов</S.Title>
           <ChartContainer>
             <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
@@ -49,6 +48,7 @@ const Container = styled.div`
 `;
 
 const ChartContainer = styled.div`
+  margin-top: 20px;
   width: 100%;
   display: flex;
 `;

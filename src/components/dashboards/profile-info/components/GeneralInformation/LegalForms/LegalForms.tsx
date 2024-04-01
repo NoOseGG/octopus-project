@@ -10,23 +10,26 @@ const LegalForms: React.FC = () => {
   return (
     <>
       {Boolean(legal_forms.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Данные об организационно-правовой форме</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLine name={'Тип'} field={legal_forms[0]?.form_type} />
-            <TableLineTooltip
-              name={'Наименование'}
-              field={legal_forms[0]?.name}
-              description={legal_forms[0]?.description}
-            />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Данные об организационно-правовой форме</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLine name={'Тип'} field={legal_forms[0]?.form_type} />
+              <TableLineTooltip
+                name={'Наименование'}
+                field={legal_forms[0]?.name}
+                description={legal_forms[0]?.description}
+              />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

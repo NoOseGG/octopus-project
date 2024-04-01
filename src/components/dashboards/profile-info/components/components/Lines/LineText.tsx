@@ -63,7 +63,7 @@ const LeftSide = styled.div`
   width: 30%;
   font-size: 0.9374rem;
   padding: 2px 0;
-  color: #666;
+  color: #000;
 `;
 
 const RightSide = styled.div`
@@ -73,7 +73,7 @@ const RightSide = styled.div`
   font-size: 0.9374rem;
   padding: 2px 0;
   gap: 5px;
-  color: black;
+  color: #333;
 `;
 
 type TextProps = {
@@ -81,7 +81,6 @@ type TextProps = {
 };
 
 const Text = styled.span<TextProps>`
-  color: #000;
   text-decoration: ${(props) => props.isColor && 'line-through'};
   text-decoration-color: ${(props) => props.isColor && '#E27150'};
   text-decoration-thickness: ${(props) => props.isColor && '1.5px'};

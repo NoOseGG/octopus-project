@@ -11,16 +11,16 @@ const getColumn = (title: string, field: string, isLink = false, isDate = false,
   if (isDate) {
     if (isDate) {
       renderText = (text: string) => {
-        return <div>{formatDate(text, true)}</div>;
+        return text ? <div>{formatDate(text, true)}</div> : <Content textAlign={'center'}>-</Content>;
       };
     }
   } else if (isPhone) {
     renderText = (text: string) => {
-      return <Content>{formatPhoneNumber(text)}</Content>;
+      return text ? <Content>{formatPhoneNumber(text)}</Content> : <Content textAlign={'center'}>-</Content>;
     };
   } else {
     renderText = (text: string) => {
-      return <Content>{text}</Content>;
+      return text ? <Content>{text}</Content> : <Content textAlign={'center'}>-</Content>;
     };
   }
 
@@ -36,11 +36,12 @@ export const getColumns = (detailed: DetailsTableType) => {
   switch (detailed) {
     case DetailsTableType.COMPETITORS: {
       return [
-        getColumn('УНП', 'legal_entity_id', true),
+        getColumn('УНП', 'legal_entity_id'),
         getColumn('Сокращенное наименование', 'company_short_name'),
         getColumn('Дата регистрации', 'company_date_registration'),
         getColumn('Полный адрес', 'address_full'),
         getColumn('Электронный адрес', 'contact_email'),
+        getColumn('Сайт', 'contact_web_site'),
         {
           title: 'Телефон',
           dataIndex: 'contact_phone_number',
@@ -48,7 +49,7 @@ export const getColumns = (detailed: DetailsTableType) => {
           width: 'auto',
           ellipsis: true,
           render: (text: string | undefined) => {
-            return text && <Content>{formatPhoneNumber(text)}</Content>;
+            return text ? <Content>{formatPhoneNumber(text)}</Content> : <Content textAlign={'center'}>-</Content>;
           },
         },
       ];

@@ -18,7 +18,7 @@ const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActiv
     <>
       {data && (
         <CompetitorsDetailedContainer>
-          <DetailedTable data={data?.results} type={DetailsTableType.COMPETITORS} />
+          <DetailedTable data={data?.results} type={DetailsTableType.COMPETITORS} sizePage={5} />
         </CompetitorsDetailedContainer>
       )}
     </>

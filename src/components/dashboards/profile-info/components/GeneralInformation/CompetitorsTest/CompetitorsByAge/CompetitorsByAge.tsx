@@ -71,5 +71,6 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
 export default CompetitorsByAge;
 
 const CompetitorsByAgeContainer = styled.div`
+  height: 300px;
   width: 50%;
 `;

@@ -5,7 +5,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  isNewDesign: true,
+  isNewDesign: false,
 };
 
 const designSlice = createSlice({

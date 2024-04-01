@@ -20,9 +20,9 @@ const CompetitorsTest: React.FC = () => {
 
   return (
     <Container>
-      <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
       {addresses[0]?.settlement && typeActivities[0]?.name && (
         <>
+          <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
           <CountContainer value={false}>
             <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
             <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />

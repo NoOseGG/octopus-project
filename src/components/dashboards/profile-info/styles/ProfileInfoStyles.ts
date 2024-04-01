@@ -44,6 +44,7 @@ export const ButtonShowStyle = styled(Text)`
 `;
 
 export const Title = styled.h2`
+  color: #000;
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.47;

@@ -19,13 +19,15 @@ const ContactsTest: React.FC = () => {
   return (
     <>
       {Boolean(contactsLength) && (
-        <S.Container>
+        <>
           <S.Title>Контактная информация</S.Title>
-          <LineTextCollapsed name={'Сайт'} contents={newWebSites} isCopyable={true} isLink={true} />
-          <LineTextCollapsed name={'Электронная почта'} contents={newEmails} isCopyable={true} />
-          <LineTextCollapsed name={'Телефон'} contents={newPhones} isCopyable={true} isPhone={true} />
-          <S.MyDivider />
-        </S.Container>
+          <S.Container>
+            <LineTextCollapsed name={'Сайт'} contents={newWebSites} isCopyable={true} isLink={true} />
+            <LineTextCollapsed name={'Электронная почта'} contents={newEmails} isCopyable={true} />
+            <LineTextCollapsed name={'Телефон'} contents={newPhones} isCopyable={true} isPhone={true} />
+            <S.MyDivider />
+          </S.Container>
+        </>
       )}
     </>
   );

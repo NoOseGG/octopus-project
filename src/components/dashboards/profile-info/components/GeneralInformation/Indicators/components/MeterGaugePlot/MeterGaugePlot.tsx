@@ -8,10 +8,9 @@ type MyComponentProps = {
   name: string;
   content: number | string;
   description: string;
-  isChangeCase?: boolean;
 };
 
-const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isChangeCase, description }) => {
+const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, description }) => {
   const config: GaugeConfig = {
     percent: getRiskLevel(risk),
     range: {
@@ -41,10 +40,10 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, isCha
   };
   return (
     <Container>
+      <Gauge {...config} style={{ height: 80, width: 120, padding: 0 }} />
       <Popover content={description}>
         <Title>{name}</Title>
       </Popover>
-      <Gauge {...config} style={{ height: 120, width: 120, padding: 0 }} />
     </Container>
   );
 };
@@ -55,8 +54,9 @@ const Container = styled.div`
   margin-inline: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
+  gap: 10px;
 `;
 
 const Title = styled.span`

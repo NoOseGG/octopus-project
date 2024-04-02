@@ -41,10 +41,10 @@ const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ ris
   };
   return (
     <Container>
+      <Gauge {...config} style={{ height: 80, width: 120, padding: 0 }} />
       <Popover content={description}>
         <Title>{name}</Title>
       </Popover>
-      <Gauge {...config} style={{ height: 120, width: 120, padding: 0 }} />
     </Container>
   );
 };
@@ -55,8 +55,9 @@ const Container = styled.div`
   margin-inline: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
+  gap: 10px;
 `;
 
 const Title = styled.span`

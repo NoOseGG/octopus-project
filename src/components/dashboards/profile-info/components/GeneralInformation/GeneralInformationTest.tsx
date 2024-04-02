@@ -2,7 +2,6 @@ import React from 'react';
 import Description from '@app/components/dashboards/profile-info/components/GeneralInformation/Description/Description';
 import Indicators from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/Indicators';
 import StatusesTypes from '@app/components/dashboards/profile-info/components/GeneralInformation/StatusesType/StatusesType';
-import TaxOfficesArrears from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArears/TaxOfficesArrears';
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
@@ -12,6 +11,7 @@ import ContactsTest from '@app/components/dashboards/profile-info/components/Gen
 import LicensesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/LicensesTest/LicensesTest';
 import CompetitorsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsTest';
 import OtherRelevantInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/OtherRelevantInformation/OtherRelevantInformation';
+import TaxOfficesArrearsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArearsTest/TaxOfficesArrearsTest';
 
 const GeneralInformationTest: React.FC = () => {
   return (
@@ -22,7 +22,8 @@ const GeneralInformationTest: React.FC = () => {
       <MainInfoTest />
       <ContactsTest />
       {/*<BasicDetailsTest />*/}
-      <TaxOfficesArrears />
+      {/*<TaxOfficesArrears />*/}
+      <TaxOfficesArrearsTest />
       <LicensesTest />
       {/*<LegalForms />*/}
       <Gias />

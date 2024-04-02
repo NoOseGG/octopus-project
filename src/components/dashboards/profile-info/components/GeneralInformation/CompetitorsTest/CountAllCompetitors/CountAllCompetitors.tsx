@@ -1,8 +1,9 @@
 import React from 'react';
-import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
+import { Block } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { useQuery } from '@tanstack/react-query';
 import competitorsService from '@app/services/competitors.service';
 import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
+import * as S from '../style/CompetitorStyles';
 
 const CountAllCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
@@ -14,8 +15,8 @@ const CountAllCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActiv
 
   return (
     <Block>
-      <Title>Всего</Title>
-      <Content>{data?.count}</Content>
+      <S.Title>Всего</S.Title>
+      <S.Content>{data?.count}</S.Content>
     </Block>
   );
 };

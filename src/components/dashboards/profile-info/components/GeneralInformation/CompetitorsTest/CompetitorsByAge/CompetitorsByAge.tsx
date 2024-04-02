@@ -59,6 +59,14 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
         type: 'marker-active',
       },
     ],
+    meta: {
+      year: {
+        alias: 'Год',
+      },
+      value: {
+        alias: 'Количество',
+      },
+    },
   };
 
   return Boolean(data?.length) ? (

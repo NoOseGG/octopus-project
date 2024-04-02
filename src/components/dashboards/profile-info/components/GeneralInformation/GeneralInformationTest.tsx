@@ -5,13 +5,13 @@ import StatusesTypes from '@app/components/dashboards/profile-info/components/Ge
 import LegalEntityType from '@app/components/dashboards/profile-info/components/GeneralInformation/LegalEntityType/LegalEntityType';
 import EconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/EconomicHighRiskRegistry/EconomicHighRiskRegistry';
 import TitleName from '@app/components/dashboards/profile-info/components/GeneralInformation/TitleName/TitleName';
-import Gias from '@app/components/dashboards/profile-info/components/GeneralInformation/Gias/Gias';
 import MainInfoTest from '@app/components/dashboards/profile-info/components/GeneralInformation/MainInfoTest/MainInfoTest';
 import ContactsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/ContactsTest/ContactsTest';
 import LicensesTest from '@app/components/dashboards/profile-info/components/GeneralInformation/LicensesTest/LicensesTest';
 import CompetitorsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsTest';
 import OtherRelevantInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/OtherRelevantInformation/OtherRelevantInformation';
 import TaxOfficesArrearsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArearsTest/TaxOfficesArrearsTest';
+import GiasTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GiasTest/GiasTest';
 
 const GeneralInformationTest: React.FC = () => {
   return (
@@ -26,7 +26,8 @@ const GeneralInformationTest: React.FC = () => {
       <TaxOfficesArrearsTest />
       <LicensesTest />
       {/*<LegalForms />*/}
-      <Gias />
+      {/*<Gias />*/}
+      <GiasTest />
       <StatusesTypes />
       {/*<StatesBodiesTest />*/}
       <LegalEntityType />

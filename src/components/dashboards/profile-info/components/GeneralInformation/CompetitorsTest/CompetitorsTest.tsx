@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors/CountYearCompetitors';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors/CountAllCompetitors';
@@ -13,10 +13,6 @@ import CompetitorsByAge from '@app/components/dashboards/profile-info/components
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
-
-  useEffect(() => {
-    console.log(addresses[0]?.settlement);
-  }, [addresses]);
 
   return (
     <Container>

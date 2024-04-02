@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import competitorsService from '@app/services/competitors.service';
 import { Line, LineConfig } from '@ant-design/charts';
@@ -22,10 +22,6 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
       };
     });
   };
-
-  useEffect(() => {
-    console.log(JSON.stringify(data));
-  }, [data]);
 
   const config: LineConfig = {
     data: data ? data : [],

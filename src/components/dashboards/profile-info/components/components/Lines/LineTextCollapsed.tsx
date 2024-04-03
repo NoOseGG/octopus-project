@@ -11,6 +11,7 @@ type MyComponentProps = {
   isPhone?: boolean;
   isMap?: boolean;
   isColor?: boolean;
+  isContact?: boolean;
   postfix?: string;
 };
 
@@ -23,6 +24,7 @@ const LineTextCollapsed: React.FC<MyComponentProps> = ({
   isPhone,
   isMap,
   isColor,
+  isContact,
   postfix,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -58,6 +60,7 @@ const LineTextCollapsed: React.FC<MyComponentProps> = ({
         isLink={isLink}
         isPhone={isPhone}
         isMap={isMap}
+        isContact={isContact}
       />
     );
   }
@@ -76,6 +79,7 @@ const LineTextCollapsed: React.FC<MyComponentProps> = ({
                 isLink={isLink}
                 isPhone={isPhone}
                 isMap={isMap}
+                isContact={isContact}
                 buttonCollapse={<CollapsedButton isCollapsed={isCollapsed} setCollapsed={handleClickCollapsed} />}
                 key={index}
               />
@@ -94,6 +98,7 @@ const LineTextCollapsed: React.FC<MyComponentProps> = ({
                     isLink={isLink}
                     isPhone={isPhone}
                     isMap={isMap}
+                    isContact={isContact}
                     buttonCollapse={<CollapsedButton isCollapsed={isCollapsed} setCollapsed={handleClickCollapsed} />}
                     key={index}
                   />
@@ -108,6 +113,7 @@ const LineTextCollapsed: React.FC<MyComponentProps> = ({
                     isLink={isLink}
                     isPhone={isPhone}
                     isMap={isMap}
+                    isContact={isContact}
                     isColor={isColor}
                     key={index}
                   />

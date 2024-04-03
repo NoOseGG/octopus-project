@@ -71,10 +71,6 @@ const GiasTest: React.FC = () => {
     }
   }, [gias_complaint_receive]);
 
-  useEffect(() => {
-    console.log(JSON.stringify(gias));
-  }, [gias]);
-
   const columns: ColumnsType<{ name: string; from_dttm: string | null }> = [
     {
       key: 'name',

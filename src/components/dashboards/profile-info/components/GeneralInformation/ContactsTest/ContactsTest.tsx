@@ -22,9 +22,15 @@ const ContactsTest: React.FC = () => {
         <>
           <S.Title>Контактная информация</S.Title>
           <S.Container>
-            <LineTextCollapsed name={'Сайт'} contents={newWebSites} isCopyable={true} isLink={true} />
-            <LineTextCollapsed name={'Электронная почта'} contents={newEmails} isCopyable={true} />
-            <LineTextCollapsed name={'Телефон'} contents={newPhones} isCopyable={true} isPhone={true} />
+            <LineTextCollapsed name={'Сайт'} contents={newWebSites} isCopyable={true} isLink={true} isContact={true} />
+            <LineTextCollapsed name={'Электронная почта'} contents={newEmails} isCopyable={true} isContact={true} />
+            <LineTextCollapsed
+              name={'Телефон'}
+              contents={newPhones}
+              isCopyable={true}
+              isPhone={true}
+              isContact={true}
+            />
             <S.MyDivider />
           </S.Container>
         </>

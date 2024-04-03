@@ -5,6 +5,7 @@ import { formatDate, formatPhoneNumber } from '@app/utils/utils';
 import YandexIcon from '@app/components/dashboards/profile-info/components/components/Lines/YandexIcon';
 import { BulbOutlined } from '@ant-design/icons';
 import { Popover } from 'antd';
+import AffiliationButton from '@app/components/dashboards/profile-info/components/components/Buttons/AffiliationButton/AffiliationButton';
 
 type MyComponent = {
   name: string;
@@ -15,6 +16,7 @@ type MyComponent = {
   isMap?: boolean;
   isLink?: boolean;
   isColor?: boolean;
+  isContact?: boolean;
   description?: string | null;
   buttonCollapse?: ReactNode;
 };
@@ -28,6 +30,7 @@ const LineText: React.FC<MyComponent> = ({
   isMap,
   isLink,
   isColor,
+  isContact,
   description,
   buttonCollapse,
 }) => {
@@ -45,6 +48,7 @@ const LineText: React.FC<MyComponent> = ({
           </TextLink>
         )}
         {isMap && <YandexIcon address={content} />}
+        {isContact && <AffiliationButton query={content} />}
         {!!description && (
           <Popover trigger={'hover'} content={<StyledTooltipContent>{description}</StyledTooltipContent>}>
             <BulbOutlined />

@@ -13,7 +13,11 @@ const OtherRelevantInformation: React.FC = () => {
         <S.Title>Иная значимая информация</S.Title>
         <S.Container>
           <LineText name={'Тип организации'} content={legal_forms[0]?.form_type} />
-          <LineText name={'Форма собственности'} content={legal_forms[0]?.name} />
+          <LineText
+            name={'Форма собственности'}
+            content={legal_forms[0]?.name}
+            description={legal_forms[0]?.description}
+          />
           {/*<TableLineTooltip*/}
           {/*  name={'Наименование'}*/}
           {/*  field={legal_forms[0]?.name}*/}

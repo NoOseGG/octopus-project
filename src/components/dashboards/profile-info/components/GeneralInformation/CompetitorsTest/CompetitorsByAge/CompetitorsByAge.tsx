@@ -6,6 +6,15 @@ import { LineChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
 import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
 
+const sortingData = (data: LineChartObject[]) => {
+  return data.map((item) => {
+    return {
+      year: item.group_fields.company_date_registration__year,
+      value: item.Count,
+    };
+  });
+};
+
 const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
     queryKey: [competitorsService.COMPETITORS_KEY.BY_AGE, settlement, typeActivity],
@@ -13,15 +22,6 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
   });
-
-  const sortingData = (data: LineChartObject[]) => {
-    return data.map((item) => {
-      return {
-        year: item.group_fields.company_date_registration__year,
-        value: item.Count,
-      };
-    });
-  };
 
   const config: LineConfig = {
     data: data ? data : [],

@@ -6,7 +6,23 @@ import { Column } from '@ant-design/plots';
 import { getNameMonthByNumber } from '@app/utils/utils';
 import { ColumnChart, ColumnChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
+
 import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
+const sortingData = (data: ColumnChartObject[]) => {
+  const sorted = data.map((item) => {
+    return {
+      type: item.group_fields.company_date_registration__month,
+      sales: item.Count,
+    };
+  });
+
+  return sortDataByMonth(sorted).map((item) => {
+    return {
+      type: getNameMonthByNumber(item.type),
+      sales: item.sales,
+    };
+  });
+};
 
 const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const { data } = useQuery({
@@ -15,22 +31,6 @@ const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivi
     select: ({ data }) => sortingData(data.results),
     enabled: Boolean(settlement.length) && Boolean(typeActivity.length),
   });
-
-  const sortingData = (data: ColumnChartObject[]) => {
-    const sorted = data.map((item) => {
-      return {
-        type: item.group_fields.company_date_registration__month,
-        sales: item.Count,
-      };
-    });
-
-    return sortDataByMonth(sorted).map((item) => {
-      return {
-        type: getNameMonthByNumber(item.type),
-        sales: item.sales,
-      };
-    });
-  };
 
   const config: ColumnConfig = {
     data: data ? data : [],

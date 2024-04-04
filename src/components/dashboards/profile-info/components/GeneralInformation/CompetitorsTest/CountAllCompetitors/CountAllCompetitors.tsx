@@ -14,10 +14,14 @@ const CountAllCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActiv
   });
 
   return (
-    <Block>
-      <S.Title>Всего</S.Title>
-      <S.Content>{data?.count}</S.Content>
-    </Block>
+    <>
+      {data && (
+        <Block>
+          <S.Title>Всего</S.Title>
+          <S.Content>{data?.count}</S.Content>
+        </Block>
+      )}
+    </>
   );
 };
 

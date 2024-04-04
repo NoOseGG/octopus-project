@@ -49,7 +49,10 @@ const LicensesTest: React.FC = () => {
           <S.Title>Лицензии и иные государственные решения</S.Title>
           <Table
             columns={columns}
-            dataSource={licenses}
+            dataSource={licenses.map((item, index) => ({
+              ...item,
+              key: index,
+            }))}
             title={() => <TableText />}
             size={'small'}
             pagination={false}

@@ -39,6 +39,7 @@ import searchSimilarReducer from '@app/store/slices/search/searchSimilarSlice';
 import jumpsSoleTradeReducer from '@app/store/slices/soleTradeDashboard/jumps/';
 import jumpsReducer from '@app/store/slices/legalEntityDashboard/jumps';
 import levelCompetitionReducer from '@app/store/slices/legalEntityDashboard/levelCompetition/levelCompetitonSlice';
+import levelCompetitionSoleTradeReducer from '@app/store/slices/soleTradeDashboard/levelCompetition/levelCompetitonSoleTradeSlice';
 import feedbackReducer from '@app/store/slices/feedback/feedbackSlice';
 import competitorsReducer from './profileInfo/competitors/index';
 
@@ -91,5 +92,6 @@ export default {
   jump: jumpsReducer,
   jumpSoleTrade: jumpsSoleTradeReducer,
   levelCompetition: levelCompetitionReducer,
+  levelCompetitionSoleTrade: levelCompetitionSoleTradeReducer,
   competitors: competitorsReducer,
 };

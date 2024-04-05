@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton, Table } from 'antd';
@@ -6,14 +6,42 @@ import { ColumnsType } from 'antd/es/table';
 import { ILevelCompetitionObject } from '@app/store/types/dashboard/LevelCompetitionTypes';
 import { doGetLevelCompetition } from '@app/store/slices/legalEntityDashboard/levelCompetition/levelCompetitonSlice';
 import { Content } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
+import {
+  getStateForLevelCompetition,
+  LEVEL_COMPETITION,
+} from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
+import { doGetLevelCompetitionSoleTrade } from '@app/store/slices/soleTradeDashboard/levelCompetition/levelCompetitonSoleTradeSlice';
 
-const LevelCompetition: React.FC = () => {
+type MyComponentProps = {
+  level_competition: LEVEL_COMPETITION;
+};
+
+const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => {
   const dispatch = useAppDispatch();
-  const { level_competition, isLoading } = useAppSelector((state) => state.levelCompetition);
+  const dynamicState = useAppSelector((state) => getStateForLevelCompetition(state, level_competition));
+  const results = dynamicState?.level_competition?.results;
+  const isLoading = dynamicState?.isLoading;
+
+  const getData = useCallback(
+    (level_competition) => {
+      switch (level_competition) {
+        case LEVEL_COMPETITION.LEGAL_ENTITY:
+          dispatch(doGetLevelCompetition());
+          break;
+
+        // Sole Trade
+
+        case LEVEL_COMPETITION.SOLE_TRADE:
+          dispatch(doGetLevelCompetitionSoleTrade());
+          break;
+      }
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
-    dispatch(doGetLevelCompetition());
-  }, [dispatch]);
+    getData(level_competition);
+  }, [getData, level_competition]);
 
   const columns: ColumnsType<ILevelCompetitionObject> = [
     {
@@ -69,11 +97,12 @@ const LevelCompetition: React.FC = () => {
         <Skeleton active paragraph={{ rows: 10 }} />
       ) : (
         <>
-          {Boolean(level_competition?.results.length) && (
+          {Boolean(results.length) && (
             <LevelCompetitionContainer>
               <Table
                 columns={columns}
-                dataSource={level_competition.results}
+                title={() => <Title>Срез по уровню конкуренции</Title>}
+                dataSource={results}
                 pagination={{ pageSize: 5, size: 'small', showSizeChanger: false }}
               />
             </LevelCompetitionContainer>
@@ -87,3 +116,9 @@ const LevelCompetition: React.FC = () => {
 export default LevelCompetition;
 
 const LevelCompetitionContainer = styled.div``;
+
+export const Title = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+`;

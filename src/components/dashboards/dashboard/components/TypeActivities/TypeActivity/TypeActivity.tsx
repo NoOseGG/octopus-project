@@ -47,7 +47,7 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dynamicState = useAppSelector((state) => getStateForTypeActivity(state, typeActivity));
-  const results = dynamicState?.typeActivities.results;
+  const results = dynamicState?.typeActivities?.results;
   const loading = dynamicState?.loading;
 
   const data = results?.map((item, index) => {

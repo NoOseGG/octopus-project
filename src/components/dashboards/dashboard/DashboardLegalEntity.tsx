@@ -32,6 +32,7 @@ import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 import { dashboardSourceToken } from '@app/api/http.api';
+import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
 
 const DashboardLegalEntity: React.FC = () => {
   useEffect(() => {
@@ -83,7 +84,7 @@ const DashboardLegalEntity: React.FC = () => {
 
       <JumpSettlement jump={JUMP_TYPE.LEGAL_ENTITY} />
       <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
-      <LevelCompetition />
+      <LevelCompetition level_competition={LEVEL_COMPETITION.LEGAL_ENTITY} />
 
       <MainInfo
         all={COUNT_TYPE.LE_LIQUIDATED_ALL}

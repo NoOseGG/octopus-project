@@ -30,6 +30,8 @@ import { REGION_CIRCLE_TYPES } from '@app/components/dashboards/dashboard/compon
 import JumpSettlement from '@app/components/dashboards/dashboard/components/Jumps/JumpSettlement';
 import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
+import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
+import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 
 const DashboardSoleTrader: React.FC = () => {
   return (
@@ -74,6 +76,7 @@ const DashboardSoleTrader: React.FC = () => {
 
       <JumpSettlement jump={JUMP_TYPE.SOLE_TRADE} />
       <JumpTypeActivity jump={JUMP_TYPE.SOLE_TRADE} />
+      <LevelCompetition level_competition={LEVEL_COMPETITION.SOLE_TRADE} />
 
       <MainInfo
         all={COUNT_TYPE.ST_LIQUIDATED_ALL}

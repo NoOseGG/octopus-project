@@ -19,7 +19,7 @@ type MyComponentProps = {
 const JumpSettlement: React.FC<MyComponentProps> = ({ jump }) => {
   const dispatch = useAppDispatch();
   const dynamicState = useAppSelector((state) => getStateForJumpSettlement(state, jump));
-  const result = dynamicState?.jumps.results;
+  const result = dynamicState?.jumps?.results;
   const isLoading = dynamicState?.isLoading;
   const columns = getColumnsJumpSettlement();
 

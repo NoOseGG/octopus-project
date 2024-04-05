@@ -97,7 +97,7 @@ const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => 
         <Skeleton active paragraph={{ rows: 10 }} />
       ) : (
         <>
-          {Boolean(results.length) && (
+          {Boolean(results?.length) && (
             <LevelCompetitionContainer>
               <Table
                 columns={columns}

@@ -33,6 +33,8 @@ import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Ju
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 import { dashboardSourceToken } from '@app/api/http.api';
 import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
+import { DASHBOARD } from '@app/services/legalEntityDashboard.service';
+import MainInfoTest from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoTest';
 
 const DashboardLegalEntity: React.FC = () => {
   useEffect(() => {
@@ -45,6 +47,13 @@ const DashboardLegalEntity: React.FC = () => {
   return (
     <Container>
       <Title>Юридические лица</Title>
+      <MainInfoTest
+        all={DASHBOARD.MAIN_INFO.CREATED_ALL}
+        year={DASHBOARD.MAIN_INFO.CREATED_YEAR}
+        quarter={DASHBOARD.MAIN_INFO.CREATED_QUARTER}
+        operation={DASHBOARD.MAIN_INFO.CREATED_OPERATION}
+        percent={DASHBOARD.MAIN_INFO.CREATED_PERCENT}
+      />
       <MainInfo
         all={COUNT_TYPE.LE_CREATED_ALL}
         year={COUNT_YEAR_TYPE.LE_CREATED_YEAR}

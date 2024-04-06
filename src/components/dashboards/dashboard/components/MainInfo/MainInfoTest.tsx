@@ -4,16 +4,25 @@ import { Container } from '@app/components/dashboards/dashboard/styles/CountComp
 import CountCompanyTest from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTest';
 import { MAIN_INFO } from '@app/services/legalEntityDashboard.service';
 import { Divider } from 'antd';
+import CountYearTest from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTest';
 
 export type MainInfoTestProps = {
   all: MAIN_INFO;
   year: MAIN_INFO;
   quarter: MAIN_INFO;
   operation: MAIN_INFO;
-  percent: MAIN_INFO;
+  percentLastYear: MAIN_INFO;
+  percentTwoLastYear: MAIN_INFO;
 };
 
-const MainInfo: React.FC<MainInfoTestProps> = ({ all, year, quarter, operation, percent }) => {
+const MainInfoTest: React.FC<MainInfoTestProps> = ({
+  all,
+  year,
+  quarter,
+  operation,
+  percentLastYear,
+  percentTwoLastYear,
+}) => {
   const isDate = useAppSelector((state) => state.searchFilters.filters.isDate);
 
   return (
@@ -21,7 +30,7 @@ const MainInfo: React.FC<MainInfoTestProps> = ({ all, year, quarter, operation, 
       <Divider />
       <Container value={isDate}>
         <CountCompanyTest type={all} />
-        {/*<CountYear countYear={year} percentYear={percent} />*/}
+        <CountYearTest countYear={year} percentLastYear={percentLastYear} percentTwoLastYear={percentTwoLastYear} />
         <CountCompanyTest type={quarter} />
         {operation !== MAIN_INFO.NONE && <CountCompanyTest type={operation} />}
       </Container>
@@ -29,4 +38,4 @@ const MainInfo: React.FC<MainInfoTestProps> = ({ all, year, quarter, operation, 
   );
 };
 
-export default MainInfo;
+export default MainInfoTest;

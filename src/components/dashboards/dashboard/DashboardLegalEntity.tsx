@@ -52,15 +52,16 @@ const DashboardLegalEntity: React.FC = () => {
         year={DASHBOARD.MAIN_INFO.CREATED_YEAR}
         quarter={DASHBOARD.MAIN_INFO.CREATED_QUARTER}
         operation={DASHBOARD.MAIN_INFO.CREATED_OPERATION}
-        percent={DASHBOARD.MAIN_INFO.CREATED_PERCENT}
+        percentLastYear={DASHBOARD.MAIN_INFO.CREATED_PERCENT_LAST_YEAR}
+        percentTwoLastYear={DASHBOARD.MAIN_INFO.CREATED_PERCENT_TWO_LAST_YEAR}
       />
-      <MainInfo
-        all={COUNT_TYPE.LE_CREATED_ALL}
-        year={COUNT_YEAR_TYPE.LE_CREATED_YEAR}
-        quarter={COUNT_TYPE.LE_CREATED_QUARTER}
-        operation={COUNT_TYPE.LE_CREATED_OPERATION}
-        percent={PERCENT_TYPE.LE_CREATED_PERCENT}
-      />
+      {/*<MainInfo*/}
+      {/*  all={COUNT_TYPE.LE_CREATED_ALL}*/}
+      {/*  year={COUNT_YEAR_TYPE.LE_CREATED_YEAR}*/}
+      {/*  quarter={COUNT_TYPE.LE_CREATED_QUARTER}*/}
+      {/*  operation={COUNT_TYPE.LE_CREATED_OPERATION}*/}
+      {/*  percent={PERCENT_TYPE.LE_CREATED_PERCENT}*/}
+      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_CREATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CREATED} />
@@ -95,13 +96,21 @@ const DashboardLegalEntity: React.FC = () => {
       <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
       <LevelCompetition level_competition={LEVEL_COMPETITION.LEGAL_ENTITY} />
 
-      <MainInfo
-        all={COUNT_TYPE.LE_LIQUIDATED_ALL}
-        year={COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR}
-        quarter={COUNT_TYPE.LE_LIQUIDATED_QUARTER}
-        operation={COUNT_TYPE.NONE}
-        percent={PERCENT_TYPE.LE_LIQUIDATED_PERCENT}
+      <MainInfoTest
+        all={DASHBOARD.MAIN_INFO.LIQUIDATED_ALL}
+        year={DASHBOARD.MAIN_INFO.LIQUIDATED_YEAR}
+        quarter={DASHBOARD.MAIN_INFO.LIQUIDATED_QUARTER}
+        operation={DASHBOARD.MAIN_INFO.NONE}
+        percentLastYear={DASHBOARD.MAIN_INFO.LIQUIDATED_PERCENT_LAST_YEAR}
+        percentTwoLastYear={DASHBOARD.MAIN_INFO.LIQUIDATED_PERCENT_TWO_LAST_YEAR}
       />
+      {/*<MainInfo*/}
+      {/*  all={COUNT_TYPE.LE_LIQUIDATED_ALL}*/}
+      {/*  year={COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR}*/}
+      {/*  quarter={COUNT_TYPE.LE_LIQUIDATED_QUARTER}*/}
+      {/*  operation={COUNT_TYPE.NONE}*/}
+      {/*  percent={PERCENT_TYPE.LE_LIQUIDATED_PERCENT}*/}
+      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_LIQUIDATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_LIQUIDATED} />

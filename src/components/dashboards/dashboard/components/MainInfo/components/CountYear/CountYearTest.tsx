@@ -1,46 +1,49 @@
 import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { CountYearProps } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
+import { Skeleton } from 'antd';
 
-const CountYearTest: React.FC<CountYearProps> = ({ countYear, percentYear }) => {
+import { Block, Title, Content } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
+
+import { useDashboardQuery } from '@app/hooks/useDashboardQuery';
+import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
+import legalEntityDashboardService, { DASHBOARD, MAIN_INFO } from '@app/services/legalEntityDashboard.service';
+import PercentYear from '@app/components/dashboards/dashboard/components/MainInfo/components/PercentYear/PercentYear';
+import { DashboardMainInfo } from '@app/interfaces/dashboard.interfaces';
+
+export type MyComponentProps = {
+  countYear: MAIN_INFO;
+  percentLastYear: MAIN_INFO;
+  percentTwoLastYear: MAIN_INFO;
+};
+
+const CountYearTest: React.FC<MyComponentProps> = ({ countYear, percentLastYear, percentTwoLastYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
+  const { data, isLoading } = useDashboardQuery<DashboardMainInfo>(DASHBOARD.MAIN_INFO.CREATED_YEAR, filters);
 
-  return null;
-  // return (
-  //   <>
-  //     {loading ? (
-  //       <Skeleton style={{ padding: 5 }} active />
-  //     ) : (
-  //       <>
-  //         {!filters.isDate && (
-  //           <Block>
-  //             <Title>{getTitleForCountYear(countYear)}</Title>
-  //             <Title>
-  //               ({getDateLastYear(1, true)} - {getCurrentDate(true)})
-  //             </Title>
-  //             <Content>
-  //               <div>
-  //                 {formatNumberWithCommas(count)}{' '}
-  //                 {percentLoading ? (
-  //                   <Skeleton.Button style={{ marginTop: 10 }} active={true} size={'small'} shape={'circle'} />
-  //                 ) : (
-  //                   <Popover
-  //                     trigger={'hover'}
-  //                     content={`Отношение количества ${getStatusForPercent(
-  //                       percentYear,
-  //                     )} по отношению к прошлому году: (${twoLastYearDate} - ${lastYearDate}) к (${lastYearDate} - ${currentDate})`}
-  //                   >
-  //                     <Percent number={percent}>({percent}%)</Percent>
-  //                   </Popover>
-  //                 )}
-  //               </div>
-  //             </Content>
-  //           </Block>
-  //         )}
-  //       </>
-  //     )}
-  //   </>
-  // );
+  return (
+    <>
+      {isLoading ? (
+        <Skeleton style={{ padding: 5 }} active />
+      ) : (
+        <>
+          {!filters.isDate && (
+            <Block>
+              <Title>{legalEntityDashboardService.getTitle(countYear)}</Title>
+              <Title>
+                ({getDateLastYear(1, true)} - {getCurrentDate(true)})
+              </Title>
+              <Content>
+                <div>
+                  {formatNumberWithCommas(data?.count)}{' '}
+                  <PercentYear percentLastYear={percentLastYear} percentTwoLastYear={percentTwoLastYear} />
+                </div>
+              </Content>
+            </Block>
+          )}
+        </>
+      )}
+    </>
+  );
 };
 
 export default CountYearTest;

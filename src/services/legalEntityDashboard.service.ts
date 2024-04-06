@@ -7,8 +7,8 @@ export enum MAIN_INFO {
   CREATED_YEAR = 'createdYear',
   CREATED_QUARTER = 'createdQuarter',
   CREATED_OPERATION = 'createdOperation',
-  CREATED_PERCENT = 'createdPercent',
   CREATED_PERCENT_LAST_YEAR = 'createdPercentLastYear',
+  CREATED_PERCENT_TWO_LAST_YEAR = 'createdPercentTwoLastYear',
   NONE = 'createdNone',
 }
 
@@ -37,31 +37,27 @@ class LegalEntityDashboardService {
         const date = getDateLastQuarter();
         return constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date), filters, true, false);
       }
-      case DASHBOARD.MAIN_INFO.CREATED_PERCENT: {
-        const date = getDateLastQuarter();
-        return constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date), filters, true, false);
-      }
-      case DASHBOARD.MAIN_INFO.CREATED_PERCENT_LAST_YEAR: {
-        const date = getDateLastQuarter();
-        return constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(date), filters, true, false);
-      }
       case DASHBOARD.MAIN_INFO.CREATED_OPERATION: {
         return constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT, filters, true, true);
       }
 
+      case DASHBOARD.MAIN_INFO.CREATED_PERCENT_LAST_YEAR: {
+        const currentDate = getCurrentDate();
+        const lastYearDate = getDateLastYear();
+        return (
+          DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate) + DASH.COUNT
+        );
+      }
+      case DASHBOARD.MAIN_INFO.CREATED_PERCENT_TWO_LAST_YEAR: {
+        const lastYearDate = getDateLastYear();
+        const twoLastYearDate = getDateLastYear(2);
+        return (
+          DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(twoLastYearDate) + DASH.DATE_BEFORE(lastYearDate) + DASH.COUNT
+        );
+      }
+
       default:
         return '';
-    }
-  }
-
-  getQueryKey(type: DASHBOARD_TYPE) {
-    switch (type) {
-      case MAIN_INFO.CREATED_ALL:
-        return 'createdAll';
-      case MAIN_INFO.CREATED_YEAR:
-        return 'createdYear';
-      case MAIN_INFO.CREATED_QUARTER:
-        return 'createdQuarter';
     }
   }
 
@@ -70,7 +66,7 @@ class LegalEntityDashboardService {
       case MAIN_INFO.CREATED_ALL:
         return 'Общее количество созданных компаний';
       case MAIN_INFO.CREATED_YEAR:
-        return 'Количество созданных компаний (квартал)';
+        return 'Количество созданных компаний (год)';
       case MAIN_INFO.CREATED_QUARTER:
         return 'Количество созданных компаний (квартал)';
       case MAIN_INFO.CREATED_OPERATION:

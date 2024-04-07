@@ -15,7 +15,6 @@ type MyComponentProps = {
 
 const CountCompanyTest: React.FC<MyComponentProps> = ({ type }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
-  console.log(`count -> ${type.toString()}`);
 
   // const { data, isLoading } = useQuery({
   //   queryKey: ['countCompany', filters],
@@ -23,10 +22,6 @@ const CountCompanyTest: React.FC<MyComponentProps> = ({ type }) => {
   // });
 
   const { data, isLoading } = useDashboardQuery<DashboardMainInfo>(type, filters);
-
-  useEffect(() => {
-    console.log('ЗАПУСК Count Company');
-  }, []);
 
   return (
     <>

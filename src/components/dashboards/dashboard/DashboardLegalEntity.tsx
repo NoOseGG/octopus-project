@@ -27,8 +27,12 @@ import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Ju
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 import { dashboardSourceToken } from '@app/api/http.api';
 import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
-import { DASHBOARD } from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
-import MainInfoTest from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoTest';
+import { COUNT_TYPE } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTypes';
+import {
+  COUNT_YEAR_TYPE,
+  PERCENT_TYPE,
+} from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
+import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 
 const DashboardLegalEntity: React.FC = () => {
   useEffect(() => {
@@ -41,21 +45,13 @@ const DashboardLegalEntity: React.FC = () => {
   return (
     <Container>
       <Title>Юридические лица</Title>
-      <MainInfoTest
-        all={DASHBOARD.MAIN_INFO.CREATED_ALL}
-        year={DASHBOARD.MAIN_INFO.CREATED_YEAR}
-        quarter={DASHBOARD.MAIN_INFO.CREATED_QUARTER}
-        operation={DASHBOARD.MAIN_INFO.CREATED_OPERATION}
-        percentLastYear={DASHBOARD.MAIN_INFO.CREATED_PERCENT_LAST_YEAR}
-        percentTwoLastYear={DASHBOARD.MAIN_INFO.CREATED_PERCENT_TWO_LAST_YEAR}
+      <MainInfo
+        all={COUNT_TYPE.LE_CREATED_ALL}
+        year={COUNT_YEAR_TYPE.LE_CREATED_YEAR}
+        quarter={COUNT_TYPE.LE_CREATED_QUARTER}
+        operation={COUNT_TYPE.LE_CREATED_OPERATION}
+        percent={PERCENT_TYPE.LE_CREATED_PERCENT}
       />
-      {/*<MainInfo*/}
-      {/*  all={COUNT_TYPE.LE_CREATED_ALL}*/}
-      {/*  year={COUNT_YEAR_TYPE.LE_CREATED_YEAR}*/}
-      {/*  quarter={COUNT_TYPE.LE_CREATED_QUARTER}*/}
-      {/*  operation={COUNT_TYPE.LE_CREATED_OPERATION}*/}
-      {/*  percent={PERCENT_TYPE.LE_CREATED_PERCENT}*/}
-      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_CREATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CREATED} />
@@ -85,26 +81,17 @@ const DashboardLegalEntity: React.FC = () => {
         />
       </ChartsContainer>
       <DetailedInformation detailed={DETAILED_TYPE.LE_CREATED} />
-
       <JumpSettlement jump={JUMP_TYPE.LEGAL_ENTITY} />
       <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
       <LevelCompetition level_competition={LEVEL_COMPETITION.LEGAL_ENTITY} />
 
-      <MainInfoTest
-        all={DASHBOARD.MAIN_INFO.LIQUIDATED_ALL}
-        year={DASHBOARD.MAIN_INFO.LIQUIDATED_YEAR}
-        quarter={DASHBOARD.MAIN_INFO.LIQUIDATED_QUARTER}
-        operation={DASHBOARD.MAIN_INFO.NONE}
-        percentLastYear={DASHBOARD.MAIN_INFO.LIQUIDATED_PERCENT_LAST_YEAR}
-        percentTwoLastYear={DASHBOARD.MAIN_INFO.LIQUIDATED_PERCENT_TWO_LAST_YEAR}
+      <MainInfo
+        all={COUNT_TYPE.LE_LIQUIDATED_ALL}
+        year={COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR}
+        quarter={COUNT_TYPE.LE_LIQUIDATED_QUARTER}
+        operation={COUNT_TYPE.NONE}
+        percent={PERCENT_TYPE.LE_LIQUIDATED_PERCENT}
       />
-      {/*<MainInfo*/}
-      {/*  all={COUNT_TYPE.LE_LIQUIDATED_ALL}*/}
-      {/*  year={COUNT_YEAR_TYPE.LE_LIQUIDATED_YEAR}*/}
-      {/*  quarter={COUNT_TYPE.LE_LIQUIDATED_QUARTER}*/}
-      {/*  operation={COUNT_TYPE.NONE}*/}
-      {/*  percent={PERCENT_TYPE.LE_LIQUIDATED_PERCENT}*/}
-      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_LIQUIDATED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_LIQUIDATED} />
@@ -132,21 +119,14 @@ const DashboardLegalEntity: React.FC = () => {
       />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_LIQUIDATED} />
       <DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />
-      <MainInfoTest
-        all={DASHBOARD.MAIN_INFO.BANKRUPTED_ALL}
-        year={DASHBOARD.MAIN_INFO.BANKRUPTED_YEAR}
-        quarter={DASHBOARD.MAIN_INFO.BANKRUPTED_QUARTER}
-        operation={DASHBOARD.MAIN_INFO.NONE}
-        percentLastYear={DASHBOARD.MAIN_INFO.BANKRUPTED_PERCENT_LAST_YEAR}
-        percentTwoLastYear={DASHBOARD.MAIN_INFO.BANKRUPTED_PERCENT_TWO_LAST_YEAR}
+
+      <MainInfo
+        all={COUNT_TYPE.LE_BANKRUPT_ALL}
+        year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}
+        quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}
+        operation={COUNT_TYPE.NONE}
+        percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}
       />
-      {/*<MainInfo*/}
-      {/*  all={COUNT_TYPE.LE_BANKRUPT_ALL}*/}
-      {/*  year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}*/}
-      {/*  quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}*/}
-      {/*  operation={COUNT_TYPE.NONE}*/}
-      {/*  percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}*/}
-      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />
@@ -169,6 +149,7 @@ const DashboardLegalEntity: React.FC = () => {
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
       <Divider />
       <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
+
       <Inspections
         all={COUNT_CHECKED_TYPE.LE_CHECKED_ALL}
         liquidated={COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED}

@@ -1,5 +1,5 @@
 import { FiltersType } from '@app/store/slices/search/searchFiltersSlice';
-import { getUrlForMainInfo } from '@app/services/legalEntityDashboard/utils';
+import { getTitleUtils, getUrlUtils } from '@app/services/legalEntityDashboard/utils';
 
 export enum MAIN_INFO {
   CREATED_ALL = 'createdAll',
@@ -22,50 +22,34 @@ export enum MAIN_INFO {
   BANKRUPTED_PERCENT_TWO_LAST_YEAR = 'bankruptedPercentTwoLastYear',
 
   CHECKED_ALL = 'checkedAll',
-  CHECKED_YEAR = 'checkedYear',
-  CHECKED_QUARTER = 'checkedQuarter',
-  CHECKED_PERCENT_LAST_YEAR = 'checkedPercentLastYear',
-  CHECKED_PERCENT_TWO_LAST_YEAR = 'checkedPercentTwoLastYear',
+  CHECKED_LIQUIDATED = 'checkedLiquidated',
+  CHECKED_BANKRUPTED = 'checkedBankrupted',
 
-  NONE = 'createdNone',
+  NONE = 'None',
+}
+
+export enum LINE_CHART {
+  CREATED = 'createdLineChart',
+  LIQUIDATED = 'liquidatedLineChart',
+  BANKRUPTED = 'bankruptedLineChart',
+  CHECKED = 'checkedLineChart',
 }
 
 export const DASHBOARD = {
   MAIN_INFO,
+  LINE_CHART,
 };
 
-export type DASHBOARD_TYPE = MAIN_INFO;
+export type DASHBOARD_TYPE = MAIN_INFO | LINE_CHART;
 
 class LegalEntityDashboardService {
-  getUrl(type: DASHBOARD_TYPE, filters: FiltersType) {
-    return getUrlForMainInfo(type, filters);
+  getUrl(type: DASHBOARD_TYPE, filters: FiltersType): string {
+    console.log(type.toString());
+    return getUrlUtils(type, filters);
   }
 
   getTitle(type: DASHBOARD_TYPE) {
-    switch (type) {
-      case MAIN_INFO.CREATED_ALL:
-        return 'Общее количество созданных компаний';
-      case MAIN_INFO.CREATED_YEAR:
-        return 'Количество созданных компаний за период';
-      case MAIN_INFO.CREATED_QUARTER:
-        return 'Количество созданных компаний (квартал)';
-      case MAIN_INFO.CREATED_OPERATION:
-        return 'Действующие компаний';
-
-      case MAIN_INFO.LIQUIDATED_ALL:
-        return 'Общее количество ликвидированных компаний';
-      case MAIN_INFO.LIQUIDATED_YEAR:
-        return 'Количество ликвидированных компаний за период';
-      case MAIN_INFO.LIQUIDATED_QUARTER:
-        return 'Количество ликвидированных компаний (квартал)';
-
-      case MAIN_INFO.BANKRUPTED_ALL:
-        return 'Общее количество обанкротившихся компаний';
-      case MAIN_INFO.BANKRUPTED_YEAR:
-        return 'Количество обанкротившихся компаний за период';
-      case MAIN_INFO.BANKRUPTED_QUARTER:
-        return 'Количество обанкротившихся компаний (квартал)';
-    }
+    return getTitleUtils(type);
   }
 }
 

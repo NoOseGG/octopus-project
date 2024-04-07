@@ -30,7 +30,11 @@ const MainInfoTest: React.FC<MainInfoTestProps> = ({
       <Divider />
       <Container value={isDate}>
         <CountCompanyTest type={all} />
-        <CountYearTest countYear={year} percentLastYear={percentLastYear} percentTwoLastYear={percentTwoLastYear} />
+        {year === MAIN_INFO.CHECKED_LIQUIDATED ? (
+          <CountCompanyTest type={year} />
+        ) : (
+          <CountYearTest countYear={year} percentLastYear={percentLastYear} percentTwoLastYear={percentTwoLastYear} />
+        )}
         <CountCompanyTest type={quarter} />
         {operation !== MAIN_INFO.NONE && <CountCompanyTest type={operation} />}
       </Container>

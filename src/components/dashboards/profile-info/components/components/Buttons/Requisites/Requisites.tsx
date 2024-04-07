@@ -80,7 +80,7 @@ const ButtonCopyStyle = styled(Button)`
   background-color: #f1f5fb;
   border-radius: 0.3125rem;
   border-width: 0;
-  color: #0057ff;
+  color: #00509a;
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;
@@ -100,7 +100,7 @@ const ButtonShareStyle = styled(Button)`
   background: #f1f5fb;
   border-radius: 0.3125rem;
   border-width: 0;
-  color: #0057ff;
+  color: #00509a;
   font-weight: 700;
   font-size: 0.9375rem;
   line-height: 1.375rem;

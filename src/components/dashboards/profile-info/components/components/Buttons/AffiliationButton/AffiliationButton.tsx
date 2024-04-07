@@ -7,6 +7,7 @@ import { URLS } from '@app/constants/Constants';
 import { useMutation } from '@tanstack/react-query';
 import { AffiliationResponse } from '@app/components/dashboards/profile-info/components/components/Buttons/AffiliationButton/types';
 import { useAppSelector } from '@app/hooks/reduxHooks';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 const fetchAffiliation = async (value: string) => {
   return httpDashboard.get<AffiliationResponse>(`${URLS.SEARCH}?val=${value}`);
@@ -57,6 +58,6 @@ const AffiliationButton: React.FC<AffiliationButtonProps> = ({ query }) => {
 export default AffiliationButton;
 
 const AffiliationButtonContainer = styled.div`
-  color: dodgerblue;
+  color: ${MyStyles.primaryColor};
   cursor: pointer;
 `;

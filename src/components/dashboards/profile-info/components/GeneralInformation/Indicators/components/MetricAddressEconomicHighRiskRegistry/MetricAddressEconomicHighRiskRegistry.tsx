@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 import { Popover } from 'antd';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 const ADDRESS_LISTED = 'Адрес значится в реестре неблагонадежных субъектов';
 
@@ -65,7 +66,7 @@ const Title = styled.span`
   font-size: 12px;
   text-align: center;
   cursor: pointer;
-  color: dodgerblue;
+  color: ${MyStyles.primaryColor};
   transition: transfrom 0.3s ease;
 
   &:hover {
@@ -86,13 +87,5 @@ const getColorByRisk = (risk: string): string => {
     return 'red';
   } else {
     return 'green';
-  }
-};
-
-const getNameByRisk = (risk: string): string => {
-  if (risk === ADDRESS_LISTED) {
-    return 'Высокий';
-  } else {
-    return 'Низкий';
   }
 };

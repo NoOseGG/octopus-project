@@ -1,6 +1,7 @@
 import React from 'react';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 type MyComponentProps = {
   isCollapsed?: boolean;
@@ -14,7 +15,7 @@ const CollapsedButton: React.FC<MyComponentProps> = ({ isCollapsed, setCollapsed
 
   return (
     <CollapseButtonContainer onClick={handleClick}>
-      {isCollapsed ? <UpOutlined style={{ color: 'dodgerblue' }} /> : <DownOutlined style={{ color: 'dodgerblue' }} />}
+      {isCollapsed ? <UpOutlined /> : <DownOutlined />}
     </CollapseButtonContainer>
   );
 };
@@ -22,5 +23,6 @@ const CollapsedButton: React.FC<MyComponentProps> = ({ isCollapsed, setCollapsed
 export default CollapsedButton;
 
 const CollapseButtonContainer = styled.div`
+  color: ${MyStyles.primaryColor};
   cursor: pointer;
 `;

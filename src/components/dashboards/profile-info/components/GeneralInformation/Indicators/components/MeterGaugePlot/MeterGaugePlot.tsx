@@ -2,6 +2,7 @@ import React from 'react';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 import styled from 'styled-components';
 import { Popover } from 'antd';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 type MyComponentProps = {
   risk: string;
@@ -64,7 +65,7 @@ const Title = styled.span`
   font-size: 12px;
   text-align: center;
   cursor: pointer;
-  color: dodgerblue;
+  color: ${MyStyles.primaryColor};
   transition: transfrom 0.3s ease;
 
   &:hover {
@@ -95,31 +96,5 @@ const getColorByRisk = (risk: string): string => {
       return 'red';
     default:
       return 'white';
-  }
-};
-
-const getRisk = (risk: string, isChangeCase: boolean | undefined): string => {
-  if (isChangeCase) {
-    switch (risk.split(' ')[0]) {
-      case 'Низкий':
-        return 'Низкая';
-      case 'Средний':
-        return 'Средняя';
-      case 'Высокий':
-        return 'Высокая';
-      default:
-        return '';
-    }
-  }
-
-  switch (risk.split(' ')[0]) {
-    case 'Низкий':
-      return 'Низкий';
-    case 'Средний':
-      return 'Средний';
-    case 'Высокий':
-      return 'Высокий';
-    default:
-      return '';
   }
 };

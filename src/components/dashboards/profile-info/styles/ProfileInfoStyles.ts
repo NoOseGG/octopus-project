@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Divider } from 'antd';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -34,8 +35,12 @@ export const Text = styled.div`
   white-space: pre-wrap;
 `;
 
-export const ButtonShowStyle = styled(Text)`
-  color: blue;
+export const ButtonShowStyle = styled.span`
+  font-size: 0.9374rem;
+  line-height: 1.47;
+  white-space: pre-wrap;
+  color: ${MyStyles.primaryColor};
+  font-weight: 700;
 
   &:hover {
     color: red;

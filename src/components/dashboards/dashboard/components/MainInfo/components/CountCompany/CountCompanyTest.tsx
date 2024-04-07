@@ -3,7 +3,9 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { Block, Content, Title } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import { Skeleton } from 'antd';
 import { formatNumberWithCommas } from '@app/utils/utils';
-import legalEntityDashboardService, { MAIN_INFO } from '@app/services/legalEntityDashboard.service';
+import legalEntityDashboardService, {
+  MAIN_INFO,
+} from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
 import { useDashboardQuery } from '@app/hooks/useDashboardQuery';
 import { DashboardMainInfo } from '@app/interfaces/dashboard.interfaces';
 

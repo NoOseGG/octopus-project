@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { Container } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import CountCompanyTest from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTest';
-import { MAIN_INFO } from '@app/services/legalEntityDashboard.service';
+import { MAIN_INFO } from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
 import { Divider } from 'antd';
 import CountYearTest from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTest';
 

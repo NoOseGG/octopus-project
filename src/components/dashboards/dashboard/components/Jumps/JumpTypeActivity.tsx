@@ -58,14 +58,18 @@ const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
               <Table
                 columns={columns}
                 title={() => <Title>Всплеск регистраций по виду деятельности</Title>}
-                dataSource={result.filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.PLUS)}
+                dataSource={result
+                  .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.PLUS)
+                  .map((item, index) => ({ ...item, key: index }))}
                 pagination={{ showSizeChanger: false }}
                 size={'small'}
               />
               <Table
                 columns={columns}
                 title={() => <Title>Снижение регистраций по виду деятельности</Title>}
-                dataSource={result.filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.MINUS)}
+                dataSource={result
+                  .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.MINUS)
+                  .map((item, index) => ({ ...item, key: index }))}
                 pagination={{ showSizeChanger: false }}
                 size={'small'}
               />

@@ -102,7 +102,7 @@ const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => 
               <Table
                 columns={columns}
                 title={() => <Title>Срез по уровню конкуренции</Title>}
-                dataSource={results}
+                dataSource={results.map((item, index) => ({ ...item, key: index }))}
                 pagination={{ pageSize: 5, size: 'small', showSizeChanger: false }}
               />
             </LevelCompetitionContainer>

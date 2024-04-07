@@ -6,7 +6,9 @@ import { Block, Title, Content } from '@app/components/dashboards/dashboard/styl
 
 import { useDashboardQuery } from '@app/hooks/useDashboardQuery';
 import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
-import legalEntityDashboardService, { DASHBOARD, MAIN_INFO } from '@app/services/legalEntityDashboard.service';
+import legalEntityDashboardService, {
+  MAIN_INFO,
+} from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
 import PercentYear from '@app/components/dashboards/dashboard/components/MainInfo/components/PercentYear/PercentYear';
 import { DashboardMainInfo } from '@app/interfaces/dashboard.interfaces';
 
@@ -18,7 +20,7 @@ export type MyComponentProps = {
 
 const CountYearTest: React.FC<MyComponentProps> = ({ countYear, percentLastYear, percentTwoLastYear }) => {
   const filters = useAppSelector((state) => state.searchFilters.filters);
-  const { data, isLoading } = useDashboardQuery<DashboardMainInfo>(DASHBOARD.MAIN_INFO.CREATED_YEAR, filters);
+  const { data, isLoading } = useDashboardQuery<DashboardMainInfo>(countYear, filters);
 
   return (
     <>

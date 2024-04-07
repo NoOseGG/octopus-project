@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
 import LineChartYears from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYears';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
@@ -8,11 +7,6 @@ import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/D
 import { LINE_CHART_YEAR } from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYearsTypes';
 import ColumnChartMonth from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonth';
 import { COLUMN_CHART_MONTH } from '@app/components/dashboards/dashboard/components/Charts/ColumnChartMonth/ColumnChartMonthTypes';
-import { COUNT_TYPE } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountCompany/CountCompanyTypes';
-import {
-  COUNT_YEAR_TYPE,
-  PERCENT_TYPE,
-} from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
 import { TYPE_ACTIVITY_TYPE } from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivity/TypeActivityTypes';
 import ByAge from '@app/components/dashboards/dashboard/components/ByAge/ByAge';
 import { AGE_TYPES } from '@app/components/dashboards/dashboard/components/ByAge/components/Age/AgeTypes';
@@ -33,7 +27,7 @@ import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Ju
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
 import { dashboardSourceToken } from '@app/api/http.api';
 import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
-import { DASHBOARD } from '@app/services/legalEntityDashboard.service';
+import { DASHBOARD } from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
 import MainInfoTest from '@app/components/dashboards/dashboard/components/MainInfo/MainInfoTest';
 
 const DashboardLegalEntity: React.FC = () => {
@@ -138,13 +132,21 @@ const DashboardLegalEntity: React.FC = () => {
       />
       <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_LIQUIDATED} />
       <DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />
-      <MainInfo
-        all={COUNT_TYPE.LE_BANKRUPT_ALL}
-        year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}
-        quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}
-        operation={COUNT_TYPE.NONE}
-        percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}
+      <MainInfoTest
+        all={DASHBOARD.MAIN_INFO.BANKRUPTED_ALL}
+        year={DASHBOARD.MAIN_INFO.BANKRUPTED_YEAR}
+        quarter={DASHBOARD.MAIN_INFO.BANKRUPTED_QUARTER}
+        operation={DASHBOARD.MAIN_INFO.NONE}
+        percentLastYear={DASHBOARD.MAIN_INFO.BANKRUPTED_PERCENT_LAST_YEAR}
+        percentTwoLastYear={DASHBOARD.MAIN_INFO.BANKRUPTED_PERCENT_TWO_LAST_YEAR}
       />
+      {/*<MainInfo*/}
+      {/*  all={COUNT_TYPE.LE_BANKRUPT_ALL}*/}
+      {/*  year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}*/}
+      {/*  quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}*/}
+      {/*  operation={COUNT_TYPE.NONE}*/}
+      {/*  percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}*/}
+      {/*/>*/}
       <ChartsContainer>
         <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />
         <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />

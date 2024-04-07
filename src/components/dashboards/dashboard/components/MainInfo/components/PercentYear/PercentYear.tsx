@@ -4,7 +4,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 
 import { Percent } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 
-import { MAIN_INFO } from '@app/services/legalEntityDashboard.service';
+import { MAIN_INFO } from '@app/services/legalEntityDashboard/legalEntityDashboard.service';
 import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { Popover, Skeleton } from 'antd';
 import { getStatusForPercent } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';

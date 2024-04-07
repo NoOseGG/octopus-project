@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doAddFeedback } from '@app/store/slices/feedback/feedbackSlice';
 import { notificationController } from '@app/controllers/notificationController';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 interface FeedBackObject {
   name: string;
@@ -39,9 +40,7 @@ const AddFeedback: React.FC = () => {
         </Form.Item>
 
         <Form.Item style={{ marginTop: 20 }}>
-          <Button type="primary" htmlType="submit">
-            Отправить
-          </Button>
+          <SubmitButton htmlType="submit">Отправить</SubmitButton>
         </Form.Item>
       </Form>
     </Container>
@@ -56,4 +55,16 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const SubmitButton = styled(Button)`
+  height: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+  width: 100%;
+  background-color: ${MyStyles.primaryColor};
+  color: #fff;
+
+  &:hover {
+  }
 `;

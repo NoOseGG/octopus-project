@@ -70,7 +70,6 @@ class CompetitorsService {
   async getDataByMonth(settlement: string, typeActivity: string) {
     const currentDate = getCurrentDate();
     const month = getPastMonthFromDate(6, new Date());
-
     return httpDashboard.get<ResponseColumnChart>(
       DASH.BASE +
         DASH.AGR_COUNT +
@@ -106,7 +105,8 @@ class CompetitorsService {
         DASH.TYPE_ACTIVITY(typeActivity) +
         DASH.STATUS_AT +
         DASH.ORDERING('-company_date_registration') +
-        DASH.IS_NULL_FALSE('company_date_registration'),
+        DASH.IS_NULL_FALSE('company_date_registration') +
+        DASH.PAGE_SIZE(2000),
     );
   }
 }

@@ -25,7 +25,7 @@ const DetailedTable: React.FC<DetailedTableProps> = ({ data, type, sizePage }) =
       columns={getColumns(type)}
       dataSource={data}
       size={'small'}
-      pagination={{ pageSize: defaultPageSize, showSizeChanger: false }}
+      pagination={{ defaultPageSize: defaultPageSize, defaultCurrent: 1, pageSizeOptions: [5, 10, 20, 50, 100] }}
       onRow={(record: DetailedTableObject) => ({
         onClick: () => {
           if (record && record?.legal_entity_id !== null) {

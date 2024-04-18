@@ -35,7 +35,7 @@ const TaxOfficesArrearsTest: React.FC = () => {
           <S.Title>Информация о наличии задолженности перед государственными органами</S.Title>
           <Table
             columns={columns}
-            dataSource={tax_offices_arrears}
+            dataSource={tax_offices_arrears.map((item, index) => ({ ...item, key: index }))}
             title={() => <TableText />}
             size={'small'}
             pagination={false}

@@ -21,20 +21,14 @@ const GeneralInformationTest: React.FC = () => {
       <Indicators />
       <MainInfoTest />
       <ContactsTest />
-      {/*<BasicDetailsTest />*/}
-      {/*<TaxOfficesArrears />*/}
       <TaxOfficesArrearsTest />
       <LicensesTest />
-      {/*<LegalForms />*/}
-      {/*<Gias />*/}
       <GiasTest />
       <StatusesTypes />
-      {/*<StatesBodiesTest />*/}
       <LegalEntityType />
       <EconomicHighRiskRegistry />
       <OtherRelevantInformation />
       <CompetitorsTest />
-      {/*<SimilarSubjects />*/}
     </div>
   );
 };

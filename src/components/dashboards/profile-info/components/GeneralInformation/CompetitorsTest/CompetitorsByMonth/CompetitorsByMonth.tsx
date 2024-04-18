@@ -72,16 +72,7 @@ const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivi
 export default CompetitorsByMonth;
 
 const sortDataByMonth = (data: ColumnChart[]): ColumnChart[] => {
-  data.sort((a, b) => a.type - b.type);
-
-  while (data.length > 0 && data[0].type !== undefined && data[0].type < 6) {
-    const first = data.shift();
-    if (first !== undefined) {
-      data.push(first);
-    }
-  }
-
-  return data;
+  return data.sort((a, b) => a.type - b.type);
 };
 
 const CompetitorsByMonthContainer = styled.div`

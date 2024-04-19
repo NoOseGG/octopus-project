@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import MyVacancy from '@app/components/dashboards/profile-info/components/Vacancies/components/Vacancy/MyVacancy';
 import styled from 'styled-components';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 import { Select } from 'antd';
@@ -13,6 +12,7 @@ import { GroupDataType } from '@app/components/dashboards/profile-info/component
 import StatisticTable, {
   StatisticTableType,
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
+import VacancyTable from '@app/components/tables/VacancyTable/VacancyTable';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -248,9 +248,10 @@ const Vacancies: React.FC = () => {
             />
           </SelectContainer>
           <VacanciesContainer>
-            {sortedVacancies.map((item, index) => (
-              <MyVacancy vacancy={item} key={index} />
-            ))}
+            {/*{sortedVacancies.map((item, index) => (*/}
+            {/*  <MyVacancy vacancy={item} key={index} />*/}
+            {/*))}*/}
+            <VacancyTable vacancies={sortedVacancies} />
           </VacanciesContainer>
         </>
       ) : (
@@ -262,7 +263,9 @@ const Vacancies: React.FC = () => {
 
 export default Vacancies;
 
-const VacanciesContainer = styled.div``;
+const VacanciesContainer = styled.div`
+  margin-top: 20px;
+`;
 
 const SelectContainer = styled.div`
   margin-top: 1.8735rem;

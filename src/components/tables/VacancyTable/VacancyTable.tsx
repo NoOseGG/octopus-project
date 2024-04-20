@@ -1,15 +1,16 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, TableColumnsType } from 'antd';
 import { Vacancy } from '@app/store/types/Subject';
 import { formatDate } from '@app/utils/utils';
 import { Content } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
+import VacancyExpand from '@app/components/tables/VacancyTable/VacancyExpand';
 
 type MyComponentProps = {
   vacancies: Vacancy[];
 };
 
 const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
-  const columns = [
+  const columns: TableColumnsType<Vacancy> = [
     {
       title: 'Дата',
       dataIndex: 'from_dttm',
@@ -34,19 +35,29 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
       key: 'min_salary_byn',
       render: (text: string) => <Content>{text} BYN</Content>,
     },
-    {
-      title: 'Подробнее',
-      dataIndex: '',
-      key: 'detailed',
-      render: () => (
-        <Content>
-          <a>Подробнее</a>
-        </Content>
-      ),
-    },
+    // {
+    //   title: 'Детали',
+    //   dataIndex: '',
+    //   key: 'detailed',
+    //   // render: () => (
+    //   //   <Content>
+    //   //     <a>Подробнее</a>
+    //   //   </Content>
+    //   // ),
+    // },
+    Table.EXPAND_COLUMN,
   ];
 
-  return <Table columns={columns} dataSource={vacancies} pagination={{ size: 'small' }}></Table>;
+  return (
+    <Table
+      columns={columns}
+      dataSource={vacancies.map((vacancy, index) => {
+        return { ...vacancy, key: index };
+      })}
+      pagination={{ size: 'small' }}
+      expandable={{ expandedRowRender: (record) => <VacancyExpand vacancy={record} /> }}
+    ></Table>
+  );
 };
 
 export default VacancyTable;

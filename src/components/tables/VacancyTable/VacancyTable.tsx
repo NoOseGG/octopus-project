@@ -54,6 +54,7 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
       dataSource={vacancies.map((vacancy, index) => {
         return { ...vacancy, key: index };
       })}
+      size={'small'}
       pagination={{ size: 'small' }}
       expandable={{ expandedRowRender: (record) => <VacancyExpand vacancy={record} /> }}
     ></Table>

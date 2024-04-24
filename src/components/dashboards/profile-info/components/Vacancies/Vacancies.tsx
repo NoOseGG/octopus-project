@@ -32,6 +32,9 @@ const Vacancies: React.FC = () => {
   const [selectField, setSelectField] = useState(SelectEnum.DATE);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [statisticsNameVacancies, setStatisticsNameVacancies] = useState<{ value: string; count: number }[]>([]);
+  const [statisticsNameVacancies365days, setStatisticsNameVacancies365days] = useState<
+    { value: string; count: number }[]
+  >([]);
   const words = vacancies.reduce<string[]>((acc, obj) => {
     const wordsArray = obj.key_skill?.split(';') ?? [];
     return [...acc, ...wordsArray];

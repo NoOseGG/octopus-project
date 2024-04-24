@@ -17,6 +17,13 @@ export const SearchIcon = styled(SearchOutlined)`
 `;
 
 export const InputSearch = styled(SearchInput)`
+  border: 1px solid gray;
+  border-radius: 22px;
+
+  &:focus {
+    border: none;
+  }
+
   .ant-input-group-addon {
     display: none;
   }

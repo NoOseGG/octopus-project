@@ -35,16 +35,6 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
       key: 'min_salary_byn',
       render: (text: string) => <Content>{text} BYN</Content>,
     },
-    // {
-    //   title: 'Детали',
-    //   dataIndex: '',
-    //   key: 'detailed',
-    //   // render: () => (
-    //   //   <Content>
-    //   //     <a>Подробнее</a>
-    //   //   </Content>
-    //   // ),
-    // },
     Table.EXPAND_COLUMN,
   ];
 

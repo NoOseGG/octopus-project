@@ -38,7 +38,6 @@ const LineText: React.FC<MyComponent> = ({
     <Line>
       <LeftSide>{name}</LeftSide>
       <RightSide>
-        {isCopyable && <CopyButton text={content} />}
         {!isDate && !isPhone && !isLink && <Text isColor={isColor}>{content}</Text>}
         {isDate && <Text isColor={isColor}>{formatDate(content)}</Text>}
         {isPhone && <Text isColor={isColor}>{formatPhoneNumber(content)}</Text>}
@@ -47,6 +46,7 @@ const LineText: React.FC<MyComponent> = ({
             {content}
           </TextLink>
         )}
+        {isCopyable && <CopyButton text={content} />}
         {isMap && <YandexIcon address={content} />}
         {isContact && <AffiliationButton query={content} />}
         {!!description && (

@@ -28,7 +28,7 @@ const Requisites: React.FC = () => {
       if (isShare) {
         const currentUrl = 'https://analytix.by' + location.pathname;
         navigator.clipboard.writeText(currentUrl);
-        notificationController.success({ message: 'Сыллка на субъекта скопирована' });
+        notificationController.success({ message: 'Сылка на субъекта скопирована' });
       } else {
         const copyText = getCopyText();
         navigator.clipboard.writeText(copyText);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
-import { Select } from 'antd';
+import { Button, Select } from 'antd';
 import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
 import CloudTags, {
   CloudTagsTitleType,
@@ -13,6 +13,7 @@ import StatisticTable, {
   StatisticTableType,
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import VacancyTable from '@app/components/tables/VacancyTable/VacancyTable';
+import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -70,6 +71,31 @@ const Vacancies: React.FC = () => {
     const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
 
     setStatisticsNameVacancies(resultArray);
+  }, [sortedVacancies]);
+
+  useEffect(() => {
+    const groupData: GroupDataType = sortedVacancies
+      .filter((item) => {
+        const date = item.from_dttm || getCurrentDate();
+        return date > getDateLastYear();
+      })
+      .reduce((acc: GroupDataType, item) => {
+        const value = item.vacancy_name;
+
+        if (value !== null) {
+          if (acc[value]) {
+            acc[value]++;
+          } else {
+            acc[value] = 1;
+          }
+        }
+
+        return acc;
+      }, {});
+
+    const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
+
+    setStatisticsNameVacancies365days(resultArray);
   }, [sortedVacancies]);
 
   const avgSalaryBYN = getAvgSalaryBYN(vacancies);
@@ -202,13 +228,27 @@ const Vacancies: React.FC = () => {
   return (
     <>
       {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
-      <StatisticTable
-        statistics={statisticsNameVacancies}
-        addFilter={addFilter}
-        deleteFilter={deleteFilter}
-        selectedFilter={selectedFilter}
-        statisticTableType={StatisticTableType.VACANCIES}
-      />
+      <ClearButtonContainer>
+        {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}
+      </ClearButtonContainer>
+      <StatisticTableContainer>
+        {/*All vacancies name*/}
+        <StatisticTable
+          statistics={statisticsNameVacancies}
+          addFilter={addFilter}
+          deleteFilter={deleteFilter}
+          selectedFilter={selectedFilter}
+          statisticTableType={StatisticTableType.VACANCIES}
+        />
+        {/*Last year vacancies name*/}
+        <StatisticTable
+          statistics={statisticsNameVacancies365days}
+          addFilter={addFilter}
+          deleteFilter={deleteFilter}
+          selectedFilter={selectedFilter}
+          statisticTableType={StatisticTableType.VACANCIES_YEAR}
+        />
+      </StatisticTableContainer>
       {Boolean(sortedVacancies.length) ? (
         <>
           <AvgSalaryContainer>
@@ -286,6 +326,24 @@ const AvgSalary = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const StatisticTableContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const ClearButtonContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+`;
+
+const ClearButton = styled(Button)`
+  width: 200px;
+  height: 30px;
+  padding: 0;
+  font-size: 14px;
 `;
 
 const getAvgSalaryBYN = (vacancies: Vacancy[]): string => {

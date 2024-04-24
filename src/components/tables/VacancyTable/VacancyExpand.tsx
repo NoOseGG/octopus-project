@@ -12,9 +12,6 @@ const VacancyExpand: React.FC<MyComponentProps> = ({ vacancy }) => {
   return (
     <VacancyExpandContainer>
       <LeftColumn>
-        <InfoRow name={'Дополнительная информация'} value={vacancy.addition} />
-      </LeftColumn>
-      <RightColumn>
         <InfoRow name={'Характер работы'} value={vacancy.work_format} />
         <InfoRow name={'Режим работы'} value={vacancy.working_hours} />
         <InfoRow
@@ -34,6 +31,9 @@ const VacancyExpand: React.FC<MyComponentProps> = ({ vacancy }) => {
         <InfoRow name={'Требуемый опыт работы'} value={vacancy.work_experience} />
         <InfoRow name={'Доступно соискателю с инвалидностью'} value={vacancy.accept_handicapped} />
         <InfoRow name={'Полное наименование адреса рабочего места'} value={vacancy.workplace_address_full} />
+      </LeftColumn>
+      <RightColumn>
+        <InfoRow name={'Дополнительная информация'} value={vacancy.addition} />
       </RightColumn>
     </VacancyExpandContainer>
   );

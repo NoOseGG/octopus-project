@@ -6,6 +6,7 @@ import '../CommercialRegister/styles.css';
 
 export enum StatisticTableType {
   VACANCIES,
+  VACANCIES_YEAR,
   RESUMES,
   COMMERCIAL_REGISTERS,
 }
@@ -32,15 +33,15 @@ const StatisticTable: React.FC<MyComponentProps> = ({
 }) => {
   const columns: ColumnsType<DataType> = [
     {
-      title: getTableTitle(statisticTableType),
+      title: <TableTitle>{getTableTitle(statisticTableType)}</TableTitle>,
       dataIndex: 'value',
-      width: '85%',
+      width: '80%',
       render: (text) => <TableContentName>{text}</TableContentName>,
     },
     {
-      title: 'Количество',
+      title: <TableTitle>Количество</TableTitle>,
       dataIndex: 'count',
-      width: '15%',
+      width: '20%',
       render: (text) => <TableContentSum>{text}</TableContentSum>,
       sorter: (a, b) => a.count - b.count,
       showSorterTooltip: false,
@@ -51,7 +52,11 @@ const StatisticTable: React.FC<MyComponentProps> = ({
     <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Title>{getTitle(statisticTableType)}</Title>
-        {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}
+        {selectedFilter &&
+          StatisticTableType.VACANCIES !== statisticTableType &&
+          StatisticTableType.VACANCIES_YEAR !== statisticTableType && (
+            <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>
+          )}
       </div>
       <Table
         columns={columns}
@@ -78,6 +83,10 @@ const Container = styled.div`
 
 const Title = styled.h3``;
 
+const TableTitle = styled.div`
+  font-size: 14px;
+`;
+
 const TableContentName = styled.div`
   width: 100%;
   font-size: 12px;
@@ -100,6 +109,8 @@ const getTitle = (statisticTableType: StatisticTableType): string => {
   switch (statisticTableType) {
     case StatisticTableType.VACANCIES:
       return 'Статистика вакансий';
+    case StatisticTableType.VACANCIES_YEAR:
+      return 'Статистика вакансий за год';
     case StatisticTableType.RESUMES:
       return 'Статистика резюме';
     case StatisticTableType.COMMERCIAL_REGISTERS:
@@ -110,6 +121,8 @@ const getTitle = (statisticTableType: StatisticTableType): string => {
 const getTableTitle = (statisticTableType: StatisticTableType): string => {
   switch (statisticTableType) {
     case StatisticTableType.VACANCIES:
+      return 'Название вакансии';
+    case StatisticTableType.VACANCIES_YEAR:
       return 'Название вакансии';
     case StatisticTableType.RESUMES:
       return 'Название резюме';

@@ -49,6 +49,7 @@ export interface SubjectType {
   metric_level_competition: MetricLevelCompetition[];
   metric_probability_liquidation: MetricProbabilityLiquidation[];
   metric_address_economic_high_risk_registry: MetricAddressEconomicHighRiskRegistry[];
+  metric_king: MetricKind[];
 }
 
 export interface Emails {
@@ -634,4 +635,9 @@ export interface MetricProbabilityLiquidation {
 export interface MetricAddressEconomicHighRiskRegistry {
   address_full: string | null;
   address_description: string | null;
+}
+
+export interface MetricKind {
+  king: number | null;
+  king_group: string | null;
 }

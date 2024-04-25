@@ -97,7 +97,6 @@ export const PersonalInfo: React.FC = () => {
         setLoading(false);
         setFieldsChanged(false);
         notificationController.success({ message: t('common.success') });
-        console.log(values);
       }, 1000);
     },
     [t],

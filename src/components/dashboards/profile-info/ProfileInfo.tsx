@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
 import { Col, Row, Spin, Tabs } from 'antd';
 import styled from 'styled-components';
-import GeneralInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformation';
 import Vacancies from '@app/components/dashboards/profile-info/components/Vacancies/Vacancies';
 import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
 import SiderMenu from '@app/components/dashboards/profile-info/components/SiderMenu/SiderMenu';
@@ -59,8 +58,6 @@ const ProfileInfo: React.FC = () => {
     Boolean(iceTradeOrganizerNegotiations.length);
   const gias_plan = useAppSelector((state) => state.searchProfile.profile.gias_plan);
 
-  const isNewDesign = useAppSelector((state) => state.design.isNewDesign);
-
   useEffect(() => {
     try {
       if (typeof unn === 'string') {
@@ -97,7 +94,7 @@ const ProfileInfo: React.FC = () => {
                 }
                 key={TABS.GENERAL_INFORMATION}
               >
-                {isNewDesign ? <GeneralInformation /> : <GeneralInformationTest />}
+                <GeneralInformationTest />
               </Tabs.TabPane>
               {Boolean(vacancies.length) && (
                 <Tabs.TabPane

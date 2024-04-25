@@ -193,8 +193,12 @@ export const doLogout = createAsyncThunk('logout', (payload, { dispatch }) => {
 });
 
 export const doCheckAuth = createAsyncThunk<ICheckAuthResponse>('auth/checkAuth', async () => {
-  const response = await axios.get(URLS.CHECK_USER, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
-  return response.data;
+  try {
+    const response = await axios.get(URLS.CHECK_USER, { headers: { Authorization: `${TOKEN_NAME} ${readToken()}` } });
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 const authSlice = createSlice({

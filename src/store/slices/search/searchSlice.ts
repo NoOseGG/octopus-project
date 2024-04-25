@@ -60,14 +60,12 @@ export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (q
     return response.data;
   } catch (error) {
     if (axios.isCancel(error)) {
-      console.log(error);
       return;
     }
     if (axios.isAxiosError(error)) {
       const responseError: SearchError | undefined = error.response?.data;
       if (responseError) {
         const errorMessage: string | null = responseError.detail;
-        console.log(errorMessage);
         return rejectWithValue(errorMessage);
       } else {
         console.log('Ошибка запрос', error.message);

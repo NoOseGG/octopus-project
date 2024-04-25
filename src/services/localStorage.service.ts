@@ -1,20 +1,21 @@
 import { UserModel } from '@app/domain/UserModel';
 
 const testUser: UserModel = {
-  id: 1,
-  first_name: 'Yury',
-  last_name: 'Svirydzenka',
+  id: 0,
+  first_name: '',
+  last_name: '',
   patronymic: '',
-  birthday: '04.01.1992',
-  phone_number: '+375257520246',
-  email: 'hoc751@gmail.com',
-  created: '28.08.2023',
-  updated: '29.08.2023',
-  last_day_subscription: '29.08.2023',
-  is_email_confirmed: true,
+  birthday: '',
+  phone_number: '',
+  email: '',
+  created: '',
+  updated: '',
+  last_day_subscription: '',
+  is_email_confirmed: false,
   type_subscription: null,
-  avatar: 'https://ava-24.com/_ph/144/33740131.jpg',
-  is_email_subscription: true,
+  avatar: '',
+  is_email_subscription: false,
+  is_superuser: false,
 };
 
 export const persistToken = (token: string): void => {

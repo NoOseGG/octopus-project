@@ -29,7 +29,6 @@ export const doGetCountLiquidatedYear = createAsyncThunk<ResponseMainInfo, Reque
         false,
       );
       const response = await httpDashboard.get(url);
-      console.log(url);
       return response.data;
     } catch (error) {
       if (axios.isCancel(error)) {

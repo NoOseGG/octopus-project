@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ApartmentOutlined } from '@ant-design/icons';
 import { Modal, Popover } from 'antd';
@@ -20,17 +20,12 @@ type AffiliationButtonProps = {
 const AffiliationButton: React.FC<AffiliationButtonProps> = ({ query }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
-  console.log(`query -> ${query}`);
   const { data, mutate } = useMutation({
     mutationFn: () => fetchAffiliation(query),
     onSuccess: () => {
       setIsModalOpen(true);
     },
   });
-
-  useEffect(() => {
-    console.log(JSON.stringify(data));
-  }, [data]);
 
   return (
     <AffiliationButtonContainer>

@@ -206,7 +206,7 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   ];
 
   const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+    // console.log('params', pagination, filters, sorter, extra);
   };
 
   return (

@@ -59,7 +59,6 @@ export default Requisites;
 
 const Container = styled.div`
   width: 100%;
-  margin-inline: 15px;
   padding: 0.9375rem;
   background: white;
   border-radius: 12px;

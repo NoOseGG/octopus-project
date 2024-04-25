@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import MetricAddressEconomicHighRiskRegistry from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/MetricAddressEconomicHighRiskRegistry/MetricAddressEconomicHighRiskRegistry';
 import LegendMap from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/LegendMap/LegendMap';
-import KindIndicator from '@app/components/dashboards/profile-info/components/GeneralInformation/Indicators/components/KindIndicator/KindIndicator';
 
 const Indicators: React.FC = () => {
   const metric_address_2 = useAppSelector((state) => state.searchProfile.profile.metric_address_2);
@@ -21,7 +20,6 @@ const Indicators: React.FC = () => {
   const metric_address_economic_high_risk_registry = useAppSelector(
     (state) => state.searchProfile.profile.metric_address_economic_high_risk_registry,
   );
-  const metric_kind = useAppSelector((state) => state.searchProfile.profile.metric_king);
 
   return (
     <Container>
@@ -83,7 +81,6 @@ const Indicators: React.FC = () => {
           />
         )}
       </TopLine>
-      {metric_kind[0]?.king_group && <KindIndicator kind_group={metric_kind[0].king_group} />}
       <LegendMap />
       <S.MyDivider />
     </Container>

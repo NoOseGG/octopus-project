@@ -57,7 +57,6 @@ const FavouriteButtonFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-inline: 15px;
   color: #fff;
   height: 2rem;
   background: ${MyStyles.primaryColor};
@@ -78,7 +77,6 @@ const FavouriteButtonNotFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-inline: 15px;
   color: ${MyStyles.primaryColor};
   height: 2rem;
   background: white;

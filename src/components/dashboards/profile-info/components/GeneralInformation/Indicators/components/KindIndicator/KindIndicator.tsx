@@ -11,27 +11,25 @@ const KindIndicator: React.FC<KindIndicatorProps> = ({ kind_group }) => {
   const getWidthByKind = (kind: string): string => {
     switch (kind) {
       case '1':
-        return '10%';
+        return '11%';
       case '2':
-        return '20%';
+        return '22%';
       case '3':
-        return '30%';
+        return '33%';
       case '4':
-        return '40%';
+        return '44%';
       case '5':
-        return '50%';
+        return '55%';
       case '6':
-        return '60%';
+        return '66%';
       case '7':
-        return '70%';
+        return '77%';
       case '8':
-        return '80%';
+        return '88%';
       case '9':
-        return '90%';
-      case '10':
         return '100%';
       default:
-        return '0';
+        return '0%';
     }
   };
 
@@ -76,7 +74,7 @@ const KindIndicator: React.FC<KindIndicatorProps> = ({ kind_group }) => {
         <Indicator width={getWidthByKind(kind_group)} backgroundColor={getColorByKind(kind_group)} />
       </IndicatorWrapper>
       <Popover content={'Будет какое-то описание'}>
-        <Title>Царь индикатор</Title>
+        <Title>Индекс уровня надежность (0 - 9)</Title>
       </Popover>
     </KindIndicatorContainer>
   );

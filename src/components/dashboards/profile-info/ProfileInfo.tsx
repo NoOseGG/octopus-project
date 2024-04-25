@@ -245,14 +245,13 @@ const SpinnerSpace = styled.div`
 `;
 
 const ProfileRow = styled(Row)`
-  position: relative;
+  display: flex;
 `;
 
 const LeftCol = styled(Col)``;
 
 const RightCol = styled(Col)`
-  position: sticky;
-  top: 0;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;

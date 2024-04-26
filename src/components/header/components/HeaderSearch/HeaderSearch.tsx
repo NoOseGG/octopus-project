@@ -64,7 +64,7 @@ export const HeaderSearch: React.FC = () => {
       delaySearch(query);
       navigate('/search');
     } else {
-      clearSearch();
+      // clearSearch();
     }
   }, [query]);
 

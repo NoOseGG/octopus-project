@@ -14,6 +14,8 @@ export const httpApi = axios.create({
 
 export const httpDashboard = axios.create();
 
+export const httpAxios = axios.create();
+
 httpApi.interceptors.request.use((config) => {
   return config;
 });
@@ -38,6 +40,16 @@ httpDashboard.interceptors.request.use((config) => {
 httpApi.interceptors.response.use(undefined, (error: AxiosError) => {
   throw new ApiError<ApiErrorData>(error.response?.data.message || error.message, error.response?.data);
 });
+
+httpAxios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
+      window.location.href = '/auth/login';
+    }
+  },
+);
 
 export interface ApiErrorData {
   message: string;

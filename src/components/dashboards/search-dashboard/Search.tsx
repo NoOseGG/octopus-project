@@ -19,10 +19,18 @@ const Search: React.FC = () => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
 
+  console.log(`${!!results.length} ${!loading}`);
+
+  if (!!results.length && !loading) {
+    return (
+      <Container>
+        <SubjectsList listItems={results} />
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      {Boolean(results.length) && !loading && <SubjectsList listItems={results} />}
-
       {loading && (
         <SpinnerSpace>
           <Spin size="large" tip="Загрузка данных . . ." />

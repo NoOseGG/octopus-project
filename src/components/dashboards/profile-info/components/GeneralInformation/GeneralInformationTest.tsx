@@ -12,11 +12,13 @@ import CompetitorsTest from '@app/components/dashboards/profile-info/components/
 import OtherRelevantInformation from '@app/components/dashboards/profile-info/components/GeneralInformation/OtherRelevantInformation/OtherRelevantInformation';
 import TaxOfficesArrearsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArearsTest/TaxOfficesArrearsTest';
 import GiasTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GiasTest/GiasTest';
+import LevelOfReliability from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/LevelOfReliability';
 
 const GeneralInformationTest: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <TitleName />
+      <LevelOfReliability />
       <Description />
       <Indicators />
       <MainInfoTest />

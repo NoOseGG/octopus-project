@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors/CountYearCompetitors';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors/CountAllCompetitors';
@@ -13,23 +13,34 @@ import CompetitorsByAge from '@app/components/dashboards/profile-info/components
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
+  const [countCompany, setCountCompany] = useState(0);
 
   return (
     <Container>
       {addresses[0]?.settlement && typeActivities[0]?.name && (
         <>
           <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
-          <CountContainer value={false}>
-            <CountAllCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-            <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-            <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-          </CountContainer>
-          <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-          <S.Title>История регистрации конкурентов</S.Title>
-          <ChartContainer>
-            <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-            <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-          </ChartContainer>
+          {countCompany === 1 ? (
+            <Text>Действующие конкуренты отсутсвуют</Text>
+          ) : (
+            <>
+              <CountContainer value={false}>
+                <CountAllCompetitors
+                  settlement={addresses[0]?.settlement}
+                  typeActivity={typeActivities[0]?.name}
+                  setCount={setCountCompany}
+                />
+                <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+              </CountContainer>
+              <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+              <S.Title>История регистрации конкурентов</S.Title>
+              <ChartContainer>
+                <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+              </ChartContainer>
+            </>
+          )}
         </>
       )}
     </Container>
@@ -55,4 +66,10 @@ const CountContainer = styled.div<GridProps>`
   display: flex;
   align-content: stretch;
   justify-content: space-around;
+`;
+
+const Text = styled.div`
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: green;
 `;

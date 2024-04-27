@@ -14,6 +14,7 @@ import StatisticTable, {
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import VacancyTable from '@app/components/tables/VacancyTable/VacancyTable';
 import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
+import PercentInfo from '@app/components/dashboards/profile-info/components/Vacancies/components/PercentInfo/PercentInfo';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -227,6 +228,7 @@ const Vacancies: React.FC = () => {
 
   return (
     <>
+      <PercentInfo />
       {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
       <ClearButtonContainer>
         {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}

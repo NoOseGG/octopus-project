@@ -15,14 +15,14 @@ const TaxOfficesArrearsTest: React.FC = () => {
       key: 'name',
       title: <TableTitle>Кредитор</TableTitle>,
       dataIndex: 'name',
-      width: 70,
+      width: '70%',
       render: (text) => <TableText>{text}</TableText>,
     },
     {
       key: 'from_dttm',
       title: <TableTitle>Дата возникновения требования</TableTitle>,
       dataIndex: 'from_dttm',
-      width: 30,
+      width: '30%',
       align: 'center',
       render: (text) => <TableText>{formatDate(text)}</TableText>,
     },
@@ -38,8 +38,7 @@ const TaxOfficesArrearsTest: React.FC = () => {
             dataSource={tax_offices_arrears.map((item, index) => ({ ...item, key: index }))}
             title={() => <TableText />}
             size={'small'}
-            pagination={false}
-            scroll={{ y: 360 }}
+            pagination={{ defaultPageSize: 5, defaultCurrent: 1, pageSizeOptions: [5, 10, 20] }}
           />
           <S.MyDivider />
         </S.Container>

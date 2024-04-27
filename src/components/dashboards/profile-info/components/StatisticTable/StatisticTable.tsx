@@ -62,8 +62,7 @@ const StatisticTable: React.FC<MyComponentProps> = ({
         columns={columns}
         dataSource={statistics.sort((a, b) => b.count - a.count)}
         size={'small'}
-        pagination={false}
-        scroll={{ y: 360 }}
+        pagination={{ defaultPageSize: 5, defaultCurrent: 1, pageSizeOptions: [5, 10, 20] }}
         onRow={(record) => ({
           onClick: () => addFilter(record.value),
         })}
@@ -76,6 +75,7 @@ const StatisticTable: React.FC<MyComponentProps> = ({
 export default StatisticTable;
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 10px;

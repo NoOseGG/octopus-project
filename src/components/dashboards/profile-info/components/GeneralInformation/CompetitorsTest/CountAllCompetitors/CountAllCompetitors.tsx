@@ -23,7 +23,7 @@ const CountAllCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActiv
       {data && (
         <Block>
           <S.Title>Всего</S.Title>
-          <S.Content>{data?.count}</S.Content>
+          <S.Content>{data?.count - 1}</S.Content>
         </Block>
       )}
     </>

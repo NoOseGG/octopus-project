@@ -13,27 +13,31 @@ const PercentInfo: React.FC = () => {
 
   const columns: ColumnsType<VacancyAGG> = [
     {
-      title: <TableTitle>Общее количество</TableTitle>,
-      dataIndex: 'total_records',
-      key: 'total_records',
+      title: <TableTitle>Всего вакансий</TableTitle>,
+      dataIndex: 'unp_count',
+      key: 'unp_count',
+      align: 'center',
     },
     {
-      title: <TableTitle>% от общего количества</TableTitle>,
+      title: <TableTitle>% от общего количества зафиксированных вакансий</TableTitle>,
       children: [
         {
-          title: <TableTitle>Республика</TableTitle>,
-          dataIndex: 'percent_of_total',
-          key: 'percent_of_total',
+          title: <TableTitle>по виду деятельности</TableTitle>,
+          dataIndex: 'percent_of_total_type_activity',
+          key: 'percent_of_total_type_activity',
+          align: 'center',
         },
         {
-          title: <TableTitle>Область</TableTitle>,
-          dataIndex: 'total_records',
-          key: 'total_records',
-        },
-        {
-          title: <TableTitle>Город</TableTitle>,
+          title: <TableTitle>по городу</TableTitle>,
           dataIndex: 'percent_of_total_settlement',
           key: 'percent_of_total_settlement',
+          align: 'center',
+        },
+        {
+          title: <TableTitle>по Республике</TableTitle>,
+          dataIndex: 'percent_of_total',
+          key: 'percent_of_total',
+          align: 'center',
         },
       ],
     },

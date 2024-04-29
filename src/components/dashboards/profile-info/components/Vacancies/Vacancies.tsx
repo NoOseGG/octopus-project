@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import CountVacancies from '@app/components/dashboards/profile-info/components/Vacancies/components/CountVacancies/CountVacancies';
 import { Button, Select } from 'antd';
 import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
 import CloudTags, {
@@ -13,7 +12,7 @@ import StatisticTable, {
   StatisticTableType,
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import VacancyTable from '@app/components/tables/VacancyTable/VacancyTable';
-import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
+import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import PercentInfo from '@app/components/dashboards/profile-info/components/Vacancies/components/PercentInfo/PercentInfo';
 
 enum SelectEnum {
@@ -228,46 +227,51 @@ const Vacancies: React.FC = () => {
 
   return (
     <>
-      <PercentInfo />
-      {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
-      <ClearButtonContainer>
-        {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}
-      </ClearButtonContainer>
-      <StatisticTableContainer>
-        {/*All vacancies name*/}
-        <StatisticTable
-          statistics={statisticsNameVacancies}
-          addFilter={addFilter}
-          deleteFilter={deleteFilter}
-          selectedFilter={selectedFilter}
-          statisticTableType={StatisticTableType.VACANCIES}
-        />
-        {/*Last year vacancies name*/}
-        <StatisticTable
-          statistics={statisticsNameVacancies365days}
-          addFilter={addFilter}
-          deleteFilter={deleteFilter}
-          selectedFilter={selectedFilter}
-          statisticTableType={StatisticTableType.VACANCIES_YEAR}
-        />
-      </StatisticTableContainer>
       {Boolean(sortedVacancies.length) ? (
         <>
-          <AvgSalaryContainer>
-            {Boolean(Number(avgSalaryBYN)) && (
-              <AvgSalary>
-                <span style={{ fontWeight: 700 }}>Средняя зарплата</span>
-                <span>{avgSalaryBYN} BYN</span>
-              </AvgSalary>
+          <PercentInfo />
+          <>
+            <Title>Средний уровень предлаемой зарплаты</Title>
+            <AvgSalaryContainer>
+              {Boolean(Number(avgSalaryBYN)) && (
+                <AvgSalary>
+                  <span>В белорусских рублях - {formatNumberWithCommas(Number(avgSalaryBYN))}</span>
+                </AvgSalary>
+              )}
+              {Boolean(Number(avgSalaryUSD)) && (
+                <AvgSalary>
+                  <span>В долларах США - {formatNumberWithCommas(Number(avgSalaryUSD))}</span>
+                </AvgSalary>
+              )}
+            </AvgSalaryContainer>
+          </>
+          <>
+            <Title>Сводная информация о требуемых специалистах</Title>
+            {selectedFilter && (
+              <ClearButtonContainer>
+                <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>
+              </ClearButtonContainer>
             )}
-            {Boolean(Number(avgSalaryUSD)) && (
-              <AvgSalary>
-                <span style={{ fontWeight: 700 }}>Средняя зарплата </span>
-                <span>{avgSalaryUSD} USD</span>
-              </AvgSalary>
-            )}
-          </AvgSalaryContainer>
-          <CountVacancies count={sortedVacancies.length} />
+            <StatisticTableContainer>
+              {/*All vacancies name*/}
+              <StatisticTable
+                statistics={statisticsNameVacancies}
+                addFilter={addFilter}
+                deleteFilter={deleteFilter}
+                selectedFilter={selectedFilter}
+                statisticTableType={StatisticTableType.ALL}
+              />
+              {/*Last year vacancies name*/}
+              <StatisticTable
+                statistics={statisticsNameVacancies365days}
+                addFilter={addFilter}
+                deleteFilter={deleteFilter}
+                selectedFilter={selectedFilter}
+                statisticTableType={StatisticTableType.YEAR}
+              />
+            </StatisticTableContainer>
+          </>
+          {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
           <SelectContainer>
             <Select
               size="small"
@@ -319,7 +323,6 @@ const SelectContainer = styled.div`
 `;
 
 const AvgSalaryContainer = styled.div`
-  margin-top: 20px;
   display: flex;
   justify-content: space-around;
 `;
@@ -346,6 +349,12 @@ const ClearButton = styled(Button)`
   height: 30px;
   padding: 0;
   font-size: 14px;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 const getAvgSalaryBYN = (vacancies: Vacancy[]): string => {

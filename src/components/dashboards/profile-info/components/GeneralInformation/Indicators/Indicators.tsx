@@ -30,7 +30,7 @@ const Indicators: React.FC = () => {
             risk={metric_address_2[0].risk_level}
             name={'Частота смены адреса'}
             content={metric_address_2[0]?.count_changes}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_change_constituent_doc[0]?.risk_level && (
@@ -38,7 +38,7 @@ const Indicators: React.FC = () => {
             risk={metric_change_constituent_doc[0].risk_level}
             name={'Частота юридически значимых действий'}
             content={metric_change_constituent_doc[0]?.count_activity}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_change_director[0]?.risk_level && (
@@ -46,7 +46,7 @@ const Indicators: React.FC = () => {
             risk={metric_change_director[0].risk_level}
             name={'Частота смены руководителя'}
             content={metric_change_director[0]?.count_changes}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_entity_contact[0]?.risk_level && (
@@ -54,7 +54,7 @@ const Indicators: React.FC = () => {
             risk={metric_entity_contact[0].risk_level}
             name={'Уровень контактности субъекта'}
             content={metric_entity_contact[0].sum_count}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_level_competition[0]?.level_competition && (
@@ -62,14 +62,14 @@ const Indicators: React.FC = () => {
             risk={metric_level_competition[0].level_competition}
             name={'Уровень конкуренции'}
             content={metric_level_competition[0]?.count_lei}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_address_economic_high_risk_registry[0]?.address_description && (
           <MetricAddressEconomicHighRiskRegistry
             risk={metric_address_economic_high_risk_registry[0].address_description}
             name={'Адрес в реестре с повышенным риском'}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
         {metric_probability_liquidation[0]?.risk_level && (
@@ -77,7 +77,7 @@ const Indicators: React.FC = () => {
             risk={metric_probability_liquidation[0].risk_level}
             name={'Уровень риска ликвидации'}
             content={`${metric_probability_liquidation[0]?.probability_liquidation?.toFixed(2)}%`}
-            description={'Будет какое-то описание'}
+            description={'coming soon'}
           />
         )}
       </TopLine>

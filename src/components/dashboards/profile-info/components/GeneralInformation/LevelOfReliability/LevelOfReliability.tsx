@@ -3,6 +3,7 @@ import { Liquid, LiquidConfig } from '@ant-design/charts';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { useAppSelector } from '@app/hooks/reduxHooks';
+import InfoTooltip from '@app/components/dashboards/profile-info/components/components/Buttons/InfoTooltip/InfoTooltip';
 
 const LevelOfReliability: React.FC = () => {
   const metric_kind = useAppSelector((state) => state.searchProfile.profile.metric_king);
@@ -82,10 +83,17 @@ const LevelOfReliability: React.FC = () => {
             <Liquid {...config} style={{ width: 200, height: 200 }} />
             <KindInfo>
               <Text>
-                Значение индекса - <Content color={color}>{metric_kind[0].king_group}</Content>
+                Значение индекса - <Content color={color}>{metric_kind[0].king_group}</Content>{' '}
+                <InfoTooltip
+                  description="Индекс уровня надежности — это скоринговый аналитический показатель, рассчитываемый на основе публично доступной информации о деятельности юридического лица. Он помогает оценить надежность или ненадежность контрагента. Индекс уровня надежности для анализа компаний использует только официальные источники данных, такие как регистрационные сведения, данные о деятельности и факторы риска.
+Для расчета индекса система учитывает более 30 различных факторов, что позволяет дать оценку степени благонадежности фирмы-партнера и погасить риски ведения бизнеса с ней. Индекс уровня надежности находится в диапазоне от 0 до 9. Чем выше значение, тем меньше риск, что компания может быть ненадежной.
+Данный инструмент помогает повысить прозрачность бизнеса, а также более точно выявлять фирмы, с которыми сотрудничество может быть рискованным. 
+Индекс уровня надежности является важным инструментом для инвесторов, аналитиков и бизнес-партнеров, помогая им принимать обоснованные решения на основе объективных данных о компаниях."
+                />
               </Text>
               <Text>
-                Комплексная оценка - <Content color={color}>{metric_kind[0].king}</Content> баллов
+                Комплексная оценка - <Content color={color}>{metric_kind[0].king}</Content> баллов{' '}
+                <InfoTooltip description="Комплексная оценка - это числовой показатель в виде баллов, набранных компанией при расчете индекса уровня надежности. Чем выше значение, тем более положительных факторов учтено в деятельности компании." />
               </Text>
             </KindInfo>
           </Container>

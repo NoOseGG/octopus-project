@@ -9,6 +9,8 @@ export enum StatisticTableType {
   VACANCIES_YEAR,
   RESUMES,
   COMMERCIAL_REGISTERS,
+  ALL,
+  YEAR,
 }
 
 type MyComponentProps = {
@@ -33,7 +35,7 @@ const StatisticTable: React.FC<MyComponentProps> = ({
 }) => {
   const columns: ColumnsType<DataType> = [
     {
-      title: <TableTitle>{getTableTitle(statisticTableType)}</TableTitle>,
+      title: <TableTitle>Название</TableTitle>,
       dataIndex: 'value',
       width: '80%',
       render: (text) => <TableContentName>{text}</TableContentName>,
@@ -51,7 +53,9 @@ const StatisticTable: React.FC<MyComponentProps> = ({
   return (
     <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Title>{getTitle(statisticTableType)}</Title>
+        <Title>
+          {statisticTableType === StatisticTableType.ALL ? 'На протяжении всего периода' : 'За последние 365 дней'}
+        </Title>
         {selectedFilter &&
           StatisticTableType.VACANCIES !== statisticTableType &&
           StatisticTableType.VACANCIES_YEAR !== statisticTableType && (
@@ -105,28 +109,28 @@ const ClearButton = styled(Button)`
   font-size: 14px;
 `;
 
-const getTitle = (statisticTableType: StatisticTableType): string => {
-  switch (statisticTableType) {
-    case StatisticTableType.VACANCIES:
-      return 'Статистика вакансий';
-    case StatisticTableType.VACANCIES_YEAR:
-      return 'Статистика вакансий за год';
-    case StatisticTableType.RESUMES:
-      return 'Статистика резюме';
-    case StatisticTableType.COMMERCIAL_REGISTERS:
-      return 'Статистика торгового реестра';
-  }
-};
-
-const getTableTitle = (statisticTableType: StatisticTableType): string => {
-  switch (statisticTableType) {
-    case StatisticTableType.VACANCIES:
-      return 'Название вакансии';
-    case StatisticTableType.VACANCIES_YEAR:
-      return 'Название вакансии';
-    case StatisticTableType.RESUMES:
-      return 'Название резюме';
-    case StatisticTableType.COMMERCIAL_REGISTERS:
-      return 'Название объекта';
-  }
-};
+// const getTitle = (statisticTableType: StatisticTableType): string => {
+//   switch (statisticTableType) {
+//     case StatisticTableType.VACANCIES:
+//       return 'Статистика вакансий';
+//     case StatisticTableType.VACANCIES_YEAR:
+//       return 'Статистика вакансий за год';
+//     case StatisticTableType.RESUMES:
+//       return 'Статистика резюме';
+//     case StatisticTableType.COMMERCIAL_REGISTERS:
+//       return 'Статистика торгового реестра';
+//   }
+// };
+//
+// const getTableTitle = (statisticTableType: StatisticTableType): string => {
+//   switch (statisticTableType) {
+//     case StatisticTableType.VACANCIES:
+//       return 'Название вакансии';
+//     case StatisticTableType.VACANCIES_YEAR:
+//       return 'Название вакансии';
+//     case StatisticTableType.RESUMES:
+//       return 'Название резюме';
+//     case StatisticTableType.COMMERCIAL_REGISTERS:
+//       return 'Название объекта';
+//   }
+// };

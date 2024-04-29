@@ -6,7 +6,7 @@ export enum DetailsTableType {
   COMPETITORS,
 }
 
-const getColumn = (title: string, field: string, isLink = false, isDate = false, isPhone = false) => {
+const getColumn = (title: string, field: string, isLink = false, isDate = false, isPhone = false, width = 'auto') => {
   let renderText;
   if (isDate) {
     if (isDate) {
@@ -28,6 +28,7 @@ const getColumn = (title: string, field: string, isLink = false, isDate = false,
     title: title,
     dataIndex: field,
     key: field,
+    width: width,
     render: renderText,
   };
 };
@@ -52,6 +53,8 @@ export const getColumns = (detailed: DetailsTableType) => {
             return text ? <Content>{formatPhoneNumber(text)}</Content> : <Content textAlign={'center'}>-</Content>;
           },
         },
+        getColumn('Индекс', 'king_group', false, false, false, '5%'),
+        getColumn('Оценка', 'king', false, false, false, '5%'),
       ];
     }
   }

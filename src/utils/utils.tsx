@@ -398,14 +398,15 @@ export const constructorUrlForDashboard = (
 ): string => {
   let url = base;
   if (Boolean(filters.settlements?.length) && filters.settlements !== null)
-    url += DASH.ADDRESS_SETTLEMENT_IN(filters.settlements);
+    url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
   if (Boolean(filters.districts?.length) && filters.districts !== null)
-    url += DASH.ADDRESS_DISTRICT_IN(filters.districts);
-  if (Boolean(filters.regions?.length) && filters.regions !== null) url += DASH.ADDRESS_REGION_IN(filters.regions);
+    url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
+  if (Boolean(filters.regions?.length) && filters.regions !== null)
+    url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
   if (Boolean(filters.taxOffices?.length) && filters.taxOffices !== null)
-    url += DASH.TAX_OFFICES_IN(filters.taxOffices);
-  if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY_IN(filters.typeActivities);
-  if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY_IN(filters.codeActivities);
+    url += DASH.TAX_OFFICES_ICONTAINS(filters.taxOffices);
+  if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY(filters.typeActivities);
+  if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY(filters.codeActivities);
   if (date) {
     if (filters.fromDate !== null) url += DASH.DATE_AFTER(filters.fromDate);
     if (filters.toDate !== null) url += DASH.DATE_BEFORE(filters.toDate);

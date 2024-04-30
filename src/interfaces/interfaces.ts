@@ -99,4 +99,6 @@ export interface DetailedTableObject {
   tax_office_name: string | null;
   inspection_short_name: string | null;
   inspection_dttm: string | null;
+  king: number;
+  king_group: number;
 }

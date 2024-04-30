@@ -18,7 +18,7 @@ const CountYearCompetitors: React.FC<CompetitorsProps> = ({ settlement, typeActi
       {data && (
         <Block>
           <S.Title>Год</S.Title>
-          <S.Content>+{data?.count}</S.Content>
+          <S.Content>{data?.count}</S.Content>
         </Block>
       )}
     </>

@@ -92,7 +92,7 @@ class CompetitorsService {
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
         DASH.TYPE_ACTIVITY(typeActivity) +
         DASH.STATUS_AT +
-        DASH.DATE_AFTER('2000-01-01') +
+        DASH.DATE_AFTER('1950-01-01') +
         DASH.DATE_BEFORE(currentDate),
     );
   }

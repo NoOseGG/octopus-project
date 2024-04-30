@@ -57,8 +57,8 @@ const StatisticTable: React.FC<MyComponentProps> = ({
           {statisticTableType === StatisticTableType.ALL ? 'На протяжении всего периода' : 'За последние 365 дней'}
         </Title>
         {selectedFilter &&
-          StatisticTableType.VACANCIES !== statisticTableType &&
-          StatisticTableType.VACANCIES_YEAR !== statisticTableType && (
+          StatisticTableType.ALL !== statisticTableType &&
+          StatisticTableType.YEAR !== statisticTableType && (
             <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>
           )}
       </div>

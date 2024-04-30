@@ -35,7 +35,6 @@ const CloudTags: React.FC<MyComponentProps> = ({ keyWords, title }) => {
 
   return (
     <CloudTagsContainer>
-      <Title>Ключевые навыки {title}</Title>
       <WordCloud {...config} />
     </CloudTagsContainer>
   );

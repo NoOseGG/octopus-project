@@ -1,6 +1,6 @@
 import { Content } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
 import React from 'react';
-import { DetailedTableObject } from '@app/interfaces/interfaces';
+import { DashboardObject } from '@app/interfaces/interfaces';
 
 export enum DetailsTableType {
   COMPETITORS,
@@ -49,8 +49,8 @@ export const getColumns = (detailed: DetailsTableType) => {
           key: 'king_group',
           width: '5%',
           showSorterTooltip: false,
-          sorter: (a: DetailedTableObject, b: DetailedTableObject) => b.king_group - a.king_group,
-          render: (text: number) => <Content>{text}</Content>,
+          sorter: (a: DashboardObject, b: DashboardObject) => b.king_group - a.king_group,
+          render: (text: number) => <Content style={{ color: getColorByKind(text), fontWeight: 700 }}>{text}</Content>,
         },
         {
           title: 'Оценка',
@@ -58,7 +58,7 @@ export const getColumns = (detailed: DetailsTableType) => {
           key: 'king',
           width: '5%',
           showSorterTooltip: false,
-          sorter: (a: DetailedTableObject, b: DetailedTableObject) => b.king - a.king,
+          sorter: (a: DashboardObject, b: DashboardObject) => b.king - a.king,
           render: (text: number) => <Content>{text}</Content>,
         },
         getColumn('Дата регистрации', 'company_date_registration', '15%'),
@@ -77,5 +77,25 @@ export const getColumns = (detailed: DetailsTableType) => {
         // },
       ];
     }
+  }
+};
+
+const getColorByKind = (kind: number | null): string => {
+  switch (kind) {
+    case 0:
+    case 1:
+    case 2:
+      return 'red';
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      return 'orange';
+    case 7:
+    case 8:
+    case 9:
+      return 'green';
+    default:
+      return 'red';
   }
 };

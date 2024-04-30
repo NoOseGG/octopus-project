@@ -19,8 +19,6 @@ const Search: React.FC = () => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
 
-  console.log(`${!!results.length} ${!loading}`);
-
   if (!!results.length && !loading) {
     return (
       <Container>

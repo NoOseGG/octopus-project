@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import InfoTooltip from '@app/components/dashboards/profile-info/components/components/Buttons/InfoTooltip/InfoTooltip';
+import MinMaxRating from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/MinMaxRating';
 
 const LevelOfReliability: React.FC = () => {
   const metric_kind = useAppSelector((state) => state.searchProfile.profile.metric_king);
@@ -46,6 +47,7 @@ const LevelOfReliability: React.FC = () => {
       case '3':
       case '4':
       case '5':
+      case '6':
         return 'orange';
       case '7':
       case '8':
@@ -95,6 +97,7 @@ const LevelOfReliability: React.FC = () => {
                 Комплексная оценка - <Content color={color}>{metric_kind[0].king}</Content> баллов{' '}
                 <InfoTooltip description="Комплексная оценка - это числовой показатель в виде баллов, набранных компанией при расчете индекса уровня надежности. Чем выше значение, тем более положительных факторов учтено в деятельности компании." />
               </Text>
+              <MinMaxRating />
             </KindInfo>
           </Container>
           <S.MyDivider />

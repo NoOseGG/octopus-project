@@ -271,7 +271,9 @@ const Vacancies: React.FC = () => {
               />
             </StatisticTableContainer>
           </>
+          <Title>Требуемые навыки от специалистов</Title>
           {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
+          <Title>Детализированная информация</Title>
           <SelectContainer>
             <Select
               size="small"
@@ -297,9 +299,6 @@ const Vacancies: React.FC = () => {
             />
           </SelectContainer>
           <VacanciesContainer>
-            {/*{sortedVacancies.map((item, index) => (*/}
-            {/*  <MyVacancy vacancy={item} key={index} />*/}
-            {/*))}*/}
             <VacancyTable vacancies={sortedVacancies} />
           </VacanciesContainer>
         </>

@@ -2,7 +2,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import {
   CountCompetitorsResponse,
   ResponseColumnChart,
-  ResponseDetailedTableCompetitors,
+  ResponseDashboard,
   ResponseLineChart,
 } from '@app/interfaces/interfaces';
 import { httpDashboard } from '@app/api/http.api';
@@ -98,7 +98,7 @@ class CompetitorsService {
   }
 
   async getDataForDetailed(settlement: string, typeActivity: string) {
-    return httpDashboard.get<ResponseDetailedTableCompetitors>(
+    return httpDashboard.get<ResponseDashboard>(
       DASH.BASE +
         DASH.AGR_COUNT +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +

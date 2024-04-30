@@ -80,11 +80,11 @@ export interface ResponseLineChart {
 
 // Detailed competitors
 
-export interface ResponseDetailedTableCompetitors {
-  results: DetailedTableObject[];
+export interface ResponseDashboard {
+  results: DashboardObject[];
 }
 
-export interface DetailedTableObject {
+export interface DashboardObject {
   legal_entity_id: string | null;
   company_short_name: string | null;
   type_activity_name: string | null;

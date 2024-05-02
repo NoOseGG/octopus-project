@@ -55,7 +55,6 @@ httpAxios.interceptors.request.use((config) => {
   const token = readToken();
   if (token && config.headers) {
     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
-    config.cancelToken = dashboardSourceToken.token;
   }
   return config;
 });

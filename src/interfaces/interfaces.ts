@@ -102,3 +102,15 @@ export interface DashboardObject {
   king: number;
   king_group: number;
 }
+
+export interface ResponseDashboardForRating {
+  results: DashboardObjectForRating[];
+}
+
+export interface DashboardObjectForRating {
+  legal_entity_id: string | null;
+  company_short_name: string | null;
+  king: number;
+  king_group: number;
+  position: number;
+}

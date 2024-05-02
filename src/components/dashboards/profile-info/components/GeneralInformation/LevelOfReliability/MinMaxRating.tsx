@@ -9,21 +9,13 @@ import styled from 'styled-components';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
-  console.log(
-    DASH.BASE +
-      DASH.PAGE_SIZE(1000) +
-      DASH.IS_NULL_FALSE('king') +
-      DASH.TYPE_ACTIVITY(typeActivity) +
-      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
-      DASH.ORDERING('-kind'),
-  );
   return httpAxios.get<ResponseDashboard>(
     DASH.BASE +
       DASH.TYPE_ACTIVITY(typeActivity) +
       DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
       DASH.IS_NULL_FALSE('king') +
       DASH.PAGE_SIZE(1000) +
-      DASH.ORDERING('kind'),
+      DASH.ORDERING('king'),
   );
 };
 

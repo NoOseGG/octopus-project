@@ -4,6 +4,7 @@ import { DashboardObject } from '@app/interfaces/interfaces';
 
 export enum DetailsTableType {
   COMPETITORS,
+  RATING_ALL,
 }
 
 const getColumn = (title: string, field: string, width = 'auto') => {
@@ -77,6 +78,12 @@ export const getColumns = (detailed: DetailsTableType) => {
         // },
       ];
     }
+    case DetailsTableType.RATING_ALL:
+      return [
+        getColumn('Позиция', 'position'),
+        getColumn('УНП', 'legal_entity_id'),
+        getColumn('Сокращенное наименование', 'company_short_name'),
+      ];
   }
 };
 

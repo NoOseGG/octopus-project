@@ -1,3 +1,12 @@
+.ant-table {
+    height: 100%;
+}
+
 .custom-row:hover {
+    cursor: pointer;
+}
+
+.highlight-row {
+    background-color: #ccc8c8;
     cursor: pointer;
 }

@@ -13,14 +13,6 @@ type MyComponentProps = {
 };
 
 const getRatingAll = (typeActivity: string) => {
-  console.log(
-    DASH.BASE +
-      DASH.STATUS_AT +
-      DASH.IS_NULL_FALSE('king') +
-      DASH.TYPE_ACTIVITY(typeActivity) +
-      DASH.PAGE_SIZE(10000) +
-      DASH.ORDERING('-king'),
-  );
   return httpAxios.get<ResponseDashboardForRating>(
     DASH.BASE +
       DASH.STATUS_AT +
@@ -41,11 +33,16 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, unn }) => {
   });
 
   useEffect(() => {
-    const result = data?.results.slice(0, 5).map((item, index) => ({ ...item, position: index + 1 }));
-    const index = data?.results.findIndex((item) => item.legal_entity_id === unn);
-    if (index && index > 4 && data) result?.push({ ...data?.results[index], position: index + 1 });
+    if (data?.results) {
+      const result: DashboardObjectForRating[] = data.results.slice(0, 5).map((item, index) => {
+        if (item.legal_entity_id === unn) return { ...item, position: index + 1, highlight: true };
+        else return { ...item, position: index + 1 };
+      });
+      const index = data.results.findIndex((item) => item.legal_entity_id === unn);
+      if (index > 4) result.push({ ...data?.results[index], position: index + 1, highlight: true });
 
-    setRatingAll(result);
+      setRatingAll(result);
+    }
   }, [data, unn]);
 
   return (

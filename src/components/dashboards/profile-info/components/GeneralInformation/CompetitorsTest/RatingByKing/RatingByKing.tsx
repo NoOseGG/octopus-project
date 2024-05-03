@@ -14,8 +14,10 @@ const RatingByKing: React.FC = () => {
   return (
     <Container>
       {typeActivity && unn && <RatingAll typeActivity={typeActivity} unn={unn} />}
-      <RatingRegion typeActivity={typeActivity} region={region} />
-      <RatingSettlement typeActivity={typeActivity} settlement={settlement} />
+      {typeActivity && region && unn && <RatingRegion typeActivity={typeActivity} region={region} unn={unn} />}
+      {typeActivity && settlement && unn && (
+        <RatingSettlement typeActivity={typeActivity} settlement={settlement} unn={unn} />
+      )}
     </Container>
   );
 };
@@ -23,6 +25,8 @@ const RatingByKing: React.FC = () => {
 export default RatingByKing;
 
 const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
   margin-bottom: 20px;
 `;

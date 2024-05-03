@@ -15,13 +15,17 @@ type RatingTableProps = {
 const RatingTable: React.FC<RatingTableProps> = ({ data, isLoading }) => {
   const navigate = useNavigate();
 
+  const getRowClass = (record: DashboardObjectForRating) => {
+    return record.highlight ? 'highlight-row' : 'custom-row';
+  };
+
   const handleClickRow = (value: string) => {
     navigate(`${SUBJECT_INFO_DASHBOARD_PATH}/${value}`);
   };
 
   const columns: ColumnsType<DashboardObjectForRating> = [
     {
-      title: 'Позиция',
+      title: '№',
       dataIndex: 'position',
       key: 'position',
       render: (text) => <Content>{text}</Content>,
@@ -48,6 +52,7 @@ const RatingTable: React.FC<RatingTableProps> = ({ data, isLoading }) => {
 
   return (
     <Table
+      className={'ant-table'}
       columns={columns}
       dataSource={data}
       loading={isLoading}
@@ -60,7 +65,7 @@ const RatingTable: React.FC<RatingTableProps> = ({ data, isLoading }) => {
           }
         },
       })}
-      rowClassName={() => 'custom-row'}
+      rowClassName={getRowClass}
     ></Table>
   );
 };

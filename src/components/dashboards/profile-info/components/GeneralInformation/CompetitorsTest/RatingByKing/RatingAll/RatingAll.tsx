@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { httpAxios } from '@app/api/http.api';
-import { DashboardObjectForRating, ResponseDashboard, ResponseDashboardForRating } from '@app/interfaces/interfaces';
+import { DashboardObjectForRating, ResponseDashboardForRating } from '@app/interfaces/interfaces';
 import { DASH } from '@app/constants/enums/Dashboards';
-import DetailedTable from '@app/components/tables/DetailedTable/DetailedTable';
-import { DetailsTableType } from '@app/components/tables/DetailedTable/utils';
-import { Table } from 'antd';
-import { ColumnsType } from 'antd/es/table';
-import { AxiosResponse } from 'axios';
+import RatingTable from '@app/components/tables/RatingTable/RatingTable';
+import styled from 'styled-components';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 
 type MyComponentProps = {
+  unn: string;
   typeActivity: string;
 };
 
 const getRatingAll = (typeActivity: string) => {
+  console.log(
+    DASH.BASE +
+      DASH.STATUS_AT +
+      DASH.IS_NULL_FALSE('king') +
+      DASH.TYPE_ACTIVITY(typeActivity) +
+      DASH.PAGE_SIZE(10000) +
+      DASH.ORDERING('-king'),
+  );
   return httpAxios.get<ResponseDashboardForRating>(
     DASH.BASE +
       DASH.STATUS_AT +
@@ -24,8 +31,8 @@ const getRatingAll = (typeActivity: string) => {
   );
 };
 
-const RatingAll: React.FC<MyComponentProps> = ({ typeActivity }) => {
-  const [ratingAll, setRatingAll] = useState([]);
+const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, unn }) => {
+  const [ratingAll, setRatingAll] = useState<DashboardObjectForRating[] | undefined>(undefined);
   const { data, isLoading } = useQuery({
     queryKey: ['ratingAll', typeActivity],
     queryFn: () => getRatingAll(typeActivity),
@@ -33,26 +40,25 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity }) => {
     enabled: !!typeActivity,
   });
 
-  const columns: ColumnsType<DashboardObjectForRating> = [
-    {
-      title: 'Позиция',
-      dataIndex: 'position',
-      key: 'position',
-    },
-    {
-      title: 'УНП',
-      dataIndex: 'legal_entity_id',
-      key: 'legal_entity_id',
-    },
-  ];
-
   useEffect(() => {
     const result = data?.results.slice(0, 5).map((item, index) => ({ ...item, position: index + 1 }));
-    console.log(result);
-    setRatingAll(ratingAll);
-  }, [data]);
+    const index = data?.results.findIndex((item) => item.legal_entity_id === unn);
+    if (index && index > 4 && data) result?.push({ ...data?.results[index], position: index + 1 });
 
-  return <>{data?.results && <Table columns={columns} data={ratingAll} />}</>;
+    setRatingAll(result);
+  }, [data, unn]);
+
+  return (
+    <Container>
+      <S.Title>Рейтинг в стране</S.Title>
+      <RatingTable data={ratingAll} isLoading={isLoading} />
+    </Container>
+  );
 };
 
 export default RatingAll;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

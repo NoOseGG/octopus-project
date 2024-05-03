@@ -55,8 +55,7 @@ const LicensesTest: React.FC = () => {
             }))}
             title={() => <TableText />}
             size={'small'}
-            pagination={false}
-            scroll={{ y: 360 }}
+            pagination={{ pageSize: 5 }}
           />
           <S.MyDivider />
         </S.Container>

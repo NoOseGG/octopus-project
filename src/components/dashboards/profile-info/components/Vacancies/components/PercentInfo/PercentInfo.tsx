@@ -43,7 +43,11 @@ const PercentInfo: React.FC = () => {
     },
   ];
 
-  return <Table dataSource={vacancy_agg} columns={columns} bordered size={'small'} />;
+  return Boolean(vacancy_agg.length) ? (
+    <Table dataSource={vacancy_agg} columns={columns} bordered size={'small'} />
+  ) : (
+    <div></div>
+  );
 };
 
 export default PercentInfo;

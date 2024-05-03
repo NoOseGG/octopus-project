@@ -6,6 +6,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import RatingTable from '@app/components/tables/RatingTable/RatingTable';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
+import { calculateRating } from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/utils';
 
 type MyComponentProps = {
   unn: string;
@@ -33,21 +34,12 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, unn }) => {
   });
 
   useEffect(() => {
-    if (data?.results) {
-      const result: DashboardObjectForRating[] = data.results.slice(0, 5).map((item, index) => {
-        if (item.legal_entity_id === unn) return { ...item, position: index + 1, highlight: true };
-        else return { ...item, position: index + 1 };
-      });
-      const index = data.results.findIndex((item) => item.legal_entity_id === unn);
-      if (index > 4) result.push({ ...data?.results[index], position: index + 1, highlight: true });
-
-      setRatingAll(result);
-    }
+    calculateRating(data?.results, setRatingAll, unn);
   }, [data, unn]);
 
   return (
     <Container>
-      <S.Title>Рейтинг в стране</S.Title>
+      <S.Title>Республика</S.Title>
       <RatingTable data={ratingAll} isLoading={isLoading} />
     </Container>
   );

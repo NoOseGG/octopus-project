@@ -20,8 +20,8 @@ const getMinRating = (typeActivity: string | null, settlement: string | null) =>
 };
 
 const MinMaxRating: React.FC = () => {
-  const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0].name);
-  const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0].settlement);
+  const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0]?.name);
+  const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0]?.settlement);
   const { data } = useQuery({
     queryKey: ['minRating', typeActivity, settlement],
     queryFn: () => getMinRating(typeActivity, settlement),

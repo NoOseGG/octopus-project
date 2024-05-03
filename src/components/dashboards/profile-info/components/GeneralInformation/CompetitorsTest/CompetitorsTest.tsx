@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors/CountYearCompetitors';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors/CountAllCompetitors';
-import CountQuarterCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountQuarterCompetitors/CountQuarterCompetitors';
+
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import styled from 'styled-components';
+
+import CountYearCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountYearCompetitors/CountYearCompetitors';
+import CountAllCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountAllCompetitors/CountAllCompetitors';
+import CountQuarterCompetitors from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CountQuarterCompetitors/CountQuarterCompetitors';
 import { GridProps } from '@app/components/dashboards/dashboard/styles/CountCompanyStyle';
 import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth/CompetitorsByMonth';
 import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed/CompetitorsDetailed';
 import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge/CompetitorsByAge';
-import RatingByKing from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/RatingByKing/RatingByKing';
 
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
@@ -18,7 +19,7 @@ const CompetitorsTest: React.FC = () => {
 
   return (
     <Container>
-      {addresses[0]?.settlement && typeActivities[0]?.name && (
+      {addresses[0]?.settlement && typeActivities[0]?.name && countCompany !== -1 && (
         <>
           <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
           {countCompany === 1 ? (
@@ -35,7 +36,6 @@ const CompetitorsTest: React.FC = () => {
                 <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
               </CountContainer>
               <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-              <RatingByKing />
               <S.Title>История регистрации конкурентов</S.Title>
               <ChartContainer>
                 <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
@@ -59,7 +59,8 @@ const Container = styled.div`
 const ChartContainer = styled.div`
   margin-top: 20px;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
 const CountContainer = styled.div<GridProps>`

@@ -9,7 +9,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 
 const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActivity }) => {
   const unn = useAppSelector((state) => state.searchProfile.profile.unn);
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [competitorsService.COMPETITORS_KEY.DETAILS, settlement, typeActivity],
     queryFn: () => competitorsService.getDataForDetailed(settlement, typeActivity),
     select: ({ data }) => data,
@@ -23,6 +23,7 @@ const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActiv
           <DetailedTable
             data={data?.results.filter((item) => item.legal_entity_id !== unn)}
             type={DetailsTableType.COMPETITORS}
+            isLoading={isLoading}
             sizePage={5}
           />
         </CompetitorsDetailedContainer>

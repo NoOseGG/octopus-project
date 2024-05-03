@@ -9,10 +9,11 @@ import { DetailsTableType, getColumns } from '@app/components/tables/DetailedTab
 type DetailedTableProps = {
   data: DashboardObject[];
   type: DetailsTableType;
+  isLoading?: boolean;
   sizePage?: number;
 };
 
-const DetailedTable: React.FC<DetailedTableProps> = ({ data, type, sizePage }) => {
+const DetailedTable: React.FC<DetailedTableProps> = ({ data, type, isLoading, sizePage }) => {
   const navigate = useNavigate();
   const defaultPageSize = sizePage || 10;
 
@@ -25,6 +26,7 @@ const DetailedTable: React.FC<DetailedTableProps> = ({ data, type, sizePage }) =
       columns={getColumns(type)}
       dataSource={data}
       size={'small'}
+      loading={isLoading}
       pagination={{ defaultPageSize: defaultPageSize, defaultCurrent: 1, pageSizeOptions: [5, 10, 20, 50, 100] }}
       onRow={(record: DashboardObject) => ({
         onClick: () => {

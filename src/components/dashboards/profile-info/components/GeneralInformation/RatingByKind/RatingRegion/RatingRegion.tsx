@@ -6,6 +6,7 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import RatingTable from '@app/components/tables/RatingTable/RatingTable';
+import { calculateRating } from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/utils';
 
 type MyComponentProps = {
   typeActivity: string;
@@ -35,21 +36,12 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, region, unn }) =>
   });
 
   useEffect(() => {
-    if (data?.results) {
-      const result: DashboardObjectForRating[] = data.results.slice(0, 5).map((item, index) => {
-        if (item.legal_entity_id === unn) return { ...item, position: index + 1, highlight: true };
-        else return { ...item, position: index + 1 };
-      });
-      const index = data.results.findIndex((item) => item.legal_entity_id === unn);
-      if (index > 4) result.push({ ...data?.results[index], position: index + 1, highlight: true });
-
-      setRatingRegion(result);
-    }
+    calculateRating(data?.results, setRatingRegion, unn);
   }, [data, unn]);
 
   return (
     <Container>
-      <S.Title>Рейтинг в области</S.Title>
+      <S.Title>Область</S.Title>
       <RatingTable data={ratingRegion} isLoading={isLoading} />
     </Container>
   );

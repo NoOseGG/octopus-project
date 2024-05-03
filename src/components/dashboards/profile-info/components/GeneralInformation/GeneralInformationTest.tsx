@@ -13,6 +13,7 @@ import OtherRelevantInformation from '@app/components/dashboards/profile-info/co
 import TaxOfficesArrearsTest from '@app/components/dashboards/profile-info/components/GeneralInformation/TaxOfficesArearsTest/TaxOfficesArrearsTest';
 import GiasTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GiasTest/GiasTest';
 import LevelOfReliability from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/LevelOfReliability';
+import RatingByKing from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/RatingByKing';
 
 const GeneralInformationTest: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const GeneralInformationTest: React.FC = () => {
       <LegalEntityType />
       <EconomicHighRiskRegistry />
       <OtherRelevantInformation />
+      <RatingByKing />
       <CompetitorsTest />
     </div>
   );

@@ -77,5 +77,5 @@ const sortDataByMonth = (data: ColumnChart[]): ColumnChart[] => {
 
 const CompetitorsByMonthContainer = styled.div`
   height: 300px;
-  width: 50%;
+  width: 100%;
 `;

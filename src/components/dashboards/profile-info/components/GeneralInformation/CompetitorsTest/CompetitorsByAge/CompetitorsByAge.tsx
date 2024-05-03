@@ -76,5 +76,5 @@ export default CompetitorsByAge;
 
 const CompetitorsByAgeContainer = styled.div`
   height: 300px;
-  width: 50%;
+  width: 100%;
 `;

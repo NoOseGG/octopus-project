@@ -6,6 +6,7 @@ import { ResponseDashboard } from '@app/interfaces/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import { Skeleton } from 'antd';
 import styled from 'styled-components';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
@@ -32,10 +33,14 @@ const MinMaxRating: React.FC = () => {
     <>
       {data ? (
         <Container>
-          Показатели оценки у прямых конкурентов
+          <S.Title>Показатели оценки у прямых конкурентов (Баллы)</S.Title>
           <RatingContainer>
-            <span>Минимум - {data?.data?.results[0]?.king}.</span>
-            <span>Максимум - {data?.data?.results[data?.data?.results?.length - 1]?.king}.</span>
+            <span>
+              <Name>Минимум</Name> - <Red>{data?.data?.results[0]?.king}</Red>.
+            </span>
+            <span>
+              <Name>Максимум</Name> - <Green>{data?.data?.results[data?.data?.results?.length - 1]?.king}</Green>.
+            </span>
           </RatingContainer>
         </Container>
       ) : (
@@ -49,12 +54,26 @@ export default MinMaxRating;
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
+  flex-direction: column;
+  font-size: 16px;
 `;
 
 const RatingContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-self: center;
+`;
+
+const Name = styled.span`
+  font-weight: 550;
+`;
+
+const Red = styled.span`
+  color: red;
+`;
+
+const Green = styled.span`
+  color: green;
 `;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
-import { Button, Select } from 'antd';
-import { filterStyle, PlaceholderText } from '@app/components/dashboards/profile-info/styles/SelectStyles';
+import { Button } from 'antd';
+
 import CloudTags, {
   CloudTagsTitleType,
 } from '@app/components/dashboards/profile-info/components/Vacancies/components/CloudTags/CloudTags';
@@ -16,22 +16,9 @@ import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import PercentInfo from '@app/components/dashboards/profile-info/components/Vacancies/components/PercentInfo/PercentInfo';
 import AvgSalary from '@app/components/dashboards/profile-info/components/Vacancies/components/AvgSalary/AvgSalary';
 
-enum SelectEnum {
-  DATE = 'По названию',
-  NAME = 'По имени',
-  SALARY = 'По зарплате',
-}
-
-enum AscendingEnum {
-  ASCENDING = 'По возрастанию',
-  ASCENDING_REVERSE = 'По убыванию',
-}
-
 const Vacancies: React.FC = () => {
   const vacancies = useAppSelector((state) => state.searchProfile.profile.vacancy);
   const [sortedVacancies, setSortedVacancies] = useState([...vacancies]);
-  const [ascending, setAscending] = useState(AscendingEnum.ASCENDING_REVERSE);
-  const [selectField, setSelectField] = useState(SelectEnum.DATE);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [statisticsNameVacancies, setStatisticsNameVacancies] = useState<{ value: string; count: number }[]>([]);
   const [statisticsNameVacancies365days, setStatisticsNameVacancies365days] = useState<
@@ -113,119 +100,6 @@ const Vacancies: React.FC = () => {
     setSelectedFilter(null);
   };
 
-  const sortVacancies = () => {
-    switch (selectField) {
-      case SelectEnum.DATE: {
-        if (ascending === AscendingEnum.ASCENDING) {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
-              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
-
-              // Добавьте проверку на null перед использованием даты
-              if (dateA && dateB) {
-                return dateA.getTime() - dateB.getTime();
-              }
-
-              // Обработка случая, если хотя бы одна из дат равна null
-              return 0;
-            }),
-          );
-        } else {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const dateA = a.from_dttm ? new Date(a.from_dttm) : null;
-              const dateB = b.from_dttm ? new Date(b.from_dttm) : null;
-
-              // Добавьте проверку на null перед использованием даты
-              if (dateA && dateB) {
-                return dateB.getTime() - dateA.getTime();
-              }
-
-              // Обработка случая, если хотя бы одна из дат равна null
-              return 0;
-            }),
-          );
-        }
-        break;
-      }
-      case SelectEnum.NAME: {
-        if (ascending === AscendingEnum.ASCENDING) {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const nameA = a.vacancy_name || '';
-              const nameB = b.vacancy_name || '';
-
-              return nameA.localeCompare(nameB);
-            }),
-          );
-        } else {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const nameA = a.vacancy_name || '';
-              const nameB = b.vacancy_name || '';
-
-              return nameB.localeCompare(nameA);
-            }),
-          );
-        }
-        break;
-      }
-      case SelectEnum.SALARY: {
-        if (ascending === AscendingEnum.ASCENDING) {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const salaryA = Number(a.min_salary_byn) || 0;
-              const salaryB = Number(b.min_salary_byn) || 0;
-
-              return salaryA - salaryB;
-            }),
-          );
-        } else {
-          setSortedVacancies(
-            vacancies.slice().sort((a, b) => {
-              const salaryA = Number(a.min_salary_byn) || 0;
-              const salaryB = Number(b.min_salary_byn) || 0;
-
-              return salaryB - salaryA;
-            }),
-          );
-        }
-        break;
-      }
-    }
-  };
-
-  useEffect(() => {
-    sortVacancies();
-  }, [ascending, selectField]);
-
-  const dataSelectField = [
-    {
-      value: SelectEnum.DATE,
-      label: 'По дате',
-    },
-    {
-      value: SelectEnum.NAME,
-      label: 'По названию',
-    },
-    {
-      value: SelectEnum.SALARY,
-      label: 'По зарплате',
-    },
-  ];
-
-  const dataAscending = [
-    {
-      value: AscendingEnum.ASCENDING,
-      label: 'По возрастанию',
-    },
-    {
-      value: AscendingEnum.ASCENDING_REVERSE,
-      label: 'По убыванию',
-    },
-  ];
-
   return (
     <>
       {Boolean(sortedVacancies.length) ? (
@@ -260,30 +134,6 @@ const Vacancies: React.FC = () => {
           </>
           <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />
           <Title>Детализированная информация</Title>
-          <SelectContainer>
-            <Select
-              size="small"
-              showSearch
-              style={filterStyle}
-              placeholder={<PlaceholderText>{selectField}</PlaceholderText>}
-              optionFilterProp="children"
-              value={selectField}
-              onChange={setSelectField}
-              filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-              options={dataSelectField}
-            />
-            <Select
-              size="small"
-              showSearch
-              style={filterStyle}
-              placeholder={<PlaceholderText>{ascending}</PlaceholderText>}
-              optionFilterProp="children"
-              value={ascending}
-              onChange={setAscending}
-              filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-              options={dataAscending}
-            />
-          </SelectContainer>
           <VacanciesContainer>
             <VacancyTable vacancies={sortedVacancies} />
           </VacanciesContainer>
@@ -299,12 +149,6 @@ export default Vacancies;
 
 const VacanciesContainer = styled.div`
   margin-top: 20px;
-`;
-
-const SelectContainer = styled.div`
-  margin-top: 1.8735rem;
-  display: flex;
-  justify-content: space-around;
 `;
 
 const StatisticTableContainer = styled.div`

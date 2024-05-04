@@ -4,7 +4,6 @@ import { httpAxios } from '@app/api/http.api';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { ResponseDashboard } from '@app/interfaces/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Skeleton } from 'antd';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 
@@ -31,7 +30,7 @@ const MinMaxRating: React.FC = () => {
 
   return (
     <>
-      {data ? (
+      {data && (
         <Container>
           <S.Title>Показатели оценки у прямых конкурентов (Баллы)</S.Title>
           <RatingContainer>
@@ -43,8 +42,6 @@ const MinMaxRating: React.FC = () => {
             </span>
           </RatingContainer>
         </Container>
-      ) : (
-        <Skeleton />
       )}
     </>
   );

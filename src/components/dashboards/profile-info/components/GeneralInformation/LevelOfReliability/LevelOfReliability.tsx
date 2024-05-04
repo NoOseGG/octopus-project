@@ -19,7 +19,7 @@ const LevelOfReliability: React.FC = () => {
 export default LevelOfReliability;
 
 const Container = styled.div`
-  display: flex;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 `;

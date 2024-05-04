@@ -12,8 +12,9 @@ import StatisticTable, {
   StatisticTableType,
 } from '@app/components/dashboards/profile-info/components/StatisticTable/StatisticTable';
 import VacancyTable from '@app/components/tables/VacancyTable/VacancyTable';
-import { formatNumberWithCommas, getCurrentDate, getDateLastYear } from '@app/utils/utils';
+import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import PercentInfo from '@app/components/dashboards/profile-info/components/Vacancies/components/PercentInfo/PercentInfo';
+import AvgSalary from '@app/components/dashboards/profile-info/components/Vacancies/components/AvgSalary/AvgSalary';
 
 enum SelectEnum {
   DATE = 'По названию',
@@ -230,21 +231,7 @@ const Vacancies: React.FC = () => {
       {Boolean(sortedVacancies.length) ? (
         <>
           <PercentInfo />
-          <>
-            <Title>Средний уровень предлаемой зарплаты</Title>
-            <AvgSalaryContainer>
-              {Boolean(Number(avgSalaryBYN)) && (
-                <AvgSalary>
-                  <span>В белорусских рублях - {formatNumberWithCommas(Number(avgSalaryBYN))}</span>
-                </AvgSalary>
-              )}
-              {Boolean(Number(avgSalaryUSD)) && (
-                <AvgSalary>
-                  <span>В долларах США - {formatNumberWithCommas(Number(avgSalaryUSD))}</span>
-                </AvgSalary>
-              )}
-            </AvgSalaryContainer>
-          </>
+          <AvgSalary avgSalaryBYN={avgSalaryBYN} avgSalaryUSD={avgSalaryUSD} />
           <>
             <Title>Сводная информация о требуемых специалистах</Title>
             {selectedFilter && (
@@ -319,17 +306,6 @@ const SelectContainer = styled.div`
   margin-top: 1.8735rem;
   display: flex;
   justify-content: space-around;
-`;
-
-const AvgSalaryContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const AvgSalary = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const StatisticTableContainer = styled.div`

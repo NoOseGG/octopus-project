@@ -36,10 +36,10 @@ const MinMaxRating: React.FC = () => {
           <S.Title>Показатели оценки у прямых конкурентов (Баллы)</S.Title>
           <RatingContainer>
             <span>
-              <Name>Минимум</Name> - <Red>{data?.data?.results[0]?.king}</Red>.
+              <Name>Минимум</Name> - <Red>{data?.data?.results[0]?.king}</Red>
             </span>
             <span>
-              <Name>Максимум</Name> - <Green>{data?.data?.results[data?.data?.results?.length - 1]?.king}</Green>.
+              <Name>Максимум</Name> - <Green>{data?.data?.results[data?.data?.results?.length - 1]?.king}</Green>
             </span>
           </RatingContainer>
         </Container>

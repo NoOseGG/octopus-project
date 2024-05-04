@@ -10,19 +10,23 @@ type MyComponentProps = {
 const AvgSalary: React.FC<MyComponentProps> = ({ avgSalaryBYN, avgSalaryUSD }) => {
   return (
     <>
-      <Title>Средний уровень предлаемой зарплаты</Title>
-      <AvgSalaryContainer>
-        {Boolean(Number(avgSalaryBYN)) && (
-          <Avg>
-            <span>В белорусских рублях - {formatNumberWithCommas(Number(avgSalaryBYN))}</span>
-          </Avg>
-        )}
-        {Boolean(Number(avgSalaryUSD)) && (
-          <Avg>
-            <span>В долларах США - {formatNumberWithCommas(Number(avgSalaryUSD))}</span>
-          </Avg>
-        )}
-      </AvgSalaryContainer>
+      {avgSalaryBYN && avgSalaryUSD && (
+        <>
+          <Title>Средний уровень предлаемой зарплаты</Title>
+          <AvgSalaryContainer>
+            {Boolean(Number(avgSalaryBYN)) && (
+              <Avg>
+                <span>В белорусских рублях - {formatNumberWithCommas(Number(avgSalaryBYN))}</span>
+              </Avg>
+            )}
+            {Boolean(Number(avgSalaryUSD)) && (
+              <Avg>
+                <span>В долларах США - {formatNumberWithCommas(Number(avgSalaryUSD))}</span>
+              </Avg>
+            )}
+          </AvgSalaryContainer>
+        </>
+      )}
     </>
   );
 };

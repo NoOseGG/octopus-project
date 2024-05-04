@@ -17,7 +17,7 @@ type MyComponentProps = {
   title: CloudTagsTitleType;
 };
 
-const CloudTags: React.FC<MyComponentProps> = ({ keyWords, title }) => {
+const CloudTags: React.FC<MyComponentProps> = ({ keyWords }) => {
   const data = keyWords;
 
   const config: WordCloudConfig = {
@@ -34,9 +34,14 @@ const CloudTags: React.FC<MyComponentProps> = ({ keyWords, title }) => {
   };
 
   return (
-    <CloudTagsContainer>
-      <WordCloud {...config} />
-    </CloudTagsContainer>
+    <>
+      {Boolean(keyWords.length) && (
+        <CloudTagsContainer>
+          <Title>Требуемые навыки от специалистов</Title>
+          <WordCloud {...config} />
+        </CloudTagsContainer>
+      )}
+    </>
   );
 };
 
@@ -48,5 +53,7 @@ const CloudTagsContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  text-align: left;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 700;
 `;

@@ -258,8 +258,7 @@ const Vacancies: React.FC = () => {
               />
             </StatisticTableContainer>
           </>
-          <Title>Требуемые навыки от специалистов</Title>
-          {Boolean(keyWords.length) && <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />}
+          <CloudTags keyWords={keyWords} title={CloudTagsTitleType.VACANCIES} />
           <Title>Детализированная информация</Title>
           <SelectContainer>
             <Select

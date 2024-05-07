@@ -36,10 +36,15 @@ const CompetitorsTest: React.FC = () => {
                 <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
               </CountContainer>
               <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-              <S.Title>История регистрации конкурентов</S.Title>
               <ChartContainer>
-                <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-                <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <>
+                  <S.Title>История регистраций конкурентов по годам</S.Title>
+                  <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                </>
+                <>
+                  <S.Title>История регистраций конкурентов по месяцам, за последний год</S.Title>
+                  <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                </>
               </ChartContainer>
             </>
           )}
@@ -59,8 +64,9 @@ const Container = styled.div`
 const ChartContainer = styled.div`
   margin-top: 20px;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
 
 const CountContainer = styled.div<GridProps>`

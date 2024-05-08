@@ -7,8 +7,6 @@ type MyComponentProps = {
 };
 
 const VacancyExpand: React.FC<MyComponentProps> = ({ vacancy }) => {
-  console.log(JSON.stringify(vacancy));
-
   return (
     <VacancyExpandContainer>
       <LeftColumn>

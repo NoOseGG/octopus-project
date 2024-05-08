@@ -99,8 +99,7 @@ const GiasTest: React.FC = () => {
             dataSource={gias}
             title={() => <TableText />}
             size={'small'}
-            pagination={false}
-            scroll={{ y: 360 }}
+            pagination={gias.length <= 5 ? false : { pageSize: 5 }}
           />
           <S.MyDivider />
         </S.Container>

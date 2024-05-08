@@ -67,7 +67,7 @@ const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => 
     {
       title: 'Среднее количество по виду деятельности',
       dataIndex: 'avg_lei',
-      render: (text) => <Content textAlign={'center'}>{text}</Content>,
+      render: (text) => <Content textAlign={'center'}>{Number(text).toFixed(1)}</Content>,
     },
     {
       title: 'Количество действующих компаний в городе',
@@ -82,7 +82,7 @@ const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => 
     {
       title: 'Предельное среднее',
       dataIndex: 'high_avg',
-      render: (text) => <Content textAlign={'center'}>{text}</Content>,
+      render: (text) => <Content textAlign={'center'}>{Number(text).toFixed(1)}</Content>,
     },
     {
       title: 'Уровень конкуренции',

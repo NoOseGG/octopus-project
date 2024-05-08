@@ -66,7 +66,9 @@ const StatisticTable: React.FC<MyComponentProps> = ({
         columns={columns}
         dataSource={statistics.sort((a, b) => b.count - a.count)}
         size={'small'}
-        pagination={{ defaultPageSize: 5, defaultCurrent: 1, pageSizeOptions: [5, 10, 20] }}
+        pagination={
+          statistics.length <= 5 ? false : { defaultPageSize: 5, defaultCurrent: 1, pageSizeOptions: [5, 10, 20] }
+        }
         onRow={(record) => ({
           onClick: () => addFilter(record.value),
         })}

@@ -16,6 +16,8 @@ export const httpDashboard = axios.create();
 
 export const httpAxios = axios.create();
 
+export const httpSearch = axios.create();
+
 httpApi.interceptors.request.use((config) => {
   return config;
 });
@@ -28,14 +30,6 @@ httpDashboard.interceptors.request.use((config) => {
   }
   return config;
 });
-
-// axios.interceptors.request.use((config) => {
-//   const token = readToken();
-//   if (token && config.headers) {
-//     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
-//   }
-//   return config;
-// });
 
 httpApi.interceptors.response.use(undefined, (error: AxiosError) => {
   throw new ApiError<ApiErrorData>(error.response?.data.message || error.message, error.response?.data);
@@ -52,6 +46,14 @@ httpAxios.interceptors.response.use(
 );
 
 httpAxios.interceptors.request.use((config) => {
+  const token = readToken();
+  if (token && config.headers) {
+    config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
+  }
+  return config;
+});
+
+httpSearch.interceptors.request.use((config) => {
   const token = readToken();
   if (token && config.headers) {
     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;

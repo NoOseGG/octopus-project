@@ -19,7 +19,7 @@ const Search: React.FC = () => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
 
-  if (!!results.length && !loading) {
+  if (Boolean(results?.length) && !loading) {
     return (
       <Container>
         <SubjectsList listItems={results} />

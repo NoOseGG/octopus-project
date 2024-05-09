@@ -6,7 +6,7 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice';
+import { clearSearchData, doSearch, searchController } from '@app/store/slices/search/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
@@ -51,20 +51,21 @@ export const HeaderSearch: React.FC = () => {
     [dispatch],
   );
 
-  const clearSearch = useCallback(
-    _.debounce(() => {
-      dispatch(clearSearchData());
-    }, 600),
-    [dispatch],
-  );
+  // const clearSearch = useCallback(
+  //   _.debounce(() => {
+  //     dispatch(clearSearchData());
+  //   }, 600),
+  //   [dispatch],
+  // );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (query.trim().length > 2) {
-      delaySearch(query);
+      dispatch(doSearch(query.trim()));
       navigate('/search');
     } else {
-      // clearSearch();
+      searchController?.abort();
+      dispatch(clearSearchData());
     }
   }, [query]);
 

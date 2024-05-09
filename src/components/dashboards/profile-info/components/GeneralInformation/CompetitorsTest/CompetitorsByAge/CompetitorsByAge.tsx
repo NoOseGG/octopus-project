@@ -5,6 +5,7 @@ import { Line, LineConfig } from '@ant-design/charts';
 import { LineChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
 import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 
 const sortingData = (data: LineChartObject[]) => {
   return data.map((item) => {
@@ -67,6 +68,7 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
 
   return Boolean(data?.length) ? (
     <CompetitorsByAgeContainer>
+      <S.Title>История регистраций конкурентов по годам</S.Title>
       <Line {...config}></Line>
     </CompetitorsByAgeContainer>
   ) : null;
@@ -74,6 +76,4 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
 
 export default CompetitorsByAge;
 
-const CompetitorsByAgeContainer = styled.div`
-  height: 300px;
-`;
+const CompetitorsByAgeContainer = styled.div``;

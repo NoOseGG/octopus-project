@@ -8,6 +8,7 @@ import { ColumnChart, ColumnChartObject } from '@app/interfaces/interfaces';
 import styled from 'styled-components';
 
 import { CompetitorsProps } from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/types/CompetitorsType';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 const sortingData = (data: ColumnChartObject[]) => {
   const sorted = data.map((item) => {
     return {
@@ -64,6 +65,7 @@ const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivi
 
   return Boolean(data?.length) ? (
     <CompetitorsByMonthContainer>
+      <S.Title>История регистраций конкурентов по месяцам, за последний год</S.Title>
       <Column {...config} />{' '}
     </CompetitorsByMonthContainer>
   ) : null;
@@ -75,6 +77,4 @@ const sortDataByMonth = (data: ColumnChart[]): ColumnChart[] => {
   return data.sort((a, b) => a.type - b.type);
 };
 
-const CompetitorsByMonthContainer = styled.div`
-  height: 300px;
-`;
+const CompetitorsByMonthContainer = styled.div``;

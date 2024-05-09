@@ -37,14 +37,8 @@ const CompetitorsTest: React.FC = () => {
               </CountContainer>
               <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
               <ChartContainer>
-                <>
-                  <S.Title>История регистраций конкурентов по годам</S.Title>
-                  <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-                </>
-                <>
-                  <S.Title>История регистраций конкурентов по месяцам, за последний год</S.Title>
-                  <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-                </>
+                <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
               </ChartContainer>
             </>
           )}

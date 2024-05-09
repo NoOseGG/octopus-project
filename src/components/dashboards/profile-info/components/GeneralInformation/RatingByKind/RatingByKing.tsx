@@ -19,8 +19,8 @@ const RatingByKing: React.FC = () => {
       {typeActivity && (
         <Container>
           <S.Title>Позиция среди компаний с аналогичным видом деятельности</S.Title>
+          {typeActivity && unn && <RatingAll typeActivity={typeActivity} unn={unn} />}
           <RatingContainer>
-            {typeActivity && unn && <RatingAll typeActivity={typeActivity} unn={unn} />}
             {typeActivity && region && unn && <RatingRegion typeActivity={typeActivity} region={region} unn={unn} />}
             {typeActivity && settlement && unn && (
               <RatingSettlement typeActivity={typeActivity} settlement={settlement} unn={unn} />
@@ -44,6 +44,6 @@ const Container = styled.div`
 const RatingContainer = styled.div`
   margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 10px;
 `;

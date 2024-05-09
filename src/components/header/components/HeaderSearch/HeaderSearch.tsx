@@ -51,21 +51,22 @@ export const HeaderSearch: React.FC = () => {
     [dispatch],
   );
 
-  // const clearSearch = useCallback(
-  //   _.debounce(() => {
-  //     dispatch(clearSearchData());
-  //   }, 600),
-  //   [dispatch],
-  // );
+  const clearSearch = useCallback(
+    _.debounce(() => {
+      searchController?.abort();
+      dispatch(clearSearchData());
+    }, 600),
+    [dispatch],
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (query.trim().length > 2) {
-      dispatch(doSearch(query.trim()));
+      // dispatch(doSearch(query.trim()));
+      delaySearch(query);
       navigate('/search');
     } else {
-      searchController?.abort();
-      dispatch(clearSearchData());
+      clearSearch();
     }
   }, [query]);
 

@@ -14,18 +14,14 @@ const initialState: CurrentByAgeState = {
 export const doGetBankruptedByAgeMoreThen20SoleTrade = createAsyncThunk<ResponseCurrentByAge, RequestData>(
   'doGetBankruptedByAgeMoreThen20SoleTrade',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.SOLE_TRADE + DASH.STATUS_BP + DASH.AGE_RANGE(20, 100),
-        filters,
-        true,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE + DASH.SOLE_TRADE + DASH.STATUS_BP + DASH.AGE_RANGE(20, 100),
+      filters,
+      true,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -39,6 +35,10 @@ const bankruptedByAgeMoreThen20SoleTradeSlice = createSlice({
     });
     builder.addCase(doGetBankruptedByAgeMoreThen20SoleTrade.fulfilled, (state, action) => {
       state.age = action.payload.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetBankruptedByAgeMoreThen20SoleTrade.rejected, (state) => {
+      state.age = 0;
       state.loading = false;
     });
   },

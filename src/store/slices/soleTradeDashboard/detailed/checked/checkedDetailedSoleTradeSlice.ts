@@ -17,25 +17,21 @@ const initialState: DetailedInformationState = {
 export const doGetCheckedDetailedSoleTrade = createAsyncThunk<ResponseDetailedInformation, RequestData>(
   'doGetCheckedDetailedSoleTrade',
   async ({ filters }) => {
-    try {
-      const date = getCurrentDate();
-      const url = constructorUrlForDashboard(
-        DASH.BASE_INSPECTION +
-          DASH.PAGE_SIZE(30) +
-          DASH.SOLE_TRADE +
-          DASH.DATE_BEFORE_INSPECTION(date) +
-          DASH.ORDERING('-inspection_dttm') +
-          DASH.IS_NULL_FALSE('inspection_dttm'),
-        filters,
-        false,
-        false,
-      );
+    const date = getCurrentDate();
+    const url = constructorUrlForDashboard(
+      DASH.BASE_INSPECTION +
+        DASH.PAGE_SIZE(30) +
+        DASH.SOLE_TRADE +
+        DASH.DATE_BEFORE_INSPECTION(date) +
+        DASH.ORDERING('-inspection_dttm') +
+        DASH.IS_NULL_FALSE('inspection_dttm'),
+      filters,
+      false,
+      false,
+    );
 
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -49,6 +45,10 @@ const checkedDetailedSoleTradeSlice = createSlice({
     });
     builder.addCase(doGetCheckedDetailedSoleTrade.fulfilled, (state, action) => {
       state.results = action.payload.results;
+      state.loading = false;
+    });
+    builder.addCase(doGetCheckedDetailedSoleTrade.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

@@ -14,18 +14,14 @@ const initialState: MainInfoState = {
 export const doGetTotalCountCheckedLiquidatedSoleTrade = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetTotalCountCheckedLiquidatedSoleTrade',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE_INSPECTION + DASH.SOLE_TRADE + DASH.LIQUIDATED_ENTITY + DASH.IS_NULL_FALSE('inspection_dttm'),
-        filters,
-        true,
-        true,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE_INSPECTION + DASH.SOLE_TRADE + DASH.LIQUIDATED_ENTITY + DASH.IS_NULL_FALSE('inspection_dttm'),
+      filters,
+      true,
+      true,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -39,6 +35,10 @@ const checkedLiquidatedSoleTradeSlice = createSlice({
     });
     builder.addCase(doGetTotalCountCheckedLiquidatedSoleTrade.fulfilled, (state, action) => {
       state.count = action.payload.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetTotalCountCheckedLiquidatedSoleTrade.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

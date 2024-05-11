@@ -15,20 +15,16 @@ const initialState: LineChartYearsState = {
 export const doGetDataForCheckedLineChartSoleTrade = createAsyncThunk<CheckedResponseLineChart, RequestData>(
   'doGetDataForCheckedLineChartSoleTrade',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      let baseUrl = DASH.BASE_INSPECTION + DASH.AGR_COUNT + DASH.GROUP_BY('inspection_dttm__year') + DASH.SOLE_TRADE;
-      if (!filters.isDate) {
-        baseUrl += DASH.DATE_BEFORE_INSPECTION(currentDate);
-        baseUrl += DASH.DATE_AFTER_INSPECTION('2000-01-01');
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('inspection_dttm__year'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
+    const currentDate = getCurrentDate();
+    let baseUrl = DASH.BASE_INSPECTION + DASH.AGR_COUNT + DASH.GROUP_BY('inspection_dttm__year') + DASH.SOLE_TRADE;
+    if (!filters.isDate) {
+      baseUrl += DASH.DATE_BEFORE_INSPECTION(currentDate);
+      baseUrl += DASH.DATE_AFTER_INSPECTION('2000-01-01');
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('inspection_dttm__year'));
+    return response.data;
   },
 );
 
@@ -47,6 +43,10 @@ const liquidatedLineChartSoleTradeSlice = createSlice({
           sales: item.Count,
         };
       });
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForCheckedLineChartSoleTrade.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

@@ -14,24 +14,20 @@ const initialState: CurrentByAvgAgeState = {
 export const doGetCurrentByAgeAvgAgeSoleTrade = createAsyncThunk<ResponseCurrentByAvgAge, RequestData>(
   'doGetCurrentByAgeAvgAgeSoleTrade',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_AVERAGE +
-          DASH.AVG_FIELD('age_short') +
-          DASH.SOLE_TRADE +
-          DASH.STATUS_AT +
-          DASH.ORDERING_AGG('-avg') +
-          DASH.GROUP_BY('company_status_code'),
-        filters,
-        false,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE +
+        DASH.AGR_AVERAGE +
+        DASH.AVG_FIELD('age_short') +
+        DASH.SOLE_TRADE +
+        DASH.STATUS_AT +
+        DASH.ORDERING_AGG('-avg') +
+        DASH.GROUP_BY('company_status_code'),
+      filters,
+      false,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -45,6 +41,10 @@ const currentByAgeAvgAgeSoleTradeSlice = createSlice({
     });
     builder.addCase(doGetCurrentByAgeAvgAgeSoleTrade.fulfilled, (state, action) => {
       state.count = action.payload?.results[0]?.Avg;
+      state.loading = false;
+    });
+    builder.addCase(doGetCurrentByAgeAvgAgeSoleTrade.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

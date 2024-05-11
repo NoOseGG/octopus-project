@@ -36,9 +36,7 @@ import { dashboardController, reCreatedController } from '@app/api/http.api';
 
 const DashboardLegalEntity: React.FC = () => {
   useEffect(() => {
-    console.log('mount');
     return () => {
-      console.log('did mount');
       dashboardController.abort();
       reCreatedController();
     };

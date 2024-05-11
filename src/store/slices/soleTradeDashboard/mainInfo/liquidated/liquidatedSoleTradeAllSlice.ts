@@ -14,13 +14,9 @@ const initialState: MainInfoState = {
 export const doGetTotalCountLiquidatedSoleTrade = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetTotalCountLiquidatedSoleTrade',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(DASH.BASE + DASH.SOLE_TRADE + DASH.LIQUIDATED_ENTITY, filters, true, true);
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(DASH.BASE + DASH.SOLE_TRADE + DASH.LIQUIDATED_ENTITY, filters, true, true);
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -34,6 +30,10 @@ const liquidatedSoleTradeAllSlice = createSlice({
     });
     builder.addCase(doGetTotalCountLiquidatedSoleTrade.fulfilled, (state, action) => {
       state.count = action.payload.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetTotalCountLiquidatedSoleTrade.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

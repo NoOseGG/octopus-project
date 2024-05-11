@@ -17,14 +17,10 @@ const initialState: IJumpTypeActivityState = {
 export const doGetJumpTypeActivitySoleTrade = createAsyncThunk<IJumpTypeActivityResponse>(
   'doGetJumpTypeActivitySoleTrade',
   async () => {
-    try {
-      const response = await httpDashboard.get(
-        DASH.BASE_JUMP_TYPE_ACTIVITY + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_SOLE_TRADE,
-      );
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await httpDashboard.get(
+      DASH.BASE_JUMP_TYPE_ACTIVITY + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_SOLE_TRADE,
+    );
+    return response.data;
   },
 );
 
@@ -46,6 +42,10 @@ const jumpTypeActivitySoleTradeSlice = createSlice({
         }
         return parseInt(b.reg_month, 10) - parseInt(a.reg_month, 10);
       });
+      state.isLoading = false;
+    });
+    builder.addCase(doGetJumpTypeActivitySoleTrade.rejected, (state) => {
+      state.jumps.results = [];
       state.isLoading = false;
     });
   },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import DetailedInformation from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformation';
 import { DETAILED_TYPE } from '@app/components/dashboards/dashboard/components/DetailedInformation/DetailedInformationTypes';
@@ -32,8 +32,16 @@ import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
 import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
+import { dashboardController, reCreatedController } from '@app/api/http.api';
 
 const DashboardSoleTrader: React.FC = () => {
+  useEffect(() => {
+    return () => {
+      dashboardController.abort();
+      reCreatedController();
+    };
+  }, []);
+
   return (
     <Container>
       <Title>Индивидуальные предприниматели (ИП)</Title>

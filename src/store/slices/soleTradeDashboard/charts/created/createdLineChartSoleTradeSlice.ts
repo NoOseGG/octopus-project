@@ -15,20 +15,16 @@ const initialState: LineChartYearsState = {
 export const doGetDataForLineChartSoleTrade = createAsyncThunk<ResponseLineChart, RequestData>(
   'doGetDataForLineChartSoleTrade',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.SOLE_TRADE;
-      if (!filters.isDate) {
-        baseUrl += DASH.DATE_BEFORE(currentDate);
-        baseUrl += DASH.DATE_AFTER('2000-01-01');
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
+    const currentDate = getCurrentDate();
+    let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.SOLE_TRADE;
+    if (!filters.isDate) {
+      baseUrl += DASH.DATE_BEFORE(currentDate);
+      baseUrl += DASH.DATE_AFTER('2000-01-01');
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
+    return response.data;
   },
 );
 
@@ -47,6 +43,10 @@ const createdLineChartSoleTradeSlice = createSlice({
           sales: item.Count,
         };
       });
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForLineChartSoleTrade.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

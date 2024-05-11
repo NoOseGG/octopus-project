@@ -14,14 +14,10 @@ const initialState: MainInfoState = {
 export const doGetTotalCountCreatedSoleTradeLastQuarter = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetTotalCountCreatedSoleTradeLastQuarter',
   async ({ filters }) => {
-    try {
-      const date = getDateLastQuarter();
-      const url = constructorUrlForDashboard(DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(date), filters, true, false);
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const date = getDateLastQuarter();
+    const url = constructorUrlForDashboard(DASH.BASE + DASH.SOLE_TRADE + DASH.DATE_AFTER(date), filters, true, false);
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -35,6 +31,10 @@ const createdSoleTradeQuarterSlice = createSlice({
     });
     builder.addCase(doGetTotalCountCreatedSoleTradeLastQuarter.fulfilled, (state, action) => {
       state.count = action.payload.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetTotalCountCreatedSoleTradeLastQuarter.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

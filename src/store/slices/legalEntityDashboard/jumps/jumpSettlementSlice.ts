@@ -2,7 +2,6 @@ import { IJumpSettlementResponse, IJumpSettlementState } from '@app/store/types/
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: IJumpSettlementState = {
   jumps: {
@@ -16,18 +15,10 @@ const initialState: IJumpSettlementState = {
 };
 
 export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('doGetJumpSettlement', async () => {
-  try {
-    const response = await httpDashboard.get(
-      DASH.BASE_JUMP_SETTLEMENT + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
-    );
-    return response.data;
-  } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log('request canceled');
-    } else {
-      console.log(error);
-    }
-  }
+  const response = await httpDashboard.get(
+    DASH.BASE_JUMP_SETTLEMENT + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
+  );
+  return response.data;
 });
 
 const jumpSettlementSlice = createSlice({
@@ -48,6 +39,10 @@ const jumpSettlementSlice = createSlice({
         }
         return parseInt(b.reg_month, 10) - parseInt(a.reg_month, 10);
       });
+      state.isLoading = false;
+    });
+    builder.addCase(doGetJumpSettlement.rejected, (state) => {
+      state.jumps.results = [];
       state.isLoading = false;
     });
   },

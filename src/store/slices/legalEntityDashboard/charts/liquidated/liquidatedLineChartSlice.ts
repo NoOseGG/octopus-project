@@ -5,7 +5,6 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LiquidatedResponseLineChart } from '@app/store/types/dashboard/LiquidatedChartsTypes';
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -16,30 +15,22 @@ const initialState: LineChartYearsState = {
 export const doGetDataForLiquidatedLineChart = createAsyncThunk<LiquidatedResponseLineChart, RequestData>(
   'doGetDataForLiquidatedLineChart',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      let baseUrl =
-        DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('company_status_from_dttm__year') +
-        DASH.LEGAL_ENTITY +
-        DASH.LIQUIDATED_ENTITY;
-      if (!filters.isDate) {
-        baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
-        baseUrl += DASH.DATE_AFTER_LIQUIDATED('2000-01-01');
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
-
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
+    const currentDate = getCurrentDate();
+    let baseUrl =
+      DASH.BASE +
+      DASH.AGR_COUNT +
+      DASH.GROUP_BY('company_status_from_dttm__year') +
+      DASH.LEGAL_ENTITY +
+      DASH.LIQUIDATED_ENTITY;
+    if (!filters.isDate) {
+      baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
+      baseUrl += DASH.DATE_AFTER_LIQUIDATED('2000-01-01');
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
+
+    return response.data;
   },
 );
 
@@ -58,6 +49,10 @@ const liquidatedLineChartSlice = createSlice({
           sales: item.Count,
         };
       });
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForLiquidatedLineChart.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

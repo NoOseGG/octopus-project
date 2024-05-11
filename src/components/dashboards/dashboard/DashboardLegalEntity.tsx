@@ -32,7 +32,7 @@ import {
   PERCENT_TYPE,
 } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
-import { dashboardController } from '@app/api/http.api';
+import { dashboardController, reCreatedController } from '@app/api/http.api';
 
 const DashboardLegalEntity: React.FC = () => {
   useEffect(() => {
@@ -40,6 +40,7 @@ const DashboardLegalEntity: React.FC = () => {
     return () => {
       console.log('did mount');
       dashboardController.abort();
+      reCreatedController();
     };
   }, []);
 
@@ -110,67 +111,67 @@ const DashboardLegalEntity: React.FC = () => {
         from1To5={AGE_TYPES.LE_LIQUIDATED_FROM_1_TO_5}
         lessThen1={AGE_TYPES.LE_LIQUIDATED_LESS_THEN_1}
       />
-      <AgePieChart
-        more20={AGE_TYPES.LE_LIQUIDATED_MORE_THEN_20}
-        from10To20={AGE_TYPES.LE_LIQUIDATED_FROM_10_TO_20}
-        from5To10={AGE_TYPES.LE_LIQUIDATED_FROM_5_TO_10}
-        from1To5={AGE_TYPES.LE_LIQUIDATED_FROM_1_TO_5}
-        less1={AGE_TYPES.LE_LIQUIDATED_LESS_THEN_1}
-        chartType={CHART_TYPE.ROSE}
-      />
-      <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_LIQUIDATED} />
-      <DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />
+      {/*<AgePieChart*/}
+      {/*  more20={AGE_TYPES.LE_LIQUIDATED_MORE_THEN_20}*/}
+      {/*  from10To20={AGE_TYPES.LE_LIQUIDATED_FROM_10_TO_20}*/}
+      {/*  from5To10={AGE_TYPES.LE_LIQUIDATED_FROM_5_TO_10}*/}
+      {/*  from1To5={AGE_TYPES.LE_LIQUIDATED_FROM_1_TO_5}*/}
+      {/*  less1={AGE_TYPES.LE_LIQUIDATED_LESS_THEN_1}*/}
+      {/*  chartType={CHART_TYPE.ROSE}*/}
+      {/*/>*/}
+      {/*<AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_LIQUIDATED} />*/}
+      {/*<DetailedInformation detailed={DETAILED_TYPE.LE_LIQUIDATED} />*/}
 
-      <MainInfo
-        all={COUNT_TYPE.LE_BANKRUPT_ALL}
-        year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}
-        quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}
-        operation={COUNT_TYPE.NONE}
-        percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}
-      />
-      <ChartsContainer>
-        <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />
-        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />
-      </ChartsContainer>
-      <TypeActivities
-        all={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL}
-        year={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR}
-        quarter={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER}
-        month={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH}
-      />
-      <ByAge
-        moreThen20={AGE_TYPES.LE_BANKRUPTED_MORE_THEN_20}
-        from10To20={AGE_TYPES.LE_BANKRUPTED_FROM_10_TO_20}
-        from5To10={AGE_TYPES.LE_BANKRUPTED_FROM_5_TO_10}
-        from1To5={AGE_TYPES.LE_BANKRUPTED_FROM_1_TO_5}
-        lessThen1={AGE_TYPES.LE_BANKRUPTED_LESS_THEN_1}
-      />
-      <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_BANKRUPTED} />
-      <Divider />
-      <AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />
-      <Divider />
-      <DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />
+      {/*<MainInfo*/}
+      {/*  all={COUNT_TYPE.LE_BANKRUPT_ALL}*/}
+      {/*  year={COUNT_YEAR_TYPE.LE_BANKRUPTED_YEAR}*/}
+      {/*  quarter={COUNT_TYPE.LE_BANKRUPT_QUARTER}*/}
+      {/*  operation={COUNT_TYPE.NONE}*/}
+      {/*  percent={PERCENT_TYPE.LE_BANKRUPTED_PERCENT}*/}
+      {/*/>*/}
+      {/*<ChartsContainer>*/}
+      {/*  <LineChartYears lineChart={LINE_CHART_YEAR.LE_BANKRUPTED} />*/}
+      {/*  <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_BANKRUPTED} />*/}
+      {/*</ChartsContainer>*/}
+      {/*<TypeActivities*/}
+      {/*  all={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_ALL}*/}
+      {/*  year={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_YEAR}*/}
+      {/*  quarter={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_QUARTER}*/}
+      {/*  month={TYPE_ACTIVITY_TYPE.LE_BANKRUPTED_MONTH}*/}
+      {/*/>*/}
+      {/*<ByAge*/}
+      {/*  moreThen20={AGE_TYPES.LE_BANKRUPTED_MORE_THEN_20}*/}
+      {/*  from10To20={AGE_TYPES.LE_BANKRUPTED_FROM_10_TO_20}*/}
+      {/*  from5To10={AGE_TYPES.LE_BANKRUPTED_FROM_5_TO_10}*/}
+      {/*  from1To5={AGE_TYPES.LE_BANKRUPTED_FROM_1_TO_5}*/}
+      {/*  lessThen1={AGE_TYPES.LE_BANKRUPTED_LESS_THEN_1}*/}
+      {/*/>*/}
+      {/*<RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_BANKRUPTED} />*/}
+      {/*<Divider />*/}
+      {/*<AgeMultipleChart ageMultiple={AGE_MULTIPLE_TYPES.LE_BANKRUPTED} />*/}
+      {/*<Divider />*/}
+      {/*<DetailedInformation detailed={DETAILED_TYPE.LE_BANKRUPTED} />*/}
 
-      <Inspections
-        all={COUNT_CHECKED_TYPE.LE_CHECKED_ALL}
-        liquidated={COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED}
-        bankrupted={COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED}
-      />
-      <ChartsContainer>
-        <LineChartYears lineChart={LINE_CHART_YEAR.LE_CHECKED} />
-        <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CHECKED} />
-      </ChartsContainer>
-      <ChartsContainer>
-        <AvgAge avgAge={AVG_AGE_TYPES.LE_CHECKED} />
-        <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_CHECKED} />
-      </ChartsContainer>
-      <TypeActivities
-        all={TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL}
-        year={TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR}
-        quarter={TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER}
-        month={TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH}
-      />
-      <DetailedInformation detailed={DETAILED_TYPE.LE_CHECKED} />
+      {/*<Inspections*/}
+      {/*  all={COUNT_CHECKED_TYPE.LE_CHECKED_ALL}*/}
+      {/*  liquidated={COUNT_CHECKED_TYPE.LE_CHECKED_LIQUIDATED}*/}
+      {/*  bankrupted={COUNT_CHECKED_TYPE.LE_CHECKED_BANKRUPTED}*/}
+      {/*/>*/}
+      {/*<ChartsContainer>*/}
+      {/*  <LineChartYears lineChart={LINE_CHART_YEAR.LE_CHECKED} />*/}
+      {/*  <ColumnChartMonth columnChart={COLUMN_CHART_MONTH.LE_CHECKED} />*/}
+      {/*</ChartsContainer>*/}
+      {/*<ChartsContainer>*/}
+      {/*  <AvgAge avgAge={AVG_AGE_TYPES.LE_CHECKED} />*/}
+      {/*  <RegionsCircleChart regionCircle={REGION_CIRCLE_TYPES.LE_CHECKED} />*/}
+      {/*</ChartsContainer>*/}
+      {/*<TypeActivities*/}
+      {/*  all={TYPE_ACTIVITY_TYPE.LE_CHECKED_ALL}*/}
+      {/*  year={TYPE_ACTIVITY_TYPE.LE_CHECKED_YEAR}*/}
+      {/*  quarter={TYPE_ACTIVITY_TYPE.LE_CHECKED_QUARTER}*/}
+      {/*  month={TYPE_ACTIVITY_TYPE.LE_CHECKED_MONTH}*/}
+      {/*/>*/}
+      {/*<DetailedInformation detailed={DETAILED_TYPE.LE_CHECKED} />*/}
     </Container>
   );
 };

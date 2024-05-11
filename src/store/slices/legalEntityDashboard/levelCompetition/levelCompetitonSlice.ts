@@ -15,12 +15,8 @@ const initialState: ILevelCompetitionState = {
 };
 
 export const doGetLevelCompetition = createAsyncThunk<ILevelCompetitionResponse>('doGetLevelCompetition', async () => {
-  try {
-    const response = await httpDashboard.get(DASH.BASE_LEVEL_COMPETITION);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await httpDashboard.get(DASH.BASE_LEVEL_COMPETITION);
+  return response.data;
 });
 
 const levelCompetitionSlice = createSlice({
@@ -33,6 +29,10 @@ const levelCompetitionSlice = createSlice({
     });
     builder.addCase(doGetLevelCompetition.fulfilled, (state, action) => {
       state.level_competition = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(doGetLevelCompetition.rejected, (state) => {
+      state.level_competition.results = [];
       state.isLoading = false;
     });
   },

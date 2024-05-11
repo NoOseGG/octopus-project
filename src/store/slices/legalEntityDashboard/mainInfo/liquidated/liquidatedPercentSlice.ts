@@ -70,6 +70,10 @@ const liquidatedPercentSlice = createSlice({
       }
       state.loading = false;
     });
+    builder.addCase(doCalculateLiquidatedPercent.rejected, (state) => {
+      state.percent = 0;
+      state.loading = false;
+    });
   },
 });
 

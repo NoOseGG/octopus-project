@@ -7,7 +7,11 @@ import { TOKEN_NAME } from '@app/constants/Constants';
 const BASE_URL = 'https://api.analytix.by/api/v1/auth/';
 
 export const dashboardSourceToken = axios.CancelToken.source();
-export const dashboardController = new AbortController();
+export let dashboardController = new AbortController();
+
+export const reCreatedController = () => {
+  dashboardController = new AbortController();
+};
 
 export const httpApi = axios.create({
   baseURL: BASE_URL,

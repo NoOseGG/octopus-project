@@ -16,26 +16,22 @@ const initialState: TypeActivityState = {
 export const doGetTypeActivitiesQuarter = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetTypeActivitiesQuarter',
   async ({ filters }) => {
-    try {
-      const date = getDateLastQuarter();
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_COUNT +
-          DASH.GROUP_BY('type_activity_name') +
-          DASH.LEGAL_ENTITY +
-          DASH.STATUS_AT +
-          DASH.DATE_AFTER(date) +
-          DASH.IS_NULL_FALSE('type_activity_name') +
-          DASH.PAGE_SIZE(10000),
-        filters,
-        false,
-        false,
-      );
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const date = getDateLastQuarter();
+    const url = constructorUrlForDashboard(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('type_activity_name') +
+        DASH.LEGAL_ENTITY +
+        DASH.STATUS_AT +
+        DASH.DATE_AFTER(date) +
+        DASH.IS_NULL_FALSE('type_activity_name') +
+        DASH.PAGE_SIZE(10000),
+      filters,
+      false,
+      false,
+    );
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
+    return response.data;
   },
 );
 
@@ -49,6 +45,10 @@ const typeActivitiesQuarterSlice = createSlice({
     });
     builder.addCase(doGetTypeActivitiesQuarter.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(doGetTypeActivitiesQuarter.rejected, (state) => {
+      state.typeActivities.results = [];
       state.loading = false;
     });
   },

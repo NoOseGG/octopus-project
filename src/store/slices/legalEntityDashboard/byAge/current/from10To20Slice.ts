@@ -4,7 +4,6 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: CurrentByAgeState = {
   age: 0,
@@ -15,22 +14,14 @@ const initialState: CurrentByAgeState = {
 export const doGetCurrentByAgeFrom10To20 = createAsyncThunk<ResponseCurrentByAge, RequestData>(
   'doGetCurrentByAgeFrom10To20',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(10, 20),
-        filters,
-        true,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE + DASH.LEGAL_ENTITY + DASH.STATUS_AT + DASH.AGE_RANGE(10, 20),
+      filters,
+      true,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -44,6 +35,10 @@ const currentByAgeFrom10To20Slice = createSlice({
     });
     builder.addCase(doGetCurrentByAgeFrom10To20.fulfilled, (state, action) => {
       state.age = action.payload?.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetCurrentByAgeFrom10To20.rejected, (state) => {
+      state.age = 0;
       state.loading = false;
     });
   },

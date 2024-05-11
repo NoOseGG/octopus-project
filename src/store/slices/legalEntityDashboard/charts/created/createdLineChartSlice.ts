@@ -5,7 +5,6 @@ import { DASH } from '@app/constants/enums/Dashboards';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -16,24 +15,16 @@ const initialState: LineChartYearsState = {
 export const doGetDataForLineChart = createAsyncThunk<ResponseLineChart, RequestData>(
   'doGetDataForLineChart',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.LEGAL_ENTITY;
-      if (!filters.isDate) {
-        baseUrl += DASH.DATE_BEFORE(currentDate);
-        baseUrl += DASH.DATE_AFTER('2000-01-01');
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
+    const currentDate = getCurrentDate();
+    let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__year') + DASH.LEGAL_ENTITY;
+    if (!filters.isDate) {
+      baseUrl += DASH.DATE_BEFORE(currentDate);
+      baseUrl += DASH.DATE_AFTER('2000-01-01');
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__year'));
+    return response.data;
   },
 );
 
@@ -46,12 +37,17 @@ const createdLineChartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetDataForLineChart.fulfilled, (state, action) => {
-      state.results = action.payload?.results?.map((item) => {
-        return {
-          type: item.group_fields.company_date_registration__year,
-          sales: item.Count,
-        };
-      });
+      state.results =
+        action.payload?.results?.map((item) => {
+          return {
+            type: item.group_fields.company_date_registration__year,
+            sales: item.Count,
+          };
+        }) || [];
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForLineChart.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

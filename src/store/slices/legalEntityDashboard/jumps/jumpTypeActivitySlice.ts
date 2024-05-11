@@ -2,7 +2,6 @@ import { IJumpTypeActivityResponse, IJumpTypeActivityState } from '@app/store/ty
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: IJumpTypeActivityState = {
   jumps: {
@@ -16,18 +15,10 @@ const initialState: IJumpTypeActivityState = {
 };
 
 export const doGetJumpTypeActivity = createAsyncThunk<IJumpTypeActivityResponse>('doGetJumpTypeActivity', async () => {
-  try {
-    const response = await httpDashboard.get(
-      DASH.BASE_JUMP_TYPE_ACTIVITY + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
-    );
-    return response.data;
-  } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log('request canceled');
-    } else {
-      console.log(error);
-    }
-  }
+  const response = await httpDashboard.get(
+    DASH.BASE_JUMP_TYPE_ACTIVITY + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
+  );
+  return response.data;
 });
 
 const jumpTypeActivitySlice = createSlice({
@@ -48,6 +39,10 @@ const jumpTypeActivitySlice = createSlice({
         }
         return parseInt(b.reg_month, 10) - parseInt(a.reg_month, 10);
       });
+      state.isLoading = false;
+    });
+    builder.addCase(doGetJumpTypeActivity.rejected, (state) => {
+      state.jumps.results = [];
       state.isLoading = false;
     });
   },

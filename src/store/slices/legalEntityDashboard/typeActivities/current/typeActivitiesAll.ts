@@ -16,29 +16,25 @@ const initialState: TypeActivityState = {
 export const doGetTypeActivitiesAll = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetTypeActivitiesAll',
   async ({ filters }) => {
-    try {
-      let baseUrl =
-        DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('type_activity_name') +
-        DASH.LEGAL_ENTITY +
-        DASH.STATUS_AT +
-        DASH.IS_NULL_FALSE('type_activity_name') +
-        DASH.PAGE_SIZE(10000);
-      let url;
-      if (!filters.isDate) {
-        const currentDate = getCurrentDate();
-        baseUrl += DASH.DATE_BEFORE(currentDate);
-        url = constructorUrlForDashboard(baseUrl, filters, false, false);
-      } else {
-        url = constructorUrlForDashboard(baseUrl, filters, false, true);
-      }
-
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
+    let baseUrl =
+      DASH.BASE +
+      DASH.AGR_COUNT +
+      DASH.GROUP_BY('type_activity_name') +
+      DASH.LEGAL_ENTITY +
+      DASH.STATUS_AT +
+      DASH.IS_NULL_FALSE('type_activity_name') +
+      DASH.PAGE_SIZE(10000);
+    let url;
+    if (!filters.isDate) {
+      const currentDate = getCurrentDate();
+      baseUrl += DASH.DATE_BEFORE(currentDate);
+      url = constructorUrlForDashboard(baseUrl, filters, false, false);
+    } else {
+      url = constructorUrlForDashboard(baseUrl, filters, false, true);
     }
+
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
+    return response.data;
   },
 );
 
@@ -52,6 +48,10 @@ const typeActivitiesAllSlice = createSlice({
     });
     builder.addCase(doGetTypeActivitiesAll.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(doGetTypeActivitiesAll.rejected, (state) => {
+      state.typeActivities.results = [];
       state.loading = false;
     });
   },

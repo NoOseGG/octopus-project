@@ -4,7 +4,6 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: CurrentByAgeState = {
   age: 0,
@@ -15,22 +14,14 @@ const initialState: CurrentByAgeState = {
 export const doGetLiquidatedByAgeMoreThen20 = createAsyncThunk<ResponseCurrentByAge, RequestData>(
   'doGetLiquidatedCurrentByAgeMoreThen20',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.AGE_RANGE(20, 100),
-        filters,
-        true,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE + DASH.LEGAL_ENTITY + DASH.LIQUIDATED_ENTITY + DASH.AGE_RANGE(20, 100),
+      filters,
+      true,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -44,6 +35,10 @@ const liquidatedByAgeMoreThen20Slice = createSlice({
     });
     builder.addCase(doGetLiquidatedByAgeMoreThen20.fulfilled, (state, action) => {
       state.age = action.payload?.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetLiquidatedByAgeMoreThen20.rejected, (state) => {
+      state.age = 0;
       state.loading = false;
     });
   },

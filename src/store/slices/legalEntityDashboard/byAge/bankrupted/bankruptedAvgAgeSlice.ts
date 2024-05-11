@@ -44,7 +44,11 @@ const bankruptedAvgAgeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetBankruptedByAgeAvgAge.fulfilled, (state, action) => {
-      state.count = action.payload?.results[0]?.Avg;
+      if (action.payload) {
+        state.count = action.payload?.results[0]?.Avg;
+      } else {
+        state.count = 0;
+      }
       state.loading = false;
     });
   },

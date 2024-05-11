@@ -14,20 +14,16 @@ const initialState: MainInfoState = {
 export const doGetCountCreatedYear = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetCountCreatedYear',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      const lastYearDate = getDateLastYear();
-      const url = constructorUrlForDashboard(
-        DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate),
-        filters,
-        true,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const currentDate = getCurrentDate();
+    const lastYearDate = getDateLastYear();
+    const url = constructorUrlForDashboard(
+      DASH.BASE + DASH.LEGAL_ENTITY + DASH.DATE_AFTER(lastYearDate) + DASH.DATE_BEFORE(currentDate),
+      filters,
+      true,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -41,6 +37,10 @@ const createdYearSlice = createSlice({
     });
     builder.addCase(doGetCountCreatedYear.fulfilled, (state, action) => {
       state.count = action.payload?.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetCountCreatedYear.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

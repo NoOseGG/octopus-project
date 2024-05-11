@@ -48,7 +48,11 @@ const typeActivitiesYearSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(doGetTypeActivitiesYear.fulfilled, (state, action) => {
-      state.typeActivities = action.payload;
+      if (action.payload) {
+        state.typeActivities = action.payload;
+      } else {
+        state.typeActivities.results = [];
+      }
       state.loading = false;
     });
   },

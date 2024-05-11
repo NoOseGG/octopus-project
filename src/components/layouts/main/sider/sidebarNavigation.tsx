@@ -28,8 +28,19 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     title: 'common.dashboards',
     key: 'dashboards',
     // TODO use path variable
-    url: '/dashboard',
     icon: <DashboardOutlined />,
+    children: [
+      {
+        title: 'common.legalEntity',
+        key: 'legalEntity',
+        url: '/legal-entity',
+      },
+      {
+        title: 'common.soleTrade',
+        key: 'soleTrade',
+        url: '/sole-trade',
+      },
+    ],
   },
   {
     title: 'common.feedback',

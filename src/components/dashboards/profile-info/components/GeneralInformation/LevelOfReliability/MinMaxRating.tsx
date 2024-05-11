@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { httpAxios } from '@app/api/http.api';
 import { DASH } from '@app/constants/enums/Dashboards';
@@ -9,12 +9,20 @@ import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoSt
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
-  return httpAxios.get<ResponseDashboard>(
+  console.log(
     DASH.BASE +
       DASH.TYPE_ACTIVITY(typeActivity) +
       DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
       DASH.IS_NULL_FALSE('king') +
       DASH.PAGE_SIZE(1000) +
+      DASH.ORDERING('king'),
+  );
+  return httpAxios.get<ResponseDashboard>(
+    DASH.BASE +
+      DASH.TYPE_ACTIVITY(typeActivity) +
+      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+      DASH.IS_NULL_FALSE('king') +
+      DASH.PAGE_SIZE(100000) +
       DASH.ORDERING('king'),
   );
 };
@@ -27,6 +35,10 @@ const MinMaxRating: React.FC = () => {
     queryFn: () => getMinRating(typeActivity, settlement),
     enabled: !!typeActivity && !!settlement,
   });
+
+  useEffect(() => {
+    console.log(JSON.stringify(data?.data.results));
+  }, [data]);
 
   return (
     <>

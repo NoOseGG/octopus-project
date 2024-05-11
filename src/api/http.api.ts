@@ -7,6 +7,7 @@ import { TOKEN_NAME } from '@app/constants/Constants';
 const BASE_URL = 'https://api.analytix.by/api/v1/auth/';
 
 export const dashboardSourceToken = axios.CancelToken.source();
+export const dashboardController = new AbortController();
 
 export const httpApi = axios.create({
   baseURL: BASE_URL,
@@ -26,7 +27,7 @@ httpDashboard.interceptors.request.use((config) => {
   const token = readToken();
   if (token && config.headers) {
     config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
-    config.cancelToken = dashboardSourceToken.token;
+    config.signal = dashboardController.signal;
   }
   return config;
 });
@@ -40,6 +41,18 @@ httpAxios.interceptors.response.use(
   (error) => {
     if (error.response.status === 401) {
       // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
+      window.location.href = '/auth/login';
+    }
+  },
+);
+
+httpDashboard.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isCancel(error)) {
+      // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
+      console.log('Запрос отменен:', error.message);
+    } else if (error.response.status === 401) {
       window.location.href = '/auth/login';
     }
   },

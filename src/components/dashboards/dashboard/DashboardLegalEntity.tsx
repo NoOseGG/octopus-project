@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import LineChartYears from '@app/components/dashboards/dashboard/components/Charts/LineChartYear/LineChartYears';
 import TypeActivities from '@app/components/dashboards/dashboard/components/TypeActivities/TypeActivities';
@@ -32,8 +32,17 @@ import {
   PERCENT_TYPE,
 } from '@app/components/dashboards/dashboard/components/MainInfo/components/CountYear/CountYearTypes';
 import MainInfo from '@app/components/dashboards/dashboard/components/MainInfo/MainInfo';
+import { dashboardController } from '@app/api/http.api';
 
 const DashboardLegalEntity: React.FC = () => {
+  useEffect(() => {
+    console.log('mount');
+    return () => {
+      console.log('did mount');
+      dashboardController.abort();
+    };
+  }, []);
+
   return (
     <Container>
       <Title>Юридические лица</Title>

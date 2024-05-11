@@ -5,7 +5,6 @@ import { RequestData } from '@app/components/dashboards/dashboard/types/Dashboar
 import { LineChartYearsState } from '@app/store/types/dashboard/LineChartYearsTypes';
 import { BankruptedResponseLineChart } from '@app/store/types/dashboard/BankruptedChartsTypes';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: LineChartYearsState = {
   results: [],
@@ -16,28 +15,16 @@ const initialState: LineChartYearsState = {
 export const doGetDataForBankruptedLineChart = createAsyncThunk<BankruptedResponseLineChart, RequestData>(
   'doGetDataForBankruptedLineChart',
   async ({ filters }) => {
-    try {
-      const currentDate = getCurrentDate();
-      let baseUrl =
-        DASH.BASE +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('company_status_from_dttm__year') +
-        DASH.LEGAL_ENTITY +
-        DASH.STATUS_BP;
-      if (!filters.isDate) {
-        baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
-        baseUrl += DASH.DATE_AFTER_LIQUIDATED('2000-01-01');
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
+    const currentDate = getCurrentDate();
+    let baseUrl =
+      DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_status_from_dttm__year') + DASH.LEGAL_ENTITY + DASH.STATUS_BP;
+    if (!filters.isDate) {
+      baseUrl += DASH.DATE_BEFORE_LIQUIDATED(currentDate);
+      baseUrl += DASH.DATE_AFTER_LIQUIDATED('2000-01-01');
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_status_from_dttm__year'));
+    return response.data;
   },
 );
 
@@ -56,6 +43,10 @@ const bankruptedLineChartSlice = createSlice({
           sales: item.Count,
         };
       });
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForBankruptedLineChart.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

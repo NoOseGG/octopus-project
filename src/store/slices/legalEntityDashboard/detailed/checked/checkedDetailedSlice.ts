@@ -7,7 +7,6 @@ import {
   ResponseDetailedInformation,
 } from '@app/store/types/dashboard/DetailedInformationType';
 import { httpDashboard } from '@app/api/http.api';
-import axios from 'axios';
 
 const initialState: DetailedInformationState = {
   results: [],
@@ -18,29 +17,21 @@ const initialState: DetailedInformationState = {
 export const doGetCheckedDetailed = createAsyncThunk<ResponseDetailedInformation, RequestData>(
   'doGetCheckedDetailed',
   async ({ filters }) => {
-    try {
-      const date = getCurrentDate();
-      const url = constructorUrlForDashboard(
-        DASH.BASE_INSPECTION +
-          DASH.PAGE_SIZE(30) +
-          DASH.LEGAL_ENTITY +
-          DASH.DATE_BEFORE_INSPECTION(date) +
-          DASH.ORDERING('-inspection_dttm') +
-          DASH.IS_NULL_FALSE('inspection_dttm'),
-        filters,
-        false,
-        false,
-      );
+    const date = getCurrentDate();
+    const url = constructorUrlForDashboard(
+      DASH.BASE_INSPECTION +
+        DASH.PAGE_SIZE(30) +
+        DASH.LEGAL_ENTITY +
+        DASH.DATE_BEFORE_INSPECTION(date) +
+        DASH.ORDERING('-inspection_dttm') +
+        DASH.IS_NULL_FALSE('inspection_dttm'),
+      filters,
+      false,
+      false,
+    );
 
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log('request canceled');
-      } else {
-        console.log(error);
-      }
-    }
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -54,6 +45,10 @@ const checkedDetailedSlice = createSlice({
     });
     builder.addCase(doGetCheckedDetailed.fulfilled, (state, action) => {
       state.results = action.payload?.results;
+      state.loading = false;
+    });
+    builder.addCase(doGetCheckedDetailed.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

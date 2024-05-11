@@ -14,23 +14,19 @@ const initialState: CurrentByAvgAgeState = {
 export const doGetCheckedByAgeAvgAge = createAsyncThunk<ResponseCurrentByAvgAge, RequestData>(
   'doGetCheckedByAgeAvgAge',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE_INSPECTION +
-          DASH.AGR_AVERAGE +
-          DASH.AVG_FIELD('age_short') +
-          DASH.LEGAL_ENTITY +
-          DASH.GROUP_BY('company_status_code') +
-          DASH.ORDERING_AGG('-avg'),
-        filters,
-        false,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE_INSPECTION +
+        DASH.AGR_AVERAGE +
+        DASH.AVG_FIELD('age_short') +
+        DASH.LEGAL_ENTITY +
+        DASH.GROUP_BY('company_status_code') +
+        DASH.ORDERING_AGG('-avg'),
+      filters,
+      false,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -46,6 +42,10 @@ const checkedAvgAgeSlice = createSlice({
       state.count =
         action.payload?.results?.reduce((accumulator, currentValue) => accumulator + currentValue.Avg, 0) /
         action.payload?.results?.length;
+      state.loading = false;
+    });
+    builder.addCase(doGetCheckedByAgeAvgAge.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

@@ -17,22 +17,18 @@ const initialState: CheckedBySettlementsChartState = {
 export const doGetDataForCheckedBySettlementsChart = createAsyncThunk<CheckedBySettlementsChartResponse, RequestData>(
   'doGetDataForCheckedBySettlementsChart',
   async ({ filters }) => {
-    try {
-      const baseUrl =
-        DASH.BASE_INSPECTION +
-        DASH.AGR_COUNT +
-        DASH.GROUP_BY('address_settlement') +
-        DASH.PAGE_SIZE(10000) +
-        DASH.IS_NULL_FALSE('address_settlement') +
-        DASH.LEGAL_ENTITY +
-        DASH.IS_NULL_FALSE('inspection_dttm');
-      const url = constructorUrlForDashboard(baseUrl, filters, false, true);
+    const baseUrl =
+      DASH.BASE_INSPECTION +
+      DASH.AGR_COUNT +
+      DASH.GROUP_BY('address_settlement') +
+      DASH.PAGE_SIZE(10000) +
+      DASH.IS_NULL_FALSE('address_settlement') +
+      DASH.LEGAL_ENTITY +
+      DASH.IS_NULL_FALSE('inspection_dttm');
+    const url = constructorUrlForDashboard(baseUrl, filters, false, true);
 
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
+    return response.data;
   },
 );
 
@@ -51,6 +47,10 @@ const checkedBySettlementsChartSlice = createSlice({
           value: item.Count,
         };
       });
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForCheckedBySettlementsChart.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

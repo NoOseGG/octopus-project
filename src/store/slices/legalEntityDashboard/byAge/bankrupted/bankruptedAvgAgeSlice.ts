@@ -14,24 +14,20 @@ const initialState: CurrentByAvgAgeState = {
 export const doGetBankruptedByAgeAvgAge = createAsyncThunk<ResponseCurrentByAvgAge, RequestData>(
   'doGetBankruptedByAgeAvgAge',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_AVERAGE +
-          DASH.AVG_FIELD('age_short') +
-          DASH.LEGAL_ENTITY +
-          DASH.STATUS_BP +
-          DASH.ORDERING_AGG('-avg') +
-          DASH.GROUP_BY('company_status_code'),
-        filters,
-        false,
-        false,
-      );
-      const response = await httpDashboard.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE +
+        DASH.AGR_AVERAGE +
+        DASH.AVG_FIELD('age_short') +
+        DASH.LEGAL_ENTITY +
+        DASH.STATUS_BP +
+        DASH.ORDERING_AGG('-avg') +
+        DASH.GROUP_BY('company_status_code'),
+      filters,
+      false,
+      false,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -49,6 +45,10 @@ const bankruptedAvgAgeSlice = createSlice({
       } else {
         state.count = 0;
       }
+      state.loading = false;
+    });
+    builder.addCase(doGetBankruptedByAgeAvgAge.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

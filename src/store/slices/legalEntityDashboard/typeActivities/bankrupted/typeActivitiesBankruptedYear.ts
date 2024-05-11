@@ -16,26 +16,22 @@ const initialState: TypeActivityState = {
 export const doGetBankruptedTypeActivitiesYear = createAsyncThunk<TypeActivityType, RequestData>(
   'doGetBankruptedTypeActivitiesYear',
   async ({ filters }) => {
-    try {
-      const date = getDateLastYear();
-      const url = constructorUrlForDashboard(
-        DASH.BASE +
-          DASH.AGR_COUNT +
-          DASH.GROUP_BY('type_activity_name') +
-          DASH.LEGAL_ENTITY +
-          DASH.STATUS_BP +
-          DASH.DATE_AFTER_LIQUIDATED(date) +
-          DASH.IS_NULL_FALSE('type_activity_name') +
-          DASH.PAGE_SIZE(10000),
-        filters,
-        false,
-        false,
-      );
-      const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const date = getDateLastYear();
+    const url = constructorUrlForDashboard(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.GROUP_BY('type_activity_name') +
+        DASH.LEGAL_ENTITY +
+        DASH.STATUS_BP +
+        DASH.DATE_AFTER_LIQUIDATED(date) +
+        DASH.IS_NULL_FALSE('type_activity_name') +
+        DASH.PAGE_SIZE(10000),
+      filters,
+      false,
+      false,
+    );
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('-Count'));
+    return response.data;
   },
 );
 
@@ -49,6 +45,10 @@ const typeActivitiesBankruptedYearSlice = createSlice({
     });
     builder.addCase(doGetBankruptedTypeActivitiesYear.fulfilled, (state, action) => {
       state.typeActivities = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(doGetBankruptedTypeActivitiesYear.rejected, (state) => {
+      state.typeActivities.results = [];
       state.loading = false;
     });
   },

@@ -13313,6 +13313,7 @@ __metadata:
     react-scripts: 4.0.3
     react-simple-maps: ^2.3.0
     react-slick: ^0.28.1
+    react-sticky-box: ^2.0.5
     react-trello: ^2.2.11
     react-verification-input: ^2.0.3
     slick-carousel: ^1.8.1
@@ -18135,6 +18136,15 @@ __metadata:
     react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
     react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
   checksum: 399ad43b9e10dfd66a000dd00faf1f476428ff8b9e70705d253056d279a9297b441d08fe7255b5ffea6f6e05ce63fb6c36f86fddcdffd453ee8f47ca9d958f72
+  languageName: node
+  linkType: hard
+
+"react-sticky-box@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "react-sticky-box@npm:2.0.5"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 54d79e4d6b8bbff1bd0102ab3e2e5778fbad68575e36726de2c94b8b25d9767ce6e146fa094143b9b18027afae94a4f71bf6a2265930798e7fb7fa3ff1b51b33
   languageName: node
   linkType: hard
 

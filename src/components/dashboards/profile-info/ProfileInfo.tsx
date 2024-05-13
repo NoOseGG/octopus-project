@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doSearchProfile } from '@app/store/slices/search/searchProfileSlice';
-import { Col, Row, Spin, Tabs } from 'antd';
+import { Col, Row, Spin, Tabs, TabsProps } from 'antd';
 import styled from 'styled-components';
 import Vacancies from '@app/components/dashboards/profile-info/components/Vacancies/Vacancies';
 import TabButton from '@app/components/dashboards/profile-info/components/components/Buttons/TabButton/TabButton';
@@ -15,6 +15,7 @@ import GovernmentInspections from '@app/components/dashboards/profile-info/compo
 import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
 import GiasPlan from '@app/components/dashboards/profile-info/components/GiasPlan/GiasPlan';
 import GeneralInformationTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformationTest';
+import StickyBox from 'react-sticky-box';
 
 const LEFT_COLUMN_SIZE = 19;
 const RIGHT_COLUMN_SIZE = 5;
@@ -72,6 +73,12 @@ const ProfileInfo: React.FC = () => {
     setActiveKey(key);
   };
 
+  const renderTabBar: TabsProps['renderTabBar'] = (props, DefaultTabBar) => (
+    <StickyBox offsetTop={0} offsetBottom={20} style={{ zIndex: 1 }}>
+      <DefaultTabBar {...props} style={{ background: '#fff' }} />
+    </StickyBox>
+  );
+
   return (
     <ProfileContainer>
       {loading ? (
@@ -81,7 +88,7 @@ const ProfileInfo: React.FC = () => {
       ) : (
         <ProfileRow>
           <LeftCol span={LEFT_COLUMN_SIZE}>
-            <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION}>
+            <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION} renderTabBar={renderTabBar}>
               <Tabs.TabPane
                 tab={
                   <TabButton
@@ -219,7 +226,9 @@ const ProfileInfo: React.FC = () => {
             </Tabs>
           </LeftCol>
           <RightCol span={RIGHT_COLUMN_SIZE}>
-            <SiderMenu />
+            <StickyBox>
+              <SiderMenu />
+            </StickyBox>
           </RightCol>
         </ProfileRow>
       )}

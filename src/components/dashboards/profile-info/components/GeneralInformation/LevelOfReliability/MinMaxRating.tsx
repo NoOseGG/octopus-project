@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { httpAxios } from '@app/api/http.api';
 import { DASH } from '@app/constants/enums/Dashboards';
@@ -6,17 +6,10 @@ import { ResponseDashboard } from '@app/interfaces/interfaces';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
+import PercentIndex from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/PercentIndex';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
-  console.log(
-    DASH.BASE +
-      DASH.TYPE_ACTIVITY(typeActivity) +
-      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
-      DASH.IS_NULL_FALSE('king') +
-      DASH.PAGE_SIZE(1000) +
-      DASH.ORDERING('king'),
-  );
   return httpAxios.get<ResponseDashboard>(
     DASH.BASE +
       DASH.TYPE_ACTIVITY(typeActivity) +
@@ -36,10 +29,6 @@ const MinMaxRating: React.FC = () => {
     enabled: !!typeActivity && !!settlement,
   });
 
-  useEffect(() => {
-    console.log(JSON.stringify(data?.data.results));
-  }, [data]);
-
   return (
     <>
       {data && (
@@ -52,6 +41,7 @@ const MinMaxRating: React.FC = () => {
             <span>
               <Name>Максимум</Name> - <Green>{data?.data?.results[data?.data?.results?.length - 1]?.king}</Green>
             </span>
+            <PercentIndex data={data.data} />
           </RatingContainer>
         </Container>
       )}

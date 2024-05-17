@@ -189,7 +189,7 @@ const CommercialRegisterProfile: React.FC = () => {
             addFilter={addFilter}
             deleteFilter={deleteFilter}
             selectedFilter={selectedFilter}
-            statisticTableType={StatisticTableType.COMMERCIAL_REGISTERS}
+            statisticTableType={StatisticTableType.ALL}
           />
           <SelectContainer>
             <Select

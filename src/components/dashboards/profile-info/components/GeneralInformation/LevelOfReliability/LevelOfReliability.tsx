@@ -1,5 +1,4 @@
 import React from 'react';
-import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import KindIndicator from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/KindIndicator';
 import MinMaxRating from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/MinMaxRating';
 import styled from 'styled-components';
@@ -10,6 +9,8 @@ import { useQuery } from '@tanstack/react-query';
 import PercentIndex from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/PercentIndex';
 import PercentRating from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/PercentRating';
 import { ResponseDashboard } from '@app/interfaces/interfaces';
+
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
@@ -43,6 +44,9 @@ const LevelOfReliability: React.FC = () => {
           />
         )}
       </Container>
+      <S.Title>
+        Сравнительный анализ значений индекса и показателей оценки у группы аналогичных компаний (прямых конкурентов).
+      </S.Title>
       <RatingContainer>
         {data?.data && <PercentIndex data={data?.data} />}
         {data?.data && <PercentRating data={data?.data} />}

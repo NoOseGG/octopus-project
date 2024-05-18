@@ -19,12 +19,12 @@ const RatingByKing: React.FC = () => {
       {typeActivity && (
         <Container>
           <S.Title>Позиция среди компаний с аналогичным видом деятельности</S.Title>
-          {typeActivity && unn && <RatingAll typeActivity={typeActivity} unn={unn} />}
+          {typeActivity && settlement && unn && (
+            <RatingSettlement typeActivity={typeActivity} settlement={settlement} unn={unn} />
+          )}
           <RatingContainer>
             {typeActivity && region && unn && <RatingRegion typeActivity={typeActivity} region={region} unn={unn} />}
-            {typeActivity && settlement && unn && (
-              <RatingSettlement typeActivity={typeActivity} settlement={settlement} unn={unn} />
-            )}
+            {typeActivity && unn && <RatingAll typeActivity={typeActivity} unn={unn} />}
           </RatingContainer>
           <S.MyDivider />
         </Container>

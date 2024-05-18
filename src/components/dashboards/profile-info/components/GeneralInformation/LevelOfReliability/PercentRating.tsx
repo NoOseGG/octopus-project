@@ -32,16 +32,16 @@ const PercentRating: React.FC<Props> = ({ data }) => {
               0 - 250
             </S.Item>
             <S.Item backgroundColor={'red'} fontWeight={700} fontSize={10}>
-              250 - 500
+              251 - 500
             </S.Item>
             <S.Item backgroundColor={'orange'} fontWeight={700} fontSize={10}>
-              500 - 750
+              501 - 750
             </S.Item>
             <S.Item backgroundColor={'orange'} fontWeight={700} fontSize={10}>
-              750 - 1000
+              751 - 1000
             </S.Item>
             <S.Item backgroundColor={'green'} fontWeight={700} fontSize={10}>
-              1000 - {rating}
+              1001 - {rating}
             </S.Item>
           </S.TopLine>
           <S.MiddleLine>
@@ -87,19 +87,19 @@ const calculateStatistic = (rating: number, data: ResponseDashboard): number[] =
 
   data.results.forEach((item) => {
     switch (true) {
-      case item.king >= 0 && item.king < 250:
+      case item.king >= 0 && item.king <= 250:
         one++;
         break;
-      case item.king >= 250 && item.king < 500:
+      case item.king >= 251 && item.king <= 500:
         two++;
         break;
-      case item.king >= 500 && item.king < 750:
+      case item.king >= 501 && item.king <= 750:
         three++;
         break;
-      case item.king >= 750 && item.king < 1000:
+      case item.king >= 751 && item.king <= 1000:
         four++;
         break;
-      case item.king >= 1000 && item.king <= rating:
+      case item.king >= 1001 && item.king <= rating:
         five++;
         break;
       default:

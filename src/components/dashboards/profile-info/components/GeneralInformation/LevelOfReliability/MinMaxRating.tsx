@@ -1,47 +1,25 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { httpAxios } from '@app/api/http.api';
-import { DASH } from '@app/constants/enums/Dashboards';
-import { ResponseDashboard } from '@app/interfaces/interfaces';
-import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
-import PercentIndex from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/PercentIndex';
 
-const getMinRating = (typeActivity: string | null, settlement: string | null) => {
-  if (!typeActivity || !settlement) return;
-  return httpAxios.get<ResponseDashboard>(
-    DASH.BASE +
-      DASH.TYPE_ACTIVITY(typeActivity) +
-      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
-      DASH.IS_NULL_FALSE('king') +
-      DASH.PAGE_SIZE(100000) +
-      DASH.ORDERING('king'),
-  );
+type Props = {
+  min: number | undefined;
+  max: number | undefined;
 };
 
-const MinMaxRating: React.FC = () => {
-  const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0]?.name);
-  const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0]?.settlement);
-  const { data } = useQuery({
-    queryKey: ['minRating', typeActivity, settlement],
-    queryFn: () => getMinRating(typeActivity, settlement),
-    enabled: !!typeActivity && !!settlement,
-  });
-
+const MinMaxRating: React.FC<Props> = ({ min, max }) => {
   return (
     <>
-      {data && (
+      {min && max && (
         <Container>
           <S.Title>Показатели оценки у прямых конкурентов (Баллы)</S.Title>
           <RatingContainer>
             <span>
-              <Name>Минимум</Name> - <Red>{data?.data?.results[0]?.king}</Red>
+              <Name>Минимум</Name> - <Red>{min}</Red>
             </span>
             <span>
-              <Name>Максимум</Name> - <Green>{data?.data?.results[data?.data?.results?.length - 1]?.king}</Green>
+              <Name>Максимум</Name> - <Green>{max}</Green>
             </span>
-            <PercentIndex data={data.data} />
           </RatingContainer>
         </Container>
       )}

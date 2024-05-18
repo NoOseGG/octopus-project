@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { ResponseDashboard } from '@app/interfaces/interfaces';
+
+import * as S from './styles/PercentStyles';
 
 type Props = {
   data: ResponseDashboard;
@@ -13,7 +14,6 @@ const PercentIndex: React.FC<Props> = ({ data }) => {
   useEffect(() => {
     if (data?.results?.length > 1) {
       setAll(data.results.length);
-      console.log(all);
       const result = calculatePercentKing(data);
       setStatistic(result);
     }
@@ -22,29 +22,39 @@ const PercentIndex: React.FC<Props> = ({ data }) => {
   return (
     <>
       {statistic && (
-        <Container>
-          <TopLine>
-            <Item backgroundColor={'red'}>0-1</Item>
-            <Item backgroundColor={'red'}>2-3</Item>
-            <Item backgroundColor={'orange'}>4-5</Item>
-            <Item backgroundColor={'orange'}>6-7</Item>
-            <Item backgroundColor={'green'}>8-9</Item>
-          </TopLine>
-          <MiddleLine>
-            <Item>{statistic[0]}</Item>
-            <Item>{statistic[1]}</Item>
-            <Item>{statistic[2]}</Item>
-            <Item>{statistic[3]}</Item>
-            <Item>{statistic[4]}</Item>
-          </MiddleLine>
-          <BottomLine>
-            <Item>{((statistic[0] / all) * 100).toFixed(1)}%</Item>
-            <Item>{((statistic[1] / all) * 100).toFixed(1)}%</Item>
-            <Item>{((statistic[2] / all) * 100).toFixed(1)}%</Item>
-            <Item>{((statistic[3] / all) * 100).toFixed(1)}%</Item>
-            <Item>{((statistic[4] / all) * 100).toFixed(1)}%</Item>
-          </BottomLine>
-        </Container>
+        <S.Container>
+          <S.TopLine>
+            <S.Item backgroundColor={'red'} fontWeight={700}>
+              0-1
+            </S.Item>
+            <S.Item backgroundColor={'red'} fontWeight={700}>
+              2-3
+            </S.Item>
+            <S.Item backgroundColor={'orange'} fontWeight={700}>
+              4-5
+            </S.Item>
+            <S.Item backgroundColor={'orange'} fontWeight={700}>
+              6-7
+            </S.Item>
+            <S.Item backgroundColor={'orange'} fontWeight={700}>
+              8-9
+            </S.Item>
+          </S.TopLine>
+          <S.MiddleLine>
+            <S.Item>{statistic[0]}</S.Item>
+            <S.Item>{statistic[1]}</S.Item>
+            <S.Item>{statistic[2]}</S.Item>
+            <S.Item>{statistic[3]}</S.Item>
+            <S.Item>{statistic[4]}</S.Item>
+          </S.MiddleLine>
+          <S.BottomLine>
+            <S.Item fontWeight={700}>{((statistic[0] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item fontWeight={700}>{((statistic[1] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item fontWeight={700}>{((statistic[2] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item fontWeight={700}>{((statistic[3] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item fontWeight={700}>{((statistic[4] / all) * 100).toFixed(1)}%</S.Item>
+          </S.BottomLine>
+        </S.Container>
       )}
     </>
   );
@@ -83,41 +93,3 @@ const calculatePercentKing = (data: ResponseDashboard) => {
 
   return [zeroOne, twoThree, fourFive, sixSeven, eightNine];
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  overflow: hidden;
-`;
-
-const TopLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-`;
-
-const MiddleLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background-color: gray;
-`;
-
-const BottomLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background-color: gray;
-`;
-
-type ItemProps = {
-  backgroundColor?: string;
-};
-
-const Item = styled.div<ItemProps>`
-  text-align: center;
-  padding: 4px 12px;
-  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : 'darkgray')};
-
-  //&:not(:last-child) {
-  //  border-right: 1px solid #000;
-  //}
-`;

@@ -40,7 +40,7 @@ export const Item = styled.div<ItemProps>`
   min-height: 25px;
   justify-content: center;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 10px;
   background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : '#fff')};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 500)};
   font-size: ${(props) => (props.fontSize ? `${props.fontSize}px` : '16px')};

@@ -36,7 +36,7 @@ const PercentIndex: React.FC<Props> = ({ data }) => {
             <S.Item backgroundColor={'orange'} fontWeight={700}>
               6-7
             </S.Item>
-            <S.Item backgroundColor={'orange'} fontWeight={700}>
+            <S.Item backgroundColor={'green'} fontWeight={700}>
               8-9
             </S.Item>
           </S.TopLine>

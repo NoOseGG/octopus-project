@@ -14,7 +14,6 @@ const PercentRating: React.FC<Props> = ({ data }) => {
   // const [valueMax, setValueMax] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    debugger;
     if (data && data?.results?.length > 1) {
       setAll(data.results.length);
       const max = data?.results[data?.results?.length - 1]?.king;

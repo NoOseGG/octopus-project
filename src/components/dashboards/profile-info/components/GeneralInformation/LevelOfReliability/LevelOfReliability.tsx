@@ -62,9 +62,19 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+
+  @media (max-width: 1300px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const RatingContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
+
+  @media (max-width: 1300px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;

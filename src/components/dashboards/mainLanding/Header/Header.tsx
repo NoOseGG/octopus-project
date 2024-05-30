@@ -13,6 +13,7 @@ export enum ScrollType {
   Sources = 'sources',
   Map = 'map',
   Tariffs = 'tariffs',
+  ServiceFor = 'serviceFor',
 }
 
 const Header: React.FC = () => {
@@ -45,6 +46,11 @@ const Header: React.FC = () => {
         section?.scrollIntoView({ behavior: 'smooth' });
         break;
       }
+      case ScrollType.ServiceFor: {
+        const section = document.getElementById(ScrollType.ServiceFor);
+        section?.scrollIntoView({ behavior: 'smooth' });
+        break;
+      }
     }
   };
 
@@ -74,6 +80,7 @@ const Header: React.FC = () => {
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.MainFunction)}>Возможности</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Sources)}>Источники</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Map)}>Карта</MenuItem>
+            <MenuItem onClick={() => scrollToMainFunction(ScrollType.ServiceFor)}>Для кого</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Tariffs)}>Тарифы</MenuItem>
           </MenuContainer>
           <ButtonContainer>
@@ -151,4 +158,10 @@ const StyledButton = styled(Button)`
   background-color: white;
   font-size: 14px;
   text-transform: uppercase;
+
+  @media (max-width: 500px) {
+    font-size: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 `;

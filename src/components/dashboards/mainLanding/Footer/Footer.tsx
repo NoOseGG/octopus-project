@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
-import { ClockCircleOutlined, MailOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 
 const Footer: React.FC = () => {
   return (
@@ -23,7 +23,15 @@ const Footer: React.FC = () => {
             </InfoContainer>
             <InfoContainer>
               <MailOutlined style={{ color: 'white' }} />
-              <Text>analytix@gmail.com</Text>
+              <Text>info@analytix.by</Text>
+            </InfoContainer>
+            <InfoContainer>
+              <PhoneOutlined style={{ color: 'white' }} />
+              <Text>8 (033) 333-16-13</Text>
+            </InfoContainer>
+            <InfoContainer>
+              <PhoneOutlined style={{ color: 'white' }} />
+              <Text>8 (029) 957-81-15</Text>
             </InfoContainer>
           </RightColumn>
         </FooterContainer>

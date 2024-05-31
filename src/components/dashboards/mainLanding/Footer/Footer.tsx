@@ -27,10 +27,6 @@ const Footer: React.FC = () => {
             </InfoContainer>
             <InfoContainer>
               <PhoneOutlined style={{ color: 'white' }} />
-              <Text>8 (033) 333-16-13</Text>
-            </InfoContainer>
-            <InfoContainer>
-              <PhoneOutlined style={{ color: 'white' }} />
               <Text>8 (029) 957-81-15</Text>
             </InfoContainer>
           </RightColumn>

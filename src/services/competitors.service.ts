@@ -69,7 +69,7 @@ class CompetitorsService {
 
   async getDataByMonth(settlement: string, typeActivity: string) {
     const currentDate = getCurrentDate();
-    const month = getPastMonthFromDate(6, new Date());
+    const month = getPastMonthFromDate(5, new Date());
     return httpDashboard.get<ResponseColumnChart>(
       DASH.BASE +
         DASH.AGR_COUNT +

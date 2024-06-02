@@ -27,19 +27,19 @@ const PercentRating: React.FC<Props> = ({ data }) => {
       {rating && statistic && (
         <S.Container>
           <S.TopLine>
-            <S.Item backgroundColor={'red'} fontWeight={700} fontSize={10}>
+            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
               0 - 250
             </S.Item>
-            <S.Item backgroundColor={'red'} fontWeight={700} fontSize={10}>
+            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
               251 - 500
             </S.Item>
-            <S.Item backgroundColor={'orange'} fontWeight={700} fontSize={10}>
+            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
               501 - 750
             </S.Item>
-            <S.Item backgroundColor={'orange'} fontWeight={700} fontSize={10}>
+            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
               751 - 1000
             </S.Item>
-            <S.Item backgroundColor={'green'} fontWeight={700} fontSize={10}>
+            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
               1001 - {rating}
             </S.Item>
           </S.TopLine>

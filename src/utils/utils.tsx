@@ -380,12 +380,15 @@ export const getNameMonthByNumber = (number: number): string => {
 export const sortDataByMonth = (data: ColumnChartMonthObject[]): ColumnChartMonthObject[] => {
   data.sort((a, b) => a.type - b.type);
 
-  while (data.length > 1 && data[0].type !== undefined && data[0].type < 6) {
-    const first = data.shift();
-    if (first !== undefined) {
-      data.push(first);
-    }
-  }
+  // while (data.length > 1 && data[0].type !== undefined && data[0].type < new Date().getMonth() + 1) {
+  //   let i = 0;
+  //   console.log(i);
+  //   i++;
+  //   const first = data.shift();
+  //   if (first !== undefined) {
+  //     data.push(first);
+  //   }
+  // }
 
   return data;
 };

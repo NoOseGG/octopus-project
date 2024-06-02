@@ -24,19 +24,19 @@ const PercentIndex: React.FC<Props> = ({ data }) => {
       {statistic && (
         <S.Container>
           <S.TopLine>
-            <S.Item backgroundColor={'red'} fontWeight={700}>
+            <S.Item backgroundColor={'lightgrey'} fontWeight={700}>
               0-1
             </S.Item>
-            <S.Item backgroundColor={'red'} fontWeight={700}>
+            <S.Item backgroundColor={'lightgrey'} fontWeight={700}>
               2-3
             </S.Item>
-            <S.Item backgroundColor={'orange'} fontWeight={700}>
+            <S.Item backgroundColor={'lightgrey'} fontWeight={700}>
               4-5
             </S.Item>
-            <S.Item backgroundColor={'orange'} fontWeight={700}>
+            <S.Item backgroundColor={'lightgrey'} fontWeight={700}>
               6-7
             </S.Item>
-            <S.Item backgroundColor={'green'} fontWeight={700}>
+            <S.Item backgroundColor={'lightgrey'} fontWeight={700}>
               8-9
             </S.Item>
           </S.TopLine>
@@ -48,11 +48,11 @@ const PercentIndex: React.FC<Props> = ({ data }) => {
             <S.Item>{statistic[4]}</S.Item>
           </S.MiddleLine>
           <S.BottomLine>
-            <S.Item fontWeight={700}>{((statistic[0] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[1] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[2] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[3] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[4] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item>{((statistic[0] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item>{((statistic[1] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item>{((statistic[2] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item>{((statistic[3] / all) * 100).toFixed(1)}%</S.Item>
+            <S.Item>{((statistic[4] / all) * 100).toFixed(1)}%</S.Item>
           </S.BottomLine>
         </S.Container>
       )}

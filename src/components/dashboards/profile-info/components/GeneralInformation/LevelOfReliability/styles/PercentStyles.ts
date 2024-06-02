@@ -49,3 +49,15 @@ export const Item = styled.div<ItemProps>`
     border-right: 1px solid #000;
   }
 `;
+
+export const Red = styled.span`
+  color: red;
+`;
+
+export const Orange = styled.span`
+  color: orange;
+`;
+
+export const Green = styled.span`
+  color: green;
+`;

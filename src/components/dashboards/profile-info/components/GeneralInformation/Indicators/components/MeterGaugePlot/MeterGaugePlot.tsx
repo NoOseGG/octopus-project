@@ -41,7 +41,9 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, descr
   };
   return (
     <Container>
-      <Gauge {...config} style={{ height: 80, width: 120, padding: 0 }} />
+      <GaugeContainer>
+        <Gauge {...config} style={{ height: '100%', width: '100%', padding: 0 }} />
+      </GaugeContainer>
       <Popover content={description}>
         <Title>{name}</Title>
       </Popover>
@@ -58,6 +60,20 @@ const Container = styled.div`
   justify-content: start;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 400px) {
+    margin-inline: 4px;
+  }
+`;
+
+const GaugeContainer = styled.div`
+  width: 120px;
+  height: 80px;
+
+  @media (max-width: 400px) {
+    width: 100px;
+    height: 60px;
+  }
 `;
 
 const Title = styled.span`

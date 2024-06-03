@@ -28,22 +28,22 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
   const getColumns = (isSuperUser: boolean) => {
     const columns: ColumnsType<SearchHistoryObject> = [
       {
-        title: 'УНП',
+        title: <Title>УНП</Title>,
         dataIndex: 'legal_entity_id',
         render: (text) => <Content>{text}</Content>,
       },
       {
-        title: 'Наименование',
+        title: <Title>Наименование</Title>,
         dataIndex: 'legal_entity_name',
         render: (text) => <Content>{text}</Content>,
       },
       {
-        title: 'Время запроса',
+        title: <Title>Время запроса</Title>,
         dataIndex: 'view_dttm',
         render: (text) => <Content>{text}</Content>,
       },
       {
-        title: 'Пользователь',
+        title: <Title>Пользователь</Title>,
         dataIndex: 'user_profile',
         render: (text) => <Content>{text}</Content>,
       },
@@ -77,7 +77,20 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
 
 export default SearchHistory;
 
+const Title = styled.div`
+  font-size: 16px;
+
+  @media (max-width: 1000px) {
+    font-size: 14px;
+  }
+`;
+
 const Content = styled.div`
   font-size: 12px;
   line-height: 1.2;
+  word-break: break-word;
+
+  @media (max-width: 450px) {
+    font-size: 10px;
+  }
 `;

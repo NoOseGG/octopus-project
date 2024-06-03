@@ -68,22 +68,28 @@ const Line = styled.div`
   &:nth-child(odd) {
     background-color: #f2f2f2;
   }
+
+  font-size: 0.9374rem;
+
+  @media (max-width: 700px) {
+    font-size: 12px;
+    gap: 5px;
+  }
 `;
 
 const LeftSide = styled.div`
   display: flex;
   align-items: center;
   width: 30%;
-  font-size: 0.9374rem;
   padding: 2px 0;
   color: #000;
+  word-break: break-word;
 `;
 
 const RightSide = styled.div`
   display: flex;
   align-items: center;
   width: 70%;
-  font-size: 0.9374rem;
   padding: 2px 0;
   gap: 5px;
   color: #333;

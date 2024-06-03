@@ -17,8 +17,8 @@ import GiasPlan from '@app/components/dashboards/profile-info/components/GiasPla
 import GeneralInformationTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformationTest';
 import StickyBox from 'react-sticky-box';
 
-const LEFT_COLUMN_SIZE = 19;
-const RIGHT_COLUMN_SIZE = 5;
+// const LEFT_COLUMN_SIZE = 19;
+// const RIGHT_COLUMN_SIZE = 5;
 
 enum TABS {
   GENERAL_INFORMATION = '1',
@@ -87,7 +87,7 @@ const ProfileInfo: React.FC = () => {
         </SpinnerSpace>
       ) : (
         <ProfileRow>
-          <LeftCol span={LEFT_COLUMN_SIZE}>
+          <LeftCol>
             <Tabs defaultActiveKey={TABS.GENERAL_INFORMATION} renderTabBar={renderTabBar}>
               <Tabs.TabPane
                 tab={
@@ -225,7 +225,7 @@ const ProfileInfo: React.FC = () => {
               )}
             </Tabs>
           </LeftCol>
-          <RightCol span={RIGHT_COLUMN_SIZE}>
+          <RightCol>
             <StickyBox>
               <SiderMenu />
             </StickyBox>
@@ -257,11 +257,22 @@ const ProfileRow = styled(Row)`
   display: flex;
 `;
 
-const LeftCol = styled(Col)``;
+const LeftCol = styled(Col)`
+  width: 80%;
+
+  @media (max-width: 1150px) {
+    width: 100%;
+  }
+`;
 
 const RightCol = styled(Col)`
+  width: 20%;
   padding-left: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;

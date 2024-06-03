@@ -30,4 +30,12 @@ const TitleNameContainer = styled.div`
 const Title = styled.h1`
   font-weight: 700;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;

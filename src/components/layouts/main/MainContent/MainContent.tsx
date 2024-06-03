@@ -27,4 +27,8 @@ export default styled(Content)<HeaderProps>`
         padding: 0;
       `}
   }
+
+  @media (max-width: 400px) {
+    padding: 5px;
+  }
 `;

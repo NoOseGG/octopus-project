@@ -26,37 +26,33 @@ const PercentRating: React.FC<Props> = ({ data }) => {
     <>
       {rating && statistic && (
         <S.Container>
-          <S.TopLine>
-            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
-              0 - 250
-            </S.Item>
-            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
-              251 - 500
-            </S.Item>
-            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
-              501 - 750
-            </S.Item>
-            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
-              751 - 1000
-            </S.Item>
-            <S.Item backgroundColor={'lightgray'} fontWeight={700} fontSize={10}>
-              1001 - {rating}
-            </S.Item>
-          </S.TopLine>
-          <S.MiddleLine>
-            <S.Item>{statistic[0]}</S.Item>
-            <S.Item>{statistic[1]}</S.Item>
-            <S.Item>{statistic[2]}</S.Item>
-            <S.Item>{statistic[3]}</S.Item>
-            <S.Item>{statistic[4]}</S.Item>
-          </S.MiddleLine>
-          <S.BottomLine>
-            <S.Item fontWeight={700}>{((statistic[0] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[1] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[2] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[3] / all) * 100).toFixed(1)}%</S.Item>
-            <S.Item fontWeight={700}>{((statistic[4] / all) * 100).toFixed(1)}%</S.Item>
-          </S.BottomLine>
+          <S.Item backgroundColor={'lightgray'} fontWeight={700}>
+            0 - 250
+          </S.Item>
+          <S.Item backgroundColor={'lightgray'} fontWeight={700}>
+            251 - 500
+          </S.Item>
+          <S.Item backgroundColor={'lightgray'} fontWeight={700}>
+            501 - 750
+          </S.Item>
+          <S.Item backgroundColor={'lightgray'} fontWeight={700}>
+            751 - 1000
+          </S.Item>
+          <S.Item backgroundColor={'lightgray'} fontWeight={700}>
+            1001 - {rating}
+          </S.Item>
+
+          <S.Item>{statistic[0]}</S.Item>
+          <S.Item>{statistic[1]}</S.Item>
+          <S.Item>{statistic[2]}</S.Item>
+          <S.Item>{statistic[3]}</S.Item>
+          <S.Item>{statistic[4]}</S.Item>
+
+          <S.Item>{((statistic[0] / all) * 100).toFixed(1)}%</S.Item>
+          <S.Item>{((statistic[1] / all) * 100).toFixed(1)}%</S.Item>
+          <S.Item>{((statistic[2] / all) * 100).toFixed(1)}%</S.Item>
+          <S.Item>{((statistic[3] / all) * 100).toFixed(1)}%</S.Item>
+          <S.Item>{((statistic[4] / all) * 100).toFixed(1)}%</S.Item>
         </S.Container>
       )}
     </>

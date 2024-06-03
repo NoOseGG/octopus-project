@@ -43,14 +43,14 @@ const Search: React.FC = () => {
       )}
 
       {!Boolean(results?.length) && !loading && error === null && (
-        <div style={{ display: 'flex', gap: 20 }}>
-          <Col span={14}>
+        <HistoryContainer>
+          <SearchHistoryContainer>
             <SearchHistory listHistory={history?.results} />
-          </Col>
-          <Col span={10}>
+          </SearchHistoryContainer>
+          <FavouritesContainer>
             <Favourites favourites={favourites?.results} />
-          </Col>
-        </div>
+          </FavouritesContainer>
+        </HistoryContainer>
       )}
     </Container>
   );
@@ -84,4 +84,34 @@ const ErrorTitle = styled.h1`
 
 const ErrorImage = styled.img`
   width: 500px;
+`;
+
+const HistoryContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 500px) {
+    gap: 0;
+  }
+`;
+
+const SearchHistoryContainer = styled.div`
+  width: 58%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
+
+const FavouritesContainer = styled.div`
+  width: 42%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;

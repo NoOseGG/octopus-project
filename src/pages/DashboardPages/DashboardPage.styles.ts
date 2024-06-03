@@ -23,6 +23,10 @@ export const LeftSideCol = styled(Col)`
   flex-direction: column;
   border: 1px solid #e8e4e4;
   gap: 10px;
+
+  @media (max-width: 700px) {
+    padding: 0 10px;
+  }
 `;
 
 export const Space = styled.div`

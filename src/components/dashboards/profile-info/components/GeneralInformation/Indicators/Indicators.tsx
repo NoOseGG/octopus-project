@@ -23,7 +23,7 @@ const Indicators: React.FC = () => {
 
   return (
     <Container>
-      <S.Title>Индикаторы возможных рисков</S.Title>
+      <S.Title>Маркеры возможных рисков</S.Title>
       <TopLine>
         {metric_address_2[0]?.risk_level && (
           <MeterGaugePlot

@@ -25,8 +25,14 @@ export default LegendMap;
 const LegendMapContainer = styled.div`
   margin-top: 20px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: start;
+  }
 `;
 
 type ColorBlockProps = {

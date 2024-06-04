@@ -80,7 +80,7 @@ const Header: React.FC = () => {
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.MainFunction)}>Возможности</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Sources)}>Источники</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Map)}>Карта</MenuItem>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.ServiceFor)}>Для кого</MenuItem>
+            <MenuItem onClick={() => scrollToMainFunction(ScrollType.ServiceFor)}>Кому подойдет</MenuItem>
             <MenuItem onClick={() => scrollToMainFunction(ScrollType.Tariffs)}>Тарифы</MenuItem>
           </MenuContainer>
           <ButtonContainer>

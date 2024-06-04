@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { httpAxios } from '@app/api/http.api';
+
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
+import * as RatingStyle from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/styles/RatingByKingStyles';
+
 import { DashboardObjectForRating, ResponseDashboard } from '@app/interfaces/interfaces';
 import { DASH } from '@app/constants/enums/Dashboards';
-import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import RatingTable from '@app/components/tables/RatingTable/RatingTable';
-import styled from 'styled-components';
 import { calculateRating } from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/utils';
+import attention from '../../../../../../../assets/attention.svg';
 
 type MyComponentProps = {
   typeActivity: string;
@@ -39,17 +42,26 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, settlement, unn }
     calculateRating(data?.results, setRatingSettlement, unn);
   }, [data, unn]);
 
+  if (data && data.results.length < 1) {
+    return (
+      <div>
+        <S.Title>Город</S.Title>{' '}
+        <RatingStyle.TextContainer>
+          <RatingStyle.Image src={attention} />
+          <RatingStyle.Text>Конкуренты по городу отсутствуют</RatingStyle.Text>
+        </RatingStyle.TextContainer>
+      </div>
+    );
+  }
+
   return (
-    <Container>
-      <S.Title>Город</S.Title>
-      <RatingTable data={ratingSettlement} isLoading={isLoading} />
-    </Container>
+    <>
+      <RatingStyle.Container>
+        <S.Title>Город</S.Title>
+        <RatingTable data={ratingSettlement} isLoading={isLoading} />
+      </RatingStyle.Container>
+    </>
   );
 };
 
 export default RatingAll;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;

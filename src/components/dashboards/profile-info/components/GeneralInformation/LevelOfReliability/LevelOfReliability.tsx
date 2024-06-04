@@ -11,6 +11,7 @@ import PercentRating from '@app/components/dashboards/profile-info/components/Ge
 import { ResponseDashboard } from '@app/interfaces/interfaces';
 
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
+import { Skeleton } from 'antd';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
@@ -27,31 +28,40 @@ const getMinRating = (typeActivity: string | null, settlement: string | null) =>
 const LevelOfReliability: React.FC = () => {
   const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0]?.name);
   const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0]?.settlement);
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['minRating', typeActivity, settlement],
     queryFn: () => getMinRating(typeActivity, settlement),
     enabled: !!typeActivity && !!settlement,
   });
 
+  if (isLoading) {
+    return <Skeleton active={true} />;
+  }
+
   return (
     <>
-      <Container>
-        <KindIndicator />
-        {data?.data && (
-          <MinMaxRating
-            min={data?.data?.results[0]?.king}
-            max={data?.data?.results[data?.data?.results?.length - 1]?.king}
-          />
-        )}
-      </Container>
-      <S.Title>
-        Сравнительный анализ значений индекса и показателей оценки у группы аналогичных компаний (прямых конкурентов).
-      </S.Title>
-      <RatingContainer>
-        {data?.data && <PercentIndex data={data?.data} />}
-        {data?.data && <PercentRating data={data?.data} />}
-      </RatingContainer>
-      <S.MyDivider />
+      {Boolean(data?.data.results.length) && (
+        <>
+          <Container>
+            <KindIndicator />
+            {data?.data && (
+              <MinMaxRating
+                min={data?.data?.results[0]?.king}
+                max={data?.data?.results[data?.data?.results?.length - 1]?.king}
+              />
+            )}
+          </Container>
+          <S.Title>
+            Сравнительный анализ значений индекса и показателей оценки у группы аналогичных компаний (прямых
+            конкурентов).
+          </S.Title>
+          <RatingContainer>
+            {data?.data && <PercentIndex data={data?.data} />}
+            {data?.data && <PercentRating data={data?.data} />}
+          </RatingContainer>
+          <S.MyDivider />
+        </>
+      )}
     </>
   );
 };

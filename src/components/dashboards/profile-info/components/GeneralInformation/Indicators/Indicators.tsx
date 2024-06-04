@@ -30,7 +30,7 @@ const Indicators: React.FC = () => {
             risk={metric_address_2[0].risk_level}
             name={'Частота смены адреса'}
             content={metric_address_2[0]?.count_changes}
-            description={'coming soon'}
+            description={<div>coming soon</div>}
           />
         )}
         {metric_change_constituent_doc[0]?.risk_level && (
@@ -38,7 +38,7 @@ const Indicators: React.FC = () => {
             risk={metric_change_constituent_doc[0].risk_level}
             name={'Частота юридически значимых действий'}
             content={metric_change_constituent_doc[0]?.count_activity}
-            description={'coming soon'}
+            description={<div>coming soon</div>}
           />
         )}
         {metric_change_director[0]?.risk_level && (
@@ -46,7 +46,7 @@ const Indicators: React.FC = () => {
             risk={metric_change_director[0].risk_level}
             name={'Частота смены руководителя'}
             content={metric_change_director[0]?.count_changes}
-            description={'coming soon'}
+            description={<div>coming soon</div>}
           />
         )}
         {metric_entity_contact[0]?.risk_level && (
@@ -54,7 +54,7 @@ const Indicators: React.FC = () => {
             risk={metric_entity_contact[0].risk_level}
             name={'Уровень контактности субъекта'}
             content={metric_entity_contact[0].sum_count}
-            description={'coming soon'}
+            description={<div>coming soon</div>}
           />
         )}
         {metric_level_competition[0]?.level_competition && (
@@ -62,7 +62,7 @@ const Indicators: React.FC = () => {
             risk={metric_level_competition[0].level_competition}
             name={'Уровень конкуренции'}
             content={metric_level_competition[0]?.count_lei}
-            description={'coming soon'}
+            description={<div>coming soon</div>}
           />
         )}
         {metric_address_economic_high_risk_registry[0]?.address_description && (
@@ -75,9 +75,29 @@ const Indicators: React.FC = () => {
         {metric_probability_liquidation[0]?.risk_level && (
           <MeterGaugePlot
             risk={metric_probability_liquidation[0].risk_level}
-            name={'Уровень риска ликвидации'}
+            name={'Уровень ликвидации'}
             content={`${metric_probability_liquidation[0]?.probability_liquidation?.toFixed(2)}%`}
-            description={'coming soon'}
+            description={
+              <Description>
+                <Paragraph>
+                  <Bold>Маркер уровня ликвидаций</Bold> представляет собой ключевой показатель, который отслеживает
+                  процентное соотношение ликвидированных предприятий к общему числу зарегистрированных компаний в
+                  конкретном городе, оперируя в одной сфере бизнеса. Основываясь на возрасте компаний, индикатор
+                  проводит детальный анализ, сопоставляя количество новых и прекративших своё существование предприятий,
+                  при этом особое внимание уделяется тем, чей возраст меньше или равен возрасту анализируемой компании.
+                </Paragraph>
+                <Paragraph>
+                  Данный индикатор особенно ценен для стратегического планирования и оценки рисков, так как позволяет
+                  предприятиям адаптироваться к меняющимся рыночным условиям, учитывая тенденции ликвидации в их
+                  секторе. С течением времени, увеличение возраста компании коррелирует с повышением процента
+                  ликвидаций, что служит важным индикатором для принятия обоснованных управленческих решений.
+                </Paragraph>
+                <Paragraph>
+                  Индикатор поможет оценить риски при принятии решений о расширении бизнеса или вложении средств.
+                  Высокий процент ликвидаций может быть сигналом о недостаточной устойчивости рынка.
+                </Paragraph>
+              </Description>
+            }
           />
         )}
       </TopLine>
@@ -102,4 +122,18 @@ const TopLine = styled.div`
   justify-content: space-around;
   align-items: stretch;
   flex-wrap: wrap;
+`;
+
+const Description = styled.div`
+  text-align: justify;
+`;
+
+const Bold = styled.span`
+  font-weight: 700;
+`;
+
+const Paragraph = styled.p`
+  text-indent: 40px;
+  padding: 0;
+  margin: 0;
 `;

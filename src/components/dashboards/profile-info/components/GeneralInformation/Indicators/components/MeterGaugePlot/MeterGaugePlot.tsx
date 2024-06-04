@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 import styled from 'styled-components';
 import { Popover } from 'antd';
@@ -8,7 +8,7 @@ type MyComponentProps = {
   risk: string;
   name: string;
   content: number | string;
-  description: string;
+  description: ReactNode;
 };
 
 const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, description }) => {
@@ -44,7 +44,11 @@ const MeterGaugePlot: React.FC<MyComponentProps> = ({ risk, name, content, descr
       <GaugeContainer>
         <Gauge {...config} style={{ height: '100%', width: '100%', padding: 0 }} />
       </GaugeContainer>
-      <Popover content={description}>
+      <Popover
+        placement={'bottom'}
+        overlayStyle={{ width: 800 }}
+        content={<PopoverContent>{description}</PopoverContent>}
+      >
         <Title>{name}</Title>
       </Popover>
     </Container>
@@ -114,3 +118,5 @@ const getColorByRisk = (risk: string): string => {
       return 'white';
   }
 };
+
+const PopoverContent = styled.div``;

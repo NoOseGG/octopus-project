@@ -9,7 +9,6 @@ import { DashboardObjectForRating, ResponseDashboard } from '@app/interfaces/int
 import { DASH } from '@app/constants/enums/Dashboards';
 import RatingTable from '@app/components/tables/RatingTable/RatingTable';
 import { calculateRating } from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/utils';
-import attention from '../../../../../../../assets/attention.svg';
 
 type MyComponentProps = {
   typeActivity: string;
@@ -41,18 +40,6 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, settlement, unn }
   useEffect(() => {
     calculateRating(data?.results, setRatingSettlement, unn);
   }, [data, unn]);
-
-  if (data && data.results.length < 1) {
-    return (
-      <div>
-        <S.Title>Город</S.Title>{' '}
-        <RatingStyle.TextContainer>
-          <RatingStyle.Image src={attention} />
-          <RatingStyle.Text>Конкуренты по городу отсутствуют</RatingStyle.Text>
-        </RatingStyle.TextContainer>
-      </div>
-    );
-  }
 
   return (
     <>

@@ -7,7 +7,6 @@ import RatingTable from '@app/components/tables/RatingTable/RatingTable';
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { calculateRating } from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/utils';
 import * as RatingStyle from '@app/components/dashboards/profile-info/components/GeneralInformation/RatingByKind/styles/RatingByKingStyles';
-import attention from '@app/assets/attention.svg';
 
 type MyComponentProps = {
   unn: string;
@@ -37,18 +36,6 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, unn }) => {
   useEffect(() => {
     calculateRating(data?.results, setRatingAll, unn);
   }, [data, unn]);
-
-  if (data && data.results.length < 1) {
-    return (
-      <div>
-        <S.Title>Республика</S.Title>{' '}
-        <RatingStyle.TextContainer>
-          <RatingStyle.Image src={attention} />
-          <RatingStyle.Text>Конкуренты по Руспублике отсутствуют</RatingStyle.Text>
-        </RatingStyle.TextContainer>
-      </div>
-    );
-  }
 
   return (
     <RatingStyle.Container>

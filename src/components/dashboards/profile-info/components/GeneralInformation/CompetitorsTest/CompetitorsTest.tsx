@@ -15,7 +15,7 @@ import CompetitorsByAge from '@app/components/dashboards/profile-info/components
 const CompetitorsTest: React.FC = () => {
   const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
   const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
-  const [countCompany, setCountCompany] = useState(0);
+  const [countCompany, setCountCompany] = useState<undefined | number>(undefined);
 
   return (
     <Container>

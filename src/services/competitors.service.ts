@@ -98,6 +98,16 @@ class CompetitorsService {
   }
 
   async getDataForDetailed(settlement: string, typeActivity: string) {
+    console.log(
+      DASH.BASE +
+        DASH.AGR_COUNT +
+        DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+        DASH.TYPE_ACTIVITY(typeActivity) +
+        DASH.STATUS_AT +
+        DASH.ORDERING('-company_date_registration') +
+        DASH.IS_NULL_FALSE('company_date_registration') +
+        DASH.PAGE_SIZE(2000),
+    );
     return httpDashboard.get<ResponseDashboard>(
       DASH.BASE +
         DASH.AGR_COUNT +

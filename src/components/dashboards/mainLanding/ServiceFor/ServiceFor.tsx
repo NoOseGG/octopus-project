@@ -28,20 +28,30 @@ export default ServiceFor;
 
 const ServiceForContainer = styled.div`
   width: 100%;
-  padding-bottom: 50px;
+  padding: 20px 200px;
+
+  @media (max-width: 1500px) {
+    padding: 20px 100px;
+  }
+
+  @media (max-width: 1050px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 1050px) {
+    padding: 20px 10px;
+  }
 `;
 
 const Info = styled.div`
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 30px;
-  grid-row-gap: 50px;
+  gap: 30px;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 30px;
+    gap: 20px;
   }
 
   @media (max-width: 800px) {

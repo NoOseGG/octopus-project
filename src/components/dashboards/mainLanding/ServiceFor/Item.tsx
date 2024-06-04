@@ -20,20 +20,23 @@ const Item: React.FC<Props> = ({ item }) => {
 export default Item;
 
 const ItemContainer = styled.div`
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  background-color: #fff;
+  border-radius: 16px;
 `;
 
 const Image = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
 `;
 
 const Text = styled.div`
-  padding: 0 50px;
-  font-size: 20px;
+  max-width: 400px;
+  font-size: 16px;
   color: #000;
   line-height: 1.3;
   text-align: center;

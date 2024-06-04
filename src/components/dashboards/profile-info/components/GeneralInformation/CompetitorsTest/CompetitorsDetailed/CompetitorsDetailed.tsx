@@ -18,7 +18,7 @@ const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActiv
 
   return (
     <>
-      {data && (
+      {data && data.results.length > 1 && (
         <CompetitorsDetailedContainer>
           <DetailedTable
             data={data?.results.filter((item) => item.legal_entity_id !== unn)}

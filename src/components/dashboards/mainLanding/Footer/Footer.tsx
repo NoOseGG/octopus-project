@@ -74,22 +74,39 @@ export default Footer;
 
 const FooterContainer = styled.div`
   padding: 100px 150px;
+
+  @media (max-width: 1050px) {
+    padding: 50px 0;
+  }
 `;
 
 const TopContainer = styled.div`
   padding: 100px 60px 80px 60px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-top: 2px solid #188cff;
   border-bottom: 1px solid #d0daf5;
+
+  @media (max-width: 1050px) {
+    padding: 30px 0;
+    flex-direction: column;
+    gap: 30px;
+  }
 `;
 
 const BottomContainer = styled.div`
   padding-top: 24px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const Logo = styled.img`
@@ -125,16 +142,16 @@ const Item = styled.div`
   gap: 16px;
 `;
 
-const MapContainer = styled.div`
-  margin-left: auto;
-  margin-right: 40px;
-  width: 340px;
-`;
-
-const ImageMap = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+// const MapContainer = styled.div`
+//   margin-left: auto;
+//   margin-right: 40px;
+//   width: 340px;
+// `;
+//
+// const ImageMap = styled.img`
+//   width: 100%;
+//   height: 100%;
+// `;
 
 const SocialContainer = styled.div`
   margin-top: 40px;

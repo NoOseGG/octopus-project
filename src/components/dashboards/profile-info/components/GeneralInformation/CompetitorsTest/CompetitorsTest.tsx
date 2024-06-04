@@ -22,7 +22,7 @@ const CompetitorsTest: React.FC = () => {
       {addresses[0]?.settlement && typeActivities[0]?.name && countCompany !== -1 && (
         <>
           <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
-          {countCompany === 1 ? (
+          {countCompany === 1 || countCompany === 0 ? (
             <Text>Действующие конкуренты отсутсвуют</Text>
           ) : (
             <>

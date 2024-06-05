@@ -65,7 +65,9 @@ export const HeaderSearch: React.FC = () => {
       // dispatch(doSearch(query.trim()));
       delaySearch(query);
       navigate('/search');
-    } else {
+    }
+
+    if (query.trim().length === 1) {
       clearSearch();
     }
   }, [query]);

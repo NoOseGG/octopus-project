@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Gauge, GaugeConfig } from '@ant-design/charts';
 import { Popover } from 'antd';
@@ -9,7 +9,7 @@ const ADDRESS_LISTED = 'Адрес значится в реестре небла
 type MyComponentProps = {
   risk: string;
   name: string;
-  description: string;
+  description: ReactNode;
 };
 
 const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ risk, name, description }) => {
@@ -45,7 +45,7 @@ const MetricAddressEconomicHighRiskRegistry: React.FC<MyComponentProps> = ({ ris
       <GaugeContainer>
         <Gauge {...config} style={{ height: '100%', width: '100%', padding: 0 }} />
       </GaugeContainer>
-      <Popover content={description}>
+      <Popover placement={'bottom'} overlayStyle={{ width: 800 }} content={description}>
         <Title>{name}</Title>
       </Popover>
     </Container>

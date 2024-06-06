@@ -18,7 +18,7 @@ export default Geography;
 
 const GeographyContainer = styled.div`
   margin: 88px auto 0;
-  padding: 13px 0 97px;
+  padding-top: 14px;
   width: 100%;
   //background-image: url('/geography.svg');
   background-position: top center;

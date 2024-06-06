@@ -69,7 +69,7 @@ const SearchLine: React.FC = () => {
   };
 
   return (
-    <Container backgroundColor={'#dbe1ea'} onClick={handleClick}>
+    <Container backgroundColor={'#1d1d47'} onClick={handleClick}>
       <InnerContainer>
         <SearchLineContainer>
           <Dropdown overlay={<DropdownMenu data={results} />} visible={isVisible} placement={'bottom'}>

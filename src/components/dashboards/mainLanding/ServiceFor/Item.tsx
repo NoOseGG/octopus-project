@@ -25,7 +25,8 @@ const ItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background-color: #fff;
+  background-color: #073d49;
+  color: #fff;
   border-radius: 16px;
 `;
 
@@ -37,7 +38,6 @@ const Image = styled.img`
 const Text = styled.div`
   max-width: 400px;
   font-size: 16px;
-  color: #000;
   line-height: 1.3;
   text-align: center;
 `;

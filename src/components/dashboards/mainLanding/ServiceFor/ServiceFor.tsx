@@ -9,7 +9,7 @@ import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header
 
 const ServiceFor: React.FC = () => {
   return (
-    <Container backgroundColor={'#b9dbf4'} id={ScrollType.ServiceFor}>
+    <Container backgroundColor={'linear-gradient(to bottom, #0b2d2d, #232528);'} id={ScrollType.ServiceFor}>
       <InnerContainer>
         <ServiceForContainer>
           <Title>Для кого предназначен сервис</Title>
@@ -64,6 +64,8 @@ const Info = styled.div`
 const Title = styled.h2`
   font-size: 56px;
   text-align: center;
+  color: #fff;
+  font-weight: 800;
 
   @media (max-width: 1200px) {
     font-size: 40px;

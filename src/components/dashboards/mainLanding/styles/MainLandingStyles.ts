@@ -8,7 +8,7 @@ const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 100%;
   padding: 20px 0;
-  background-color: ${(props) => props.backgroundColor};
+  background: ${(props) => props.backgroundColor};
   font-family: 'Onest', sans-serif;
 `;
 

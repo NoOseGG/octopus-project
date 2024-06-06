@@ -59,7 +59,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 20px 0;
-  background-image: linear-gradient(to bottom, #090818, #0b2d2d 100%);
+  background: linear-gradient(to bottom, #0d0d20, #0b2d2d);
   :before {
     content: '';
     position: absolute;
@@ -85,7 +85,7 @@ const SourcesContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 30px;
+  font-size: 46px;
   text-align: center;
   color: #fff;
   margin: 0;

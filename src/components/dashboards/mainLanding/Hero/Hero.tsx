@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 const Hero: React.FC = () => {
   return (
-    <S.Container backgroundColor={'#b9dbf4'}>
+    <S.Container backgroundColor={'linear-gradient(to bottom, #0a0a19, #1d1d47);'}>
       <S.InnerContainer>
         <HeroContainer>
-          <Title>Аналитикс Про</Title>
+          <Title>Аналитикс</Title>
           <Description>
             сервис для оценки и анализа потенциальных и существующих деловых партнеров, а также конкурентов. Сервис
             основан на использовании передовых технологий и методов анализа данных, включая искусственный интеллект,

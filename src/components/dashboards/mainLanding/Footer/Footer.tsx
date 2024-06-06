@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  padding: 100px 150px;
+  padding: 50px 150px 100px;
 
   @media (max-width: 1050px) {
     padding: 50px 0;

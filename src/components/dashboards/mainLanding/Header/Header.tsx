@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import styled from 'styled-components';
 import logo from '../../../../assets/logo.png';
-import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { doCheckAuth, setTokenInState } from '@app/store/slices/authSlice';
@@ -69,7 +68,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Container backgroundColor={'white'}>
+    <Container backgroundColor={'#0a0a19'}>
       <InnerContainer>
         <HeaderContainer>
           <LogoContainer>
@@ -85,6 +84,7 @@ const Header: React.FC = () => {
           </MenuContainer>
           <ButtonContainer>
             <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
+            <ButtonDemo>Запрос Демо</ButtonDemo>
             {/*<StyledButton onClick={handleClickSigUp}>Попробовать</StyledButton>*/}
           </ButtonContainer>
         </HeaderContainer>
@@ -98,6 +98,7 @@ export default Header;
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  color: #fff;
 `;
 
 const LogoContainer = styled.div`
@@ -118,7 +119,6 @@ const Logo = styled.img`
 
 const Title = styled.div`
   font-size: 24px;
-  color: #000;
 
   @media (max-width: 580px) {
     font-size: 16px;
@@ -136,32 +136,53 @@ const MenuContainer = styled.nav`
 `;
 
 const MenuItem = styled.div`
-  color: #000;
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;
   transition: 1s; /* Время эффекта */
+  color: rgba(255, 255, 255, 0.6);
 
   &:hover {
-    color: red; /* Меняем цвет текста */
+    color: #60a200; /* Меняем цвет текста */
     transform: scale(1.2); /* Увеличиваем масштаб */
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
 `;
 
-const StyledButton = styled(Button)`
-  color: #000;
-  background-color: white;
-  font-size: 14px;
-  text-transform: uppercase;
+const StyledButton = styled.button`
+  background-color: transparent;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #60a200;
+    background-color: transparent;
+  }
 
   @media (max-width: 500px) {
     font-size: 10px;
     padding-top: 0;
     padding-bottom: 0;
+  }
+`;
+
+const ButtonDemo = styled.button`
+  padding: 8px 23px 10px;
+  line-height: 1.43;
+  border-radius: 10px;
+  border: 1px solid #76b41b;
+  color: #76b41b;
+  background-color: transparent;
+  transition: all 0.15s ease 0s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(118, 180, 27, 0.16);
   }
 `;

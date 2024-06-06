@@ -102,7 +102,7 @@ type TextProps = {
 const Text = styled.span<TextProps>`
   text-decoration: ${(props) => props.isColor && 'line-through'};
   text-decoration-color: ${(props) => props.isColor && '#E27150'};
-  text-decoration-thickness: ${(props) => props.isColor && '1.5px'};
+  text-decoration-thickness: ${(props) => props.isColor && '1px'};
 `;
 
 const TextLink = styled.a`

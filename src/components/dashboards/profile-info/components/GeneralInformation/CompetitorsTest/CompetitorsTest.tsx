@@ -72,7 +72,7 @@ const CountContainer = styled.div<GridProps>`
 `;
 
 const Text = styled.div`
-  font-size: 24px;
+  font-size: 0.9374rem;
   margin-bottom: 20px;
   color: green;
 `;

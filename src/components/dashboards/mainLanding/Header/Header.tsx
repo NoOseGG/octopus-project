@@ -85,7 +85,7 @@ const Header: React.FC = () => {
           </MenuContainer>
           <ButtonContainer>
             <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
-            <StyledButton onClick={handleClickSigUp}>Попробовать</StyledButton>
+            {/*<StyledButton onClick={handleClickSigUp}>Попробовать</StyledButton>*/}
           </ButtonContainer>
         </HeaderContainer>
       </InnerContainer>

@@ -9,12 +9,14 @@ import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
 import ScrollButton from '@app/components/dashboards/profile-info/components/components/Buttons/ScrollButton/ScrollButton';
 import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 import ServiceFor from '@app/components/dashboards/mainLanding/ServiceFor/ServiceFor';
+import Hero from '@app/components/dashboards/mainLanding/Hero/Hero';
 
 const MainLanding: React.FC = () => {
   return (
     <MainLandingContainer>
       <Header />
-      <TopMain />
+      <Hero />
+      {/*<TopMain />*/}
       <SearchLine />
       <MainFunction />
       <Sources />

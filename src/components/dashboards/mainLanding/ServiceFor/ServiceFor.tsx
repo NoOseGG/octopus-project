@@ -28,7 +28,7 @@ export default ServiceFor;
 
 const ServiceForContainer = styled.div`
   width: 100%;
-  padding: 20px 200px;
+  padding: 20px 48px;
 
   @media (max-width: 1500px) {
     padding: 20px 100px;

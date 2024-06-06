@@ -36,7 +36,6 @@ const Image = styled.img`
 `;
 
 const Text = styled.div`
-  max-width: 400px;
   font-size: 16px;
   line-height: 1.3;
   text-align: center;

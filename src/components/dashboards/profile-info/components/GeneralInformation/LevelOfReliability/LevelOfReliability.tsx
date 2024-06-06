@@ -15,6 +15,14 @@ import { Skeleton } from 'antd';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
+  console.log(
+    DASH.BASE +
+      DASH.TYPE_ACTIVITY(typeActivity) +
+      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
+      DASH.IS_NULL_FALSE('king') +
+      DASH.PAGE_SIZE(100000) +
+      DASH.ORDERING('king'),
+  );
   return httpAxios.get<ResponseDashboard>(
     DASH.BASE +
       DASH.TYPE_ACTIVITY(typeActivity) +

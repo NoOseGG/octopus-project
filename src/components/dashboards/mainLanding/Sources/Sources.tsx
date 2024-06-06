@@ -6,7 +6,7 @@ import SourceItem, {
   SourceItemObject,
 } from '@app/components/dashboards/mainLanding/Sources/SourceItem/SourceItem';
 import Geography from '@app/components/dashboards/mainLanding/Sources/Geography/Geography';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const SocialItem: SourceItemObject = {
   gradient: GradientType.BLUE,

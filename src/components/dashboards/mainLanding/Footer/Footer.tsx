@@ -6,6 +6,7 @@ import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import logo from '../../../../assets/logo.svg';
 import Social from '@app/components/dashboards/mainLanding/Footer/Social/Social';
 import Links from '@app/components/dashboards/mainLanding/Footer/Links/Links';
+import map from '@app/assets/landing/footer/map.png';
 
 const Footer: React.FC = () => {
   return (
@@ -14,9 +15,9 @@ const Footer: React.FC = () => {
         <FooterContainer>
           <TopContainer>
             <Logo src={logo} />
-            {/*<MapContainer>*/}
-            {/*  <ImageMap src={map} />*/}
-            {/*</MapContainer>*/}
+            <MapContainer>
+              <ImageMap src={map} />
+            </MapContainer>
             <InfoContainer>
               <Info>
                 <Address>
@@ -142,16 +143,16 @@ const Item = styled.div`
   gap: 16px;
 `;
 
-// const MapContainer = styled.div`
-//   margin-left: auto;
-//   margin-right: 40px;
-//   width: 340px;
-// `;
-//
-// const ImageMap = styled.img`
-//   width: 100%;
-//   height: 100%;
-// `;
+const MapContainer = styled.div`
+  margin-left: auto;
+  margin-right: 40px;
+  width: 340px;
+`;
+
+const ImageMap = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 
 const SocialContainer = styled.div`
   margin-top: 40px;

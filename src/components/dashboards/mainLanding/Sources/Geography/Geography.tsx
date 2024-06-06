@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MapBelarus from '@app/components/dashboards/mainLanding/MapBelarus/MapBelarus';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const Geography: React.FC = () => {
   return (

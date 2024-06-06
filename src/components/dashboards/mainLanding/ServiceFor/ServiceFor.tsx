@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
 import { serviceForItems } from './data';
 import Item from '@app/components/dashboards/mainLanding/ServiceFor/Item';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const ServiceFor: React.FC = () => {
   return (
-    <Container backgroundColor={'linear-gradient(to bottom, #0b2d2d, #232528);'} id={ScrollType.ServiceFor}>
+    <Container backgroundColor={'linear-gradient(to bottom, #0b2d2d, #000814);'} id={ScrollType.ServiceFor}>
       <InnerContainer>
         <ServiceForContainer>
           <Title>Для кого предназначен сервис</Title>

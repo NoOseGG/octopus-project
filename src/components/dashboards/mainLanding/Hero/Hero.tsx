@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as S from '../styles/MainLandingStyles';
 import styled from 'styled-components';
+import { scrollToLanding, ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const Hero: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const Hero: React.FC = () => {
             позволяющий получить всестороннюю информацию и принять обоснованные решения на основе разнообразных данных,
             полученных из открытых источников, собранных в единый профиль.
           </Description>
-          <ButtonDemo>Запрос Демо</ButtonDemo>
+          <ButtonDemo onClick={() => scrollToLanding(ScrollType.Demo)}>Запрос Демо</ButtonDemo>
         </HeroContainer>
       </S.InnerContainer>
     </S.Container>

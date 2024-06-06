@@ -6,14 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { doCheckAuth, setTokenInState } from '@app/store/slices/authSlice';
 import { readToken } from '@app/services/localStorage.service';
-
-export enum ScrollType {
-  MainFunction = 'mainFunction',
-  Sources = 'sources',
-  Map = 'map',
-  Tariffs = 'tariffs',
-  ServiceFor = 'serviceFor',
-}
+import { scrollToLanding, ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -22,36 +15,6 @@ const Header: React.FC = () => {
   useEffect(() => {
     dispatch(doCheckAuth());
   }, [dispatch]);
-
-  const scrollToMainFunction = (scrollType: ScrollType) => {
-    switch (scrollType) {
-      case ScrollType.MainFunction: {
-        const section = document.getElementById(ScrollType.MainFunction);
-        section?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      }
-      case ScrollType.Sources: {
-        const section = document.getElementById(ScrollType.Sources);
-        section?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      }
-      case ScrollType.Map: {
-        const section = document.getElementById(ScrollType.Map);
-        section?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      }
-      case ScrollType.Tariffs: {
-        const section = document.getElementById(ScrollType.Tariffs);
-        section?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      }
-      case ScrollType.ServiceFor: {
-        const section = document.getElementById(ScrollType.ServiceFor);
-        section?.scrollIntoView({ behavior: 'smooth' });
-        break;
-      }
-    }
-  };
 
   const handleClickLogIn = () => {
     dispatch(setTokenInState());
@@ -63,9 +26,9 @@ const Header: React.FC = () => {
     }
   };
 
-  const handleClickSigUp = () => {
-    navigate('/auth/sign-up');
-  };
+  // const handleClickSigUp = () => {
+  //   navigate('/auth/sign-up');
+  // };
 
   return (
     <Container backgroundColor={'#0a0a19'}>
@@ -76,15 +39,15 @@ const Header: React.FC = () => {
             <Title>Analytix</Title>
           </LogoContainer>
           <MenuContainer>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.MainFunction)}>Возможности</MenuItem>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.Sources)}>Источники</MenuItem>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.Map)}>Карта</MenuItem>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.ServiceFor)}>Кому подойдет</MenuItem>
-            <MenuItem onClick={() => scrollToMainFunction(ScrollType.Tariffs)}>Тарифы</MenuItem>
+            <MenuItem onClick={() => scrollToLanding(ScrollType.MainFunction)}>Возможности</MenuItem>
+            <MenuItem onClick={() => scrollToLanding(ScrollType.Sources)}>Источники</MenuItem>
+            <MenuItem onClick={() => scrollToLanding(ScrollType.Map)}>Карта</MenuItem>
+            <MenuItem onClick={() => scrollToLanding(ScrollType.ServiceFor)}>Кому подойдет</MenuItem>
+            <MenuItem onClick={() => scrollToLanding(ScrollType.Tariffs)}>Тарифы</MenuItem>
           </MenuContainer>
           <ButtonContainer>
             <StyledButton onClick={handleClickLogIn}>Войти</StyledButton>
-            <ButtonDemo>Запрос Демо</ButtonDemo>
+            <ButtonDemo onClick={() => scrollToLanding(ScrollType.Demo)}>Запрос Демо</ButtonDemo>
             {/*<StyledButton onClick={handleClickSigUp}>Попробовать</StyledButton>*/}
           </ButtonContainer>
         </HeaderContainer>

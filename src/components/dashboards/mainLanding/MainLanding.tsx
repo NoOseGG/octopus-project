@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '@app/components/dashboards/mainLanding/Header/Header';
-import TopMain from '@app/components/dashboards/mainLanding/TopMain/TopMain';
 import SearchLine from '@app/components/dashboards/mainLanding/SearchLine/SearchLine';
 import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
@@ -10,6 +9,7 @@ import ScrollButton from '@app/components/dashboards/profile-info/components/com
 import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 import ServiceFor from '@app/components/dashboards/mainLanding/ServiceFor/ServiceFor';
 import Hero from '@app/components/dashboards/mainLanding/Hero/Hero';
+import GetDemo from '@app/components/dashboards/mainLanding/GetDemo/GetDemo';
 
 const MainLanding: React.FC = () => {
   return (
@@ -21,6 +21,7 @@ const MainLanding: React.FC = () => {
       <MainFunction />
       <Sources />
       <ServiceFor />
+      <GetDemo />
       {/*<Tariffs />*/}
       <Footer />
       <PayAttentionModal />

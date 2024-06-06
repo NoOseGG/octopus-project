@@ -4,6 +4,7 @@ export enum ScrollType {
   Map = 'map',
   Tariffs = 'tariffs',
   ServiceFor = 'serviceFor',
+  Demo = 'demo',
 }
 
 export const scrollToLanding = (scrollType: ScrollType) => {
@@ -30,6 +31,11 @@ export const scrollToLanding = (scrollType: ScrollType) => {
     }
     case ScrollType.ServiceFor: {
       const section = document.getElementById(ScrollType.ServiceFor);
+      section?.scrollIntoView({ behavior: 'smooth' });
+      break;
+    }
+    case ScrollType.Demo: {
+      const section = document.getElementById(ScrollType.Demo);
       section?.scrollIntoView({ behavior: 'smooth' });
       break;
     }

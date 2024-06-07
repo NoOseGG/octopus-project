@@ -26,6 +26,7 @@ const DemoForm: React.FC = () => {
       setCompany('');
       setEmail('');
       setPhone('');
+      setIsDisabled(true);
     };
 
     axios

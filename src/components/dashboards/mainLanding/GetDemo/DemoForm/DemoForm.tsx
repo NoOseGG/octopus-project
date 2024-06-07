@@ -1,15 +1,51 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { notificationController } from '@app/controllers/notificationController';
+import moment from 'moment';
 
 const DemoForm: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChangeCheckbox = () => {
     setIsDisabled((prevState) => !prevState);
   };
 
-  const handleSubmit = () => {
-    console.log('Форма отправлена');
+  const sendMessageToTelegram = (message: string) => {
+    const token = '1395419500:AAEsx9_RJKGGJXPo0Vwj4uD2HdRdstopl9g';
+    const chatId = -1001423311641;
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const data = {
+      chat_id: chatId,
+      text: message,
+    };
+
+    axios
+      .post(url, data)
+      .then(() => {
+        notificationController.success({
+          message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
+        });
+      })
+      .catch(() => {
+        notificationController.error({
+          message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
+        });
+      });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const date = new Date();
+    const formattedDate = moment(date).format('DD.MM.YYYY');
+    const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
+    console.log(message);
+    sendMessageToTelegram(message);
   };
 
   return (
@@ -17,19 +53,51 @@ const DemoForm: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <InputContainer>
           <Label htmlFor="name">Ваше имя *</Label>
-          <Input type="text" name={'name'} id={'name'} placeholder={'Иванов Иван Иванович'} required={true} />
+          <Input
+            type="text"
+            name={'name'}
+            id={'name'}
+            placeholder={'Иванов Иван Иванович'}
+            required={true}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="company">Название компании *</Label>
-          <Input type="text" name={'company'} id={'company'} placeholder={'ООО "Аналитик Про'} required={true} />
+          <Input
+            type="text"
+            name={'company'}
+            id={'company'}
+            placeholder={'ООО "Аналитик Про'}
+            required={true}
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="email">Электронный адрес *</Label>
-          <Input type="email" name={'email'} id={'email'} placeholder={'info@analytix.by'} required={true} />
+          <Input
+            type="email"
+            name={'email'}
+            id={'email'}
+            placeholder={'info@analytix.by'}
+            required={true}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </InputContainer>
         <InputContainer>
           <Label htmlFor="phone">Мобильный телефон *</Label>
-          <Input type="tel" name={'phone'} id={'phone'} placeholder={'+375 (__) ___-__-__'} required={true} />
+          <Input
+            type="tel"
+            name={'phone'}
+            id={'phone'}
+            placeholder={'+375 (__) ___-__-__'}
+            required={true}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
         </InputContainer>
         <PrivacyContainer>
           <input

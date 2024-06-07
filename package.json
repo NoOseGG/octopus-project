@@ -31,6 +31,7 @@
     "i18next": "^20.4.0",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
+    "moment": "^2.30.1",
     "patch-package": "^6.4.7",
     "pigeon-maps": "^0.19.7",
     "postinstall-postinstall": "^2.1.0",

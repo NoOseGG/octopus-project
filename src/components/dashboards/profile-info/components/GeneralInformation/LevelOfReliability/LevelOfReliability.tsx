@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KindIndicator from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/KindIndicator';
 import MinMaxRating from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/MinMaxRating';
 import styled from 'styled-components';
@@ -15,14 +15,6 @@ import { Skeleton } from 'antd';
 
 const getMinRating = (typeActivity: string | null, settlement: string | null) => {
   if (!typeActivity || !settlement) return;
-  console.log(
-    DASH.BASE +
-      DASH.TYPE_ACTIVITY(typeActivity) +
-      DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
-      DASH.IS_NULL_FALSE('king') +
-      DASH.PAGE_SIZE(100000) +
-      DASH.ORDERING('king'),
-  );
   return httpAxios.get<ResponseDashboard>(
     DASH.BASE +
       DASH.TYPE_ACTIVITY(typeActivity) +
@@ -36,13 +28,18 @@ const getMinRating = (typeActivity: string | null, settlement: string | null) =>
 const LevelOfReliability: React.FC = () => {
   const typeActivity = useAppSelector((state) => state.searchProfile.profile.types_activities[0]?.name);
   const settlement = useAppSelector((state) => state.searchProfile.profile.addresses[0]?.settlement);
-  const { data, isLoading } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['minRating', typeActivity, settlement],
     queryFn: () => getMinRating(typeActivity, settlement),
     enabled: !!typeActivity && !!settlement,
   });
 
-  if (isLoading) {
+  useEffect(() => {
+    console.log(typeActivity);
+    console.log(settlement);
+  }, [typeActivity, settlement]);
+
+  if (isFetching) {
     return <Skeleton active={true} />;
   }
 

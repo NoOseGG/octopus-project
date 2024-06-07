@@ -110,7 +110,7 @@ const DemoForm: React.FC = () => {
             required={true}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            minLength={12}
+            minLength={11}
             maxLength={12}
           />
         </InputContainer>

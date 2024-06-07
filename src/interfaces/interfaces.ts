@@ -87,6 +87,7 @@ export interface ResponseDashboard {
 export interface DashboardObject {
   legal_entity_id: string | null;
   company_short_name: string | null;
+  company_full_name: string | null;
   type_activity_name: string | null;
   age_short: number | null;
   company_date_registration: string | null;

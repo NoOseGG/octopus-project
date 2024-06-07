@@ -45,7 +45,12 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, settlement, unn }
     <>
       <RatingStyle.Container>
         <S.Title>Город</S.Title>
-        <RatingTable data={ratingSettlement} isLoading={isLoading} />
+        <RatingTable
+          data={ratingSettlement?.map((item) =>
+            item.company_short_name ? item : { ...item, company_short_name: item.company_full_name },
+          )}
+          isLoading={isLoading}
+        />
       </RatingStyle.Container>
     </>
   );

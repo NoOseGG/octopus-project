@@ -40,7 +40,12 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, unn }) => {
   return (
     <RatingStyle.Container>
       <S.Title>Республика</S.Title>
-      <RatingTable data={ratingAll} isLoading={isLoading} />
+      <RatingTable
+        data={ratingAll?.map((item) =>
+          item.company_short_name ? item : { ...item, company_short_name: item.company_full_name },
+        )}
+        isLoading={isLoading}
+      />
     </RatingStyle.Container>
   );
 };

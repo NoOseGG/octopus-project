@@ -91,14 +91,14 @@ export const LoginForm: React.FC = () => {
         <BaseForm.Item noStyle>
           <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
-        <Auth.FooterWrapper>
-          <Auth.Text>
-            {t('login.noAccount')}{' '}
-            <Link to="/auth/sign-up">
-              <Auth.LinkText>{t('common.here')}</Auth.LinkText>
-            </Link>
-          </Auth.Text>
-        </Auth.FooterWrapper>
+        {/*<Auth.FooterWrapper>*/}
+        {/*  <Auth.Text>*/}
+        {/*    {t('login.noAccount')}{' '}*/}
+        {/*    <Link to="/auth/sign-up">*/}
+        {/*      <Auth.LinkText>{t('common.here')}</Auth.LinkText>*/}
+        {/*    </Link>*/}
+        {/*  </Auth.Text>*/}
+        {/*</Auth.FooterWrapper>*/}
       </BaseForm>
     </Auth.FormWrapper>
   );

@@ -42,7 +42,12 @@ const RatingAll: React.FC<MyComponentProps> = ({ typeActivity, region, unn }) =>
   return (
     <RatingStyle.Container>
       <S.Title>Область</S.Title>
-      <RatingTable data={ratingRegion} isLoading={isLoading} />
+      <RatingTable
+        data={ratingRegion?.map((item) =>
+          item.company_short_name ? item : { ...item, company_short_name: item.company_full_name },
+        )}
+        isLoading={isLoading}
+      />
     </RatingStyle.Container>
   );
 };

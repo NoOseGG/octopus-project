@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { notificationController } from '@app/controllers/notificationController';
 import moment from 'moment';
+import { URLS } from '@app/constants/Constants';
 
 const DemoForm: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -16,11 +17,9 @@ const DemoForm: React.FC = () => {
   };
 
   const sendMessageToTelegram = (message: string) => {
-    // const url = `https://api.telegram.org/bot${token}/sendMessage`;
-    // const data = {
-    //   chat_id: chatId,
-    //   text: message,
-    // };
+    const data = {
+      demo: message,
+    };
 
     const clearAllData = () => {
       setName('');
@@ -29,19 +28,19 @@ const DemoForm: React.FC = () => {
       setPhone('');
     };
 
-    // axios
-    //   .post(url, data)
-    //   .then(() => {
-    //     notificationController.success({
-    //       message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
-    //     });
-    //     clearAllData();
-    //   })
-    //   .catch(() => {
-    //     notificationController.error({
-    //       message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
-    //     });
-    //   });
+    axios
+      .post(URLS.DEMO, data)
+      .then(() => {
+        notificationController.success({
+          message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
+        });
+        clearAllData();
+      })
+      .catch(() => {
+        notificationController.error({
+          message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
+        });
+      });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,11 +48,7 @@ const DemoForm: React.FC = () => {
     const date = new Date();
     const formattedDate = moment(date).format('DD.MM.YYYY');
     const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
-    console.log(message);
-
-    const token = process.env.TG_BOT_TOKEN;
-    console.log(token);
-    // sendMessageToTelegram(message);
+    sendMessageToTelegram(message);
   };
 
   return (
@@ -138,7 +133,7 @@ const DemoFormContainer = styled.div`
   padding: 10px;
   width: 60%;
   height: 100%;
-  
+
   @media (max-width: 700px) {
     width: 100%;
   }

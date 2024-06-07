@@ -16,27 +16,32 @@ const DemoForm: React.FC = () => {
   };
 
   const sendMessageToTelegram = (message: string) => {
-    const token = '1395419500:AAEsx9_RJKGGJXPo0Vwj4uD2HdRdstopl9g';
-    const chatId = -1001423311641;
+    // const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    // const data = {
+    //   chat_id: chatId,
+    //   text: message,
+    // };
 
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
-    const data = {
-      chat_id: chatId,
-      text: message,
+    const clearAllData = () => {
+      setName('');
+      setCompany('');
+      setEmail('');
+      setPhone('');
     };
 
-    axios
-      .post(url, data)
-      .then(() => {
-        notificationController.success({
-          message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
-        });
-      })
-      .catch(() => {
-        notificationController.error({
-          message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
-        });
-      });
+    // axios
+    //   .post(url, data)
+    //   .then(() => {
+    //     notificationController.success({
+    //       message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
+    //     });
+    //     clearAllData();
+    //   })
+    //   .catch(() => {
+    //     notificationController.error({
+    //       message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
+    //     });
+    //   });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -45,7 +50,10 @@ const DemoForm: React.FC = () => {
     const formattedDate = moment(date).format('DD.MM.YYYY');
     const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
     console.log(message);
-    sendMessageToTelegram(message);
+
+    const token = process.env.TG_BOT_TOKEN;
+    console.log(token);
+    // sendMessageToTelegram(message);
   };
 
   return (
@@ -130,6 +138,10 @@ const DemoFormContainer = styled.div`
   padding: 10px;
   width: 60%;
   height: 100%;
+  
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const Form = styled.form`

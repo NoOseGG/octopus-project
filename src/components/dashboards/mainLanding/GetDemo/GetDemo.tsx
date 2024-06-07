@@ -32,14 +32,19 @@ const GetDemoContainer = styled.div`
 `;
 
 const DemoContainer = styled.div`
-  width: 900px;
+  max-width: 900px;
   height: auto;
   padding: 20px 40px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   background-color: #ffffff;
   border-radius: 12px;
   gap: 20px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h2`

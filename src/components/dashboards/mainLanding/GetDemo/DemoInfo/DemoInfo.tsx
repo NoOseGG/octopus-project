@@ -26,6 +26,12 @@ const DemoInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const Title = styled.div`

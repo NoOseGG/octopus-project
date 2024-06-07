@@ -11,6 +11,8 @@ const DemoForm: React.FC = () => {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const phoneRegex = /^375\d{9}$/;
+  const phoneRegex2 = /^802\d{8}$/;
 
   const handleChangeCheckbox = () => {
     setIsDisabled((prevState) => !prevState);
@@ -46,9 +48,16 @@ const DemoForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!phoneRegex.test(phone) && !phoneRegex2.test(phone)) {
+      notificationController.warning({
+        message: 'Введите телефон в указанном формате (80291234567) или (375251234567)',
+      });
+      return;
+    }
     const date = new Date();
     const formattedDate = moment(date).format('DD.MM.YYYY');
     const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
+    console.log('test', phone);
     sendMessageToTelegram(message);
   };
 
@@ -97,10 +106,12 @@ const DemoForm: React.FC = () => {
             type="tel"
             name={'phone'}
             id={'phone'}
-            placeholder={'+375 (__) ___-__-__'}
+            placeholder={'375291234567'}
             required={true}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            minLength={12}
+            maxLength={12}
           />
         </InputContainer>
         <PrivacyContainer>

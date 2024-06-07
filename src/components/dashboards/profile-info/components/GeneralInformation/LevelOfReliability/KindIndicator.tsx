@@ -81,7 +81,7 @@ const KindIndicator: React.FC = () => {
         <Container>
           <S.Title>Индекс уровня надежности (0-9)</S.Title>
           <ContainerInfo>
-            <Liquid {...config} style={{ width: 150, height: 150 }} />
+            <Liquid {...config} style={{ width: 100, height: 100 }} />
             <KindInfo>
               <Text>
                 <Name>Значение индекса</Name> - <Content color={color}>{metric_kind[0].king_group}</Content>{' '}

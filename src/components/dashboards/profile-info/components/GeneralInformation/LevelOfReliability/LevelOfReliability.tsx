@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import KindIndicator from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/KindIndicator';
 import MinMaxRating from '@app/components/dashboards/profile-info/components/GeneralInformation/LevelOfReliability/MinMaxRating';
 import styled from 'styled-components';
@@ -33,11 +33,6 @@ const LevelOfReliability: React.FC = () => {
     queryFn: () => getMinRating(typeActivity, settlement),
     enabled: !!typeActivity && !!settlement,
   });
-
-  useEffect(() => {
-    console.log(typeActivity);
-    console.log(settlement);
-  }, [typeActivity, settlement]);
 
   if (isFetching) {
     return <Skeleton active={true} />;

@@ -61,7 +61,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ value, setValue }) => {
       type="tel"
       name={'phone'}
       id={'phone'}
-      placeholder={'375(25)752-02-46'}
+      placeholder={'375(29)123-45-67'}
       required={true}
       value={value}
       onChange={handleChange}

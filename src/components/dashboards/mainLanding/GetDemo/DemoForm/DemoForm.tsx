@@ -4,6 +4,7 @@ import axios from 'axios';
 import { notificationController } from '@app/controllers/notificationController';
 import moment from 'moment';
 import { URLS } from '@app/constants/Constants';
+import PhoneInput from '@app/components/dashboards/mainLanding/GetDemo/DemoForm/PhoneInput/PhoneInput';
 
 const DemoForm: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -11,7 +12,7 @@ const DemoForm: React.FC = () => {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const phoneRegex = /^375\d{9}$/;
+  const phoneRegex = /^\+375\((25|29|33|44)\)\d{3}-\d{2}-\d{2}$/;
   const phoneRegex2 = /^802\d{8}$/;
 
   const handleChangeCheckbox = () => {
@@ -50,7 +51,7 @@ const DemoForm: React.FC = () => {
     event.preventDefault();
     if (!phoneRegex.test(phone) && !phoneRegex2.test(phone)) {
       notificationController.warning({
-        message: 'Введите телефон в указанном формате (80291234567) или (375251234567)',
+        message: 'Введите телефон в указанном формате 80291234567 или +375(25)123-45-67',
       });
       return;
     }
@@ -102,17 +103,7 @@ const DemoForm: React.FC = () => {
         </InputContainer>
         <InputContainer>
           <Label htmlFor="phone">Мобильный телефон *</Label>
-          <Input
-            type="tel"
-            name={'phone'}
-            id={'phone'}
-            placeholder={'375291234567'}
-            required={true}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            minLength={11}
-            maxLength={12}
-          />
+          <PhoneInput value={phone} setValue={setPhone} />
         </InputContainer>
         <PrivacyContainer>
           <input

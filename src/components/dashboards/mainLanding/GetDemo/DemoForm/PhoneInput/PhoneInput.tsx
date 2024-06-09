@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,19 +8,28 @@ type PhoneInputProps = {
 };
 
 const PhoneInput: React.FC<PhoneInputProps> = ({ value, setValue }) => {
+  const [maxLength, setMaxLength] = useState(11);
+
   const getInputNumbersValue = (input: string) => {
     return input.replace(/\D/g, '');
   };
 
   const addPlus = (input: string): string => {
     if (['3', '8'].indexOf(input[0]) > -1) {
-      if (input[0] == '3') return '+' + input;
-      if (input[0] == '8') return input;
+      if (input[0] == '3') {
+        setMaxLength(17);
+        return '+' + input;
+      }
+      if (input[0] == '8') {
+        setMaxLength(11);
+        return input;
+      }
     }
     return '';
   };
 
   const formatPhoneNumber = (input: string): string => {
+    if (input[0] === '8') return input;
     if (input[0] !== '+') return '';
 
     const patterns: { [key: number]: string } = {
@@ -65,7 +74,8 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ value, setValue }) => {
       required={true}
       value={value}
       onChange={handleChange}
-      maxLength={17}
+      minLength={maxLength}
+      maxLength={maxLength}
     />
   );
 };

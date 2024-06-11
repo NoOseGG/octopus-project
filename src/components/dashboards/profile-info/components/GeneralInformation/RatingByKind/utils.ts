@@ -12,6 +12,7 @@ export const calculateRating = (
     });
     const index = data.findIndex((item) => item.legal_entity_id === unn);
     if (index > 4) result.push({ ...data[index], position: index + 1, highlight: true });
+    if (index !== data.length - 1) result.push({ ...data[data.length - 1], position: data.length - 1 });
 
     setData(result);
   }

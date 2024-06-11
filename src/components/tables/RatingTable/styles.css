@@ -4,9 +4,11 @@
 
 .custom-row:hover {
     cursor: pointer;
+
 }
 
 .highlight-row {
     font-weight: 700;
     cursor: pointer;
+    background-color: #f2f2f2;
 }

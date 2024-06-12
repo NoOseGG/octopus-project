@@ -23,5 +23,3 @@ yarn install && yarn build
 ```
 yarn install && yarn build --stats
 ```
-
-And then use the [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) to open _build/bundle-stats.json_.

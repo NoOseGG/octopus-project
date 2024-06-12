@@ -5,7 +5,7 @@ export interface FeedbackResponse {
   results: FeedbackObject[];
 }
 
-interface FeedbackObject {
+export interface FeedbackObject {
   created_at: string;
   message: string;
 }

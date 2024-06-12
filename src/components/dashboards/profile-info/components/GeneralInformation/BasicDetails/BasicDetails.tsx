@@ -36,6 +36,7 @@ const BasicDetails: React.FC = () => {
             name={'Юридический адрес'}
             fields={newFullAddresses}
             isCopyable={true}
+            isMap={true}
             postfix={'предыдущие адреса'}
           />
         </tbody>

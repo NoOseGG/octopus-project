@@ -6,7 +6,7 @@ import { components as configComponents, Component } from '@app/constants/config
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
-import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice';
+import { clearSearchData, doSearch, searchController } from '@app/store/slices/search/searchSlice';
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
@@ -26,7 +26,6 @@ export const HeaderSearch: React.FC = () => {
   const [components] = useState<Component[]>(configComponents);
 
   const [isModalVisible, setModalVisible] = useState(false);
-  // const [isOverlayVisible, setOverlayVisible] = useState(false);
 
   const sortedResults = query
     ? categoriesList.reduce((acc, current) => {
@@ -45,7 +44,6 @@ export const HeaderSearch: React.FC = () => {
     // setOverlayVisible(false);
   }, [pathname]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const delaySearch = useCallback(
     _.debounce((query: string) => {
       dispatch(doSearch(query));
@@ -55,6 +53,7 @@ export const HeaderSearch: React.FC = () => {
 
   const clearSearch = useCallback(
     _.debounce(() => {
+      searchController?.abort();
       dispatch(clearSearchData());
     }, 600),
     [dispatch],
@@ -63,9 +62,12 @@ export const HeaderSearch: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (query.trim().length > 2) {
+      // dispatch(doSearch(query.trim()));
       delaySearch(query);
       navigate('/search');
-    } else {
+    }
+
+    if (query.trim().length === 1) {
       clearSearch();
     }
   }, [query]);

@@ -5,5 +5,6 @@ export const PlaceholderText = styled.div`
 `;
 
 export const filterStyle = {
+  height: 'auto',
   width: '100%',
 };

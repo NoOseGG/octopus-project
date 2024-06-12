@@ -47,10 +47,10 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.searchFilters.filters);
   const dynamicState = useAppSelector((state) => getStateForTypeActivity(state, typeActivity));
-  const results = dynamicState?.typeActivities.results;
+  const results = dynamicState?.typeActivities?.results;
   const loading = dynamicState?.loading;
 
-  const data = results.map((item, index) => {
+  const data = results?.map((item, index) => {
     return {
       name: item.group_fields.type_activity_name,
       count: item.Count,
@@ -206,7 +206,7 @@ const TypeActivity: React.FC<TypeActivityProps> = ({ typeActivity }) => {
   ];
 
   const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+    // console.log('params', pagination, filters, sorter, extra);
   };
 
   return (

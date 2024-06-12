@@ -9,6 +9,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
 import * as S from './SignUpForm.styles';
 import { dateTransformForRegistration } from '@app/utils/utils';
+import locale from '../../dashboards/dashboard/components/SearchFilters/components/DateFilter/locale/ru_RU';
 
 interface SignUpFormData {
   firstName: string;
@@ -25,7 +26,7 @@ const initValues = {
   last_name: '',
   patronymic: '',
   birthdate: '',
-  phone_number: '+',
+  phone_number: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -41,9 +42,19 @@ export const SignUpForm: React.FC = () => {
 
   const handleSubmit = (values: SignUpFormData) => {
     setLoading(true);
+
     const newValues = JSON.parse(JSON.stringify(values));
     newValues.birthdate = dateTransformForRegistration(values.birthdate);
     delete newValues.confirmPassword;
+
+    if (!newValues.termOfUse) {
+      notificationController.warning({
+        message: 'Примите соглашения при регистрации!',
+      });
+      setLoading(false);
+      return;
+    }
+
     delete newValues.termOfUse;
 
     dispatch(doSignUp(newValues))
@@ -56,7 +67,6 @@ export const SignUpForm: React.FC = () => {
         navigate('/auth/login');
       })
       .catch(() => {
-        // notificationController.error({ message: err.message });
         setLoading(false);
       });
   };
@@ -98,7 +108,7 @@ export const SignUpForm: React.FC = () => {
               label={t('common.birthdate')}
               rules={[{ required: true, message: t('common.requiredField') }]}
             >
-              <Auth.StyledDatePicker />
+              <Auth.StyledDatePicker locale={locale} />
             </Auth.FormItem>
           </div>
           <div style={{ flex: 1, marginRight: '20px' }}>

@@ -43,4 +43,5 @@ export interface UserModel {
   type_subscription: string | null;
   avatar: string;
   is_email_subscription: boolean;
+  is_superuser: boolean;
 }

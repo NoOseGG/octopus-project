@@ -10,7 +10,7 @@ import dataImage from '../../../assets/images/seach/data-not-found.png';
 
 const Search: React.FC = () => {
   const { history } = useAppSelector((state) => state.searchHistory);
-  const { results } = useAppSelector((state) => state.search.data);
+  const results = useAppSelector((state) => state.search.data.results);
   const { favourites } = useAppSelector((state) => state.favourites);
   const { error, loading } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
@@ -18,6 +18,14 @@ const Search: React.FC = () => {
   useEffect(() => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
+
+  if (Boolean(results?.length) && !loading) {
+    return (
+      <Container>
+        <SubjectsList listItems={results} />
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -34,18 +42,16 @@ const Search: React.FC = () => {
         </ErrorContainer>
       )}
 
-      {!loading && error === null && !Boolean(results?.length) && (
-        <div style={{ display: 'flex', gap: 20 }}>
-          <Col span={14}>
+      {!Boolean(results?.length) && !loading && error === null && (
+        <HistoryContainer>
+          <SearchHistoryContainer>
             <SearchHistory listHistory={history?.results} />
-          </Col>
-          <Col span={10}>
+          </SearchHistoryContainer>
+          <FavouritesContainer>
             <Favourites favourites={favourites?.results} />
-          </Col>
-        </div>
+          </FavouritesContainer>
+        </HistoryContainer>
       )}
-
-      {Boolean(results.length) && !loading && <SubjectsList listItems={results} />}
     </Container>
   );
 };
@@ -54,7 +60,7 @@ export default Search;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
 `;
 
 const SpinnerSpace = styled.div`
@@ -78,4 +84,34 @@ const ErrorTitle = styled.h1`
 
 const ErrorImage = styled.img`
   width: 500px;
+`;
+
+const HistoryContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 500px) {
+    gap: 0;
+  }
+`;
+
+const SearchHistoryContainer = styled.div`
+  width: 58%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`;
+
+const FavouritesContainer = styled.div`
+  width: 42%;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;

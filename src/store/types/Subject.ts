@@ -49,6 +49,8 @@ export interface SubjectType {
   metric_level_competition: MetricLevelCompetition[];
   metric_probability_liquidation: MetricProbabilityLiquidation[];
   metric_address_economic_high_risk_registry: MetricAddressEconomicHighRiskRegistry[];
+  metric_king: MetricKind[];
+  vacancy_agg: VacancyAGG[];
 }
 
 export interface Emails {
@@ -582,7 +584,7 @@ export interface Resume {
   skill_name: string | null;
 }
 
-// ------------ Indicators -------------
+// ------------ IndicatorsTest -------------
 
 export interface MetricAddressMain {
   full_address: string | null;
@@ -634,4 +636,19 @@ export interface MetricProbabilityLiquidation {
 export interface MetricAddressEconomicHighRiskRegistry {
   address_full: string | null;
   address_description: string | null;
+}
+
+export interface MetricKind {
+  king: number | null;
+  king_group: string | null;
+}
+
+export interface VacancyAGG {
+  total_records: number | null;
+  unp_count: number | null;
+  percent_of_total: number | null;
+  type_activity_name_count: number | null;
+  percent_of_total_type_activity: number | null;
+  address_settlement_count: number | null;
+  percent_of_total_settlement: number | null;
 }

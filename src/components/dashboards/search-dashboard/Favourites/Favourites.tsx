@@ -30,7 +30,7 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
 
   const columns: ColumnsType<FavouritesObject> = [
     {
-      title: 'УНП',
+      title: <Title>УНП</Title>,
       dataIndex: 'legal_entity_id',
       render: (text) => (
         <div
@@ -49,12 +49,12 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
       ),
     },
     {
-      title: 'Наименование',
+      title: <Title>Наименование</Title>,
       dataIndex: 'legal_entity_name',
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'Время добавления',
+      title: <Title>Время добавления</Title>,
       dataIndex: 'created_at',
       render: (text) => <Content>{text}</Content>,
     },
@@ -89,7 +89,20 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
 
 export default Favourites;
 
+const Title = styled.div`
+  font-size: 16px;
+
+  @media (max-width: 1000px) {
+    font-size: 14px;
+  }
+`;
+
 const Content = styled.div`
   font-size: 12px;
   line-height: 1.2;
+  word-break: break-word;
+
+  @media (max-width: 450px) {
+    font-size: 10px;
+  }
 `;

@@ -6,8 +6,11 @@ import '../CommercialRegister/styles.css';
 
 export enum StatisticTableType {
   VACANCIES,
+  VACANCIES_YEAR,
   RESUMES,
   COMMERCIAL_REGISTERS,
+  ALL,
+  YEAR,
 }
 
 type MyComponentProps = {
@@ -32,15 +35,15 @@ const StatisticTable: React.FC<MyComponentProps> = ({
 }) => {
   const columns: ColumnsType<DataType> = [
     {
-      title: getTableTitle(statisticTableType),
+      title: <TableTitle>Название</TableTitle>,
       dataIndex: 'value',
-      width: '85%',
+      width: '80%',
       render: (text) => <TableContentName>{text}</TableContentName>,
     },
     {
-      title: 'Количество',
+      title: <TableTitle>Количество</TableTitle>,
       dataIndex: 'count',
-      width: '15%',
+      width: '20%',
       render: (text) => <TableContentSum>{text}</TableContentSum>,
       sorter: (a, b) => a.count - b.count,
       showSorterTooltip: false,
@@ -50,15 +53,22 @@ const StatisticTable: React.FC<MyComponentProps> = ({
   return (
     <Container>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Title>{getTitle(statisticTableType)}</Title>
-        {selectedFilter && <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>}
+        <Title>
+          {statisticTableType === StatisticTableType.ALL ? 'На протяжении всего периода' : 'За последние 365 дней'}
+        </Title>
+        {selectedFilter &&
+          StatisticTableType.ALL !== statisticTableType &&
+          StatisticTableType.YEAR !== statisticTableType && (
+            <ClearButton onClick={() => deleteFilter()}>Очистить фильтр</ClearButton>
+          )}
       </div>
       <Table
         columns={columns}
         dataSource={statistics.sort((a, b) => b.count - a.count)}
         size={'small'}
-        pagination={false}
-        scroll={{ y: 360 }}
+        pagination={
+          statistics.length <= 5 ? false : { defaultPageSize: 5, defaultCurrent: 1, pageSizeOptions: [5, 10, 20] }
+        }
         onRow={(record) => ({
           onClick: () => addFilter(record.value),
         })}
@@ -71,12 +81,17 @@ const StatisticTable: React.FC<MyComponentProps> = ({
 export default StatisticTable;
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
 `;
 
 const Title = styled.h3``;
+
+const TableTitle = styled.div`
+  font-size: 14px;
+`;
 
 const TableContentName = styled.div`
   width: 100%;
@@ -96,24 +111,28 @@ const ClearButton = styled(Button)`
   font-size: 14px;
 `;
 
-const getTitle = (statisticTableType: StatisticTableType): string => {
-  switch (statisticTableType) {
-    case StatisticTableType.VACANCIES:
-      return 'Статистика вакансий';
-    case StatisticTableType.RESUMES:
-      return 'Статистика резюме';
-    case StatisticTableType.COMMERCIAL_REGISTERS:
-      return 'Статистика торгового реестра';
-  }
-};
-
-const getTableTitle = (statisticTableType: StatisticTableType): string => {
-  switch (statisticTableType) {
-    case StatisticTableType.VACANCIES:
-      return 'Название вакансии';
-    case StatisticTableType.RESUMES:
-      return 'Название резюме';
-    case StatisticTableType.COMMERCIAL_REGISTERS:
-      return 'Название объекта';
-  }
-};
+// const getTitle = (statisticTableType: StatisticTableType): string => {
+//   switch (statisticTableType) {
+//     case StatisticTableType.VACANCIES:
+//       return 'Статистика вакансий';
+//     case StatisticTableType.VACANCIES_YEAR:
+//       return 'Статистика вакансий за год';
+//     case StatisticTableType.RESUMES:
+//       return 'Статистика резюме';
+//     case StatisticTableType.COMMERCIAL_REGISTERS:
+//       return 'Статистика торгового реестра';
+//   }
+// };
+//
+// const getTableTitle = (statisticTableType: StatisticTableType): string => {
+//   switch (statisticTableType) {
+//     case StatisticTableType.VACANCIES:
+//       return 'Название вакансии';
+//     case StatisticTableType.VACANCIES_YEAR:
+//       return 'Название вакансии';
+//     case StatisticTableType.RESUMES:
+//       return 'Название резюме';
+//     case StatisticTableType.COMMERCIAL_REGISTERS:
+//       return 'Название объекта';
+//   }
+// };

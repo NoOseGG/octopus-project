@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
+import { httpAxios } from '@app/api/http.api';
 
 const initialState: FeedbackState = {
   feedbacks: {
@@ -30,7 +31,7 @@ export const doAddFeedback = createAsyncThunk<FeedbackResponse, string>(
   'doAddFeedback',
   async (feedback, { dispatch }) => {
     try {
-      const response = await axios.post(
+      const response = await httpAxios.post(
         URLS.FEEDBACK,
         { message: feedback },
         {

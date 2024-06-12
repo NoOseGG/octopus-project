@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Select } from 'antd';
 import { doGetRegions, setRegion } from '@app/store/slices/search/searchFiltersSlice';
-import {
-  PlaceholderText,
-  filterStyle,
-} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import FilterSelect from '@app/components/dashboards/dashboard/components/SearchFilters/components/FilterSelect/FilterSelect';
 
 const RegionFilter: React.FC = () => {
   const regions = useAppSelector((state) => state.searchFilters.data_filters.regions);
@@ -16,10 +12,11 @@ const RegionFilter: React.FC = () => {
     dispatch(doGetRegions());
   }, [dispatch]);
 
-  const data = regions?.map((region) => {
+  const data = regions?.map((region, index) => {
     return {
       value: region.address_region,
       label: region.address_region,
+      key: index,
     };
   });
 
@@ -27,19 +24,7 @@ const RegionFilter: React.FC = () => {
     dispatch(setRegion(value));
   };
 
-  return (
-    <Select
-      size="small"
-      showSearch
-      style={filterStyle}
-      placeholder={<PlaceholderText>Область</PlaceholderText>}
-      optionFilterProp="children"
-      value={region}
-      onChange={onChange}
-      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-      options={data}
-    />
-  );
+  return <FilterSelect value={region} onChange={onChange} data={data} name="Область" />;
 };
 
 export default RegionFilter;

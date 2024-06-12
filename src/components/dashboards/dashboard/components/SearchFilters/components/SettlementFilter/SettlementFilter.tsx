@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Select } from 'antd';
 import { doGetSettlementsList, setSettlement } from '@app/store/slices/search/searchFiltersSlice';
-import {
-  PlaceholderText,
-  filterStyle,
-} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import FilterSelect from '@app/components/dashboards/dashboard/components/SearchFilters/components/FilterSelect/FilterSelect';
+import { dashboardController, reCreatedController } from '@app/api/http.api';
 
 const SettlementFilter: React.FC = () => {
   const settlements = useAppSelector((state) => state.searchFilters.data_filters.settlements);
@@ -16,31 +13,21 @@ const SettlementFilter: React.FC = () => {
     dispatch(doGetSettlementsList());
   }, [dispatch]);
 
-  const data = settlements?.map((settlement) => {
+  const data = settlements?.map((settlement, index) => {
     return {
       value: settlement.address_settlement,
       label: settlement.address_settlement,
+      key: index,
     };
   });
 
   const onChange = (value: string) => {
-    const settlement = value.split(' ');
-    dispatch(setSettlement(settlement[1]));
+    dashboardController.abort();
+    reCreatedController();
+    dispatch(setSettlement(value));
   };
 
-  return (
-    <Select
-      size="small"
-      showSearch
-      style={filterStyle}
-      placeholder={<PlaceholderText>Населенный пункт</PlaceholderText>}
-      value={settlement}
-      optionFilterProp="children"
-      onChange={onChange}
-      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-      options={data}
-    />
-  );
+  return <FilterSelect value={settlement} onChange={onChange} data={data} name={'Населённый пункт'} />;
 };
 
 export default SettlementFilter;

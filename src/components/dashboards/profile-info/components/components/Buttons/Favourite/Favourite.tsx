@@ -5,6 +5,7 @@ import { AimOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doDeleteFavourites, doGetFavourites, doPostFavourites } from '@app/store/slices/search/favouritesSlice';
 import { FavouritesObject } from '@app/store/types/FavouritesTypes';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 type MyComponentProps = {
   unn: string;
@@ -56,10 +57,9 @@ const FavouriteButtonFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-inline: 15px;
-  color: #0057ff;
+  color: #fff;
   height: 2rem;
-  background: #85a8da;
+  background: ${MyStyles.primaryColor};
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;
@@ -67,9 +67,9 @@ const FavouriteButtonFavourite = styled(Button)`
   border: 1px solid rgba(170, 170, 170, 0.33);
 
   &:hover {
-    color: #ff4d78;
+    color: ${MyStyles.primaryColor};
     border-color: #aaaaaa54;
-    background-color: #fbf3e9;
+    background-color: #fff;
   }
 `;
 
@@ -77,8 +77,7 @@ const FavouriteButtonNotFavourite = styled(Button)`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-inline: 15px;
-  color: #0057ff;
+  color: ${MyStyles.primaryColor};
   height: 2rem;
   background: white;
   font-weight: 500;
@@ -88,9 +87,9 @@ const FavouriteButtonNotFavourite = styled(Button)`
   border: 1px solid rgba(170, 170, 170, 0.33);
 
   &:hover {
-    color: #ff4d78;
+    color: #fff;
     border-color: #aaaaaa54;
-    background-color: #fbf3e9;
+    background-color: ${MyStyles.primaryColor};
   }
 `;
 

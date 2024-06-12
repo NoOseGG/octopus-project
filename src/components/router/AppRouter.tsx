@@ -19,6 +19,9 @@ import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
 import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
 import ResetPassword from '@app/pages/ResetPassword';
+import ActivateEmailPage from '@app/pages/ActivateEmail';
+import LegalEntityDashboardPage from '@app/pages/DashboardPages/LegalEntityDashboardPage';
+import SoleTradeDashboardPage from '@app/pages/DashboardPages/SoleTradeDashboardPage';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -33,6 +36,8 @@ export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
 export const CHANGE_LOG_PATH = '/change-log';
 export const FEEDBACK_PATH = '/feedback';
 export const DASHBOARD_PATH = '/dashboard';
+export const LEGAL_ENTITY = '/legal-entity';
+export const SOLE_TRADE = '/sole-trade';
 
 const Analytix = withLoading(MainLanding);
 const SubjectInfo = withLoading(SubjectInfoPage);
@@ -40,6 +45,8 @@ const Search = withLoading(SearchPage);
 const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
 const Feedback = withLoading(FeedbackPage);
+const LegalEntity = withLoading(LegalEntityDashboardPage);
+const SoleTrade = withLoading(SoleTradeDashboardPage);
 
 const ServerError = withLoading(ServerErrorPage);
 const Error404 = withLoading(Error404Page);
@@ -67,7 +74,8 @@ export const AppRouter: React.FC = () => {
             <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
             <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
             <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
-            <Route path={DASHBOARD_PATH} element={<Dashboard />} />
+            <Route path={LEGAL_ENTITY} element={<LegalEntity />} />
+            <Route path={SOLE_TRADE} element={<SoleTrade />} />
             <Route path={FEEDBACK_PATH} element={<Feedback />} />
             <Route path="server-error" element={<ServerError />} />
             <Route path="404" element={<Error404 />} />
@@ -83,6 +91,7 @@ export const AppRouter: React.FC = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
           <Route path="password/reset/confirm/:id/:token" element={<ResetPassword />} />
+          <Route path="users/activation/:id/:token" element={<ActivateEmailPage />} />
           <Route
             path="lock"
             element={

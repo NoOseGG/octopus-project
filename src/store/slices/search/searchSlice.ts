@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
+import { httpSearch } from '@app/api/http.api';
+
+export let searchController: AbortController | undefined;
 
 export interface Organization {
   unn: string;
@@ -42,26 +45,33 @@ const initialState: SearchState = {
   error: null,
 };
 
-export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query: string, { rejectWithValue }) => {
+export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query, { rejectWithValue }) => {
   try {
-    const source = axios.CancelToken.source();
-
-    const response = await axios.get(URLS.SEARCH, {
-      headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
+    if (!!searchController) {
+      console.log('abort111');
+      searchController.abort();
+    }
+    searchController = new AbortController();
+    const response = await httpSearch.get(URLS.SEARCH, {
       params: { val: query },
-      cancelToken: source.token,
+      signal: searchController.signal,
     });
 
     return response.data;
   } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log('cancel');
+      return;
+    }
     if (axios.isAxiosError(error)) {
       const responseError: SearchError | undefined = error.response?.data;
       if (responseError) {
         const errorMessage: string | null = responseError.detail;
-        console.log(errorMessage);
+        // dispatch(clearSearchData());
+        console.log(222);
         return rejectWithValue(errorMessage);
       } else {
-        console.log('Ошибка запрос', error.message);
+        // dispatch(clearSearchData());
         return rejectWithValue('');
       }
     }
@@ -110,15 +120,25 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(doSearch.pending, (state) => {
+      console.log('pending');
       state.loading = true;
       state.error = null;
     });
     builder.addCase(doSearch.fulfilled, (state, action) => {
-      state.data = action.payload;
+      console.log('fullfilled');
+      state.data = action.payload
+        ? action.payload
+        : {
+            count: 0,
+            next: null,
+            previous: null,
+            results: [],
+          };
       state.loading = false;
       state.error = null;
     });
     builder.addCase(doSearch.rejected, (state, action) => {
+      console.log('rejected');
       state.data.results = [];
       if (typeof action.payload === 'string') {
         state.error = action.payload;

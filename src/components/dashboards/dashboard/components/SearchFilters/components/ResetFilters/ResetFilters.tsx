@@ -8,6 +8,8 @@ import {
   setTypeActivity,
 } from '@app/store/slices/search/searchFiltersSlice';
 import { Button } from 'antd';
+import styled from 'styled-components';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 const ResetFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,10 +22,22 @@ const ResetFilters: React.FC = () => {
     dispatch(setCodeActivity(null));
   };
   return (
-    <Button style={{ marginTop: 10, width: '100%' }} size={'small'} type="primary" onClick={handleClick}>
+    <ResetButton size={'small'} onClick={handleClick}>
       Сбросить фильтры
-    </Button>
+    </ResetButton>
   );
 };
 
 export default ResetFilters;
+
+const ResetButton = styled(Button)`
+  height: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+  width: 100%;
+  background-color: ${MyStyles.primaryColor};
+  color: #fff;
+
+  &:hover {
+  }
+`;

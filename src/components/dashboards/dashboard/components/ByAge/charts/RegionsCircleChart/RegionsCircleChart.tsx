@@ -45,7 +45,7 @@ const RegionsCircleChart: React.FC<RegionsCircleProps> = ({ regionCircle }) => {
     getData(regionCircle);
   }, [getData, regionCircle]);
 
-  const data = results.slice(0, 15);
+  const data = results?.slice(0, 15);
 
   const config: PieConfig = {
     appendPadding: 10,

@@ -3,6 +3,7 @@ import TableLine from '@app/components/dashboards/profile-info/components/compon
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 import { Modal } from 'antd';
 import CopyButton from '@app/components/dashboards/profile-info/components/components/Buttons/CopyButton/CopyButton';
+import { formatPhoneNumber } from '@app/utils/utils';
 
 const COLLAPSE_OPEN = 'Закрыть все';
 const COLLAPSE_CLOSE = 'Показать все';
@@ -13,10 +14,21 @@ type MyComponentProps = {
   isDate?: boolean;
   isCopyable?: boolean;
   isLink?: boolean;
+  isPhone?: boolean;
+  isMap?: boolean;
   postfix?: string;
 };
 
-const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, isCopyable, isLink, postfix }) => {
+const TableLineCollapsed: React.FC<MyComponentProps> = ({
+  name,
+  fields,
+  isDate,
+  isCopyable,
+  isLink,
+  isPhone,
+  isMap,
+  postfix,
+}) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textCollapseButton, setTextCollapseButton] = useState(COLLAPSE_CLOSE);
   const [modalVisible, setModalVisible] = useState(false);
@@ -41,7 +53,16 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
     return (
       <>
         {fields.map((item, index) => (
-          <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
+          <TableLine
+            name={name}
+            field={item}
+            isDate={isDate}
+            isCopyable={isCopyable}
+            isLink={isLink}
+            isPhone={isPhone}
+            isMap={isMap}
+            key={index}
+          />
         ))}
       </>
     );
@@ -51,7 +72,16 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         {!isCollapsed ? (
           <>
             {fields.slice(0, 1).map((item, index) => (
-              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
+              <TableLine
+                name={name}
+                field={item}
+                isDate={isDate}
+                isCopyable={isCopyable}
+                isLink={isLink}
+                isPhone={isPhone}
+                isMap={isMap}
+                key={index}
+              />
             ))}
           </>
         ) : (
@@ -65,6 +95,8 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
                     isDate={isDate}
                     isCopyable={isCopyable}
                     isLink={isLink}
+                    isPhone={isPhone}
+                    isMap={isMap}
                     key={index}
                   />
                 );
@@ -76,6 +108,8 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
                     isDate={isDate}
                     isCopyable={isCopyable}
                     isLink={isLink}
+                    isPhone={isPhone}
+                    isMap={isMap}
                     key={index}
                   />
                 );
@@ -103,7 +137,16 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
         {!isCollapsed ? (
           <>
             {fields.slice(0, 1).map((item, index) => (
-              <TableLine name={name} field={item} isDate={isDate} isCopyable={isCopyable} isLink={isLink} key={index} />
+              <TableLine
+                name={name}
+                field={item}
+                isDate={isDate}
+                isCopyable={isCopyable}
+                isLink={isLink}
+                isPhone={isPhone}
+                isMap={isMap}
+                key={index}
+              />
             ))}
           </>
         ) : (
@@ -115,7 +158,8 @@ const TableLineCollapsed: React.FC<MyComponentProps> = ({ name, fields, isDate, 
                     {index !== 0 && (
                       <tr key={index}>
                         <td>
-                          <CopyButton text={item} /> {item}
+                          <CopyButton text={item} />
+                          {isPhone ? formatPhoneNumber(item) : item}
                         </td>
                       </tr>
                     )}

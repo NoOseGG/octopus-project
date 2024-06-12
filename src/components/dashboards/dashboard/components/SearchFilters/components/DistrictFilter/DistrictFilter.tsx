@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Select } from 'antd';
 import { doGetDistrictsList, setDistrict } from '@app/store/slices/search/searchFiltersSlice';
-import {
-  PlaceholderText,
-  filterStyle,
-} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import FilterSelect from '@app/components/dashboards/dashboard/components/SearchFilters/components/FilterSelect/FilterSelect';
 
 const DistrictFilter: React.FC = () => {
   const districts = useAppSelector((state) => state.searchFilters.data_filters.districts);
@@ -16,10 +12,11 @@ const DistrictFilter: React.FC = () => {
     dispatch(doGetDistrictsList());
   }, [dispatch]);
 
-  const data = districts?.map((district) => {
+  const data = districts?.map((district, index) => {
     return {
       value: district.address_district,
       label: district.address_district,
+      key: index,
     };
   });
 
@@ -27,19 +24,7 @@ const DistrictFilter: React.FC = () => {
     dispatch(setDistrict(value));
   };
 
-  return (
-    <Select
-      size="small"
-      showSearch
-      style={filterStyle}
-      placeholder={<PlaceholderText>Район</PlaceholderText>}
-      value={district}
-      optionFilterProp="children"
-      onChange={onChange}
-      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-      options={data}
-    />
-  );
+  return <FilterSelect value={district} onChange={onChange} data={data} name="Район" />;
 };
 
 export default DistrictFilter;

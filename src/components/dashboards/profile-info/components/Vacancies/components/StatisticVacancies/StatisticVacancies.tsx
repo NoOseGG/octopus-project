@@ -39,7 +39,6 @@ const StatisticVacancies: React.FC<MyComponentProps> = ({ statistics }) => {
         dataSource={statistics.sort((a, b) => b.count - a.count)}
         size={'small'}
         pagination={false}
-        scroll={{ y: 360 }}
       />
     </Container>
   );

@@ -54,7 +54,6 @@ const CommercialRegisterProfile: React.FC = () => {
     const resultArray = Object.keys(groupData).map((key) => ({ value: key, count: groupData[key] }));
 
     setStatisticData(resultArray);
-    console.log(resultArray);
   }, [sortedCommercialRegister]);
 
   const addFilter = (text: string) => {
@@ -190,7 +189,7 @@ const CommercialRegisterProfile: React.FC = () => {
             addFilter={addFilter}
             deleteFilter={deleteFilter}
             selectedFilter={selectedFilter}
-            statisticTableType={StatisticTableType.COMMERCIAL_REGISTERS}
+            statisticTableType={StatisticTableType.ALL}
           />
           <SelectContainer>
             <Select

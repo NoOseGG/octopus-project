@@ -8,7 +8,7 @@ import fourImage from '../../../../assets/images/landing/mainFunction/four.svg';
 import fiveImage from '../../../../assets/images/landing/mainFunction/five.svg';
 import sixImage from '../../../../assets/images/landing/mainFunction/six.svg';
 import FunctionCard from '@app/components/dashboards/mainLanding/MainFunction/FunctionCard/FunctionCard';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const oneTitle = 'Сбор и обработка данных';
 const oneContent =
@@ -18,7 +18,7 @@ const twoContent =
   'Сервис проводит глубокий анализ финансовых показателей контрагентов включая, задолженности и другие финансовые показатели. Это позволяет оценить финансовую устойчивость контрагента и предсказать его вероятность банкротства или финансовых проблем';
 const threeTitle = 'Оценка репутации';
 const threeContent =
-  'Сервис анализирует репутацию контрагента, основываясь на общественном мнении, отзывах клиентов, оценках и рейтингах. Это позволяет пользователям получить представление о надежности и надлежащем исполнении контрагента.';
+  'Сервис анализирует репутацию контрагента, основываясь на общественном мнении, отзывах клиентов, оценках и рейтингах. Это позволяет пользователям получить представление о надежности и надлежащем исполнении обязательств контрагентом.';
 const fourTitle = 'Проверка юридической чистоты';
 const fourContent =
   'Сервис проводит проверку наличия судебных исков, нарушений законодательства, налоговых преступлений или других юридических проблем, связанных с контрагентом. Это помогает избежать возможных правовых рисков и конфликтов.';
@@ -31,7 +31,7 @@ const sixContent =
 
 const MainFunction: React.FC = () => {
   return (
-    <Container backgroundColor={'#b9dbf4'} id={ScrollType.MainFunction}>
+    <Container backgroundColor={'linear-gradient(to bottom, #1d1d47, #0d0d20);'} id={ScrollType.MainFunction}>
       <InnerContainer>
         <MainFunctionContainer>
           <FunctionCard image={oneImage} title={oneTitle} content={oneContent} />

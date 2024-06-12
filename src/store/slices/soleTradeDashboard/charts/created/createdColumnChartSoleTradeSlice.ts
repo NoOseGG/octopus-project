@@ -2,9 +2,9 @@ import { ResponseColumnChart } from '@app/store/types/dashboard/DashboardSlicesT
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard, getPastMonth, getPastMonthFromDate, sortDataByMonth } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { ColumnChartMonthState } from '@app/store/types/dashboard/ColumnChartMonthTypes';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: ColumnChartMonthState = {
   results: [],
@@ -15,24 +15,20 @@ const initialState: ColumnChartMonthState = {
 export const doGetDataForColumnChartSoleTrade = createAsyncThunk<ResponseColumnChart, RequestData>(
   'doGetDataForColumnChartSoleTrade',
   async ({ filters }) => {
-    try {
-      let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__month') + DASH.SOLE_TRADE;
+    let baseUrl = DASH.BASE + DASH.AGR_COUNT + DASH.GROUP_BY('company_date_registration__month') + DASH.SOLE_TRADE;
 
-      if (filters.isDate && filters.toDate !== null) {
-        const month = getPastMonthFromDate(5, new Date(filters.toDate));
-        baseUrl += DASH.DATE_AFTER(month);
-        baseUrl += DASH.DATE_BEFORE(filters.toDate);
-      } else {
-        const month = getPastMonth(5);
-        baseUrl += DASH.DATE_AFTER(`${month}-01`);
-      }
-      const url = constructorUrlForDashboard(baseUrl, filters, false, false);
-      const response = await axios.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
-
-      return response.data;
-    } catch (error) {
-      console.log(error);
+    if (filters.isDate && filters.toDate !== null) {
+      const month = getPastMonthFromDate(5, new Date(filters.toDate));
+      baseUrl += DASH.DATE_AFTER(month);
+      baseUrl += DASH.DATE_BEFORE(filters.toDate);
+    } else {
+      const month = getPastMonth(5);
+      baseUrl += DASH.DATE_AFTER(`${month}-01`);
     }
+    const url = constructorUrlForDashboard(baseUrl, filters, false, false);
+    const response = await httpDashboard.get(url + DASH.ORDERING_AGG('company_date_registration__month'));
+
+    return response.data;
   },
 );
 
@@ -52,6 +48,10 @@ const createdLColumnChartSoleTradeSlice = createSlice({
         };
       });
       state.results = sortDataByMonth(data);
+      state.loading = false;
+    });
+    builder.addCase(doGetDataForColumnChartSoleTrade.rejected, (state) => {
+      state.results = [];
       state.loading = false;
     });
   },

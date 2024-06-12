@@ -9,6 +9,7 @@
     <meta name="keywords" content="analytix аналитикс сервис поиск контрагентов информация графики Беларусь" />
     <meta itemprop="title" content="Analytix" />
     <meta itemprop="description" content="Analytix - сервис для поиска контрагентов." />
+    <meta name="yandex-verification" content="8165fd151ce42721" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -48,10 +49,50 @@
           background: #2d2c3e;
       }
     </style>
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+
     <title>Analytix</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+      (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+          try {
+            w.yaCounter97447786 = new Ya.Metrika({
+              id:97447786,
+              clickmap:true,
+              trackLinks:true,
+              accurateTrackBounce:true,
+              webvisor:true
+            });
+          } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+          x = "https://mc.yandex.ru/metrika/watch.js",
+          s = d.createElement("script"),
+          f = function () { n.parentNode.insertBefore(s, n); };
+        for (var i = 0; i < document.scripts.length; i++) {
+          if (document.scripts[i].src === x) { return; }
+        }
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = x;
+
+        if (w.opera == "[object Opera]") {
+          d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+      })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/97447786" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
     <div id="root">
       <div id="initSpinner">

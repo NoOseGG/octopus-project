@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { constructorUrlForDashboard } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { RequestData } from '@app/components/dashboards/dashboard/types/DashboardTypes';
 import { MainInfoState, ResponseMainInfo } from '@app/store/types/dashboard/DashboardSlicesType';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: MainInfoState = {
   count: 0,
@@ -14,18 +14,14 @@ const initialState: MainInfoState = {
 export const doGetTotalCountCheckedSoleTrade = createAsyncThunk<ResponseMainInfo, RequestData>(
   'doGetTotalCountCheckedSoleTrade',
   async ({ filters }) => {
-    try {
-      const url = constructorUrlForDashboard(
-        DASH.BASE_INSPECTION + DASH.SOLE_TRADE + DASH.IS_NULL_FALSE('inspection_dttm'),
-        filters,
-        true,
-        true,
-      );
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = constructorUrlForDashboard(
+      DASH.BASE_INSPECTION + DASH.SOLE_TRADE + DASH.IS_NULL_FALSE('inspection_dttm'),
+      filters,
+      true,
+      true,
+    );
+    const response = await httpDashboard.get(url);
+    return response.data;
   },
 );
 
@@ -39,6 +35,10 @@ const checkedAllSoleTradeSlice = createSlice({
     });
     builder.addCase(doGetTotalCountCheckedSoleTrade.fulfilled, (state, action) => {
       state.count = action.payload.count;
+      state.loading = false;
+    });
+    builder.addCase(doGetTotalCountCheckedSoleTrade.rejected, (state) => {
+      state.count = 0;
       state.loading = false;
     });
   },

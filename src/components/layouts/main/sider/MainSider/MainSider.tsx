@@ -4,6 +4,8 @@ import { useResponsive } from 'hooks/useResponsive';
 import * as S from './MainSider.styles';
 import { SiderLogo } from '../SiderLogo';
 import SiderMenu from '../SiderMenu/SiderMenu';
+import styled from 'styled-components';
+import image from '../../../../../assets/sider-menu/sider_menu_bottom_image.png';
 
 interface MainSiderProps {
   isCollapsed: boolean;
@@ -27,10 +29,13 @@ const MainSider: React.FC<MainSiderProps> = ({ isCollapsed, setCollapsed, ...pro
         width={260}
         {...props}
       >
-        <SiderLogo isSiderCollapsed={isCollapsed} toggleSider={toggleSider} />
-        <S.SiderContent>
-          <SiderMenu setCollapsed={setCollapsed} />
-        </S.SiderContent>
+        <MenuContainer>
+          <SiderLogo isSiderCollapsed={isCollapsed} toggleSider={toggleSider} />
+          <S.SiderContent>
+            <SiderMenu setCollapsed={setCollapsed} />
+          </S.SiderContent>
+          <BottomImage src={image} />
+        </MenuContainer>
       </S.Sider>
       {mobileOnly && <Overlay onClick={toggleSider} show={!isCollapsed} />}
     </>
@@ -38,3 +43,17 @@ const MainSider: React.FC<MainSiderProps> = ({ isCollapsed, setCollapsed, ...pro
 };
 
 export default MainSider;
+
+const MenuContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const BottomImage = styled.img`
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%;
+  align-self: end;
+`;

@@ -1,8 +1,8 @@
 import { ResponseSearchHistory, SearchHistoryState } from '@app/store/types/search/SearchHistory';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
+import { httpAxios } from '@app/api/http.api';
 
 const initialState: SearchHistoryState = {
   history: {
@@ -17,7 +17,7 @@ const initialState: SearchHistoryState = {
 
 export const doGetSearchHistory = createAsyncThunk<ResponseSearchHistory>('doGetSearchHistory', async () => {
   try {
-    const response = await axios.get(URLS.SEARCH_HISTORY, {
+    const response = await httpAxios.get(URLS.SEARCH_HISTORY, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
     });
     return response.data;

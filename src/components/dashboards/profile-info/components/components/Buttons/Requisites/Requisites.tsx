@@ -16,6 +16,7 @@ const Requisites: React.FC = () => {
     if (text !== null) return text;
     let requisites = '';
     if (Boolean(names[0]?.short_name?.length)) requisites += names[0]?.short_name + '\n';
+    else requisites += names[0]?.full_name;
     if (Boolean(addresses[0]?.full_address?.length)) requisites += addresses[0]?.full_address + '\n';
     if (Boolean(unn?.length)) requisites += `УНП: ${unn}`;
 
@@ -27,7 +28,7 @@ const Requisites: React.FC = () => {
       if (isShare) {
         const currentUrl = 'https://analytix.by' + location.pathname;
         navigator.clipboard.writeText(currentUrl);
-        notificationController.success({ message: 'Сыллка на субъекта скопирована' });
+        notificationController.success({ message: 'Сылка на субъекта скопирована' });
       } else {
         const copyText = getCopyText();
         navigator.clipboard.writeText(copyText);
@@ -41,7 +42,7 @@ const Requisites: React.FC = () => {
   return (
     <Container>
       <Title>Реквизиты</Title>
-      <LineText>{names[0]?.short_name}</LineText>
+      <LineText>{names[0]?.short_name ? names[0]?.short_name : names[0]?.full_name}</LineText>
       <LineText>{addresses[0]?.full_address}</LineText>
       <LineText>УНП: {unn}</LineText>
       <ButtonContainer>
@@ -58,7 +59,6 @@ export default Requisites;
 
 const Container = styled.div`
   width: 100%;
-  margin-inline: 15px;
   padding: 0.9375rem;
   background: white;
   border-radius: 12px;
@@ -79,7 +79,7 @@ const ButtonCopyStyle = styled(Button)`
   background-color: #f1f5fb;
   border-radius: 0.3125rem;
   border-width: 0;
-  color: #0057ff;
+  color: #00509a;
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;
@@ -99,7 +99,7 @@ const ButtonShareStyle = styled(Button)`
   background: #f1f5fb;
   border-radius: 0.3125rem;
   border-width: 0;
-  color: #0057ff;
+  color: #00509a;
   font-weight: 700;
   font-size: 0.9375rem;
   line-height: 1.375rem;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 import styled from 'styled-components';
+import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
 import { Typography } from 'antd';
 import ButtonShow from '@app/components/dashboards/profile-info/components/components/Fields/ButtonShow/ButtonShow';
 
@@ -25,6 +26,7 @@ const Description: React.FC = () => {
     <>
       {description[0]?.description && (
         <Container>
+          <S.Title>Описание</S.Title>
           <Text
             style={{
               display: 'block',
@@ -34,13 +36,14 @@ const Description: React.FC = () => {
               lineHeight: '1.2em',
             }}
           >
-            {displayText}
+            {displayText?.replaceAll('&quot;', '"')}
           </Text>
           {description[0].description.length > 300 && (
             <span onClick={toggleCollapse}>
               <ButtonShow>{isCollapsed ? 'Показать полностью' : 'Свернуть'}</ButtonShow>
             </span>
           )}
+          <S.MyDivider />
         </Container>
       )}
     </>

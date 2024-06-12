@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, InnerContainer } from '../styles/MainLandingStyles';
-import { ScrollType } from '@app/components/dashboards/mainLanding/Header/Header';
+import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const Tariffs: React.FC = () => {
   return (

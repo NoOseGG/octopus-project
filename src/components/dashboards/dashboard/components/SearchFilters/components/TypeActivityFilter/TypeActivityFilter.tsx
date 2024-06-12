@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Select } from 'antd';
 import { doGetTypeActivitiesList, setTypeActivity } from '@app/store/slices/search/searchFiltersSlice';
-import {
-  PlaceholderText,
-  filterStyle,
-} from '@app/components/dashboards/dashboard/components/SearchFilters/styles/SearchFiltersStyles';
+import FilterSelect from '@app/components/dashboards/dashboard/components/SearchFilters/components/FilterSelect/FilterSelect';
 
 const TypeActivityFilter: React.FC = () => {
   const activities = useAppSelector((state) => state.searchFilters.data_filters.typeActivities);
@@ -28,19 +24,7 @@ const TypeActivityFilter: React.FC = () => {
     dispatch(setTypeActivity(value));
   };
 
-  return (
-    <Select
-      size="small"
-      showSearch
-      style={filterStyle}
-      placeholder={<PlaceholderText>Вид деятельности</PlaceholderText>}
-      optionFilterProp="children"
-      value={typeActivity}
-      onChange={onChange}
-      filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-      options={data}
-    />
-  );
+  return <FilterSelect value={typeActivity} onChange={onChange} data={data} name="Вид деятельности" />;
 };
 
 export default TypeActivityFilter;

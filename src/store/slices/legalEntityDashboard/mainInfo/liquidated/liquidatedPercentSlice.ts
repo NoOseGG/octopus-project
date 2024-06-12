@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCurrentDate, getDateLastYear } from '@app/utils/utils';
 import { DASH } from '@app/constants/enums/Dashboards';
-import axios from 'axios';
 import { PercentState, ResponsePercentToSlice } from '@app/store/types/dashboard/DashboardSlicesType';
+import { httpDashboard } from '@app/api/http.api';
 
 const initialState: PercentState = {
   percent: 0,
@@ -34,8 +34,8 @@ export const doCalculateLiquidatedPercent = createAsyncThunk<ResponsePercentToSl
         DASH.DATE_BEFORE_LIQUIDATED(lastYearDate) +
         DASH.COUNT;
 
-      const responseLastYear = await axios.get(lastYearUrl);
-      const responseTwoLastYear = await axios.get(twoLastYearUrl);
+      const responseLastYear = await httpDashboard.get(lastYearUrl);
+      const responseTwoLastYear = await httpDashboard.get(twoLastYearUrl);
 
       const lastYearCount = responseLastYear.data.count;
       const twoLastYearCount = responseTwoLastYear.data.count;
@@ -68,6 +68,10 @@ const liquidatedPercentSlice = createSlice({
       } else {
         state.percent = 0;
       }
+      state.loading = false;
+    });
+    builder.addCase(doCalculateLiquidatedPercent.rejected, (state) => {
+      state.percent = 0;
       state.loading = false;
     });
   },

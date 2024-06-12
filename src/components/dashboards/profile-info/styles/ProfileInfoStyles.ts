@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Divider } from 'antd';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -18,13 +20,13 @@ export const StyledCell = styled.td`
 
 export const LeftCell = styled(StyledCell)`
   width: 30%;
-  color: #666;
+  color: #000;
   padding-right: 5px;
 `;
 
 export const RightCell = styled(StyledCell)`
   width: 70%;
-  color: #222;
+  color: #333;
 `;
 
 export const Text = styled.div`
@@ -33,8 +35,12 @@ export const Text = styled.div`
   white-space: pre-wrap;
 `;
 
-export const ButtonShowStyle = styled(Text)`
-  color: blue;
+export const ButtonShowStyle = styled.span`
+  font-size: 0.9374rem;
+  line-height: 1.47;
+  white-space: pre-wrap;
+  color: ${MyStyles.primaryColor};
+  font-weight: 700;
 
   &:hover {
     color: red;
@@ -42,8 +48,20 @@ export const ButtonShowStyle = styled(Text)`
   }
 `;
 
-export const Title = styled(Text)`
+export const Title = styled.h2`
+  color: #000;
+  font-size: 1.1rem;
   font-weight: 700;
+  line-height: 1.47;
+  white-space: pre-wrap;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 //
@@ -56,4 +74,21 @@ export const CountInformationContainer = styled.div`
   background-color: #ffffff;
   border: 1px solid #b7b6b6;
   border-radius: 5px;
+`;
+
+//---------------------------------------------
+
+export const Container = styled.div`
+  width: 100%;
+`;
+
+export const ContainerLineText = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const MyDivider = styled(Divider)`
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;

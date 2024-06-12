@@ -9,6 +9,7 @@ interface UrlConfig {
   RESET_PASSWORD: string;
   SET_NEW_PASSWORD: string;
   SET_NEW_PASSWORD_AFTER_RESET: string;
+  ACTIVATE_EMAIL: string;
   LOGOUT: string;
   SIGNUP: string;
   CHECK_USER: string;
@@ -17,6 +18,7 @@ interface UrlConfig {
   SEARCH_HISTORY: string;
   FAVOURITES: string;
   FEEDBACK: string;
+  DEMO: string;
 }
 
 export const URLS: UrlConfig = {
@@ -29,6 +31,7 @@ export const URLS: UrlConfig = {
   RESET_PASSWORD: '',
   SET_NEW_PASSWORD: '',
   SET_NEW_PASSWORD_AFTER_RESET: '',
+  ACTIVATE_EMAIL: '',
   LOGOUT: '',
   SIGNUP: '',
   CHECK_USER: '',
@@ -37,6 +40,7 @@ export const URLS: UrlConfig = {
   SEARCH_HISTORY: '',
   FAVOURITES: '',
   FEEDBACK: '',
+  DEMO: '',
 };
 
 URLS.BASE = `${URLS.ADDRESS}${URLS.API}${URLS.VERSION}`;
@@ -44,6 +48,7 @@ URLS.LOGIN = `${URLS.BASE}auth/login/`;
 URLS.RESET_PASSWORD = `${URLS.BASE}auth/users/reset_password/`;
 URLS.SET_NEW_PASSWORD = `${URLS.BASE}auth/users/set_password/`;
 URLS.SET_NEW_PASSWORD_AFTER_RESET = `${URLS.BASE}auth/users/reset_password_confirm/`;
+URLS.ACTIVATE_EMAIL = `${URLS.BASE}auth/users/activation/`;
 URLS.LOGOUT = `${URLS.BASE}auth/logout/`;
 URLS.SIGNUP = `${URLS.BASE}auth/users/`;
 URLS.CHECK_USER = `${URLS.BASE}auth/users/me/`;
@@ -52,20 +57,23 @@ URLS.SEARCH_SUBJECT = `${URLS.BASE}profile/`;
 URLS.SEARCH_HISTORY = `${URLS.BASE}user/view_history/`;
 URLS.FAVOURITES = `${URLS.BASE}user/favourites/`;
 URLS.FEEDBACK = `${URLS.BASE}user/feedback/`;
+URLS.DEMO = `${URLS.BASE}demo/request`;
 
 export const SEARCH_FILTERS_URL = {
   TYPE_ACTIVITIES: `${URLS.BASE}dashboard/ref/type_activity`,
   SETTLEMENT: `${URLS.BASE}dashboard/ref/settlement`,
   DISTRICTS: `${URLS.BASE}dashboard/ref/district`,
   REGION: `${URLS.BASE}dashboard/ref/region`,
+  TAX_OFFICES: `${URLS.BASE}dashboard/ref/tax_office`,
 };
 
 export const REGIONS_URL = {
-  SOLE_TRADE: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Индивидуальный предприниматель&company_status_code=AT&ordering_agg=-avg&group_by=address_region`,
-  LEGAL_ENTITY: `${URLS.BASE}dashboard/main/?aggregate_by=Count&legal_form_entity_type=Юридическое лицо&company_status_code=AT&ordering_agg=-avg&group_by=address_region`,
+  MAP_STATISTICS: `${URLS.BASE}dashboard/open_ref/map_statistic`,
 };
 
 export const TOKEN_NAME = 'Welcome';
+
+export const YANDEX_MAP_BASE_URL = 'https://yandex.ru/maps/?text=';
 
 // SubjectInfo
 

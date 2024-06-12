@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doAddFeedback } from '@app/store/slices/feedback/feedbackSlice';
 import { notificationController } from '@app/controllers/notificationController';
+import { MyStyles } from '@app/styles/themes/myStyles/myStyles';
 
 interface FeedBackObject {
   name: string;
@@ -33,17 +34,17 @@ const AddFeedback: React.FC = () => {
 
   return (
     <Container>
-      <Form style={{ width: 600 }} onFinish={onFinish}>
-        <Form.Item label="Сообщение" name="message" rules={[{ required: true, message: 'Введите сообщение!' }]}>
-          <Input.TextArea />
-        </Form.Item>
+      <InputContainer>
+        <Form style={{ width: 600 }} onFinish={onFinish}>
+          <Form.Item name="message" rules={[{ required: true, message: 'Введите сообщение!' }]}>
+            <Input.TextArea />
+          </Form.Item>
 
-        <Form.Item style={{ marginTop: 20 }}>
-          <Button type="primary" htmlType="submit">
-            Отправить
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item style={{ marginTop: 20 }}>
+            <SubmitButton htmlType="submit">Отправить</SubmitButton>
+          </Form.Item>
+        </Form>
+      </InputContainer>
     </Container>
   );
 };
@@ -51,9 +52,24 @@ const AddFeedback: React.FC = () => {
 export default AddFeedback;
 
 const Container = styled.div`
-  width: 800px;
   margin: 20px auto 0;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+`;
+
+const SubmitButton = styled(Button)`
+  height: auto;
+  margin-top: 10px;
+  padding: 10px 30px;
+  background-color: ${MyStyles.primaryColor};
+  color: #fff;
+
+  &:hover {
+  }
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

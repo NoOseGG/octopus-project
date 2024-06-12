@@ -249,13 +249,13 @@ export function formatDateWithTime(inputDate: string | null): string {
   );
 }
 
-export function formatPhoneNumber(phoneNumber: string): string {
-  if (!phoneNumber.match(/^\d{12}$/)) {
-    return phoneNumber;
-  }
-
-  return phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
-}
+// export function formatPhoneNumber(phoneNumber: string): string {
+//   if (!phoneNumber.match(/^\d{12}$/)) {
+//     return phoneNumber;
+//   }
+//
+//   return phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '+$1-$2-$3-$4-$5');
+// }
 
 export const getLastYear = (): string => {
   const currentDate = new Date();
@@ -380,12 +380,15 @@ export const getNameMonthByNumber = (number: number): string => {
 export const sortDataByMonth = (data: ColumnChartMonthObject[]): ColumnChartMonthObject[] => {
   data.sort((a, b) => a.type - b.type);
 
-  while (data.length > 0 && data[0].type !== undefined && data[0].type < 6) {
-    const first = data.shift();
-    if (first !== undefined) {
-      data.push(first);
-    }
-  }
+  // while (data.length > 1 && data[0].type !== undefined && data[0].type < new Date().getMonth() + 1) {
+  //   let i = 0;
+  //   console.log(i);
+  //   i++;
+  //   const first = data.shift();
+  //   if (first !== undefined) {
+  //     data.push(first);
+  //   }
+  // }
 
   return data;
 };
@@ -397,9 +400,14 @@ export const constructorUrlForDashboard = (
   date: boolean,
 ): string => {
   let url = base;
-  if (filters.settlements !== null) url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
-  if (filters.districts !== null) url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
-  if (filters.regions !== null) url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
+  if (Boolean(filters.settlements?.length) && filters.settlements !== null)
+    url += DASH.ADDRESS_SETTLEMENT_ICONTAINS(filters.settlements);
+  if (Boolean(filters.districts?.length) && filters.districts !== null)
+    url += DASH.ADDRESS_DISTRICT_ICONTAINS(filters.districts);
+  if (Boolean(filters.regions?.length) && filters.regions !== null)
+    url += DASH.ADDRESS_REGION_ICONTAINS(filters.regions);
+  if (Boolean(filters.taxOffices?.length) && filters.taxOffices !== null)
+    url += DASH.TAX_OFFICES_ICONTAINS(filters.taxOffices);
   if (filters.typeActivities !== null) url += DASH.TYPE_ACTIVITY(filters.typeActivities);
   if (filters.codeActivities !== null) url += DASH.CODE_ACTIVITY(filters.codeActivities);
   if (date) {
@@ -438,6 +446,43 @@ export const getEntityName = (entityType: EntityType): string => {
 export function formatNumberWithCommas(number: number | undefined): string {
   if (number === undefined) return '';
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+export function formatPhoneNumber(phoneNumber: string): string {
+  // Удаляем все символы, кроме цифр
+  const cleaned = phoneNumber.replace(/\D/g, '');
+
+  // Проверяем длину номера телефона
+  if (cleaned.length >= 7) {
+    // Форматируем номер телефона
+    const countryCode = cleaned.slice(0, 3);
+    const operatorCode = cleaned.slice(3, 5);
+    let mainPart = cleaned.slice(5);
+
+    let formattedMainPart = '';
+    if (mainPart.length <= 6) {
+      for (let i = 0; i < mainPart.length; i += 2) {
+        formattedMainPart += mainPart.slice(i, i + 2);
+        if (i + 2 < mainPart.length) {
+          formattedMainPart += '-';
+        }
+      }
+    } else {
+      formattedMainPart += mainPart.slice(0, 3) + '-';
+      mainPart = mainPart.slice(3);
+      for (let i = 0; i < mainPart.length; i += 2) {
+        formattedMainPart += mainPart.slice(i, i + 2);
+        if (i + 2 < mainPart.length) {
+          formattedMainPart += '-';
+        }
+      }
+    }
+
+    return `+${countryCode}(${operatorCode}) ${formattedMainPart}`;
+  } else {
+    // Если длина номера неверная, возвращаем исходную строку
+    return phoneNumber;
+  }
 }
 
 // DASH.ORDERING_AGG('company_date_registration__year')

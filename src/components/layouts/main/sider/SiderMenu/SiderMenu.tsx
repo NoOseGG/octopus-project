@@ -59,7 +59,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
                 ) : (
                   <Link to={childNav.url || ''}>{t(childNav.title)}</Link>
                 )}
-                <Link to={childNav.url || ''}>{t(childNav.title)}</Link>
+                {/*<Link to={childNav.url || ''}>{t(childNav.title)}</Link>*/}
               </Menu.Item>
             ))}
           </Menu.SubMenu>

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
-import { useAppDispatch } from '@app/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
 import { doLogin } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
+import { readToken } from '@app/services/localStorage.service';
 
 interface LoginFormData {
   email: string;
@@ -22,6 +23,15 @@ export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const token = useAppSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token === null && readToken() === null) {
+      notificationController.success({
+        message: 'Авторизируйтесь снова!',
+      });
+    }
+  }, [token]);
 
   const [isLoading, setLoading] = useState(false);
 
@@ -81,14 +91,14 @@ export const LoginForm: React.FC = () => {
         <BaseForm.Item noStyle>
           <Auth.HomeButton onClick={handleClickHomeButton}>{t('common.toHome')}</Auth.HomeButton>
         </BaseForm.Item>
-        <Auth.FooterWrapper>
-          <Auth.Text>
-            {t('login.noAccount')}{' '}
-            <Link to="/auth/sign-up">
-              <Auth.LinkText>{t('common.here')}</Auth.LinkText>
-            </Link>
-          </Auth.Text>
-        </Auth.FooterWrapper>
+        {/*<Auth.FooterWrapper>*/}
+        {/*  <Auth.Text>*/}
+        {/*    {t('login.noAccount')}{' '}*/}
+        {/*    <Link to="/auth/sign-up">*/}
+        {/*      <Auth.LinkText>{t('common.here')}</Auth.LinkText>*/}
+        {/*    </Link>*/}
+        {/*  </Auth.Text>*/}
+        {/*</Auth.FooterWrapper>*/}
       </BaseForm>
     </Auth.FormWrapper>
   );

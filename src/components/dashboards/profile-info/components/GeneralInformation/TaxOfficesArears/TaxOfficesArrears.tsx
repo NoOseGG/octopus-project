@@ -9,18 +9,21 @@ const TaxOfficesArrears: React.FC = () => {
   return (
     <>
       {Boolean(tax_offices_arrears.length) && (
-        <S.StyledTable>
-          <thead>
-            <tr>
-              <td>
-                <S.Title>Данные о задолженностях ИМНС</S.Title>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <TableLineTaxOfficesArrears taxOfficesArrears={tax_offices_arrears} />
-          </tbody>
-        </S.StyledTable>
+        <>
+          <S.StyledTable>
+            <thead>
+              <tr>
+                <td>
+                  <S.Title>Данные о задолженностях ИМНС</S.Title>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <TableLineTaxOfficesArrears taxOfficesArrears={tax_offices_arrears} />
+            </tbody>
+          </S.StyledTable>
+          <S.MyDivider />
+        </>
       )}
     </>
   );

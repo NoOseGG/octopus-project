@@ -6,7 +6,6 @@ import Footer from '@app/components/dashboards/mainLanding/Footer/Footer';
 import MainFunction from '@app/components/dashboards/mainLanding/MainFunction/MainFunction';
 import Sources from '@app/components/dashboards/mainLanding/Sources/Sources';
 import ScrollButton from '@app/components/dashboards/profile-info/components/components/Buttons/ScrollButton/ScrollButton';
-import PayAttentionModal from '@app/components/dashboards/mainLanding/PayAttentionModal/PayAttentionModal';
 import ServiceFor from '@app/components/dashboards/mainLanding/ServiceFor/ServiceFor';
 import Hero from '@app/components/dashboards/mainLanding/Hero/Hero';
 import GetDemo from '@app/components/dashboards/mainLanding/GetDemo/GetDemo';
@@ -24,7 +23,7 @@ const MainLanding: React.FC = () => {
       <GetDemo />
       {/*<Tariffs />*/}
       <Footer />
-      <PayAttentionModal />
+      {/*<PayAttentionModal />*/}
       <ScrollButton />
     </MainLandingContainer>
   );

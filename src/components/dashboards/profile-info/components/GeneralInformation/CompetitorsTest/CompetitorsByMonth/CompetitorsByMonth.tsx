@@ -65,7 +65,7 @@ const CompetitorsByMonth: React.FC<CompetitorsProps> = ({ settlement, typeActivi
 
   return Boolean(data?.length) ? (
     <CompetitorsByMonthContainer>
-      <S.Title>История регистраций конкурентов по месяцам, за последний год</S.Title>
+      <S.Title>Динамика регистраций конкурентов по месяцам (данные за последние 6 месяцев)</S.Title>
       <Column {...config} />{' '}
     </CompetitorsByMonthContainer>
   ) : null;

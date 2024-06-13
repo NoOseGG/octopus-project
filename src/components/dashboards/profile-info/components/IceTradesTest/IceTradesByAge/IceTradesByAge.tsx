@@ -70,7 +70,7 @@ const IceTradesByAge: React.FC<IceTradeByAgeProps> = ({ icetrade }) => {
     },
   };
 
-  return <Line style={{ width: '100%' }} {...config}></Line>;
+  return <Line style={{ width: '50%' }} {...config}></Line>;
 };
 
 export default IceTradesByAge;

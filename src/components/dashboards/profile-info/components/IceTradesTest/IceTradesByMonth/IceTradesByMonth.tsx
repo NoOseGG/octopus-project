@@ -67,7 +67,7 @@ const IceTradesByMonth: React.FC<IceTradesByMonthProps> = ({ icetrade }) => {
     },
   };
 
-  return Boolean(result.length) ? <Column {...config} /> : null;
+  return Boolean(result.length) ? <Column style={{ width: '50%' }} {...config} /> : null;
 };
 
 export default IceTradesByMonth;

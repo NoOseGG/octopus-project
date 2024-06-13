@@ -15,7 +15,6 @@ import { withLoading } from '@app/hocs/withLoading.hoc';
 import SubjectInfoPage from '@app/pages/DashboardPages/SubjectInfoPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
 import SearchPage from '@app/pages/DashboardPages/SearchPage';
-import DashboardPage from '@app/pages/DashboardPages/DashboardPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
 import MainLanding from '@app/components/dashboards/mainLanding/MainLanding';
 import ResetPassword from '@app/pages/ResetPassword';
@@ -42,7 +41,7 @@ export const SOLE_TRADE = '/sole-trade';
 const Analytix = withLoading(MainLanding);
 const SubjectInfo = withLoading(SubjectInfoPage);
 const Search = withLoading(SearchPage);
-const Dashboard = withLoading(DashboardPage);
+// const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
 const Feedback = withLoading(FeedbackPage);
 const LegalEntity = withLoading(LegalEntityDashboardPage);
@@ -69,6 +68,7 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ANALYTIC_DASHBOARD_PATH}>
+          <Route path="404" element={<Error404 />} />
           <Route index element={<Analytix />} />
           <Route path={''} element={protectedLayout}>
             <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
@@ -78,7 +78,7 @@ export const AppRouter: React.FC = () => {
             <Route path={SOLE_TRADE} element={<SoleTrade />} />
             <Route path={FEEDBACK_PATH} element={<Feedback />} />
             <Route path="server-error" element={<ServerError />} />
-            <Route path="404" element={<Error404 />} />
+
             <Route path="profile" element={<ProfileLayout />}>
               <Route path="personal-info" element={<PersonalInfo />} />
               <Route path="security-settings" element={<SecuritySettings />} />

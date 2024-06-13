@@ -68,7 +68,7 @@ const CompetitorsByAge: React.FC<CompetitorsProps> = ({ settlement, typeActivity
 
   return Boolean(data?.length) ? (
     <CompetitorsByAgeContainer>
-      <S.Title>История регистраций конкурентов по годам</S.Title>
+      <S.Title>Статистика регистраций конкурентов по годам</S.Title>
       <Line {...config}></Line>
     </CompetitorsByAgeContainer>
   ) : null;

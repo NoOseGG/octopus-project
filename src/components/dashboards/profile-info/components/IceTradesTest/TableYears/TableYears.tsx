@@ -51,13 +51,25 @@ const Container = styled.div<ContainerProps>`
   margin-top: 50px;
   display: grid;
   grid-template-columns: ${(props) => `repeat(${props.gridCountColumns}, 1fr)`};
+  border: 1px solid #000;
+  border-radius: 14px;
 `;
 
 const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
+  &:not(:last-child) {
+    border-right: 1px solid #000;
+  }
 `;
 
-const ItemName = styled.div``;
+const ItemName = styled.div`
+  font-size: 20px;
+  text-align: center;
+`;
 
-const ItemContent = styled.div``;
+const ItemContent = styled.div`
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+`;

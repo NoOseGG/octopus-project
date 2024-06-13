@@ -63,7 +63,7 @@ const SearchHistory: React.FC<MyComponentProps> = ({ listHistory }) => {
         columns={getColumns(user?.is_superuser || false)}
         dataSource={newListHistory}
         size={'small'}
-        pagination={{ pageSize: 10 }}
+        pagination={{ defaultPageSize: 10, defaultCurrent: 1, pageSizeOptions: [5, 10, 20, 50, 100] }}
         onRow={(record) => ({
           onClick: () => {
             if (record.legal_entity_id !== null) handleClickRow(record.legal_entity_id);

@@ -4,6 +4,7 @@ import { useAppSelector } from '@app/hooks/reduxHooks';
 import { IceTradeCustomer } from '@app/store/types/Subject';
 import IceTradesByAge from '@app/components/dashboards/profile-info/components/IceTradesTest/IceTradesByAge/IceTradesByAge';
 import IceTradesByMonth from '@app/components/dashboards/profile-info/components/IceTradesTest/IceTradesByMonth/IceTradesByMonth';
+import TableYears from '@app/components/dashboards/profile-info/components/IceTradesTest/TableYears/TableYears';
 
 const IceTrades = () => {
   const icetradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
@@ -46,6 +47,7 @@ const IceTrades = () => {
         <IceTradesByAge icetrade={icetradeCustomer} />
         <IceTradesByMonth icetrade={icetradeCustomer} />
       </ChartContainer>
+      <TableYears icetrade={icetradeCustomer} />
     </Container>
   );
 };
@@ -93,9 +95,13 @@ const getAllCount = (icetrade: IceTradeCustomer[]): number => {
 };
 
 const getCompleted = (icetrade: IceTradeCustomer[]): number => {
-  return icetrade.filter((item) => item.purchase_status === 'Состоялась' && item.contract_date).length;
+  return icetrade.filter(
+    (item) => item.purchase_status === 'Состоялась' && (item.contract_date || item.participants_identifier),
+  ).length;
 };
 
 const getNotCompleted = (icetrade: IceTradeCustomer[]): number => {
-  return icetrade.filter((item) => item.purchase_status !== 'Состоялась' || !item.contract_date).length;
+  return icetrade.filter(
+    (item) => item.purchase_status !== 'Состоялась' || (!item.contract_date && !item.participants_identifier),
+  ).length;
 };

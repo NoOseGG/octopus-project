@@ -18,6 +18,7 @@ const initialState: SearchHistoryState = {
 export const doGetSearchHistory = createAsyncThunk<ResponseSearchHistory>('doGetSearchHistory', async () => {
   try {
     const response = await httpAxios.get(URLS.SEARCH_HISTORY, {
+      params: { page_size: 100 },
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
     });
     return response.data;

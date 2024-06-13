@@ -28,9 +28,8 @@ httpApi.interceptors.request.use((config) => {
 });
 
 httpDashboard.interceptors.request.use((config) => {
-  const token = readToken();
-  if (token && config.headers) {
-    config.headers['Authorization'] = `${TOKEN_NAME} ${token}`;
+  if (readToken() && config.headers) {
+    config.headers['Authorization'] = `${TOKEN_NAME} ${readToken()}`;
     config.signal = dashboardController.signal;
   }
   return config;

@@ -5,7 +5,7 @@ import './styles.css';
 import { DashboardObject, DashboardObjectForRating } from '@app/interfaces/interfaces';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { Content } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
+import { Content, Title } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';
 
 type RatingTableProps = {
   data: DashboardObjectForRating[] | undefined;
@@ -25,25 +25,25 @@ const RatingTable: React.FC<RatingTableProps> = ({ data, isLoading }) => {
 
   const columns: ColumnsType<DashboardObjectForRating> = [
     {
-      title: '№',
+      title: <Title>№</Title>,
       dataIndex: 'position',
       key: 'position',
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'УНП',
+      title: <Title>УНП</Title>,
       dataIndex: 'legal_entity_id',
       key: 'legal_entity_id',
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'Наменование',
+      title: <Title>Наменование</Title>,
       dataIndex: 'company_short_name',
       key: 'company_short_name',
       render: (text) => <Content>{text}</Content>,
     },
     {
-      title: 'Оценка',
+      title: <Title>Оценка</Title>,
       dataIndex: 'king',
       key: 'king',
       render: (text) => <Content>{text}</Content>,

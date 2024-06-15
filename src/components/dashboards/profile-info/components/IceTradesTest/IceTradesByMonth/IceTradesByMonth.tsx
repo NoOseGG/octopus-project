@@ -18,7 +18,6 @@ const IceTradesByMonth: React.FC<IceTradesByMonthProps> = ({ icetrade }) => {
     .filter((item) => {
       if (item.contract_date && item.purchase_status === 'Состоялась') {
         const itemDate = new Date(item.contract_date);
-        console.log(itemDate);
         return itemDate >= lastYearDate;
       }
       return false;

@@ -4,20 +4,18 @@ import styled from 'styled-components';
 import { formatNumberWithCommas } from '@app/utils/utils';
 
 type TableYearsProps = {
-  icetrade: IceTradeCustomer[];
+  completedIcetrade: IceTradeCustomer[];
 };
 
-const TableYears: React.FC<TableYearsProps> = ({ icetrade }) => {
-  const data = icetrade
-    .filter((item) => item.purchase_status === 'Состоялась' && (item.contract_date || item.participants_identifier))
-    .reduce<Record<number, number>>((acc, item) => {
-      if (item.contract_date) {
-        const year = new Date(item.contract_date).getFullYear();
-        acc[year] = (acc[year] || 0) + (item.price_byn || 0);
-        return acc;
-      }
+const TableYears: React.FC<TableYearsProps> = ({ completedIcetrade }) => {
+  const data = completedIcetrade.reduce<Record<number, number>>((acc, item) => {
+    if (item.contract_date) {
+      const year = new Date(item.contract_date).getFullYear();
+      acc[year] = (acc[year] || 0) + (item.price_byn || 0);
       return acc;
-    }, {});
+    }
+    return acc;
+  }, {});
 
   const array = Object.entries(data).map(([key, value]) => ({ year: Number(key), value }));
   const fillterYear = new Date();
@@ -27,17 +25,18 @@ const TableYears: React.FC<TableYearsProps> = ({ icetrade }) => {
     .filter((item) => item.year >= fillterYear.getFullYear())
     .reverse();
 
-  console.log(result);
-
   return (
-    <Container gridCountColumns={result.length}>
-      {result.map((item, index) => (
-        <ItemContainer key={index}>
-          <ItemName>{item.year} год</ItemName>
-          <ItemContent>{formatNumberWithCommas(item.value)} BYN</ItemContent>
-        </ItemContainer>
-      ))}
-    </Container>
+    <>
+      <Sum>{formatNumberWithCommas(result.reduce((acc, item) => acc + item.value, 0))}</Sum>
+      <Container gridCountColumns={result.length}>
+        {result.map((item, index) => (
+          <ItemContainer key={index}>
+            <ItemName>{item.year} год</ItemName>
+            <ItemContent>{formatNumberWithCommas(item.value)} BYN</ItemContent>
+          </ItemContainer>
+        ))}
+      </Container>
+    </>
   );
 };
 
@@ -71,5 +70,9 @@ const ItemName = styled.div`
 const ItemContent = styled.div`
   margin-top: 20px;
   font-size: 18px;
+  text-align: center;
+`;
+
+const Sum = styled.div`
   text-align: center;
 `;

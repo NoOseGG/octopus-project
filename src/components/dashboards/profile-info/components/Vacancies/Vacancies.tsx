@@ -176,7 +176,6 @@ const Title = styled.h2`
 `;
 
 const getAvgSalaryBYN = (vacancies: Vacancy[]): number => {
-  debugger;
   let length = 0;
   const avg = vacancies.reduce((acc, item) => {
     if (item.min_salary_byn && item.max_salary_byn) {

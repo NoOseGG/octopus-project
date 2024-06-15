@@ -64,9 +64,7 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
         return Number(a.min_salary_byn) - Number(b.min_salary_byn);
       },
       showSorterTooltip: false,
-      render: (text: string, record) => (
-        <Content>{((record.min_salary_byn || 0) + (record.max_salary_byn || 0)) / 2} BYN</Content>
-      ),
+      render: (text: string, record) => <Content>{getAvgSalary(record)} BYN</Content>,
     },
     Table.EXPAND_COLUMN,
   ];
@@ -85,3 +83,7 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
 };
 
 export default VacancyTable;
+
+const getAvgSalary = (vacancy: Vacancy): string => {
+  return (((vacancy.min_salary_byn || 0) + (vacancy.max_salary_byn || 0)) / 2).toFixed();
+};

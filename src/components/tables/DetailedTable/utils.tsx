@@ -6,6 +6,7 @@ export enum DetailsTableType {
   COMPETITORS,
   RATING_ALL,
   FEEDBACK,
+  ICE_TRADE_PARTICIPANTS,
 }
 
 const getColumn = (title: string, field: string, width = 'auto') => {
@@ -91,6 +92,8 @@ export const getColumns = (detailed: DetailsTableType) => {
         getColumn('УНП', 'legal_entity_id'),
         getColumn('Сокращенное наименование', 'company_short_name'),
       ];
+    case DetailsTableType.ICE_TRADE_PARTICIPANTS:
+      return [getColumn('Наименование', 'name'), getColumn('Сумма', 'sum')];
   }
 };
 

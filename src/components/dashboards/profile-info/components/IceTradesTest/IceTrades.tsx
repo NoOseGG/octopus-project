@@ -5,17 +5,21 @@ import { IceTradeCustomer } from '@app/store/types/Subject';
 import IceTradesByAge from '@app/components/dashboards/profile-info/components/IceTradesTest/IceTradesByAge/IceTradesByAge';
 import IceTradesByMonth from '@app/components/dashboards/profile-info/components/IceTradesTest/IceTradesByMonth/IceTradesByMonth';
 import TableYears from '@app/components/dashboards/profile-info/components/IceTradesTest/TableYears/TableYears';
+import ParticipantsSumList from '@app/components/dashboards/profile-info/components/IceTradesTest/ParticipantsSumList/ParticipantsSumList';
+import PurchasesList from '@app/components/dashboards/profile-info/components/IceTradesTest/PurchasesList/PurchasesList';
 
 const IceTrades = () => {
   const icetradeCustomer = useAppSelector((state) => state.searchProfile.profile.icetrade_customer);
   const [allCount, setAllCount] = useState<number | undefined>(undefined);
-  const [completed, setCompleted] = useState<number | undefined>(undefined);
-  const [notCompleted, setNotCompleted] = useState<number | undefined>(undefined);
+  const [completed, setCompleted] = useState<IceTradeCustomer[] | undefined>(undefined);
+  const [completedCount, setCompletedCount] = useState<number | undefined>(undefined);
+  const [notCompletedCount, setNotCompletedCount] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     setAllCount(getAllCount(icetradeCustomer));
+    setCompletedCount(getCompletedCount(icetradeCustomer));
+    setNotCompletedCount(getNotCompletedCount(icetradeCustomer));
     setCompleted(getCompleted(icetradeCustomer));
-    setNotCompleted(getNotCompleted(icetradeCustomer));
   }, [icetradeCustomer]);
 
   return (
@@ -26,19 +30,19 @@ const IceTrades = () => {
           <ItemTitle>Общее количество</ItemTitle>
           <ItemContent>{allCount}</ItemContent>
         </Item>
-        {allCount && completed && (
+        {allCount && completedCount && (
           <Item>
             <ItemTitle>Призванных состоявщихся</ItemTitle>
             <ItemContent>
-              {completed} ({((completed / allCount) * 100).toFixed()}%)
+              {completedCount} ({((completedCount / allCount) * 100).toFixed()}%)
             </ItemContent>
           </Item>
         )}
-        {allCount && notCompleted && (
+        {allCount && notCompletedCount && (
           <Item>
             <ItemTitle>Не состоявшиеся, либо отсутсвует дата договора</ItemTitle>
             <ItemContent>
-              {notCompleted} ({((notCompleted / allCount) * 100).toFixed()}%)
+              {notCompletedCount} ({((notCompletedCount / allCount) * 100).toFixed()}%)
             </ItemContent>
           </Item>
         )}
@@ -47,7 +51,11 @@ const IceTrades = () => {
         <IceTradesByAge icetrade={icetradeCustomer} />
         <IceTradesByMonth icetrade={icetradeCustomer} />
       </ChartContainer>
-      <TableYears icetrade={icetradeCustomer} />
+      {completed && <TableYears completedIcetrade={completed} />}
+      <ChartContainer>
+        {completed && <ParticipantsSumList icetrade={completed} />}
+        {completed && <PurchasesList icetrade={completed} />}
+      </ChartContainer>
     </Container>
   );
 };
@@ -94,13 +102,19 @@ const getAllCount = (icetrade: IceTradeCustomer[]): number => {
   return icetrade.length;
 };
 
-const getCompleted = (icetrade: IceTradeCustomer[]): number => {
+const getCompleted = (icetrade: IceTradeCustomer[]): IceTradeCustomer[] => {
+  return icetrade.filter(
+    (item) => item.purchase_status === 'Состоялась' && (item.contract_date || item.participants_identifier),
+  );
+};
+
+const getCompletedCount = (icetrade: IceTradeCustomer[]): number => {
   return icetrade.filter(
     (item) => item.purchase_status === 'Состоялась' && (item.contract_date || item.participants_identifier),
   ).length;
 };
 
-const getNotCompleted = (icetrade: IceTradeCustomer[]): number => {
+const getNotCompletedCount = (icetrade: IceTradeCustomer[]): number => {
   return icetrade.filter(
     (item) => item.purchase_status !== 'Состоялась' || (!item.contract_date && !item.participants_identifier),
   ).length;

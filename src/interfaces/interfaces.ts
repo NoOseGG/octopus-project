@@ -112,3 +112,13 @@ export interface DashboardObjectForRating extends DashboardObject {
   position: number;
   highlight?: boolean;
 }
+
+//ice trades
+
+export interface IParticipants {
+  unn?: string | null;
+  name: string | null;
+  sum: string | null;
+  date?: string | null;
+  participant?: string | null;
+}

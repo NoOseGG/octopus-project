@@ -63,7 +63,9 @@ const VacancyTable: React.FC<MyComponentProps> = ({ vacancies }) => {
         return Number(a.min_salary_byn) - Number(b.min_salary_byn);
       },
       showSorterTooltip: false,
-      render: (text: string) => <Content>{text} BYN</Content>,
+      render: (text: string, record) => (
+        <Content>{((record.min_salary_byn || 0) + (record.max_salary_byn || 0)) / 2} BYN</Content>
+      ),
     },
     Table.EXPAND_COLUMN,
   ];

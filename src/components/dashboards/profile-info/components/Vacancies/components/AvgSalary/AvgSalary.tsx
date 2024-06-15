@@ -3,25 +3,25 @@ import styled from 'styled-components';
 import { formatNumberWithCommas } from '@app/utils/utils';
 
 type MyComponentProps = {
-  avgSalaryBYN: string;
-  avgSalaryUSD: string;
+  avgSalaryBYN: number;
+  avgSalaryUSD: number;
 };
 
 const AvgSalary: React.FC<MyComponentProps> = ({ avgSalaryBYN, avgSalaryUSD }) => {
   return (
     <>
-      {avgSalaryBYN && avgSalaryUSD && (
+      {Boolean(avgSalaryBYN) && Boolean(avgSalaryUSD) && (
         <>
           <Title>Средний уровень предлаемой зарплаты</Title>
           <AvgSalaryContainer>
-            {Boolean(Number(avgSalaryBYN)) && (
+            {Boolean(avgSalaryBYN) && (
               <Avg>
-                <span>В белорусских рублях - {formatNumberWithCommas(Number(avgSalaryBYN))}</span>
+                <span>В белорусских рублях - {formatNumberWithCommas(avgSalaryBYN)}</span>
               </Avg>
             )}
-            {Boolean(Number(avgSalaryUSD)) && (
+            {Boolean(avgSalaryUSD) && (
               <Avg>
-                <span>В долларах США - {formatNumberWithCommas(Number(avgSalaryUSD))}</span>
+                <span>В долларах США - {formatNumberWithCommas(avgSalaryUSD)}</span>
               </Avg>
             )}
           </AvgSalaryContainer>

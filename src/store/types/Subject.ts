@@ -177,10 +177,10 @@ export interface Vacancy {
   work_format: string | null;
   working_hours: string | null;
   number_seats: string | null;
-  min_salary_byn: string | null;
-  max_salary_byn: string | null;
-  min_salary_usd: string | null;
-  max_salary_usd: string | null;
+  min_salary_byn: number | null;
+  max_salary_byn: number | null;
+  min_salary_usd: number | null;
+  max_salary_usd: number | null;
   work_rate: string | null;
   workplace_address_full: string | null;
   workplace_address_region: string | null;

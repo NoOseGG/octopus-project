@@ -175,38 +175,29 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 
-const getAvgSalaryBYN = (vacancies: Vacancy[]): string => {
+const getAvgSalaryBYN = (vacancies: Vacancy[]): number => {
+  debugger;
   let length = 0;
   const avg = vacancies.reduce((acc, item) => {
-    if (item.min_salary_byn !== '0' && item.max_salary_byn !== '0') {
+    if (item.min_salary_byn && item.max_salary_byn) {
       length++;
-      return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
+      return acc + (item.min_salary_byn + item.max_salary_byn) / 2;
     } else {
-      return 0;
+      return acc;
     }
   }, 0);
-  return (avg / length).toFixed();
+  return Math.floor(avg / length);
 };
 
-const getAvgSalaryUSD = (vacancies: Vacancy[]): string => {
+const getAvgSalaryUSD = (vacancies: Vacancy[]): number => {
   let length = 0;
   const avg = vacancies.reduce((acc, item) => {
-    if (item.min_salary_usd !== '0' && item.max_salary_usd !== '0') {
+    if (item.min_salary_usd && item.max_salary_usd) {
       length++;
-      return acc + (Number(item.min_salary_usd) + Number(item.max_salary_usd)) / 2;
+      return acc + (item.min_salary_usd + item.max_salary_usd) / 2;
     } else {
-      return 0;
+      return acc;
     }
   }, 0);
-  return (avg / length).toFixed();
+  return Math.floor(avg / length);
 };
-
-// const avgSalaryBYN = (
-//   vacancies.reduce((acc, item) => {
-//     if (item.min_salary_byn !== null && item.max_salary_byn !== null) {
-//       return acc + (Number(item.min_salary_byn) + Number(item.max_salary_byn)) / 2;
-//     } else {
-//       return 0;
-//     }
-//   }, 0) / vacancies.length
-// ).toFixed();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, TableColumnsType } from 'antd';
+
 import { Vacancy } from '@app/store/types/Subject';
 import { formatDate } from '@app/utils/utils';
 import { Content } from '@app/components/dashboards/dashboard/styles/DetailedInformationCompanyStyle';

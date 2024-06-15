@@ -94,7 +94,7 @@ const TitleFromDttm = styled.span`
   color: grey;
 `;
 
-const getSalaryString = (minSalary: string | null, maxSalary: string | null, currency: string): string => {
+const getSalaryString = (minSalary: number | null, maxSalary: number | null, currency: string): string => {
   let result = '';
   if (minSalary !== null) result += `от ${Number(minSalary).toFixed()}`;
   if (maxSalary !== null) result += ` до ${Number(maxSalary).toFixed()} ${currency}`;

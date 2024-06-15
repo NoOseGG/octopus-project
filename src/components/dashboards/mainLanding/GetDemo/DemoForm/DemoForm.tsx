@@ -82,7 +82,7 @@ const DemoForm: React.FC = () => {
             type="text"
             name={'company'}
             id={'company'}
-            placeholder={'ООО "Аналитик Про'}
+            placeholder={'ООО "Аналитик Про"'}
             required={true}
             value={company}
             onChange={(e) => setCompany(e.target.value)}

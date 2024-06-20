@@ -24,38 +24,42 @@ const IceTrades = () => {
 
   return (
     <Container>
-      <Title>Сведения о закупках, где компания выступает заказчиком</Title>
-      <Info>
-        <Item>
-          <ItemTitle>Общее количество</ItemTitle>
-          <ItemContent>{allCount}</ItemContent>
-        </Item>
-        {allCount && completedCount && (
-          <Item>
-            <ItemTitle>Призванных состоявщихся</ItemTitle>
-            <ItemContent>
-              {completedCount} ({((completedCount / allCount) * 100).toFixed()}%)
-            </ItemContent>
-          </Item>
-        )}
-        {allCount && notCompletedCount && (
-          <Item>
-            <ItemTitle>Не состоявшиеся, либо отсутсвует дата договора</ItemTitle>
-            <ItemContent>
-              {notCompletedCount} ({((notCompletedCount / allCount) * 100).toFixed()}%)
-            </ItemContent>
-          </Item>
-        )}
-      </Info>
-      <ChartContainer>
-        <IceTradesByAge icetrade={icetradeCustomer} />
-        <IceTradesByMonth icetrade={icetradeCustomer} />
-      </ChartContainer>
-      {completed && <TableYears completedIcetrade={completed} />}
-      <ChartContainer>
-        {completed && <ParticipantsSumList icetrade={completed} />}
-        {completed && <PurchasesList icetrade={completed} />}
-      </ChartContainer>
+      {Boolean(icetradeCustomer.length) && (
+        <>
+          <Title>Сведения о закупках, где компания выступает заказчиком</Title>
+          <Info>
+            <Item>
+              <ItemTitle>Общее количество</ItemTitle>
+              <ItemContent>{allCount}</ItemContent>
+            </Item>
+            {allCount && completedCount && (
+              <Item>
+                <ItemTitle>Призванных состоявщихся</ItemTitle>
+                <ItemContent>
+                  {completedCount} ({((completedCount / allCount) * 100).toFixed()}%)
+                </ItemContent>
+              </Item>
+            )}
+            {allCount && notCompletedCount && (
+              <Item>
+                <ItemTitle>Не состоявшиеся, либо отсутсвует дата договора</ItemTitle>
+                <ItemContent>
+                  {notCompletedCount} ({((notCompletedCount / allCount) * 100).toFixed()}%)
+                </ItemContent>
+              </Item>
+            )}
+          </Info>
+          <ChartContainer>
+            <IceTradesByAge icetrade={icetradeCustomer} />
+            <IceTradesByMonth icetrade={icetradeCustomer} />
+          </ChartContainer>
+          {completed && <TableYears completedIcetrade={completed} />}
+          <ChartContainer>
+            {completed && <ParticipantsSumList icetrade={completed} />}
+            {completed && <PurchasesList icetrade={completed} />}
+          </ChartContainer>
+        </>
+      )}
     </Container>
   );
 };

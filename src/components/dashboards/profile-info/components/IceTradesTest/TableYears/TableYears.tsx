@@ -31,8 +31,8 @@ const TableYears: React.FC<TableYearsProps> = ({ completedIcetrade }) => {
       <Container gridCountColumns={result.length}>
         {result.map((item, index) => (
           <ItemContainer key={index}>
-            <ItemName>{item.year} год</ItemName>
-            <ItemContent>{formatNumberWithCommas(item.value)} BYN</ItemContent>
+            <ItemName>{item.year}</ItemName>
+            <ItemContent>{formatNumberWithCommas(item.value)} руб.</ItemContent>
           </ItemContainer>
         ))}
       </Container>

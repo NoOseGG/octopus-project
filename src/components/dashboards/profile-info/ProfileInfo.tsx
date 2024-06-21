@@ -15,7 +15,7 @@ import GovernmentInspections from '@app/components/dashboards/profile-info/compo
 import GiasPlan from '@app/components/dashboards/profile-info/components/GiasPlan/GiasPlan';
 import GeneralInformationTest from '@app/components/dashboards/profile-info/components/GeneralInformation/GeneralInformationTest';
 import StickyBox from 'react-sticky-box';
-import IceTrades from '@app/components/dashboards/profile-info/components/IceTradesTest/IceTrades';
+import IceTrades from '@app/components/dashboards/profile-info/components/IceTrades/IceTrades';
 
 // const LEFT_COLUMN_SIZE = 19;
 // const RIGHT_COLUMN_SIZE = 5;

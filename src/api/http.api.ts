@@ -46,6 +46,10 @@ httpAxios.interceptors.response.use(
       // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
       window.location.href = '/auth/login';
     }
+    if (error.response.status === 404) {
+      // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
+      window.location.href = '/404';
+    }
   },
 );
 
@@ -57,6 +61,8 @@ httpDashboard.interceptors.response.use(
       console.log('Запрос отменен:', error.message);
     } else if (error.response.status === 401) {
       window.location.href = '/auth/login';
+    } else if (error.response.status === 404) {
+      window.location.href = '/404';
     }
   },
 );

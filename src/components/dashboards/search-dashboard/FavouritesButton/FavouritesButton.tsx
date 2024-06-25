@@ -18,7 +18,7 @@ type MyComponentProps = {
 const FavouritesButton: React.FC<MyComponentProps> = ({ unn, size }) => {
   const { favourites } = useAppSelector((state) => state.favourites);
   const [isFavourite, setIsFavourite] = useState(() => {
-    return checkFavourite(unn, favourites.results);
+    return checkFavourite(unn, favourites);
   });
   const dispatch = useAppDispatch();
 
@@ -27,12 +27,12 @@ const FavouritesButton: React.FC<MyComponentProps> = ({ unn, size }) => {
   });
 
   useEffect(() => {
-    setIsFavourite(checkFavourite(unn, favourites.results));
+    setIsFavourite(checkFavourite(unn, favourites));
   }, [favourites]);
 
   const changeFavourite = () => {
-    console.log(favourites.results);
-    if (checkFavourite(unn, favourites.results)) {
+    console.log(favourites);
+    if (checkFavourite(unn, favourites)) {
       dispatch(doDeleteFavourites(unn));
       setIsFavourite(false);
     } else {

@@ -7,7 +7,8 @@ import { doLogin } from '@app/store/slices/authSlice';
 import { notificationController } from '@app/controllers/notificationController';
 import * as S from './LoginForm.styles';
 import * as Auth from '@app/components/layouts/AuthLayout/AuthLayout.styles';
-import { readToken } from '@app/services/localStorage.service';
+import { persistIsFirstLogin, readIsFirstLogin, readToken } from '@app/services/localStorage.service';
+import { LEGAL_ENTITY, SEARCH_DASHBOARD_PATH } from '@app/components/router/AppRouter';
 
 interface LoginFormData {
   email: string;
@@ -44,7 +45,12 @@ export const LoginForm: React.FC = () => {
     dispatch(doLogin(values))
       .unwrap()
       .then((response) => {
-        navigate('/search');
+        if (readIsFirstLogin()) {
+          navigate(SEARCH_DASHBOARD_PATH);
+        } else {
+          navigate(LEGAL_ENTITY);
+          persistIsFirstLogin();
+        }
         notificationController.success({ message: ` Добро пожаловать, ${response.user.first_name}!` });
       })
       .catch(() => {

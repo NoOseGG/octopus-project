@@ -20,6 +20,8 @@ const Favourites: React.FC<MyComponentProps> = ({ favourites }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log(favourites);
+
   const newFavourites = favourites?.map((item, index) => {
     return {
       ...item,

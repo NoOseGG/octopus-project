@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@app/hooks/reduxHooks';
-import { Col, Spin } from 'antd';
+import { Spin } from 'antd';
 import styled from 'styled-components';
 import SubjectsList from '@app/components/dashboards/search-dashboard/subjectsList/SubjectsList';
 import { doGetSearchHistory } from '@app/store/slices/search/searchHistorySlice';
@@ -18,6 +18,8 @@ const Search: React.FC = () => {
   useEffect(() => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
+
+  useEffect(() => console.log(favourites), [favourites]);
 
   if (Boolean(results?.length) && !loading) {
     return (
@@ -48,7 +50,7 @@ const Search: React.FC = () => {
             <SearchHistory listHistory={history?.results} />
           </SearchHistoryContainer>
           <FavouritesContainer>
-            <Favourites favourites={favourites?.results} />
+            <Favourites favourites={favourites} />
           </FavouritesContainer>
         </HistoryContainer>
       )}

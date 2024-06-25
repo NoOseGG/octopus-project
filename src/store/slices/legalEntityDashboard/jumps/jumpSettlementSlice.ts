@@ -1,20 +1,15 @@
-import { IJumpSettlementResponse, IJumpSettlementState } from '@app/store/types/dashboard/JumpTypes';
+import { IJumpSettlementObject, IJumpSettlementState } from '@app/store/types/dashboard/JumpTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
 
 const initialState: IJumpSettlementState = {
-  jumps: {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-  },
+  jumps: [],
   isLoading: false,
   error: null,
 };
 
-export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementResponse>('doGetJumpSettlement', async () => {
+export const doGetJumpSettlement = createAsyncThunk<IJumpSettlementObject[]>('doGetJumpSettlement', async () => {
   const response = await httpDashboard.get(
     DASH.BASE_JUMP_SETTLEMENT + DASH.PAGE_SIZE(100) + DASH.JUMP_SETTLEMENT_LEGAL_ENTITY,
   );
@@ -30,10 +25,8 @@ const jumpSettlementSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(doGetJumpSettlement.fulfilled, (state, action) => {
-      state.jumps.count = action.payload?.count;
-      state.jumps.next = action.payload?.next;
-      state.jumps.previous = action.payload?.previous;
-      state.jumps.results = action.payload?.results?.sort((a, b) => {
+      console.log(action.payload);
+      state.jumps = action.payload?.sort((a, b) => {
         if (b.reg_year !== a.reg_year) {
           return b.reg_year - a.reg_year;
         }
@@ -42,7 +35,7 @@ const jumpSettlementSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(doGetJumpSettlement.rejected, (state) => {
-      state.jumps.results = [];
+      state.jumps = [];
       state.isLoading = false;
     });
   },

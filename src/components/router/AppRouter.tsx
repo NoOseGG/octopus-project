@@ -13,6 +13,7 @@ import ProfileLayout from '@app/components/profile/ProfileLayout';
 import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import SubjectInfoPage from '@app/pages/DashboardPages/SubjectInfoPage';
+import DemoSubjectInfoPage from '@app/pages/DashboardPages/DemoSubjectInfoPage';
 import ChangeLogPage from '@app/pages/DashboardPages/ChangeLogPage';
 import SearchPage from '@app/pages/DashboardPages/SearchPage';
 import FeedbackPage from '@app/pages/DashboardPages/FeedbackPage';
@@ -32,6 +33,7 @@ export const LOGIN_PAGE_PATH = '/auth/login';
 export const ANALYTIC_DASHBOARD_PATH = '/';
 export const SEARCH_DASHBOARD_PATH = '/search';
 export const SUBJECT_INFO_DASHBOARD_PATH = '/legal-entity/profile';
+export const DEMO_SUBJECT_INFO_DASHBOARD_PATH = '/unp/:unp';
 export const CHANGE_LOG_PATH = '/change-log';
 export const FEEDBACK_PATH = '/feedback';
 export const DASHBOARD_PATH = '/dashboard';
@@ -40,6 +42,7 @@ export const SOLE_TRADE = '/sole-trade';
 
 const Analytix = withLoading(MainLanding);
 const SubjectInfo = withLoading(SubjectInfoPage);
+const DemoSubjectInfo = withLoading(DemoSubjectInfoPage);
 const Search = withLoading(SearchPage);
 // const Dashboard = withLoading(DashboardPage);
 const ChangeLog = withLoading(ChangeLogPage);
@@ -68,8 +71,9 @@ export const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ANALYTIC_DASHBOARD_PATH}>
-          <Route path="404" element={<Error404 />} />
           <Route index element={<Analytix />} />
+          <Route path="404" element={<Error404 />} />
+          <Route path={DEMO_SUBJECT_INFO_DASHBOARD_PATH} element={<DemoSubjectInfo />} />
           <Route path={''} element={protectedLayout}>
             <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
             <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />

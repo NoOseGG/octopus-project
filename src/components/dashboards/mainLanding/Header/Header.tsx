@@ -117,15 +117,18 @@ const ButtonContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: transparent;
+  border: 1px solid #fff;
+  padding: 0 60px;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #000;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
-  border: none;
   cursor: pointer;
 
   &:hover {
-    color: #60a200;
+    color: #fff;
     background-color: transparent;
+    border-color: #fff;
   }
 
   @media (max-width: 500px) {

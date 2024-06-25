@@ -19,7 +19,7 @@ type MyComponentProps = {
 const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => {
   const dispatch = useAppDispatch();
   const dynamicState = useAppSelector((state) => getStateForLevelCompetition(state, level_competition));
-  const results = dynamicState?.level_competition?.results;
+  const results = dynamicState?.level_competition;
   const isLoading = dynamicState?.isLoading;
 
   const getData = useCallback(

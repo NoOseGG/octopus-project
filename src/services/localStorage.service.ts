@@ -36,6 +36,16 @@ export const readUser = (): UserModel | null => {
   return userStr ? JSON.parse(userStr) : testUser;
 };
 
+export const persistIsFirstLogin = () => {
+  localStorage.setItem('isFirstLogin', 'true');
+};
+
+export const readIsFirstLogin = () => {
+  const isFirstLogin = localStorage.getItem('isFirstLogin');
+
+  return !!isFirstLogin;
+};
+
 export const deleteToken = (): void => localStorage.removeItem('accessToken');
 export const deleteUser = (): void => localStorage.removeItem('user');
 

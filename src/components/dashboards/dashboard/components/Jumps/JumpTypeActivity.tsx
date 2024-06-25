@@ -22,7 +22,7 @@ type MyComponentProps = {
 const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
   const dispatch = useAppDispatch();
   const dynamicState = useAppSelector((state) => getStateForJumpTypeActivity(state, jump));
-  const result = dynamicState?.jumps?.results;
+  const result = dynamicState?.jumps;
   const isLoading = dynamicState?.isLoading;
   const columns = getColumnsJumpTypeActivity();
 

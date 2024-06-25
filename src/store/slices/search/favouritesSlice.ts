@@ -1,21 +1,21 @@
-import { FavouritesResponsePost, FavouritesResponse, FavouritesState } from '@app/store/types/FavouritesTypes';
+import {
+  FavouritesResponsePost,
+  FavouritesResponse,
+  FavouritesState,
+  FavouritesObject,
+} from '@app/store/types/FavouritesTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
 
 const initialState: FavouritesState = {
-  favourites: {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-  },
+  favourites: [],
   loading: false,
   error: null,
 };
 
-export const doGetFavourites = createAsyncThunk<FavouritesResponse>('doGetFavourites', async () => {
+export const doGetFavourites = createAsyncThunk<FavouritesObject[]>('doGetFavourites', async () => {
   try {
     const response = await axios.get(URLS.FAVOURITES, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },
@@ -70,6 +70,7 @@ const favouritesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(doGetFavourites.fulfilled, (state, action) => {
+      debugger;
       state.favourites = action.payload;
       state.loading = false;
       state.error = null;

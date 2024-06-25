@@ -1,5 +1,5 @@
 export interface IJumpSettlementState {
-  jumps: IJumpSettlementResponse;
+  jumps: IJumpSettlementObject[];
   isLoading: boolean;
   error: string | null;
 }
@@ -11,7 +11,7 @@ export interface IJumpSettlementResponse {
   results: IJumpSettlementObject[];
 }
 
-interface IJumpSettlementObject {
+export interface IJumpSettlementObject {
   id: number;
   settlement: string;
   legal_form_id: string;
@@ -25,7 +25,7 @@ interface IJumpSettlementObject {
 //JUMP TYPE ACTIVITY
 
 export interface IJumpTypeActivityState {
-  jumps: IJumpTypeActivityResponse;
+  jumps: IJumpTypeActivityObject[];
   isLoading: boolean;
   error: string | null;
 }
@@ -37,7 +37,7 @@ export interface IJumpTypeActivityResponse {
   results: IJumpTypeActivityObject[];
 }
 
-interface IJumpTypeActivityObject {
+export interface IJumpTypeActivityObject {
   id: number;
   type_activity_name: string;
   legal_form_id: string;

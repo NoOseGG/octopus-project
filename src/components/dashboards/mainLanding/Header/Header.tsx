@@ -93,7 +93,7 @@ const MenuContainer = styled.nav`
   align-items: center;
   gap: 20px;
 
-  @media (max-width: 980px) {
+  @media (max-width: 1140px) {
     display: none;
   }
 `;
@@ -131,10 +131,8 @@ const StyledButton = styled.button`
     border-color: #fff;
   }
 
-  @media (max-width: 500px) {
-    font-size: 10px;
-    padding-top: 0;
-    padding-bottom: 0;
+  @media (max-width: 550px) {
+    padding: 10px 20px;
   }
 `;
 
@@ -150,5 +148,9 @@ const ButtonDemo = styled.button`
 
   &:hover {
     background-color: rgba(118, 180, 27, 0.16);
+  }
+
+  @media (max-width: 450px) {
+    display: none;
   }
 `;

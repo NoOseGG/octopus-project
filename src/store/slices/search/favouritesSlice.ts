@@ -70,7 +70,6 @@ const favouritesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(doGetFavourites.fulfilled, (state, action) => {
-      debugger;
       state.favourites = action.payload;
       state.loading = false;
       state.error = null;

@@ -7,15 +7,14 @@ import _ from 'lodash';
 import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice';
 import { Dropdown } from 'antd';
 import DropdownMenu from '@app/components/dashboards/mainLanding/SearchLine/components/DropdownMenu/DropdownMenu';
-import { readToken } from '@app/services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
-import { notificationController } from '@app/controllers/notificationController';
 
 const SearchLine: React.FC = () => {
   const dispatch = useAppDispatch();
   const { results } = useAppSelector((state) => state.search.data);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
+  const [unp, setUnp] = useState('');
   const [isVisible, setIsVisible] = useState(true);
   const [initialized, setInitialized] = useState(false);
 
@@ -55,16 +54,27 @@ const SearchLine: React.FC = () => {
     setIsVisible(false);
   };
 
+  const handleClickDropdown = (value: string, unp: string) => {
+    setUnp(unp);
+    setQuery(value);
+  };
+
+  // const handleSearch = () => {
+  //   if (Boolean(results.length)) {
+  //     const token = readToken();
+  //     if (token !== null) navigate('/search');
+  //     else {
+  //       navigate('/auth/login');
+  //       notificationController.warning({
+  //         message: 'Авторизируйтесь чтобы посмотреть найденных субъектов',
+  //       });
+  //     }
+  //   }
+  // };
+
   const handleSearch = () => {
-    if (Boolean(results.length)) {
-      const token = readToken();
-      if (token !== null) navigate('/search');
-      else {
-        navigate('/auth/login');
-        notificationController.warning({
-          message: 'Авторизируйтесь чтобы посмотреть найденных субъектов',
-        });
-      }
+    if (Boolean(unp.length)) {
+      navigate(`/unp/${unp}`);
     }
   };
 
@@ -72,12 +82,17 @@ const SearchLine: React.FC = () => {
     <Container backgroundColor={'#1d1d47'} onClick={handleClick}>
       <InnerContainer>
         <SearchLineContainer>
-          <Dropdown overlay={<DropdownMenu data={results} />} visible={isVisible} placement={'bottom'}>
+          <Dropdown
+            overlay={<DropdownMenu data={results} handleClick={handleClickDropdown} />}
+            visible={isVisible}
+            placement={'bottom'}
+          >
             <Search
               placeholder={'Введите УНП или название проверяемого субъекта'}
               enterButton={'Проверить'}
               onChange={(event) => setQuery(event.target.value)}
               onSearch={handleSearch}
+              value={query}
             />
           </Dropdown>
         </SearchLineContainer>

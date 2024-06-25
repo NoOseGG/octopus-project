@@ -38,7 +38,7 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-  width: 800px;
+  max-width: 800px;
   text-align: center;
   font-size: 18px;
   color: #fff;

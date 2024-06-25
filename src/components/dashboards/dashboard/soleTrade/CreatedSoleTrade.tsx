@@ -23,6 +23,8 @@ import JumpSettlement from '@app/components/dashboards/dashboard/components/Jump
 import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 import * as S from '../styles/DashboardStyle';
+import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
+import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
 
 const CreatedSoleTrade: React.FC = () => {
   return (
@@ -66,7 +68,7 @@ const CreatedSoleTrade: React.FC = () => {
 
       <JumpSettlement jump={JUMP_TYPE.SOLE_TRADE} />
       <JumpTypeActivity jump={JUMP_TYPE.SOLE_TRADE} />
-      {/*<LevelCompetition level_competition={LEVEL_COMPETITION.SOLE_TRADE} />*/}
+      <LevelCompetition level_competition={LEVEL_COMPETITION.SOLE_TRADE} />
     </>
   );
 };

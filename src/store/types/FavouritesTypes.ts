@@ -16,7 +16,7 @@ export interface FavouritesRequest {
 }
 
 export interface FavouritesState {
-  favourites: FavouritesObject[];
+  favourites: FavouritesResponse;
   loading: boolean;
   error: string | null;
 }

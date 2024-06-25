@@ -23,6 +23,8 @@ import JumpSettlement from '@app/components/dashboards/dashboard/components/Jump
 import { JUMP_TYPE } from '@app/components/dashboards/dashboard/components/Jumps/JumpTypes';
 import JumpTypeActivity from '@app/components/dashboards/dashboard/components/Jumps/JumpTypeActivity';
 import * as S from '../styles/DashboardStyle';
+import LevelCompetition from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetition';
+import { LEVEL_COMPETITION } from '@app/components/dashboards/dashboard/components/LevelCompetition/LevelCompetitionTypes';
 
 const CreatedLegalEntity: React.FC = () => {
   return (
@@ -65,7 +67,7 @@ const CreatedLegalEntity: React.FC = () => {
       <DetailedInformation detailed={DETAILED_TYPE.LE_CREATED} />
       <JumpSettlement jump={JUMP_TYPE.LEGAL_ENTITY} />
       <JumpTypeActivity jump={JUMP_TYPE.LEGAL_ENTITY} />
-      {/*<LevelCompetition level_competition={LEVEL_COMPETITION.LEGAL_ENTITY} />*/}
+      <LevelCompetition level_competition={LEVEL_COMPETITION.LEGAL_ENTITY} />
     </>
   );
 };

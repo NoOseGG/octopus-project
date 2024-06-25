@@ -1,5 +1,5 @@
 export interface ILevelCompetitionState {
-  level_competition: ILevelCompetitionObject[];
+  level_competition: ILevelCompetitionResponse;
   isLoading: boolean;
   error: string | null;
 }

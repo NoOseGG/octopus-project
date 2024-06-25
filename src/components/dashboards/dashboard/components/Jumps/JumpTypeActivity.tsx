@@ -53,12 +53,12 @@ const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
         <Skeleton active paragraph={{ rows: 10 }} />
       ) : (
         <>
-          {Boolean(result?.length) && (
+          {Boolean(result?.results?.length) && (
             <JumpSettlementContainer>
               <Table
                 columns={columns}
                 title={() => <Title>Всплеск регистраций по виду деятельности</Title>}
-                dataSource={result
+                dataSource={result?.results
                   .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.PLUS)
                   .map((item, index) => ({ ...item, key: index }))}
                 pagination={{ showSizeChanger: false }}
@@ -67,7 +67,7 @@ const JumpTypeActivity: React.FC<MyComponentProps> = ({ jump }) => {
               <Table
                 columns={columns}
                 title={() => <Title>Снижение регистраций по виду деятельности</Title>}
-                dataSource={result
+                dataSource={result?.results
                   .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.MINUS)
                   .map((item, index) => ({ ...item, key: index }))}
                 pagination={{ showSizeChanger: false }}

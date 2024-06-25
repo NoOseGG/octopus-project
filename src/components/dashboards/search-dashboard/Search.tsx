@@ -50,7 +50,7 @@ const Search: React.FC = () => {
             <SearchHistory listHistory={history?.results} />
           </SearchHistoryContainer>
           <FavouritesContainer>
-            <Favourites favourites={favourites} />
+            <Favourites favourites={favourites?.results} />
           </FavouritesContainer>
         </HistoryContainer>
       )}

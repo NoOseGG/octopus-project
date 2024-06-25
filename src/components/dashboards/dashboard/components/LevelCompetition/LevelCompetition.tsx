@@ -97,12 +97,12 @@ const LevelCompetition: React.FC<MyComponentProps> = ({ level_competition }) => 
         <Skeleton active paragraph={{ rows: 10 }} />
       ) : (
         <>
-          {Boolean(results?.length) && (
+          {Boolean(results?.results.length) && (
             <LevelCompetitionContainer>
               <Table
                 columns={columns}
                 title={() => <Title>Срез по уровню конкуренции</Title>}
-                dataSource={results.map((item, index) => ({ ...item, key: index }))}
+                dataSource={results.results.map((item, index) => ({ ...item, key: index }))}
                 pagination={{ pageSize: 5, size: 'small', showSizeChanger: false }}
               />
             </LevelCompetitionContainer>

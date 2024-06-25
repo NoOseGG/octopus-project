@@ -1,15 +1,20 @@
-import { IJumpTypeActivityObject, IJumpTypeActivityState } from '@app/store/types/dashboard/JumpTypes';
+import { IJumpTypeActivityResponse, IJumpTypeActivityState } from '@app/store/types/dashboard/JumpTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DASH } from '@app/constants/enums/Dashboards';
 import { httpDashboard } from '@app/api/http.api';
 
 const initialState: IJumpTypeActivityState = {
-  jumps: [],
+  jumps: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
   isLoading: false,
   error: null,
 };
 
-export const doGetJumpTypeActivitySoleTrade = createAsyncThunk<IJumpTypeActivityObject[]>(
+export const doGetJumpTypeActivitySoleTrade = createAsyncThunk<IJumpTypeActivityResponse>(
   'doGetJumpTypeActivitySoleTrade',
   async () => {
     const response = await httpDashboard.get(
@@ -28,7 +33,10 @@ const jumpTypeActivitySoleTradeSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(doGetJumpTypeActivitySoleTrade.fulfilled, (state, action) => {
-      state.jumps = action.payload.sort((a, b) => {
+      state.jumps.count = action.payload.count;
+      state.jumps.next = action.payload.next;
+      state.jumps.previous = action.payload.previous;
+      state.jumps.results = action.payload.results.sort((a, b) => {
         if (b.reg_year !== a.reg_year) {
           return b.reg_year - a.reg_year;
         }
@@ -37,7 +45,7 @@ const jumpTypeActivitySoleTradeSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(doGetJumpTypeActivitySoleTrade.rejected, (state) => {
-      state.jumps = [];
+      state.jumps.results = [];
       state.isLoading = false;
     });
   },

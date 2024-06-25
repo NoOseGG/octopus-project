@@ -50,12 +50,12 @@ const JumpSettlement: React.FC<MyComponentProps> = ({ jump }) => {
         <Skeleton active paragraph={{ rows: 10 }} />
       ) : (
         <>
-          {Boolean(result?.length) && (
+          {Boolean(result?.results.length) && (
             <JumpSettlementContainer>
               <Table
                 columns={columns}
                 title={() => <Title>Всплеск регистраций по географическому принципу</Title>}
-                dataSource={result
+                dataSource={result.results
                   .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.PLUS)
                   .map((item, index) => ({
                     ...item,
@@ -67,7 +67,7 @@ const JumpSettlement: React.FC<MyComponentProps> = ({ jump }) => {
               <Table
                 columns={columns}
                 title={() => <Title>Снижение регистраций по географическому принципу</Title>}
-                dataSource={result
+                dataSource={result.results
                   .filter((item) => item.type_reg === JUMP_SETTLEMENT_TYPE.MINUS)
                   .map((item, index) => ({
                     ...item,

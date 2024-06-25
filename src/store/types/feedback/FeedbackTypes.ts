@@ -11,7 +11,7 @@ export interface FeedbackObject {
 }
 
 export interface FeedbackState {
-  feedbacks: FeedbackObject[];
+  feedbacks: FeedbackResponse;
   loading: boolean;
   error: string | null;
 }

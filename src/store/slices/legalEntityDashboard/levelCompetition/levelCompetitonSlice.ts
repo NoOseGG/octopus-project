@@ -1,15 +1,20 @@
-import { ILevelCompetitionObject, ILevelCompetitionState } from '@app/store/types/dashboard/LevelCompetitionTypes';
+import { ILevelCompetitionResponse, ILevelCompetitionState } from '@app/store/types/dashboard/LevelCompetitionTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { httpDashboard } from '@app/api/http.api';
 import { DASH } from '@app/constants/enums/Dashboards';
 
 const initialState: ILevelCompetitionState = {
-  level_competition: [],
+  level_competition: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
   isLoading: false,
   error: null,
 };
 
-export const doGetLevelCompetition = createAsyncThunk<ILevelCompetitionObject[]>('doGetLevelCompetition', async () => {
+export const doGetLevelCompetition = createAsyncThunk<ILevelCompetitionResponse>('doGetLevelCompetition', async () => {
   const response = await httpDashboard.get(DASH.BASE_LEVEL_COMPETITION);
   return response.data;
 });
@@ -27,7 +32,7 @@ const levelCompetitionSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(doGetLevelCompetition.rejected, (state) => {
-      state.level_competition = [];
+      state.level_competition.results = [];
       state.isLoading = false;
     });
   },

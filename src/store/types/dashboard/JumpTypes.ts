@@ -1,5 +1,5 @@
 export interface IJumpSettlementState {
-  jumps: IJumpSettlementObject[];
+  jumps: IJumpSettlementResponse;
   isLoading: boolean;
   error: string | null;
 }
@@ -25,7 +25,7 @@ export interface IJumpSettlementObject {
 //JUMP TYPE ACTIVITY
 
 export interface IJumpTypeActivityState {
-  jumps: IJumpTypeActivityObject[];
+  jumps: IJumpTypeActivityResponse;
   isLoading: boolean;
   error: string | null;
 }

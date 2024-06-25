@@ -8,7 +8,7 @@ import { Table } from 'antd';
 import { formatDate } from '@app/utils/utils';
 
 const ListOfFeedbacks: React.FC = () => {
-  const { results } = useAppSelector((state) => state.feedback.feedbacks);
+  const results = useAppSelector((state) => state.feedback.feedbacks);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

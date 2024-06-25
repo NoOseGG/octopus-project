@@ -1,4 +1,4 @@
-import { FeedbackResponse, FeedbackState } from '@app/store/types/feedback/FeedbackTypes';
+import { FeedbackObject, FeedbackResponse, FeedbackState } from '@app/store/types/feedback/FeedbackTypes';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
@@ -6,17 +6,12 @@ import { readToken } from '@app/services/localStorage.service';
 import { httpAxios } from '@app/api/http.api';
 
 const initialState: FeedbackState = {
-  feedbacks: {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-  },
+  feedbacks: [],
   loading: false,
   error: null,
 };
 
-export const doGetFeedbacks = createAsyncThunk<FeedbackResponse>('doGetFeedbacks', async () => {
+export const doGetFeedbacks = createAsyncThunk<FeedbackObject[]>('doGetFeedbacks', async () => {
   try {
     const response = await axios.get(URLS.FEEDBACK, {
       headers: { Authorization: `${TOKEN_NAME} ${readToken()}` },

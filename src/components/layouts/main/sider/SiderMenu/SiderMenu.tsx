@@ -30,6 +30,8 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
   );
   const defaultOpenKeys = openedSubmenu ? [openedSubmenu.key] : [];
 
+  const allOpenKeys = sidebarNavigation.filter(({ children }) => children && children.length > 0).map(({ key }) => key);
+
   const handleClick = () => {
     dispatch(clearSearchData());
   };
@@ -38,7 +40,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
     <S.Menu
       mode="inline"
       defaultSelectedKeys={defaultSelectedKeys}
-      defaultOpenKeys={defaultOpenKeys}
+      defaultOpenKeys={allOpenKeys}
       onClick={() => setCollapsed(true)}
     >
       {sidebarNavigation.map((nav) =>

@@ -9,6 +9,7 @@ import ScrollButton from '@app/components/dashboards/profile-info/components/com
 import ServiceFor from '@app/components/dashboards/mainLanding/ServiceFor/ServiceFor';
 import Hero from '@app/components/dashboards/mainLanding/Hero/Hero';
 import GetDemo from '@app/components/dashboards/mainLanding/GetDemo/GetDemo';
+import Tariffs from '@app/components/dashboards/mainLanding/Tariffs/Tariffs';
 
 const MainLanding: React.FC = () => {
   return (
@@ -20,8 +21,8 @@ const MainLanding: React.FC = () => {
       <MainFunction />
       <Sources />
       <ServiceFor />
+      <Tariffs />
       <GetDemo />
-      {/*<Tariffs />*/}
       <Footer />
       {/*<PayAttentionModal />*/}
       <ScrollButton />

@@ -23,4 +23,20 @@ const InnerContainer = styled.div`
   }
 `;
 
-export { Container, InnerContainer };
+const Title = styled.h2`
+  font-size: 56px;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+
+  @media (max-width: 1200px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+`;
+
+export { Container, InnerContainer, Title };

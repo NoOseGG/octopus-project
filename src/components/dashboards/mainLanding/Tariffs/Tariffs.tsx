@@ -1,31 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, InnerContainer } from '../styles/MainLandingStyles';
+import * as S from '../styles/MainLandingStyles';
 import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
+import Card from '@app/components/dashboards/mainLanding/Tariffs/Cards/Card';
+import { CardType } from '@app/components/dashboards/mainLanding/Tariffs/Cards/utils';
 
 const Tariffs: React.FC = () => {
   return (
-    <Container backgroundColor={'#b9dbf4'} id={ScrollType.Tariffs}>
-      <InnerContainer>
+    <S.Container backgroundColor={'linear-gradient(to bottom, #000814, #001a40);'} id={ScrollType.Tariffs}>
+      <S.InnerContainer>
         <TariffsContainer>
-          <Title>Тарифы</Title>
-          <RatesContainer>
-            <RateContainer>
-              <LeftColumn>
-                <TitlePRO>PRO</TitlePRO>
-              </LeftColumn>
-              <RightColumn></RightColumn>
-            </RateContainer>
-            <RateContainer>
-              <LeftColumn>
-                <TitlePRO>PRO+</TitlePRO>
-              </LeftColumn>
-              <RightColumn></RightColumn>
-            </RateContainer>
-          </RatesContainer>
+          <S.Title>Тарифные планы</S.Title>
+          <Subtitle>Выберите тарифный план</Subtitle>
+          <CardContainer>
+            <Card cardType={CardType.DEMO} />
+            <Card cardType={CardType.STANDARD} />
+            <Card cardType={CardType.SPECIAL} />
+          </CardContainer>
         </TariffsContainer>
-      </InnerContainer>
-    </Container>
+      </S.InnerContainer>
+    </S.Container>
   );
 };
 
@@ -34,46 +28,21 @@ export default Tariffs;
 const TariffsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 60px;
 `;
 
-const Title = styled.h2`
-  font-size: 30px;
+const Subtitle = styled.h2`
+  font-size: 20px;
   text-align: center;
-  color: #000;
+  color: #fff;
   margin: 0;
-  font-weight: 800;
+  font-weight: 400;
 `;
 
-const RatesContainer = styled.div`
-  margin-top: 20px;
+const CardContainer = styled.div`
+  margin-top: 30px;
   display: flex;
-  justify-content: space-around;
-`;
-
-const RateContainer = styled.div`
-  width: 580px;
-  height: 600px;
-  background-color: #fff;
-  display: flex;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 8px 10px rgba(53, 152, 219, 0.2);
-  cursor: pointer;
-`;
-
-const LeftColumn = styled.div`
-  width: 40%;
-  height: 100%;
-  padding-left: 20px;
-`;
-
-const RightColumn = styled.div`
-  width: 60%;
-  height: 100%;
-  background-color: #dddee1;
-`;
-
-const TitlePRO = styled.h4`
-  font-size: 28px;
-  margin: 30px 0 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 `;

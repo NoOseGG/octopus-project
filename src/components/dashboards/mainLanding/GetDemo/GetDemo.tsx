@@ -8,7 +8,7 @@ import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 
 const GetDemo: React.FC = () => {
   return (
-    <S.Container backgroundColor={'linear-gradient(to bottom, #000814, #232528);'} id={ScrollType.Demo}>
+    <S.Container backgroundColor={'linear-gradient(to bottom, #001a40, #232528);'} id={ScrollType.Demo}>
       <S.InnerContainer>
         <GetDemoContainer>
           <Title>Демо доступ</Title>

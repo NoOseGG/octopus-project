@@ -43,6 +43,7 @@ const CardContainer = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   gap: 30px;
 `;

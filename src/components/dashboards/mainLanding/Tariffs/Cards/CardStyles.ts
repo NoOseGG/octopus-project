@@ -62,6 +62,14 @@ const InfoTextInput = styled.div`
   color: #575454;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 370px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 330px) {
+    padding: 0 20px;
+  }
 `;
 
 const Bold = styled.span`

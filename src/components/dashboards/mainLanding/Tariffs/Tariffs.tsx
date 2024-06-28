@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import * as S from '../styles/MainLandingStyles';
 import { ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
 import Card from '@app/components/dashboards/mainLanding/Tariffs/Cards/Card';
-import { CardType } from '@app/components/dashboards/mainLanding/Tariffs/Cards/utils';
+import { CardType } from '@app/components/dashboards/mainLanding/Tariffs/utils';
 
 const Tariffs: React.FC = () => {
   return (

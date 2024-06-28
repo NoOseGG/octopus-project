@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './CardStyles';
-import { CardType, getName, getPrice } from '@app/components/dashboards/mainLanding/Tariffs/Cards/utils';
+import { CardType, getName, getPrice } from '@app/components/dashboards/mainLanding/Tariffs/utils';
 import NumberInput from '@app/components/dashboards/mainLanding/Tariffs/NumberInput/NumberImput';
 import { formatNumberWithCommas } from '@app/utils/utils';
 import { scrollToLanding, ScrollType } from '@app/components/dashboards/mainLanding/utils/utils';
@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({ cardType }) => {
               <S.Bold>1</S.Bold> Пользователь
             </S.InfoText>
             <S.InfoText>
-              <S.Bold>{cardType === CardType.DEMO ? 3 : 30}</S.Bold> {cardType === CardType.DEMO ? 'дня' : 'дней'}
+              <S.Bold>1</S.Bold> {cardType === CardType.DEMO ? 'день' : 'месяц'}
             </S.InfoText>
           </>
         )}
@@ -65,7 +65,13 @@ const Card: React.FC<CardProps> = ({ cardType }) => {
           {cardType === CardType.DEMO ? 'Попробовать' : 'Приобрести'}
         </S.StyledButton>
       </S.ButtonBlock>
-      <TariffsModal isOpen={isOpen} onSetIsOpen={setIsOpen} />
+      <TariffsModal
+        isOpen={isOpen}
+        onSetIsOpen={setIsOpen}
+        countMonth={countMonth}
+        countUser={countUser}
+        price={price}
+      />
     </S.Container>
   );
 };

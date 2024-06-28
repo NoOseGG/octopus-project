@@ -5,8 +5,16 @@ import { notificationController } from '@app/controllers/notificationController'
 import moment from 'moment';
 import { URLS } from '@app/constants/Constants';
 import PhoneInput from '@app/components/dashboards/mainLanding/GetDemo/DemoForm/PhoneInput/PhoneInput';
+import { formatNumberWithCommas, getWordEnding } from '@app/utils/utils';
 
-const DemoForm: React.FC = () => {
+type SubscribeFormProps = {
+  countMonth: number;
+  countUser: number;
+  price: number;
+  onSetIsOpen: (value: boolean) => void;
+};
+
+const SubscribeForm: React.FC<SubscribeFormProps> = ({ countMonth, countUser, price, onSetIsOpen }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -36,13 +44,13 @@ const DemoForm: React.FC = () => {
       .post(URLS.DEMO, data)
       .then(() => {
         notificationController.success({
-          message: 'Ваша заявка на получение демо доступа отправлена. Ожидайте. С Вами свяжется специалист.',
+          message: 'Ваша заявка на оформление подписки отправлена. Ожидайте. С Вами свяжется специалист.',
         });
         clearAllData();
       })
       .catch(() => {
         notificationController.error({
-          message: 'Заявка на получение демо доступа не отправлена. Попробуйте позже.',
+          message: 'Заявка на оформление подписки не отправлена. Попробуйте позже.',
         });
       });
   };
@@ -57,12 +65,23 @@ const DemoForm: React.FC = () => {
     }
     const date = new Date();
     const formattedDate = moment(date).format('DD.MM.YYYY');
-    const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
+    const message = `Оформление подписки на ${countMonth} ${getWordEnding(countMonth, [
+      'месяц',
+      'месяца',
+      'месяцев',
+    ])}.\nНа ${countUser} ${getWordEnding(countUser, [
+      'пользователя',
+      'пользователей',
+      'пользователей',
+    ])}\nСумма: ${formatNumberWithCommas(
+      price,
+    )} рублей.\nДата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
     sendMessageToTelegram(message);
+    onSetIsOpen(false);
   };
 
   return (
-    <DemoFormContainer>
+    <SubscribeFormContainer>
       <Form onSubmit={handleSubmit}>
         <InputContainer>
           <Label htmlFor="name">Ваше имя *</Label>
@@ -121,17 +140,20 @@ const DemoForm: React.FC = () => {
           </LabelPrivacy>
         </PrivacyContainer>
 
-        <Button type={'submit'} isDisabled={isDisabled} disabled={isDisabled}>
-          Получить Демо
-        </Button>
+        <ButtonContainer>
+          <Button type={'submit'} isDisabled={isDisabled} disabled={isDisabled}>
+            {formatNumberWithCommas(price)} рублей
+          </Button>
+          <ButtonCancel onClick={() => onSetIsOpen(false)}>Отменить</ButtonCancel>
+        </ButtonContainer>
       </Form>
-    </DemoFormContainer>
+    </SubscribeFormContainer>
   );
 };
 
-export default DemoForm;
+export default SubscribeForm;
 
-const DemoFormContainer = styled.div`
+const SubscribeFormContainer = styled.div`
   padding: 10px;
   width: 60%;
   height: 100%;
@@ -180,6 +202,13 @@ type ButtonProps = {
   isDisabled: boolean;
 };
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
 const Button = styled.button<ButtonProps>`
   width: 100%;
   background-color: #60a200;
@@ -195,4 +224,15 @@ const Button = styled.button<ButtonProps>`
   &:hover {
     background-color: #568f02;
   }
+`;
+
+const ButtonCancel = styled.button`
+  padding: 0 30px;
+  border: none;
+  border-radius: 4px;
+  background-color: #c53316;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
 `;

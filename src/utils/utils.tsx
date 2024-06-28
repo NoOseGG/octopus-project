@@ -485,4 +485,16 @@ export function formatPhoneNumber(phoneNumber: string): string {
   }
 }
 
-// DASH.ORDERING_AGG('company_date_registration__year')
+export function getWordEnding(number: number, wordForms: [string, string, string]): string {
+  // Определяем правильную форму слова в зависимости от числа
+  let index: number;
+  if (number % 10 === 1 && number % 100 !== 11) {
+    index = 0;
+  } else if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) {
+    index = 1;
+  } else {
+    index = 2;
+  }
+
+  return `${wordForms[index]}`;
+}

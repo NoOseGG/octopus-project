@@ -9,6 +9,7 @@ const NumberInputWrapper = styled.div`
 const StyledNumberInput = styled.input`
   width: 40px;
   height: 25px;
+  background-color: #fff;
   display: flex;
   text-align: center;
   -moz-appearance: textfield;

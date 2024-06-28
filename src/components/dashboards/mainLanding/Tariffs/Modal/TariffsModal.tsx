@@ -1,31 +1,48 @@
 import React from 'react';
-import { Modal } from 'antd';
 import styled from 'styled-components';
+import GetSubscribe from '@app/components/dashboards/mainLanding/Tariffs/Modal/Form/GetSubscribe';
 
 type TariffsModal = {
   isOpen: boolean;
   onSetIsOpen: (value: boolean) => void;
+  countMonth: number;
+  countUser: number;
+  price: number;
 };
 
-const TariffsModal: React.FC<TariffsModal> = ({ isOpen, onSetIsOpen }) => {
+const TariffsModal: React.FC<TariffsModal> = ({ isOpen, onSetIsOpen, countMonth, countUser, price }) => {
+  if (!isOpen) return null;
+
   return (
-    <Modal
-      title="Оформление тарифа"
-      centered
-      visible={isOpen}
-      onOk={() => onSetIsOpen(false)}
-      onCancel={() => onSetIsOpen(false)}
-      width={1000}
-    >
-      <Container>
-        <h1>В разработке! 28.06.2024 будет готово</h1>
-      </Container>
-    </Modal>
+    <Overlay>
+      <ModalContainer>
+        <GetSubscribe countMonth={countMonth} countUser={countUser} price={price} onSetIsOpen={onSetIsOpen} />
+      </ModalContainer>
+    </Overlay>
   );
 };
 
 export default TariffsModal;
 
-const Container = styled.div`
-  padding: 50px 20px;
+const Overlay = styled.div`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+`;
+
+const ModalContainer = styled.div`
+  width: 1000px;
+  padding: 20px 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

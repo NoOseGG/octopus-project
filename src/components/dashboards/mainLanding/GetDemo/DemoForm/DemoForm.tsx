@@ -57,7 +57,7 @@ const DemoForm: React.FC = () => {
     }
     const date = new Date();
     const formattedDate = moment(date).format('DD.MM.YYYY');
-    const message = `Дата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
+    const message = `Получение демо доступа.\nДата: ${formattedDate}\nФ.И.О: ${name}\nE-mail: ${email}\nТелефон: ${phone}\nКомпания: ${company}`;
     sendMessageToTelegram(message);
   };
 

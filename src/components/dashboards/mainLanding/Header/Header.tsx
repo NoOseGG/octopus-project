@@ -94,6 +94,10 @@ const MenuContainer = styled.nav`
   align-items: center;
   gap: 20px;
 
+  @media (max-width: 1400px) {
+    margin-left: 0;
+  }
+
   @media (max-width: 1140px) {
     display: none;
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // no lazy loading for auth pages to avoid flickering
 const AuthLayout = React.lazy(() => import('@app/components/layouts/AuthLayout/AuthLayout'));
@@ -22,6 +22,7 @@ import ResetPassword from '@app/pages/ResetPassword';
 import ActivateEmailPage from '@app/pages/ActivateEmail';
 import LegalEntityDashboardPage from '@app/pages/DashboardPages/LegalEntityDashboardPage';
 import SoleTradeDashboardPage from '@app/pages/DashboardPages/SoleTradeDashboardPage';
+import { usePageTracking } from '@app/utils/metrika';
 
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
 const Error404Page = React.lazy(() => import('@app/pages/Error404Page'));
@@ -61,6 +62,8 @@ const AuthLayoutFallback = withLoading(AuthLayout);
 const LogoutFallback = withLoading(Logout);
 
 export const AppRouter: React.FC = () => {
+  usePageTracking();
+
   const protectedLayout = (
     <RequireAuth>
       <MainLayout />
@@ -68,50 +71,48 @@ export const AppRouter: React.FC = () => {
   );
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={ANALYTIC_DASHBOARD_PATH}>
-          <Route index element={<Analytix />} />
-          <Route path="404" element={<Error404 />} />
-          <Route path={DEMO_SUBJECT_INFO_DASHBOARD_PATH} element={<DemoSubjectInfo />} />
-          <Route path={''} element={protectedLayout}>
-            <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
-            <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
-            <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
-            <Route path={LEGAL_ENTITY} element={<LegalEntity />} />
-            <Route path={SOLE_TRADE} element={<SoleTrade />} />
-            <Route path={FEEDBACK_PATH} element={<Feedback />} />
-            <Route path="server-error" element={<ServerError />} />
+    <Routes>
+      <Route path={ANALYTIC_DASHBOARD_PATH}>
+        <Route index element={<Analytix />} />
+        <Route path="404" element={<Error404 />} />
+        <Route path={DEMO_SUBJECT_INFO_DASHBOARD_PATH} element={<DemoSubjectInfo />} />
+        <Route path={''} element={protectedLayout}>
+          <Route path={`${SUBJECT_INFO_DASHBOARD_PATH}/:unn`} element={<SubjectInfo />} />
+          <Route path={SEARCH_DASHBOARD_PATH} element={<Search />} />
+          <Route path={CHANGE_LOG_PATH} element={<ChangeLog />} />
+          <Route path={LEGAL_ENTITY} element={<LegalEntity />} />
+          <Route path={SOLE_TRADE} element={<SoleTrade />} />
+          <Route path={FEEDBACK_PATH} element={<Feedback />} />
+          <Route path="server-error" element={<ServerError />} />
 
-            <Route path="profile" element={<ProfileLayout />}>
-              <Route path="personal-info" element={<PersonalInfo />} />
-              <Route path="security-settings" element={<SecuritySettings />} />
-              {/*<Route path="notifications" element={<Notifications />} />*/}
-              {/*<Route path="payments" element={<Payments />} />*/}
-            </Route>
+          <Route path="profile" element={<ProfileLayout />}>
+            <Route path="personal-info" element={<PersonalInfo />} />
+            <Route path="security-settings" element={<SecuritySettings />} />
+            {/*<Route path="notifications" element={<Notifications />} />*/}
+            {/*<Route path="payments" element={<Payments />} />*/}
           </Route>
         </Route>
-        <Route path="/auth" element={<AuthLayoutFallback />}>
-          <Route path="login" element={<LoginPage />} />
-          {/*<Route path="sign-up" element={<SignUpPage />} />*/}
-          <Route path="password/reset/confirm/:id/:token" element={<ResetPassword />} />
-          <Route path="users/activation/:id/:token" element={<ActivateEmailPage />} />
-          <Route
-            path="lock"
-            element={
-              <RequireAuth>
-                <LockPage />
-              </RequireAuth>
-            }
-          />
-          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+      </Route>
+      <Route path="/auth" element={<AuthLayoutFallback />}>
+        <Route path="login" element={<LoginPage />} />
+        {/*<Route path="sign-up" element={<SignUpPage />} />*/}
+        <Route path="password/reset/confirm/:id/:token" element={<ResetPassword />} />
+        <Route path="users/activation/:id/:token" element={<ActivateEmailPage />} />
+        <Route
+          path="lock"
+          element={
+            <RequireAuth>
+              <LockPage />
+            </RequireAuth>
+          }
+        />
+        <Route path="forgot-password" element={<ForgotPasswordPage />} />
 
-          {/*<Route path="security-code" element={<SecurityCodePage />} />*/}
-          {/*<Route path="new-password" element={<NewPasswordPage />} />*/}
-        </Route>
-        <Route path="/logout" element={<LogoutFallback />} />
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-    </BrowserRouter>
+        {/*<Route path="security-code" element={<SecurityCodePage />} />*/}
+        {/*<Route path="new-password" element={<NewPasswordPage />} />*/}
+      </Route>
+      <Route path="/logout" element={<LogoutFallback />} />
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };

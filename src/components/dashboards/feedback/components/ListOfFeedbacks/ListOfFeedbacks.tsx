@@ -15,10 +15,6 @@ const ListOfFeedbacks: React.FC = () => {
     dispatch(doGetFeedbacks());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(JSON.stringify(results));
-  }, [results]);
-
   const columns: ColumnsType<FeedbackObject> = [
     {
       title: 'Дата',

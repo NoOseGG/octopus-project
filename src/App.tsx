@@ -9,6 +9,8 @@ import { useThemeWatcher } from './hooks/useThemeWatcher';
 import { useAppSelector } from './hooks/reduxHooks';
 import { themeObject } from './styles/themes/themeVariables';
 import { AppRouter } from '@app/components/router/AppRouter';
+import { BrowserRouter } from 'react-router-dom';
+import { StyleSheetManager } from 'styled-components';
 
 const App: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.theme);
@@ -18,13 +20,17 @@ const App: React.FC = () => {
   useThemeWatcher();
 
   return (
-    <>
-      <meta name="theme-color" content={themeObject[theme].primary} />
-      <GlobalStyle />
-      <ConfigProvider locale={ruRu}>
-        <AppRouter />
-      </ConfigProvider>
-    </>
+    <StyleSheetManager disableCSSOMInjection>
+      <>
+        <meta name="theme-color" content={themeObject[theme].primary} />
+        <GlobalStyle />
+        <ConfigProvider locale={ruRu}>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </ConfigProvider>
+      </>
+    </StyleSheetManager>
   );
 };
 

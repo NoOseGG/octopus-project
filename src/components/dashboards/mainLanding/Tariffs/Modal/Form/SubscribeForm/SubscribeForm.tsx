@@ -142,7 +142,7 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ countMonth, countUser, pr
 
         <ButtonContainer>
           <Button type={'submit'} isDisabled={isDisabled} disabled={isDisabled}>
-            {formatNumberWithCommas(price)} рублей
+            Оформить подписку
           </Button>
           <ButtonCancel onClick={() => onSetIsOpen(false)}>Отменить</ButtonCancel>
         </ButtonContainer>

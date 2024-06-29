@@ -6,11 +6,16 @@ import { getWordEnding } from '@app/utils/utils';
 type SubscribeInfoProps = {
   countMonth: number;
   countUser: number;
+  price: number;
 };
 
-const SubscribeInfo: React.FC<SubscribeInfoProps> = ({ countMonth, countUser }) => {
+const SubscribeInfo: React.FC<SubscribeInfoProps> = ({ countMonth, countUser, price }) => {
   return (
     <SubscribeInfoContainer>
+      <Title>Сумма к оплате:</Title>
+      <Timeline style={{ paddingLeft: 20, marginBottom: 0 }}>
+        <Timeline.Item color={'green'}>{price} рублей</Timeline.Item>
+      </Timeline>
       <Title>Срок доступа:</Title>
       <Timeline style={{ paddingLeft: 20, marginBottom: 0 }}>
         <Timeline.Item color={'green'}>

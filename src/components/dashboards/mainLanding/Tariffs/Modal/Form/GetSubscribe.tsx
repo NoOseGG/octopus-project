@@ -18,7 +18,7 @@ const GetSubscribe: React.FC<GetSubscribeProps> = ({ countMonth, countUser, pric
       <Title>Оформление подписки</Title>
       <SubTitle>После оформления подписки, с Вами в ближайшие сроки свяжется специалист.</SubTitle>
       <DemoContainer>
-        <SubscribeInfo countMonth={countMonth} countUser={countUser} />
+        <SubscribeInfo countMonth={countMonth} countUser={countUser} price={price} />
         <SubscribeForm countMonth={countMonth} countUser={countUser} price={price} onSetIsOpen={onSetIsOpen} />
       </DemoContainer>
     </GetDemoContainer>

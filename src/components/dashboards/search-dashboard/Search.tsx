@@ -19,8 +19,6 @@ const Search: React.FC = () => {
     dispatch(doGetSearchHistory());
   }, [dispatch]);
 
-  useEffect(() => console.log(favourites), [favourites]);
-
   if (Boolean(results?.length) && !loading) {
     return (
       <Container>

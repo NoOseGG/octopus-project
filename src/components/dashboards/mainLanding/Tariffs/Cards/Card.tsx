@@ -27,7 +27,6 @@ const Card: React.FC<CardProps> = ({ cardType }) => {
     } else {
       setIsOpen(true);
     }
-    console.log('click');
   };
 
   return (

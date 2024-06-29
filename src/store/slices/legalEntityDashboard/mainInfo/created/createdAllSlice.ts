@@ -14,10 +14,8 @@ const initialState: MainInfoState = {
 export const doGetTotalCountCreated = createAsyncThunk<ResponseMainInfo, RequestData>(
   'getTotalCountCreated',
   async ({ filters }) => {
-    console.log('thunk total count');
     const url = constructorUrlForDashboard(DASH.BASE + DASH.LEGAL_ENTITY, filters, true, true);
     const response = await httpDashboard.get(url);
-    console.log(`response => ${JSON.stringify(response?.data)}`);
     return response.data;
   },
 );

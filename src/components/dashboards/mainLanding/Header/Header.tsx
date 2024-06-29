@@ -89,6 +89,7 @@ const Title = styled.div`
 `;
 
 const MenuContainer = styled.nav`
+  margin-left: 200px;
   display: flex;
   align-items: center;
   gap: 20px;

@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                       fill="#188CFF"
                     />
                   </svg>
-                  <span>г. Минск, ул. Убаревича 99, пом. 77, внут. номер 315</span>
+                  <span>г. Минск, ул. Уборевича 99, пом. 77, внут. номер 315</span>
                 </Address>
                 <ContactContainer>
                   <Item>

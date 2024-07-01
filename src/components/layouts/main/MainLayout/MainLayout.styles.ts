@@ -7,6 +7,9 @@ export const LayoutMaster = styled(Layout)`
 `;
 
 export const LayoutMain = styled(Layout)`
+  display: flex;
+  flex-direction: column;
+
   @media only screen and ${media.md} {
     margin-left: 80px;
   }

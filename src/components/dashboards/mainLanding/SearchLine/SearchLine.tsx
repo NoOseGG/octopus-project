@@ -8,6 +8,9 @@ import { clearSearchData, doSearch } from '@app/store/slices/search/searchSlice'
 import { Dropdown } from 'antd';
 import DropdownMenu from '@app/components/dashboards/mainLanding/SearchLine/components/DropdownMenu/DropdownMenu';
 import { useNavigate } from 'react-router-dom';
+import { readToken } from '@app/services/localStorage.service';
+import { notificationController } from '@app/controllers/notificationController';
+import { SearchType } from '@app/components/header/components/SearchInput/SearchInput';
 
 const SearchLine: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,8 +27,8 @@ const SearchLine: React.FC = () => {
   }, [results]);
 
   const delaySearch = useCallback(
-    _.debounce((query: string) => {
-      dispatch(doSearch(query));
+    _.debounce((query: string, searchType: SearchType) => {
+      dispatch(doSearch({ query, searchType }));
     }, 500),
     [dispatch],
   );
@@ -40,7 +43,7 @@ const SearchLine: React.FC = () => {
   useEffect(() => {
     if (initialized) {
       if (query.trim().length > 2) {
-        delaySearch(query);
+        delaySearch(query, SearchType.STANDARD);
       } else {
         clearSearch();
       }
@@ -59,24 +62,24 @@ const SearchLine: React.FC = () => {
     setQuery(value);
   };
 
-  // const handleSearch = () => {
-  //   if (Boolean(results.length)) {
-  //     const token = readToken();
-  //     if (token !== null) navigate('/search');
-  //     else {
-  //       navigate('/auth/login');
-  //       notificationController.warning({
-  //         message: 'Авторизируйтесь чтобы посмотреть найденных субъектов',
-  //       });
-  //     }
-  //   }
-  // };
-
   const handleSearch = () => {
-    if (Boolean(unp.length)) {
-      navigate(`/unp/${unp}`);
+    if (Boolean(results.length)) {
+      const token = readToken();
+      if (token !== null) navigate('/search');
+      else {
+        navigate('/auth/login');
+        notificationController.warning({
+          message: 'Авторизируйтесь чтобы посмотреть найденных субъектов',
+        });
+      }
     }
   };
+
+  // const handleSearch = () => {
+  //   if (Boolean(unp.length)) {
+  //     navigate(`/unp/${unp}`);
+  //   }
+  // };
 
   return (
     <Container backgroundColor={'#1d1d47'} onClick={handleClick}>

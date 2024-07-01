@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { SearchDropdown } from '../searchDropdown/SearchDropdown';
 import { Button } from '@app/components/common/buttons/Button/Button';
-import { components as configComponents, Component } from '@app/constants/config/components';
+import { Component, components as configComponents } from '@app/constants/config/components';
 import { categoriesList, CategoryType } from '@app/constants/categoriesList';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './HeaderSearch.styles';
@@ -10,6 +10,7 @@ import { clearSearchData, doSearch, searchController } from '@app/store/slices/s
 import { useAppDispatch } from '@app/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
+import SearchInput, { SearchType } from '@app/components/header/components/SearchInput/SearchInput';
 
 export interface CategoryComponents {
   category: CategoryType;
@@ -24,6 +25,11 @@ export const HeaderSearch: React.FC = () => {
 
   const [query, setQuery] = useState('');
   const [components] = useState<Component[]>(configComponents);
+  const [searchType, setSearchType] = useState<SearchType>(SearchType.STANDARD);
+
+  useEffect(() => {
+    console.log('111', searchType);
+  }, [searchType]);
 
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -45,8 +51,9 @@ export const HeaderSearch: React.FC = () => {
   }, [pathname]);
 
   const delaySearch = useCallback(
-    _.debounce((query: string) => {
-      dispatch(doSearch(query));
+    _.debounce((query: string, searchType: SearchType) => {
+      console.log('delay', searchType);
+      dispatch(doSearch({ query, searchType }));
     }, 500),
     [dispatch],
   );
@@ -59,11 +66,16 @@ export const HeaderSearch: React.FC = () => {
     [dispatch],
   );
 
+  const handleCancelSearch = () => {
+    setQuery('');
+    clearSearch();
+  };
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (query.trim().length > 2) {
       // dispatch(doSearch(query.trim()));
-      delaySearch(query);
+      delaySearch(query, searchType);
       navigate('/search');
     }
 
@@ -92,7 +104,16 @@ export const HeaderSearch: React.FC = () => {
         </>
       )}
 
-      {isTablet && <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />}
+      {/*{isTablet && <SearchDropdown query={query} setQuery={setQuery} data={sortedResults} isOverlayVisible={false} />}*/}
+      {isTablet && (
+        <SearchInput
+          query={query}
+          setQuery={setQuery}
+          handleCancelSearch={handleCancelSearch}
+          searchType={searchType}
+          setSearchType={setSearchType}
+        />
+      )}
     </>
   );
 };

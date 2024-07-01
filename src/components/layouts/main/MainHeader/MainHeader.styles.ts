@@ -12,7 +12,8 @@ export const Header = styled(Layout.Header)<Header>`
 
   @media only screen and ${media.md} {
     padding: ${LAYOUT.desktop.paddingVertical} ${LAYOUT.desktop.paddingHorizontal};
-    height: ${LAYOUT.desktop.headerHeight};
+    //height: ${LAYOUT.desktop.headerHeight};
+    height: fit-content;
   }
 
   @media only screen and ${media.md} {

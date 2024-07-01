@@ -3,6 +3,7 @@ import axios from 'axios';
 import { TOKEN_NAME, URLS } from '@app/constants/Constants';
 import { readToken } from '@app/services/localStorage.service';
 import { httpSearch } from '@app/api/http.api';
+import { SearchType } from '@app/components/header/components/SearchInput/SearchInput';
 
 export let searchController: AbortController | undefined;
 
@@ -33,6 +34,11 @@ interface SearchError {
   detail: string;
 }
 
+interface RequestData {
+  query: string;
+  searchType: SearchType;
+}
+
 const initialState: SearchState = {
   data: {
     count: 0,
@@ -45,38 +51,39 @@ const initialState: SearchState = {
   error: null,
 };
 
-export const doSearch = createAsyncThunk<Data, string>('auth/doSearch', async (query, { rejectWithValue }) => {
-  try {
-    if (!!searchController) {
-      console.log('abort111');
-      searchController.abort();
-    }
-    searchController = new AbortController();
-    const response = await httpSearch.get(URLS.SEARCH, {
-      params: { val: query },
-      signal: searchController.signal,
-    });
+export const doSearch = createAsyncThunk<Data, RequestData>(
+  'auth/doSearch',
+  async ({ query, searchType }, { rejectWithValue }) => {
+    try {
+      if (!!searchController) {
+        searchController.abort();
+      }
+      searchController = new AbortController();
+      const response = await httpSearch.get(URLS.SEARCH, {
+        params: searchType === SearchType.OTHER ? { val: query, type: 'other' } : { val: query },
+        signal: searchController.signal,
+      });
 
-    return response.data;
-  } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log('cancel');
-      return;
-    }
-    if (axios.isAxiosError(error)) {
-      const responseError: SearchError | undefined = error.response?.data;
-      if (responseError) {
-        const errorMessage: string | null = responseError.detail;
-        // dispatch(clearSearchData());
-        console.log(222);
-        return rejectWithValue(errorMessage);
-      } else {
-        // dispatch(clearSearchData());
-        return rejectWithValue('');
+      return response.data;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return;
+      }
+      if (axios.isAxiosError(error)) {
+        const responseError: SearchError | undefined = error.response?.data;
+        if (responseError) {
+          const errorMessage: string | null = responseError.detail;
+          // dispatch(clearSearchData());
+          console.log(222);
+          return rejectWithValue(errorMessage);
+        } else {
+          // dispatch(clearSearchData());
+          return rejectWithValue('');
+        }
       }
     }
-  }
-});
+  },
+);
 
 export const doNewPage = createAsyncThunk<Data, string>(
   'auth/doNewPage',
@@ -120,12 +127,10 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(doSearch.pending, (state) => {
-      console.log('pending');
       state.loading = true;
       state.error = null;
     });
     builder.addCase(doSearch.fulfilled, (state, action) => {
-      console.log('fullfilled');
       state.data = action.payload
         ? action.payload
         : {
@@ -138,7 +143,6 @@ export const searchSlice = createSlice({
       state.error = null;
     });
     builder.addCase(doSearch.rejected, (state, action) => {
-      console.log('rejected');
       state.data.results = [];
       if (typeof action.payload === 'string') {
         state.error = action.payload;

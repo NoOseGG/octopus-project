@@ -78,7 +78,7 @@ export const HeaderSearch: React.FC = () => {
     if (query.trim().length === 1) {
       clearSearch();
     }
-  }, [query]);
+  }, [query, searchType]);
 
   return (
     <>

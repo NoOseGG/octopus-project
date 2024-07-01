@@ -256,7 +256,7 @@ const Indicators: React.FC = () => {
         {metric_probability_liquidation[0]?.risk_level && (
           <MeterGaugePlot
             risk={metric_probability_liquidation[0].risk_level}
-            name={'Уровень ликвидаций'}
+            name={'Уровень ликвидаций в секторе'}
             content={`${metric_probability_liquidation[0]?.probability_liquidation?.toFixed(2)}%`}
             description={
               <Description>

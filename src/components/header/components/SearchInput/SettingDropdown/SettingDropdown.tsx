@@ -18,7 +18,6 @@ const SettingDropdown: React.FC<SettingDropdownProps> = ({ searchType, setSearch
       <RadioContainer>
         <InputWrapper>
           <InputRadio
-            type="radio"
             name={'searchOption'}
             id={'standard'}
             value={SearchType.STANDARD}
@@ -29,7 +28,6 @@ const SettingDropdown: React.FC<SettingDropdownProps> = ({ searchType, setSearch
         </InputWrapper>
         <InputWrapper>
           <InputRadio
-            type="radio"
             name={'searchOption'}
             id={'other'}
             value={SearchType.OTHER}
@@ -78,8 +76,32 @@ const InputWrapper = styled.div`
   gap: 8px;
 `;
 
-const InputRadio = styled.input`
+const InputRadio = styled.input.attrs({ type: 'radio' })`
+  width: 15px;
+  height: 15px;
   margin-bottom: 2px;
+  accent-color: #0075ff;
+  cursor: pointer;
+
+  &:not(:checked) {
+    &:after {
+      width: 15px;
+      height: 15px;
+      border-radius: 15px;
+      top: -2px;
+      left: 0;
+      position: relative;
+      background-color: white;
+      content: '';
+      display: inline-block;
+      visibility: visible;
+      border: 1px solid #0075ff;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const LabelContent = styled.div``;

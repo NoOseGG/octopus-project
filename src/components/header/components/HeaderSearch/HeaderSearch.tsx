@@ -27,10 +27,6 @@ export const HeaderSearch: React.FC = () => {
   const [components] = useState<Component[]>(configComponents);
   const [searchType, setSearchType] = useState<SearchType>(SearchType.STANDARD);
 
-  useEffect(() => {
-    console.log('111', searchType);
-  }, [searchType]);
-
   const [isModalVisible, setModalVisible] = useState(false);
 
   const sortedResults = query

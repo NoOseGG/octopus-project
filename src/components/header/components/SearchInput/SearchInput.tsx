@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { CloseOutlined, ControlOutlined, SearchOutlined } from '@ant-design/icons';
+import { CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import SettingDropdown from '@app/components/header/components/SearchInput/SettingDropdown/SettingDropdown';
 
 export enum SearchType {
@@ -62,14 +62,5 @@ const Search = styled.input`
   flex-grow: 1;
   border: none;
   outline: none;
-`;
-
-const StyledControlOutline = styled(ControlOutlined)`
-  font-size: 32px;
-  color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-
-  &:hover {
-    color: #000;
-  }
+  background-color: transparent;
 `;

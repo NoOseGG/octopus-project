@@ -54,7 +54,7 @@ const RatingTable: React.FC<RatingTableProps> = ({ data, isLoading }) => {
     <Table
       className={'ant-table'}
       columns={columns}
-      dataSource={data}
+      dataSource={data?.map((item, index) => ({ ...item, key: index }))}
       loading={isLoading}
       size={'small'}
       pagination={false}

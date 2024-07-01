@@ -96,7 +96,7 @@ const GiasTest: React.FC = () => {
           <S.Title>Реестры и иные государственные регистры</S.Title>
           <Table
             columns={columns}
-            dataSource={gias}
+            dataSource={gias.map((item, index) => ({ ...item, key: index }))}
             title={() => <TableText />}
             size={'small'}
             pagination={gias.length <= 5 ? false : { pageSize: 5 }}

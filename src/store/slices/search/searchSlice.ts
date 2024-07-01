@@ -73,11 +73,8 @@ export const doSearch = createAsyncThunk<Data, RequestData>(
         const responseError: SearchError | undefined = error.response?.data;
         if (responseError) {
           const errorMessage: string | null = responseError.detail;
-          // dispatch(clearSearchData());
-          console.log(222);
           return rejectWithValue(errorMessage);
         } else {
-          // dispatch(clearSearchData());
           return rejectWithValue('');
         }
       }

@@ -48,7 +48,6 @@ export const HeaderSearch: React.FC = () => {
 
   const delaySearch = useCallback(
     _.debounce((query: string, searchType: SearchType) => {
-      console.log('delay', searchType);
       dispatch(doSearch({ query, searchType }));
     }, 500),
     [dispatch],

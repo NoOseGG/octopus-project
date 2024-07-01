@@ -58,7 +58,6 @@ httpDashboard.interceptors.response.use(
   (error) => {
     if (axios.isCancel(error)) {
       // notificationController.success({ message: 'Вы не авторизированны, войдите в свой аккаунт' });
-      console.log('Запрос отменен:', error.message);
     } else if (error.response.status === 401) {
       window.location.href = '/auth/login';
     } else if (error.response.status === 404) {

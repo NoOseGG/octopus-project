@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppSelector } from '@app/hooks/reduxHooks';
 
 import * as S from '@app/components/dashboards/profile-info/styles/ProfileInfoStyles';
@@ -11,34 +11,37 @@ import { GridProps } from '@app/components/dashboards/dashboard/styles/CountComp
 import CompetitorsByMonth from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByMonth/CompetitorsByMonth';
 import CompetitorsDetailed from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsDetailed/CompetitorsDetailed';
 import CompetitorsByAge from '@app/components/dashboards/profile-info/components/GeneralInformation/CompetitorsTest/CompetitorsByAge/CompetitorsByAge';
+import { useQuery } from '@tanstack/react-query';
+import competitorsService from '@app/services/competitors.service';
 
 const CompetitorsTest: React.FC = () => {
-  const addresses = useAppSelector((state) => state.searchProfile.profile.addresses);
-  const typeActivities = useAppSelector((state) => state.searchProfile.profile.types_activities);
-  const [countCompany, setCountCompany] = useState<undefined | number>(undefined);
+  const settlement = useAppSelector((state) => state.searchProfile.profile?.addresses[0]?.settlement);
+  const typeActivity = useAppSelector((state) => state.searchProfile.profile?.types_activities[0]?.name);
+
+  const { data } = useQuery({
+    queryKey: [competitorsService.COMPETITORS_KEY.COUNT_ALL, settlement, typeActivity],
+    queryFn: () => competitorsService.getCountAll(settlement, typeActivity),
+    enabled: Boolean(settlement) && Boolean(typeActivity),
+  });
 
   return (
     <Container>
-      {addresses[0]?.settlement && typeActivities[0]?.name && countCompany !== -1 && (
+      {settlement && typeActivity && data?.data.count !== -1 && (
         <>
           <S.Title>Действующие конкуренты в населенном пункте с аналогичным видом деятельности</S.Title>
-          {countCompany === 1 || countCompany === 0 ? (
+          {data?.data.count === 1 || data?.data.count === 0 ? (
             <Text>Действующие конкуренты отсутсвуют</Text>
           ) : (
             <>
               <CountContainer value={false}>
-                <CountAllCompetitors
-                  settlement={addresses[0]?.settlement}
-                  typeActivity={typeActivities[0]?.name}
-                  setCount={setCountCompany}
-                />
-                <CountYearCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-                <CountQuarterCompetitors settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <CountAllCompetitors count={data?.data.count ?? 0} />
+                <CountYearCompetitors settlement={settlement} typeActivity={typeActivity} />
+                <CountQuarterCompetitors settlement={settlement} typeActivity={typeActivity} />
               </CountContainer>
-              <CompetitorsDetailed settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+              <CompetitorsDetailed settlement={settlement} typeActivity={typeActivity} />
               <ChartContainer>
-                <CompetitorsByAge settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
-                <CompetitorsByMonth settlement={addresses[0]?.settlement} typeActivity={typeActivities[0]?.name} />
+                <CompetitorsByAge settlement={settlement} typeActivity={typeActivity} />
+                <CompetitorsByMonth settlement={settlement} typeActivity={typeActivity} />
               </ChartContainer>
             </>
           )}

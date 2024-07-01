@@ -21,7 +21,9 @@ const CompetitorsDetailed: React.FC<CompetitorsProps> = ({ settlement, typeActiv
       {data && data.results.length > 1 && (
         <CompetitorsDetailedContainer>
           <DetailedTable
-            data={data?.results.filter((item) => item.legal_entity_id !== unn)}
+            data={data?.results
+              .filter((item) => item.legal_entity_id !== unn)
+              .map((item, index) => ({ ...item, key: index }))}
             type={DetailsTableType.COMPETITORS}
             isLoading={isLoading}
             sizePage={5}

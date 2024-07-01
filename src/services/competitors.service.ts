@@ -19,7 +19,9 @@ class CompetitorsService {
     DETAILS: 'detailsCompetitors',
   };
 
-  async getCountAll(settlement: string, typeActivity: string) {
+  async getCountAll(settlement: string | null, typeActivity: string | null) {
+    if (!settlement || !typeActivity) return;
+
     return httpDashboard.get<CountCompetitorsResponse>(
       DASH.BASE +
         DASH.ADDRESS_SETTLEMENT_ICONTAINS(settlement) +
